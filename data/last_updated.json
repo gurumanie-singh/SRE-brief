@@ -1,5 +1,10 @@
 {
+<<<<<<< HEAD
   "updated_at_iso": "2026-04-18T21:30:07.380002-05:00",
   "updated_at_human": "18 April 2026, 21:30",
+=======
+  "updated_at_iso": "2026-04-18T21:22:22.444881-05:00",
+  "updated_at_human": "18 April 2026, 21:22",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
   "timezone": "America/Chicago"
 }

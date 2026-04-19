@@ -5,7 +5,11 @@
     "source": "GitHub Blog",
     "link": "https://github.blog/ai-and-ml/github-copilot/build-a-personal-organization-command-center-with-github-copilot-cli/",
     "published": "2026-04-15T17:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.948790+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.525748+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "What if you could remove the struggle of context switching across several apps, bringing them together into one place?",
     "tags": [
       "outage"
@@ -43,10 +47,13 @@
       {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/voice-agents/"
+<<<<<<< HEAD
       },
       {
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/04/15/governance-lessons-red-hat-hybrid-cloud-console"
+=======
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
       }
     ],
     "highlighted": false
@@ -57,7 +64,11 @@
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/agentic-ai-changes-the-shape-of-trust",
     "published": "2026-04-15T15:45:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:05.532119+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.848409+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time. That idea held up through the shift to cloud and automation. It still mostly works for services and pipelines. ",
     "tags": [
       "deployment",
@@ -99,7 +110,11 @@
     "source": "GitHub Blog",
     "link": "https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-intermediary-liability-copyright-and-transparency/",
     "published": "2026-04-15T15:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.949213+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.526446+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "We re sharing a few timely updates on developer policy that reflect GitHub s ongoing work on transparency, developer protections, and copyright policy engagement issues that directly affect how developers build, share, and maintain software.",
     "tags": [
       "outage"
@@ -140,7 +155,11 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/15/human-input-needed-take-our-survey-on-ai-agents/",
     "published": "2026-04-15T14:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.088769+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.184017+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Are you still \"human-in-the-loop,\" or have you moved to \"human-on-the-loop,\" overseeing a bot that’s doing the driving?",
     "tags": [],
     "day": "2026-04-15",
@@ -171,7 +190,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/introducing-agent-lee/",
     "published": "2026-04-15T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.104198+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.563178+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. It still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles.",
     "tags": [
       "networking",
@@ -218,7 +241,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/registrar-api-beta/",
     "published": "2026-04-15T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.104857+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.564595+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Today we're launching the next chapter of Cloudflare Registrar: the Registrar API in beta .",
     "tags": [
       "deployment",
@@ -264,7 +291,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/browser-run-for-ai-agents/",
     "published": "2026-04-15T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.105746+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.566682+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "AI agents need to interact with the web. To do that, they need a browser. They need to navigate sites, read pages, fill forms, extract data, and take screenshots. They need to observe whether things are working as expected, with a way for their humans to step in if needed. And they need to do all of this at scale.",
     "tags": [
       "latency",
@@ -311,7 +342,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/workflows-v2/",
     "published": "2026-04-15T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.106564+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.568538+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order. For use cases like onboarding flows, workflows only had to support one instance per person — and people can only click so fast. ",
     "tags": [
       "capacity",
@@ -361,7 +396,11 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/15/why-ai-hasn-t-replaced-human-expertise/",
     "published": "2026-04-15T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.088883+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.184214+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.",
     "tags": [],
     "day": "2026-04-15",
@@ -385,6 +424,7 @@
     "email_summary": "The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.",
     "related_sources": [],
     "highlighted": false
+<<<<<<< HEAD
   },
   {
     "id": "ac0fd7d551e48aa5",
@@ -558,5 +598,7 @@
     "email_summary": "Elastic Security gives MSSPs the platform edge they need: resource-based pricing, built-in AI, and automation tools that scale operations without scaling headcount. See why forward-looking MSSPs are making the switch.",
     "related_sources": [],
     "highlighted": false
+=======
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
   }
 ]

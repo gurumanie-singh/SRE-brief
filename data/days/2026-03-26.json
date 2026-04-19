@@ -5,7 +5,11 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/customize-your-aws-management-console-experience-with-visual-settings-including-account-color-region-and-service-visibility/",
     "published": "2026-03-26T21:34:19+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:03.284355+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:19.825755+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "In August 2025, we introduced AWS User Experience Customization (UXC) capability to tailor user interfaces (UIs) to meet your specific needs and complete your tasks efficiently. With this capability, your account administrator can customize some UI component of AWS Management Console , such as assigning a color to an AWS account for easier identification.",
     "tags": [],
     "day": "2026-03-26",
@@ -42,7 +46,11 @@
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/lab3-accelerates-cloud-modernization-with-hashicorp-powered-unified-workflows",
     "published": "2026-03-26T17:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:05.535229+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.853596+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "What usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative. For enterprises working with LAB³, modernizing provisioning and security quickly evolves into establishing a unified workflow across infrastructure, secrets, and networking — a foundation that enables true cloud velocity and unlocks new possibilities for AI and...",
     "tags": [
       "latency",
@@ -84,7 +92,11 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/03/26/coding-guidelines-for-ai-agents-and-people-too/",
     "published": "2026-03-26T14:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.089850+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.186056+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Coding guidelines and standards for agents need to be a little different—more explicit, demonstrative of patterns, and obvious.",
     "tags": [],
     "day": "2026-03-26",

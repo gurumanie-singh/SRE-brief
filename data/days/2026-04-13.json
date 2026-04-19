@@ -5,7 +5,11 @@
     "source": "Slack Engineering",
     "link": "https://slack.engineering/managing-context-in-long-run-agentic-applications/",
     "published": "2026-04-13T17:17:16+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:05.939712+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.079759+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Excerpt ",
     "tags": [
       "capacity",
@@ -52,7 +56,11 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-mythos-preview-in-amazon-bedrock-aws-agent-registry-and-more-april-13-2026/",
     "published": "2026-04-13T16:16:20+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:03.280973+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:19.818554+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. A common theme in those sessions is the need for better cost visibility. Teams are moving fast with AI, but as they go from experimenting to full production, finance and leadership really need to know who is using which resources and at what...",
     "tags": [
       "deployment",
@@ -96,7 +104,11 @@
     "source": "GitHub Blog",
     "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-github-pages/",
     "published": "2026-04-13T15:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.950862+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.529246+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Welcome back to GitHub for Beginners. So far, we ve discussed GitHub Issues and Projects , GitHub Actions , and covered a bit about security . This time, we re going to talk about GitHub Pages.",
     "tags": [
       "deployment",
@@ -127,6 +139,7 @@
     "email_summary": "Welcome back to GitHub for Beginners. So far, we ve discussed GitHub Issues and Projects , GitHub Actions , and covered a bit about security .",
     "related_sources": [],
     "highlighted": false
+<<<<<<< HEAD
   },
   {
     "id": "614ffbdd8e80ac48",
@@ -160,5 +173,7 @@
     "email_summary": "Elastic and Cursor partner to bring Elasticsearch's retrieval, tools, and memory into Cursor's coding agents, giving developers a context engineering foundation that keeps AI grounded in their own data.",
     "related_sources": [],
     "highlighted": false
+=======
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
   }
 ]

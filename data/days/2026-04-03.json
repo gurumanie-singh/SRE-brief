@@ -5,7 +5,11 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/amazon-bedrock-guardrails-supports-cross-account-safeguards-with-centralized-control-and-management/",
     "published": "2026-04-03T20:36:40+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:03.282644+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:19.822041+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Today, we’re announcing the general availability of cross-account safeguards in Amazon Bedrock Guardrails , a new capability that enables centralized enforcement and management of safety controls across multiple AWS accounts within an organization.",
     "tags": [],
     "day": "2026-04-03",
@@ -45,7 +49,11 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/03/seizing-the-means-of-messenger-production/",
     "published": "2026-04-03T07:40:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.089417+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.185264+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Ryan sits down with Galen Wolfe-Pauly, CEO of Tlon, to chat about calm computing and how humans can take back ownership of their data and digital world.",
     "tags": [
       "outage"

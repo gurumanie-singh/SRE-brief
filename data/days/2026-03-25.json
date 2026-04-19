@@ -5,7 +5,11 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/announcing-amazon-aurora-postgresql-serverless-database-creation-in-seconds/",
     "published": "2026-03-25T20:37:11+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:03.285153+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:19.826992+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Customers can already create production-ready Amazon DynamoDB tables and Amazon Aurora DSQL databases in seconds. He previewed creating an Amazon Aurora serverless database with the same speed, and...",
     "tags": [
       "capacity",

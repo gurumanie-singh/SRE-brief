@@ -5,7 +5,11 @@
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps",
     "published": "2026-03-20T20:30:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:05.536049+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.855210+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "The current state of AI across the enterprise landscape Organizations worldwide are quickly evolving from leveraging simple chat and code assistants to implementing AI agents that can read data, interact with tools, and act autonomously. Microsoft’s 2025 Work Trend Index Annual Report states that 81% of leaders expect agents to be integrated into their AI strategy within the next 12 to 18 months...",
     "tags": [
       "database",
@@ -58,7 +62,11 @@
     "source": "Kubernetes Blog",
     "link": "https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/",
     "published": "2026-03-20T10:00:00-08:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.782151+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.341694+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated.",
     "tags": [
       "deployment",
@@ -106,7 +114,11 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/03/20/was-2025-really-the-year-of-ai-agents/",
     "published": "2026-03-20T07:40:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.090070+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.186412+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
     "tags": [],
     "day": "2026-03-20",

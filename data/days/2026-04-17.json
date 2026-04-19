@@ -5,7 +5,11 @@
     "source": "GitHub Blog",
     "link": "https://github.blog/ai-and-ml/github-copilot/building-an-emoji-list-generator-with-the-github-copilot-cli/",
     "published": "2026-04-17T18:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.947049+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.522765+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions!",
     "tags": [
       "deployment",
@@ -37,12 +41,16 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions. This week, we built a very fun project together using the GitHub Copilot CLI .",
+<<<<<<< HEAD
     "related_sources": [
       {
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/04/17/integrate-red-hat-enterprise-linux-vms-openshift-service-mesh"
       }
     ],
+=======
+    "related_sources": [],
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "highlighted": false
   },
   {
@@ -51,7 +59,11 @@
     "source": "GitHub Blog",
     "link": "https://github.blog/news-insights/company-news/bringing-more-transparency-to-githubs-status-page/",
     "published": "2026-04-17T16:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.947496+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.523565+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Earlier this year, we shared an update on GitHub s recent availability issues and the work we re doing to address them. Alongside those reliability investments, we have prioritized improving how we communicate during and after incidents, increasing the specificity of the...",
     "tags": [
       "latency",
@@ -87,6 +99,7 @@
     "highlighted": false
   },
   {
+<<<<<<< HEAD
     "id": "c57c4866fc8a275b",
     "title": "The Human Infrastructure: How Netflix Built the Operations Layer Behind Live at Scale",
     "source": "Netflix TechBlog",
@@ -139,12 +152,18 @@
     "highlighted": false
   },
   {
+=======
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "id": "c0122672722e99bd",
     "title": "Advancing secret sync with workload identity federation",
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation",
     "published": "2026-04-17T14:45:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:05.531403+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:21.847141+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials. ",
     "tags": [
       "deployment",
@@ -194,7 +213,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/agent-readiness/",
     "published": "2026-04-17T13:05:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.092254+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.537405+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "The web has always had to adapt to new standards. It learned to speak to web browsers, and then it learned to speak to search engines. Now, it needs to speak to AI agents.",
     "tags": [
       "database",
@@ -243,7 +266,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/shared-dictionaries/",
     "published": "2026-04-17T13:02:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.093491+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.539511+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often those pages get rebuilt and how many clients request them. Both are skyrocketing because of agents. ",
     "tags": [
       "deployment",
@@ -290,7 +317,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/ai-redirects/",
     "published": "2026-04-17T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.094267+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.541125+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Cloudflare's Wrangler CLI has published several major versions over the past six years, each containing at least some critical changes to commands, configuration, or how developers interact with the platform. Like any actively maintained open-source project, we keep documentation for older versions available. The v1 documentation carries a deprecation banner, a noindex meta tag , and canonical...",
     "tags": [
       "observability",
@@ -335,7 +366,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/unweight-tensor-compression/",
     "published": "2026-04-17T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.095455+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.543680+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Running inference within 50ms of 95% of the world's Internet-connected population means being ruthlessly efficient with GPU memory. Last year we improved memory utilization with Infire , our Rust-based inference engine, and eliminated cold-starts with Omni , our model scheduling platform. Now we are tackling the next big bottleneck in our inference platform: model weights.",
     "tags": [
       "capacity",
@@ -383,7 +418,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/introducing-agent-memory/",
     "published": "2026-04-17T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.096610+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.546258+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. The quality of results produced by models is directly tied to the quality of context they operate with, but even as context window sizes grow past one million (1M) tokens, context rot remains an unsolved problem. A natural...",
     "tags": [
       "capacity",
@@ -434,7 +473,11 @@
     "source": "Cloudflare Blog",
     "link": "https://blog.cloudflare.com/network-performance-agents-week/",
     "published": "2026-04-17T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:04.097024+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:20.547191+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "When it comes to the Internet, performance is everything. Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build. That's why, at Cloudflare, we measure our performance constantly and share updates on a regular basis. ",
     "tags": [
       "latency",
@@ -480,14 +523,22 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/17/no-country-left-behind-with-sovereign-ai/",
     "published": "2026-04-17T07:40:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.088629+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.183807+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Ryan welcomes Stephen Watt, distinguished engineer and VP of Red Hat’s Office of the CTO, to chat about digital sovereignty and sovereign AI.",
     "tags": [],
     "day": "2026-04-17",
     "impact": "medium",
+<<<<<<< HEAD
     "vendors": [
       "Red Hat"
     ],
+=======
+    "vendors": [],
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "operational_priority": false,
     "root_cause": "unspecified",
     "affected_layer": "general production",

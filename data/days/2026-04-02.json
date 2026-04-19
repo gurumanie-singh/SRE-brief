@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "id": "64c213b07ec202a4",
     "title": "Smarter Live Streaming at Scale: Rolling Out VBR for All Netflix Live Events",
     "source": "Netflix TechBlog",
@@ -44,12 +45,18 @@
     "highlighted": false
   },
   {
+=======
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "id": "8842e051722db4b8",
     "title": "What the AI trust gap means for enterprise SaaS",
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/02/what-the-ai-trust-gap-means-for-enterprise-saas/",
     "published": "2026-04-02T13:00:00+00:00",
+<<<<<<< HEAD
     "fetched_at": "2026-04-19T02:30:06.089514+00:00",
+=======
+    "fetched_at": "2026-04-19T02:22:22.185439+00:00",
+>>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "summary": "Adoption and trust are moving in diametrically opposed directions, and that gap has real implications for organizations deciding how to spend money on software.",
     "tags": [],
     "day": "2026-04-02",
