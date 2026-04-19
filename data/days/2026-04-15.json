@@ -1,0 +1,562 @@
+[
+  {
+    "id": "f75b0fd5ac610c61",
+    "title": "Build a personal organization command center with GitHub Copilot CLI",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/build-a-personal-organization-command-center-with-github-copilot-cli/",
+    "published": "2026-04-15T17:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.948790+00:00",
+    "summary": "What if you could remove the struggle of context switching across several apps, bringing them together into one place?",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "While planning, I have Copilot interview me with questions about how something should work until we have a plan that I think is adequate. That way, there s less guesswork about what I want done and implementation goes mo",
+      "Follow-up loaded question: Do you care what tech stack your apps use now?"
+    ],
+    "sections": {
+      "overview": "What if you could remove the struggle of context switching across several apps, bringing them together into one place? Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work. We sat down with Brittany to learn about this project what she built, how she did it, and how AI supported the development process from ideation to implementation.",
+      "technical_breakdown": "I stay on top of industry news through articles, podcasts, and social media.\n\nI read articles that are shared internally on GitHub s Slack, and I read the GitHub blog.\n\nThere are a few podcasts that I like for keeping up with things, like How I AI and Last Week in AI.\n\nYou ll need the following on your machine:\n\n \n Node.js (v18 or higher)\n\n GitHub Copilot CLI (for WorkIQ setup)\n\n A Microsoft 365 account (for calendar sync)\n\n An ElevenLabs account (for voice assistant setup)\n\n \n\n There are more detailed instructions in her repository README file !\n\nGet started with GitHub Copilot CLI > \n\n \n\n The post Build a personal organization command center with GitHub Copilot CLI appeared first on The GitHub Blog .",
+      "impact": "My day-to-day work mostly consists of working on metered billing, so things like keeping records of Actions minutes, storage amounts, and copilot usage. I typically try to keep a few asynchronous tasks flowing with Copilot Cloud Agent, like bug fixes or tech debt changes that have been well-scoped, while I m focusing on the work that needs more oversight in VS Code.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "I typically try to keep a few asynchronous tasks flowing with Copilot Cloud Agent, like bug fixes or tech debt changes that have been well-scoped, while I m focusing on the work that needs more oversight in VS Code.\n\nFollow-up loaded question: Do you care what tech stack your apps use now?\n\nTry Brittany s approach \n\n Brittany s project is a good reminder that the most useful projects often start as small fixes for everyday problems.",
+      "lessons_learned": "Follow-up loaded question: Do you care what tech stack your apps use now?\n\nI ve always wanted to build an Electron app and this is technically my first one, but I can t say I learned a ton about Electron during this process since it was almost completely built by Agent Mode.",
+      "root_cause_highlight": "",
+      "incident_timeline": "While planning, I have Copilot interview me with questions about how something should work until we have a plan that I think is adequate. That way, there s less guesswork about what I want done and implementation goes mo\nFollow-up loaded question: Do you care what tech stack your apps use now?",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "What if you could remove the struggle of context switching across several apps, bringing them together into one place. Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work.",
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/project-think/"
+      },
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/voice-agents/"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/04/15/governance-lessons-red-hat-hybrid-cloud-console"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "4c70acaadf00ef90",
+    "title": "Agentic AI changes the shape of trust",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/agentic-ai-changes-the-shape-of-trust",
+    "published": "2026-04-15T15:45:00+00:00",
+    "fetched_at": "2026-04-19T02:30:05.532119+00:00",
+    "summary": "Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time. That idea held up through the shift to cloud and automation. It still mostly works for services and pipelines. ",
+    "tags": [
+      "deployment",
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Agents don't fit that shape. They request access dynamically. They call new tools. They assume roles. In some cases, they generate credentials to complete a task. Over time, those interactions can create access paths no ",
+      "The first is  delegated access  where   agents are acting on behalf of a human, inheriting that user's identity to carry out a task. Copilots and coding assistants work this way. The agent does things the user could do, ",
+      "When incidents happen, the lack of clear attribution becomes the real problem. Teams struggle to answer basic questions like who authorized this action, which agent executed it, what credentials were used, what changed, ",
+      "The principles still apply: least privilege, continuous verification, strong identity at the center. What changes is the surface and the speed. Zero trust as most organizations have implemented it was designed for humans",
+      "The challenge is that speed creates the conditions for the scenario described at the start of this piece: access that accumulates quietly, through behavior rather than design, until the audit question comes and nobody ha"
+    ],
+    "sections": {
+      "overview": "Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time. That idea held up through the shift to cloud and automation. It still mostly works for services and pipelines.",
+      "technical_breakdown": "Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time.\n\nThe credential it used gets cached.\n\nWhy Day 1 isn't the hard part   \n\n Most organizations don't fail at securing the initial deployment.\n\nIdentity needs to be verified continuously, not just at login.\n\nIt assumed a person would log in, establish a session, and do work within that session.",
+      "impact": "The second is  autonomous access  where   agents are operating with their own identity, authenticating independently, and taking action outside the scope of any individual user's authority. A user delegates a task to an AI cowork agent — say, pulling data from a CRM, cross-referencing a financial system, and generating a report. Nobody can answer with confidence, because at the time, the access looked like a user doing their job. The first is  delegated access  where   agents are acting on behalf of a human, inheriting that user's identity to carry out a task.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "An autonomous system that can modify infrastructure and trigger workflows doesn't just inherit existing gaps, it can reintroduce vulnerabilities that were previously fixed, undoing security work between review cycles without anyone noticing.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Nobody can answer with confidence, because at the time, the access looked like a user doing their job. When teams are under pressure to move fast, those credentials tend to stick around longer than they should — long-lived, overly permissive, and sometimes shared — because managing uniqueness at scale feels like overhead no one has time for right now. Why Day 1 isn't the hard part   \n\n Most organizations don't fail at securing the initial deployment.",
+      "incident_timeline": "Agents don't fit that shape. They request access dynamically. They call new tools. They assume roles. In some cases, they generate credentials to complete a task. Over time, those interactions can create access paths no \nThe first is  delegated access  where   agents are acting on behalf of a human, inheriting that user's identity to carry out a task. Copilots and coding assistants work this way. The agent does things the user could do, \nWhen incidents happen, the lack of clear attribution becomes the real problem. Teams struggle to answer basic questions like who authorized this action, which agent executed it, what credentials were used, what changed, \nThe principles still apply: least privilege, continuous verification, strong identity at the center. What changes is the surface and the speed. Zero trust as most organizations have implemented it was designed for humans\nThe challenge is that speed creates the conditions for the scenario described at the start of this piece: access that accumulates quietly, through behavior rather than design, until the audit question comes and nobody ha",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time. That idea held up through the shift to cloud and automation.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "56f46fbeee5d5dd0",
+    "title": "Developer policy update: Intermediary liability, copyright, and transparency",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-intermediary-liability-copyright-and-transparency/",
+    "published": "2026-04-15T15:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.949213+00:00",
+    "summary": "We re sharing a few timely updates on developer policy that reflect GitHub s ongoing work on transparency, developer protections, and copyright policy engagement issues that directly affect how developers build, share, and maintain software.",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Another important copyright process is approaching: the next triennial review of exemptions under Section 1201 of the DMCA. DMCA Section 1201 is the part of U.S. copyright law that restricts bypassing digital access cont",
+      "GitHub has a long history of engaging in the Section 1201 process and publishing resources to explain why these exemptions matter to developers. In 2021, we filed comments in support of a broad safe harbor for good-faith",
+      "Although the generative AI security research petition was not ultimately adopted in the 2024 cycle, it raised important questions about how existing DMCA frameworks apply to emerging AI related research and development p",
+      "Looking ahead to the 2027 triennial review, we re interested in hearing from developers about the issues they re encountering, which use cases matter most, and how these questions should be explored in future DMCA trienn",
+      "We ve also updated GitHub s Transparency Center with the full year of 2025 data . For this update, we made improvements to the site, including clearer charts and updated visualizations for our abuse-related restrictions,"
+    ],
+    "sections": {
+      "overview": "We re sharing a few timely updates on developer policy that reflect GitHub s ongoing work on transparency, developer protections, and copyright policy engagement issues that directly affect how developers build, share, and maintain software. What the Supreme Court s decision in Cox v. Sony means for developers \n\n This March, the U.S.",
+      "technical_breakdown": "Next up for the policy blog: age assurance and what it means for developers \n\n We re hearing growing concern from the developer community about age assurance laws emerging in U.S. states, Brazil, and Europe, particularly where requirements aimed at commercial, consumer facing products could unintentionally sweep in open source operating systems, package managers, and other critical digital infrastructure.\n\nWe ll continue to advocate for policies that reflect technical realities and support open development, including through an upcoming educational developer policy blog post and a May Maintainer Month session focused on these topics.\n\nThe post Developer policy update: Intermediary liability, copyright, and transparency appeared first on The GitHub Blog .",
+      "impact": "GitHub and developer platforms served as key examples in an industry amicus brief to explain why clear and balanced liability standards are essential for developer platforms and other intermediaries that host or enable user generated content. The Court s opinion reinforced that service providers are not automatically liable for copyright infringement by users without evidence of intent to encourage or materially contribute to infringement. For developers, this legal certainty supports innovation, collaboration, and the continued availability of neutral infrastructure that enables lawful activity like GitHub.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "For this update, we made improvements to the site, including clearer charts and updated visualizations for our abuse-related restrictions, appeals, and reinstatements designed to make the information easier to understand. 2025 had the highest count of DMCA circumvention claims since we started our transparency reporting.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Another important copyright process is approaching: the next triennial review of exemptions under Section 1201 of the DMCA. DMCA Section 1201 is the part of U.S. copyright law that restricts bypassing digital access cont\nGitHub has a long history of engaging in the Section 1201 process and publishing resources to explain why these exemptions matter to developers. In 2021, we filed comments in support of a broad safe harbor for good-faith\nAlthough the generative AI security research petition was not ultimately adopted in the 2024 cycle, it raised important questions about how existing DMCA frameworks apply to emerging AI related research and development p\nLooking ahead to the 2027 triennial review, we re interested in hearing from developers about the issues they re encountering, which use cases matter most, and how these questions should be explored in future DMCA trienn\nWe ve also updated GitHub s Transparency Center with the full year of 2025 data . For this update, we made improvements to the site, including clearer charts and updated visualizations for our abuse-related restrictions,",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "We re sharing a few timely updates on developer policy that reflect GitHub s ongoing work on transparency, developer protections, and copyright policy engagement issues that directly affect how developers build, share, and maintain software. What the Supreme Court s decision in Cox v.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "726ed22f9cd94593",
+    "title": "Human input needed: take our survey on AI agents",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/15/human-input-needed-take-our-survey-on-ai-agents/",
+    "published": "2026-04-15T14:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.088769+00:00",
+    "summary": "Are you still \"human-in-the-loop,\" or have you moved to \"human-on-the-loop,\" overseeing a bot that’s doing the driving?",
+    "tags": [],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Are you still \"human-in-the-loop,\" or have you moved to \"human-on-the-loop,\" overseeing a bot that’s doing the driving?",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Are you still \"human-in-the-loop,\" or have you moved to \"human-on-the-loop,\" overseeing a bot that’s doing the driving.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "8d797ea586eeffe9",
+    "title": "Introducing Agent Lee - a new interface to the Cloudflare stack",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/introducing-agent-lee/",
+    "published": "2026-04-15T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.104198+00:00",
+    "summary": "While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. It still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles.",
+    "tags": [
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-04-15",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "dns issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "It can help you with troubleshooting, which, today, is a manual grind. If your Worker starts returning 503s at 02:00 UTC, finding the root cause: be it an R2 bucket, a misconfigured route, or a hidden rate limit, you’re ",
+      "Answer questions about your account: \"Show me the top 5 error messages on my Worker.\"",
+      "Instead of switching between products, you describe what you want to do, and Agent Lee helps you get there with instructions and visualizations. It retrieves context, uses the right tools, and creates dynamic visualizati",
+      "Agent Lee isn't answering FAQ questions — it's doing real work, against real accounts, at scale. Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar",
+      "The generated code is sent to an upstream Cloudflare MCP server for sandboxed execution, but it goes through a Durable Object that acts as a credentialed proxy. Before any call goes out, the DO classifies the generated c",
+      "Agent Lee connects to Cloudflare's own MCP server, which exposes two tools: a search tool for querying API endpoints and an execute tool for writing code that performs API requests. This is the surface through which Agen",
+      "Building Agent Lee on our own primitives wasn't just a design principle. It was the fastest way to find out what works and what doesn't. We built this in production, with real users, against real accounts. That means eve",
+      "We're not there yet. Agent Lee today is the first step, running in production, doing real work at scale. The architecture is built to get to the rest."
+    ],
+    "sections": {
+      "overview": "While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. It still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles. AI gives us the opportunity to rethink all that.",
+      "technical_breakdown": "Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar, Cache, Cloudflare Tunnel, API Shield, and more.\n\nLog in to your Cloudflare dashboard and click Ask AI in the upper right corner to get started.\n\nIt still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles.\n\nWe didn’t want to just put an agent in a dashboard.\n\nAgent Lee is an in-dashboard AI assistant that understands your Cloudflare account.",
+      "impact": "Ask what your error rate looks like over the last 24 hours, and it renders a chart inline, pulling from your actual traffic, not sending you to a separate Analytics page. Instead of complexity spread over a sprawling graphical user interface: what if you could describe in plain language what you wanted to achieve? Agent Lee has been running in an active beta during which it has served over 18,000 daily users, executing nearly a quarter of a million tool calls per day. It knows your Workers, your zones, your DNS configuration, your error rates.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "If your Worker starts returning 503s at 02:00 UTC, finding the root cause: be it an R2 bucket, a misconfigured route, or a hidden rate limit, you’re opening half a dozen tabs and hoping you recognize the pattern.\n\nAgent Lee will also fix the problem for you on the spot.\n\nWith natural language, you can use it to:\n\n Answer questions about your account: \"Show me the top 5 error messages on my Worker.\"\n\n Debug an issue: \"I can't access my site with the www prefix.\"\n\n Apply a change: \"Enable Access for my domain.\"\n\n Deploy a resource: \"Create a new R2 bucket for my photos and connect it to my Worker.\"\n\n Instead of switching between products, you describe what you want to do, and Agent Lee helps you get there with instructions and visualizations.\n\nThat means every limitation we hit is a limitation we can fix in the platform.",
+      "lessons_learned": "While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet.\n\nWe encourage you to use the feedback form below to help us make it better every day.\n\nThis works better for a couple of reasons.\n\nThe security boundary isn't just a sandbox that gets thrown away; it's a permission architecture that structurally prevents writes from happening without your approval.",
+      "root_cause_highlight": "Likely root-cause theme: dns issue. It knows your Workers, your zones, your DNS configuration, your error rates. Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar, Cache, Cloudflare Tunnel, API Shield, and more.",
+      "incident_timeline": "It can help you with troubleshooting, which, today, is a manual grind. If your Worker starts returning 503s at 02:00 UTC, finding the root cause: be it an R2 bucket, a misconfigured route, or a hidden rate limit, you’re \nAnswer questions about your account: \"Show me the top 5 error messages on my Worker.\"\nInstead of switching between products, you describe what you want to do, and Agent Lee helps you get there with instructions and visualizations. It retrieves context, uses the right tools, and creates dynamic visualizati\nAgent Lee isn't answering FAQ questions — it's doing real work, against real accounts, at scale. Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar\nThe generated code is sent to an upstream Cloudflare MCP server for sandboxed execution, but it goes through a Durable Object that acts as a credentialed proxy. Before any call goes out, the DO classifies the generated c\nAgent Lee connects to Cloudflare's own MCP server, which exposes two tools: a search tool for querying API endpoints and an execute tool for writing code that performs API requests. This is the surface through which Agen\nBuilding Agent Lee on our own primitives wasn't just a design principle. It was the fastest way to find out what works and what doesn't. We built this in production, with real users, against real accounts. That means eve\nWe're not there yet. Agent Lee today is the first step, running in production, doing real work at scale. The architecture is built to get to the rest.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "ab277aaa2d78ba56",
+    "title": "Register domains wherever you build: Cloudflare Registrar API now in beta",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/registrar-api-beta/",
+    "published": "2026-04-15T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.104857+00:00",
+    "summary": "Today we're launching the next chapter of Cloudflare Registrar: the Registrar API in beta .",
+    "tags": [
+      "deployment",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "A Registrar API has been one of the clearest asks from builders using Cloudflare. As more of the agentic workflow has moved into editors, terminals, and agent-driven tools, domain registration became the obvious gap to c",
+      "When we launched Cloudflare Registrar seven years ago, the idea was simple. Domains should be offered at cost , with no markup and no games. Since then, Cloudflare Registrar has become one of the fastest growing registra",
+      "The workflow is intentionally simple and machine-friendly. Search returns candidate names. Check returns real-time availability and pricing. Register takes a minimal request and returns a workflow-shaped response that ca",
+      "In practice, all this means that an agent can help with the full flow: suggest names, confirm which one is actually registrable, surface the price for approval, and then complete the purchase without forcing the user out",
+      "return cloudflare.request({",
+      "The only required field is the domain name. WHOIS privacy protection is enabled by default at no extra charge. If your account has a default registrant contact, the API uses it automatically; otherwise you can provide co",
+      "\"created_at\": \"2025-10-27T10:00:00Z\",",
+      "\"updated_at\": \"2025-10-27T10:00:03Z\","
+    ],
+    "sections": {
+      "overview": "Today we're launching the next chapter of Cloudflare Registrar: the Registrar API in beta . The Registrar API makes it possible to search for domains, check availability, and register them programmatically. Now, buying a domain the moment an idea starts to feel real no longer has to pull you out of the agentic workflow.",
+      "technical_breakdown": "Built for agents and automation \n \n \n \n \n The Registrar API is designed to work well anywhere software is already being built: inside editors, deployment pipelines, backend services, and agent-driven workflows.\n\nWhen supported, premium domains can also be registered, but they require explicit fee acknowledgement.\n\nWhat it looks like in code :\n\n \n Step 1: Search for domain names \n \n \n \n \n Use the search endpoint to submit a domain query, with or without a domain extension.\n\n async () => {\n return cloudflare.request({\n method: \"GET\",\n path: `/accounts/${accountId}/registrar/domain-search`,\n query: { q: \"acme corp\", limit: 3 },\n });\n} \n \n {\n \"success\": true,\n \"errors\": [],\n \"messages\": [],\n \"result\": {\n \"domains\": [\n {\n \"name\": \"acmecorp.com\",\n \"registrable\": true,\n \"tier\": \"standard\",\n \"pricing\": {\n \"currency\": \"USD\",\n \"registration_cost\": \"8.57\",\n \"renewal_cost\": \"8.57\"\n }\n },\n {\n \"name\": \"acmecorp.dev\",\n \"registrable\": true,\n \"tier\": \"standard\",\n \"pricing\": {\n \"currency\": \"USD\",\n \"registration_cost\": \"10.11\",\n \"renewal_cost\": \"10.11\"\n }\n },\n {\n \"name\": \"acmecorp.app\",\n \"registrable\": true,\n \"tier\": \"standard\",\n \"pricing\": {\n \"currency\": \"USD\",\n \"registration_cost\": \"11.00\",\n \"renewal_cost\": \"11.00\"\n }\n }\n ]\n }\n} \n \n \n Step 2: Check availability and pricing \n \n \n \n \n Search results are fast but non-authoritative; they're based on cached data, and availability can change in seconds for popular names.\n\nFor premium domains, the Check response returns the exact registry-set price, and the Register request echoes that back as an explicit fee acknowledgement.\n\nThe API gives you the tools to build it correctly; the responsibility to do so belongs in your agent's logic.",
+      "impact": "That makes it straightforward to use for traditional API clients and for AI agents acting on a user's behalf. As the API expands, platforms like website builders, hosting providers, AI products, and other multi-tenant applications will be able to make domain registration part of their own user experience. The Registrar API makes it possible to search for domains, check availability, and register them programmatically. Check returns real-time availability and pricing.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Built for agents and automation \n \n \n \n \n The Registrar API is designed to work well anywhere software is already being built: inside editors, deployment pipelines, backend services, and agent-driven workflows. Start building today \n \n \n \n \n The Registrar API exists because builders asked for it.",
+      "incident_timeline": "A Registrar API has been one of the clearest asks from builders using Cloudflare. As more of the agentic workflow has moved into editors, terminals, and agent-driven tools, domain registration became the obvious gap to c\nWhen we launched Cloudflare Registrar seven years ago, the idea was simple. Domains should be offered at cost , with no markup and no games. Since then, Cloudflare Registrar has become one of the fastest growing registra\nThe workflow is intentionally simple and machine-friendly. Search returns candidate names. Check returns real-time availability and pricing. Register takes a minimal request and returns a workflow-shaped response that ca\nIn practice, all this means that an agent can help with the full flow: suggest names, confirm which one is actually registrable, surface the price for approval, and then complete the purchase without forcing the user out\nreturn cloudflare.request({\nThe only required field is the domain name. WHOIS privacy protection is enabled by default at no extra charge. If your account has a default registrant contact, the API uses it automatically; otherwise you can provide co\n\"created_at\": \"2025-10-27T10:00:00Z\",\n\"updated_at\": \"2025-10-27T10:00:03Z\",",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Today we're launching the next chapter of Cloudflare Registrar: the Registrar API in beta . The Registrar API makes it possible to search for domains, check availability, and register them programmatically.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c47e699789b6e6b1",
+    "title": "Browser Run: give your agents a browser",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/browser-run-for-ai-agents/",
+    "published": "2026-04-15T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.105746+00:00",
+    "summary": "AI agents need to interact with the web. To do that, they need a browser. They need to navigate sites, read pages, fill forms, extract data, and take screenshots. They need to observe whether things are working as expected, with a way for their humans to step in if needed. And they need to do all of this at scale.",
+    "tags": [
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "10 requests/second for Quick Actions, 120 concurrent browsers (4x increase)",
+      "\"chrome-devtools-mcp@latest\",",
+      "navigator.modelContextTesting allows agents to discover and execute those tools",
+      "Today, an agent visiting a travel booking site has to figure out the UI by looking at it. With WebMCP, the site declares “here’s a search_flights tool that takes an origin, destination, and date.” The agent calls it dire",
+      "We have an experimental pool with browser instances running Chrome beta so you can test emerging browser features before they reach stable Chrome. We also just shipped Wrangler browser commands that let you manage browse",
+      "npm i -g wrangler@latest",
+      "Live View lets you watch your agent’s browser session in real time. Whether you’re debugging an agent or running a long automation script, you see exactly what’s happening as it happens. This includes the page itself, as",
+      "Previously, the Browser Run dashboard only showed logs from browser sessions. Requests for screenshots, PDFs, markdown, and crawls were not visible. The redesigned dashboard changes that. The new Runs tab shows every req"
+    ],
+    "sections": {
+      "overview": "AI agents need to interact with the web. To do that, they need a browser. They need to navigate sites, read pages, fill forms, extract data, and take screenshots.",
+      "technical_breakdown": "An AI agent searching Amazon for an orange lava lamp, comparing options, and handing off to a human when sign-in is required to complete the purchase \n\n \n Everything an agent needs \n \n \n \n \n Let’s think about what agents need when browsing the web and how each feature fits in:\n\n \n \n \n \n \n \n What an agent needs \n Browser Run (formerly Browser Rendering) \n \n \n \n 1) Browsers on-demand \n Chrome browser on Cloudflare’s global network \n \n \n 2) A way to control the browser \n Take actions like navigate, click, fill forms, screenshot, and more with Puppeteer, Playwright, CDP (new) , MCP Client Support (new) and WebMCP (new) \n \n \n 3) Observability \n Live View (new) , Session Recordings (new) , and Dashboard redesign (new) \n \n \n 4) Human intervention \n Human in the Loop (new) \n \n \n 5) Scale \n 10 requests/second for Quick Actions, 120 concurrent browsers (4x increase) \n \n \n \n 1) Open a browser \n \n \n \n \n First, an agent needs a browser.\n\nHuman in the Loop : when your agent hits a snag like a login page or unexpected edge case, it can hand off to a human instead of failing.\n\nSite owners choose whether their content is accessible and /crawl respects it. \n\n # Initiate a crawl\ncurl -X POST 'https://api.cloudflare.com/client/v4/accounts/{account_id}/browser-rendering/crawl' \\\n -H 'Authorization: Bearer <apiToken>' \\\n -H 'Content-Type: application/json' \\\n -d '{\n \"url\": \"https://blog.cloudflare.com/\"\n }'\n \n \n \n 3) Observe \n \n \n \n \n Things don’t always go right the first try.\n\nSession recording replay of a browser automation browsing the Sentry Shop and adding a bomber jacket to the cart \n\n \n Dashboard Redesign \n \n \n \n \n Previously, the Browser Run dashboard only showed logs from browser sessions.\n\nTraces and Browser Logs : access debugging information without instrumenting your code.",
+      "impact": "MCP Client Support: AI coding agents like Claude Desktop, Cursor, and OpenCode can now use Browser Run as their remote browser. When something goes wrong, you have the full recording with DOM changes, user interactions, and page navigation. An AI agent searching Amazon for an orange lava lamp, comparing options, and handing off to a human when sign-in is required to complete the purchase \n\n \n Everything an agent needs \n \n \n \n \n Let’s think about what agents need when browsing the web and how each feature fits in:\n\n \n \n \n \n \n \n What an agent needs \n Browser Run (formerly Browser Rendering) \n \n \n \n 1) Browsers on-demand \n Chrome browser on Cloudflare’s global network \n \n \n 2) A way to control the browser \n Take actions like navigate, click, fill forms, screenshot, and more with Puppeteer, Playwright, CDP (new) , MCP Client Support (new) and WebMCP (new) \n \n \n 3) Observability \n Live View (new) , Session Recordings (new) , and Dashboard redesign (new) \n \n \n 4) Human intervention \n Human in the Loop (new) \n \n \n 5) Scale \n 10 requests/second for Quick Actions, 120 concurrent browsers (4x increase) \n \n \n \n 1) Open a browser \n \n \n \n \n First, an agent needs a browser. Browser sessions open near users for low latency, and scale up and down as needed.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Next, we’re adding a handoff flow where the agent can signal that it needs help, notify a human to step in, then hand control back to the agent once the issue is resolved.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "10 requests/second for Quick Actions, 120 concurrent browsers (4x increase)\n\"chrome-devtools-mcp@latest\",\nnavigator.modelContextTesting allows agents to discover and execute those tools\nToday, an agent visiting a travel booking site has to figure out the UI by looking at it. With WebMCP, the site declares “here’s a search_flights tool that takes an origin, destination, and date.” The agent calls it dire\nWe have an experimental pool with browser instances running Chrome beta so you can test emerging browser features before they reach stable Chrome. We also just shipped Wrangler browser commands that let you manage browse\nnpm i -g wrangler@latest\nLive View lets you watch your agent’s browser session in real time. Whether you’re debugging an agent or running a long automation script, you see exactly what’s happening as it happens. This includes the page itself, as\nPreviously, the Browser Run dashboard only showed logs from browser sessions. Requests for screenshots, PDFs, markdown, and crawls were not visible. The redesigned dashboard changes that. The new Runs tab shows every req",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "AI agents need to interact with the web. To do that, they need a browser.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "bd7f651b1ad20c88",
+    "title": "Rearchitecting the Workflows control plane for the agentic era",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/workflows-v2/",
+    "published": "2026-04-15T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.106564+00:00",
+    "summary": "When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order. For use cases like onboarding flows, workflows only had to support one instance per person — and people can only click so fast. ",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-15",
+    "impact": "critical",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "On the V1 control plane, these limits were a hard cap. Any and all operations depending on Account , including create, update, and list, had to go through that single DO. Users with high concurrency workloads could have ",
+      "The new Account singleton should only store the minimum necessary metadata and have an invariant maximum amount of concurrent requests.",
+      "The second component, Gatekeeper , is a mechanism to distribute concurrency “slots” (derived from concurrency limits) across all SousChefs within the account. It acts as a leasing system. When an instance is created, it ",
+      "Gatekeeper was needed to make sure that Engines never overloaded their Account (a pressing risk on V1) so every communication between SousChefs and their Account happens on a periodic cycle, once per second — each cycle ",
+      "This architecture is more distributed, and therefore, more scalable. Now, when an instance is created, the request path is:",
+      "Any operation on an instance does exactly one network hop (as it can go directly to its Engine , ensuring that eyeball request latency is as small as we can manage);",
+      "Now that we had a new version of the Workflows control plane that can handle a higher volume of user load, we needed to do the “boring” part: migrating our customers and instances to the new system. At Cloudflare’s scale",
+      "All new instance creation requests are now routed to the new SousChefs ( SousChefs are created when they receive the first request), new instances never go to AccountOld again;"
+    ],
+    "sections": {
+      "overview": "When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order. For use cases like onboarding flows, workflows only had to support one instance per person — and people can only click so fast. Over time, what we’ve actually seen is a quantitative shift in the workload and access pattern: fewer human-triggered workflows, and more agent-triggered workflows, created at machine speed.",
+      "technical_breakdown": "To help developers scale their agents and applications on Workflows, we are excited to announce that we now support:\n\n 50,000 concurrent instances (number of workflow executions running in parallel), originally 4,500 \n\n 300 instances/second created per account, previously 100\n\n 2 million queued instances (meaning instances that have been created or awoken and are waiting for a concurrency slot) per workflow, up from 1 million\n\n We redesigned the Workflows control plane from usage data and first principles to support these increases.\n\nFundamentally, a workflow is a series of durable steps, each independently retryable, that can execute tasks, wait for external events, or sleep until a predetermined time. \n\n export class MyWorkflow extends WorkflowEntrypoint {\n\n async run(event, step) {\n const data = await step.do(\"fetch-data\", async () => {\n return fetchFromAPI();\n });\n\n const approval = await step.waitForEvent(\"approval\", {\n type: \"approval\",\n timeout: \"24 hours\",\n });\n\n await step.do(\"process-and-save\", async () => {\n return store(transform(data));\n });\n }\n}\n \n To trigger each instance, execute its logic, and store its metadata, we leverage SQLite-backed Durable Objects , which are a simple but powerful primitive for coordination and storage within a distributed system.\n\nIn the control plane, some Durable Objects — like the Engine , which executes the actual workflow instance, including its step, retry, and sleep logic — are spun up at a ratio of 1:1 per instance.\n\nOther than unlocking scale, this version of the control plane means that: \n\n Instance listing performance is faster, and actually consistent with cursor pagination; \n\n Any operation on an instance does exactly one network hop (as it can go directly to its Engine , ensuring that eyeball request latency is as small as we can manage);\n\n We can ensure that more instances are actually behaving correctly (by running on time) concurrently (and correct them if not, making sure that Engines are never late to continue execution).\n\nTo learn more about the V1 control plane, refer to our Workflows announcement blog post .",
+      "impact": "As agents become persistent and autonomous infrastructure, operating on behalf of users for hours or days, they need a durable, asynchronous execution engine for the work they are doing. V1 → V2 migration \n \n \n \n \n Now that we had a new version of the Workflows control plane that can handle a higher volume of user load, we needed to do the “boring” part: migrating our customers and instances to the new system. Such a migration is tricky because customers might have instances running at any given moment; we needed a way to add the SousChef and Gatekeeper components into older accounts without causing any disruption or downtime. When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order.\n\nClassified impact band: critical. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "There are two new, critical components in the V2 control plane which allowed us to improve the scalability of Workflows: SousChef and Gatekeeper .",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. This ensures that if we want, we can use any primitive\n // that is available on SousChef DO\n if (this.currentVersion === ControlPlaneVersions.SOUS_CHEFS) {\n this.sousChef = new SousChef(this.ctx, this.env);\n await this.sousChef.setup()\n }\n }\n\n async updateInstance(params: UpdateInstanceParams) {\n if (this.currentVersion === ControlPlaneVersions.SOUS_CHEFS) {\n assert(this.sousChef !== undefined, 'SousChef must exist on v2');\n return this.sousChef.updateInstance(params);\n }\n\n // old logic remains the same\n }\n\n @RequiresVersion<AccountOld>(ControlPlaneVersions.V1)\n async getMetadata() {\n // this method can only be run if \n // this.currentVersion === ControlPlaneVersions.V1\n }\n} \n We can instantiate the SousChef class within the AccountOld because the SQL tables that track instance metadata, on both SousChefs and AccountOld DOs, are the same on both. To help developers scale their agents and applications on Workflows, we are excited to announce that we now support:\n\n 50,000 concurrent instances (number of workflow executions running in parallel), originally 4,500 \n\n 300 instances/second created per account, previously 100\n\n 2 million queued instances (meaning instances that have been created or awoken and are waiting for a concurrency slot) per workflow, up from 1 million\n\n We redesigned the Workflows control plane from usage data and first principles to support these increases. For V1 of the control plane, a single Durable Object (DO) could serve as the central registry and coordinator of an entire account.",
+      "incident_timeline": "On the V1 control plane, these limits were a hard cap. Any and all operations depending on Account , including create, update, and list, had to go through that single DO. Users with high concurrency workloads could have \nThe new Account singleton should only store the minimum necessary metadata and have an invariant maximum amount of concurrent requests.\nThe second component, Gatekeeper , is a mechanism to distribute concurrency “slots” (derived from concurrency limits) across all SousChefs within the account. It acts as a leasing system. When an instance is created, it \nGatekeeper was needed to make sure that Engines never overloaded their Account (a pressing risk on V1) so every communication between SousChefs and their Account happens on a periodic cycle, once per second — each cycle \nThis architecture is more distributed, and therefore, more scalable. Now, when an instance is created, the request path is:\nAny operation on an instance does exactly one network hop (as it can go directly to its Engine , ensuring that eyeball request latency is as small as we can manage);\nNow that we had a new version of the Workflows control plane that can handle a higher volume of user load, we needed to do the “boring” part: migrating our customers and instances to the new system. At Cloudflare’s scale\nAll new instance creation requests are now routed to the new SousChefs ( SousChefs are created when they receive the first request), new instances never go to AccountOld again;",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "f2b889b41a8002f6",
+    "title": "Why AI hasn't replaced human expertise—and what that means for your SaaS stack",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/15/why-ai-hasn-t-replaced-human-expertise/",
+    "published": "2026-04-15T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.088883+00:00",
+    "summary": "The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.",
+    "tags": [],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "ac0fd7d551e48aa5",
+    "title": "Proximity automation with Red Hat Ansible Automation Platform and Red Hat OpenShift Virtualization",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/15/proximity-automation-red-hat-ansible-automation-platform-and-red-hat-openshift",
+    "published": "2026-04-15T12:31:12+00:00",
+    "fetched_at": "2026-04-19T02:30:07.197729+00:00",
+    "summary": "This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM).",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "This solution avoids opening direct network channels from the management cluster to the VMs (for example, SSH), mitigating risk of intrusive policies and expanded attack surfaces. Automation orchestration instead relies ",
+      "VMS for testing purpose",
+      "systemctl restart sshd",
+      "registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9@sha256:17be45bba90a79f439d4571f1c92331edfbb9a75efabd58d30ea5424bca8cee0",
+      "NAME READY STATUS RESTARTS AGE",
+      "enp1s0: 10.10.1.102 fe80::a2:90ff:fe00:16",
+      "Enterprise network topology A testing environment is different from production. This section describes a production-grade networking architecture in OpenShift that integrates:",
+      "Second, it introduces the concept of execution proximity, where automation tasks are executed directly within the target cluster, in the same namespace and network context as the virtual machines. This not only reduces l"
+    ],
+    "sections": {
+      "overview": "This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). This proposed approach eliminates the need for dedicated execution nodes. It fully leverages the cloud-native capabilities of Ansible deployed using an operator, delegating the dynamic management of automation workloads to Kubernetes.",
+      "technical_breakdown": "Then replace the contents of Pod spec override with this (as shown in Figure 4):\n\n apiVersion: v1\nkind: Pod\nmetadata:\n namespace: security01\n labels:\n ansible_job: ''\n annotations:\n k8s.v1.cni.cncf.io/networks: security01/vm-net\nspec:\n nodeSelector:\n placement-node: node1\n serviceAccountName: security-compliance-cg\n automountServiceAccountToken: false\n affinity:\n podAntiAffinity:\n preferredDuringSchedulingIgnoredDuringExecution:\n - weight: 100\n podAffinityTerm:\n labelSelector:\n matchExpressions:\n - key: ansible_job\n operator: Exists\n topologyKey: kubernetes.io/hostname\n containers:\n - image: >-\n registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9@sha256:17be45bba90a79f439d4571f1c92331edfbb9a75efabd58d30ea5424bca8cee0\n name: worker\n args:\n - ansible-runner\n - worker\n - '--private-data-dir=/runner'\n resources:\n requests:\n cpu: 1\n memory: 2Gi \n\n \n \n \n\n \n\n \n\n Figure 4: Customizing the IntanceGroup in Red Hat Ansible Automation Platform.\n\nFor example, it's 6 7 in this output:\n\n Fedora Linux 43 (Cloud Edition)\nKernel 6.17.1-300.fc43.x86_64 on x86_64 (tty1)\n\nenp1s0: 10.10.1.102 fe80::a2:90ff:fe00:16\nTry contacting this VM's SSH server via 'ssh vsockx1' from host.\n\nsecurity01 login: fedora\nPassword:\n[systemd]\nFailed Units: 1\n dnf-makecache.service\n[fedora@security01 ~]$ ls\n55 56 58 59 65 67\n[fedora@security01 ~]$ _ Networking model and execution flow To summarize, for this methodology:\n\n No external SSH exposure is required\n The environment is prepared on both clusters\n Ansible creates a container group\n The pod job is scheduled on the managed cluster\n Ansible connects to VMs using vm-net NetworkAttachmentDefinition\n Enterprise network topology A testing environment is different from production.\n\nPaste in this content, replacing securityXX with security01 and security02 in the matching files, but leave the namespace as security01 in both files:\n\n # vm-securityXX.yaml\napiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n name: securityXX\n namespace: security01\nspec:\n dataVolumeTemplates:\n - metadata:\n name: securityXX-volume\n spec:\n sourceRef:\n kind: DataSource\n name: fedora\n namespace: openshift-virtualization-os-images\n storage:\n storageClassName: ocs-external-storagecluster-ceph-rbd\n instancetype:\n name: u1.medium\n preference:\n name: fedora\n running: true\n template:\n metadata:\n labels:\n network.kubevirt.io/headlessService: headless\n spec:\n nodeSelector:\n placement-node: node1\n domain:\n devices:\n autoattachPodInterface: false\n disks:\n - disk:\n bus: virtio\n name: cloudinitdisk\n interfaces:\n - bridge: {}\n model: virtio\n name: default\n networks:\n - name: default\n multus:\n networkName: vm-net\n subdomain: headless\n volumes:\n - dataVolume:\n name: securityXX-volume\n name: rootdisk\n - cloudInitNoCloud:\n userData: |\n #cloud-config\n chpasswd:\n expire: false\n password: fedora\n user: fedora\n\n write_files:\n - path: /usr/local/bin/fix-ssh.sh\n permissions: '0755'\n owner: root:root\n content: |\n #!/bin/bash\n set -e\n\n FILE=\"/etc/ssh/sshd_config.d/50-cloud-init.conf\"\n\n for i in {1..10}; do\n [ -f \"$FILE\" ] && break\n sleep 1\n done\n\n sed -i 's/^PasswordAuthentication.*/PasswordAuthentication yes/' \"$FILE\"\n\n grep -q \"^PasswordAuthentication\" \"$FILE\" || echo \"PasswordAuthentication yes\" >> \"$FILE\"\n\n systemctl restart sshd\n\n runcmd:\n - /usr/local/bin/fix-ssh.sh\n name: cloudinitdisk Both VirtualMachines have the following access parameters:\n\n Username: fedora \n Password: fedora \n SSH access is enabled on port 22 through the NetworkAttachmentDefinition vm-net .\n\nNote the following section, where we have defined serviceAccount, namespace , and NetworkAttachmentDefinition already prepared on the remote cluster:\n\n apiVersion: v1\nkind: Pod\nmetadata:\n namespace: security01\n labels:\n ansible_job: ''\n annotations:\n k8s.v1.cni.cncf.io/networks: security01/vm-net\nspec:\n nodeSelector:\n placement-node: node1\n serviceAccountName: security-compliance-cg\n[...] Click the Save container group button to save changes.\n\nThe result is a distributed automation paradigm that separates control plane and execution plane, optimizes network traffic, and enables secure and scalable operations on on-premise VMs while remaining fully aligned with the declarative model of Kubernetes and OpenShift.",
+      "impact": "This command saves the token to a file:\n\n $ oc create token security-compliance-cg \\\n--duration=$((365*24))h > security-compliance-cg.token Creating the NetworkAttachmentDefinition For the virtual machines to use this network, we must create a NetworkAttachmentDefinition. Paste in this content, replacing securityXX with security01 and security02 in the matching files, but leave the namespace as security01 in both files:\n\n # vm-securityXX.yaml\napiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n name: securityXX\n namespace: security01\nspec:\n dataVolumeTemplates:\n - metadata:\n name: securityXX-volume\n spec:\n sourceRef:\n kind: DataSource\n name: fedora\n namespace: openshift-virtualization-os-images\n storage:\n storageClassName: ocs-external-storagecluster-ceph-rbd\n instancetype:\n name: u1.medium\n preference:\n name: fedora\n running: true\n template:\n metadata:\n labels:\n network.kubevirt.io/headlessService: headless\n spec:\n nodeSelector:\n placement-node: node1\n domain:\n devices:\n autoattachPodInterface: false\n disks:\n - disk:\n bus: virtio\n name: cloudinitdisk\n interfaces:\n - bridge: {}\n model: virtio\n name: default\n networks:\n - name: default\n multus:\n networkName: vm-net\n subdomain: headless\n volumes:\n - dataVolume:\n name: securityXX-volume\n name: rootdisk\n - cloudInitNoCloud:\n userData: |\n #cloud-config\n chpasswd:\n expire: false\n password: fedora\n user: fedora\n\n write_files:\n - path: /usr/local/bin/fix-ssh.sh\n permissions: '0755'\n owner: root:root\n content: |\n #!/bin/bash\n set -e\n\n FILE=\"/etc/ssh/sshd_config.d/50-cloud-init.conf\"\n\n for i in {1..10}; do\n [ -f \"$FILE\" ] && break\n sleep 1\n done\n\n sed -i 's/^PasswordAuthentication.*/PasswordAuthentication yes/' \"$FILE\"\n\n grep -q \"^PasswordAuthentication\" \"$FILE\" || echo \"PasswordAuthentication yes\" >> \"$FILE\"\n\n systemctl restart sshd\n\n runcmd:\n - /usr/local/bin/fix-ssh.sh\n name: cloudinitdisk Both VirtualMachines have the following access parameters:\n\n Username: fedora \n Password: fedora \n SSH access is enabled on port 22 through the NetworkAttachmentDefinition vm-net . Name: 10.10.1.101 (use your VM IP address)\n Description: security01 (adjust for the applicable VM)\n Enabled: Yes\n Variables: ansible_user: fedora and ansible_password: fedora \n Ansible project and job template Define a new Ansible project with the type scm , and create a playbook:\n\n - name: Create folder on remote host\n hosts: all\n gather_facts: false\n\n tasks:\n\n - name: Create folder 1\n ansible.builtin.file:\n path: \"/home/fedora/{{ awx_job_id }}\"\n state: directory\n\n - name: Print hostname\n ansible.builtin.command: hostname This playbook creates a folder named with awx_job_id in /home/fedora .\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Paste in this content, replacing securityXX with security01 and security02 in the matching files, but leave the namespace as security01 in both files:\n\n # vm-securityXX.yaml\napiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n name: securityXX\n namespace: security01\nspec:\n dataVolumeTemplates:\n - metadata:\n name: securityXX-volume\n spec:\n sourceRef:\n kind: DataSource\n name: fedora\n namespace: openshift-virtualization-os-images\n storage:\n storageClassName: ocs-external-storagecluster-ceph-rbd\n instancetype:\n name: u1.medium\n preference:\n name: fedora\n running: true\n template:\n metadata:\n labels:\n network.kubevirt.io/headlessService: headless\n spec:\n nodeSelector:\n placement-node: node1\n domain:\n devices:\n autoattachPodInterface: false\n disks:\n - disk:\n bus: virtio\n name: cloudinitdisk\n interfaces:\n - bridge: {}\n model: virtio\n name: default\n networks:\n - name: default\n multus:\n networkName: vm-net\n subdomain: headless\n volumes:\n - dataVolume:\n name: securityXX-volume\n name: rootdisk\n - cloudInitNoCloud:\n userData: |\n #cloud-config\n chpasswd:\n expire: false\n password: fedora\n user: fedora\n\n write_files:\n - path: /usr/local/bin/fix-ssh.sh\n permissions: '0755'\n owner: root:root\n content: |\n #!/bin/bash\n set -e\n\n FILE=\"/etc/ssh/sshd_config.d/50-cloud-init.conf\"\n\n for i in {1..10}; do\n [ -f \"$FILE\" ] && break\n sleep 1\n done\n\n sed -i 's/^PasswordAuthentication.*/PasswordAuthentication yes/' \"$FILE\"\n\n grep -q \"^PasswordAuthentication\" \"$FILE\" || echo \"PasswordAuthentication yes\" >> \"$FILE\"\n\n systemctl restart sshd\n\n runcmd:\n - /usr/local/bin/fix-ssh.sh\n name: cloudinitdisk Both VirtualMachines have the following access parameters:\n\n Username: fedora \n Password: fedora \n SSH access is enabled on port 22 through the NetworkAttachmentDefinition vm-net .",
+      "lessons_learned": "This ensures integration with existing data center networking, improved performance, and clear separation of concerns.\n\nFirst, it improves security by eliminating the need to expose SSH access from the management cluster to on-premise virtual machines.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). The result is a distributed automation paradigm that separates control plane and execution plane, optimizes network traffic, and enables secure and scalable operations on on-premise VMs while remaining fully aligned with the declarative model of Kubernetes and OpenShift. Working on OpenShift Virtualization (managed cluster) {#working-on-openshift-virtualization-(managed-cluster)} The following operations refer to Instance and Container Group :\n\n Labeling node Because this demo uses a bridged network (CNI bridge), which is node-local, we enforce workload placement on a specific node for simplicity.",
+      "incident_timeline": "This solution avoids opening direct network channels from the management cluster to the VMs (for example, SSH), mitigating risk of intrusive policies and expanded attack surfaces. Automation orchestration instead relies \nVMS for testing purpose\nsystemctl restart sshd\nregistry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9@sha256:17be45bba90a79f439d4571f1c92331edfbb9a75efabd58d30ea5424bca8cee0\nNAME READY STATUS RESTARTS AGE\nenp1s0: 10.10.1.102 fe80::a2:90ff:fe00:16\nEnterprise network topology A testing environment is different from production. This section describes a production-grade networking architecture in OpenShift that integrates:\nSecond, it introduces the concept of execution proximity, where automation tasks are executed directly within the target cluster, in the same namespace and network context as the virtual machines. This not only reduces l",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). This proposed approach eliminates the need for dedicated execution nodes.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c3395cd22430a8d5",
+    "title": "Protect identity infrastructure in cloud-native environments",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/15/protect-identity-infrastructure-cloud-native-environments",
+    "published": "2026-04-15T07:16:25+00:00",
+    "fetched_at": "2026-04-19T02:30:07.198826+00:00",
+    "summary": "Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Yet one of the most disruptive failure modes in high-density container environments comes from the Domain Name System (DNS), a service that predates containers entirely. This article will focus on how to protect identity infrastructure from DNS-related bottlenecks in cloud-native...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-15",
+    "impact": "critical",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Yet one of the most disruptive failure modes in high-density container environments comes from the Dom",
+      "When you migrate from traditional virtual machine (VM) workloads to a high-density Kubernetes or Red Hat OpenShift Container Platform , the character of DNS traffic changes fundamentally. What was once a steady, predicta",
+      "Modern container platforms achieve high availability through massive parallelism. When a cluster scales out, or a large application restarts, hundreds or thousands of pods simultaneously issue service-discovery requests ",
+      "In many enterprise environments, Identity Management (IdM) handles these requests built on BIND. These systems are robust and feature-rich, but they ship with conservative defaults designed for general-purpose use, not f",
+      "Exceeded within milliseconds during a pod restart storm",
+      "Silent drop (oldest query)",
+      "This issue is difficult to diagnose. When the recursive client limit is reached, BIND drops the oldest waiting query to protect its own memory. The server logs nothing at default log levels. The pod sees a timeout. The s",
+      "Shift the cache to the edge with OpenShift CoreDNS caching: The most elegant solution to DNS congestion is not making the central server bigger, it is making it quieter. The OpenShift Container Platform DNS infrastructur"
+    ],
+    "sections": {
+      "overview": "Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Yet one of the most disruptive failure modes in high-density container environments comes from the Domain Name System (DNS), a service that predates containers entirely. This article will focus on how to protect identity infrastructure from DNS-related bottlenecks in cloud-native environments.",
+      "technical_breakdown": "Concern \n\n Default \n\n Recommendation \n\n recursive-clients limit \n\n 900 — exceeded during pod storms \n\n 2000-5000-10,000 — sized to cluster burst capacity \n\n CoreDNS positiveTTL \n\n 0s — no caching, every query hits IdM \n\n 300s baseline (CoreDNS default) — shorter for high-velocity deployments, longer for stable OT/Gov workloads \n\n CoreDNS negativeTTL \n\n 0s — failed lookups retry immediately, storm not absorbed \n\n 30s baseline (RFC 2308 guidance) — even 10s eliminates 99% of NXDOMAIN storm; extend only for stable environments \n\n Upstream traffic from pods \n\n Every query goes upstream \n\n ~90% absorbed by CoreDNS cache; unique queries only \n\n IdM server under pod storm \n\n Silent drops, phantom timeouts (907 recorded) \n\n Stable — shielded by CoreDNS cache layer \n\n Final thoughts Treat DNS as a Tier-0 service.\n\nBenefits and outcomes of a single strategy of CoreDNS caching at the edge: \n\n Latency reduction: Cached responses are served in microseconds from local memory, bypassing network round-trips entirely.\n\nNote : NodeLocal DNSCache is a Kubernetes community add-on, not available in OpenShift Container Platform.\n\nThe patch command is a single line. \n\n apiVersion: operator.openshift.io/v1\nkind: DNS\nmetadata:\n name: default\nspec:\n cache:\n positiveTTL: 5m # Starting point -- CoreDNS upstream default is 300s; tune shorter if your rolling update window is under 5 min\n negativeTTL: 30s # RFC 2308 baseline -- even 10s absorbs 99% of NXDOMAIN storms; validate against your cache miss rate\n# Apply with:\n# oc patch dns.operator/default --type=merge \\\n# -p '{\"spec\":{\"cache\":{\"positiveTTL\":\"5m\",\"negativeTTL\":\"30s\"}}}'\n# Verify rollout:\n# oc rollout status daemonset/dns-default -n openshift-dns\n# Monitor cache effectiveness after applying:\n# oc exec -n openshift-dns <coredns-pod> -- wget -qO- http://localhost:9153/metrics | grep coredns_cache Reasoning through the right values for your environment The Red Hat official documentation does not specify positiveTTL and negativeTTL values for OpenShift clusters.\n\nAfter applying, watch coredns_cache_hits_total versus coredns_cache_misses_total via oc exec -n openshift-dns <pod> -- wget -qO- http://localhost:9153/metrics | grep coredns_cache .",
+      "impact": "Parameter \n\n Default Values \n\n Impact on OpenShift \n\n recursive-clients \n\n 900 (older IDM Configs) \n\n Exceeded within milliseconds during a pod restart storm \n\n Query drop behaviour \n\n Silent drop (oldest query) \n\n Application sees a timeout — no server-side error log \n\n Server CPU/RAM at drop time \n\n Typically <20% utilised \n\n Administrators see a healthy server — completely misleading \n\n This issue is difficult to diagnose. Modern container platforms achieve high availability through massive parallelism. Figure 1: Recursive DNS Query Flow: IdM as Active Negotiator \n \n The key insight is that each pod query that hits the IdM server occupies a recursive client slot, a memory reservation that persists until the full round-trip through the DNS hierarchy is complete. When safe defaults become bottlenecks During architectural reviews with high-scale customers, the same pattern surfaces repeatedly.\n\nClassified impact band: critical. Affected layer signal: platform — kubernetes.",
+      "resolution": "The CoreDNS cache plug-in has two key parameters—positiveTTL and negativeTTL—that control how long resolved records are held in memory before a fresh upstream query is needed.\n\nIt expands it through a sequence of search domains in order, generating an NXDOMAIN upstream query for each one that does not match before the correct record is found. \n\n # Pod looks up: \"myapi\" -- resolver expands through search domains:\n1. myapi.mynamespace.svc.cluster.local → NXDOMAIN (goes upstream to IdM)\n2. myapi.svc.cluster.local → NXDOMAIN (goes upstream to IdM)\n3. myapi.cluster.local → NXDOMAIN (goes upstream to IdM)\n4. myapi.example.com → resolved (positive answer from IdM)\n# With negativeTTL = 0: 100 pods × 3 NXDOMAIN lookups × 5 services = 1,500 upstream hits\n# With negativeTTL = 10s: 3 NXDOMAIN lookups × 5 services = 15 upstream hits (99% reduction) Figure 5 illustrates how the DNS search domain expansion mechanism multiplies a single failed service lookup into multiple upstream NXDOMAIN queries to the IdM server, demonstrating the amplification problem that negativeTTL is designed to solve.",
+      "lessons_learned": "But the more powerful long-term approach is preventing that storm from forming in the first place.\n\nConcern \n\n Default \n\n Recommendation \n\n recursive-clients limit \n\n 900 — exceeded during pod storms \n\n 2000-5000-10,000 — sized to cluster burst capacity \n\n CoreDNS positiveTTL \n\n 0s — no caching, every query hits IdM \n\n 300s baseline (CoreDNS default) — shorter for high-velocity deployments, longer for stable OT/Gov workloads \n\n CoreDNS negativeTTL \n\n 0s — failed lookups retry immediately, storm not absorbed \n\n 30s baseline (RFC 2308 guidance) — even 10s eliminates 99% of NXDOMAIN storm; extend only for stable environments \n\n Upstream traffic from pods \n\n Every query goes upstream \n\n ~90% absorbed by CoreDNS cache; unique queries only \n\n IdM server under pod storm \n\n Silent drops, phantom timeouts (907 recorded) \n\n Stable — shielded by CoreDNS cache layer \n\n Final thoughts Treat DNS as a Tier-0 service.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Field observation and the parallelism paradox This failure mode is particularly dangerous because the DNS server often shows low CPU and memory use at the time of the incident. Increasing the recursive client limit is often viewed with hesitation due to potential memory concerns—but this concern is frequently based on outdated assumptions about the memory cost per client slot. This is the more impactful parameter for OpenShift clusters because of a mechanism called DNS search-domain expansion that silently multiplies the NXDOMAIN query rate on each pod restart.",
+      "incident_timeline": "Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Yet one of the most disruptive failure modes in high-density container environments comes from the Dom\nWhen you migrate from traditional virtual machine (VM) workloads to a high-density Kubernetes or Red Hat OpenShift Container Platform , the character of DNS traffic changes fundamentally. What was once a steady, predicta\nModern container platforms achieve high availability through massive parallelism. When a cluster scales out, or a large application restarts, hundreds or thousands of pods simultaneously issue service-discovery requests \nIn many enterprise environments, Identity Management (IdM) handles these requests built on BIND. These systems are robust and feature-rich, but they ship with conservative defaults designed for general-purpose use, not f\nExceeded within milliseconds during a pod restart storm\nSilent drop (oldest query)\nThis issue is difficult to diagnose. When the recursive client limit is reached, BIND drops the oldest waiting query to protect its own memory. The server logs nothing at default log levels. The pod sees a timeout. The s\nShift the cache to the edge with OpenShift CoreDNS caching: The most elegant solution to DNS congestion is not making the central server bigger, it is making it quieter. The OpenShift Container Platform DNS infrastructur",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "eba4cd4112debc68",
+    "title": "After the alert: Rethinking how we investigate financial crime",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/rethinking-financial-crime-investigation",
+    "published": "2026-04-15T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.676096+00:00",
+    "summary": "Financial services stop most fraud before it hits customers, but millions of cases still need investigating. Elastic brings AI-assisted triage, unified data, and scalable analytics to the investigation layer.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Financial services stop most fraud before it hits customers, but millions of cases still need investigating. Elastic brings AI-assisted triage, unified data, and scalable analytics to the investigation layer."
+    ],
+    "sections": {
+      "overview": "Financial services stop most fraud before it hits customers, but millions of cases still need investigating. Elastic brings AI-assisted triage, unified data, and scalable analytics to the investigation layer.",
+      "technical_breakdown": "Telemetry, monitoring, or tracing considerations are highlighted.",
+      "impact": "Financial services stop most fraud before it hits customers, but millions of cases still need investigating.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Financial services stop most fraud before it hits customers, but millions of cases still need investigating. Elastic brings AI-assisted triage, unified data, and scalable analytics to the investigation layer.",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Financial services stop most fraud before it hits customers, but millions of cases still need investigating. Elastic brings AI-assisted triage, unified data, and scalable analytics to the investigation layer.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a3d5000cc2993071",
+    "title": "Forward-looking MSSPs are moving to Elastic Security",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/managed-security-service-providers",
+    "published": "2026-04-15T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.676592+00:00",
+    "summary": "Elastic Security gives MSSPs the platform edge they need: resource-based pricing, built-in AI, and automation tools that scale operations without scaling headcount. See why forward-looking MSSPs are making the switch.",
+    "tags": [
+      "scaling"
+    ],
+    "day": "2026-04-15",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Elastic Security gives MSSPs the platform edge they need: resource-based pricing, built-in AI, and automation tools that scale operations without scaling headcount. See why forward-looking MSSPs are making the switch.",
+      "technical_breakdown": "Elastic Security gives MSSPs the platform edge they need: resource-based pricing, built-in AI, and automation tools that scale operations without scaling headcount.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Elastic Security gives MSSPs the platform edge they need: resource-based pricing, built-in AI, and automation tools that scale operations without scaling headcount. See why forward-looking MSSPs are making the switch.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

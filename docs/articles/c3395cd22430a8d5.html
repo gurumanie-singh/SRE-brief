@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protect identity infrastructure in cloud-native environments — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-15.html" class="back-link">← 15 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">15 April 2026, 02:16</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Protect identity infrastructure in cloud-native environments</h1>
+
+      <p class="subtitle">Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Yet one of the most disruptive failure modes in high-density container environments comes from the Domain Name System (DNS), a service that predates containers entirely. This article will focus on how to protect identity infrastructure from DNS-related bottlenecks in cloud-native environments.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Concern</p>
+<p>Default</p>
+<p>Recommendation</p>
+<p>recursive-clients limit</p>
+<p>900 — exceeded during pod storms</p>
+<p>2000-5000-10,000 — sized to cluster burst capacity</p>
+<p>CoreDNS positiveTTL</p>
+<p>0s — no caching, every query hits IdM</p>
+<p>300s baseline (CoreDNS default) — shorter for high-velocity deployments, longer for stable OT/Gov workloads</p>
+<p>CoreDNS negativeTTL</p>
+<p>0s — failed lookups retry immediately, storm not absorbed</p>
+<p>30s baseline (RFC 2308 guidance) — even 10s eliminates 99% of NXDOMAIN storm; extend only for stable environments</p>
+<p>Upstream traffic from pods</p>
+<p>Every query goes upstream</p>
+<p>~90% absorbed by CoreDNS cache; unique queries only</p>
+<p>IdM server under pod storm</p>
+<p>Silent drops, phantom timeouts (907 recorded)</p>
+<p>Stable — shielded by CoreDNS cache layer</p>
+<p>Final thoughts Treat DNS as a Tier-0 service.</p>
+<p>Benefits and outcomes of a single strategy of CoreDNS caching at the edge:</p>
+<p>Latency reduction: Cached responses are served in microseconds from local memory, bypassing network round-trips entirely.</p>
+<p>Note : NodeLocal DNSCache is a Kubernetes community add-on, not available in OpenShift Container Platform.</p>
+<p>The patch command is a single line.</p>
+<p>apiVersion: operator.openshift.io/v1 kind: DNS metadata:  name: default spec:  cache:  positiveTTL: 5m # Starting point -- CoreDNS upstream default is 300s; tune shorter if your rolling update window is under 5 min  negativeTTL: 30s # RFC 2308 baseline -- even 10s absorbs 99% of NXDOMAIN storms; validate against your cache miss rate # Apply with: # oc patch dns.operator/default --type=merge \ # -p &#39;{&#34;spec&#34;:{&#34;cache&#34;:{&#34;positiveTTL&#34;:&#34;5m&#34;,&#34;negativeTTL&#34;:&#34;30s&#34;}}}&#39; # Verify rollout: # oc rollout status daemonset/dns-default -n openshift-dns # Monitor cache effectiveness after applying: # oc exec -n openshift-dns &lt;coredns-pod&gt; -- wget -qO- http://localhost:9153/metrics | grep coredns_cache Reasoning through the right values for your environment The Red Hat official documentation does not specify positiveTTL and negativeTTL values for OpenShift clusters.</p>
+<p>After applying, watch coredns_cache_hits_total versus coredns_cache_misses_total via oc exec -n openshift-dns &lt;pod&gt; -- wget -qO- http://localhost:9153/metrics | grep coredns_cache .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Parameter</p>
+<p>Default Values</p>
+<p>Impact on OpenShift</p>
+<p>recursive-clients</p>
+<p>900 (older IDM Configs)</p>
+<p>Exceeded within milliseconds during a pod restart storm</p>
+<p>Query drop behaviour</p>
+<p>Silent drop (oldest query)</p>
+<p>Application sees a timeout — no server-side error log</p>
+<p>Server CPU/RAM at drop time</p>
+<p>Typically &lt;20% utilised</p>
+<p>Administrators see a healthy server — completely misleading</p>
+<p>This issue is difficult to diagnose. Modern container platforms achieve high availability through massive parallelism. Figure 1: Recursive DNS Query Flow: IdM as Active Negotiator     The key insight is that each pod query that hits the IdM server occupies a recursive client slot, a memory reservation that persists until the full round-trip through the DNS hierarchy is complete. When safe defaults become bottlenecks During architectural reviews with high-scale customers, the same pattern surfaces repeatedly.</p>
+<p>Classified impact band: critical. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>The CoreDNS cache plug-in has two key parameters—positiveTTL and negativeTTL—that control how long resolved records are held in memory before a fresh upstream query is needed.</p>
+<p>It expands it through a sequence of search domains in order, generating an NXDOMAIN upstream query for each one that does not match before the correct record is found.</p>
+<p># Pod looks up: &#34;myapi&#34; -- resolver expands through search domains: 1. myapi.mynamespace.svc.cluster.local → NXDOMAIN (goes upstream to IdM) 2. myapi.svc.cluster.local → NXDOMAIN (goes upstream to IdM) 3. myapi.cluster.local → NXDOMAIN (goes upstream to IdM) 4. myapi.example.com → resolved (positive answer from IdM) # With negativeTTL = 0: 100 pods × 3 NXDOMAIN lookups × 5 services = 1,500 upstream hits # With negativeTTL = 10s: 3 NXDOMAIN lookups × 5 services = 15 upstream hits (99% reduction) Figure 5 illustrates how the DNS search domain expansion mechanism multiplies a single failed service lookup into multiple upstream NXDOMAIN queries to the IdM server, demonstrating the amplification problem that negativeTTL is designed to solve.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>But the more powerful long-term approach is preventing that storm from forming in the first place.</p>
+<p>Concern</p>
+<p>Default</p>
+<p>Recommendation</p>
+<p>recursive-clients limit</p>
+<p>900 — exceeded during pod storms</p>
+<p>2000-5000-10,000 — sized to cluster burst capacity</p>
+<p>CoreDNS positiveTTL</p>
+<p>0s — no caching, every query hits IdM</p>
+<p>300s baseline (CoreDNS default) — shorter for high-velocity deployments, longer for stable OT/Gov workloads</p>
+<p>CoreDNS negativeTTL</p>
+<p>0s — failed lookups retry immediately, storm not absorbed</p>
+<p>30s baseline (RFC 2308 guidance) — even 10s eliminates 99% of NXDOMAIN storm; extend only for stable environments</p>
+<p>Upstream traffic from pods</p>
+<p>Every query goes upstream</p>
+<p>~90% absorbed by CoreDNS cache; unique queries only</p>
+<p>IdM server under pod storm</p>
+<p>Silent drops, phantom timeouts (907 recorded)</p>
+<p>Stable — shielded by CoreDNS cache layer</p>
+<p>Final thoughts Treat DNS as a Tier-0 service.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Field observation and the parallelism paradox This failure mode is particularly dangerous because the DNS server often shows low CPU and memory use at the time of the incident. Increasing the recursive client limit is often viewed with hesitation due to potential memory concerns—but this concern is frequently based on outdated assumptions about the memory cost per client slot. This is the more impactful parameter for OpenShift clusters because of a mechanism called DNS search-domain expansion that silently multiplies the NXDOMAIN query rate on each pod restart.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Platform teams invest enormous effort in tuning pod autoscaling, storage throughput, and service mesh configurations. Yet one of the most disruptive failure modes in high-density container environments comes from the Dom</li>
+            <li>When you migrate from traditional virtual machine (VM) workloads to a high-density Kubernetes or Red Hat OpenShift Container Platform , the character of DNS traffic changes fundamentally. What was once a steady, predicta</li>
+            <li>Modern container platforms achieve high availability through massive parallelism. When a cluster scales out, or a large application restarts, hundreds or thousands of pods simultaneously issue service-discovery requests </li>
+            <li>In many enterprise environments, Identity Management (IdM) handles these requests built on BIND. These systems are robust and feature-rich, but they ship with conservative defaults designed for general-purpose use, not f</li>
+            <li>Exceeded within milliseconds during a pod restart storm</li>
+            <li>Silent drop (oldest query)</li>
+            <li>This issue is difficult to diagnose. When the recursive client limit is reached, BIND drops the oldest waiting query to protect its own memory. The server logs nothing at default log levels. The pod sees a timeout. The s</li>
+            <li>Shift the cache to the edge with OpenShift CoreDNS caching: The most elegant solution to DNS congestion is not making the central server bigger, it is making it quieter. The OpenShift Container Platform DNS infrastructur</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/15/protect-identity-infrastructure-cloud-native-environments" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

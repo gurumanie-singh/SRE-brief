@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 import sys
 from collections import defaultdict
-from datetime import timedelta
+from datetime import timedelta, datetime, timezone
 from typing import Any
 
 from scripts.config import (
@@ -24,12 +24,14 @@ from scripts.config import (
 )
 from scripts.enrich import enrich_article, group_articles, classify_impact, validate_impact_distribution
 from scripts.fetch_feeds import fetch_all_feeds
+from scripts.pipeline_stats import write_pipeline_stats
 from scripts.utils import (
     load_day, save_day, list_day_files, load_json,
     now_utc,
 )
 
 logger = logging.getLogger(__name__)
+
 
 def _migrate_legacy(max_retention_days: int) -> None:
     if not _LEGACY_ARTICLES_FILE.exists():
@@ -74,6 +76,16 @@ def cleanup_old_days(max_days: int) -> int:
     return deleted
 
 
+def _published_dt(article: dict[str, Any]) -> datetime:
+    try:
+        dt = datetime.fromisoformat(article.get("published", "").replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except (ValueError, TypeError, AttributeError):
+        return now_utc()
+
+
 def process() -> list[dict[str, Any]]:
     config = load_feeds_config()
     settings = get_settings(config)
@@ -84,16 +96,30 @@ def process() -> list[dict[str, Any]]:
 
     _migrate_legacy(max_retention)
 
-    incoming = fetch_all_feeds()
+    incoming, fetch_stats = fetch_all_feeds()
 
     retention_cutoff = (now_utc() - timedelta(days=max_retention)).strftime("%Y-%m-%d")
+    retention_start_dt = now_utc() - timedelta(days=max_retention)
+
     incoming_by_day: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    dropped_retention = 0
     for a in incoming:
-        if a["day"] >= retention_cutoff:
+        pub = _published_dt(a)
+        if pub >= retention_start_dt:
             incoming_by_day[a["day"]].append(a)
+        else:
+            dropped_retention += 1
+
+    after_retention = sum(len(v) for v in incoming_by_day.values())
+
+    if incoming and after_retention == 0:
+        logger.error(
+            "PIPELINE: all %d fetched articles were outside the %d-day retention window "
+            "(calendar day cutoff=%s). Nothing will be stored.",
+            len(incoming), max_retention, retention_cutoff,
+        )
 
     total_new = 0
-    total_stored = 0
     days_written = 0
 
     for day_str, day_incoming in sorted(incoming_by_day.items()):
@@ -124,7 +150,6 @@ def process() -> list[dict[str, Any]]:
             if patched:
                 save_day(DAYS_DIR, day_str, existing)
                 logger.info("Day %s: backfilled impact on %d existing articles", day_str, patched)
-            total_stored += len(existing)
             continue
 
         total_new += len(new_articles)
@@ -143,11 +168,10 @@ def process() -> list[dict[str, Any]]:
 
         save_day(DAYS_DIR, day_str, merged)
         days_written += 1
-        total_stored += len(merged)
 
     logger.info(
-        "Processing complete: %d new articles across %d day files (%d total stored)",
-        total_new, days_written, total_stored,
+        "Processing complete: %d new articles merged across %d day files touched this run",
+        total_new, days_written,
     )
 
     total_patched = 0
@@ -178,6 +202,40 @@ def process() -> list[dict[str, Any]]:
         for old_file in archive_dir.glob("*.json"):
             old_file.unlink()
 
+    day_files = list_day_files(DAYS_DIR)
+    warnings: list[str] = []
+    if fetch_stats.get("articles_after_dedup", 0) == 0:
+        warnings.append("Fetch returned zero usable articles — check feeds, network, or RSS parse errors.")
+    if incoming and after_retention == 0:
+        warnings.append(
+            f"All {len(incoming)} items were older than the {max_retention}-day retention window."
+        )
+    if incoming and total_new == 0 and after_retention > 0:
+        warnings.append(
+            "Incoming articles matched existing IDs only (no new rows merged this run)."
+        )
+
+    process_stats = {
+        "retention_max_days": max_retention,
+        "retention_cutoff_day": retention_cutoff,
+        "incoming_total": len(incoming),
+        "incoming_after_retention": after_retention,
+        "dropped_by_retention": dropped_retention,
+        "new_articles_this_run": total_new,
+        "day_files_touched": days_written,
+        "total_articles_on_disk": len(all_current),
+        "day_json_file_count": len(day_files),
+        "warnings": warnings,
+    }
+
+    logger.info(
+        "STORE: retention_cutoff=%s | after_retention=%d | new_merged=%d | "
+        "total_on_disk=%d | day_json_files=%d",
+        retention_cutoff, after_retention, total_new, len(all_current), len(day_files),
+    )
+
+    write_pipeline_stats({"fetch": fetch_stats, "process": process_stats})
+
     return all_current
 
 
@@ -194,7 +252,7 @@ def main() -> None:
     grouped = sum(1 for a in articles if a.get("related_sources"))
     priority = sum(1 for a in articles if a.get("operational_priority"))
     days = len(set(a["day"] for a in articles))
-    print(f"  {days} day files")
+    print(f"  {days} calendar days with data")
     print(f"  {enriched} with enriched sections")
     print(f"  {grouped} with related sources (grouped)")
     print(f"  {priority} flagged for operational priority")

@@ -1,0 +1,95 @@
+[
+  {
+    "id": "4d2c07a6a9ddf1a5",
+    "title": "Stop Answering the Same Question Twice: Interval-Aware Caching for Druid at Netflix Scale",
+    "source": "Netflix TechBlog",
+    "link": "https://netflixtechblog.com/stop-answering-the-same-question-twice-interval-aware-caching-for-druid-at-netflix-scale-22fadc9b840e?source=rss----2615bd06b42e---4",
+    "published": "2026-04-06T22:15:14+00:00",
+    "fetched_at": "2026-04-19T02:30:02.565995+00:00",
+    "summary": "By Ben Sykes ",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-04-06",
+    "impact": "medium",
+    "vendors": [
+      "Netflix"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "In a previous post , we described how Netflix uses Apache Druid to ingest millions of events per second and query trillions of rows, providing the real-time insights needed to ensure a high-quality experience for our mem",
+      "With our database holding over 10 trillion rows and regularly ingesting up to 15 million events per second, the value of our real-time data is undeniable. But this massive scale introduced a new challenge: queries. The l",
+      "Take the popular dashboard above: 64 queries per load, refreshing every 10 seconds, viewed by 30 people. That’s 192 queries per second from one dashboard, mostly for nearly identical data. We still need Druid capacity fo",
+      "The Insight When a dashboard requests the last 3 hours of data, the vast majority of that data, everything except the most recent few minutes, is already settled. The data from 2 hours ago won’t change.",
+      "This is the core idea behind a new caching service that understands the structure of Druid queries and serves previously-seen results from cache while fetching only the freshest portion from Druid.",
+      "A Deliberate Trade-Off Before diving into the implementation, it’s worth being explicit about the trade-off we’re making. Caching query results introduces some staleness, specifically, up to 5 seconds for the newest data",
+      "Since our end-to-end data pipeline latency is typically under 5 seconds at P90, a 5-second cache TTL on the freshest data introduces negligible additional staleness on top of what’s already inherent in the system. We dec",
+      "Exponential TTLs Not all data points are equally trustworthy. In real-time analytics, there’s a well-known late-arriving data problem. Events can arrive out of order or be delayed in the ingestion pipeline. A data point "
+    ],
+    "sections": {
+      "overview": "By Ben Sykes \n\n In a previous post , we described how Netflix uses Apache Druid to ingest millions of events per second and query trillions of rows, providing the real-time insights needed to ensure a high-quality experience for our members. Since that post, our scale has grown considerably. With our database holding over 10 trillion rows and regularly ingesting up to 15 million events per second, the value of our real-time data is undeniable.",
+      "technical_breakdown": "The live show monitoring, dashboards, automated alerting, canary analysis, and A/B test monitoring that are built on top of Druid became so heavily relied upon that the repetitive query load started to become a scaling concern in itself.\n\nWe still need Druid capacity for automated alerting, canary analysis, and ad-hoc queries.\n\nOur gap-detection logic recognizes these empty entries as valid cached data rather than missing data, preventing needless re-queries for naturally sparse metrics.\n\nThe scaling bottleneck moves from Druid’s query capacity to the much cheaper-to-scale cache, and with ~5.5 ms P90 cache responses, dashboards load faster for everyone.\n\nWe’d likely ship it as an opt-in, configurable, result-level cache in the Brokers, with metrics to tune TTLs and measure effectiveness.",
+      "impact": "The Insight When a dashboard requests the last 3 hours of data, the vast majority of that data, everything except the most recent few minutes, is already settled. And because these dashboards request a rolling last-few-hours window, each refresh changes slightly as the time range advances. The data from 2 hours ago won’t change. A data point from 30 minutes ago is almost certainly final.\n\nClassified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Longer term, we’d like interval-aware caching to be built into Druid: an external proxy adds infrastructure to manage, extra network hops, and workarounds (like SQL templating) to extract intervals.",
+      "lessons_learned": "We decided it was better to accept this small amount of staleness in exchange for significantly lower query load on Druid.\n\nWe see this setup as temporary while we work out a way to better integrate this capability into Druid more natively.\n\nOur gap-detection logic recognizes these empty entries as valid cached data rather than missing data, preventing needless re-queries for naturally sparse metrics.\n\nAn experiment validated this, showing about a 33% drop in queries to Druid and a 66% improvement in overall P90 query times.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. With our database holding over 10 trillion rows and regularly ingesting up to 15 million events per second, the value of our real-time data is undeniable. And because these dashboards request a rolling last-few-hours window, each refresh changes slightly as the time range advances. Druid deliberately refuses to cache results that involve realtime segments (those still being indexed), because it values deterministic, stable cache results and query correctness over a higher cache hit rate.",
+      "incident_timeline": "In a previous post , we described how Netflix uses Apache Druid to ingest millions of events per second and query trillions of rows, providing the real-time insights needed to ensure a high-quality experience for our mem\nWith our database holding over 10 trillion rows and regularly ingesting up to 15 million events per second, the value of our real-time data is undeniable. But this massive scale introduced a new challenge: queries. The l\nTake the popular dashboard above: 64 queries per load, refreshing every 10 seconds, viewed by 30 people. That’s 192 queries per second from one dashboard, mostly for nearly identical data. We still need Druid capacity fo\nThe Insight When a dashboard requests the last 3 hours of data, the vast majority of that data, everything except the most recent few minutes, is already settled. The data from 2 hours ago won’t change.\nThis is the core idea behind a new caching service that understands the structure of Druid queries and serves previously-seen results from cache while fetching only the freshest portion from Druid.\nA Deliberate Trade-Off Before diving into the implementation, it’s worth being explicit about the trade-off we’re making. Caching query results introduces some staleness, specifically, up to 5 seconds for the newest data\nSince our end-to-end data pipeline latency is typically under 5 seconds at P90, a 5-second cache TTL on the freshest data introduces negligible additional staleness on top of what’s already inherent in the system. We dec\nExponential TTLs Not all data points are equally trustworthy. In real-time analytics, there’s a well-known late-arriving data problem. Events can arrive out of order or be delayed in the ingestion pipeline. A data point ",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "By Ben Sykes \n\n In a previous post , we described how Netflix uses Apache Druid to ingest millions of events per second and query trillions of rows, providing the real-time insights needed to ensure a high-quality experience for our members. Since that post, our scale has grown considerably.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "86f2260e70ad0b9c",
+    "title": "AWS Weekly Roundup: AWS DevOps Agent & Security Agent GA, Product Lifecycle updates, and more (April 6, 2026)",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-devops-agent-security-agent-ga-product-lifecycle-updates-and-more-april-6-2026/",
+    "published": "2026-04-06T16:51:00+00:00",
+    "fetched_at": "2026-04-19T02:30:03.282075+00:00",
+    "summary": "Last week, I visited AWS Hong Kong User Group with my team. Hong Kong has a small but strong community, and their energy and passion are high. They recently started a new AI user group, and we hope more people will join. I was able to strengthen my bond with the community through great food and conversation.",
+    "tags": [
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-06",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "At the last re:Invent, we introduced the concept of frontier agents that work autonomously across multiple steps to achieve outcomes, operating continuously until the job is done. The first two— AWS DevOps Agent and AWS ",
+      "AWS DevOps Agent helps you run cloud operations—investigating incidents, reducing time to resolution, and preventing issues before they happen. Customers like United Airlines, Western Governors University, and T-Mobile a",
+      "AWS Security Agent brings continuous, context-aware penetration testing into the development lifecycle. This agent operates like a human penetration tester. Customers including LG CNS, HENNGE, and Wayspring are seeing st",
+      "Here are some additional news items that you might find interesting:"
+    ],
+    "sections": {
+      "overview": "Last week, I visited AWS Hong Kong User Group with my team. Hong Kong has a small but strong community, and their energy and passion are high. They recently started a new AI user group, and we hope more people will join.",
+      "technical_breakdown": "Additional updates \n Here are some additional news items that you might find interesting:\n\n \n \n Architecting for agentic AI development on AWS \n \n Optimizing data transfer costs when using AWS Network Load Balancer \n \n Announcing AWS World Sports Innovation Cup – Will your idea change the game? \n \n 5 Techniques to Stop AI agent hallucinations in production \n \n Explore the global AWS Community through a 3D interactive globe \n \n \n For a full list of AWS blog posts, be sure to keep an eye on the AWS Blogs page.\n\nLast week’s launches \n Here are last week’s launches that caught my attention:\n\n \n \n Amazon ECS announces Managed Daemons for ECS Managed Instances \n \n New AWS Sustainability console: Scope 1–3 reporting in one place \n \n Amazon Bedrock AgentCore Evaluations is now generally available \n \n AWS Transform custom announces general availability of automated codebase analysis \n \n Amazon CloudWatch launches OpenTelemetry Container Insights for Amazon EKS (Preview) \n \n New compute-optimized instance bundles for Amazon Lightsail with up to 72 vCPUs \n \n Amazon CloudFront now supports SHA-256 for signed URLs and signed cookies \n \n \n For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page.\n\nLearn more in Sébastien’s preview blog post and GA announcement .\n\nLearn more in Esra’s preview blog post and GA announcement .",
+      "impact": "At WGU, resolution time dropped from hours to minutes, and in preview customers report up to 75% lower MTTR and 3 to 5 times faster resolution. Availability change guide for services in maintenance \n \n AWS App Runner \n \n AWS Audit Manager \n \n AWS CloudTrail – Lake \n \n AWS Glue – Ray jobs \n \n AWS IoT FleetWise \n \n Amazon Application Recovery Controller (ARC) – Readiness Check \n \n Amazon Comprehend – Topic Modeling, Event Detection, and Prompt Safety Classification \n \n Amazon Rekognition – Streaming Events and Batch Image Content Moderation \n \n Amazon Simple Notification Service (Amazon SNS) – Message Data Protection (MDP) \n \n \n \n Availability change guide for services in sunset: \n \n AWS Service Management Connector \n \n Amazon RDS Custom for Oracle \n \n Amazon WorkMail \n \n Amazon WorkSpaces – Thin Client \n \n \n \n Services reaching in sunset: \n \n Amazon Chime SDK – Proxy Sessions\n \n \n \n \n We understand that changes in availability can impact your operations. AWS Service Availability Updates \n When the availability of an AWS service or feature changes, we provide customers guidance in AWS Product Lifecycle Changes on available alternatives and support for migration so that disruptions to your operations are minimized. Last week’s launches \n Here are last week’s launches that caught my attention:\n\n \n \n Amazon ECS announces Managed Daemons for ECS Managed Instances \n \n New AWS Sustainability console: Scope 1–3 reporting in one place \n \n Amazon Bedrock AgentCore Evaluations is now generally available \n \n AWS Transform custom announces general availability of automated codebase analysis \n \n Amazon CloudWatch launches OpenTelemetry Container Insights for Amazon EKS (Preview) \n \n New compute-optimized instance bundles for Amazon Lightsail with up to 72 vCPUs \n \n Amazon CloudFront now supports SHA-256 for signed URLs and signed cookies \n \n \n For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "AWS DevOps Agent helps you run cloud operations—investigating incidents, reducing time to resolution, and preventing issues before they happen.",
+      "root_cause_highlight": "",
+      "incident_timeline": "At the last re:Invent, we introduced the concept of frontier agents that work autonomously across multiple steps to achieve outcomes, operating continuously until the job is done. The first two— AWS DevOps Agent and AWS \nAWS DevOps Agent helps you run cloud operations—investigating incidents, reducing time to resolution, and preventing issues before they happen. Customers like United Airlines, Western Governors University, and T-Mobile a\nAWS Security Agent brings continuous, context-aware penetration testing into the development lifecycle. This agent operates like a human penetration tester. Customers including LG CNS, HENNGE, and Wayspring are seeing st\nHere are some additional news items that you might find interesting:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Last week, I visited AWS Hong Kong User Group with my team. Hong Kong has a small but strong community, and their energy and passion are high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

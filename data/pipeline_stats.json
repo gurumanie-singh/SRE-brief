@@ -1,0 +1,113 @@
+{
+  "fetch": {
+    "feeds_configured": 11,
+    "feeds_attempted": 11,
+    "feeds_ok": 10,
+    "entries_raw_total": 228,
+    "entries_parse_failed": 0,
+    "articles_after_dedup": 228,
+    "feeds_detail": [
+      {
+        "name": "Netflix TechBlog",
+        "url": "https://netflixtechblog.com/feed",
+        "ok": true,
+        "entries_raw": 10,
+        "entries_accepted": 10,
+        "error": null
+      },
+      {
+        "name": "AWS News Blog",
+        "url": "https://aws.amazon.com/blogs/aws/feed/",
+        "ok": true,
+        "entries_raw": 20,
+        "entries_accepted": 20,
+        "error": null
+      },
+      {
+        "name": "Cloudflare Blog",
+        "url": "https://blog.cloudflare.com/rss/",
+        "ok": true,
+        "entries_raw": 20,
+        "entries_accepted": 20,
+        "error": null
+      },
+      {
+        "name": "Kubernetes Blog",
+        "url": "https://kubernetes.io/feed.xml",
+        "ok": true,
+        "entries_raw": 50,
+        "entries_accepted": 50,
+        "error": null
+      },
+      {
+        "name": "GitHub Blog",
+        "url": "https://github.blog/feed/",
+        "ok": true,
+        "entries_raw": 10,
+        "entries_accepted": 10,
+        "error": null
+      },
+      {
+        "name": "HashiCorp Blog",
+        "url": "https://www.hashicorp.com/blog/feed.xml",
+        "ok": true,
+        "entries_raw": 20,
+        "entries_accepted": 20,
+        "error": null
+      },
+      {
+        "name": "Slack Engineering",
+        "url": "https://slack.engineering/feed",
+        "ok": true,
+        "entries_raw": 8,
+        "entries_accepted": 8,
+        "error": null
+      },
+      {
+        "name": "Stack Overflow Blog",
+        "url": "https://stackoverflow.blog/feed/",
+        "ok": true,
+        "entries_raw": 40,
+        "entries_accepted": 40,
+        "error": null
+      },
+      {
+        "name": "Grafana Labs Blog",
+        "url": "https://grafana.com/blog/rss.xml",
+        "ok": false,
+        "entries_raw": 0,
+        "entries_accepted": 0,
+        "error": "zero entries (bozo=True text/html; charset=utf-8 is not an XML media type)"
+      },
+      {
+        "name": "Elastic Blog",
+        "url": "https://www.elastic.co/blog/feed",
+        "ok": true,
+        "entries_raw": 40,
+        "entries_accepted": 40,
+        "error": null
+      },
+      {
+        "name": "Red Hat Developer Blog",
+        "url": "https://developers.redhat.com/blog/feed",
+        "ok": true,
+        "entries_raw": 10,
+        "entries_accepted": 10,
+        "error": null
+      }
+    ]
+  },
+  "process": {
+    "retention_max_days": 30,
+    "retention_cutoff_day": "2026-03-20",
+    "incoming_total": 228,
+    "incoming_after_retention": 96,
+    "dropped_by_retention": 132,
+    "new_articles_this_run": 96,
+    "day_files_touched": 22,
+    "total_articles_on_disk": 77,
+    "day_json_file_count": 22,
+    "warnings": []
+  },
+  "written_at": "2026-04-19T02:30:07.357679+00:00"
+}

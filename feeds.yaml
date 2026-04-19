@@ -18,6 +18,12 @@ feeds:
     url: https://slack.engineering/feed
   - name: Stack Overflow Blog
     url: https://stackoverflow.blog/feed/
+  - name: Fly.io Blog
+    url: https://fly.io/blog/feed.xml
+  - name: Elastic Blog
+    url: https://www.elastic.co/blog/feed
+  - name: Red Hat Developer Blog
+    url: https://developers.redhat.com/blog/feed
 
 tag_keywords:
   outage:
@@ -130,6 +136,15 @@ vendor_keywords:
     - nomad
   Slack:
     - slack
+  Fly.io:
+    - fly.io
+    - flyio
+  Elastic:
+    - elastic
+    - elasticsearch
+  "Red Hat":
+    - red hat
+    - openshift
 
 personalization:
   preferred_vendors: []
@@ -140,6 +155,10 @@ personalization:
 settings:
   timezone: "America/Chicago"
   active_days: 7
+  # Homepage primary filter: articles with RSS calendar day >= (today UTC − this many days).
+  homepage_calendar_days: 7
+  # If that filter yields zero rows but data exists, show newest items by published timestamp.
+  homepage_recency_fallback: true
   max_retention_days: 30
   max_articles_per_day: 20
   max_articles_per_page: 30

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Search: the search primitive for your agents — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-16.html" class="back-link">← 16 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">16 April 2026, 08:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">AI Search: the search primitive for your agents</h1>
+
+      <p class="subtitle">Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The use cases are different, but the underlying problem is the same: get the right information to the model at the right time.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The use cases are different, but the underlying problem is the same: get the right information to the model at the right time.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The use cases are different, but the underlying problem is the same: get the right information to the model at the right time. If you&#39;re building search yourself, you need a vector index, an indexing pipeline that parses and chunks your documents, and something to keep the index up to date when your data changes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>You can create a one-off AI Search instance (named product-knowledge ) backed by the bucket on the Cloudflare Dashboard within the support namespace:</p>
+<p>That&#39;s your shared knowledge base, the docs every agent can reference.</p>
+<p>If you also need keyword search, that&#39;s a separate index and fusion logic on top.</p>
+<p>Vector search and BM25 run in parallel and results are fused. (The search on our blog is now powered by AI Search.</p>
+<p>The new ai_search_namespaces binding lets you create and delete instances at runtime from your Worker, so you can spin up one per agent, per customer, or per language without redeployment.</p>
+<p>In action: Customer Support Agent           Let&#39;s walk through a support agent that searches for two kinds of knowledge: shared product docs, and per-customer history like past resolutions.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>The model decides when to call the tools based on the conversation:</p>
+<p>import { AIChatAgent, type OnChatMessageOptions } from &#34;@cloudflare/ai-chat&#34;; import { createWorkersAI } from &#34;workers-ai-provider&#34;; import { streamText, convertToModelMessages, tool, stepCountIs } from &#34;ai&#34;; import { routeAgentRequest } from &#34;agents&#34;; import { z } from &#34;zod&#34;;</p>
+<p>export class SupportAgent extends AIChatAgent&lt;Env&gt; {  async onChatMessage(_onFinish: unknown, options?: OnChatMessageOptions) {  // the client passes customerId in the request body  // via the Agent SDK&#39;s sendMessage({ body: { customerId } })  const customerId = options?.body?.customerId;</p>
+<p>// create a per-customer instance when they first show up.  // each instance gets its own storage and vector index.  if (customerId) {  try {  await this.env.SUPPORT_KB.create({  id: `customer-${customerId}`,  index_method: { keyword: true, vector: true }  });  } catch {  // instance already exists  }  }</p>
+<p>const workersai = createWorkersAI({ binding: this.env.AI });</p>
+<p>const result = streamText({  model: workersai(&#34;@cf/moonshotai/kimi-k2.5&#34;),  system: `You are a support agent. If you’re creating instances dynamically (e.g. per agent, per customer, per tenant), this is the binding to use.</p>
+<p>// create an instance  const instance = await env.AI_SEARCH.create({  id: &#34;my-instance&#34; });</p>
+<p>// delete an instance and all its indexed data await env.AI_SEARCH.delete(&#34;old-instance&#34;);        Pricing for new instances           New instances created as of today will get built-in storage and a vector index automatically. Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The new ai_search_namespaces binding lets you create and delete instances at runtime from your Worker, so you can spin up one per agent, per customer, or per language without redeployment.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>After each resolved issue, the agent saves a summary of what went wrong and how it was fixed.</p>
+<p>When the issue is  resolved, call save_resolution before responding.`,  // this.messages is the full conversation history, automatically  // persisted by AIChatAgent across reconnects  messages: await convertToModelMessages(this.messages),  tools: {  // tool 1: search across shared product docs AND this  // customer&#39;s past resolutions in a single call  search_knowledge_base: tool({  description: &#34;Search product docs and customer history&#34;,  inputSchema: z.object({  query: z.string().describe(&#34;The search query&#34;),  }),  execute: async ({ query }) =&gt; {  // always search product docs;  // include customer history if available  const instances = [&#34;product-knowledge&#34;];  if (customerId) {  instances.push(`customer-${customerId}`);  }  return await this.env.SUPPORT_KB.search({  query: query,  ai_search_options: {  // surface recent docs over older ones  boost_by: [  { field: &#34;timestamp&#34;, direction: &#34;desc&#34; }  ],  // search across both instances at once  instance_ids: instances  }  });  }  }),</p>
+<p>// tool 2: after resolving an issue, the agent saves a  // summary so future agents have full context  save_resolution: tool({  description:  &#34;Save a resolution summary after solving a customer&#39;s issue&#34;,  inputSchema: z.object({  filename: z.string().describe(  &#34;Short descriptive filename, e.g. &#39;billing-fix.md&#39;&#34;  ),  content: z.string().describe(  &#34;What the problem was, what caused it, and how it was resolved&#34;  ),  }),  execute: async ({ filename, content }) =&gt; {  if (!customerId) return { error: &#34;No customer ID&#34; };  const instance = this.env.SUPPORT_KB.get(  `customer-${customerId}`  );  // uploadAndPoll waits until indexing is complete,  // so the resolution is searchable before the next query  const item = await instance.items.uploadAndPoll(  filename, content  );  return { saved: true, filename, status: item.status };  }  }),  },  // cap agentic tool-use loops at 10 steps  stopWhen: stepCountIs(10),  abortSignal: options?.abortSignal,  });</p>
+<p>return result.toUIMessageStreamResponse();  } }</p>
+<p>// route requests to the SupportAgent durable object export default {  async fetch(request: Request, env: Env) {  return (  (await routeAgentRequest(request, env)) ||  new Response(&#34;Not found&#34;, { status: 404 })  );  } } satisfies ExportedHandler&lt;Env&gt;;    With this, the model decides when to search and when to save.</p>
+<p>The product docs are too large to fit in a context window, and each customer&#39;s history grows with every resolved issue, so the agent needs retrieval to find what&#39;s relevant.</p>
+<p>Search results  include both product docs and this customer&#39;s past  resolutions — use them to avoid repeating failed fixes  and to recognize recurring issues.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Next time the customer comes back, all of it is searchable.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. The new ai_search_namespaces binding lets you create and delete instances at runtime from your Worker, so you can spin up one per agent, per customer, or per language without redeployment. You can boost on timestamp (built in on every item) or any custom metadata field you define.</p>
+<p>// boost high priority docs const results = await instance.search({  query: &#34;deployment guide&#34;,  ai_search_options: {  boost_by: [  { field: &#34;timestamp&#34;, direction: &#34;desc&#34; }  ]  } });        Cross-instance search: query across boundaries           In the support agent example, product documentation and customer resolution history live in separate instances by design.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>npm create cloudflare@latest -- --template cloudflare/agents-starter</li>
+            <li>import { routeAgentRequest } from &#34;agents&#34;;</li>
+            <li>// the client passes customerId in the request body</li>
+            <li>{ field: &#34;timestamp&#34;, direction: &#34;desc&#34; }</li>
+            <li>return result.toUIMessageStreamResponse();</li>
+            <li>// route requests to the SupportAgent durable object</li>
+            <li>async fetch(request: Request, env: Env) {</li>
+            <li>(await routeAgentRequest(request, env)) ||</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/ai-search-agent-primitive/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

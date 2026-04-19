@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shared Dictionaries: compression that keeps up with the agentic web — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-17.html" class="back-link">← 17 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">17 April 2026, 08:02</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Shared Dictionaries: compression that keeps up with the agentic web</h1>
+
+      <p class="subtitle">Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often those pages get rebuilt and how many clients request them.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>A CDN already sits in front of every request, already manages compression, and already handles cache variants ( watch this space for a soon-to-come announcement blog ).</p>
+<p>On a cache miss (where DCZ has to compress against the dictionary at the origin) TTFB is only about 20ms slower than gzip.</p>
+<p>But Cloudflare has the right pieces: we see the traffic patterns across the entire network, we already manage the cache layer where dictionaries need to live, and our RUM beacon to clients can help give us a validation loop to confirm that a dictionary actually improves compression before we commit to serving it.</p>
+<p>Shared dictionaries shrink asset transfers from servers to browsers so pages load faster with less bloat on the wire, especially for returning users or visitors on a slow connection.</p>
+<p>Instead of re-downloading entire JavaScript bundles after every deploy, the browser tells the server what it already has cached, and the server only sends the file diffs.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>What is changing is how often those pages get rebuilt and how many clients request them. Shared dictionaries shrink asset transfers from servers to browsers so pages load faster with less bloat on the wire, especially for returning users or visitors on a slow connection. As agents push a one-line fix, the bundler re-chunks, filenames change, and every user on earth could re-download the entire application. Not because the code is meaningfully any different, but because the browser/client has no way to know specifically what changed.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>As agents push a one-line fix, the bundler re-chunks, filenames change, and every user on earth could re-download the entire application.</p>
+<p>Remember the deploy problem where a team ships a one-line fix and every user re-downloads the full bundle?</p>
+<p>But SDCH accumulated problems faster than anyone was able to fix them.</p>
+<p>Keep your eyes fixed on the changelog for when this becomes available and more documentation for how to use it.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>It worked well with some early adopters reporting double-digit improvements in page load times.</p>
+<p>For example, it enforces that an advertised dictionary is only usable on responses from the same-origin, preventing many conditions that made side-channel compression attacks possible.</p>
+<p>On a cache miss, DCZ completed in 31ms versus 166ms for gzip (an 81% improvement).</p>
+<p>On a cache hit, 16ms versus 143ms (89% improvement).</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often t</li>
+            <li>Today, we’re excited to give you a sneak peek of our support for shared compression dictionaries, show you what we’ve seen in early testing, and reveal when you’ll be able to try the beta yourself (hint: it’s April 30, 2</li>
+            <li>Agentic crawlers, browsers, and other tools hit endpoints repeatedly, fetching full pages, often to extract a fragment of information. Agentic actors represented just under 10% of total requests across Cloudflare&#39;s netwo</li>
+            <li>In order to scale with more requests hitting heavier pages that are re-deployed more often, compression has to get smarter.</li>
+            <li>Delta compression is what turns the version the browser already has into the dictionary. The protocol looks to when the server first serves a resource, it attaches a Use-As-Dictionary response header, telling the browser</li>
+            <li>The RFC mitigates the security problems but dictionary transport has always been complex to implement. An origin may have to generate dictionaries, serve them with the right headers, check every request for an Available-</li>
+            <li>This complexity is a coordination problem. And exactly the kind of thing that belongs at the edge. A CDN already sits in front of every request, already manages compression, and already handles cache variants ( watch thi</li>
+            <li>Shared dictionary compression touches every layer of the stack between the browser and the origin. We&#39;ve seen strong customer interest: some people have already built their own implementations like RFC author Patrick Mee</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/shared-dictionaries/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

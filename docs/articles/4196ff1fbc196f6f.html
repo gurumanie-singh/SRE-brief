@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building the foundation for running extra-large language models — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-16.html" class="back-link">← 16 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">16 April 2026, 09:00</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+      </div>
+
+      <h1 class="title">Building the foundation for running extra-large language models</h1>
+
+      <p class="subtitle">An agent needs to be powered by a large language model. Impact band: high.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>general reliability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">An agent needs to be powered by a large language model. Impact band: high.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>An agent needs to be powered by a large language model. A few weeks ago, we announced that Workers AI is officially entering the arena for hosting large open-source models like Moonshot’s Kimi K2.5. Since then, we’ve made Kimi K2.5 3x faster and have more model additions in-flight.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>It works with different Remote Direct Memory Access (RDMA) protocols such as NVLink and NVMe over Fabric, which enables direct memory-to-memory data transfer without involving the CPU.</p>
+<p>When paired with LMCache or SGLang HiCache, the cache is shared across all nodes in the cluster, allowing a prefill node to identify and re-use a cache from a previous request that was originally pre-filled on a different node.</p>
+<p>This means that a model like Kimi K2.5 needs at least 8 H100s in order to load the model into memory and run — and that’s not even including the extra VRAM you would need for KV Cache, which includes your context window.</p>
+<p>For most models, utilizing both pipeline parallelism and tensor parallelism in tandem provides the best balance of throughput and latency.</p>
+<p>Hardware configurations           As we mentioned in our previous Kimi K2.5 blog post , we’re using a variety of hardware configurations in order to best serve models.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>A lot of hardware configurations depend on the size of inputs and outputs that users are sending to the model. With the first user prompt, that context keeps growing. Each new prompt from the user sends a request to the model, which consists of everything that was said before — all the previous user prompts, assistant messages, code generated, etc. We took the time to analyze our new usage patterns and then tuned our configuration to fit our customer’s use cases.</p>
+<p>Classified impact band: high. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>This has a number of advantages, because it allows the servers to be tuned independently for the role they are performing, scaled to account for more input-heavy or output-heavy traffic, or even to run on heterogeneous hardware.</p>
+<p>Every GPU has a fixed VRAM size, but if your model instance requires multiple GPUs, there needs to be a way for the KV cache to live across GPUs and talk to each other.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Prefill decode (PD) disaggregation           One hardware configuration that we use to improve performance and efficiency is disaggregated prefill.</p>
+<p>We see a significant improvement in the tail latency variance.</p>
+<p>Similarly, p90 time per token went from ~100 ms with high variance to 20-30 ms, a 3x improvement in intertoken latency.</p>
+<p>This significantly increases the request throughput that we can handle, while offering better performance for interactive or time-sensitive sessions like OpenCode or AI code reviews.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Hosting AI models is an interesting challenge: it requires a delicate balance between software and very, very expensive hardware. At Cloudflare, we’re good at squeezing every bit of efficiency out of our hardware through</li>
+            <li>As we mentioned in our previous Kimi K2.5 blog post , we’re using a variety of hardware configurations in order to best serve models. A lot of hardware configurations depend on the size of inputs and outputs that users a</li>
+            <li>When we launched large language models on Workers AI, we knew that most of the use cases would be used for agents. With agents, you send in a large number of input tokens. It starts off with a large system prompt, all th</li>
+            <li>One hardware configuration that we use to improve performance and efficiency is disaggregated prefill. There are two stages to processing an LLM request: prefill, which processes the input tokens and populates the KV cac</li>
+            <li>With prefill decode disaggregation, separate inference servers are run for each stage. First, a request is sent to the prefill stage which performs prefill and stores it in its KV cache. Then the same request is sent to </li>
+            <li>This architecture requires a relatively complex load balancer to achieve. Beyond just routing the requests as described above, it must rewrite the responses (including streaming SSE) of the decode server to include infor</li>
+            <li>Here’s a graph of our p90 Time to First Token drop after shifting traffic to our new PD disaggregated architecture, whilst request volume increased, using the same quantity of GPUs. We see a significant improvement in th</li>
+            <li>Since agentic use cases usually have long contexts, we optimize for efficient prompt caching in order to not recompute input tensors on every turn. We leverage a header called x-session-affinity in order to help requests</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>This item contributes to the broader reliability narrative for production engineering teams.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/high-performance-llms/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

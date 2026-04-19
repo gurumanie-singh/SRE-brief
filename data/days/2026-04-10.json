@@ -1,0 +1,124 @@
+[
+  {
+    "id": "6998e82aafa927b7",
+    "title": "Evaluating Netflix Show Synopses with LLM-as-a-Judge",
+    "source": "Netflix TechBlog",
+    "link": "https://netflixtechblog.com/evaluating-netflix-show-synopses-with-llm-as-a-judge-6269251e6f28?source=rss----2615bd06b42e---4",
+    "published": "2026-04-10T16:26:01+00:00",
+    "fetched_at": "2026-04-19T02:30:02.565083+00:00",
+    "summary": "by Gabriela Alessio , Cameron Taylor , and Cameron R. Wolfe ",
+    "tags": [
+      "capacity",
+      "deployment",
+      "observability",
+      "outage",
+      "postmortem",
+      "scaling"
+    ],
+    "day": "2026-04-10",
+    "impact": "high",
+    "vendors": [
+      "Netflix"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Introduction When members log into Netflix, one of the hardest choices is what to watch. The challenge isn’t a lack of options —  there are thousands of titles  — but finding the most intriguing one is complex and deeply",
+      "The Making of a “Good” Synopsis Writing high-quality synopses requires creative expertise. Our expert creative leads are best positioned to craft the creative approaches and define quality standards. However, AI can help",
+      "Higher take fraction indicates more choosing, while lower abandonment suggests authentic, non-misleading presentation. Both of these metrics have been validated via A/B testing to serve as short-term behavioral proxies f",
+      "Request a binary decision for the synopsis.",
+      "Tiered rationales. Using tone as an example, we tested whether longer rationales are helpful by defining three rationale length tiers (shown above) and comparing their accuracies. Accuracy rises with longer rationales bu",
+      "What about reasoning models? While our setup elicits reasoning from a standard LLM, we also explored quality scoring with true reasoning models (i.e., models that generate long reasoning trajectories prior to final outpu",
+      "Framed as predictors of member outcomes, LLM judges help us assess how promotional assets affect viewing and determine which creative attributes matter most to members discovering content they enjoy. To perform this anal",
+      "Closing Remarks The LLM-as-a-Judge system used to evaluate show synopses at Netflix is the result of extensive experimentation grounded in both creative expertise and member outcomes. Building an automatic evaluation sys"
+    ],
+    "sections": {
+      "overview": "by Gabriela Alessio , Cameron Taylor , and Cameron R. Wolfe \n\n Introduction When members log into Netflix, one of the hardest choices is what to watch. The challenge isn’t a lack of options —  there are thousands of titles  — but finding the most intriguing one is complex and deeply personal.",
+      "technical_breakdown": "Wolfe \n\n Introduction When members log into Netflix, one of the hardest choices is what to watch.\n\nThis approach helps us scale high‑quality synopsis coverage for our rapidly expanding catalog, enabling greater speed and coverage without sacrificing quality.\n\nAdditionally, we show that higher LLM judge quality is correlated with key streaming metrics, allowing us to proactively identify and fix impactful issues weeks or months before a show debuts on Netflix .\n\nMember Implicit Feedback : we measure the relative impact of a particular show synopsis on core streaming metrics.\n\nEach criterion has extensive guidelines with examples across regions, genres, and synopsis types.",
+      "impact": "Additionally, we show that higher LLM judge quality is correlated with key streaming metrics, allowing us to proactively identify and fix impactful issues weeks or months before a show debuts on Netflix . Member Implicit Feedback : we measure the relative impact of a particular show synopsis on core streaming metrics. Each criterion has extensive guidelines with examples across regions, genres, and synopsis types.\n\nClassified impact band: high. Affected layer signal: general production.",
+      "resolution": "Additionally, we show that higher LLM judge quality is correlated with key streaming metrics, allowing us to proactively identify and fix impactful issues weeks or months before a show debuts on Netflix .",
+      "lessons_learned": "Building an automatic evaluation system that works reliably in practice is hard, and the approach we have described reflects countless lessons learned through iteration to improve accuracy and scalability.\n\nTo reach a better consensus, we conducted calibration rounds (~50 synopses per round), surfaced disagreements, and evolved our quality scoring guidelines.\n\nKey interventions that were found to improve agreement include:\n\n Using binary scores (instead of 1–4 Likert scores).\n\nUsing a single prompt to evaluate all quality criteria is found to overload the LLM and yields poor performance —  dedicated judges for each criteria perform better .",
+      "root_cause_highlight": "",
+      "incident_timeline": "Introduction When members log into Netflix, one of the hardest choices is what to watch. The challenge isn’t a lack of options —  there are thousands of titles  — but finding the most intriguing one is complex and deeply\nThe Making of a “Good” Synopsis Writing high-quality synopses requires creative expertise. Our expert creative leads are best positioned to craft the creative approaches and define quality standards. However, AI can help\nHigher take fraction indicates more choosing, while lower abandonment suggests authentic, non-misleading presentation. Both of these metrics have been validated via A/B testing to serve as short-term behavioral proxies f\nRequest a binary decision for the synopsis.\nTiered rationales. Using tone as an example, we tested whether longer rationales are helpful by defining three rationale length tiers (shown above) and comparing their accuracies. Accuracy rises with longer rationales bu\nWhat about reasoning models? While our setup elicits reasoning from a standard LLM, we also explored quality scoring with true reasoning models (i.e., models that generate long reasoning trajectories prior to final outpu\nFramed as predictors of member outcomes, LLM judges help us assess how promotional assets affect viewing and determine which creative attributes matter most to members discovering content they enjoy. To perform this anal\nClosing Remarks The LLM-as-a-Judge system used to evaluate show synopses at Netflix is the result of extensive experimentation grounded in both creative expertise and member outcomes. Building an automatic evaluation sys",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "by Gabriela Alessio , Cameron Taylor , and Cameron R. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "2956e0cfcf99dacc",
+    "title": "GitHub Copilot CLI for Beginners: Getting started with GitHub Copilot CLI",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-getting-started-with-github-copilot-cli/",
+    "published": "2026-04-10T16:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.951448+00:00",
+    "summary": "Welcome to GitHub Copilot CLI for Beginners! In this series ( available in video format and on the GitHub Blog), we ll explore how to use your AI coding assistant directly in your terminal, along with tips and tricks on how to navigate the command line like a pro!",
+    "tags": [],
+    "day": "2026-04-10",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "What makes agents so special is their ability to perform tasks like building code and running tests autonomously, so you can build iteratively. They can even self-correct and fix errors without needing a human to prompt ",
+      "This means you can assign tasks to Copilot, focus on other to-do list items, and then review the results and request additional changes from the terminal all without having to interrupt your workflow or switch tools. (Yo",
+      "Once you ve done that, you can start talking to Copilot, asking it questions, and request code or other tasks.",
+      "Delegate tasks to Copilot cloud agent : For well-defined tasks, you can delegate to Copilot cloud agent right from the CLI. Copilot will preserve the context from your current session, create a new branch, open a draft p",
+      "/delegate Let s deal with issue #14 to add the rest of the CRUD endpoints to games",
+      "Of course, one of the best ways to explore what you can do with Copilot CLI is to simply ask Copilot. It can look through its own documentation and provide guidance on the best ways to interact with it and explore.",
+      "Best practices for GitHub Copilot CLI"
+    ],
+    "sections": {
+      "overview": "Welcome to GitHub Copilot CLI for Beginners! In this series ( available in video format and on the GitHub Blog), we ll explore how to use your AI coding assistant directly in your terminal, along with tips and tricks on how to navigate the command line like a pro! In this blog, we ll walk through what GitHub Copilot CLI is, how it works, and how to get started.",
+      "technical_breakdown": "In this series ( available in video format and on the GitHub Blog), we ll explore how to use your AI coding assistant directly in your terminal, along with tips and tricks on how to navigate the command line like a pro!\n\nIn this blog, we ll walk through what GitHub Copilot CLI is, how it works, and how to get started.\n\nThe core cross-platform way if you already have node to do this is via npm, using:\n\n \n npm install -g @github/copilot \n \n\n If you re using a package manager like WinGet or Homebrew, you can install Copilot CLI through those tools as well. (You ll want to consult those tools documentation for the exact specifics on how to do this.)\n\n Getting started with GitHub Copilot CLI \n\n Once you install the product, you can launch it by typing Copilot in your command line.\n\nIf it s your first time in the terminal, you ll need to log in with your GitHub credentials.\n\n \n /login \n \n\n This will:\n\n \n Tie the client to your Copilot account.\n\nUse cases: What you can do with Copilot CLI \n\n Here are just a few GitHub Copilot CLI use cases. (There are many more covered in the GitHub Copilot CLI 101 blog !)\n\n Ask for an overview of the project : Copilot will explore, open important files, and report back with its findings.",
+      "impact": "If it s your first time in the terminal, you ll need to log in with your GitHub credentials.\n\n \n /login \n \n\n This will:\n\n \n Tie the client to your Copilot account.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "They can even self-correct and fix errors without needing a human to prompt them.",
+      "lessons_learned": "Tune in for the next lesson in the series which covers using two different modes: interactive mode to have GitHub Copilot run your project locally or non-interactive mode with the -p flag for quick summaries without leaving your shell context.",
+      "root_cause_highlight": "",
+      "incident_timeline": "What makes agents so special is their ability to perform tasks like building code and running tests autonomously, so you can build iteratively. They can even self-correct and fix errors without needing a human to prompt \nThis means you can assign tasks to Copilot, focus on other to-do list items, and then review the results and request additional changes from the terminal all without having to interrupt your workflow or switch tools. (Yo\nOnce you ve done that, you can start talking to Copilot, asking it questions, and request code or other tasks.\nDelegate tasks to Copilot cloud agent : For well-defined tasks, you can delegate to Copilot cloud agent right from the CLI. Copilot will preserve the context from your current session, create a new branch, open a draft p\n/delegate Let s deal with issue #14 to add the rest of the CRUD endpoints to games\nOf course, one of the best ways to explore what you can do with Copilot CLI is to simply ask Copilot. It can look through its own documentation and provide guidance on the best ways to interact with it and explore.\nBest practices for GitHub Copilot CLI",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Welcome to GitHub Copilot CLI for Beginners. In this series ( available in video format and on the GitHub Blog), we ll explore how to use your AI coding assistant directly in your terminal, along with tips and tricks on how to navigate the command line like a pro.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "6c8163ca731a619d",
+    "title": "The messy truth of your AI strategies",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/10/the-messy-truth-of-your-ai-strategies/",
+    "published": "2026-04-10T07:40:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.089112+00:00",
+    "summary": "Ryan welcomes Hema Raghavan, co-founder and head of engineering at Kumo.ai, to dive into all the messy stuff that comes with implementing AI, from pipeline sprawl to shadow AI.",
+    "tags": [],
+    "day": "2026-04-10",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Hema Raghavan, co-founder and head of engineering at Kumo.ai, to dive into all the messy stuff that comes with implementing AI, from pipeline sprawl to shadow AI.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Hema Raghavan, co-founder and head of engineering at Kumo.ai, to dive into all the messy stuff that comes with implementing AI, from pipeline sprawl to shadow AI.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

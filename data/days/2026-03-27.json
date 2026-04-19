@@ -1,0 +1,73 @@
+[
+  {
+    "id": "4c1fa568fea48623",
+    "title": "Prevent agentic identity theft",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/03/27/prevent-agentic-identity-theft/",
+    "published": "2026-03-27T07:40:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.089751+00:00",
+    "summary": "Ryan is joined by Nancy Wang, CTO of 1Password, to discuss the security challenges local agents present, how enterprises can create robust governance of credentials through zero-knowledge architecture, and the implications of agent intent and misuse in a world where AI agents are becoming more and more integrated into everyday applications.",
+    "tags": [],
+    "day": "2026-03-27",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan is joined by Nancy Wang, CTO of 1Password, to discuss the security challenges local agents present, how enterprises can create robust governance of credentials through zero-knowledge architecture, and the implications of agent intent and misuse in a world where AI agents are becoming more and more integrated into everyday applications.",
+      "technical_breakdown": "Ryan is joined by Nancy Wang, CTO of 1Password, to discuss the security challenges local agents present, how enterprises can create robust governance of credentials through zero-knowledge architecture, and the implications of agent intent and misuse in a world where AI agents are becoming more and more integrated into everyday applications.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan is joined by Nancy Wang, CTO of 1Password, to discuss the security challenges local agents present, how enterprises can create robust governance of credentials through zero-knowledge architecture, and the implications of agent intent and misuse in a world where AI agents are becoming more and more integrated into everyday applications.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "79b08c7168748f20",
+    "title": "Modernizing governance on HCP with multi-owner and global automation",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/modernizing-governance-on-hcp-with-multi-owner-and-global-automation",
+    "published": "2026-03-27T07:12:00+00:00",
+    "fetched_at": "2026-04-19T02:30:05.534526+00:00",
+    "summary": "As enterprises scale their infrastructure on the HashiCorp Cloud Platform (HCP), platform teams face the challenge of maintaining security without slowing down developer velocity. Managing a sprawling infrastructure requires identity systems that are robust enough to handle non-human scale while remaining resilient against human operational risks.",
+    "tags": [
+      "capacity",
+      "latency",
+      "outage"
+    ],
+    "day": "2026-03-27",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Improve resilience with multiple organization owners For many organizations, the organization owner role is the most sensitive identity within their HCP estate. This role manages billing, top-level IAM policies, and orga",
+      "Seamless offboarding : It allows for the transition of power during restructuring without the risk of an orphaned organization."
+    ],
+    "sections": {
+      "overview": "As enterprises scale their infrastructure on the HashiCorp Cloud Platform (HCP), platform teams face the challenge of maintaining security without slowing down developer velocity. Managing a sprawling infrastructure requires identity systems that are robust enough to handle non-human scale while remaining resilient against human operational risks. Today, we are announcing two key enhancements to HCP access control:\n\n Multiple organization owners\n\n Organization-level role assignments for project service principals\n\n These features ensure that no human process is a single point of failure, and no automated process relies on high-risk, static credentials.",
+      "technical_breakdown": "As enterprises scale their infrastructure on the HashiCorp Cloud Platform (HCP), platform teams face the challenge of maintaining security without slowing down developer velocity.\n\nRegulatory compliance : Support for multiple owners helps organizations meet stringent audit standards — such as SOC 2 Type II logical access requirements, NIST SP 800-53 (Control AC-5) for separation of duties, and HIPAA administrative safeguards — by providing the administrative redundancy necessary to prevent a single point of compromise.\n\nAs AI agents begin to perform more operational tasks as digital team members, the underlying identity system must handle non-human identities at a scale that surpasses human capacity.\n\nLog in to the HCP portal to add an additional owner to your organization today.",
+      "impact": "This update provides several enterprise-ready benefits:\n\n Operational continuity : It ensures that critical platform changes can always be authorized, regardless of an individual's availability. This forced security-conscious teams to choose between using WIF for scoped tasks or broad, static keys for global automation. Next steps Review the HCP service principal documentation to learn how to scope your automation.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We have resolved this friction by enabling organization-level role assignments for project service principals .",
+      "lessons_learned": "In this post, we will cover how these updates provide operational continuity, enable secure automation via workload identity federation (WIF) , and support your transition to a zero trust security model.\n\nImprove resilience with multiple organization owners For many organizations, the organization owner role is the most sensitive identity within their HCP estate.\n\nRegulatory compliance : Support for multiple owners helps organizations meet stringent audit standards — such as SOC 2 Type II logical access requirements, NIST SP 800-53 (Control AC-5) for separation of duties, and HIPAA administrative safeguards — by providing the administrative redundancy necessary to prevent a single point of compromise.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Improve resilience with multiple organization owners For many organizations, the organization owner role is the most sensitive identity within their HCP estate. This role manages billing, top-level IAM policies, and orga\nSeamless offboarding : It allows for the transition of power during restructuring without the risk of an orphaned organization.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "As enterprises scale their infrastructure on the HashiCorp Cloud Platform (HCP), platform teams face the challenge of maintaining security without slowing down developer velocity. Managing a sprawling infrastructure requires identity systems that are robust enough to handle non-human scale while remaining resilient against human operational risks.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

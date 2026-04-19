@@ -1,0 +1,146 @@
+[
+  {
+    "id": "865d8804fa5bbbc7",
+    "title": "Elastic Stack 9.3.3 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-9-3-3-released",
+    "published": "2026-04-08T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.681226+00:00",
+    "summary": "Version 9.3.3 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.3 over the previous versions 9.3.2.",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-08",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 9.3.3 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.3 over the previous versions 9.3.2."
+    ],
+    "sections": {
+      "overview": "Version 9.3.3 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.3 over the previous versions 9.3.2.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 9.3.3 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.3 over the previous versions 9.3.2.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 9.3.3 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "7088ab9dc81e78b2",
+    "title": "Elastic Stack 9.2.8 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-9-2-8-released",
+    "published": "2026-04-08T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.681361+00:00",
+    "summary": "Version 9.2.8 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.2.8 over the previous version 9.2.7",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-08",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 9.2.8 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.2.8 over the previous version 9.2.7"
+    ],
+    "sections": {
+      "overview": "Version 9.2.8 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.2.8 over the previous version 9.2.7\n\n For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 9.2.8 over the previous version 9.2.7\n\n For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 9.2.8 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.2.8 over the previous version 9.2.7",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 9.2.8 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "adeef1d51365b109",
+    "title": "Elastic Stack 8.19.14 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-8-19-14-released",
+    "published": "2026-04-08T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.681500+00:00",
+    "summary": "Version 8.19.14 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.14 over the previous version 8.19.13",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-08",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 8.19.14 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.14 over the previous version 8.19.13"
+    ],
+    "sections": {
+      "overview": "Version 8.19.14 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.14 over the previous version 8.19.13\n\n For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 8.19.14 over the previous version 8.19.13\n\n For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 8.19.14 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.14 over the previous version 8.19.13",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 8.19.14 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "3a9d175f24a82cac",
+    "title": "Elastic on Elastic: How we monitor our own services, websites, and operations",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/how-we-monitor-at-elastic",
+    "published": "2026-04-08T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.682044+00:00",
+    "summary": "At Elastic, we act as “customer zero,” using our own platform to monitor everything. Unified telemetry, AI-driven insights, and automated workflows streamline detection and response — reducing MTTD/MTTR and giving teams a single source of truth.",
+    "tags": [],
+    "day": "2026-04-08",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "At Elastic, we act as “customer zero,” using our own platform to monitor everything. Unified telemetry, AI-driven insights, and automated workflows streamline detection and response — reducing MTTD/MTTR and giving teams a single source of truth.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "At Elastic, we act as “customer zero,” using our own platform to monitor everything.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "At Elastic, we act as “customer zero,” using our own platform to monitor everything. Unified telemetry, AI-driven insights, and automated workflows streamline detection and response — reducing MTTD/MTTR and giving teams a single source of truth.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

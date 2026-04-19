@@ -1,0 +1,147 @@
+[
+  {
+    "id": "1e6efb57cd500dd9",
+    "title": "AWS Interconnect is now generally available, with a new option to simplify last-mile connectivity",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-interconnect-is-now-generally-available-with-a-new-option-to-simplify-last-mile-connectivity/",
+    "published": "2026-04-14T23:54:47+00:00",
+    "fetched_at": "2026-04-19T02:30:03.280464+00:00",
+    "summary": "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud providers. We’re also introducing AWS Interconnect – last mile , a new capability that simplifies how you establish high-speed, private connections to AWS from your branch offices...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-14",
+    "impact": "high",
+    "vendors": [
+      "AWS",
+      "Azure",
+      "GitHub",
+      "Google Cloud"
+    ],
+    "operational_priority": true,
+    "root_cause": "network issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud prov",
+      "AWS Interconnect is the answer to these challenges. It is a managed connectivity service that simplifies connectivity into AWS. Interconnect provides you the ability to establish private, high-speed network connections w",
+      "AWS Interconnect – multicloud gives you a private, managed Layer 3 connection between your AWS environment and other cloud providers, starting with Google Cloud, Microsoft Azure and Oracle Cloud Infrastructure (OCI) comi",
+      "Provisioning a connection takes minutes. I create the connection from the AWS Direct Connect console. I start from the AWS Interconnect section and select Google Cloud as the provider. I select my source and destination ",
+      "For this demo, I start with a single VPC and I connect it to a Google Cloud VPC. I use a Direct Connect Gateway. It’s the simplest path: one connection, one attachment, and my workloads on both sides can start talking to",
+      "Step 1: request an interconnect in the AWS Management Console .",
+      "Then, I choose the AWS Region ( eu-central-1 ) and the Google Cloud Region ( europe-west3 ).",
+      "After reviewing and confirming the request, the console gives me an activation key. I will use that key to validate the request on the Google cloud side."
+    ],
+    "sections": {
+      "overview": "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud providers. We’re also introducing AWS Interconnect – last mile , a new capability that simplifies how you establish high-speed, private connections to AWS from your branch offices, data centers, and remote locations through your existing network providers. Large enterprises increasingly run workloads across multiple cloud providers, whether to use specialized services, meet data residency requirements, or support teams that have standardized on different providers.",
+      "technical_breakdown": "You get a Network Synthetic Monitor included with each connection to track round-trip latency and packet loss, and bandwidth utilization metrics to support capacity planning.\n\nThen, I open a Terminal and type:\n\n \n gcloud network-connectivity transports create aws-news-blog \\\n --region=europe-west3 \\\n --activation-key=${ACTIVATION_KEY} \\\n --network=default \\\n --advertised-routes=10.156.0.0/20\n\nCreate request issued for: [aws-news-blog]\n...\npeeringNetwork: projects/oxxxp-tp/global/networks/transport-9xxxf-vpc\n...\nstate: PENDING_CONFIG\nupdateTime: '2026-03-19T09:30:51.103979219Z'\n \n It takes a couple of minutes for the command to complete.\n\nScott Yow, SVP Product at Lumen Technologies, wrote:\n\n \n \n By combining AWS Interconnect – last mile with Lumen fiber network and Cloud Interconnect, we simplify the last-mile complexity that often slows cloud adoption and enable a faster, and more resilient path to AWS for customers.\n\nYou can configure resilient, end-to-end connectivity with ease in a few clicks through the AWS Console by selecting your location, partner, or cloud provider, preferred Region, and bandwidth requirements, removing the friction of discovering partners and the complexity of manual network configurations.\n\nThis means you get predictable latency, consistent throughput, and isolation from internet congestion without having to manage any physical infrastructure yourself.",
+      "impact": "Then, I open a Terminal and type:\n\n \n gcloud network-connectivity transports create aws-news-blog \\\n --region=europe-west3 \\\n --activation-key=${ACTIVATION_KEY} \\\n --network=default \\\n --advertised-routes=10.156.0.0/20\n\nCreate request issued for: [aws-news-blog]\n...\npeeringNetwork: projects/oxxxp-tp/global/networks/transport-9xxxf-vpc\n...\nstate: PENDING_CONFIG\nupdateTime: '2026-03-19T09:30:51.103979219Z'\n \n It takes a couple of minutes for the command to complete. Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud providers. You can configure resilient, end-to-end connectivity with ease in a few clicks through the AWS Console by selecting your location, partner, or cloud provider, preferred Region, and bandwidth requirements, removing the friction of discovering partners and the complexity of manual network configurations. How it works\n Provisioning a connection takes minutes.\n\nClassified impact band: high. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: network issue. Because I was using the Terminal for the previous command, I continued with the command line:\n\n \n gcloud compute networks peerings create aws-news-blog \\\n --network=default \\\n --peer-network=projects/oxxxp-tp/global/networks/transport-9xxxf-vpc \\\n --import-custom-routes \\\n --export-custom-routes\n \n The network name is the name of my GCP VPC. We’re also introducing AWS Interconnect – last mile , a new capability that simplifies how you establish high-speed, private connections to AWS from your branch offices, data centers, and remote locations through your existing network providers. Connecting those environments reliably and securely has historically required significant coordination: managing VPN tunnels, working with colocation facilities, and configuring third-party network fabrics.",
+      "incident_timeline": "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud prov\nAWS Interconnect is the answer to these challenges. It is a managed connectivity service that simplifies connectivity into AWS. Interconnect provides you the ability to establish private, high-speed network connections w\nAWS Interconnect – multicloud gives you a private, managed Layer 3 connection between your AWS environment and other cloud providers, starting with Google Cloud, Microsoft Azure and Oracle Cloud Infrastructure (OCI) comi\nProvisioning a connection takes minutes. I create the connection from the AWS Direct Connect console. I start from the AWS Interconnect section and select Google Cloud as the provider. I select my source and destination \nFor this demo, I start with a single VPC and I connect it to a Google Cloud VPC. I use a Direct Connect Gateway. It’s the simplest path: one connection, one attachment, and my workloads on both sides can start talking to\nStep 1: request an interconnect in the AWS Management Console .\nThen, I choose the AWS Region ( eu-central-1 ) and the Google Cloud Region ( europe-west3 ).\nAfter reviewing and confirming the request, the console gives me an activation key. I will use that key to validate the request on the Google cloud side.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud providers. Impact band: high.",
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/security/hack-the-ai-agent-build-agentic-ai-security-skills-with-the-github-secure-code-game/"
+      },
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/security/application-security/how-exposed-is-your-code-find-out-in-minutes-for-free/"
+      },
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/improved-developer-security/"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/04/14/building-red-hat-mcp-ready-images-image-mode-red-hat-enterprise-linux"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/04/14/deploying-agents-red-hat-ai-openclaw"
+      },
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/vault-enterprise-20-modernizes-identity-security-at-scale"
+      },
+      {
+        "source": "Elastic Blog",
+        "link": "https://www.elastic.co/blog/cloud-serverless-recap-2025"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "ac8581a3c36de829",
+    "title": "Who needs VCs when you have friends like these?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/14/who-needs-vcs-when-you-have-friends-like-these/",
+    "published": "2026-04-14T07:40:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.089011+00:00",
+    "summary": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.",
+    "tags": [],
+    "day": "2026-04-14",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.",
+      "technical_breakdown": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.",
+      "impact": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "72537bc0d285e074",
+    "title": "Unlocking real-time geospatial intelligence with Elastic",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/real-time-geospatial-intelligence-elastic",
+    "published": "2026-04-14T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.676758+00:00",
+    "summary": "Pubsec teams need real-time intelligence as conditions rapidly change. Learn how geospatial analytics unifies mission and IT data, enabling faster decisions, better coordination, and secure insights in on-prem, air-gapped, and cloud environments.",
+    "tags": [],
+    "day": "2026-04-14",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Pubsec teams need real-time intelligence as conditions rapidly change. Learn how geospatial analytics unifies mission and IT data, enabling faster decisions, better coordination, and secure insights in on-prem, air-gapped, and cloud environments.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Learn how geospatial analytics unifies mission and IT data, enabling faster decisions, better coordination, and secure insights in on-prem, air-gapped, and cloud environments.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Pubsec teams need real-time intelligence as conditions rapidly change. Learn how geospatial analytics unifies mission and IT data, enabling faster decisions, better coordination, and secure insights in on-prem, air-gapped, and cloud environments.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

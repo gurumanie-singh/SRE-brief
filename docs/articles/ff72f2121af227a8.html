@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How GitHub uses eBPF to improve deployment safety — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-16.html" class="back-link">← 16 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">GitHub Blog</span>
+        <span class="card-date">16 April 2026, 11:00</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">How GitHub uses eBPF to improve deployment safety</h1>
+
+      <p class="subtitle">Did you know that, at GitHub, we host all of our own source code on github.com . Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Did you know that, at GitHub, we host all of our own source code on github.com . Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Did you know that, at GitHub, we host all of our own source code on github.com ? We do this because we re our own biggest customer testing out changes internally before they go to users. However, there s one downside: If github.com were ever to go down, we wouldn t be able to access our own source code.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>For example, to hook the BPF_PROG_TYPE_CGROUP_SKB program type , we can do this as follows:</p>
+<p>//go:generate go tool bpf2go -tags linux bpf cgroup_skb.c -- -I../headers</p>
+<p>func main() {</p>
+<p>// Load pre-compiled programs and maps into the kernel.</p>
+<p>objs := bpfObjects{}</p>
+<p>if err := loadBpfObjects(&amp;objs, nil); err != nil {</p>
+<p>log.Fatalf(&#34;loading objects: %v&#34;, err)</p>
+<p>}</p>
+<p>defer objs.Close()</p>
+<p>// Link the count_egress_packets program to the cgroup.</p>
+<p>l, err := link.AttachCgroup(link.CgroupOptions{</p>
+<p>Path: &#34;/sys/fs/cgroup/system.slice&#34;,</p>
+<p>Attach: ebpf.AttachCGroupInetEgress,</p>
+<p>Program: objs.CountEgressPackets,</p>
+<p>})</p>
+<p>if err != nil {</p>
+<p>log.Fatal(err)</p>
+<p>}</p>
+<p>defer l.Close()</p>
+<p>log.Println(&#34;Counting packets...&#34;)</p>
+<p>// Read loop reporting the total amount of times the kernel</p>
+<p>// function was entered, once per second.</p>
+<p>ticker := time.NewTicker(1 * time.Second)</p>
+<p>defer ticker.Stop()</p>
+<p>for range ticker.C {</p>
+<p>var value uint64</p>
+<p>if err := objs.PktCount.Lookup(uint32(0), &amp;value); err != nil {</p>
+<p>log.Fatalf(&#34;reading map: %v&#34;, err)</p>
+<p>}</p>
+<p>log.Printf(&#34;number of packets: %d\n&#34;, value)</p>
+<p>}</p>
+<p>}</p>
+<p>With the eBPF program:</p>
+<p>//go:build ignore</p>
+<p>#include &#34;common.h&#34;</p>
+<p>char __license[] SEC(&#34;license&#34;) = &#34;Dual MIT/GPL&#34;;</p>
+<p>struct {</p>
+<p>__uint(type, BPF_MAP_TYPE_ARRAY);</p>
+<p>__type(key, u32);</p>
+<p>__type(value, u64);</p>
+<p>__uint(max_entries, 1);</p>
+<p>} pkt_count SEC(&#34;.maps&#34;);</p>
+<p>SEC(&#34;cgroup_skb/egress&#34;)</p>
+<p>int count_egress_packets(struct __sk_buff *skb) {</p>
+<p>u32 key = 0;</p>
+<p>u64 init_val = 1;</p>
+<p>u64 *count = bpf_map_lookup_elem(&amp;pkt_count, &amp;key);</p>
+<p>if (!count) {</p>
+<p>bpf_map_update_elem(&amp;pkt_count, &amp;key, &amp;init_val, BPF_ANY);</p>
+<p>return 1;</p>
+<p>}</p>
+<p>__sync_fetch_and_add(count, 1);</p>
+<p>return 1;</p>
+<p>}</p>
+<p>The //go:generate line handles compiling the eBPF C code and auto-generating the bpfObjects struct, which allows us to attach and interact with the program.</p>
+<p>If you re not quite ready to start writing your own eBPF tools, try open source tools powered by eBPF, like bpftrace for deep tracing or ptcpdump to get TCP dumps with container-level metadata.</p>
+<p>This is where we started to look at eBPF, which lets you load custom programs into the Linux kernel and hook into core system primitives like networking.</p>
+<p>Could we create a cGroup, place only the deployment script inside it, and then limit the outbound network access of only that script?</p>
+<p>Building out per-process conditional network filtering with eBPF</p>
+<p>We started on a proof of concept in go that used the cilium/ebpf library.</p>
+<p>ebpf-go is a pure-Go library to read, modify, and load eBPF programs and attach them to various hooks in the Linux kernel.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>We do this because we re our own biggest customer testing out changes internally before they go to users. Suppose a MySQL outage occurs, which causes GitHub to be unable to serve release data from repositories. To resolve the incident, we need to roll out a configuration change to the stateful MySQL nodes that are impacted. Now, let s look at the different types of circular dependencies that could impact GitHub during this scenario.</p>
+<p>Classified impact band: critical. Affected layer signal: data store.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>If GitHub is down, then we wouldn t be able to deploy something to fix it.</p>
+<p>We mitigate this by maintaining a mirror of our code for fixing forward and built assets for rolling back.</p>
+<p>For example, could we correlate blocked DNS requests back to the specific command or process that triggered them, so teams could more easily debug and fix issues?</p>
+<p>Here is a simplified version of the eBPF code (see this PoC code for full example):</p>
+<p>__u32 pid = bpf_get_current_pid_tgid() &gt;&gt; 32;</p>
+<p>__u16 skb_read_offset = sizeof(struct iphdr) + sizeof(struct udphdr);</p>
+<p>__u16 dns_transaction_id =</p>
+<p>get_transaction_id_from_dns_header(skb, skb_read_offset);</p>
+<p>if (pid &amp;&amp; dns_transaction_id != 0) {</p>
+<p>bpf_map_update_elem(&amp;dns_transaction_id_to_pid, &amp;dns_transaction_id,</p>
+<p>pid, BPF_ANY);</p>
+<p>}</p>
+<p>As we re redirecting all DNS calls to our userspace DNS proxy, we can look at the transaction ID of each request, find the domain being resolved, and lookup in the eBPF Map to see which process made the request.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>When we started to design our new host-based deployment system, we evaluated some new approaches to prevent deployment code from creating circular dependencies.</p>
+<p>Use the cGroups to enforce CPU and memory limits on deploy scripts, preventing runaway resource usage from impacting workloads.</p>
+<p>You bet and we ll look to improve the tool as we discover them.</p>
+<p>The post How GitHub uses eBPF to improve deployment safety appeared first on The GitHub Blog .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. We do this because we re our own biggest customer testing out changes internally before they go to users. For example, how do you stop a deployment script introducing a circular dependency of its own on an internal service or downloading a binary from GitHub? When we started to design our new host-based deployment system, we evaluated some new approaches to prevent deployment code from creating circular dependencies.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Did you know that, at GitHub, we host all of our own source code on github.com ? We do this because we re our own biggest customer testing out changes internally before they go to users. However, there s one downside: If</li>
+            <li>Direct dependency : The MySQL deploy script attempts to pull the latest release of an open source tool from GitHub. Since GitHub can t serve the release data (due to the outage), the script can t complete.</li>
+            <li>Transient dependencies : The MySQL deploy script calls, via an API, another internal service (for example, a migrations service), which in turn attempts to fetch the latest release of an open source tool from GitHub to u</li>
+            <li>The obvious route would be to block access to github.com from the machines to validate that the system can deploy without it. But these hosts are stateful and serve customer traffic even during rolling deploys, drains, o</li>
+            <li>We were particularly interested in the BPF_PROG_TYPE_CGROUP_SKB program type because it lets you hook network egress from a particular cGroup.</li>
+            <li>An eBPF program type of BPF_PROG_TYPE_CGROUP_SOCK_ADDR allows you to hook syscalls to create sockets and change the destination IP .</li>
+            <li>Now, any DNS queries initiated by the deployment script are routed through our DNS proxy. Our proxy evaluates each requested domain against our block list and uses eBPF Maps to communicate with the CGROUP_SKB program, al</li>
+            <li>For example, could we correlate blocked DNS requests back to the specific command or process that triggered them, so teams could more easily debug and fix issues? Yes, we can!</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label">Related coverage</div>
+        <div class="article-section-content">
+          <p><a href="https://blog.cloudflare.com/artifacts-git-for-agents-beta/" target="_blank" rel="noopener">Cloudflare Blog</a></p>
+          <p><a href="https://developers.redhat.com/articles/2026/04/16/pip-install-vllm-single-command" target="_blank" rel="noopener">Red Hat Developer Blog</a></p>
+          <p><a href="https://developers.redhat.com/articles/2026/04/16/build-deterministic-openshift-dataplane-performance-trex" target="_blank" rel="noopener">Red Hat Developer Blog</a></p>
+          <p><a href="https://developers.redhat.com/articles/2026/04/16/performance-improvements-speculative-decoding-vllm-gpt-oss" target="_blank" rel="noopener">Red Hat Developer Blog</a></p>
+        </div>
+      </div>
+
+      <a href="https://github.blog/engineering/infrastructure/how-github-uses-ebpf-to-improve-deployment-safety/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at GitHub Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+[
+  {
+    "id": "ff72f2121af227a8",
+    "title": "How GitHub uses eBPF to improve deployment safety",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/engineering/infrastructure/how-github-uses-ebpf-to-improve-deployment-safety/",
+    "published": "2026-04-16T16:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.948307+00:00",
+    "summary": "Did you know that, at GitHub, we host all of our own source code on github.com ? We do this because we re our own biggest customer testing out changes internally before they go to users. However, there s one downside: If github.com were ever to go down, we wouldn t be able to access our own source code.",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-16",
+    "impact": "critical",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Did you know that, at GitHub, we host all of our own source code on github.com ? We do this because we re our own biggest customer testing out changes internally before they go to users. However, there s one downside: If",
+      "Direct dependency : The MySQL deploy script attempts to pull the latest release of an open source tool from GitHub. Since GitHub can t serve the release data (due to the outage), the script can t complete.",
+      "Transient dependencies : The MySQL deploy script calls, via an API, another internal service (for example, a migrations service), which in turn attempts to fetch the latest release of an open source tool from GitHub to u",
+      "The obvious route would be to block access to github.com from the machines to validate that the system can deploy without it. But these hosts are stateful and serve customer traffic even during rolling deploys, drains, o",
+      "We were particularly interested in the BPF_PROG_TYPE_CGROUP_SKB program type because it lets you hook network egress from a particular cGroup.",
+      "An eBPF program type of BPF_PROG_TYPE_CGROUP_SOCK_ADDR allows you to hook syscalls to create sockets and change the destination IP .",
+      "Now, any DNS queries initiated by the deployment script are routed through our DNS proxy. Our proxy evaluates each requested domain against our block list and uses eBPF Maps to communicate with the CGROUP_SKB program, al",
+      "For example, could we correlate blocked DNS requests back to the specific command or process that triggered them, so teams could more easily debug and fix issues? Yes, we can!"
+    ],
+    "sections": {
+      "overview": "Did you know that, at GitHub, we host all of our own source code on github.com ? We do this because we re our own biggest customer testing out changes internally before they go to users. However, there s one downside: If github.com were ever to go down, we wouldn t be able to access our own source code.",
+      "technical_breakdown": "For example, to hook the BPF_PROG_TYPE_CGROUP_SKB program type , we can do this as follows: \n\n \n //go:generate go tool bpf2go -tags linux bpf cgroup_skb.c -- -I../headers \n\n \n\nfunc main() { \n\n // Load pre-compiled programs and maps into the kernel. \n\n objs := bpfObjects{} \n\n if err := loadBpfObjects(&objs, nil); err != nil { \n\n log.Fatalf(\"loading objects: %v\", err) \n\n } \n\n defer objs.Close() \n\n \n\n // Link the count_egress_packets program to the cgroup. \n\n l, err := link.AttachCgroup(link.CgroupOptions{ \n\n Path: \"/sys/fs/cgroup/system.slice\", \n\n Attach: ebpf.AttachCGroupInetEgress, \n\n Program: objs.CountEgressPackets, \n\n }) \n\n if err != nil { \n\n log.Fatal(err) \n\n } \n\n defer l.Close() \n\n \n\n log.Println(\"Counting packets...\") \n\n \n\n // Read loop reporting the total amount of times the kernel \n\n // function was entered, once per second. \n\n ticker := time.NewTicker(1 * time.Second) \n\n defer ticker.Stop() \n\n \n\n for range ticker.C { \n\n var value uint64 \n\n if err := objs.PktCount.Lookup(uint32(0), &value); err != nil { \n\n log.Fatalf(\"reading map: %v\", err) \n\n } \n\n log.Printf(\"number of packets: %d\\n\", value) \n\n } \n\n} \n \n\n With the eBPF program:\n\n \n //go:build ignore \n\n \n\n#include \"common.h\" \n\n \n\nchar __license[] SEC(\"license\") = \"Dual MIT/GPL\"; \n\n \n\nstruct { \n\n __uint(type, BPF_MAP_TYPE_ARRAY); \n\n __type(key, u32); \n\n __type(value, u64); \n\n __uint(max_entries, 1); \n\n} pkt_count SEC(\".maps\"); \n\n \n\nSEC(\"cgroup_skb/egress\") \n\nint count_egress_packets(struct __sk_buff *skb) { \n\n u32 key = 0; \n\n u64 init_val = 1; \n\n \n\n u64 *count = bpf_map_lookup_elem(&pkt_count, &key); \n\n if (!count) { \n\n bpf_map_update_elem(&pkt_count, &key, &init_val, BPF_ANY); \n\n return 1; \n\n } \n\n __sync_fetch_and_add(count, 1); \n\n \n\n return 1; \n\n} \n \n\n The //go:generate line handles compiling the eBPF C code and auto-generating the bpfObjects struct, which allows us to attach and interact with the program.\n\nIf you re not quite ready to start writing your own eBPF tools, try open source tools powered by eBPF, like bpftrace for deep tracing or ptcpdump to get TCP dumps with container-level metadata.\n\nThis is where we started to look at eBPF, which lets you load custom programs into the Linux kernel and hook into core system primitives like networking.\n\nCould we create a cGroup, place only the deployment script inside it, and then limit the outbound network access of only that script?\n\nBuilding out per-process conditional network filtering with eBPF \n\n We started on a proof of concept in go that used the cilium/ebpf library.\n\n ebpf-go is a pure-Go library to read, modify, and load eBPF programs and attach them to various hooks in the Linux kernel.",
+      "impact": "We do this because we re our own biggest customer testing out changes internally before they go to users. Suppose a MySQL outage occurs, which causes GitHub to be unable to serve release data from repositories. To resolve the incident, we need to roll out a configuration change to the stateful MySQL nodes that are impacted. Now, let s look at the different types of circular dependencies that could impact GitHub during this scenario.\n\nClassified impact band: critical. Affected layer signal: data store.",
+      "resolution": "If GitHub is down, then we wouldn t be able to deploy something to fix it.\n\nWe mitigate this by maintaining a mirror of our code for fixing forward and built assets for rolling back.\n\nFor example, could we correlate blocked DNS requests back to the specific command or process that triggered them, so teams could more easily debug and fix issues?\n\nHere is a simplified version of the eBPF code (see this PoC code for full example):\n\n \n __u32 pid = bpf_get_current_pid_tgid() >> 32; \n\n __u16 skb_read_offset = sizeof(struct iphdr) + sizeof(struct udphdr); \n\n __u16 dns_transaction_id = \n\n get_transaction_id_from_dns_header(skb, skb_read_offset); \n\n \n\n if (pid && dns_transaction_id != 0) { \n\n bpf_map_update_elem(&dns_transaction_id_to_pid, &dns_transaction_id, \n\n pid, BPF_ANY); \n\n } \n \n\n As we re redirecting all DNS calls to our userspace DNS proxy, we can look at the transaction ID of each request, find the domain being resolved, and lookup in the eBPF Map to see which process made the request.",
+      "lessons_learned": "When we started to design our new host-based deployment system, we evaluated some new approaches to prevent deployment code from creating circular dependencies.\n\nUse the cGroups to enforce CPU and memory limits on deploy scripts, preventing runaway resource usage from impacting workloads.\n\nYou bet and we ll look to improve the tool as we discover them.\n\nThe post How GitHub uses eBPF to improve deployment safety appeared first on The GitHub Blog .",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. We do this because we re our own biggest customer testing out changes internally before they go to users. For example, how do you stop a deployment script introducing a circular dependency of its own on an internal service or downloading a binary from GitHub? When we started to design our new host-based deployment system, we evaluated some new approaches to prevent deployment code from creating circular dependencies.",
+      "incident_timeline": "Did you know that, at GitHub, we host all of our own source code on github.com ? We do this because we re our own biggest customer testing out changes internally before they go to users. However, there s one downside: If\nDirect dependency : The MySQL deploy script attempts to pull the latest release of an open source tool from GitHub. Since GitHub can t serve the release data (due to the outage), the script can t complete.\nTransient dependencies : The MySQL deploy script calls, via an API, another internal service (for example, a migrations service), which in turn attempts to fetch the latest release of an open source tool from GitHub to u\nThe obvious route would be to block access to github.com from the machines to validate that the system can deploy without it. But these hosts are stateful and serve customer traffic even during rolling deploys, drains, o\nWe were particularly interested in the BPF_PROG_TYPE_CGROUP_SKB program type because it lets you hook network egress from a particular cGroup.\nAn eBPF program type of BPF_PROG_TYPE_CGROUP_SOCK_ADDR allows you to hook syscalls to create sockets and change the destination IP .\nNow, any DNS queries initiated by the deployment script are routed through our DNS proxy. Our proxy evaluates each requested domain against our block list and uses eBPF Maps to communicate with the CGROUP_SKB program, al\nFor example, could we correlate blocked DNS requests back to the specific command or process that triggered them, so teams could more easily debug and fix issues? Yes, we can!",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Did you know that, at GitHub, we host all of our own source code on github.com . Impact band: critical.",
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/artifacts-git-for-agents-beta/"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/04/16/pip-install-vllm-single-command"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/04/16/build-deterministic-openshift-dataplane-performance-trex"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/04/16/performance-improvements-speculative-decoding-vllm-gpt-oss"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "151fd93f8e0eec35",
+    "title": "Introducing Anthropic’s Claude Opus 4.7 model in Amazon Bedrock",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/introducing-anthropics-claude-opus-4-7-model-in-amazon-bedrock/",
+    "published": "2026-04-16T14:49:33+00:00",
+    "fetched_at": "2026-04-19T02:30:03.279566+00:00",
+    "summary": "Today, we’re announcing Claude Opus 4.7 in Amazon Bedrock , Anthropic’s most intelligent Opus model for advancing performance across coding, long-running agents, and professional work.",
+    "tags": [
+      "capacity",
+      "scaling"
+    ],
+    "day": "2026-04-16",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads. Bedrock’s new inference engine has brand-new scheduling and scaling lo",
+      "Knowledge work : The model advances professional knowledge work, with stronger performance on document creation, financial analysis, and multi-step research workflows. The model reasons through underspecified requests, m",
+      "You can get started with Claude Opus 4.7 model in Amazon Bedrock console . Choose Playground under Test menu and choose Claude Opus 4.7 when you select model. Now, you can test your complex coding prompt with the model.",
+      "Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.",
+      "To get started with making your first API call to Amazon Bedrock in minutes, choose Quickstart in the left navigation pane in the console. After choosing your use case, you can generate a short term API key to authentica",
+      "When you choose the API method such as the OpenAI-compatible Responses API, you can get sample codes to run your prompt to make your inference request using the model.",
+      "{\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\"}",
+      "--body '{\"anthropic_version\":\"bedrock-2023-05-31\", \"messages\": [{\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regi"
+    ],
+    "sections": {
+      "overview": "Today, we’re announcing Claude Opus 4.7 in Amazon Bedrock , Anthropic’s most intelligent Opus model for advancing performance across coding, long-running agents, and professional work. Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads. Bedrock’s new inference engine has brand-new scheduling and scaling logic which dynamically allocates capacity to requests, improving availability particularly for steady-state workloads while making room for rapidly scaling services.",
+      "technical_breakdown": "Bedrock’s new inference engine has brand-new scheduling and scaling logic which dynamically allocates capacity to requests, improving availability particularly for steady-state workloads while making room for rapidly scaling services.\n\nAccording to Anthropic, Claude Opus 4.7 model provides improvements across the workflows that teams run in production such as agentic coding, knowledge work, visual understanding,long-running tasks.\n\nKnowledge work : The model advances professional knowledge work, with stronger performance on document creation, financial analysis, and multi-step research workflows.\n\nI run the following prompt example about technical architecture decision:\n Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\n\nTo invoke the model through the Anthropic Claude Messages API, you can proceed as follows using anthropic[bedrock] SDK package for a streamlined experience:\n\n \n from anthropic import AnthropicBedrockMantle\n# Initialize the Bedrock Mantle client (uses SigV4 auth automatically)\nmantle_client = AnthropicBedrockMantle(aws_region=\"us-east-1\")\n# Create a message using the Messages API\nmessage = mantle_client.messages.create(\n model=\"us.anthropic.claude-opus-4-7\",\n max_tokens=32000,\n messages=[ \n {\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\"}\n ]\n)\nprint(message.content[0].text) \n You can also run the following command to invoke the model directly to bedrock-runtime endpoint using the AWS CLI and the Invoke API:\n\n \n aws bedrock-runtime invoke-model \\ \n --model-id us.anthropic.claude-opus-4-7 \\ \n --region us-east-1 \\ \n --body '{\"anthropic_version\":\"bedrock-2023-05-31\", \"messages\": [{\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"}], \"max_tokens\": 32000}' \\ \n --cli-binary-format raw-in-base64-out \\ \ninvoke-model-output.txt \n For more intelligent reasoning capability, you can use Adaptive thinking with Claude Opus 4.7, which lets Claude dynamically allocate thinking token budgets based on the complexity of each request.",
+      "impact": "To invoke the model through the Anthropic Claude Messages API, you can proceed as follows using anthropic[bedrock] SDK package for a streamlined experience:\n\n \n from anthropic import AnthropicBedrockMantle\n# Initialize the Bedrock Mantle client (uses SigV4 auth automatically)\nmantle_client = AnthropicBedrockMantle(aws_region=\"us-east-1\")\n# Create a message using the Messages API\nmessage = mantle_client.messages.create(\n model=\"us.anthropic.claude-opus-4-7\",\n max_tokens=32000,\n messages=[ \n {\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\"}\n ]\n)\nprint(message.content[0].text) \n You can also run the following command to invoke the model directly to bedrock-runtime endpoint using the AWS CLI and the Invoke API:\n\n \n aws bedrock-runtime invoke-model \\ \n --model-id us.anthropic.claude-opus-4-7 \\ \n --region us-east-1 \\ \n --body '{\"anthropic_version\":\"bedrock-2023-05-31\", \"messages\": [{\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"}], \"max_tokens\": 32000}' \\ \n --cli-binary-format raw-in-base64-out \\ \ninvoke-model-output.txt \n For more intelligent reasoning capability, you can use Adaptive thinking with Claude Opus 4.7, which lets Claude dynamically allocate thinking token budgets based on the complexity of each request. Bedrock’s new inference engine has brand-new scheduling and scaling logic which dynamically allocates capacity to requests, improving availability particularly for steady-state workloads while making room for rapidly scaling services. It provides zero operator access—meaning customer prompts and responses are never visible to Anthropic or AWS operators—keeping sensitive data private. I run the following prompt example about technical architecture decision:\n Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Give Anthropic’s Claude Opus 4.7 a try in the Amazon Bedrock console today and send feedback to AWS re:Post for Amazon Bedrock or through your usual AWS Support contacts.\n\n \n — Channy \n\n \n Updated on April 17, 2026 – We fixed code samples and CLI commends to align new version.",
+      "lessons_learned": "According to Anthropic, Claude Opus 4.7 model provides improvements across the workflows that teams run in production such as agentic coding, knowledge work, visual understanding,long-running tasks.\n\nOpus 4.7 works better through ambiguity, is more thorough in its problem solving, and follows instructions more precisely.\n\nThe model reasons through underspecified requests, making sensible assumptions and stating them clearly, and self-verifies its output to improve quality on the first step.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads. Bedrock’s new inference engine has brand-new scheduling and scaling lo\nKnowledge work : The model advances professional knowledge work, with stronger performance on document creation, financial analysis, and multi-step research workflows. The model reasons through underspecified requests, m\nYou can get started with Claude Opus 4.7 model in Amazon Bedrock console . Choose Playground under Test menu and choose Claude Opus 4.7 when you select model. Now, you can test your complex coding prompt with the model.\nDesign a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\nTo get started with making your first API call to Amazon Bedrock in minutes, choose Quickstart in the left navigation pane in the console. After choosing your use case, you can generate a short term API key to authentica\nWhen you choose the API method such as the OpenAI-compatible Responses API, you can get sample codes to run your prompt to make your inference request using the model.\n{\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\"}\n--body '{\"anthropic_version\":\"bedrock-2023-05-31\", \"messages\": [{\"role\": \"user\", \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regi",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Today, we’re announcing Claude Opus 4.7 in Amazon Bedrock , Anthropic’s most intelligent Opus model for advancing performance across coding, long-running agents, and professional work. Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "05823ad7339d48f0",
+    "title": "Cloudflare’s AI Platform: an inference layer designed for agents",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/ai-platform/",
+    "published": "2026-04-16T14:05:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.098255+00:00",
+    "summary": "AI models are changing quickly: the best model to use for agentic coding today might in three months be a completely different model from a different provider. On top of this, real-world use cases often require calling more than one model. Your customer support agent might use a fast, cheap model to classify a user's message; a large, reasoning model to plan its actions; and a lightweight model...",
+    "tags": [
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-16",
+    "impact": "critical",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "AI models are changing quickly: the best model to use for agentic coding today might in three months be a completely different model from a different provider. On top of this, real-world use cases often require calling m",
+      "These challenges are present whenever you’re building with AI, but they get even more pressing when you’re building agents . A simple chatbot might make one inference call per user prompt. An agent might chain ten calls ",
+      "Since launching AI Gateway and Workers AI, we’ve seen incredible adoption from developers building AI-powered applications on Cloudflare and we’ve been shipping fast to keep up! In just the past few months, we've refresh",
+      "For those who don’t use Workers, we’ll be releasing REST API support in the coming weeks, so you can access the full model catalog from any environment.",
+      "You can browse through our model catalog to find the best model for your use case, from open-source models hosted on Cloudflare Workers AI to proprietary models from the major model providers. We’re excited to be expandi",
+      "By including custom metadata with your requests, you can get a breakdown of your costs on the attributes that you care about most, like spend by free vs. paid users, by individual customers, or by specific workflows in y",
+      "Example of a predict.py file, which has a function to set up the model and a function that runs when you receive an inference request (a prediction):",
+      "We’re working on some big projects to be able to bring this to more customers, like customer-facing APIs and wrangler commands so that you can push your own containers, as well as faster cold starts through GPU snapshott"
+    ],
+    "sections": {
+      "overview": "AI models are changing quickly: the best model to use for agentic coding today might in three months be a completely different model from a different provider. On top of this, real-world use cases often require calling more than one model. Your customer support agent might use a fast, cheap model to classify a user's message; a large, reasoning model to plan its actions; and a lightweight model to execute individual tasks.",
+      "technical_breakdown": "In just the past few months, we've refreshed the dashboard, added zero-setup default gateways, automatic retries on upstream failures, and more granular logging controls.\n\nTo do this, we leverage Replicate’s Cog technology to help you containerize machine learning models.\n\nExample of a cog.yaml file:\n\n build:\n python_version: \"3.13\"\n python_requirements: requirements.txt\npredict: \"predict.py:Predictor\" \n Example of a predict.py file, which has a function to set up the model and a function that runs when you receive an inference request (a prediction):\n\n from cog import BasePredictor, Path, Input\nimport torch\n\nclass Predictor(BasePredictor):\n def setup(self):\n \"\"\"Load the model into memory to make running multiple predictions efficient\"\"\"\n self.net = torch.load(\"weights.pth\")\n\n def predict(self,\n image: Path = Input(description=\"Image to enlarge\"),\n scale: float = Input(description=\"Factor to scale image by\", default=1.5)\n ) -> Path:\n \"\"\"Run a single prediction on the model\"\"\"\n # ... pre-processing ...\n output = self.net(input)\n # ... post-processing ...\n return output \n Then, you can run cog build to build your container image, and push your Cog container to Workers AI.\n\nWhen you call these Cloudflare-hosted models through AI Gateway, there's no extra hop over the public Internet since your code and inference run on the same global network, giving your agents the lowest latency possible.\n\nYou also need the right systems in place to monitor costs across providers, ensure reliability when one of them has an outage, and manage latency no matter where your users are.",
+      "impact": "Your customer support agent might use a fast, cheap model to classify a user's message; a large, reasoning model to plan its actions; and a lightweight model to execute individual tasks. You also need the right systems in place to monitor costs across providers, ensure reliability when one of them has an outage, and manage latency no matter where your users are. By including custom metadata with your requests, you can get a breakdown of your costs on the attributes that you care about most, like spend by free vs. paid users, by individual customers, or by specific workflows in your app.\n\n const response = await env.AI.run('@cf/moonshotai/kimi-k2.5',\n {\nprompt: 'What is AI Gateway?'\n },\n {\nmetadata: { \"teamId\": \"AI\", \"userId\": 12345 }\n }\n ); \n \n \n \n \n \n Bring your own model \n \n \n \n \n AI Gateway gives you access to models from all the providers through one API. A simple chatbot might make one inference call per user prompt.\n\nClassified impact band: critical. Affected layer signal: edge — cdn.",
+      "resolution": "Built for reliability with automatic failover \n \n \n \n \n When building agents, speed is not the only factor that users care about – reliability matters too.\n\nThrough AI Gateway, if you're calling a model that's available on multiple providers and one provider goes down, we'll automatically route to another available provider without you having to write any failover logic of your own.",
+      "lessons_learned": "We will deploy and serve the model for you, which you then access through your usual Workers AI APIs.",
+      "root_cause_highlight": "",
+      "incident_timeline": "AI models are changing quickly: the best model to use for agentic coding today might in three months be a completely different model from a different provider. On top of this, real-world use cases often require calling m\nThese challenges are present whenever you’re building with AI, but they get even more pressing when you’re building agents . A simple chatbot might make one inference call per user prompt. An agent might chain ten calls \nSince launching AI Gateway and Workers AI, we’ve seen incredible adoption from developers building AI-powered applications on Cloudflare and we’ve been shipping fast to keep up! In just the past few months, we've refresh\nFor those who don’t use Workers, we’ll be releasing REST API support in the coming weeks, so you can access the full model catalog from any environment.\nYou can browse through our model catalog to find the best model for your use case, from open-source models hosted on Cloudflare Workers AI to proprietary models from the major model providers. We’re excited to be expandi\nBy including custom metadata with your requests, you can get a breakdown of your costs on the attributes that you care about most, like spend by free vs. paid users, by individual customers, or by specific workflows in y\nExample of a predict.py file, which has a function to set up the model and a function that runs when you receive an inference request (a prediction):\nWe’re working on some big projects to be able to bring this to more customers, like customer-facing APIs and wrangler commands so that you can push your own containers, as well as faster cold starts through GPU snapshott",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "AI models are changing quickly: the best model to use for agentic coding today might in three months be a completely different model from a different provider. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "4196ff1fbc196f6f",
+    "title": "Building the foundation for running extra-large language models",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/high-performance-llms/",
+    "published": "2026-04-16T14:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.099066+00:00",
+    "summary": "An agent needs to be powered by a large language model. A few weeks ago, we announced that Workers AI is officially entering the arena for hosting large open-source models like Moonshot’s Kimi K2.5. Since then, we’ve made Kimi K2.5 3x faster and have more model additions in-flight. These models have been the backbone of a lot of the agentic products, harnesses, and tools that we have been...",
+    "tags": [
+      "latency",
+      "networking"
+    ],
+    "day": "2026-04-16",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Hosting AI models is an interesting challenge: it requires a delicate balance between software and very, very expensive hardware. At Cloudflare, we’re good at squeezing every bit of efficiency out of our hardware through",
+      "As we mentioned in our previous Kimi K2.5 blog post , we’re using a variety of hardware configurations in order to best serve models. A lot of hardware configurations depend on the size of inputs and outputs that users a",
+      "When we launched large language models on Workers AI, we knew that most of the use cases would be used for agents. With agents, you send in a large number of input tokens. It starts off with a large system prompt, all th",
+      "One hardware configuration that we use to improve performance and efficiency is disaggregated prefill. There are two stages to processing an LLM request: prefill, which processes the input tokens and populates the KV cac",
+      "With prefill decode disaggregation, separate inference servers are run for each stage. First, a request is sent to the prefill stage which performs prefill and stores it in its KV cache. Then the same request is sent to ",
+      "This architecture requires a relatively complex load balancer to achieve. Beyond just routing the requests as described above, it must rewrite the responses (including streaming SSE) of the decode server to include infor",
+      "Here’s a graph of our p90 Time to First Token drop after shifting traffic to our new PD disaggregated architecture, whilst request volume increased, using the same quantity of GPUs. We see a significant improvement in th",
+      "Since agentic use cases usually have long contexts, we optimize for efficient prompt caching in order to not recompute input tensors on every turn. We leverage a header called x-session-affinity in order to help requests"
+    ],
+    "sections": {
+      "overview": "An agent needs to be powered by a large language model. A few weeks ago, we announced that Workers AI is officially entering the arena for hosting large open-source models like Moonshot’s Kimi K2.5. Since then, we’ve made Kimi K2.5 3x faster and have more model additions in-flight.",
+      "technical_breakdown": "It works with different Remote Direct Memory Access (RDMA) protocols such as NVLink and NVMe over Fabric, which enables direct memory-to-memory data transfer without involving the CPU.\n\nWhen paired with LMCache or SGLang HiCache, the cache is shared across all nodes in the cluster, allowing a prefill node to identify and re-use a cache from a previous request that was originally pre-filled on a different node.\n\nThis means that a model like Kimi K2.5 needs at least 8 H100s in order to load the model into memory and run — and that’s not even including the extra VRAM you would need for KV Cache, which includes your context window.\n\nFor most models, utilizing both pipeline parallelism and tensor parallelism in tandem provides the best balance of throughput and latency.\n\nHardware configurations \n \n \n \n \n As we mentioned in our previous Kimi K2.5 blog post , we’re using a variety of hardware configurations in order to best serve models.",
+      "impact": "A lot of hardware configurations depend on the size of inputs and outputs that users are sending to the model. With the first user prompt, that context keeps growing. Each new prompt from the user sends a request to the model, which consists of everything that was said before — all the previous user prompts, assistant messages, code generated, etc. We took the time to analyze our new usage patterns and then tuned our configuration to fit our customer’s use cases.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "This has a number of advantages, because it allows the servers to be tuned independently for the role they are performing, scaled to account for more input-heavy or output-heavy traffic, or even to run on heterogeneous hardware.\n\nEvery GPU has a fixed VRAM size, but if your model instance requires multiple GPUs, there needs to be a way for the KV cache to live across GPUs and talk to each other.",
+      "lessons_learned": "Prefill decode (PD) disaggregation \n \n \n \n \n One hardware configuration that we use to improve performance and efficiency is disaggregated prefill.\n\nWe see a significant improvement in the tail latency variance.\n\nSimilarly, p90 time per token went from ~100 ms with high variance to 20-30 ms, a 3x improvement in intertoken latency.\n\nThis significantly increases the request throughput that we can handle, while offering better performance for interactive or time-sensitive sessions like OpenCode or AI code reviews.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Hosting AI models is an interesting challenge: it requires a delicate balance between software and very, very expensive hardware. At Cloudflare, we’re good at squeezing every bit of efficiency out of our hardware through\nAs we mentioned in our previous Kimi K2.5 blog post , we’re using a variety of hardware configurations in order to best serve models. A lot of hardware configurations depend on the size of inputs and outputs that users a\nWhen we launched large language models on Workers AI, we knew that most of the use cases would be used for agents. With agents, you send in a large number of input tokens. It starts off with a large system prompt, all th\nOne hardware configuration that we use to improve performance and efficiency is disaggregated prefill. There are two stages to processing an LLM request: prefill, which processes the input tokens and populates the KV cac\nWith prefill decode disaggregation, separate inference servers are run for each stage. First, a request is sent to the prefill stage which performs prefill and stores it in its KV cache. Then the same request is sent to \nThis architecture requires a relatively complex load balancer to achieve. Beyond just routing the requests as described above, it must rewrite the responses (including streaming SSE) of the decode server to include infor\nHere’s a graph of our p90 Time to First Token drop after shifting traffic to our new PD disaggregated architecture, whilst request volume increased, using the same quantity of GPUs. We see a significant improvement in th\nSince agentic use cases usually have long contexts, we optimize for efficient prompt caching in order to not recompute input tensors on every turn. We leverage a header called x-session-affinity in order to help requests",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "An agent needs to be powered by a large language model. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "7a937002e07682e6",
+    "title": "AI Search: the search primitive for your agents",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/ai-search-agent-primitive/",
+    "published": "2026-04-16T13:00:22+00:00",
+    "fetched_at": "2026-04-19T02:30:04.100974+00:00",
+    "summary": "Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The use cases are different, but the underlying problem is the same: get the right information to the model at the right time.",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "observability"
+    ],
+    "day": "2026-04-16",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "npm create cloudflare@latest -- --template cloudflare/agents-starter",
+      "import { routeAgentRequest } from \"agents\";",
+      "// the client passes customerId in the request body",
+      "{ field: \"timestamp\", direction: \"desc\" }",
+      "return result.toUIMessageStreamResponse();",
+      "// route requests to the SupportAgent durable object",
+      "async fetch(request: Request, env: Env) {",
+      "(await routeAgentRequest(request, env)) ||"
+    ],
+    "sections": {
+      "overview": "Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The use cases are different, but the underlying problem is the same: get the right information to the model at the right time. If you're building search yourself, you need a vector index, an indexing pipeline that parses and chunks your documents, and something to keep the index up to date when your data changes.",
+      "technical_breakdown": "You can create a one-off AI Search instance (named product-knowledge ) backed by the bucket on the Cloudflare Dashboard within the support namespace:\n\n \n \n That's your shared knowledge base, the docs every agent can reference.\n\nIf you also need keyword search, that's a separate index and fusion logic on top.\n\nVector search and BM25 run in parallel and results are fused. (The search on our blog is now powered by AI Search.\n\nThe new ai_search_namespaces binding lets you create and delete instances at runtime from your Worker, so you can spin up one per agent, per customer, or per language without redeployment.\n\nIn action: Customer Support Agent \n \n \n \n \n Let's walk through a support agent that searches for two kinds of knowledge: shared product docs, and per-customer history like past resolutions.",
+      "impact": "The model decides when to call the tools based on the conversation:\n\n import { AIChatAgent, type OnChatMessageOptions } from \"@cloudflare/ai-chat\";\nimport { createWorkersAI } from \"workers-ai-provider\";\nimport { streamText, convertToModelMessages, tool, stepCountIs } from \"ai\";\nimport { routeAgentRequest } from \"agents\";\nimport { z } from \"zod\";\n\nexport class SupportAgent extends AIChatAgent<Env> {\n async onChatMessage(_onFinish: unknown, options?: OnChatMessageOptions) {\n // the client passes customerId in the request body\n // via the Agent SDK's sendMessage({ body: { customerId } })\n const customerId = options?.body?.customerId;\n\n // create a per-customer instance when they first show up.\n // each instance gets its own storage and vector index.\n if (customerId) {\n try {\n await this.env.SUPPORT_KB.create({\n id: `customer-${customerId}`,\n index_method: { keyword: true, vector: true }\n });\n } catch {\n // instance already exists\n }\n }\n\n const workersai = createWorkersAI({ binding: this.env.AI });\n\n const result = streamText({\n model: workersai(\"@cf/moonshotai/kimi-k2.5\"),\n system: `You are a support agent. If you’re creating instances dynamically (e.g. per agent, per customer, per tenant), this is the binding to use.\n\n // create an instance \nconst instance = await env.AI_SEARCH.create({\n id: \"my-instance\"\n});\n\n// delete an instance and all its indexed data\nawait env.AI_SEARCH.delete(\"old-instance\");\n \n \n \n Pricing for new instances \n \n \n \n \n New instances created as of today will get built-in storage and a vector index automatically. Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The new ai_search_namespaces binding lets you create and delete instances at runtime from your Worker, so you can spin up one per agent, per customer, or per language without redeployment.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "After each resolved issue, the agent saves a summary of what went wrong and how it was fixed.\n\nWhen the issue is\n resolved, call save_resolution before responding.`,\n // this.messages is the full conversation history, automatically\n // persisted by AIChatAgent across reconnects\n messages: await convertToModelMessages(this.messages),\n tools: {\n // tool 1: search across shared product docs AND this\n // customer's past resolutions in a single call\n search_knowledge_base: tool({\n description: \"Search product docs and customer history\",\n inputSchema: z.object({\n query: z.string().describe(\"The search query\"),\n }),\n execute: async ({ query }) => {\n // always search product docs;\n // include customer history if available\n const instances = [\"product-knowledge\"];\n if (customerId) {\n instances.push(`customer-${customerId}`);\n }\n return await this.env.SUPPORT_KB.search({\n query: query,\n ai_search_options: {\n // surface recent docs over older ones\n boost_by: [\n { field: \"timestamp\", direction: \"desc\" }\n ],\n // search across both instances at once\n instance_ids: instances\n }\n });\n }\n }),\n\n // tool 2: after resolving an issue, the agent saves a\n // summary so future agents have full context\n save_resolution: tool({\n description:\n \"Save a resolution summary after solving a customer's issue\",\n inputSchema: z.object({\n filename: z.string().describe(\n \"Short descriptive filename, e.g. 'billing-fix.md'\"\n ),\n content: z.string().describe(\n \"What the problem was, what caused it, and how it was resolved\"\n ),\n }),\n execute: async ({ filename, content }) => {\n if (!customerId) return { error: \"No customer ID\" };\n const instance = this.env.SUPPORT_KB.get(\n `customer-${customerId}`\n );\n // uploadAndPoll waits until indexing is complete,\n // so the resolution is searchable before the next query\n const item = await instance.items.uploadAndPoll(\n filename, content\n );\n return { saved: true, filename, status: item.status };\n }\n }),\n },\n // cap agentic tool-use loops at 10 steps\n stopWhen: stepCountIs(10),\n abortSignal: options?.abortSignal,\n });\n\n return result.toUIMessageStreamResponse();\n }\n}\n\n// route requests to the SupportAgent durable object\nexport default {\n async fetch(request: Request, env: Env) {\n return (\n (await routeAgentRequest(request, env)) ||\n new Response(\"Not found\", { status: 404 })\n );\n }\n} satisfies ExportedHandler<Env>;\n \n With this, the model decides when to search and when to save.\n\nThe product docs are too large to fit in a context window, and each customer's history grows with every resolved issue, so the agent needs retrieval to find what's relevant.\n\nSearch results\n include both product docs and this customer's past\n resolutions — use them to avoid repeating failed fixes\n and to recognize recurring issues.",
+      "lessons_learned": "Next time the customer comes back, all of it is searchable.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The new ai_search_namespaces binding lets you create and delete instances at runtime from your Worker, so you can spin up one per agent, per customer, or per language without redeployment. You can boost on timestamp (built in on every item) or any custom metadata field you define.\n\n // boost high priority docs\nconst results = await instance.search({\n query: \"deployment guide\",\n ai_search_options: {\n boost_by: [\n { field: \"timestamp\", direction: \"desc\" }\n ]\n }\n});\n \n \n \n Cross-instance search: query across boundaries \n \n \n \n \n In the support agent example, product documentation and customer resolution history live in separate instances by design.",
+      "incident_timeline": "npm create cloudflare@latest -- --template cloudflare/agents-starter\nimport { routeAgentRequest } from \"agents\";\n// the client passes customerId in the request body\n{ field: \"timestamp\", direction: \"desc\" }\nreturn result.toUIMessageStreamResponse();\n// route requests to the SupportAgent durable object\nasync fetch(request: Request, env: Env) {\n(await routeAgentRequest(request, env)) ||",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Every agent needs search: Coding agents search millions of files across repos, or support agents search customer tickets and internal docs. The use cases are different, but the underlying problem is the same: get the right information to the model at the right time.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "db8cbdeb41359fd1",
+    "title": "Deploy Postgres and MySQL databases with PlanetScale + Workers",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/deploy-planetscale-postgres-with-workers/",
+    "published": "2026-04-16T13:00:22+00:00",
+    "fetched_at": "2026-04-19T02:30:04.101422+00:00",
+    "summary": "Cloudflare announced our PlanetScale partnership last September to give Cloudflare Workers direct access to Postgres and MySQL databases for fast, full-stack applications.",
+    "tags": [
+      "database",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-16",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "async fetch(request, env, ctx) {",
+      "With centralized databases, Workers can run right next to your primary database to reduce latency with an explicit placement hint . By default, Workers execute closest to a user request, which adds network latency when q"
+    ],
+    "sections": {
+      "overview": "Cloudflare announced our PlanetScale partnership last September to give Cloudflare Workers direct access to Postgres and MySQL databases for fast, full-stack applications. Soon, we’re bringing our technologies even closer: you’ll be able to create PlanetScale Postgres and MySQL databases directly from the Cloudflare dashboard and API, and have them billed to your Cloudflare account. You choose the data storage that fits your Worker application needs and keep a single system for billing as a Cloudflare self-serve or enterprise customer.",
+      "technical_breakdown": "In the future, Cloudflare can automatically set a placement hint based on the location of your PlanetScale database and reduce network latency to single digit milliseconds.\n\n {\n \"placement\": {\n \"region\": \"aws:us-east-1\"\n }\n}\n \n \n \n Coming soon \n \n \n \n \n You can deploy a PlanetScale Postgres database or connect an existing PlanetScale database to Workers today via the Cloudflare dashboard .\n\nSoon, we’re bringing our technologies even closer: you’ll be able to create PlanetScale Postgres and MySQL databases directly from the Cloudflare dashboard and API, and have them billed to your Cloudflare account.\n\nBy default, Workers execute closest to a user request, which adds network latency when querying a central database especially for multiple queries.\n\nYou can already connect your PlanetScale account and create Postgres databases directly from the Cloudflare dashboard for your Workers.\n\nHow to create PlanetScale databases via Cloudflare dashboard after your PlanetScale account is connected.",
+      "impact": "You choose the data storage that fits your Worker application needs and keep a single system for billing as a Cloudflare self-serve or enterprise customer. Starting next month, a new Cloudflare subscription will bill for new PlanetScale databases direct to your Cloudflare account as a self-serve or enterprise user. You just add a binding to your Worker’s config file : \n\n // wrangler.jsonc file\n{\n \"hyperdrive\": [\n {\n \"binding\": \"DATABASE\",\n \"id\": <AUTO_CREATED_ID>\n }\n ]\n}\n \n And start running SQL queries via your Worker with your Postgres client of choice:\n\n import { Client } from \"pg\";\n\nexport default {\n async fetch(request, env, ctx) {\n \n const client = new Client({ connectionString: env.DATABASE.connectionString });\n await client.connect();\n\n const result = await client.query(\"SELECT * FROM pg_tables\");\n ...\n}\n \n \n \n PlanetScale developer experience \n \n \n \n \n PlanetScale was the obvious choice to provide to the Workers community due to it’s unrivaled performance and reliability. Cloudflare users get the exact same PlanetScale database developer experience.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. You just add a binding to your Worker’s config file : \n\n // wrangler.jsonc file\n{\n \"hyperdrive\": [\n {\n \"binding\": \"DATABASE\",\n \"id\": <AUTO_CREATED_ID>\n }\n ]\n}\n \n And start running SQL queries via your Worker with your Postgres client of choice:\n\n import { Client } from \"pg\";\n\nexport default {\n async fetch(request, env, ctx) {\n \n const client = new Client({ connectionString: env.DATABASE.connectionString });\n await client.connect();\n\n const result = await client.query(\"SELECT * FROM pg_tables\");\n ...\n}\n \n \n \n PlanetScale developer experience \n \n \n \n \n PlanetScale was the obvious choice to provide to the Workers community due to it’s unrivaled performance and reliability. Cloudflare announced our PlanetScale partnership last September to give Cloudflare Workers direct access to Postgres and MySQL databases for fast, full-stack applications. Soon, we’re bringing our technologies even closer: you’ll be able to create PlanetScale Postgres and MySQL databases directly from the Cloudflare dashboard and API, and have them billed to your Cloudflare account.",
+      "incident_timeline": "async fetch(request, env, ctx) {\nWith centralized databases, Workers can run right next to your primary database to reduce latency with an explicit placement hint . By default, Workers execute closest to a user request, which adds network latency when q",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Cloudflare announced our PlanetScale partnership last September to give Cloudflare Workers direct access to Postgres and MySQL databases for fast, full-stack applications. Soon, we’re bringing our technologies even closer: you’ll be able to create PlanetScale Postgres and MySQL databases directly from the Cloudflare dashboard and API, and have them billed to your Cloudflare account.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "52e13ba4eb1fa0d2",
+    "title": "Red Hat build of Kueue 1.3: Enhanced batch workload management on Kubernetes",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/16/red-hat-build-kueue-1-3-batch-workload-kubernetes",
+    "published": "2026-04-16T07:01:07+00:00",
+    "fetched_at": "2026-04-19T02:30:07.191618+00:00",
+    "summary": "Red Hat build of Kueue 1.3 is now available. This Kubernetes-native job queuing controller manages how batch workloads share resources in a cluster. The 1.3 release adds support for specialized workload controllers and updates the API for future development.",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "scaling"
+    ],
+    "day": "2026-04-16",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Red Hat build of Kueue 1.3 is now available. This Kubernetes-native job queuing controller manages how batch workloads share resources in a cluster. The 1.3 release adds support for specialized workload controllers and updates the API for future development.",
+      "technical_breakdown": "After installing the operator, apply the following YAML to enable LeaderWorkerSet and JobSet :\n\n apiVersion: kueue.openshift.io/v1\nkind: Kueue\nmetadata:\n labels:\n app.kubernetes.io/name: kueue-operator\n app.kubernetes.io/managed-by: kustomize\n name: cluster\n namespace: openshift-kueue-operator\nspec:\n managementState: Managed\n config:\n integrations:\n frameworks:\n - BatchJob\n - Pod\n - Deployment\n - StatefulSet\n - JobSet\n - LeaderWorkerSet Find installation instructions and release notes in the Red Hat documentation for Kueue.\n\nThis Kubernetes-native job queuing controller manages how batch workloads share resources in a cluster.\n\nKey highlights of Kueue 1.3 The 1.3 release helps Kueue schedule batch jobs more efficiently in Kubernetes environments.\n\nJobSet is a Kubernetes controller that manages batches of similar jobs.\n\nImproved reliability: Use JobSet features for stable batch execution with Kueue fair-sharing and preemption logic.",
+      "impact": "Get started with Red Hat build of Kueue 1.3 Current users can now explore these integrations and migrate to the v1beta2 APIs.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Better resource use: Kueue admits the LeaderWorkerSet only when resources are available, which prevents partial job startups and wasted compute cycles.\n\nImproved reliability: Use JobSet features for stable batch execution with Kueue fair-sharing and preemption logic.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. After installing the operator, apply the following YAML to enable LeaderWorkerSet and JobSet :\n\n apiVersion: kueue.openshift.io/v1\nkind: Kueue\nmetadata:\n labels:\n app.kubernetes.io/name: kueue-operator\n app.kubernetes.io/managed-by: kustomize\n name: cluster\n namespace: openshift-kueue-operator\nspec:\n managementState: Managed\n config:\n integrations:\n frameworks:\n - BatchJob\n - Pod\n - Deployment\n - StatefulSet\n - JobSet\n - LeaderWorkerSet Find installation instructions and release notes in the Red Hat documentation for Kueue.",
+      "incident_timeline": "",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Red Hat build of Kueue 1.3 is now available. This Kubernetes-native job queuing controller manages how batch workloads share resources in a cluster.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "852f7edd6fd77e7d",
+    "title": "Cloudflare Email Service: now in public beta. Ready for your agents",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/email-for-agents/",
+    "published": "2026-04-16T06:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:04.102245+00:00",
+    "summary": "Email is the most accessible interface in the world. It is ubiquitous. There’s no need for a custom chat application, no custom SDK for each channel. Everyone already has an email address, which means everyone can already interact with your application or agent. And your agent can interact with anyone.",
+    "tags": [
+      "database",
+      "latency",
+      "networking",
+      "observability"
+    ],
+    "day": "2026-04-16",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Cloudflare Email Service is that piece. With Email Routing , you can receive email to your application or agent. With Email Sending, you can reply to emails or send outbounds to notify your users when your agents are don",
+      "async fetch(request, env, ctx) {",
+      "Or send from any platform, any language, using the REST API and our TypeScript, Python, and Go SDKs:",
+      "Sending email that actually reaches inboxes usually means wrestling with SPF, DKIM, and DMARC records. When you add your domain to Email Service, we configure all of it automatically. Your emails are authenticated and de",
+      "For the full deep dive on Email Sending, refer to our Birthday Week announcement . The rest of this post describes what Email Service unlocks for agents.",
+      "Email agents receive a message, orchestrate work across the platform, and respond asynchronously.",
+      "A chatbot responds in the moment or not at all. An agent thinks, acts, and communicates on its own timeline. With Email Sending, your agent can receive a message, spend an hour processing data, check three other systems,",
+      "We are also publishing a Cloudflare Email Service skill . It gives your agents complete guidance: configuring the Workers binding, sending emails via the REST API or SDKs, handling inbound email with Email Routing config"
+    ],
+    "sections": {
+      "overview": "Email is the most accessible interface in the world. It is ubiquitous. There’s no need for a custom chat application, no custom SDK for each channel.",
+      "technical_breakdown": "And because Email Service is a global service built on Cloudflare's network, your emails are delivered with low latency anywhere in the world.\n\nThe inbox becomes the agent's memory, without needing a separate database or vector store.\n\nIncreasingly, it is not just your application logic that needs this channel.\n\nYou can now send transactional emails directly from Workers with a native Workers binding — no API keys, no secrets management.\n\n export default {\n async fetch(request, env, ctx) {\n await env.EMAIL.send({\n to: \"user@example.com\",\n from: \"notifications@your-domain.com\",\n subject: \"Your order has shipped\",\n text: \"Your order #1234 has shipped and is on its way.\"\n });\n return new Response(\"Email sent\");\n },\n};\n \n Or send from any platform, any language, using the REST API and our TypeScript, Python, and Go SDKs:\n\n curl \"https://api.cloudflare.com/client/v4/accounts/{account_id}/email-service/send\" \\\n --header \"Authorization: Bearer <API_TOKEN>\" \\\n --header \"Content-Type: application/json\" \\\n --data '{\n \"to\": \"user@example.com\",\n \"from\": \"notifications@your-domain.com\",\n \"subject\": \"Your order has shipped\",\n \"text\": \"Your order #1234 has shipped and is on its way.\"\n }'\n \n Sending email that actually reaches inboxes usually means wrestling with SPF, DKIM, and DMARC records.\n\nIt can escalate when it detects an edge case.",
+      "impact": "You can now send transactional emails directly from Workers with a native Workers binding — no API keys, no secrets management.\n\n export default {\n async fetch(request, env, ctx) {\n await env.EMAIL.send({\n to: \"user@example.com\",\n from: \"notifications@your-domain.com\",\n subject: \"Your order has shipped\",\n text: \"Your order #1234 has shipped and is on its way.\"\n });\n return new Response(\"Email sent\");\n },\n};\n \n Or send from any platform, any language, using the REST API and our TypeScript, Python, and Go SDKs:\n\n curl \"https://api.cloudflare.com/client/v4/accounts/{account_id}/email-service/send\" \\\n --header \"Authorization: Bearer <API_TOKEN>\" \\\n --header \"Content-Type: application/json\" \\\n --data '{\n \"to\": \"user@example.com\",\n \"from\": \"notifications@your-domain.com\",\n \"subject\": \"Your order has shipped\",\n \"text\": \"Your order #1234 has shipped and is on its way.\"\n }'\n \n Sending email that actually reaches inboxes usually means wrestling with SPF, DKIM, and DMARC records. During our private beta, we talked to developers who are building exactly this: customer support agents, invoice processing pipelines, account verification flows, multi-agent workflows. With Email Sending, you can reply to emails or send outbounds to notify your users when your agents are done doing work. And with the rest of the developer platform, you can build a full email client and Agents SDK onEmail hook as native functionality.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "It can schedule follow-ups.",
+      "lessons_learned": "It can schedule follow-ups.\n\nThis prevents attackers from forging headers to route emails to arbitrary agent instances — a security concern that most \"email for agents\" solutions haven't addressed.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. And because Email Service is a global service built on Cloudflare's network, your emails are delivered with low latency anywhere in the world. Because agents are backed by Durable Objects, calling this.setState() means your agent remembers conversation history, contact information, and context across sessions. The inbox becomes the agent's memory, without needing a separate database or vector store.",
+      "incident_timeline": "Cloudflare Email Service is that piece. With Email Routing , you can receive email to your application or agent. With Email Sending, you can reply to emails or send outbounds to notify your users when your agents are don\nasync fetch(request, env, ctx) {\nOr send from any platform, any language, using the REST API and our TypeScript, Python, and Go SDKs:\nSending email that actually reaches inboxes usually means wrestling with SPF, DKIM, and DMARC records. When you add your domain to Email Service, we configure all of it automatically. Your emails are authenticated and de\nFor the full deep dive on Email Sending, refer to our Birthday Week announcement . The rest of this post describes what Email Service unlocks for agents.\nEmail agents receive a message, orchestrate work across the platform, and respond asynchronously.\nA chatbot responds in the moment or not at all. An agent thinks, acts, and communicates on its own timeline. With Email Sending, your agent can receive a message, spend an hour processing data, check three other systems,\nWe are also publishing a Cloudflare Email Service skill . It gives your agents complete guidance: configuring the Workers binding, sending emails via the REST API or SDKs, handling inbound email with Email Routing config",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Email is the most accessible interface in the world. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "487fc417ed4a047f",
+    "title": "Why AI won’t steal your SOC analyst job",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/why-ai-will-not-steal-your-soc-analyst-job",
+    "published": "2026-04-16T00:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.675939+00:00",
+    "summary": "AI won't replace SOC analysts but will change the job. AI automates repetitive tasks; humans provide critical context, creativity, and judgment for strategic security. Learn more about what the future looks like for the SOC analyst with AI.",
+    "tags": [],
+    "day": "2026-04-16",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "AI won't replace SOC analysts but will change the job. AI automates repetitive tasks; humans provide critical context, creativity, and judgment for strategic security. Learn more about what the future looks like for the SOC analyst with AI.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "AI won't replace SOC analysts but will change the job. AI automates repetitive tasks; humans provide critical context, creativity, and judgment for strategic security.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

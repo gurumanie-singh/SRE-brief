@@ -22,6 +22,30 @@ python -m scripts.run_hourly
 
 Open `docs/index.html` in a browser (or serve `docs/` with any static file server).
 
+### Debugging the content pipeline (empty homepage)
+
+1. **One-shot verification** (fetch → process → site + summary):
+
+   ```bash
+   python -m scripts.verify_pipeline
+   ```
+
+2. **Step-by-step** (same stages the hourly job runs):
+
+   ```bash
+   python -m scripts.fetch_feeds
+   python -m scripts.process_articles
+   python -m scripts.generate_site
+   ```
+
+3. **Artifacts to inspect**
+   - `data/days/YYYY-MM-DD.json` — must exist after a successful ingest. If only `data/last_updated.json` is present, the site was regenerated **without** new JSON (often: workflow never ran ingest, or only `generate_site` was executed locally).
+   - `data/pipeline_stats.json` — written every `process()` run: per-feed results, dedupe counts, retention drops, and warnings.
+
+4. **Homepage date window** — the index lists items whose RSS calendar `day` is within `settings.homepage_calendar_days` (default 7). Engineering feeds often carry posts **older than seven calendar days**; in that case the generator uses **`homepage_recency_fallback`** (default `true`) and fills the homepage from the newest `published` timestamps instead of showing an empty feed.
+
+5. **Manually trigger the hourly workflow on GitHub** — Repository → **Actions** → **Hourly Site Update** → **Run workflow** → choose the default branch → **Run workflow**. Open the job log: a **Report pipeline stats** step prints `data/pipeline_stats.json` and lists `data/days/*.json`.
+
 ### Optional article HTML enrichment
 
 In `feeds.yaml`, set `settings.enrich_fetch_full_article: true` to fetch each article URL (capped per run) for richer classification. This increases runtime and outbound traffic — keep disabled on slow networks.

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "a9670330c59877b7",
+    "title": "Customize your AWS Management Console experience with visual settings including account color, region and service visibility",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/customize-your-aws-management-console-experience-with-visual-settings-including-account-color-region-and-service-visibility/",
+    "published": "2026-03-26T21:34:19+00:00",
+    "fetched_at": "2026-04-19T02:30:03.284355+00:00",
+    "summary": "In August 2025, we introduced AWS User Experience Customization (UXC) capability to tailor user interfaces (UIs) to meet your specific needs and complete your tasks efficiently. With this capability, your account administrator can customize some UI component of AWS Management Console , such as assigning a color to an AWS account for easier identification.",
+    "tags": [],
+    "day": "2026-03-26",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "By changing the account color, you can clearly distinguish the account’s purpose. For example, you can use orange for development accounts, light blue for test accounts, and red for production accounts.",
+      "The Regions and services visibility settings control only the appearance of services and Regions in the console. They don’t restrict access through the AWS Command Line Interface (AWS CLI) , AWS SDKs , AWS APIs, or Amazo",
+      "- us-west-2"
+    ],
+    "sections": {
+      "overview": "In August 2025, we introduced AWS User Experience Customization (UXC) capability to tailor user interfaces (UIs) to meet your specific needs and complete your tasks efficiently. With this capability, your account administrator can customize some UI component of AWS Management Console , such as assigning a color to an AWS account for easier identification. Today, we’re announcing additional customization capability in UXC that enables selective display of relevant AWS Regions and services for your team members.",
+      "technical_breakdown": "Today, we’re announcing additional customization capability in UXC that enables selective display of relevant AWS Regions and services for your team members.\n\nBy hiding unused Regions and services, you can reduce cognitive load and eliminate unnecessary clicks and scrolling, helping you focus better and work faster.\n\nWith this launch, we offer the ability to customize account color, Region, and service visibility together.\n\nCustomize Regions and services visibility \n You can control which AWS Regions appear in the Region selector or which AWS services appear in the console navigation.\n\nIn other words, you can set to show only the Regions and services that are relevant to your account.",
+      "impact": "For example, you can use AWS CloudFormation sample template:\n\n \n AWSTemplateFormatVersion: \"2010-09-09\"\nDescription: Customize AWS Console appearance for this account\n\nResources:\n AccountCustomization:\n Type: AWS::UXC::AccountCustomization\n Properties:\n AccountColor: red\n VisibleServices:\n - s3\n - ec2\n - lambda\n VisibleRegions:\n - us-east-1\n - us-west-2 \n And you can deploy your Cloudformation template.\n\n \n $ aws cloudformation deploy \\\n --template-file account-customization.yaml \\\n --stack-name my-account-customization \n To learn more, visit the AWS User Experience Customization API Reference and AWS CloudFormation template reference . In August 2025, we introduced AWS User Experience Customization (UXC) capability to tailor user interfaces (UIs) to meet your specific needs and complete your tasks efficiently. Today, we’re announcing additional customization capability in UXC that enables selective display of relevant AWS Regions and services for your team members. By hiding unused Regions and services, you can reduce cognitive load and eliminate unnecessary clicks and scrolling, helping you focus better and work faster.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "By hiding unused Regions and services, you can reduce cognitive load and eliminate unnecessary clicks and scrolling, helping you focus better and work faster.",
+      "root_cause_highlight": "",
+      "incident_timeline": "By changing the account color, you can clearly distinguish the account’s purpose. For example, you can use orange for development accounts, light blue for test accounts, and red for production accounts.\nThe Regions and services visibility settings control only the appearance of services and Regions in the console. They don’t restrict access through the AWS Command Line Interface (AWS CLI) , AWS SDKs , AWS APIs, or Amazo\n- us-west-2",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "In August 2025, we introduced AWS User Experience Customization (UXC) capability to tailor user interfaces (UIs) to meet your specific needs and complete your tasks efficiently. With this capability, your account administrator can customize some UI component of AWS Management Console , such as assigning a color to an AWS account for easier identification.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "7808ca301e565783",
+    "title": "LAB3 accelerates cloud modernization with HashiCorp-powered unified workflows",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/lab3-accelerates-cloud-modernization-with-hashicorp-powered-unified-workflows",
+    "published": "2026-03-26T17:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:05.535229+00:00",
+    "summary": "What usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative. For enterprises working with LAB³, modernizing provisioning and security quickly evolves into establishing a unified workflow across infrastructure, secrets, and networking — a foundation that enables true cloud velocity and unlocks new possibilities for AI and...",
+    "tags": [
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-03-26",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "What usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative. For enterprises working with LAB³, modernizing provisioning and security quickly evolves i",
+      "Crawl: Establishing foundations In the crawl stage, LAB³ focuses on rebuilding the basics: Shared architectural patterns, consistent IBM Terraform on the HashiCorp Cloud Platform usage, and reliable secrets management. I",
+      "One cloud experience, everywhere LAB³’s transformational model is powered by the HashiCorp ecosystem, enabling enterprises to orchestrate infrastructure, security, and connectivity through one consistent workflow across ",
+      "In order to benefit from these emerging technologies, though, White emphasizes that enterprises need to invest in strong foundations today:"
+    ],
+    "sections": {
+      "overview": "What usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative. For enterprises working with LAB³, modernizing provisioning and security quickly evolves into establishing a unified workflow across infrastructure, secrets, and networking — a foundation that enables true cloud velocity and unlocks new possibilities for AI and next-generation architectures. This blog breaks down LAB³’s modernization philosophy, based on real-world insights from Lachlan White, Chief Technology Officer at LAB³ and long-time HashiCorp Ambassador turned IBM Champion.",
+      "technical_breakdown": "Key limitations LAB³ sees most often:\n\n Manual provisioning and ticket queues slowing delivery\n\n Secrets stored or rotated manually, often inconsistently\n\n Fragmented networking practices across clouds\n\n No shared IaC patterns, causing drift and duplicated work\n\n Risk-averse processes that limit autonomy and innovation\n\n Crawl: Establishing foundations In the crawl stage, LAB³ focuses on rebuilding the basics: Shared architectural patterns, consistent IBM Terraform on the HashiCorp Cloud Platform usage, and reliable secrets management.\n\nBut when LAB³ begins assessing their environments, a different reality emerges: Provisioning still runs through manual, ticket-driven workflows, secrets are rotated by hand, and networking changes require slow, error-prone coordination across teams.\n\nWhat usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative.\n\nFor enterprises working with LAB³, modernizing provisioning and security quickly evolves into establishing a unified workflow across infrastructure, secrets, and networking — a foundation that enables true cloud velocity and unlocks new possibilities for AI and next-generation architectures.\n\nThis blog breaks down LAB³’s modernization philosophy, based on real-world insights from Lachlan White, Chief Technology Officer at LAB³ and long-time HashiCorp Ambassador turned IBM Champion.",
+      "impact": "Results: Provisioning drops from weeks to minutes with standardized Terraform automation\n\n Secrets are governed and automated via Vault\n\n Networking becomes consistent and predictable with Consul\n\n Delivery accelerates with pre-approved templates and guardrails\n\n Operational overhead shrinks as manual processes are removed\n\n Gearing up for the next wave of intelligent systems Looking ahead, LAB³ is preparing clients for the next generation of cloud-native innovation — from AI and agentic systems to microservices, event-driven architectures, and beyond. Now they’re in cloud, it takes three weeks — but we know it can take three minutes.” — Lachlan White, CTO, LAB³\n\n The root problem isn’t cloud adoption, but the lack of shared patterns and foundational standards. By adopting architectural blueprints and well-architected modules, organizations typically see provisioning speed improve by around 70% , reducing delivery from weeks to minutes.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "In this phase, the team focuses on stabilizing the environment, reducing risk, and ensuring teams have a strong foundation before automation is scaled.",
+      "lessons_learned": "By adopting architectural blueprints and well-architected modules, organizations typically see provisioning speed improve by around 70% , reducing delivery from weeks to minutes.\n\nVault enables workload-based authentication and short-lived credentials, giving teams the freedom to adopt new tools quickly without relying on long-lived shared secrets. ”\n\n In order to benefit from these emerging technologies, though, White emphasizes that enterprises need to invest in strong foundations today:\n\n “You want to look at these capabilities because they provide the foundational layer for your enterprise's technology stack to address the value of new trends in markets such as artificial intelligence,” he says and then adds, “we can apply some of the security and automation lessons, and even look to add AI to those foundational elements to increase the velocity at which we can develop.”\n\n LAB³ plans to extend AI into the platform itself by:\n\n Automating Terraform module creation and config validation\n\n Enhancing security through AI-driven anomaly detection\n\n Improving developer experience with intelligent IDE guardrails\n\n Enabling agent-based architectures requiring dynamic trust and ephemeral environments\n\n What’s more, they’ve now incorporated agentic AI to further increase productivity gains with the Terraform MCP Server as they enable an agentic workforce to amplify the benefits of their deep technical expertise at scale.",
+      "root_cause_highlight": "",
+      "incident_timeline": "What usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative. For enterprises working with LAB³, modernizing provisioning and security quickly evolves i\nCrawl: Establishing foundations In the crawl stage, LAB³ focuses on rebuilding the basics: Shared architectural patterns, consistent IBM Terraform on the HashiCorp Cloud Platform usage, and reliable secrets management. I\nOne cloud experience, everywhere LAB³’s transformational model is powered by the HashiCorp ecosystem, enabling enterprises to orchestrate infrastructure, security, and connectivity through one consistent workflow across \nIn order to benefit from these emerging technologies, though, White emphasizes that enterprises need to invest in strong foundations today:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "What usually begins as an effort to escape slow, ticket-driven cloud operations often becomes something much more transformative. For enterprises working with LAB³, modernizing provisioning and security quickly evolves into establishing a unified workflow across infrastructure, secrets, and networking — a foundation that enables true cloud velocity and unlocks new possibilities for AI and next-generation architectures.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "991d2e0504b2ea6a",
+    "title": "Building shared coding guidelines for AI (and people too)",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/03/26/coding-guidelines-for-ai-agents-and-people-too/",
+    "published": "2026-03-26T14:00:00+00:00",
+    "fetched_at": "2026-04-19T02:30:06.089850+00:00",
+    "summary": "Coding guidelines and standards for agents need to be a little different—more explicit, demonstrative of patterns, and obvious.",
+    "tags": [],
+    "day": "2026-03-26",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Coding guidelines and standards for agents need to be a little different—more explicit, demonstrative of patterns, and obvious.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Coding guidelines and standards for agents need to be a little different—more explicit, demonstrative of patterns, and obvious.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

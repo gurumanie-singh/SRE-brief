@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing Agent Lee - a new interface to the Cloudflare stack — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-15.html" class="back-link">← 15 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">15 April 2026, 08:00</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+      </div>
+
+      <h1 class="title">Introducing Agent Lee - a new interface to the Cloudflare stack</h1>
+
+      <p class="subtitle">While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. Impact band: high.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>dns issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. Impact band: high.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. It still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles. AI gives us the opportunity to rethink all that.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar, Cache, Cloudflare Tunnel, API Shield, and more.</p>
+<p>Log in to your Cloudflare dashboard and click Ask AI in the upper right corner to get started.</p>
+<p>It still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles.</p>
+<p>We didn’t want to just put an agent in a dashboard.</p>
+<p>Agent Lee is an in-dashboard AI assistant that understands your Cloudflare account.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Ask what your error rate looks like over the last 24 hours, and it renders a chart inline, pulling from your actual traffic, not sending you to a separate Analytics page. Instead of complexity spread over a sprawling graphical user interface: what if you could describe in plain language what you wanted to achieve? Agent Lee has been running in an active beta during which it has served over 18,000 daily users, executing nearly a quarter of a million tool calls per day. It knows your Workers, your zones, your DNS configuration, your error rates.</p>
+<p>Classified impact band: high. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>If your Worker starts returning 503s at 02:00 UTC, finding the root cause: be it an R2 bucket, a misconfigured route, or a hidden rate limit, you’re opening half a dozen tabs and hoping you recognize the pattern.</p>
+<p>Agent Lee will also fix the problem for you on the spot.</p>
+<p>With natural language, you can use it to:</p>
+<p>Answer questions about your account: &#34;Show me the top 5 error messages on my Worker.&#34;</p>
+<p>Debug an issue: &#34;I can&#39;t access my site with the www prefix.&#34;</p>
+<p>Apply a change: &#34;Enable Access for my domain.&#34;</p>
+<p>Deploy a resource: &#34;Create a new R2 bucket for my photos and connect it to my Worker.&#34;</p>
+<p>Instead of switching between products, you describe what you want to do, and Agent Lee helps you get there with instructions and visualizations.</p>
+<p>That means every limitation we hit is a limitation we can fix in the platform.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet.</p>
+<p>We encourage you to use the feedback form below to help us make it better every day.</p>
+<p>This works better for a couple of reasons.</p>
+<p>The security boundary isn&#39;t just a sandbox that gets thrown away; it&#39;s a permission architecture that structurally prevents writes from happening without your approval.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: dns issue. It knows your Workers, your zones, your DNS configuration, your error rates. Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar, Cache, Cloudflare Tunnel, API Shield, and more.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>It can help you with troubleshooting, which, today, is a manual grind. If your Worker starts returning 503s at 02:00 UTC, finding the root cause: be it an R2 bucket, a misconfigured route, or a hidden rate limit, you’re </li>
+            <li>Answer questions about your account: &#34;Show me the top 5 error messages on my Worker.&#34;</li>
+            <li>Instead of switching between products, you describe what you want to do, and Agent Lee helps you get there with instructions and visualizations. It retrieves context, uses the right tools, and creates dynamic visualizati</li>
+            <li>Agent Lee isn&#39;t answering FAQ questions — it&#39;s doing real work, against real accounts, at scale. Today, Agent Lee serves ~18,000 daily users, executing ~250k tool calls per day across DNS, Workers, SSL/TLS, R2, Registrar</li>
+            <li>The generated code is sent to an upstream Cloudflare MCP server for sandboxed execution, but it goes through a Durable Object that acts as a credentialed proxy. Before any call goes out, the DO classifies the generated c</li>
+            <li>Agent Lee connects to Cloudflare&#39;s own MCP server, which exposes two tools: a search tool for querying API endpoints and an execute tool for writing code that performs API requests. This is the surface through which Agen</li>
+            <li>Building Agent Lee on our own primitives wasn&#39;t just a design principle. It was the fastest way to find out what works and what doesn&#39;t. We built this in production, with real users, against real accounts. That means eve</li>
+            <li>We&#39;re not there yet. Agent Lee today is the first step, running in production, doing real work at scale. The architecture is built to get to the rest.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/introducing-agent-lee/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

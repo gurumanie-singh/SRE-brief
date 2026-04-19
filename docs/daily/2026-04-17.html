@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRE Brief — 17 April 2026</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <a href="../index.html" class="back-link">← Back to latest</a>
+
+  <div class="brief-header">
+    <div class="brief-primary">
+      <h1 class="brief-title">17 April 2026</h1>
+      <span class="brief-sub">11 items</span>
+    </div>
+  </div>
+
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>2 critical incident signals in the feed window</li>
+        <li>2 stories flagged for operational follow-up</li>
+        <li>Repeated coverage across Cloudflare, GitHub</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="controls-bar" id="controlsBar">
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search titles, vendors, themes…" autocomplete="off">
+      <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
+    </div>
+    <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
+      <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+        More
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-results-count" id="filterCount" style="display:none"></div>
+
+  <div class="adv-filters" id="advFilters" hidden>
+    <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Reliability theme</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,outage"
+       data-vendors="GitHub"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="building an emoji list generator with the github copilot cli"
+       data-id="52f25aed19af08e5"
+       data-published="2026-04-17T18:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-04-17T18:00:00+00:00" title="17 April 2026, 13:00">17 April 2026, 13:00</time>
+      </div>
+      <h3 class="card-title">Building an emoji list generator with the GitHub Copilot CLI</h3>
+      <p class="card-summary">Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions. This week, we built a very fun project together using the GitHub Copilot CLI .</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <div class="card-related">Also: Red Hat Developer Blog</div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions! This week, we built a very fun project together using the GitHub Copilot CLI ! Let me tell you about it.</p></div>
+      <div class="detail-links">
+        <a href="../articles/52f25aed19af08e5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/ai-and-ml/github-copilot/building-an-emoji-list-generator-with-the-github-copilot-cli/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--action card--critical"
+       data-tags="latency,observability,outage"
+       data-vendors="GitHub"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="bringing more transparency to github’s status page"
+       data-id="8e1f90c363f6a5b8"
+       data-published="2026-04-17T16:00:00+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-04-17T16:00:00+00:00" title="17 April 2026, 11:00">17 April 2026, 11:00</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Bringing more transparency to GitHub’s status page</h3>
+      <p class="card-summary">GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Earlier this year, we shared an update on GitHub s recent availability issues and the work we re doing to address them. Alongside those reliability investments, we have prioritized improving how we communicate during and after incidents, increasing the specificity of the data we provide and giving better insight into the platform s health overall.</p></div>
+      <div class="detail-links">
+        <a href="../articles/8e1f90c363f6a5b8.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/news-insights/company-news/bringing-more-transparency-to-githubs-status-page/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--action card--critical"
+       data-tags="capacity,deployment,latency,networking,observability,outage,scaling"
+       data-vendors="Elastic,Netflix,Slack"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="the human infrastructure: how netflix built the operations layer behind live at scale"
+       data-id="c57c4866fc8a275b"
+       data-published="2026-04-17T15:01:02+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Elastic</span><span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-04-17T15:01:02+00:00" title="17 April 2026, 10:01">17 April 2026, 10:01</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">The Human Infrastructure: How Netflix Built the Operations Layer Behind Live at Scale</h3>
+      <p class="card-summary">By: Brett Axler , Casper Choffat , and Alo Lowry 
+
+ In the three years since our first Live show, Chris Rock: Selective Outrage , we have witnessed an incredible expansion of our live content slate and the live operations that support it. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>By: Brett Axler , Casper Choffat , and Alo Lowry</p>
+<p>In the three years since our first Live show, Chris Rock: Selective Outrage , we have witnessed an incredible expansion of our live content slate and the live operations that support it. From modest beginnings of streaming just one show per month, we are now capable of streaming over nine shows in a single day, reaching tens of millions of concurrent members. This post pulls back the curtain on the Live Operations teams that enable this rapid scale.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c57c4866fc8a275b.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/the-human-infrastructure-how-netflix-built-the-operations-layer-behind-live-at-scale-33e2a311c597?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,outage"
+       data-vendors="AWS,Azure,Google Cloud,HashiCorp"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="advancing secret sync with workload identity federation"
+       data-id="c0122672722e99bd"
+       data-published="2026-04-17T14:45:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-04-17T14:45:00+00:00" title="17 April 2026, 09:45">17 April 2026, 09:45</time>
+      </div>
+      <h3 class="card-title">Advancing secret sync with workload identity federation</h3>
+      <p class="card-summary">With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <div class="card-related">Also: Cloudflare Blog</div>
+      <span class="card-source">HashiCorp Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials. Modern cloud environments are built on short-lived identity, dynamic infrastructure, and policy-driven access.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c0122672722e99bd.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="database,deployment,latency,networking,observability,outage"
+       data-vendors="Cloudflare"
+       data-impact="high"
+       data-theme="observability"
+       data-title="introducing the agent readiness score. is your site agent-ready?"
+       data-id="1ad62db0f727849e"
+       data-published="2026-04-17T13:05:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-17T13:05:00+00:00" title="17 April 2026, 08:05">17 April 2026, 08:05</time>
+      </div>
+      <h3 class="card-title">Introducing the Agent Readiness score. Is your site agent-ready?</h3>
+      <p class="card-summary">The web has always had to adapt to new standards. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The web has always had to adapt to new standards. It learned to speak to web browsers, and then it learned to speak to search engines. Now, it needs to speak to AI agents.</p></div>
+      <div class="detail-links">
+        <a href="../articles/1ad62db0f727849e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/agent-readiness/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,networking,outage"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="shared dictionaries: compression that keeps up with the agentic web"
+       data-id="9fda63fedd46fe33"
+       data-published="2026-04-17T13:02:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-17T13:02:00+00:00" title="17 April 2026, 08:02">17 April 2026, 08:02</time>
+      </div>
+      <h3 class="card-title">Shared Dictionaries: compression that keeps up with the agentic web</h3>
+      <p class="card-summary">Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often those pages get rebuilt and how many clients request them.</p></div>
+      <div class="detail-links">
+        <a href="../articles/9fda63fedd46fe33.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/shared-dictionaries/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="observability,outage"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="redirects for ai training enforces canonical content"
+       data-id="e285de33b08383e8"
+       data-published="2026-04-17T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-17T13:00:00+00:00" title="17 April 2026, 08:00">17 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Redirects for AI Training enforces canonical content</h3>
+      <p class="card-summary">Cloudflare&#39;s Wrangler CLI has published several major versions over the past six years, each containing at least some critical changes to commands, configuration, or how developers interact with the platform. Like any actively maintained open-source project, we keep documentation for older versions available.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Cloudflare&#39;s Wrangler CLI has published several major versions over the past six years, each containing at least some critical changes to commands, configuration, or how developers interact with the platform. Like any actively maintained open-source project, we keep documentation for older versions available. The v1 documentation carries a deprecation banner, a noindex meta tag , and canonical tags pointing to current docs.</p></div>
+      <div class="detail-links">
+        <a href="../articles/e285de33b08383e8.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/ai-redirects/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,latency,networking,outage,scaling"
+       data-vendors="Cloudflare"
+       data-impact="high"
+       data-theme="capacity and scale"
+       data-title="unweight: how we compressed an llm 22% without sacrificing quality"
+       data-id="7062949efcbeef1e"
+       data-published="2026-04-17T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-17T13:00:00+00:00" title="17 April 2026, 08:00">17 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Unweight: how we compressed an LLM 22% without sacrificing quality</h3>
+      <p class="card-summary">Running inference within 50ms of 95% of the world&#39;s Internet-connected population means being ruthlessly efficient with GPU memory. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Running inference within 50ms of 95% of the world&#39;s Internet-connected population means being ruthlessly efficient with GPU memory. Last year we improved memory utilization with Infire , our Rust-based inference engine, and eliminated cold-starts with Omni , our model scheduling platform. Now we are tackling the next big bottleneck in our inference platform: model weights.</p></div>
+      <div class="detail-links">
+        <a href="../articles/7062949efcbeef1e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/unweight-tensor-compression/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,latency,networking,outage,scaling"
+       data-vendors="Cloudflare,Stripe"
+       data-impact="high"
+       data-theme="capacity and scale"
+       data-title="agents that remember: introducing agent memory"
+       data-id="901df22c5085a154"
+       data-published="2026-04-17T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Cloudflare</span><span class="vtag">Stripe</span>        <time class="meta-time" data-iso="2026-04-17T13:00:00+00:00" title="17 April 2026, 08:00">17 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Agents that remember: introducing Agent Memory</h3>
+      <p class="card-summary">As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. The quality of results produced by models is directly tied to the quality of context they operate with, but even as context window sizes grow past one million (1M) tokens, context rot remains an unsolved problem. A natural tension emerges between two bad options: keep everything in context and watch quality degrade, or aggressively prune and risk losing information the agent needs later.</p></div>
+      <div class="detail-links">
+        <a href="../articles/901df22c5085a154.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/introducing-agent-memory/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="latency,networking,outage"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="agents week: network performance update"
+       data-id="c2adcb60ba3faca4"
+       data-published="2026-04-17T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-17T13:00:00+00:00" title="17 April 2026, 08:00">17 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Agents Week: network performance update</h3>
+      <p class="card-summary">When it comes to the Internet, performance is everything. Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When it comes to the Internet, performance is everything. Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build. That&#39;s why, at Cloudflare, we measure our performance constantly and share updates on a regular basis.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c2adcb60ba3faca4.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/network-performance-agents-week/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="no country left behind with sovereign ai"
+       data-id="1f109dc7557338bf"
+       data-published="2026-04-17T07:40:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-04-17T07:40:00+00:00" title="17 April 2026, 02:40">17 April 2026, 02:40</time>
+      </div>
+      <h3 class="card-title">No country left behind with sovereign AI</h3>
+      <p class="card-summary">Ryan welcomes Stephen Watt, distinguished engineer and VP of Red Hat’s Office of the CTO, to chat about digital sovereignty and sovereign AI.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Ryan welcomes Stephen Watt, distinguished engineer and VP of Red Hat’s Office of the CTO, to chat about digital sovereignty and sovereign AI.</p></div>
+      <div class="detail-links">
+        <a href="../articles/1f109dc7557338bf.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/04/17/no-country-left-behind-with-sovereign-ai/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

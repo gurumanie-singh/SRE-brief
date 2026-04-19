@@ -23,6 +23,7 @@ from scripts.config import (
     get_settings,
 )
 from scripts.enrich import generate_landscape_bullets, extract_top_topics
+from scripts.pipeline_stats import load_pipeline_stats
 from scripts.utils import (
     load_all_days, list_day_files,
     format_date_human, format_datetime_local, now_utc,
@@ -74,6 +75,10 @@ def _impact_label(slug: str) -> str:
         "medium": "Medium",
         "low": "Low / Insight",
     }.get(slug or "", slug or "")
+
+
+def _published_sort_key(a: dict[str, Any]) -> str:
+    return a.get("published", "") or ""
 
 
 def _setup_jinja(settings: dict[str, Any]) -> Environment:
@@ -146,10 +151,32 @@ def generate_site() -> None:
     env = _setup_jinja(settings)
 
     articles = load_all_days(DAYS_DIR)
-    if not articles:
-        logger.warning("No articles found -- generating empty site")
+    pipeline_diag = load_pipeline_stats()
+    homepage_fallback = False
 
-    active_days_count = settings.get("active_days", 7)
+    if not articles:
+        logger.warning(
+            "No articles found under %s — generating empty site "
+            "(see data/pipeline_stats.json after a full hourly run)",
+            DAYS_DIR,
+        )
+
+    calendar_days = int(settings.get("homepage_calendar_days", settings.get("active_days", 7)))
+    allow_fallback = bool(settings.get("homepage_recency_fallback", True))
+    max_homepage = settings["max_articles_per_page"]
+
+    active_cutoff = (now_utc() - timedelta(days=calendar_days)).strftime("%Y-%m-%d")
+    active_articles = [a for a in articles if a.get("day", "") >= active_cutoff]
+
+    if not active_articles and articles and allow_fallback:
+        homepage_fallback = True
+        logger.warning(
+            "Homepage calendar window (%d days, cutoff=%s) excluded all %d stored articles; "
+            "using recency fallback (newest by published).",
+            calendar_days, active_cutoff, len(articles),
+        )
+        active_articles = sorted(articles, key=_published_sort_key, reverse=True)[:max_homepage]
+
     all_days_grouped = _group_by_day(articles)
     today = get_local_today()
     today_human = format_date_human(today)
@@ -161,9 +188,6 @@ def generate_site() -> None:
     )
     last_updated_iso = now_local.isoformat()
     _write_last_updated(last_updated_iso, last_updated_human, str(get_timezone()))
-
-    active_cutoff = (now_utc() - timedelta(days=active_days_count)).strftime("%Y-%m-%d")
-    active_articles = [a for a in articles if a["day"] >= active_cutoff]
 
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     (DOCS_DIR / "daily").mkdir(parents=True, exist_ok=True)
@@ -180,7 +204,7 @@ def generate_site() -> None:
         if any(a.get("impact") == imp for a in active_articles):
             all_impacts.append(imp)
 
-    todays_articles = [a for a in articles if a["day"] == today]
+    todays_articles = [a for a in articles if a.get("day") == today]
     if not todays_articles and all_days_grouped:
         todays_articles = all_days_grouped[0][1]
 
@@ -198,12 +222,16 @@ def generate_site() -> None:
     landscape_bullets = generate_landscape_bullets(todays_articles)
 
     cutoff_7d = (now_utc() - timedelta(days=7)).strftime("%Y-%m-%d")
-    week_articles = [a for a in articles if a["day"] >= cutoff_7d]
-    top_topics = extract_top_topics(week_articles)
+    week_articles = [a for a in articles if a.get("day", "") >= cutoff_7d]
+    top_topics = extract_top_topics(week_articles if week_articles else articles)
 
-    max_homepage = settings["max_articles_per_page"]
     homepage_articles = active_articles[:max_homepage]
     homepage_days = _group_by_day(homepage_articles)
+
+    logger.info(
+        "SITE: total_stored=%d | homepage_calendar_cutoff=%s | homepage_rows=%d | fallback=%s",
+        len(articles), active_cutoff, len(homepage_articles), homepage_fallback,
+    )
 
     index_tpl = env.get_template("index.html")
     index_html = index_tpl.render(
@@ -224,9 +252,14 @@ def generate_site() -> None:
         all_vendors=all_vendors,
         all_themes=all_themes,
         all_impacts=all_impacts,
+        pipeline_diag=pipeline_diag,
+        homepage_calendar_days=calendar_days,
+        homepage_calendar_cutoff=active_cutoff,
+        homepage_fallback=homepage_fallback,
+        total_stored=len(articles),
     )
     (DOCS_DIR / "index.html").write_text(index_html, encoding="utf-8")
-    logger.info("Generated docs/index.html with %d articles", len(homepage_articles))
+    logger.info("Generated docs/index.html with %d homepage rows", len(homepage_articles))
 
     day_tpl = env.get_template("day.html")
     for day_str, day_articles in all_days_grouped:

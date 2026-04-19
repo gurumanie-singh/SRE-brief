@@ -1,0 +1,51 @@
+[
+  {
+    "id": "181525362667a65c",
+    "title": "AWS Weekly Roundup: NVIDIA Nemotron 3 Super on Amazon Bedrock, Nova Forge SDK, Amazon Corretto 26, and more (March 23, 2026)",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-nvidia-nemotron-3-super-on-amazon-bedrock-nova-forge-sdk-amazon-corretto-26-and-more-march-23-2026/",
+    "published": "2026-03-23T16:40:41+00:00",
+    "fetched_at": "2026-04-19T02:30:03.285678+00:00",
+    "summary": "Hello! I’m Daniel Abib, and this is my first AWS Weekly Roundup. I’m a Senior Specialist Solutions Architect at AWS, focused on the generative AI and Amazon Bedrock. With over 28 years of experience in solution architecture, software development, and cloud architecture, I help Startups & Enterprises harness the power of generative AI with Amazon Bedrock. I’ve been at AWS for more than six and a...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-03-23",
+    "impact": "high",
+    "vendors": [
+      "AWS",
+      "Kubernetes"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Amazon Corretto 26 is now generally available — Amazon Corretto 26, the latest long-term support (LTS) release of the no-cost, production-ready distribution of OpenJDK, is now generally available. Corretto 26 includes th",
+      "Amazon CloudWatch Logs now supports log ingestion using HTTP-based protocol — Amazon CloudWatch Logs now supports ingesting logs using an HTTP-based protocol, making it simpler to send logs from applications and services",
+      "Amazon EKS announces 99.99% Service Level Agreement and new 8XL scaling tier for Provisioned Control Plane clusters — Amazon EKS now offers a 99.99% Service Level Agreement (SLA) for clusters running on Provisioned Contr",
+      "Here are some additional posts and resources that you might find interesting:",
+      "AWS Summits — Join AWS Summits in 2026, free in-person events where you can explore emerging cloud and AI technologies, learn best practices, and network with industry peers and experts. Upcoming Summits include Paris (A",
+      "This post is part of our Weekly Roundup series. Check back each week for a quick roundup of interesting news and announcements from AWS!"
+    ],
+    "sections": {
+      "overview": "I’m Daniel Abib, and this is my first AWS Weekly Roundup. I’m a Senior Specialist Solutions Architect at AWS, focused on the generative AI and Amazon Bedrock. With over 28 years of experience in solution architecture, software development, and cloud architecture, I help Startups & Enterprises harness the power of generative AI with Amazon Bedrock.",
+      "technical_breakdown": "You can now identify which Availability Zone your Lambda function is running in, enabling better observability, more informed architectural decisions, and simplified troubleshooting for latency-sensitive and multi-AZ workloads.\n\nEKS is also introducing the 8XL scaling tier, the largest available Provisioned Control Plane tier, which doubles the Kubernetes API server request processing capacity of the next lower 4XL tier — ideal for large-scale workloads like AI/ML training, high-performance computing (HPC), and large-scale data processing.\n\nQueries you run for the first time — without cached results — now execute significantly faster, reducing wait times for interactive dashboards and accelerating your ETL pipelines.\n\nAmazon CloudWatch Logs now supports log ingestion using HTTP-based protocol — Amazon CloudWatch Logs now supports ingesting logs using an HTTP-based protocol, making it simpler to send logs from applications and services that use standard HTTP endpoints.\n\nUpcoming AWS events\n Check your calendar and sign up for upcoming AWS events:\n\n \n \n AWS Summits — Join AWS Summits in 2026, free in-person events where you can explore emerging cloud and AI technologies, learn best practices, and network with industry peers and experts.",
+      "impact": "I’ve been at AWS for more than six and a half years, working closely with customers across Latin America, and I’m also passionate about Serverless technologies. This is particularly impactful for workloads with high query variability where cache hits are less frequent. AWS Lambda now supports Availability Zone metadata — AWS Lambda now provides Availability Zone metadata for your function invocations. You can now identify which Availability Zone your Lambda function is running in, enabling better observability, more informed architectural decisions, and simplified troubleshooting for latency-sensitive and multi-AZ workloads.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Corretto 26 includes the latest Java language features, performance improvements, and security patches, all backed by long-term support from AWS.\n\nYou can now identify which Availability Zone your Lambda function is running in, enabling better observability, more informed architectural decisions, and simplified troubleshooting for latency-sensitive and multi-AZ workloads.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Amazon EKS announces 99.99% Service Level Agreement and new 8XL scaling tier for Provisioned Control Plane clusters — Amazon EKS now offers a 99.99% Service Level Agreement (SLA) for clusters running on Provisioned Control Plane, up from the 99.95% SLA offered on standard control plane. EKS is also introducing the 8XL scaling tier, the largest available Provisioned Control Plane tier, which doubles the Kubernetes API server request processing capacity of the next lower 4XL tier — ideal for large-scale workloads like AI/ML training, high-performance computing (HPC), and large-scale data processing. Strands Steering Hooks achieved 100% agent accuracy — The Strands Agents team published results showing that Steering Hooks can achieve 100% agent accuracy, outperforming both prompt engineering and rigid workflow approaches for controlling agent behavior.",
+      "incident_timeline": "Amazon Corretto 26 is now generally available — Amazon Corretto 26, the latest long-term support (LTS) release of the no-cost, production-ready distribution of OpenJDK, is now generally available. Corretto 26 includes th\nAmazon CloudWatch Logs now supports log ingestion using HTTP-based protocol — Amazon CloudWatch Logs now supports ingesting logs using an HTTP-based protocol, making it simpler to send logs from applications and services\nAmazon EKS announces 99.99% Service Level Agreement and new 8XL scaling tier for Provisioned Control Plane clusters — Amazon EKS now offers a 99.99% Service Level Agreement (SLA) for clusters running on Provisioned Contr\nHere are some additional posts and resources that you might find interesting:\nAWS Summits — Join AWS Summits in 2026, free in-person events where you can explore emerging cloud and AI technologies, learn best practices, and network with industry peers and experts. Upcoming Summits include Paris (A\nThis post is part of our Weekly Roundup series. Check back each week for a quick roundup of interesting news and announcements from AWS!",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "I’m Daniel Abib, and this is my first AWS Weekly Roundup. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

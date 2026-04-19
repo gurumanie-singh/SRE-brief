@@ -32,6 +32,18 @@ jobs:
       - name: Run hourly site update
         run: python -m scripts.run_hourly
 
+      - name: Report pipeline stats
+        if: always()
+        run: |
+          echo "=== data/pipeline_stats.json ==="
+          if [ -f data/pipeline_stats.json ]; then
+            cat data/pipeline_stats.json
+          else
+            echo "MISSING: data/pipeline_stats.json (process step may have failed before write)"
+          fi
+          echo "=== data/days (day JSON files) ==="
+          ls -la data/days/*.json 2>/dev/null || echo "No day JSON files present"
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"

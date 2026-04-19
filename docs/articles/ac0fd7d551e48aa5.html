@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proximity automation with Red Hat Ansible Automation Platform and Red Hat OpenShift Virtualization — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-15.html" class="back-link">← 15 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">15 April 2026, 07:31</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Proximity automation with Red Hat Ansible Automation Platform and Red Hat OpenShift Virtualization</h1>
+
+      <p class="subtitle">This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). This proposed approach eliminates the need for dedicated execution nodes.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). This proposed approach eliminates the need for dedicated execution nodes.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). This proposed approach eliminates the need for dedicated execution nodes. It fully leverages the cloud-native capabilities of Ansible deployed using an operator, delegating the dynamic management of automation workloads to Kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Then replace the contents of Pod spec override with this (as shown in Figure 4):</p>
+<p>apiVersion: v1 kind: Pod metadata:  namespace: security01  labels:  ansible_job: &#39;&#39;  annotations:  k8s.v1.cni.cncf.io/networks: security01/vm-net spec:  nodeSelector:  placement-node: node1  serviceAccountName: security-compliance-cg  automountServiceAccountToken: false  affinity:  podAntiAffinity:  preferredDuringSchedulingIgnoredDuringExecution:  - weight: 100  podAffinityTerm:  labelSelector:  matchExpressions:  - key: ansible_job  operator: Exists  topologyKey: kubernetes.io/hostname  containers:  - image: &gt;-  registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9@sha256:17be45bba90a79f439d4571f1c92331edfbb9a75efabd58d30ea5424bca8cee0  name: worker  args:  - ansible-runner  - worker  - &#39;--private-data-dir=/runner&#39;  resources:  requests:  cpu: 1  memory: 2Gi</p>
+<p>Figure 4: Customizing the IntanceGroup in Red Hat Ansible Automation Platform.</p>
+<p>For example, it&#39;s 6 7 in this output:</p>
+<p>Fedora Linux 43 (Cloud Edition) Kernel 6.17.1-300.fc43.x86_64 on x86_64 (tty1)</p>
+<p>enp1s0: 10.10.1.102 fe80::a2:90ff:fe00:16 Try contacting this VM&#39;s SSH server via &#39;ssh vsockx1&#39; from host.</p>
+<p>security01 login: fedora Password: [systemd] Failed Units: 1  dnf-makecache.service [fedora@security01 ~]$ ls 55 56 58 59 65 67 [fedora@security01 ~]$ _ Networking model and execution flow To summarize, for this methodology:</p>
+<p>No external SSH exposure is required  The environment is prepared on both clusters  Ansible creates a container group  The pod job is scheduled on the managed cluster  Ansible connects to VMs using vm-net NetworkAttachmentDefinition  Enterprise network topology A testing environment is different from production.</p>
+<p>Paste in this content, replacing securityXX with security01 and security02 in the matching files, but leave the namespace as security01 in both files:</p>
+<p># vm-securityXX.yaml apiVersion: kubevirt.io/v1 kind: VirtualMachine metadata:  name: securityXX  namespace: security01 spec:  dataVolumeTemplates:  - metadata:  name: securityXX-volume  spec:  sourceRef:  kind: DataSource  name: fedora  namespace: openshift-virtualization-os-images  storage:  storageClassName: ocs-external-storagecluster-ceph-rbd  instancetype:  name: u1.medium  preference:  name: fedora  running: true  template:  metadata:  labels:  network.kubevirt.io/headlessService: headless  spec:  nodeSelector:  placement-node: node1  domain:  devices:  autoattachPodInterface: false  disks:  - disk:  bus: virtio  name: cloudinitdisk  interfaces:  - bridge: {}  model: virtio  name: default  networks:  - name: default  multus:  networkName: vm-net  subdomain: headless  volumes:  - dataVolume:  name: securityXX-volume  name: rootdisk  - cloudInitNoCloud:  userData: |  #cloud-config  chpasswd:  expire: false  password: fedora  user: fedora</p>
+<p>write_files:  - path: /usr/local/bin/fix-ssh.sh  permissions: &#39;0755&#39;  owner: root:root  content: |  #!/bin/bash  set -e</p>
+<p>FILE=&#34;/etc/ssh/sshd_config.d/50-cloud-init.conf&#34;</p>
+<p>for i in {1..10}; do  [ -f &#34;$FILE&#34; ] &amp;&amp; break  sleep 1  done</p>
+<p>sed -i &#39;s/^PasswordAuthentication.*/PasswordAuthentication yes/&#39; &#34;$FILE&#34;</p>
+<p>grep -q &#34;^PasswordAuthentication&#34; &#34;$FILE&#34; || echo &#34;PasswordAuthentication yes&#34; &gt;&gt; &#34;$FILE&#34;</p>
+<p>systemctl restart sshd</p>
+<p>runcmd:  - /usr/local/bin/fix-ssh.sh  name: cloudinitdisk Both VirtualMachines have the following access parameters:</p>
+<p>Username: fedora   Password: fedora   SSH access is enabled on port 22 through the NetworkAttachmentDefinition vm-net .</p>
+<p>Note the following section, where we have defined serviceAccount, namespace , and NetworkAttachmentDefinition already prepared on the remote cluster:</p>
+<p>apiVersion: v1 kind: Pod metadata:  namespace: security01  labels:  ansible_job: &#39;&#39;  annotations:  k8s.v1.cni.cncf.io/networks: security01/vm-net spec:  nodeSelector:  placement-node: node1  serviceAccountName: security-compliance-cg [...] Click the Save container group button to save changes.</p>
+<p>The result is a distributed automation paradigm that separates control plane and execution plane, optimizes network traffic, and enables secure and scalable operations on on-premise VMs while remaining fully aligned with the declarative model of Kubernetes and OpenShift.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>This command saves the token to a file:</p>
+<p>$ oc create token security-compliance-cg \ --duration=$((365*24))h &gt; security-compliance-cg.token Creating the NetworkAttachmentDefinition For the virtual machines to use this network, we must create a NetworkAttachmentDefinition. Paste in this content, replacing securityXX with security01 and security02 in the matching files, but leave the namespace as security01 in both files:</p>
+<p># vm-securityXX.yaml apiVersion: kubevirt.io/v1 kind: VirtualMachine metadata:  name: securityXX  namespace: security01 spec:  dataVolumeTemplates:  - metadata:  name: securityXX-volume  spec:  sourceRef:  kind: DataSource  name: fedora  namespace: openshift-virtualization-os-images  storage:  storageClassName: ocs-external-storagecluster-ceph-rbd  instancetype:  name: u1.medium  preference:  name: fedora  running: true  template:  metadata:  labels:  network.kubevirt.io/headlessService: headless  spec:  nodeSelector:  placement-node: node1  domain:  devices:  autoattachPodInterface: false  disks:  - disk:  bus: virtio  name: cloudinitdisk  interfaces:  - bridge: {}  model: virtio  name: default  networks:  - name: default  multus:  networkName: vm-net  subdomain: headless  volumes:  - dataVolume:  name: securityXX-volume  name: rootdisk  - cloudInitNoCloud:  userData: |  #cloud-config  chpasswd:  expire: false  password: fedora  user: fedora</p>
+<p>write_files:  - path: /usr/local/bin/fix-ssh.sh  permissions: &#39;0755&#39;  owner: root:root  content: |  #!/bin/bash  set -e</p>
+<p>FILE=&#34;/etc/ssh/sshd_config.d/50-cloud-init.conf&#34;</p>
+<p>for i in {1..10}; do  [ -f &#34;$FILE&#34; ] &amp;&amp; break  sleep 1  done</p>
+<p>sed -i &#39;s/^PasswordAuthentication.*/PasswordAuthentication yes/&#39; &#34;$FILE&#34;</p>
+<p>grep -q &#34;^PasswordAuthentication&#34; &#34;$FILE&#34; || echo &#34;PasswordAuthentication yes&#34; &gt;&gt; &#34;$FILE&#34;</p>
+<p>systemctl restart sshd</p>
+<p>runcmd:  - /usr/local/bin/fix-ssh.sh  name: cloudinitdisk Both VirtualMachines have the following access parameters:</p>
+<p>Username: fedora   Password: fedora   SSH access is enabled on port 22 through the NetworkAttachmentDefinition vm-net . Name: 10.10.1.101 (use your VM IP address)  Description: security01 (adjust for the applicable VM)  Enabled: Yes  Variables: ansible_user: fedora and ansible_password: fedora   Ansible project and job template Define a new Ansible project with the type scm , and create a playbook:</p>
+<p>- name: Create folder on remote host  hosts: all  gather_facts: false</p>
+<p>tasks:</p>
+<p>- name: Create folder 1  ansible.builtin.file:  path: &#34;/home/fedora/{{ awx_job_id }}&#34;  state: directory</p>
+<p>- name: Print hostname  ansible.builtin.command: hostname This playbook creates a folder named with awx_job_id in /home/fedora .</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Paste in this content, replacing securityXX with security01 and security02 in the matching files, but leave the namespace as security01 in both files:</p>
+<p># vm-securityXX.yaml apiVersion: kubevirt.io/v1 kind: VirtualMachine metadata:  name: securityXX  namespace: security01 spec:  dataVolumeTemplates:  - metadata:  name: securityXX-volume  spec:  sourceRef:  kind: DataSource  name: fedora  namespace: openshift-virtualization-os-images  storage:  storageClassName: ocs-external-storagecluster-ceph-rbd  instancetype:  name: u1.medium  preference:  name: fedora  running: true  template:  metadata:  labels:  network.kubevirt.io/headlessService: headless  spec:  nodeSelector:  placement-node: node1  domain:  devices:  autoattachPodInterface: false  disks:  - disk:  bus: virtio  name: cloudinitdisk  interfaces:  - bridge: {}  model: virtio  name: default  networks:  - name: default  multus:  networkName: vm-net  subdomain: headless  volumes:  - dataVolume:  name: securityXX-volume  name: rootdisk  - cloudInitNoCloud:  userData: |  #cloud-config  chpasswd:  expire: false  password: fedora  user: fedora</p>
+<p>write_files:  - path: /usr/local/bin/fix-ssh.sh  permissions: &#39;0755&#39;  owner: root:root  content: |  #!/bin/bash  set -e</p>
+<p>FILE=&#34;/etc/ssh/sshd_config.d/50-cloud-init.conf&#34;</p>
+<p>for i in {1..10}; do  [ -f &#34;$FILE&#34; ] &amp;&amp; break  sleep 1  done</p>
+<p>sed -i &#39;s/^PasswordAuthentication.*/PasswordAuthentication yes/&#39; &#34;$FILE&#34;</p>
+<p>grep -q &#34;^PasswordAuthentication&#34; &#34;$FILE&#34; || echo &#34;PasswordAuthentication yes&#34; &gt;&gt; &#34;$FILE&#34;</p>
+<p>systemctl restart sshd</p>
+<p>runcmd:  - /usr/local/bin/fix-ssh.sh  name: cloudinitdisk Both VirtualMachines have the following access parameters:</p>
+<p>Username: fedora   Password: fedora   SSH access is enabled on port 22 through the NetworkAttachmentDefinition vm-net .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>This ensures integration with existing data center networking, improved performance, and clear separation of concerns.</p>
+<p>First, it improves security by eliminating the need to expose SSH access from the management cluster to on-premise virtual machines.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. This article describes an architectural model for executing Red Hat Ansible Automation Platform automations in a hybrid environment where a cloud-hosted management cluster controls on-premise bare-metal Red Hat OpenShift Virtualization clusters hosting critical virtual machines (VM). The result is a distributed automation paradigm that separates control plane and execution plane, optimizes network traffic, and enables secure and scalable operations on on-premise VMs while remaining fully aligned with the declarative model of Kubernetes and OpenShift. Working on OpenShift Virtualization (managed cluster) {#working-on-openshift-virtualization-(managed-cluster)} The following operations refer to Instance and Container Group :</p>
+<p>Labeling node Because this demo uses a bridged network (CNI bridge), which is node-local, we enforce workload placement on a specific node for simplicity.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>This solution avoids opening direct network channels from the management cluster to the VMs (for example, SSH), mitigating risk of intrusive policies and expanded attack surfaces. Automation orchestration instead relies </li>
+            <li>VMS for testing purpose</li>
+            <li>systemctl restart sshd</li>
+            <li>registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9@sha256:17be45bba90a79f439d4571f1c92331edfbb9a75efabd58d30ea5424bca8cee0</li>
+            <li>NAME READY STATUS RESTARTS AGE</li>
+            <li>enp1s0: 10.10.1.102 fe80::a2:90ff:fe00:16</li>
+            <li>Enterprise network topology A testing environment is different from production. This section describes a production-grade networking architecture in OpenShift that integrates:</li>
+            <li>Second, it introduces the concept of execution proximity, where automation tasks are executed directly within the target cluster, in the same namespace and network context as the virtual machines. This not only reduces l</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/15/proximity-automation-red-hat-ansible-automation-platform-and-red-hat-openshift" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

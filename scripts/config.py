@@ -62,6 +62,10 @@ def get_settings(config: dict[str, Any] | None = None) -> dict[str, Any]:
         "scrape_timeout_seconds": 12,
         "scrape_max_chars": 12000,
         "scrape_max_articles_per_run": 8,
+        # Homepage lists articles whose calendar `day` falls in this window (UTC day strings).
+        # If that yields zero rows but data exists, generate_site falls back to newest by `published`.
+        "homepage_calendar_days": 7,
+        "homepage_recency_fallback": True,
     }
     if config is None:
         config = load_feeds_config()

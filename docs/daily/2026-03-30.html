@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRE Brief — 30 March 2026</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <a href="../index.html" class="back-link">← Back to latest</a>
+
+  <div class="brief-header">
+    <div class="brief-primary">
+      <h1 class="brief-title">30 March 2026</h1>
+      <span class="brief-sub">3 items</span>
+    </div>
+  </div>
+
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="controls-bar" id="controlsBar">
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search titles, vendors, themes…" autocomplete="off">
+      <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
+    </div>
+    <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
+      <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+        More
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-results-count" id="filterCount" style="display:none"></div>
+
+  <div class="adv-filters" id="advFilters" hidden>
+    <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Reliability theme</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="database,networking"
+       data-vendors="AWS"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="aws weekly roundup: aws ai/ml scholars program, agent plugin for aws serverless, and more (march 30, 2026)"
+       data-id="e3e8afdfffc6fc4d"
+       data-published="2026-03-30T16:11:28+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span>        <time class="meta-time" data-iso="2026-03-30T16:11:28+00:00" title="30 March 2026, 11:11">30 March 2026, 11:11</time>
+      </div>
+      <h3 class="card-title">AWS Weekly Roundup: AWS AI/ML Scholars program, Agent Plugin for AWS Serverless, and more (March 30, 2026)</h3>
+      <p class="card-summary">Last week, what excited me most was the launch of the 2026 AWS AI &amp; ML Scholars program by Swami Sivasubramanian , VP of AWS Agentic AI, to provide free AI education to up to 100,000 learners worldwide. The program has two phases: a Challenge phase where you’ll learn foundational generative AI skills, followed by a fully funded three-month Udacity Nanodegree for the top 4,500 performers.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">AWS News Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Last week, what excited me most was the launch of the 2026 AWS AI &amp; ML Scholars program by Swami Sivasubramanian , VP of AWS Agentic AI, to provide free AI education to up to 100,000 learners worldwide. The program has two phases: a Challenge phase where you’ll learn foundational generative AI skills, followed by a fully funded three-month Udacity Nanodegree for the top 4,500 performers. Anyone 18 or older can apply, with no prior AI or ML experience required.</p></div>
+      <div class="detail-links">
+        <a href="../articles/e3e8afdfffc6fc4d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-ai-ml-scholars-program-agent-plugin-for-aws-serverless-and-more-march-30-2026/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="deployment,kubernetes,networking,observability,scaling"
+       data-vendors="Kubernetes,Slack,Stack Overflow"
+       data-impact="high"
+       data-theme="observability"
+       data-title="kubernetes v1.36 sneak peek"
+       data-id="3803ab04576c810a"
+       data-published="2026-03-30T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-03-30T00:00:00+00:00" title="29 March 2026, 19:00">29 March 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">Kubernetes v1.36 Sneak Peek</h3>
+      <p class="card-summary">Kubernetes v1.36 is coming at the end of April 2026. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Kubernetes Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Kubernetes v1.36 is coming at the end of April 2026. This release will include removals and deprecations, and it is packed with an impressive number of enhancements. Here are some of the features we are most excited about in this cycle!</p></div>
+      <div class="detail-links">
+        <a href="../articles/3803ab04576c810a.html" class="detail-read">Open structured brief →</a>
+        <a href="https://kubernetes.io/blog/2026/03/30/kubernetes-v1-36-sneak-peek/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors=""
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="what&#39;s new in eck: autoops cloud connected, air-gapped registry support, and composable configuration policies"
+       data-id="b1169861fb3f500c"
+       data-published="2026-03-30T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-03-30T00:00:00+00:00" title="29 March 2026, 19:00">29 March 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">What&#39;s new in ECK: AutoOps Cloud Connected, air-gapped registry support, and composable configuration policies</h3>
+      <p class="card-summary">ECK 3.3.1 adds AutoOps Cloud Connected for automated cluster health monitoring, a self-hosted Package Registry for air-gapped Fleet support, and composable Stack Config Policies for layered configuration management across multiple clusters.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>ECK 3.3.1 adds AutoOps Cloud Connected for automated cluster health monitoring, a self-hosted Package Registry for air-gapped Fleet support, and composable Stack Config Policies for layered configuration management across multiple clusters.</p></div>
+      <div class="detail-links">
+        <a href="../articles/b1169861fb3f500c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/whats-new-elastic-cloud-on-kubernetes" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
