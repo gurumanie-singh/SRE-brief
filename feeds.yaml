@@ -1,0 +1,154 @@
+# SRE Brief — feeds and heuristics configuration
+# Add or remove RSS sources here (do not hardcode URLs in Python).
+
+feeds:
+  - name: Netflix TechBlog
+    url: https://netflixtechblog.com/feed
+  - name: AWS News Blog
+    url: https://aws.amazon.com/blogs/aws/feed/
+  - name: Cloudflare Blog
+    url: https://blog.cloudflare.com/rss/
+  - name: Kubernetes Blog
+    url: https://kubernetes.io/feed.xml
+  - name: GitHub Blog
+    url: https://github.blog/feed/
+  - name: HashiCorp Blog
+    url: https://www.hashicorp.com/blog/feed.xml
+  - name: Slack Engineering
+    url: https://slack.engineering/feed
+  - name: Stack Overflow Blog
+    url: https://stackoverflow.blog/feed/
+
+tag_keywords:
+  outage:
+    - outage
+    - down
+    - unavailable
+    - degraded
+    - incident
+    - sev-
+    - sev 
+    - postmortem
+    - post-mortem
+  postmortem:
+    - postmortem
+    - post-mortem
+    - retrospective
+    - lessons learned
+    - root cause
+  latency:
+    - latency
+    - slow
+    - tail latency
+    - p99
+    - timeout
+  capacity:
+    - capacity
+    - overload
+    - throttle
+    - autoscaling
+    - queue backlog
+  kubernetes:
+    - kubernetes
+    - k8s
+    - kubelet
+    - etcd
+    - helm
+  networking:
+    - network
+    - dns
+    - bgp
+    - tcp
+    - packet loss
+    - cdn
+  database:
+    - database
+    - postgres
+    - mysql
+    - redis
+    - dynamo
+    - replication lag
+  observability:
+    - observability
+    - tracing
+    - metrics
+    - logging
+    - opentelemetry
+    - dashboard
+    - alert
+  deployment:
+    - deployment
+    - rollback
+    - canary
+    - release
+    - ci/cd
+  scaling:
+    - scaling
+    - scale out
+    - shard
+    - partition
+
+vendor_keywords:
+  AWS:
+    - amazon web services
+    - " aws "
+    - aws lambda
+    - amazon ec2
+    - cloudwatch
+    - route 53
+  Google Cloud:
+    - google cloud
+    - " gcp "
+    - gke
+    - bigquery
+  Azure:
+    - microsoft azure
+    - " azure "
+  Cloudflare:
+    - cloudflare
+    - workers kv
+  Kubernetes:
+    - kubernetes
+    - k8s
+    - kube-
+  Datadog:
+    - datadog
+  Netflix:
+    - netflix
+  GitHub:
+    - github
+  Stripe:
+    - stripe
+  "Stack Overflow":
+    - stack overflow
+    - stackoverflow
+  HashiCorp:
+    - hashicorp
+    - terraform
+    - vault
+    - consul
+    - nomad
+  Slack:
+    - slack
+
+personalization:
+  preferred_vendors: []
+  highlight_keywords: []
+  # Minimum impact band to include in email (critical, high, medium, low)
+  email_min_impact: ""
+
+settings:
+  timezone: "America/Chicago"
+  active_days: 7
+  max_retention_days: 30
+  max_articles_per_day: 20
+  max_articles_per_page: 30
+  email_max_articles: 15
+  site_title: "SRE Brief"
+  site_description: "Daily operational reliability briefing distilled from engineering RSS sources"
+  site_base_url: ""
+  # Optional: fetch article HTML for richer classification (slower, more network use)
+  enrich_fetch_full_article: false
+  scrape_timeout_seconds: 12
+  scrape_max_chars: 12000
+  scrape_max_articles_per_run: 8

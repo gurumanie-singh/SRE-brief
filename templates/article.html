@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} — {{ site_title }}{% endblock %}
+
+{% block content %}
+<div class="section-inner">
+  <div class="article-page">
+    <a href="{{ prefix }}daily/{{ article.day }}.html" class="back-link">← {{ article.day|human_date }} day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">{{ article.source }}</span>
+        <span class="card-date">{{ article.published|article_time }}</span>
+        {% if article.impact %}
+        <span class="card-severity {{ article.impact }}" title="{{ impact_label(article.impact) }}">{{ impact_label(article.impact) }}</span>
+        {% endif %}
+        {% if article.operational_priority %}
+        <span class="card-action-badge">Ops priority</span>
+        {% endif %}
+      </div>
+
+      <h1 class="title">{{ article.title }}</h1>
+
+      {% if article.email_summary %}
+      <p class="subtitle">{{ article.email_summary }}</p>
+      {% endif %}
+
+      {% if article.operational_priority %}
+      <div class="article-action-banner">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        This item is flagged for operational follow-up — see resolution and lessons sections.
+      </div>
+      {% endif %}
+
+      {% if article.vendors|default([]) or article.tags %}
+      <div class="article-tags">
+        {% for vendor in article.vendors|default([]) %}
+        <span class="vendor-tag">{{ vendor }}</span>
+        {% endfor %}
+        {% for tag in article.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <dl class="article-facts">
+        {% if article.root_cause and article.root_cause != 'unspecified' %}
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>{{ article.root_cause }}</dd></div>
+        {% endif %}
+        {% if article.affected_layer %}
+        <div class="fact-row"><dt>Affected layer</dt><dd>{{ article.affected_layer }}</dd></div>
+        {% endif %}
+        {% if article.reliability_theme %}
+        <div class="fact-row"><dt>Reliability theme</dt><dd>{{ article.reliability_theme }}</dd></div>
+        {% endif %}
+      </dl>
+    </header>
+
+    {% if article.email_summary or article.operational_priority %}
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      {% if article.email_summary %}
+      <p class="quick-take-text">{{ article.email_summary }}</p>
+      {% endif %}
+      {% if article.operational_priority and article.sections and article.sections.resolution %}
+      <p class="quick-take-action">Review mitigation and verification steps in the resolution section.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="article-body">
+      {% if sections.overview %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          {{ sections.overview | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if sections.technical_breakdown %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          {{ sections.technical_breakdown | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if sections.impact %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          {{ sections.impact | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if sections.resolution %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          {{ sections.resolution | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if sections.lessons_learned %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          {{ sections.lessons_learned | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if sections.root_cause_highlight %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          {{ sections.root_cause_highlight | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if article.timeline_entries or sections.incident_timeline %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          {% if article.timeline_entries %}
+          <ul class="timeline-list">
+            {% for line in article.timeline_entries %}
+            <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
+          {% elif sections.incident_timeline %}
+          {{ sections.incident_timeline | paragraphs }}
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if sections.trends %}
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          {{ sections.trends | paragraphs }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if article.related_sources %}
+      <div class="article-section">
+        <div class="article-section-label">Related coverage</div>
+        <div class="article-section-content">
+          {% for src in article.related_sources %}
+          <p><a href="{{ src.link }}" target="_blank" rel="noopener">{{ src.source }}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <a href="{{ article.link }}" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at {{ article.source }}</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

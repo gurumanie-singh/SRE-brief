@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site_title }} — {{ day_human }}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0d0d0c;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0d0d0c;">
+    <tr>
+      <td align="center" style="padding:16px 12px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
+
+          <tr>
+            <td style="padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.08);">
+              <h1 style="margin:0;font-size:22px;color:#f0f0ec;font-weight:700;letter-spacing:-0.02em;">
+                {{ site_title }}
+              </h1>
+              <p style="margin:6px 0 0;font-size:12px;color:#5a5a56;letter-spacing:0.08em;text-transform:uppercase;">
+                Daily reliability briefing — {{ day_human }}
+              </p>
+            </td>
+          </tr>
+
+          {% if landscape_bullets %}
+          <tr>
+            <td style="padding:16px 20px;background:rgba(107,143,255,0.06);border-bottom:1px solid rgba(255,255,255,0.05);">
+              <p style="margin:0 0 6px;font-size:11px;font-weight:600;color:#6b8fff;letter-spacing:0.08em;text-transform:uppercase;">
+                Operations picture
+              </p>
+              {% for bullet in landscape_bullets %}
+              <p style="margin:3px 0;font-size:13px;color:#9a9a94;line-height:1.5;">
+                • {{ bullet }}
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
+          {% endif %}
+
+          {% macro render_section(title, items, accent) %}
+          {% if items %}
+          <tr>
+            <td style="padding:14px 20px 4px;">
+              <p style="margin:0;font-size:11px;font-weight:700;color:{{ accent }};letter-spacing:0.08em;text-transform:uppercase;">
+                {{ title }}
+              </p>
+            </td>
+          </tr>
+          {% for article in items %}
+          <tr>
+            <td style="padding:10px 20px;{% if not loop.last %}border-bottom:1px solid rgba(255,255,255,0.04);{% endif %}">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <span style="font-size:10px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding:2px 7px;border-radius:100px;background:rgba(107,143,255,0.12);color:#6b8fff;">{{ impact_label(article.impact) }}</span>
+                    {% if article.operational_priority %}
+                    <span style="font-size:10px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding:2px 7px;border-radius:100px;background:rgba(239,68,68,0.1);color:#ef4444;margin-left:4px;">OPS</span>
+                    {% endif %}
+                    <span style="font-size:11px;color:#5a5a56;margin-left:4px;">{{ article.source }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top:5px;">
+                    <a href="{% if base_url %}{{ base_url }}/articles/{{ article.id }}.html{% else %}{{ article.link }}{% endif %}" style="font-size:14px;font-weight:600;color:#f0f0ec;text-decoration:none;line-height:1.35;" target="_blank" rel="noopener">
+                      {{ article.title }}
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top:4px;">
+                    <p style="margin:0;font-size:12px;color:#9a9a94;line-height:1.55;">
+                      {{ article.email_summary or article.summary }}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top:6px;">
+                    <a href="{% if base_url %}{{ base_url }}/articles/{{ article.id }}.html{% else %}{{ article.link }}{% endif %}" style="font-size:11px;font-weight:500;color:#6b8fff;text-decoration:none;" target="_blank" rel="noopener">Read more on the briefing site →</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+          {% endmacro %}
+
+          {{ render_section("Incidents / outages", buckets.incidents, "#ef4444") }}
+          {{ render_section("Reliability issues", buckets.reliability, "#eab308") }}
+          {{ render_section("Trends / insights", buckets.insights, "#22c55e") }}
+
+          <tr>
+            <td style="padding:24px 20px;text-align:center;border-top:1px solid rgba(255,255,255,0.08);">
+              {% if base_url %}
+              <a href="{{ base_url }}/daily/{{ day }}.html" style="display:inline-block;padding:11px 24px;background-color:#6b8fff;color:#fff;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;" target="_blank" rel="noopener">
+                Open day sheet
+              </a>
+              <br><br>
+              {% endif %}
+              <p style="margin:0;font-size:11px;color:#5a5a56;">
+                {{ site_title }} — generated from public RSS feeds
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
