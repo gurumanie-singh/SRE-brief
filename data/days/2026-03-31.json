@@ -5,11 +5,7 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/announcing-the-aws-sustainability-console-programmatic-access-configurable-csv-reports-and-scope-1-3-reporting-in-one-place/",
     "published": "2026-03-31T19:04:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:03.283521+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:19.823949+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:51.632472+00:00",
     "summary": "As many of you are, I’m a parent. And like you, I think about the world I’m building for my children. That’s part of why today’s launch matters for many of us. I’m excited to announce the launch of the AWS Sustainability console , a standalone service that consolidates all AWS sustainability reporting and resources in one place.",
     "tags": [
       "deployment",
@@ -20,10 +16,7 @@
     "impact": "medium",
     "vendors": [
       "AWS",
-<<<<<<< HEAD
       "Elastic",
-=======
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
       "HashiCorp"
     ],
     "operational_priority": false,
@@ -65,11 +58,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/03/31/how-can-you-test-your-code-when-you-don-t-know-what-s-in-it/",
     "published": "2026-03-31T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089632+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.185678+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.361997+00:00",
     "summary": "Ryan hosts SmartBear’s VP of AI and Architecture Fitz Nowlan to explore how we’re moving away from old assumptions about software development, the challenges of testing MCP servers as LLM-driven agents introduce non-determinism that breaks tradition, and how data locality and data construction are becoming more valuable when source code is so easy to generate.",
     "tags": [],
     "day": "2026-03-31",

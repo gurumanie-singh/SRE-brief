@@ -5,11 +5,7 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/aws-interconnect-is-now-generally-available-with-a-new-option-to-simplify-last-mile-connectivity/",
     "published": "2026-04-14T23:54:47+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:03.280464+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:19.817474+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:51.629264+00:00",
     "summary": "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud providers. We’re also introducing AWS Interconnect – last mile , a new capability that simplifies how you establish high-speed, private connections to AWS from your branch offices...",
     "tags": [
       "capacity",
@@ -66,7 +62,6 @@
         "link": "https://blog.cloudflare.com/improved-developer-security/"
       },
       {
-<<<<<<< HEAD
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/04/14/building-red-hat-mcp-ready-images-image-mode-red-hat-enterprise-linux"
       },
@@ -81,10 +76,6 @@
       {
         "source": "Elastic Blog",
         "link": "https://www.elastic.co/blog/cloud-serverless-recap-2025"
-=======
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/vault-enterprise-20-modernizes-identity-security-at-scale"
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
       }
     ],
     "highlighted": false
@@ -95,11 +86,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/14/who-needs-vcs-when-you-have-friends-like-these/",
     "published": "2026-04-14T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089011+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.184430+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.361334+00:00",
     "summary": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.",
     "tags": [],
     "day": "2026-04-14",
@@ -123,7 +110,6 @@
     "email_summary": "Ryan welcomes Runpod co-founder and CEO Zhen Lu to discuss circumventing VC money by going straight to your community for funding, how Zhen balances founder intuition with user feedback when the community is the one backing the project, and Runpod’s journey from basement servers to global infrastructure partnerships with a software-layer approach and data-first paradigm.",
     "related_sources": [],
     "highlighted": false
-<<<<<<< HEAD
   },
   {
     "id": "72537bc0d285e074",
@@ -131,7 +117,7 @@
     "source": "Elastic Blog",
     "link": "https://www.elastic.co/blog/real-time-geospatial-intelligence-elastic",
     "published": "2026-04-14T00:00:00+00:00",
-    "fetched_at": "2026-04-19T02:30:06.676758+00:00",
+    "fetched_at": "2026-04-19T18:03:55.060065+00:00",
     "summary": "Pubsec teams need real-time intelligence as conditions rapidly change. Learn how geospatial analytics unifies mission and IT data, enabling faster decisions, better coordination, and secure insights in on-prem, air-gapped, and cloud environments.",
     "tags": [],
     "day": "2026-04-14",
@@ -157,7 +143,5 @@
     "email_summary": "Pubsec teams need real-time intelligence as conditions rapidly change. Learn how geospatial analytics unifies mission and IT data, enabling faster decisions, better coordination, and secure insights in on-prem, air-gapped, and cloud environments.",
     "related_sources": [],
     "highlighted": false
-=======
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
   }
 ]

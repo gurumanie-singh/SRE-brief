@@ -5,11 +5,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/03/24/multi-stage-attacks-are-the-final-fantasy-bosses-of-security/",
     "published": "2026-03-24T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089959+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.186243+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.362350+00:00",
     "summary": "Ryan welcomes Gee Rittenhouse, VP of Security at AWS, to the show to discuss the complexities of multi-stage attacks in cybersecurity and how these attacks unfold, the challenges in detecting them, and the evolving role of AI in both enhancing security and creating new vulnerabilities.",
     "tags": [],
     "day": "2026-03-24",

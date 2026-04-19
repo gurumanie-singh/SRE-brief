@@ -5,11 +5,7 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-nvidia-nemotron-3-super-on-amazon-bedrock-nova-forge-sdk-amazon-corretto-26-and-more-march-23-2026/",
     "published": "2026-03-23T16:40:41+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:03.285678+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:19.828080+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:51.634445+00:00",
     "summary": "Hello! I’m Daniel Abib, and this is my first AWS Weekly Roundup. I’m a Senior Specialist Solutions Architect at AWS, focused on the generative AI and Amazon Bedrock. With over 28 years of experience in solution architecture, software development, and cloud architecture, I help Startups & Enterprises harness the power of generative AI with Amazon Bedrock. I’ve been at AWS for more than six and a...",
     "tags": [
       "capacity",

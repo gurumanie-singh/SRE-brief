@@ -5,11 +5,7 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/launching-s3-files-making-s3-buckets-accessible-as-file-systems/",
     "published": "2026-04-07T19:18:32+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:03.281629+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:19.819984+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:51.630467+00:00",
     "summary": "I’m excited to announce Amazon S3 Files , a new file system that seamlessly connects any AWS compute resource with Amazon Simple Storage Service (Amazon S3) .",
     "tags": [
       "kubernetes",
@@ -21,10 +17,7 @@
     "impact": "medium",
     "vendors": [
       "AWS",
-<<<<<<< HEAD
       "Elastic",
-=======
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
       "Kubernetes"
     ],
     "operational_priority": false,
@@ -61,11 +54,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/07/he-designed-c-to-solve-your-code-problems/",
     "published": "2026-04-07T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089321+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.185087+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.361665+00:00",
     "summary": "Ryan welcomes Bjarne Stroustrup, designer of C++ and professor at Columbia, to the show to dive into all things C++, from its history to where it's going today.",
     "tags": [],
     "day": "2026-04-07",

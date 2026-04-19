@@ -1,12 +1,11 @@
 [
   {
-<<<<<<< HEAD
     "id": "6998e82aafa927b7",
     "title": "Evaluating Netflix Show Synopses with LLM-as-a-Judge",
     "source": "Netflix TechBlog",
     "link": "https://netflixtechblog.com/evaluating-netflix-show-synopses-with-llm-as-a-judge-6269251e6f28?source=rss----2615bd06b42e---4",
     "published": "2026-04-10T16:26:01+00:00",
-    "fetched_at": "2026-04-19T02:30:02.565083+00:00",
+    "fetched_at": "2026-04-19T18:03:50.460623+00:00",
     "summary": "by Gabriela Alessio , Cameron Taylor , and Cameron R. Wolfe ",
     "tags": [
       "capacity",
@@ -50,18 +49,12 @@
     "highlighted": false
   },
   {
-=======
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
     "id": "2956e0cfcf99dacc",
     "title": "GitHub Copilot CLI for Beginners: Getting started with GitHub Copilot CLI",
     "source": "GitHub Blog",
     "link": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-getting-started-with-github-copilot-cli/",
     "published": "2026-04-10T16:00:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:04.951448+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.530077+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:53.119848+00:00",
     "summary": "Welcome to GitHub Copilot CLI for Beginners! In this series ( available in video format and on the GitHub Blog), we ll explore how to use your AI coding assistant directly in your terminal, along with tips and tricks on how to navigate the command line like a pro!",
     "tags": [],
     "day": "2026-04-10",
@@ -103,11 +96,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/10/the-messy-truth-of-your-ai-strategies/",
     "published": "2026-04-10T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089112+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.184695+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.361442+00:00",
     "summary": "Ryan welcomes Hema Raghavan, co-founder and head of engineering at Kumo.ai, to dive into all the messy stuff that comes with implementing AI, from pipeline sprawl to shadow AI.",
     "tags": [],
     "day": "2026-04-10",

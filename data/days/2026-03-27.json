@@ -5,11 +5,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/03/27/prevent-agentic-identity-theft/",
     "published": "2026-03-27T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089751+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.185875+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.362121+00:00",
     "summary": "Ryan is joined by Nancy Wang, CTO of 1Password, to discuss the security challenges local agents present, how enterprises can create robust governance of credentials through zero-knowledge architecture, and the implications of agent intent and misuse in a world where AI agents are becoming more and more integrated into everyday applications.",
     "tags": [],
     "day": "2026-03-27",
@@ -40,11 +36,7 @@
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/modernizing-governance-on-hcp-with-multi-owner-and-global-automation",
     "published": "2026-03-27T07:12:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:05.534526+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.852362+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:53.425187+00:00",
     "summary": "As enterprises scale their infrastructure on the HashiCorp Cloud Platform (HCP), platform teams face the challenge of maintaining security without slowing down developer velocity. Managing a sprawling infrastructure requires identity systems that are robust enough to handle non-human scale while remaining resilient against human operational risks.",
     "tags": [
       "capacity",

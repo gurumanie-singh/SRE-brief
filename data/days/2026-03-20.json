@@ -5,11 +5,7 @@
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps",
     "published": "2026-03-20T20:30:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:05.536049+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.855210+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:53.426633+00:00",
     "summary": "The current state of AI across the enterprise landscape Organizations worldwide are quickly evolving from leveraging simple chat and code assistants to implementing AI agents that can read data, interact with tools, and act autonomously. Microsoft’s 2025 Work Trend Index Annual Report states that 81% of leaders expect agents to be integrated into their AI strategy within the next 12 to 18 months...",
     "tags": [
       "database",
@@ -54,93 +50,6 @@
         "link": "https://kubernetes.io/blog/2026/03/20/ingress2gateway-1-0-release/"
       }
     ],
-    "highlighted": false
-  },
-  {
-    "id": "1e6c4fcc3eae2241",
-    "title": "Running Agents on Kubernetes with Agent Sandbox",
-    "source": "Kubernetes Blog",
-    "link": "https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/",
-    "published": "2026-03-20T10:00:00-08:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:04.782151+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.341694+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
-    "summary": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated.",
-    "tags": [
-      "deployment",
-      "kubernetes",
-      "networking",
-      "outage",
-      "scaling"
-    ],
-    "day": "2026-03-20",
-    "impact": "medium",
-    "vendors": [
-      "GitHub",
-      "Kubernetes",
-      "Slack"
-    ],
-    "operational_priority": false,
-    "root_cause": "unspecified",
-    "affected_layer": "platform — kubernetes",
-    "reliability_theme": "capacity and scale",
-    "timeline_entries": [
-      "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that",
-      "Kubernetes is the de facto standard for orchestrating cloud-native applications precisely because it solves the challenges of extensibility, robust networking, and ecosystem maturity. However, as AI evolves from short-li",
-      "Starting a new pod adds about a second of overhead. That's perfectly fine when deploying a new version of a microservice, but when an agent is invoked after being idle, a one-second cold start breaks the continuity of th",
-      "We recommend you use the latest release as the project is moving fast.",
-      "kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /manifest.yaml",
-      "The Agent Sandbox project is open source and community-driven. If you are building AI platforms, developing agentic frameworks, or are interested in Kubernetes extensibility, we invite you to get involved:"
-    ],
-    "sections": {
-      "overview": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated. Today, the world is witnessing AI v2 eating AI v1.",
-      "technical_breakdown": "The Kubernetes advantage (and the abstraction gap) \n Kubernetes is the de facto standard for orchestrating cloud-native applications precisely because it solves the challenges of extensibility, robust networking, and ecosystem maturity.\n\nIt acts as a lightweight, single-container environment built entirely on Kubernetes primitives, offering:\n\n \n Strong isolation for untrusted code : When an AI agent generates and executes code autonomously, security is paramount.\n\nThis provides the necessary kernel and network isolation required for multi-tenant, untrusted execution.\n\nWe recommend you use the latest release as the project is moving fast.\n\n # Replace \"vX.Y.Z\" with a specific version tag (e.g., \"v0.1.0\") from \n # https://github.com/kubernetes-sigs/agent-sandbox/releases \n export VERSION = \"vX.Y.Z\" \n \n # Install the core components: \n kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /manifest.yaml\n \n # Install the extensions components (optional): \n kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /extensions.yaml\n \n # Install the Python SDK (optional): \n # Create a virtual Python environment \n python3 -m venv .venv\n source .venv/bin/activate\n # Install from PyPI \n pip install k8s-agent-sandbox\n Once installed, you can try out the Python SDK for AI agents or deploy one of the ready-to-use examples to see how easy it is to spin up an isolated agent environment.\n\nAs platform engineering teams look for the right infrastructure to host these new AI workloads, one platform stands out as the natural choice: Kubernetes.",
-      "impact": "This provides the necessary kernel and network isolation required for multi-tenant, untrusted execution. Lifecycle management : Unlike traditional web servers optimized for steady, stateless traffic, an AI agent operates as a stateful workspace that may be idle for hours between tasks. It forces the user or the orchestrating service to wait for the environment to provision before the model can even begin to think or act. Users or orchestration services can simply issue a SandboxClaim against a SandboxTemplate, and the controller immediately hands over a pre-warmed, fully isolated environment to the agent.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
-      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
-      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
-      "root_cause_highlight": "",
-      "incident_timeline": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that\nKubernetes is the de facto standard for orchestrating cloud-native applications precisely because it solves the challenges of extensibility, robust networking, and ecosystem maturity. However, as AI evolves from short-li\nStarting a new pod adds about a second of overhead. That's perfectly fine when deploying a new version of a microservice, but when an agent is invoked after being idle, a one-second cold start breaks the continuity of th\nWe recommend you use the latest release as the project is moving fast.\nkubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /manifest.yaml\nThe Agent Sandbox project is open source and community-driven. If you are building AI platforms, developing agentic frameworks, or are interested in Kubernetes extensibility, we invite you to get involved:",
-      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
-    },
-    "email_summary": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated.",
-    "related_sources": [],
-    "highlighted": false
-  },
-  {
-    "id": "6d0a9327651c8e96",
-    "title": "After all the hype, was 2025 really the year of AI agents?",
-    "source": "Stack Overflow Blog",
-    "link": "https://stackoverflow.blog/2026/03/20/was-2025-really-the-year-of-ai-agents/",
-    "published": "2026-03-20T07:40:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.090070+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.186412+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
-    "summary": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
-    "tags": [],
-    "day": "2026-03-20",
-    "impact": "medium",
-    "vendors": [],
-    "operational_priority": false,
-    "root_cause": "unspecified",
-    "affected_layer": "general production",
-    "reliability_theme": "general reliability",
-    "timeline_entries": [],
-    "sections": {
-      "overview": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
-      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
-      "impact": "Classified impact band: medium. Affected layer signal: general production.",
-      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
-      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
-      "root_cause_highlight": "",
-      "incident_timeline": "",
-      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
-    },
-    "email_summary": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
-    "related_sources": [],
     "highlighted": false
   }
 ]

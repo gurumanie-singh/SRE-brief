@@ -5,11 +5,7 @@
     "source": "AWS News Blog",
     "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-ai-ml-scholars-program-agent-plugin-for-aws-serverless-and-more-march-30-2026/",
     "published": "2026-03-30T16:11:28+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:03.283978+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:19.824951+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:51.632988+00:00",
     "summary": "Last week, what excited me most was the launch of the 2026 AWS AI & ML Scholars program by Swami Sivasubramanian , VP of AWS Agentic AI, to provide free AI education to up to 100,000 learners worldwide. The program has two phases: a Challenge phase where you’ll learn foundational generative AI skills, followed by a fully funded three-month Udacity Nanodegree for the top 4,500 performers. Anyone...",
     "tags": [
       "database",
@@ -49,11 +45,7 @@
     "source": "Kubernetes Blog",
     "link": "https://kubernetes.io/blog/2026/03/30/kubernetes-v1-36-sneak-peek/",
     "published": "2026-03-30T00:00:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:04.780718+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.338446+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:52.924754+00:00",
     "summary": "Kubernetes v1.36 is coming at the end of April 2026. This release will include removals and deprecations, and it is packed with an impressive number of",
     "tags": [
       "deployment",
@@ -94,7 +86,6 @@
     "email_summary": "Kubernetes v1.36 is coming at the end of April 2026. Impact band: high.",
     "related_sources": [],
     "highlighted": false
-<<<<<<< HEAD
   },
   {
     "id": "b1169861fb3f500c",
@@ -102,7 +93,7 @@
     "source": "Elastic Blog",
     "link": "https://www.elastic.co/blog/whats-new-elastic-cloud-on-kubernetes",
     "published": "2026-03-30T00:00:00+00:00",
-    "fetched_at": "2026-04-19T02:30:06.682334+00:00",
+    "fetched_at": "2026-04-19T18:03:55.064015+00:00",
     "summary": "ECK 3.3.1 adds AutoOps Cloud Connected for automated cluster health monitoring, a self-hosted Package Registry for air-gapped Fleet support, and composable Stack Config Policies for layered configuration management across multiple clusters.",
     "tags": [],
     "day": "2026-03-30",
@@ -126,7 +117,5 @@
     "email_summary": "ECK 3.3.1 adds AutoOps Cloud Connected for automated cluster health monitoring, a self-hosted Package Registry for air-gapped Fleet support, and composable Stack Config Policies for layered configuration management across multiple clusters.",
     "related_sources": [],
     "highlighted": false
-=======
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
   }
 ]

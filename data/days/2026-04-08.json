@@ -5,7 +5,7 @@
     "source": "Elastic Blog",
     "link": "https://www.elastic.co/blog/elastic-stack-9-3-3-released",
     "published": "2026-04-08T00:00:00+00:00",
-    "fetched_at": "2026-04-19T02:30:06.681226+00:00",
+    "fetched_at": "2026-04-19T18:03:55.062983+00:00",
     "summary": "Version 9.3.3 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.3 over the previous versions 9.3.2.",
     "tags": [
       "deployment"
@@ -42,7 +42,7 @@
     "source": "Elastic Blog",
     "link": "https://www.elastic.co/blog/elastic-stack-9-2-8-released",
     "published": "2026-04-08T00:00:00+00:00",
-    "fetched_at": "2026-04-19T02:30:06.681361+00:00",
+    "fetched_at": "2026-04-19T18:03:55.063123+00:00",
     "summary": "Version 9.2.8 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.2.8 over the previous version 9.2.7",
     "tags": [
       "deployment"
@@ -79,7 +79,7 @@
     "source": "Elastic Blog",
     "link": "https://www.elastic.co/blog/elastic-stack-8-19-14-released",
     "published": "2026-04-08T00:00:00+00:00",
-    "fetched_at": "2026-04-19T02:30:06.681500+00:00",
+    "fetched_at": "2026-04-19T18:03:55.063261+00:00",
     "summary": "Version 8.19.14 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.14 over the previous version 8.19.13",
     "tags": [
       "deployment"
@@ -116,7 +116,7 @@
     "source": "Elastic Blog",
     "link": "https://www.elastic.co/blog/how-we-monitor-at-elastic",
     "published": "2026-04-08T00:00:00+00:00",
-    "fetched_at": "2026-04-19T02:30:06.682044+00:00",
+    "fetched_at": "2026-04-19T18:03:55.063778+00:00",
     "summary": "At Elastic, we act as “customer zero,” using our own platform to monitor everything. Unified telemetry, AI-driven insights, and automated workflows streamline detection and response — reducing MTTD/MTTR and giving teams a single source of truth.",
     "tags": [],
     "day": "2026-04-08",

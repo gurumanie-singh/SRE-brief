@@ -5,11 +5,7 @@
     "source": "Stack Overflow Blog",
     "link": "https://stackoverflow.blog/2026/04/09/gen-z-needs-a-knowledge-base-and-so-do-you/",
     "published": "2026-04-09T16:00:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:06.089224+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:22.184906+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:54.361557+00:00",
     "summary": "AI tool use is inescapable...especially if you're a young person trying to get an edge in an increasingly difficult job market. But cognitive offloading is dangerous, no matter what age you are. Building a knowledge base can save your brain and skills from atrophy.",
     "tags": [],
     "day": "2026-04-09",
@@ -40,11 +36,7 @@
     "source": "HashiCorp Blog",
     "link": "https://www.hashicorp.com/blog/simplifying-terraform-dynamic-credentials-on-aws-with-native-oidc-integration",
     "published": "2026-04-09T07:00:00+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:05.533296+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.850549+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:53.424190+00:00",
     "summary": "Since we last shared news on using Terraform in AWS AFT , AWS has introduced native OpenID Connect (OIDC) integration for HCP Terraform and Terraform Enterprise within Account Factory for Terraform (AFT). This significantly simplifies how dynamic provider credentials are configured and managed.",
     "tags": [
       "deployment"
@@ -83,11 +75,7 @@
     "source": "GitHub Blog",
     "link": "https://github.blog/news-insights/company-news/github-availability-report-march-2026/",
     "published": "2026-04-09T02:21:17+00:00",
-<<<<<<< HEAD
-    "fetched_at": "2026-04-19T02:30:04.951982+00:00",
-=======
-    "fetched_at": "2026-04-19T02:22:21.530896+00:00",
->>>>>>> 2a7f482a4a9cb8e22b74c85e17c412a9af553ad9
+    "fetched_at": "2026-04-19T18:03:53.120274+00:00",
     "summary": "In March, we experienced four incidents that resulted in degraded performance across GitHub services.",
     "tags": [
       "database",

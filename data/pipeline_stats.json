@@ -2,10 +2,10 @@
   "fetch": {
     "feeds_configured": 11,
     "feeds_attempted": 11,
-    "feeds_ok": 10,
-    "entries_raw_total": 228,
+    "feeds_ok": 11,
+    "entries_raw_total": 268,
     "entries_parse_failed": 0,
-    "articles_after_dedup": 228,
+    "articles_after_dedup": 268,
     "feeds_detail": [
       {
         "name": "Netflix TechBlog",
@@ -72,12 +72,12 @@
         "error": null
       },
       {
-        "name": "Grafana Labs Blog",
-        "url": "https://grafana.com/blog/rss.xml",
-        "ok": false,
-        "entries_raw": 0,
-        "entries_accepted": 0,
-        "error": "zero entries (bozo=True text/html; charset=utf-8 is not an XML media type)"
+        "name": "Fly.io Blog",
+        "url": "https://fly.io/blog/feed.xml",
+        "ok": true,
+        "entries_raw": 40,
+        "entries_accepted": 40,
+        "error": null
       },
       {
         "name": "Elastic Blog",
@@ -100,14 +100,14 @@
   "process": {
     "retention_max_days": 30,
     "retention_cutoff_day": "2026-03-20",
-    "incoming_total": 228,
-    "incoming_after_retention": 96,
-    "dropped_by_retention": 132,
-    "new_articles_this_run": 96,
+    "incoming_total": 268,
+    "incoming_after_retention": 94,
+    "dropped_by_retention": 174,
+    "new_articles_this_run": 94,
     "day_files_touched": 22,
-    "total_articles_on_disk": 77,
+    "total_articles_on_disk": 75,
     "day_json_file_count": 22,
     "warnings": []
   },
-  "written_at": "2026-04-19T02:30:07.357679+00:00"
+  "written_at": "2026-04-19T18:03:55.723426+00:00"
 }
