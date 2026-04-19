@@ -1,0 +1,119 @@
+[
+  {
+    "id": "da48a3a45c49aa52",
+    "title": "Gen Z needs a knowledge base (and so do you)",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/09/gen-z-needs-a-knowledge-base-and-so-do-you/",
+    "published": "2026-04-09T16:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:22.184906+00:00",
+    "summary": "AI tool use is inescapable...especially if you're a young person trying to get an edge in an increasingly difficult job market. But cognitive offloading is dangerous, no matter what age you are. Building a knowledge base can save your brain and skills from atrophy.",
+    "tags": [],
+    "day": "2026-04-09",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "AI tool use is inescapable...especially if you're a young person trying to get an edge in an increasingly difficult job market. But cognitive offloading is dangerous, no matter what age you are. Building a knowledge base can save your brain and skills from atrophy.",
+      "technical_breakdown": "AI tool use is inescapable...especially if you're a young person trying to get an edge in an increasingly difficult job market.\n\nBuilding a knowledge base can save your brain and skills from atrophy.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "AI tool use is inescapable...especially if you're a young person trying to get an edge in an increasingly difficult job market. But cognitive offloading is dangerous, no matter what age you are.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "eba76eac4e018cde",
+    "title": "Simplifying Terraform dynamic credentials on AWS with native OIDC integration",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/simplifying-terraform-dynamic-credentials-on-aws-with-native-oidc-integration",
+    "published": "2026-04-09T07:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:21.850549+00:00",
+    "summary": "Since we last shared news on using Terraform in AWS AFT , AWS has introduced native OpenID Connect (OIDC) integration for HCP Terraform and Terraform Enterprise within Account Factory for Terraform (AFT). This significantly simplifies how dynamic provider credentials are configured and managed.",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-09",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "misconfiguration",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "With this capability enabled ( terraform_oidc_integration = true ), AFT automatically establishes the trust relationship between AWS and Terraform workspaces. This removes the need to manually configure OIDC identity pro",
+      "To get started, review the latest release details and configuration guidance ."
+    ],
+    "sections": {
+      "overview": "Since we last shared news on using Terraform in AWS AFT , AWS has introduced native OpenID Connect (OIDC) integration for HCP Terraform and Terraform Enterprise within Account Factory for Terraform (AFT). This significantly simplifies how dynamic provider credentials are configured and managed. With this capability enabled ( terraform_oidc_integration = true ), AFT automatically establishes the trust relationship between AWS and Terraform workspaces.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: misconfiguration. While effective, this introduced operational overhead and potential for misconfiguration.",
+      "incident_timeline": "With this capability enabled ( terraform_oidc_integration = true ), AFT automatically establishes the trust relationship between AWS and Terraform workspaces. This removes the need to manually configure OIDC identity pro\nTo get started, review the latest release details and configuration guidance .",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Since we last shared news on using Terraform in AWS AFT , AWS has introduced native OpenID Connect (OIDC) integration for HCP Terraform and Terraform Enterprise within Account Factory for Terraform (AFT). This significantly simplifies how dynamic provider credentials are configured and managed.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "b7e1b194cd17eef6",
+    "title": "GitHub availability report: March 2026",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/news-insights/company-news/github-availability-report-march-2026/",
+    "published": "2026-04-09T02:21:17+00:00",
+    "fetched_at": "2026-04-19T02:22:21.530896+00:00",
+    "summary": "In March, we experienced four incidents that resulted in degraded performance across GitHub services.",
+    "tags": [
+      "database",
+      "deployment",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-09",
+    "impact": "critical",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "network edge",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "March 03 18:59 UTC (lasting 1 hour and 10 minutes)",
+      "On March 3, 2026, between 18:46 and 20:09 UTC, GitHub experienced a period of degraded availability impacting github.com, the GitHub API, GitHub Actions, Git operations, GitHub Copilot, and other dependent services. At t",
+      "We understand these incidents disrupted the workflows of developers. While we have made (and are making) substantial, long-term investments in how GitHub is built and operated to improve resilience, we acknowledge we hav",
+      "March 05 16:35 UTC (lasting 2 hours and 55 minutes)",
+      "On March 5, 2026, between 16:24 and 19:30 UTC, GitHub Actions was degraded. During this time, 95% of workflow runs failed to start within 5 minutes with an average delay of 30 minutes, and 10% of workflow runs failed wit",
+      "We mitigated this incident by correcting the misconfigured load balancer. Actions jobs were running successfully starting at 17:24 UTC. The remaining time until we closed the incident was spent burning through the queue ",
+      "March 19 13:44 UTC (lasting 48 minutes)",
+      "On March 19, 2026, between 01:05 and 02:52 UTC, and again on March 20, 2026, between 00:42 and 01:58 UTC, the Copilot Coding Agent service was degraded and users were unable to start new Copilot Agent sessions or view ex"
+    ],
+    "sections": {
+      "overview": "In March, we experienced four incidents that resulted in degraded performance across GitHub services. March 03 18:59 UTC (lasting 1 hour and 10 minutes) \n\n On March 3, 2026, between 18:46 and 20:09 UTC, GitHub experienced a period of degraded availability impacting github.com, the GitHub API, GitHub Actions, Git operations, GitHub Copilot, and other dependent services. At the peak of the incident, github.com request failures reached approximately 40%.",
+      "technical_breakdown": "We are also working on improved alerting to catch misconfigured load balancers before it becomes an incident.\n\nGit operations over HTTP had an error rate of approximately 6%, while SSH was not impacted.\n\nWhile deploying a change to reduce the burden of these writes, a bug caused every user’s cache to expire, get recalculated, and get rewritten.\n\nThe increased load caused replication delays that cascaded down to all affected services.\n\nWe mitigated this issue by immediately rolling back the faulty deployment.",
+      "impact": "March 03 18:59 UTC (lasting 1 hour and 10 minutes) \n\n On March 3, 2026, between 18:46 and 20:09 UTC, GitHub experienced a period of degraded availability impacting github.com, the GitHub API, GitHub Actions, Git operations, GitHub Copilot, and other dependent services. Git operations over HTTP had an error rate of approximately 6%, while SSH was not impacted. We are taking the following immediate steps:\n\n \n We have added a killswitch and improved monitoring to the caching mechanism to ensure we are notified before there is user impact and can respond swiftly. March 05 16:35 UTC (lasting 2 hours and 55 minutes) \n\n On March 5, 2026, between 16:24 and 19:30 UTC, GitHub Actions was degraded.\n\nClassified impact band: critical. Affected layer signal: network edge.",
+      "resolution": "We immediately rolled back the updates that were a contributing factor and have frozen all changes in this area until we complete follow-up work.\n\nWe mitigated each incident by rotating the affected credentials, which restored connectivity and returned error rates to normal.\n\nThe mitigation time was 01:24.\n\nWe have implemented automated monitoring for credential lifecycle events and are improving operational processes to reduce our time to detection and mitigation of issues like this one in the future.",
+      "lessons_learned": "While we have made (and are making) substantial, long-term investments in how GitHub is built and operated to improve resilience, we acknowledge we have more work to do.\n\nGetting there requires deep architectural work that is already underway, as well as urgent, targeted improvements.\n\nWe are taking the following immediate steps:\n\n \n We have added a killswitch and improved monitoring to the caching mechanism to ensure we are notified before there is user impact and can respond swiftly.\n\nThis was due to Redis infrastructure updates that were being rolled out to production to improve our resiliency.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. We mitigated this issue by immediately rolling back the faulty deployment. This was due to Redis infrastructure updates that were being rolled out to production to improve our resiliency. Both incidents were caused by the same underlying system authentication issue that prevented the service from connecting to its backing datastore.",
+      "incident_timeline": "March 03 18:59 UTC (lasting 1 hour and 10 minutes)\nOn March 3, 2026, between 18:46 and 20:09 UTC, GitHub experienced a period of degraded availability impacting github.com, the GitHub API, GitHub Actions, Git operations, GitHub Copilot, and other dependent services. At t\nWe understand these incidents disrupted the workflows of developers. While we have made (and are making) substantial, long-term investments in how GitHub is built and operated to improve resilience, we acknowledge we hav\nMarch 05 16:35 UTC (lasting 2 hours and 55 minutes)\nOn March 5, 2026, between 16:24 and 19:30 UTC, GitHub Actions was degraded. During this time, 95% of workflow runs failed to start within 5 minutes with an average delay of 30 minutes, and 10% of workflow runs failed wit\nWe mitigated this incident by correcting the misconfigured load balancer. Actions jobs were running successfully starting at 17:24 UTC. The remaining time until we closed the incident was spent burning through the queue \nMarch 19 13:44 UTC (lasting 48 minutes)\nOn March 19, 2026, between 01:05 and 02:52 UTC, and again on March 20, 2026, between 00:42 and 01:58 UTC, the Copilot Coding Agent service was degraded and users were unable to start new Copilot Agent sessions or view ex",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In March, we experienced four incidents that resulted in degraded performance across GitHub services. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

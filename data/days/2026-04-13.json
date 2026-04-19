@@ -1,0 +1,131 @@
+[
+  {
+    "id": "fb309e3d95a816b8",
+    "title": "Managing context in long-run agentic applications",
+    "source": "Slack Engineering",
+    "link": "https://slack.engineering/managing-context-in-long-run-agentic-applications/",
+    "published": "2026-04-13T17:17:16+00:00",
+    "fetched_at": "2026-04-19T02:22:22.079759+00:00",
+    "summary": "Excerpt ",
+    "tags": [
+      "capacity",
+      "kubernetes",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-04-13",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "In our first article , we introduced our agentic security investigation service. We described how teams of AI agents collaboratively investigate security alerts. A Director orchestrates the investigation, many specialist",
+      "To briefly recap, our investigation process proceeds through a series of defined phases. Each phase implements a distinct set of agent interactions. Within phases, we may have multiple rounds, where each round is one ful",
+      "Language model APIs are stateless: to provide continuity between requests, the caller must provide the complete message history with each request. Agent frameworks solve the state management problem for users by accumula",
+      "Complex security investigations can span hundreds of inference requests and generate megabytes of output, requiring special handling. Multi-agent applications, like ours, add further complexities. For each agent to optim",
+      "We include edited extracts of the Journal, Review, and Timeline from one investigation in this article. These extracts should give a meaningful sense of what these context resources look like in practice. They have been ",
+      "The Director is responsible for orchestrating the investigation: deciding what questions to ask, which Experts to engage, and when to conclude the investigation. To make coherent decisions across rounds, it needs memory ",
+      "The Director has a journaling tool. The Director’s system prompt encourages it to update the Journal often and use it for short notes. The Journal captures decisions, observations, hypotheses, and open questions in a str",
+      "Focus investigation on authentication anomalies rather than network activity"
+    ],
+    "sections": {
+      "overview": "Excerpt \n In complex, long-running agentic systems, maintaining alignment and coherent reasoning between agents requires careful design. In this second article of our series, we explore these challenges and the mechanisms we built to keep teams of agents working productively over long time spans. We present a range of complementary techniques that balance the conflicting requirements of continuity and creativity.",
+      "technical_breakdown": "Event Sequence \n 09:29:01Z User session begins on development workstation \n\n 09:30:39Z Package management operations initiated by developer \n\n 09:30:48Z Package management triggered system maintenance hooks \n\n 09:31:26Z ALERT TRIGGERED Hook script invoked \n\n 09:31:27Z modprobe information-gathering for modules to determine ramdisk dependencies \n\n 09:31:29Z modprobe dependency queries complete \n\n 09:31:29Z Additional hook scripts executed as part of ramdisk regeneration process \n\n Evidence Gaps \n \n Exact session initiation timestamp unknown session activity observed from 09:29:01Z but SSH login event not captured \n\n \n \n Specific command that initiated apt/dpkg operations not identified timeline shows package operations beginning at 09:30:39Z but triggering command not documented \n\n Secondary analyst failed to locate parent process using incorrect field name and missed modprobe operations by searching wrong path reduces confidence in independent verification \n\n \n Message History \n As we explained in the introduction, agentic frameworks manage message history by accumulating messages and tool calls through the chain of inference requests that make up each agent invocation.\n\nOur solution uses three complementary context channels: \n\n \n Director’s Journal : The Director s structured working memory \n\n Critic’s Review : Annotated findings report with credibility scores \n\n Critic’s Timeline : Consolidated chronological findings with credibility scores \n\n \n Each channel serves a different purpose, and together they provide the context each agent needs without overwhelming any of them.\n\nThe alert was generated in response to the loading of a kernel module.\n\nEntry Types \n The Journal supports six entry types: \n\n \n \n \n Type \n Purpose \n Example \n \n \n \n \n decision \n Strategic choices \n Focus investigation on authentication anomalies rather than network activity \n \n \n observation \n Patterns noticed \n Multiple failed logins preceded the successful authentication \n \n \n finding \n Confirmed facts \n User authenticated from IP 203.0.113.45, not in historical baseline \n \n \n question \n Open items \n Was the VPN connection established before or after the suspicious activity? \n \n \n action \n Steps taken/planned \n Requested Cloud Expert to examine EC2 instance activity \n \n \n hypothesis \n Working theories \n This pattern suggests credential stuffing rather than account compromise \n \n \n \n In addition to classifying its entries, the Director can also assign priority, list follow-up actions, and include citation references to evidential artifacts.\n\nExample Critic’s Review \n Cloud Expert delivered a strong investigation with a comprehensive search query retrieving 6,046 session events and correctly identifying: (1) legitimate package operations, (2) kernel regeneration during system updates, (3) modprobe show-depends queries for boot ramdisk configuration (not actual module loading), and (4) false positive detection rule matching on hook script name rather than kernel operations.",
+      "impact": "Verified executable=/usr/bin/kmod with flags that query dependencies without loading. \n\n [0.87] Activity is expected system maintenance on a personal development environment by an authorized user with expected roles and root access during business hours. \n\n [0.85] Alert triggered on shell script name pattern rather than actual modprobe/insmod execution. Agent frameworks solve the state management problem for users by accumulating message history between API calls. Entry Types \n The Journal supports six entry types: \n\n \n \n \n Type \n Purpose \n Example \n \n \n \n \n decision \n Strategic choices \n Focus investigation on authentication anomalies rather than network activity \n \n \n observation \n Patterns noticed \n Multiple failed logins preceded the successful authentication \n \n \n finding \n Confirmed facts \n User authenticated from IP 203.0.113.45, not in historical baseline \n \n \n question \n Open items \n Was the VPN connection established before or after the suspicious activity? \n \n \n action \n Steps taken/planned \n Requested Cloud Expert to examine EC2 instance activity \n \n \n hypothesis \n Working theories \n This pattern suggests credential stuffing rather than account compromise \n \n \n \n In addition to classifying its entries, the Director can also assign priority, list follow-up actions, and include citation references to evidential artifacts. Breakdown of entry types in the Journal \n Example Director’s Journal \n Time: 09:32:21 | Priority: High \n\n Identified event as endpoint process start, user running as root on dev workstation.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "Entry Types \n The Journal supports six entry types: \n\n \n \n \n Type \n Purpose \n Example \n \n \n \n \n decision \n Strategic choices \n Focus investigation on authentication anomalies rather than network activity \n \n \n observation \n Patterns noticed \n Multiple failed logins preceded the successful authentication \n \n \n finding \n Confirmed facts \n User authenticated from IP 203.0.113.45, not in historical baseline \n \n \n question \n Open items \n Was the VPN connection established before or after the suspicious activity? \n \n \n action \n Steps taken/planned \n Requested Cloud Expert to examine EC2 instance activity \n \n \n hypothesis \n Working theories \n This pattern suggests credential stuffing rather than account compromise \n \n \n \n In addition to classifying its entries, the Director can also assign priority, list follow-up actions, and include citation references to evidential artifacts.\n\nRoot cause: detection rule matched pathname not actual operation.\n\nWe approach this problem from several directions with a range of mitigations.\n\nThe first mitigation is to use a stronger model for the Critic.",
+      "lessons_learned": "Entry Types \n The Journal supports six entry types: \n\n \n \n \n Type \n Purpose \n Example \n \n \n \n \n decision \n Strategic choices \n Focus investigation on authentication anomalies rather than network activity \n \n \n observation \n Patterns noticed \n Multiple failed logins preceded the successful authentication \n \n \n finding \n Confirmed facts \n User authenticated from IP 203.0.113.45, not in historical baseline \n \n \n question \n Open items \n Was the VPN connection established before or after the suspicious activity? \n \n \n action \n Steps taken/planned \n Requested Cloud Expert to examine EC2 instance activity \n \n \n hypothesis \n Working theories \n This pattern suggests credential stuffing rather than account compromise \n \n \n \n In addition to classifying its entries, the Director can also assign priority, list follow-up actions, and include citation references to evidential artifacts.\n\nEqually important is the capacity of the Critic to interpret nuances in the evidence, which is also improved with a stronger model.\n\nThe third mitigation is the Critic’s Timeline task, which we will now describe.",
+      "root_cause_highlight": "",
+      "incident_timeline": "In our first article , we introduced our agentic security investigation service. We described how teams of AI agents collaboratively investigate security alerts. A Director orchestrates the investigation, many specialist\nTo briefly recap, our investigation process proceeds through a series of defined phases. Each phase implements a distinct set of agent interactions. Within phases, we may have multiple rounds, where each round is one ful\nLanguage model APIs are stateless: to provide continuity between requests, the caller must provide the complete message history with each request. Agent frameworks solve the state management problem for users by accumula\nComplex security investigations can span hundreds of inference requests and generate megabytes of output, requiring special handling. Multi-agent applications, like ours, add further complexities. For each agent to optim\nWe include edited extracts of the Journal, Review, and Timeline from one investigation in this article. These extracts should give a meaningful sense of what these context resources look like in practice. They have been \nThe Director is responsible for orchestrating the investigation: deciding what questions to ask, which Experts to engage, and when to conclude the investigation. To make coherent decisions across rounds, it needs memory \nThe Director has a journaling tool. The Director’s system prompt encourages it to update the Journal often and use it for short notes. The Journal captures decisions, observations, hypotheses, and open questions in a str\nFocus investigation on authentication anomalies rather than network activity",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Excerpt \n In complex, long-running agentic systems, maintaining alignment and coherent reasoning between agents requires careful design. In this second article of our series, we explore these challenges and the mechanisms we built to keep teams of agents working productively over long time spans.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "29585864e3f1d1ea",
+    "title": "AWS Weekly Roundup: Claude Mythos Preview in Amazon Bedrock, AWS Agent Registry, and more (April 13, 2026)",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-mythos-preview-in-amazon-bedrock-aws-agent-registry-and-more-april-13-2026/",
+    "published": "2026-04-13T16:16:20+00:00",
+    "fetched_at": "2026-04-19T02:22:19.818554+00:00",
+    "summary": "In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. A common theme in those sessions is the need for better cost visibility. Teams are moving fast with AI, but as they go from experimenting to full production, finance and leadership really need to know who is using which resources and at what...",
+    "tags": [
+      "deployment",
+      "latency",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-04-13",
+    "impact": "high",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. A common theme in those sessions is the need for better cost v",
+      "Amazon WorkSpaces Advisor now available for AI powered troubleshooting — AWS launched Amazon WorkSpaces Advisor, an AI powered administrative tool that uses generative AI to help IT administrators troubleshoot Amazon Wor",
+      "Here are some additional posts and resources that you might find interesting:",
+      "Deploy OpenClaw on AWS: Choose the right options for your AI workload — Builder Center guide comparing four AWS deployment options for OpenClaw: Amazon Lightsail for individual developers, Amazon EC2 for startups needing",
+      "What’s Next with AWS (April 28, Virtual) Join this livestream at 9am PT for a candid discussion about how agentic AI is transforming how businesses operate. Featuring AWS CEO Matt Garman, SVP Colleen Aubrey, and OpenAI l"
+    ],
+    "sections": {
+      "overview": "In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. A common theme in those sessions is the need for better cost visibility. Teams are moving fast with AI, but as they go from experimenting to full production, finance and leadership really need to know who is using which resources and at what cost.",
+      "technical_breakdown": "Operations teams can correlate slow traces to logs and overlay Prometheus metrics on dashboards without switching between tools.\n\nAmazon OpenSearch Service supports Managed Prometheus and agent tracing —Amazon OpenSearch Service now provides a unified observability platform that consolidates metrics, logs, traces, and AI agent tracing into a single interface.\n\nBuilt on Amazon EFS technology, it delivers full file system semantics with low latency performance, caching actively used data and providing multiple terabytes per second of aggregate read throughput.\n\nOther AWS news\n Here are some additional posts and resources that you might find interesting:\n\n \n \n Building automated AWS Regional availability checks with Amazon S3 — Storage blog post on implementing automated systems for monitoring service availability across AWS regions using Amazon S3 as core infrastructure.\n\nBuilding memory intensive apps with AWS Lambda managed instances — Compute blog post exploring how Lambda managed instances extend the platform beyond lightweight workloads to support memory intensive applications while maintaining serverless benefits.",
+      "impact": "Other AWS news\n Here are some additional posts and resources that you might find interesting:\n\n \n \n Building automated AWS Regional availability checks with Amazon S3 — Storage blog post on implementing automated systems for monitoring service availability across AWS regions using Amazon S3 as core infrastructure. In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. That’s why I was so excited to see the launch of Amazon Bedrock new support for cost allocation by IAM user and role this week. Understanding Amazon Bedrock model lifecycle — Machine learning blog post that walks through the stages foundation models go through in Bedrock from availability through deprecation, helping teams plan for model updates and manage version dependencies in production.\n\nClassified impact band: high. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "A common theme in those sessions is the need for better cost visibility.\n\nIt analyzes WorkSpace configurations, detects problems automatically, and provides actionable recommendations to restore service and optimize performance.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Amazon WorkSpaces Advisor now available for AI powered troubleshooting — AWS launched Amazon WorkSpaces Advisor, an AI powered administrative tool that uses generative AI to help IT administrators troubleshoot Amazon WorkSpaces Personal deployments. Deploy OpenClaw on AWS: Choose the right options for your AI workload — Builder Center guide comparing four AWS deployment options for OpenClaw: Amazon Lightsail for individual developers, Amazon EC2 for startups needing deeper AWS integration, Amazon Bedrock AgentCore for serverless multiuser scenarios, and Amazon EKS for enterprises requiring VM level isolation and advanced orchestration.",
+      "incident_timeline": "In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. A common theme in those sessions is the need for better cost v\nAmazon WorkSpaces Advisor now available for AI powered troubleshooting — AWS launched Amazon WorkSpaces Advisor, an AI powered administrative tool that uses generative AI to help IT administrators troubleshoot Amazon Wor\nHere are some additional posts and resources that you might find interesting:\nDeploy OpenClaw on AWS: Choose the right options for your AI workload — Builder Center guide comparing four AWS deployment options for OpenClaw: Amazon Lightsail for individual developers, Amazon EC2 for startups needing\nWhat’s Next with AWS (April 28, Virtual) Join this livestream at 9am PT for a candid discussion about how agentic AI is transforming how businesses operate. Featuring AWS CEO Matt Garman, SVP Colleen Aubrey, and OpenAI l",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In my last Week in Review post , I mentioned how much time I’ve been spending on AI-Driven Development Lifecycle (AI-DLC) workshops with customers this year. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1eab05ece07220c7",
+    "title": "GitHub for Beginners: Getting started with GitHub Pages",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-github-pages/",
+    "published": "2026-04-13T15:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:21.529246+00:00",
+    "summary": "Welcome back to GitHub for Beginners. So far, we ve discussed GitHub Issues and Projects , GitHub Actions , and covered a bit about security . This time, we re going to talk about GitHub Pages.",
+    "tags": [
+      "deployment",
+      "networking"
+    ],
+    "day": "2026-04-13",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Under Source, use the combo box and select GitHub Actions . Once you do, GitHub will provide some suggested workflows."
+    ],
+    "sections": {
+      "overview": "Welcome back to GitHub for Beginners. So far, we ve discussed GitHub Issues and Projects , GitHub Actions , and covered a bit about security . This time, we re going to talk about GitHub Pages.",
+      "technical_breakdown": "You just need three things:\n\n \n A GitHub account\n\n A project to deploy\n\n A few minutes to deploy to GitHub Pages\n\n \n\n Follow the steps in this blog and your project will be live, searchable, and ready to share.\n\nUse the combo box under Build and deployment and select Deploy from a branch .\n\nSelect the name of the Add GitHub Actions workflow for Next.js deployment action.\n\nTo do this, you ll first need to configure DNS records with your domain provider.\n\nOnce you ve configured the DNS records and verified the domain, you can set the custom domain by following these steps:\n\n \n Navigate to Settings -> Pages .",
+      "impact": "You just need three things:\n\n \n A GitHub account\n\n A project to deploy\n\n A few minutes to deploy to GitHub Pages\n\n \n\n Follow the steps in this blog and your project will be live, searchable, and ready to share. Adding a custom domain \n\n By default, all websites on GitHub Pages will have the following URL: USERNAME.github.io/REPOSITORY-NAME .\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Use the combo box under Build and deployment and select Deploy from a branch . Select the name of the Add GitHub Actions workflow for Next.js deployment action.",
+      "incident_timeline": "Under Source, use the combo box and select GitHub Actions . Once you do, GitHub will provide some suggested workflows.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Welcome back to GitHub for Beginners. So far, we ve discussed GitHub Issues and Projects , GitHub Actions , and covered a bit about security .",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "8842e051722db4b8",
+    "title": "What the AI trust gap means for enterprise SaaS",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/02/what-the-ai-trust-gap-means-for-enterprise-saas/",
+    "published": "2026-04-02T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:22.185439+00:00",
+    "summary": "Adoption and trust are moving in diametrically opposed directions, and that gap has real implications for organizations deciding how to spend money on software.",
+    "tags": [],
+    "day": "2026-04-02",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Adoption and trust are moving in diametrically opposed directions, and that gap has real implications for organizations deciding how to spend money on software.",
+      "technical_breakdown": "Adoption and trust are moving in diametrically opposed directions, and that gap has real implications for organizations deciding how to spend money on software.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Adoption and trust are moving in diametrically opposed directions, and that gap has real implications for organizations deciding how to spend money on software.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

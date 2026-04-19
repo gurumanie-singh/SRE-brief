@@ -1,0 +1,134 @@
+[
+  {
+    "id": "0b81f1cf7b9b70f9",
+    "title": "Agentic runtime security: Solving agentic AI identity and access gaps",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps",
+    "published": "2026-03-20T20:30:00+00:00",
+    "fetched_at": "2026-04-19T02:22:21.855210+00:00",
+    "summary": "The current state of AI across the enterprise landscape Organizations worldwide are quickly evolving from leveraging simple chat and code assistants to implementing AI agents that can read data, interact with tools, and act autonomously. Microsoft’s 2025 Work Trend Index Annual Report states that 81% of leaders expect agents to be integrated into their AI strategy within the next 12 to 18 months...",
+    "tags": [
+      "database",
+      "deployment",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-03-20",
+    "impact": "high",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Zero accountability Without unique agent identities, runtime policy checks, or detailed logging, security-related questions become hard to answer. Questions such as “who approved this action?,” “which agent executed it?,",
+      "Why immediate action is needed The IBM 2025 Cost of a Data Breach Report states that the global average breach costs organizations $4.4 million. The report also showcases that 97% of organizations that reported an AI-rel",
+      "Agentic AI implementation best practices There are five implementation imperatives each organization needs to take into account when establishing their agentic AI strategy.",
+      "Register every agent Each agent needs a unique, verifiable, cryptographically bound identity. This means no shared keys or service accounts, and no hiding behind human principals. This can be established via methods such",
+      "Strip standing privileges Establishing least privilege begins by revoking standing access. A system that can provide Just-in-time (JIT) dynamic credentials with a specific time-to-live (TTL) lasting only as long as the r",
+      "Tie actions to intent When requests involve user-specific data or administrative actions, the system must capture user context, consent, and delegation. Associating actions to intent is what transforms the nebulous and i",
+      "Enforcement at point of use Each API call, query, and tool invocation should be verified against required policies at runtime. If the agent is not allowed to access a target system/resource, the request should be denied.",
+      "Produce proof of control Security teams require solid evidence, not assumptions. Audit trails need to answer questions quickly and provide signed proof of control. Teams should be able to detect violations, such as an ag"
+    ],
+    "sections": {
+      "overview": "The current state of AI across the enterprise landscape Organizations worldwide are quickly evolving from leveraging simple chat and code assistants to implementing AI agents that can read data, interact with tools, and act autonomously. Microsoft’s 2025 Work Trend Index Annual Report states that 81% of leaders expect agents to be integrated into their AI strategy within the next 12 to 18 months, and 24% state that they have already deployed AI across their organization. The underlying infrastructure of AI workloads is also already complex, and this complexity is increasing exponentially as AI adoption accelerates.",
+      "technical_breakdown": "Agents can act autonomously across a wide variety of tools, databases, and APIs, and even have the capability to invoke other agents.\n\nLack of real-time enforcement As we already determined, AI agents will eventually reach a point where they will call a tool, query a database, or modify a system.\n\nZero accountability Without unique agent identities, runtime policy checks, or detailed logging, security-related questions become hard to answer.\n\nMoving forward with these deployments without proper governance will result in control failures.\n\nOperational sprawl As organizations launch dozens or hundreds of agents, sprawl and privilege creep will increase rapidly if teams act in silos and create their own AI policies and deployments.",
+      "impact": "Use case #1: Read-only information retrieval agents In this example, a user (Alice) is interacting with a chatbot UI, asking questions such as “How do I reset my password?” or “What are your business hours?”, information that is identical for all users. Use case #2: Personalized information retrieval agents In this use case, the support chatbot now needs to query customer-specific data, account information, and personalized recommendations for each user. This can be done via an OAuth2.0 Client-Initiated Backchannel Authentication (CIBA) authorization flow with user context provided by our IdP, IBM Verify. AI and agentic workflows Traditional identity and access management (IAM) toolsets and workflows were designed as human-centric and tailored for predictable patterns and behaviors where access is typically assigned through roles, which define what resources a user can interact with.\n\nClassified impact band: high. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "The report also showcases that 97% of organizations that reported an AI-related security incident lacked proper AI-dedicated access controls, and 63% did not have any sort of AI governance policies to manage AI or prevent shadow AI.\n\nUse case #2: Personalized information retrieval agents In this use case, the support chatbot now needs to query customer-specific data, account information, and personalized recommendations for each user.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Moving forward with these deployments without proper governance will result in control failures. Operational sprawl As organizations launch dozens or hundreds of agents, sprawl and privilege creep will increase rapidly if teams act in silos and create their own AI policies and deployments.",
+      "incident_timeline": "Zero accountability Without unique agent identities, runtime policy checks, or detailed logging, security-related questions become hard to answer. Questions such as “who approved this action?,” “which agent executed it?,\nWhy immediate action is needed The IBM 2025 Cost of a Data Breach Report states that the global average breach costs organizations $4.4 million. The report also showcases that 97% of organizations that reported an AI-rel\nAgentic AI implementation best practices There are five implementation imperatives each organization needs to take into account when establishing their agentic AI strategy.\nRegister every agent Each agent needs a unique, verifiable, cryptographically bound identity. This means no shared keys or service accounts, and no hiding behind human principals. This can be established via methods such\nStrip standing privileges Establishing least privilege begins by revoking standing access. A system that can provide Just-in-time (JIT) dynamic credentials with a specific time-to-live (TTL) lasting only as long as the r\nTie actions to intent When requests involve user-specific data or administrative actions, the system must capture user context, consent, and delegation. Associating actions to intent is what transforms the nebulous and i\nEnforcement at point of use Each API call, query, and tool invocation should be verified against required policies at runtime. If the agent is not allowed to access a target system/resource, the request should be denied.\nProduce proof of control Security teams require solid evidence, not assumptions. Audit trails need to answer questions quickly and provide signed proof of control. Teams should be able to detect violations, such as an ag",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "The current state of AI across the enterprise landscape Organizations worldwide are quickly evolving from leveraging simple chat and code assistants to implementing AI agents that can read data, interact with tools, and act autonomously. Impact band: high.",
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/03/20/ingress2gateway-1-0-release/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "1e6c4fcc3eae2241",
+    "title": "Running Agents on Kubernetes with Agent Sandbox",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/",
+    "published": "2026-03-20T10:00:00-08:00",
+    "fetched_at": "2026-04-19T02:22:21.341694+00:00",
+    "summary": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated.",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-03-20",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that",
+      "Kubernetes is the de facto standard for orchestrating cloud-native applications precisely because it solves the challenges of extensibility, robust networking, and ecosystem maturity. However, as AI evolves from short-li",
+      "Starting a new pod adds about a second of overhead. That's perfectly fine when deploying a new version of a microservice, but when an agent is invoked after being idle, a one-second cold start breaks the continuity of th",
+      "We recommend you use the latest release as the project is moving fast.",
+      "kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /manifest.yaml",
+      "The Agent Sandbox project is open source and community-driven. If you are building AI platforms, developing agentic frameworks, or are interested in Kubernetes extensibility, we invite you to get involved:"
+    ],
+    "sections": {
+      "overview": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated. Today, the world is witnessing AI v2 eating AI v1.",
+      "technical_breakdown": "The Kubernetes advantage (and the abstraction gap) \n Kubernetes is the de facto standard for orchestrating cloud-native applications precisely because it solves the challenges of extensibility, robust networking, and ecosystem maturity.\n\nIt acts as a lightweight, single-container environment built entirely on Kubernetes primitives, offering:\n\n \n Strong isolation for untrusted code : When an AI agent generates and executes code autonomously, security is paramount.\n\nThis provides the necessary kernel and network isolation required for multi-tenant, untrusted execution.\n\nWe recommend you use the latest release as the project is moving fast.\n\n # Replace \"vX.Y.Z\" with a specific version tag (e.g., \"v0.1.0\") from \n # https://github.com/kubernetes-sigs/agent-sandbox/releases \n export VERSION = \"vX.Y.Z\" \n \n # Install the core components: \n kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /manifest.yaml\n \n # Install the extensions components (optional): \n kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /extensions.yaml\n \n # Install the Python SDK (optional): \n # Create a virtual Python environment \n python3 -m venv .venv\n source .venv/bin/activate\n # Install from PyPI \n pip install k8s-agent-sandbox\n Once installed, you can try out the Python SDK for AI agents or deploy one of the ready-to-use examples to see how easy it is to spin up an isolated agent environment.\n\nAs platform engineering teams look for the right infrastructure to host these new AI workloads, one platform stands out as the natural choice: Kubernetes.",
+      "impact": "This provides the necessary kernel and network isolation required for multi-tenant, untrusted execution. Lifecycle management : Unlike traditional web servers optimized for steady, stateless traffic, an AI agent operates as a stateful workspace that may be idle for hours between tasks. It forces the user or the orchestrating service to wait for the environment to provision before the model can even begin to think or act. Users or orchestration services can simply issue a SandboxClaim against a SandboxTemplate, and the controller immediately hands over a pre-warmed, fully isolated environment to the agent.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that\nKubernetes is the de facto standard for orchestrating cloud-native applications precisely because it solves the challenges of extensibility, robust networking, and ecosystem maturity. However, as AI evolves from short-li\nStarting a new pod adds about a second of overhead. That's perfectly fine when deploying a new version of a microservice, but when an agent is invoked after being idle, a one-second cold start breaks the continuity of th\nWe recommend you use the latest release as the project is moving fast.\nkubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/ ${ VERSION } /manifest.yaml\nThe Agent Sandbox project is open source and community-driven. If you are building AI platforms, developing agentic frameworks, or are interested in Kubernetes extensibility, we invite you to get involved:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "The landscape of artificial intelligence is undergoing a massive architectural shift. In the early days of generative AI, interacting with a model was often treated as a transient, stateless function call: a request that spun up, executed for perhaps 50 milliseconds, and terminated.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "6d0a9327651c8e96",
+    "title": "After all the hype, was 2025 really the year of AI agents?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/03/20/was-2025-really-the-year-of-ai-agents/",
+    "published": "2026-03-20T07:40:00+00:00",
+    "fetched_at": "2026-04-19T02:22:22.186412+00:00",
+    "summary": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
+    "tags": [],
+    "day": "2026-03-20",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan is joined by Stefan Weitz, CEO and co-founder of the HumanX Conference, for a conversation on how AI has evolved in the last year.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

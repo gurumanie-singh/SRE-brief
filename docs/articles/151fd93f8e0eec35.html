@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing Anthropic’s Claude Opus 4.7 model in Amazon Bedrock — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-16.html" class="back-link">← 16 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">AWS News Blog</span>
+        <span class="card-date">16 April 2026, 09:49</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Introducing Anthropic’s Claude Opus 4.7 model in Amazon Bedrock</h1>
+
+      <p class="subtitle">Today, we’re announcing Claude Opus 4.7 in Amazon Bedrock , Anthropic’s most intelligent Opus model for advancing performance across coding, long-running agents, and professional work. Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">AWS</span>
+        <span class="tag">capacity</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Today, we’re announcing Claude Opus 4.7 in Amazon Bedrock , Anthropic’s most intelligent Opus model for advancing performance across coding, long-running agents, and professional work. Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Today, we’re announcing Claude Opus 4.7 in Amazon Bedrock , Anthropic’s most intelligent Opus model for advancing performance across coding, long-running agents, and professional work. Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads. Bedrock’s new inference engine has brand-new scheduling and scaling logic which dynamically allocates capacity to requests, improving availability particularly for steady-state workloads while making room for rapidly scaling services.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Bedrock’s new inference engine has brand-new scheduling and scaling logic which dynamically allocates capacity to requests, improving availability particularly for steady-state workloads while making room for rapidly scaling services.</p>
+<p>According to Anthropic, Claude Opus 4.7 model provides improvements across the workflows that teams run in production such as agentic coding, knowledge work, visual understanding,long-running tasks.</p>
+<p>Knowledge work : The model advances professional knowledge work, with stronger performance on document creation, financial analysis, and multi-step research workflows.</p>
+<p>I run the following prompt example about technical architecture decision:  Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.</p>
+<p>To invoke the model through the Anthropic Claude Messages API, you can proceed as follows using anthropic[bedrock] SDK package for a streamlined experience:</p>
+<p>from anthropic import AnthropicBedrockMantle # Initialize the Bedrock Mantle client (uses SigV4 auth automatically) mantle_client = AnthropicBedrockMantle(aws_region=&#34;us-east-1&#34;) # Create a message using the Messages API message = mantle_client.messages.create(  model=&#34;us.anthropic.claude-opus-4-7&#34;,  max_tokens=32000,  messages=[   {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions&#34;}  ] ) print(message.content[0].text)   You can also run the following command to invoke the model directly to bedrock-runtime endpoint using the AWS CLI and the Invoke API:</p>
+<p>aws bedrock-runtime invoke-model \   --model-id us.anthropic.claude-opus-4-7 \   --region us-east-1 \   --body &#39;{&#34;anthropic_version&#34;:&#34;bedrock-2023-05-31&#34;, &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.&#34;}], &#34;max_tokens&#34;: 32000}&#39; \   --cli-binary-format raw-in-base64-out \  invoke-model-output.txt   For more intelligent reasoning capability, you can use Adaptive thinking with Claude Opus 4.7, which lets Claude dynamically allocate thinking token budgets based on the complexity of each request.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>To invoke the model through the Anthropic Claude Messages API, you can proceed as follows using anthropic[bedrock] SDK package for a streamlined experience:</p>
+<p>from anthropic import AnthropicBedrockMantle # Initialize the Bedrock Mantle client (uses SigV4 auth automatically) mantle_client = AnthropicBedrockMantle(aws_region=&#34;us-east-1&#34;) # Create a message using the Messages API message = mantle_client.messages.create(  model=&#34;us.anthropic.claude-opus-4-7&#34;,  max_tokens=32000,  messages=[   {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions&#34;}  ] ) print(message.content[0].text)   You can also run the following command to invoke the model directly to bedrock-runtime endpoint using the AWS CLI and the Invoke API:</p>
+<p>aws bedrock-runtime invoke-model \   --model-id us.anthropic.claude-opus-4-7 \   --region us-east-1 \   --body &#39;{&#34;anthropic_version&#34;:&#34;bedrock-2023-05-31&#34;, &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.&#34;}], &#34;max_tokens&#34;: 32000}&#39; \   --cli-binary-format raw-in-base64-out \  invoke-model-output.txt   For more intelligent reasoning capability, you can use Adaptive thinking with Claude Opus 4.7, which lets Claude dynamically allocate thinking token budgets based on the complexity of each request. Bedrock’s new inference engine has brand-new scheduling and scaling logic which dynamically allocates capacity to requests, improving availability particularly for steady-state workloads while making room for rapidly scaling services. It provides zero operator access—meaning customer prompts and responses are never visible to Anthropic or AWS operators—keeping sensitive data private. I run the following prompt example about technical architecture decision:  Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Give Anthropic’s Claude Opus 4.7 a try in the Amazon Bedrock console today and send feedback to AWS re:Post for Amazon Bedrock or through your usual AWS Support contacts.</p>
+<p>— Channy</p>
+<p>Updated on April 17, 2026 – We fixed code samples and CLI commends to align new version.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>According to Anthropic, Claude Opus 4.7 model provides improvements across the workflows that teams run in production such as agentic coding, knowledge work, visual understanding,long-running tasks.</p>
+<p>Opus 4.7 works better through ambiguity, is more thorough in its problem solving, and follows instructions more precisely.</p>
+<p>The model reasons through underspecified requests, making sensible assumptions and stating them clearly, and self-verifies its output to improve quality on the first step.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Claude Opus 4.7 is powered by Amazon Bedrock’s next generation inference engine, delivering enterprise-grade infrastructure for production workloads. Bedrock’s new inference engine has brand-new scheduling and scaling lo</li>
+            <li>Knowledge work : The model advances professional knowledge work, with stronger performance on document creation, financial analysis, and multi-step research workflows. The model reasons through underspecified requests, m</li>
+            <li>You can get started with Claude Opus 4.7 model in Amazon Bedrock console . Choose Playground under Test menu and choose Claude Opus 4.7 when you select model. Now, you can test your complex coding prompt with the model.</li>
+            <li>Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.</li>
+            <li>To get started with making your first API call to Amazon Bedrock in minutes, choose Quickstart in the left navigation pane in the console. After choosing your use case, you can generate a short term API key to authentica</li>
+            <li>When you choose the API method such as the OpenAI-compatible Responses API, you can get sample codes to run your prompt to make your inference request using the model.</li>
+            <li>{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions&#34;}</li>
+            <li>--body &#39;{&#34;anthropic_version&#34;:&#34;bedrock-2023-05-31&#34;, &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://aws.amazon.com/blogs/aws/introducing-anthropics-claude-opus-4-7-model-in-amazon-bedrock/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at AWS News Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

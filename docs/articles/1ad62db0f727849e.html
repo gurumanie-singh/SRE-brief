@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing the Agent Readiness score. Is your site agent-ready? — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-17.html" class="back-link">← 17 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">17 April 2026, 08:05</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+      </div>
+
+      <h1 class="title">Introducing the Agent Readiness score. Is your site agent-ready?</h1>
+
+      <p class="subtitle">The web has always had to adapt to new standards. Impact band: high.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>database issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">The web has always had to adapt to new standards. Impact band: high.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>The web has always had to adapt to new standards. It learned to speak to web browsers, and then it learned to speak to search engines. Now, it needs to speak to AI agents.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Integrating agent readiness into Cloudflare URL Scanner           Cloudflare&#39;s URL Scanner lets you submit any URL and get a detailed report on it: HTTP headers, TLS certificates, DNS records, technologies used, performance data, and security signals.</p>
+<p>Think of it as a sitemap written for an LLM to read rather than a crawler to index:</p>
+<p># My Site &gt; A developer platform for building on the edge. ## Documentation - [Getting Started](https://example.com/docs/start.md) - [API Reference](https://example.com/docs/api.md) ## Changelog - [Release Notes](https://example.com/changelog.md)   Markdown content negotiation goes even further.</p>
+<p>Unlike links buried inside HTML, the Link header is part of the HTTP response itself, which means an agent can find links to resources without having to parse any markup:</p>
+<p>HTTP/1.1 200 OK Link: &lt;/.well-known/api-catalog&gt;; rel=&#34;api-catalog&#34;       Content accessibility           Getting an agent onto your site is one thing.</p>
+<p>An agent reads this file and knows everything it needs to start using your server:</p>
+<p>{  &#34;$schema&#34;: &#34;https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json&#34;,  &#34;version&#34;: &#34;1.0&#34;,  &#34;protocolVersion&#34;: &#34;2025-06-18&#34;,  &#34;serverInfo&#34;: {  &#34;name&#34;: &#34;search-mcp-server&#34;,  &#34;title&#34;: &#34;Search MCP Server&#34;,  &#34;version&#34;: &#34;1.0.0&#34;  },  &#34;description&#34;: &#34;Search across all documentation and knowledge base articles&#34;,  &#34;transport&#34;: {  &#34;type&#34;: &#34;streamable-http&#34;,  &#34;endpoint&#34;: &#34;/mcp&#34;  },  &#34;authentication&#34;: {  &#34;required&#34;: false  },  &#34;tools&#34;: [  {  &#34;name&#34;: &#34;search&#34;,  &#34;title&#34;: &#34;Search&#34;,  &#34;description&#34;: &#34;Search documentation by keyword or question&#34;,  &#34;inputSchema&#34;: {  &#34;type&#34;: &#34;object&#34;,  &#34;properties&#34;: {  &#34;query&#34;: { &#34;type&#34;: &#34;string&#34; }  },  &#34;required&#34;: [&#34;query&#34;]  }  }  ] }   Agents work best when they have Agent Skills that help them perform specific tasks — but how can agents discover what skills a site provides?</p>
+<p>For example, we omit roughly 450 pages that only serve as localized directory listings, like https://developers.cloudflare.com/workers/databases/ .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Using a Content-Signal directive in your robots.txt , you can independently control three things: whether your content can be used for AI training ( ai-train ), whether it can be used as AI input for inference and grounding ( ai-input ), and whether it should appear in search results ( search ):</p>
+<p>User-agent: * Content-Signal: ai-train=no, search=yes, ai-input=yes   Inversely, the Web Bot Auth IETF draft standard allows friendly bots to authenticate themselves, and allows websites receiving requests from bots to identify them. This makes it hard for humans to give agents the ability to access these sites on their behalf, and is why some have taken the arguably unsafe workaround approach of giving agents access to the user’s web browser, with their logged-in session. Announced at Agents Week 2026, Cloudflare Access now fully supports this OAuth flow , and we showed how agents like OpenCode can make use of this standard to make things just work when users give agents protected URLs:</p>
+<p>Commerce           Agents can also buy things on your behalf — but payments on the web were designed for humans. To include agent readiness results in a scan, pass the agentReadiness option in your scan request:</p>
+<p>curl -X POST https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/urlscanner/v2/scan \  -H &#39;Content-Type: application/json&#39; \  -H &#34;Authorization: Bearer $CLOUDFLARE_API_TOKEN&#34; \  -d &#39;{  &#34;url&#34;: &#34;https://www.example.com&#34;,  &#34;options&#34;: {&#34;agentReadiness&#34;: true}  }&#39;       Leading by example: upgrading Cloudflare Docs           As we built the tools to measure the Web’s readiness, we knew we had to ensure our own house was in order.</p>
+<p>Classified impact band: high. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>It also publishes an Agent Skills index (https://isitagentready.com/.well-known/agent-skills/index.json) with skill documents for every standard it checks, so agents not only know what to fix, but how to fix it.</p>
+<p>This makes it hard for humans to give agents the ability to access these sites on their behalf, and is why some have taken the arguably unsafe workaround approach of giving agents access to the user’s web browser, with their logged-in session.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>It learned to speak to web browsers, and then it learned to speak to search engines.</p>
+<p>There’s a better way that allows humans to explicitly grant access: sites that support OAuth can tell agents where to find the authorization server ( RFC 9728 ), allowing agents to send humans through an OAuth flow, where they can choose to properly grant access to the agent.</p>
+<p>When you scan any URL, you&#39;ll now see its full agent readiness report alongside the existing analysis: which of the checks pass, what level the site is at, and actionable guidance to improve your score.</p>
+<p>If we’ve learned anything from the past year, it’s that a lot can change very quickly!</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: database issue. For example, we omit roughly 450 pages that only serve as localized directory listings, like https://developers.cloudflare.com/workers/databases/ . Because the agent cannot &#34;read&#34; the whole file, it begins to grep for keywords.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>We want to lead by example. That is why we are also sharing how we recently overhauled Cloudflare&#39;s Developer Documentation to make it the most agent-friendly documentation site, allowing AI tools to answer questions fas</li>
+            <li>Scores and audits that provide actionable feedback have helped to drive adoption of new standards before. For example, Google Lighthouse scores websites on performance and security best practices, and guides site owners </li>
+            <li>When you enter your site, Cloudflare makes requests to it to check which standards it supports, and provides a score based on four dimensions:</li>
+            <li>Now that agents can navigate your site and consume your content, the next question is: do you want to let any bot do it?</li>
+            <li>robots.txt does more than point to sitemaps. It is also where you define your access rules. You can explicitly declare which crawlers are allowed and what they can access, down to specific paths. This convention is well </li>
+            <li>Inversely, the Web Bot Auth IETF draft standard allows friendly bots to authenticate themselves, and allows websites receiving requests from bots to identify them. A bot signs its HTTP requests, and the receiving site ve</li>
+            <li>Not all sites need to implement this. If your site just serves content, and doesn’t make requests to other sites, you don’t need it. But as more sites on the Internet run their own agents that make requests to other site</li>
+            <li>&#34;description&#34;: &#34;Search documentation by keyword or question&#34;,</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/agent-readiness/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

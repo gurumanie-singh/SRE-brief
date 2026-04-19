@@ -1,0 +1,87 @@
+[
+  {
+    "id": "8928153c95025df8",
+    "title": "Announcing the AWS Sustainability console: Programmatic access, configurable CSV reports, and Scope 1–3 reporting in one place",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/announcing-the-aws-sustainability-console-programmatic-access-configurable-csv-reports-and-scope-1-3-reporting-in-one-place/",
+    "published": "2026-03-31T19:04:00+00:00",
+    "fetched_at": "2026-04-19T02:22:19.823949+00:00",
+    "summary": "As many of you are, I’m a parent. And like you, I think about the world I’m building for my children. That’s part of why today’s launch matters for many of us. I’m excited to announce the launch of the AWS Sustainability console , a standalone service that consolidates all AWS sustainability reporting and resources in one place.",
+    "tags": [
+      "deployment",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-03-31",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "With the The Climate Pledge , Amazon set a goal in 2019 to reach net-zero carbon across our operations by 2040. That commitment shapes how AWS builds its data centers and services. In addition, AWS is also committed to h",
+      "You can also use the new API or the AWS SDKs to integrate emissions data into your own reporting pipelines, dashboards, or compliance workflows. This is useful for teams that need to pull data for a specific month across",
+      "You can read about the latest features released and methodology updates directly on the Release notes page on the Learn more tab.",
+      "The Carbon emissions section gives an estimate on your carbon emissions, expressed in metric tons of carbon dioxide equivalent (MTCO2e). It shows the emissions by scope, expressed in the MBM and the LBM. On the right sid",
+      "aws sustainability get-estimated-carbon-emissions \\",
+      "--time-period='{\"Start\":\"2025-03-01T00:00:00Z\",\"End\":\"2026-03-01T23:59:59.999Z\"}'",
+      "\"Start\": \"2025-03-01T00:00:00+00:00\",",
+      "\"End\": \"2025-04-01T00:00:00+00:00\""
+    ],
+    "sections": {
+      "overview": "As many of you are, I’m a parent. And like you, I think about the world I’m building for my children. That’s part of why today’s launch matters for many of us.",
+      "technical_breakdown": "With the The Climate Pledge , Amazon set a goal in 2019 to reach net-zero carbon across our operations by 2040.\n\nThe console includes Scope 1, 2, and 3 emissions attributed to your AWS usage and shows you a breakdown by AWS Region, service, such as Amazon CloudFront , Amazon Elastic Compute Cloud (Amazon EC2) , and Amazon Simple Storage Service (Amazon S3) .\n\nThe underlying data and methodology haven’t changed with this launch; these are the same as the ones used by the CCFT.\n\nYou can also use the new API or the AWS SDKs to integrate emissions data into your own reporting pipelines, dashboards, or compliance workflows.\n\nYou can read about the latest features released and methodology updates directly on the Release notes page on the Learn more tab.",
+      "impact": "The console includes Scope 1, 2, and 3 emissions attributed to your AWS usage and shows you a breakdown by AWS Region, service, such as Amazon CloudFront , Amazon Elastic Compute Cloud (Amazon EC2) , and Amazon Simple Storage Service (Amazon S3) . The AWS Sustainability console builds on the Customer Carbon Footprint Tool (CCFT) , which lives inside the AWS Billing console , and introduces a new set of capabilities for which you’ve been asking. It shows the emissions by scope, expressed in the MBM and the LBM. On the right side of the screen, you can adjust the date range or filter by service, Regions, and more.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "With the The Climate Pledge , Amazon set a goal in 2019 to reach net-zero carbon across our operations by 2040. That commitment shapes how AWS builds its data centers and services. In addition, AWS is also committed to h\nYou can also use the new API or the AWS SDKs to integrate emissions data into your own reporting pipelines, dashboards, or compliance workflows. This is useful for teams that need to pull data for a specific month across\nYou can read about the latest features released and methodology updates directly on the Release notes page on the Learn more tab.\nThe Carbon emissions section gives an estimate on your carbon emissions, expressed in metric tons of carbon dioxide equivalent (MTCO2e). It shows the emissions by scope, expressed in the MBM and the LBM. On the right sid\naws sustainability get-estimated-carbon-emissions \\\n--time-period='{\"Start\":\"2025-03-01T00:00:00Z\",\"End\":\"2026-03-01T23:59:59.999Z\"}'\n\"Start\": \"2025-03-01T00:00:00+00:00\",\n\"End\": \"2025-04-01T00:00:00+00:00\"",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "As many of you are, I’m a parent. And like you, I think about the world I’m building for my children.",
+    "related_sources": [
+      {
+        "source": "Slack Engineering",
+        "link": "https://slack.engineering/from-custom-to-open-scalable-network-probing-and-http-3-readiness-with-prometheus/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "79d2939aff7f7b3f",
+    "title": "How can you test your code when you don’t know what’s in it?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/03/31/how-can-you-test-your-code-when-you-don-t-know-what-s-in-it/",
+    "published": "2026-03-31T07:40:00+00:00",
+    "fetched_at": "2026-04-19T02:22:22.185678+00:00",
+    "summary": "Ryan hosts SmartBear’s VP of AI and Architecture Fitz Nowlan to explore how we’re moving away from old assumptions about software development, the challenges of testing MCP servers as LLM-driven agents introduce non-determinism that breaks tradition, and how data locality and data construction are becoming more valuable when source code is so easy to generate.",
+    "tags": [],
+    "day": "2026-03-31",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Ryan hosts SmartBear’s VP of AI and Architecture Fitz Nowlan to explore how we’re moving away from old assumptions about software development, the challenges of testing MCP servers as LLM-driven agents introduce non-dete"
+    ],
+    "sections": {
+      "overview": "Ryan hosts SmartBear’s VP of AI and Architecture Fitz Nowlan to explore how we’re moving away from old assumptions about software development, the challenges of testing MCP servers as LLM-driven agents introduce non-determinism that breaks tradition, and how data locality and data construction are becoming more valuable when source code is so easy to generate.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Ryan hosts SmartBear’s VP of AI and Architecture Fitz Nowlan to explore how we’re moving away from old assumptions about software development, the challenges of testing MCP servers as LLM-driven agents introduce non-dete",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan hosts SmartBear’s VP of AI and Architecture Fitz Nowlan to explore how we’re moving away from old assumptions about software development, the challenges of testing MCP servers as LLM-driven agents introduce non-determinism that breaks tradition, and how data locality and data construction are becoming more valuable when source code is so easy to generate.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

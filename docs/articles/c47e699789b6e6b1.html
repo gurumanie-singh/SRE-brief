@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Run: give your agents a browser — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-15.html" class="back-link">← 15 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">15 April 2026, 08:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Browser Run: give your agents a browser</h1>
+
+      <p class="subtitle">AI agents need to interact with the web. To do that, they need a browser.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">AI agents need to interact with the web. To do that, they need a browser.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>AI agents need to interact with the web. To do that, they need a browser. They need to navigate sites, read pages, fill forms, extract data, and take screenshots.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>An AI agent searching Amazon for an orange lava lamp, comparing options, and handing off to a human when sign-in is required to complete the purchase</p>
+<p>Everything an agent needs           Let’s think about what agents need when browsing the web and how each feature fits in:</p>
+<p>What an agent needs   Browser Run (formerly Browser Rendering)         1) Browsers on-demand   Chrome browser on Cloudflare’s global network       2) A way to control the browser   Take actions like navigate, click, fill forms, screenshot, and more with Puppeteer, Playwright, CDP (new) , MCP Client Support (new) and WebMCP (new)       3) Observability   Live View (new) , Session Recordings (new) , and Dashboard redesign (new)       4) Human intervention   Human in the Loop (new)       5) Scale   10 requests/second for Quick Actions, 120 concurrent browsers (4x increase)         1) Open a browser           First, an agent needs a browser.</p>
+<p>Human in the Loop : when your agent hits a snag like a login page or unexpected edge case, it can hand off to a human instead of failing.</p>
+<p>Site owners choose whether their content is accessible and /crawl respects it.</p>
+<p># Initiate a crawl curl -X POST &#39;https://api.cloudflare.com/client/v4/accounts/{account_id}/browser-rendering/crawl&#39; \  -H &#39;Authorization: Bearer &lt;apiToken&gt;&#39; \  -H &#39;Content-Type: application/json&#39; \  -d &#39;{  &#34;url&#34;: &#34;https://blog.cloudflare.com/&#34;  }&#39;        3) Observe           Things don’t always go right the first try.</p>
+<p>Session recording replay of a browser automation browsing the Sentry Shop and adding a bomber jacket to the cart</p>
+<p>Dashboard Redesign           Previously, the Browser Run dashboard only showed logs from browser sessions.</p>
+<p>Traces and Browser Logs : access debugging information without instrumenting your code.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>MCP Client Support: AI coding agents like Claude Desktop, Cursor, and OpenCode can now use Browser Run as their remote browser. When something goes wrong, you have the full recording with DOM changes, user interactions, and page navigation. An AI agent searching Amazon for an orange lava lamp, comparing options, and handing off to a human when sign-in is required to complete the purchase</p>
+<p>Everything an agent needs           Let’s think about what agents need when browsing the web and how each feature fits in:</p>
+<p>What an agent needs   Browser Run (formerly Browser Rendering)         1) Browsers on-demand   Chrome browser on Cloudflare’s global network       2) A way to control the browser   Take actions like navigate, click, fill forms, screenshot, and more with Puppeteer, Playwright, CDP (new) , MCP Client Support (new) and WebMCP (new)       3) Observability   Live View (new) , Session Recordings (new) , and Dashboard redesign (new)       4) Human intervention   Human in the Loop (new)       5) Scale   10 requests/second for Quick Actions, 120 concurrent browsers (4x increase)         1) Open a browser           First, an agent needs a browser. Browser sessions open near users for low latency, and scale up and down as needed.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Next, we’re adding a handoff flow where the agent can signal that it needs help, notify a human to step in, then hand control back to the agent once the issue is resolved.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>10 requests/second for Quick Actions, 120 concurrent browsers (4x increase)</li>
+            <li>&#34;chrome-devtools-mcp@latest&#34;,</li>
+            <li>navigator.modelContextTesting allows agents to discover and execute those tools</li>
+            <li>Today, an agent visiting a travel booking site has to figure out the UI by looking at it. With WebMCP, the site declares “here’s a search_flights tool that takes an origin, destination, and date.” The agent calls it dire</li>
+            <li>We have an experimental pool with browser instances running Chrome beta so you can test emerging browser features before they reach stable Chrome. We also just shipped Wrangler browser commands that let you manage browse</li>
+            <li>npm i -g wrangler@latest</li>
+            <li>Live View lets you watch your agent’s browser session in real time. Whether you’re debugging an agent or running a long automation script, you see exactly what’s happening as it happens. This includes the page itself, as</li>
+            <li>Previously, the Browser Run dashboard only showed logs from browser sessions. Requests for screenshots, PDFs, markdown, and crawls were not visible. The redesigned dashboard changes that. The new Runs tab shows every req</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/browser-run-for-ai-agents/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

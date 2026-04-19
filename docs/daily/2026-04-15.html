@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRE Brief — 15 April 2026</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <a href="../index.html" class="back-link">← Back to latest</a>
+
+  <div class="brief-header">
+    <div class="brief-primary">
+      <h1 class="brief-title">15 April 2026</h1>
+      <span class="brief-sub">9 items</span>
+    </div>
+  </div>
+
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>Repeated coverage across Cloudflare, GitHub</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="controls-bar" id="controlsBar">
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search titles, vendors, themes…" autocomplete="off">
+      <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
+    </div>
+    <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
+      <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+        More
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-results-count" id="filterCount" style="display:none"></div>
+
+  <div class="adv-filters" id="advFilters" hidden>
+    <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Reliability theme</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors="GitHub,Slack"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="build a personal organization command center with github copilot cli"
+       data-id="f75b0fd5ac610c61"
+       data-published="2026-04-15T17:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-04-15T17:00:00+00:00" title="15 April 2026, 12:00">15 April 2026, 12:00</time>
+      </div>
+      <h3 class="card-title">Build a personal organization command center with GitHub Copilot CLI</h3>
+      <p class="card-summary">What if you could remove the struggle of context switching across several apps, bringing them together into one place. Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <div class="card-related">Also: Cloudflare Blog, Cloudflare Blog</div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>What if you could remove the struggle of context switching across several apps, bringing them together into one place? Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work. We sat down with Brittany to learn about this project what she built, how she did it, and how AI supported the development process from ideation to implementation.</p></div>
+      <div class="detail-links">
+        <a href="../articles/f75b0fd5ac610c61.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/ai-and-ml/github-copilot/build-a-personal-organization-command-center-with-github-copilot-cli/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,observability,outage"
+       data-vendors=""
+       data-impact="medium"
+       data-theme="observability"
+       data-title="agentic ai changes the shape of trust"
+       data-id="4c70acaadf00ef90"
+       data-published="2026-04-15T15:45:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-04-15T15:45:00+00:00" title="15 April 2026, 10:45">15 April 2026, 10:45</time>
+      </div>
+      <h3 class="card-title">Agentic AI changes the shape of trust</h3>
+      <p class="card-summary">Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time. That idea held up through the shift to cloud and automation.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">HashiCorp Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Most security models were built around a simple idea: people log in, systems respond, and access is reviewed over time. That idea held up through the shift to cloud and automation. It still mostly works for services and pipelines.</p></div>
+      <div class="detail-links">
+        <a href="../articles/4c70acaadf00ef90.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.hashicorp.com/blog/agentic-ai-changes-the-shape-of-trust" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors="GitHub"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="developer policy update: intermediary liability, copyright, and transparency"
+       data-id="56f46fbeee5d5dd0"
+       data-published="2026-04-15T15:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-04-15T15:00:00+00:00" title="15 April 2026, 10:00">15 April 2026, 10:00</time>
+      </div>
+      <h3 class="card-title">Developer policy update: Intermediary liability, copyright, and transparency</h3>
+      <p class="card-summary">We re sharing a few timely updates on developer policy that reflect GitHub s ongoing work on transparency, developer protections, and copyright policy engagement issues that directly affect how developers build, share, and maintain software. What the Supreme Court s decision in Cox v.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>We re sharing a few timely updates on developer policy that reflect GitHub s ongoing work on transparency, developer protections, and copyright policy engagement issues that directly affect how developers build, share, and maintain software. What the Supreme Court s decision in Cox v. Sony means for developers</p>
+<p>This March, the U.S.</p></div>
+      <div class="detail-links">
+        <a href="../articles/56f46fbeee5d5dd0.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-intermediary-liability-copyright-and-transparency/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors=""
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="human input needed: take our survey on ai agents"
+       data-id="726ed22f9cd94593"
+       data-published="2026-04-15T14:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-04-15T14:00:00+00:00" title="15 April 2026, 09:00">15 April 2026, 09:00</time>
+      </div>
+      <h3 class="card-title">Human input needed: take our survey on AI agents</h3>
+      <p class="card-summary">Are you still &#34;human-in-the-loop,&#34; or have you moved to &#34;human-on-the-loop,&#34; overseeing a bot that’s doing the driving.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Are you still &#34;human-in-the-loop,&#34; or have you moved to &#34;human-on-the-loop,&#34; overseeing a bot that’s doing the driving?</p></div>
+      <div class="detail-links">
+        <a href="../articles/726ed22f9cd94593.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/04/15/human-input-needed-take-our-survey-on-ai-agents/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="networking,observability,outage,postmortem"
+       data-vendors="Cloudflare"
+       data-impact="high"
+       data-theme="observability"
+       data-title="introducing agent lee - a new interface to the cloudflare stack"
+       data-id="8d797ea586eeffe9"
+       data-published="2026-04-15T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-15T13:00:00+00:00" title="15 April 2026, 08:00">15 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Introducing Agent Lee - a new interface to the Cloudflare stack</h3>
+      <p class="card-summary">While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+          <span class="ttag">postmortem</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>While there have been small improvements along the way, the interface of technical products has not really changed since the dawn of the Internet. It still remains: clicking five pages deep, cross-referencing logs across tabs, and hunting for hidden toggles. AI gives us the opportunity to rethink all that.</p></div>
+      <div class="detail-links">
+        <a href="../articles/8d797ea586eeffe9.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/introducing-agent-lee/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,observability,outage"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="register domains wherever you build: cloudflare registrar api now in beta"
+       data-id="ab277aaa2d78ba56"
+       data-published="2026-04-15T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-15T13:00:00+00:00" title="15 April 2026, 08:00">15 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Register domains wherever you build: Cloudflare Registrar API now in beta</h3>
+      <p class="card-summary">Today we&#39;re launching the next chapter of Cloudflare Registrar: the Registrar API in beta . The Registrar API makes it possible to search for domains, check availability, and register them programmatically.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Today we&#39;re launching the next chapter of Cloudflare Registrar: the Registrar API in beta . The Registrar API makes it possible to search for domains, check availability, and register them programmatically. Now, buying a domain the moment an idea starts to feel real no longer has to pull you out of the agentic workflow.</p></div>
+      <div class="detail-links">
+        <a href="../articles/ab277aaa2d78ba56.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/registrar-api-beta/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="latency,networking,observability,outage"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="browser run: give your agents a browser"
+       data-id="c47e699789b6e6b1"
+       data-published="2026-04-15T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-15T13:00:00+00:00" title="15 April 2026, 08:00">15 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Browser Run: give your agents a browser</h3>
+      <p class="card-summary">AI agents need to interact with the web. To do that, they need a browser.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>AI agents need to interact with the web. To do that, they need a browser. They need to navigate sites, read pages, fill forms, extract data, and take screenshots.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c47e699789b6e6b1.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/browser-run-for-ai-agents/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="capacity,deployment,kubernetes,latency,networking,outage,scaling"
+       data-vendors="Cloudflare"
+       data-impact="critical"
+       data-theme="capacity and scale"
+       data-title="rearchitecting the workflows control plane for the agentic era"
+       data-id="bd7f651b1ad20c88"
+       data-published="2026-04-15T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-15T13:00:00+00:00" title="15 April 2026, 08:00">15 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Rearchitecting the Workflows control plane for the agentic era</h3>
+      <p class="card-summary">When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When we originally built Workflows , our durable execution engine for multi-step applications, it was designed for a world in which workflows were triggered by human actions, like a user signing up or placing an order. For use cases like onboarding flows, workflows only had to support one instance per person — and people can only click so fast. Over time, what we’ve actually seen is a quantitative shift in the workload and access pattern: fewer human-triggered workflows, and more agent-triggered workflows, created at machine speed.</p></div>
+      <div class="detail-links">
+        <a href="../articles/bd7f651b1ad20c88.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/workflows-v2/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors=""
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="why ai hasn&#39;t replaced human expertise—and what that means for your saas stack"
+       data-id="f2b889b41a8002f6"
+       data-published="2026-04-15T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-04-15T13:00:00+00:00" title="15 April 2026, 08:00">15 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Why AI hasn&#39;t replaced human expertise—and what that means for your SaaS stack</h3>
+      <p class="card-summary">The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The most valuable AI tools in your enterprise stack do more than generate answers. They help developers determine which answers to trust.</p></div>
+      <div class="detail-links">
+        <a href="../articles/f2b889b41a8002f6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/04/15/why-ai-hasn-t-replaced-human-expertise/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

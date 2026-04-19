@@ -1,0 +1,43 @@
+[
+  {
+    "id": "c51aa785bc1bd8d0",
+    "title": "Announcing Amazon Aurora PostgreSQL serverless database creation in seconds",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/announcing-amazon-aurora-postgresql-serverless-database-creation-in-seconds/",
+    "published": "2026-03-25T20:37:11+00:00",
+    "fetched_at": "2026-04-19T02:22:19.826992+00:00",
+    "summary": "At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Customers can already create production-ready Amazon DynamoDB tables and Amazon Aurora DSQL databases in seconds. He previewed creating an Amazon Aurora serverless database with the same speed, and...",
+    "tags": [
+      "capacity",
+      "database",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-03-25",
+    "impact": "high",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Customers can already creat"
+    ],
+    "sections": {
+      "overview": "At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Customers can already create production-ready Amazon DynamoDB tables and Amazon Aurora DSQL databases in seconds. He previewed creating an Amazon Aurora serverless database with the same speed, and customers have since requested quick access and speed to this capability.",
+      "technical_breakdown": "For example, you can change the capacity range for the serverless instance at the time of create or add read replicas, modify parameter groups after the database is created.\n\nCreate an Aurora PostgreSQL serverless database in seconds \n To get started, go to the Aurora and RDS console and in the navigation pane, choose Dashboard .\n\nFor example, the following Python code is dynamically generated to reflect the authentication configuration:\n\n \n import psycopg2\nimport boto3\n\nauth_token = boto3.client('rds', region_name='ap-south-1').generate_db_auth_token(DBHostname='channy-express-db-instance-1.abcdef.ap-south-1.rds.amazonaws.com', Port=5432, DBUsername='postgres', Region='ap-south-1')\n\nconn = None\ntry:\n conn = psycopg2.connect(\n host='channy-express-db-instance-1.abcdef.ap-south-1.rds.amazonaws.com',\n port=5432,\n database='postgres',\n user='postgres',\n password=auth_token,\n sslmode='require'\n )\n cur = conn.cursor()\n cur.execute('SELECT version();')\n print(cur.fetchone()[0])\n cur.close()\nexcept Exception as e:\n print(f\"Database error: {e}\")\n raise\nfinally:\n if conn:\n conn.close() \n Choose CloudShell for quick access to the AWS CLI which launches directly from the console.\n\nNow available \n You can create an Aurora PostgreSQL serverless database in seconds today in all AWS commercial Regions.\n\nAt re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application.",
+      "impact": "For example, the following Python code is dynamically generated to reflect the authentication configuration:\n\n \n import psycopg2\nimport boto3\n\nauth_token = boto3.client('rds', region_name='ap-south-1').generate_db_auth_token(DBHostname='channy-express-db-instance-1.abcdef.ap-south-1.rds.amazonaws.com', Port=5432, DBUsername='postgres', Region='ap-south-1')\n\nconn = None\ntry:\n conn = psycopg2.connect(\n host='channy-express-db-instance-1.abcdef.ap-south-1.rds.amazonaws.com',\n port=5432,\n database='postgres',\n user='postgres',\n password=auth_token,\n sslmode='require'\n )\n cur = conn.cursor()\n cur.execute('SELECT version();')\n print(cur.fetchone()[0])\n cur.close()\nexcept Exception as e:\n print(f\"Database error: {e}\")\n raise\nfinally:\n if conn:\n conn.close() \n Choose CloudShell for quick access to the AWS CLI which launches directly from the console. For Regional availability and a future roadmap, visit the AWS Capabilities by Region . Customers can already create production-ready Amazon DynamoDB tables and Amazon Aurora DSQL databases in seconds. He previewed creating an Amazon Aurora serverless database with the same speed, and customers have since requested quick access and speed to this capability.\n\nClassified impact band: high. Affected layer signal: cloud — aws.",
+      "resolution": "After it’s created, you have access to features available for Aurora PostgreSQL serverless, such as deploying additional read replicas for high availability and automated failover capabilities.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Customers can already create production-ready Amazon DynamoDB tables and Amazon Aurora DSQL databases in seconds. He previewed creating an Amazon Aurora serverless database with the same speed, and customers have since requested quick access and speed to this capability.",
+      "incident_timeline": "At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Customers can already creat",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "At re:Invent 2025, Colin Lazier , vice president of databases at AWS, emphasized the importance of building at the speed of an idea—enabling rapid progress from concept to running application. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

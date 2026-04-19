@@ -1,0 +1,451 @@
+[
+  {
+    "id": "52f25aed19af08e5",
+    "title": "Building an emoji list generator with the GitHub Copilot CLI",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/building-an-emoji-list-generator-with-the-github-copilot-cli/",
+    "published": "2026-04-17T18:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:21.522765+00:00",
+    "summary": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions!",
+    "tags": [
+      "deployment",
+      "latency",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions!",
+      "It s beautiful. But coming up with the perfect emoji is far too slow for me in this move fast and break things world. I have projects to build! Repos to vibe! Pull requests to merge! I can t be thinking about emojis!",
+      "Copilot asked me a bunch of clarifying questions, for example around the tech stack and what libraries we should use (shoutout to Gabor in the chat for suggesting OpenTUI ), and from there, we had a fully thought-out pla"
+    ],
+    "sections": {
+      "overview": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions! This week, we built a very fun project together using the GitHub Copilot CLI ! Let me tell you about it.",
+      "technical_breakdown": "But coming up with the perfect emoji is far too slow for me in this move fast and break things world.\n\nAnd thus, on the stream, we build an emoji list generator (very descriptively called Emoji List Generator) that:\n\n Runs in the terminal\n You paste or write a list\n You hit Ctrl + S\n You get the list on your clipboard\n\n (Can you tell I m dogfooding the product here?)\n\n How we built it \n\n We used a few cool technologies for this project:\n\n @opentui/core for the terminal UI\n @github/copilot-sdk for the AI brain\n clipboardy for clipboard access\n\n To start the project off, we opened up the GitHub Copilot CLI.\n\nThe post Building an emoji list generator with the GitHub Copilot CLI appeared first on The GitHub Blog .",
+      "impact": "We implemented the plan using Claude Opus 4.7 (which was recently released !) and a few minutes later, voil , we had a fun little terminal UI to work with!\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions!\nIt s beautiful. But coming up with the perfect emoji is far too slow for me in this move fast and break things world. I have projects to build! Repos to vibe! Pull requests to merge! I can t be thinking about emojis!\nCopilot asked me a bunch of clarifying questions, for example around the tech stack and what libraries we should use (shoutout to Gabor in the chat for suggesting OpenTUI ), and from there, we had a fully thought-out pla",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions. This week, we built a very fun project together using the GitHub Copilot CLI .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "8e1f90c363f6a5b8",
+    "title": "Bringing more transparency to GitHub’s status page",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/news-insights/company-news/bringing-more-transparency-to-githubs-status-page/",
+    "published": "2026-04-17T16:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:21.523565+00:00",
+    "summary": "GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Earlier this year, we shared an update on GitHub s recent availability issues and the work we re doing to address them. Alongside those reliability investments, we have prioritized improving how we communicate during and after incidents, increasing the specificity of the...",
+    "tags": [
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "critical",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": true,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Earlier this year, we shared an update on GitHub s recent availability issues and the work we r",
+      "State What It Means Degraded Performance The service is operational but impaired. You may experience elevated latency, reduced functionality, or intermittent errors affecting a small percentage of requests. Partial Outag",
+      "Previously, when a model provider experienced an outage, we declared an incident against the Copilot service, even when the impact was limited to a single model. That didn t always reflect your experience, because many C"
+    ],
+    "sections": {
+      "overview": "GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Earlier this year, we shared an update on GitHub s recent availability issues and the work we re doing to address them. Alongside those reliability investments, we have prioritized improving how we communicate during and after incidents, increasing the specificity of the data we provide and giving better insight into the platform s health overall.",
+      "technical_breakdown": "A new Degraded Performance state for more accurate incident classification\n\n Per-service uptime metrics published for each service\n\n More granular insights on service disruptions, starting with a dedicated Copilot AI Model Providers component for clearer communication around model provider availability\n\n \n\n \n\n Improving accuracy \n\n We re adding a new incident severity level: Degraded Performance .\n\nYou may experience elevated latency, reduced functionality, or intermittent errors affecting a small percentage of requests.\n\nThe post Bringing more transparency to GitHub’s status page appeared first on The GitHub Blog .",
+      "impact": "Each severity level carries a specific downtime weight:\n\n Severity Downtime weight Major Outage 100% the full duration counts as downtime Partial Outage 30% reflects significant but not total service loss Degraded Performance 0% does not count as downtime; the service remains functional \n\n For example, if a service experienced a 1-hour Partial Outage over a 90-day period, that would count as 18 minutes of effective downtime in the uptime calculation not the full hour. Partial Outage A significant portion of the service is unavailable or severely impacted for a meaningful number of users. This did not accurately reflect customer impact and led users to believe a service was unavailable even if it was still functional. Major Outage The service is broadly unavailable, affecting most or all users.\n\nClassified impact band: critical. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Alongside those reliability investments, we have prioritized improving how we communicate during and after incidents, increasing the specificity of the data we provide and giving better insight into the platform s health overall.\n\nGoing forward, incidents related to model availability will be reported under the new Copilot AI Model Providers component instead of the broader Copilot component.",
+      "root_cause_highlight": "",
+      "incident_timeline": "GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Earlier this year, we shared an update on GitHub s recent availability issues and the work we r\nState What It Means Degraded Performance The service is operational but impaired. You may experience elevated latency, reduced functionality, or intermittent errors affecting a small percentage of requests. Partial Outag\nPreviously, when a model provider experienced an outage, we declared an incident against the Copilot service, even when the impact was limited to a single model. That didn t always reflect your experience, because many C",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "GitHub is where millions of developers do their most important work, and that comes with a responsibility we take seriously. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c0122672722e99bd",
+    "title": "Advancing secret sync with workload identity federation",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation",
+    "published": "2026-04-17T14:45:00+00:00",
+    "fetched_at": "2026-04-19T02:22:21.847141+00:00",
+    "summary": "With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials. ",
+    "tags": [
+      "deployment",
+      "latency",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Azure",
+      "Google Cloud",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now support",
+      "Until now, configuring cloud provider destinations required static credentials such as:",
+      "Despite these differences, the underlying model is consistent. No static secrets are stored. Access is granted through a short-lived token exchange based on an established trust relationship.",
+      "What is new in Vault secret sync  With workload identity federation support for cloud provider destinations, Vault can now:"
+    ],
+    "sections": {
+      "overview": "With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials. Modern cloud environments are built on short-lived identity, dynamic infrastructure, and policy-driven access.",
+      "technical_breakdown": "Instead of storing credentials, systems: \n\n Present a trusted identity token, typically a signed JWT \n\n Exchange it with a cloud provider \n\n Receive a short-lived and scoped access token \n\n Each cloud provider implements this model slightly differently: \n\n AWS uses IAM roles with web identity \n\n Azure uses federated credentials \n\n GCP uses workload identity pools \n\n Despite these differences, the underlying model is consistent.\n\nAs agentic systems become more prevalent, this approach ensures that secret distribution keeps pace and reduces credential sprawl, enforces least privilege, and strengthens the overall security posture without slowing down innovation.",
+      "impact": "These tokens are automatically refreshed and tightly scoped, which reduces the impact of credential exposure and minimizes the attack surface. The challenge with long-lived root credentials  Secret sync enables customers to securely distribute secrets from Vault to cloud provider secret stores, helping standardize secret management and reduce fragmentation across platforms. Instead of storing credentials, systems: \n\n Present a trusted identity token, typically a signed JWT \n\n Exchange it with a cloud provider \n\n Receive a short-lived and scoped access token \n\n Each cloud provider implements this model slightly differently: \n\n AWS uses IAM roles with web identity \n\n Azure uses federated credentials \n\n GCP uses workload identity pools \n\n Despite these differences, the underlying model is consistent.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Vault admins can now: \n\n Enable secret sync without violating security policy \n\n Remove legacy static credentials from their environment \n\n Reduce credential management overhead \n\n Improve operational efficiency and reliability \n\n Strengthen compliance and auditability \n\n By combining stronger security with simpler credential management, secret sync now aligns with zero trust and identity-first cloud security architectures while making operations easier for platform teams.\n\nStronger security with simpler operations   Workload identity federation improves both the security and operational reliability of secret synchronization.\n\nThis model also improves operational reliability.",
+      "root_cause_highlight": "",
+      "incident_timeline": "With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now support\nUntil now, configuring cloud provider destinations required static credentials such as:\nDespite these differences, the underlying model is consistent. No static secrets are stored. Access is granted through a short-lived token exchange based on an established trust relationship.\nWhat is new in Vault secret sync  With workload identity federation support for cloud provider destinations, Vault can now:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials.",
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/flagship/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "1ad62db0f727849e",
+    "title": "Introducing the Agent Readiness score. Is your site agent-ready?",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/agent-readiness/",
+    "published": "2026-04-17T13:05:00+00:00",
+    "fetched_at": "2026-04-19T02:22:20.537405+00:00",
+    "summary": "The web has always had to adapt to new standards. It learned to speak to web browsers, and then it learned to speak to search engines. Now, it needs to speak to AI agents.",
+    "tags": [
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "We want to lead by example. That is why we are also sharing how we recently overhauled Cloudflare's Developer Documentation to make it the most agent-friendly documentation site, allowing AI tools to answer questions fas",
+      "Scores and audits that provide actionable feedback have helped to drive adoption of new standards before. For example, Google Lighthouse scores websites on performance and security best practices, and guides site owners ",
+      "When you enter your site, Cloudflare makes requests to it to check which standards it supports, and provides a score based on four dimensions:",
+      "Now that agents can navigate your site and consume your content, the next question is: do you want to let any bot do it?",
+      "robots.txt does more than point to sitemaps. It is also where you define your access rules. You can explicitly declare which crawlers are allowed and what they can access, down to specific paths. This convention is well ",
+      "Inversely, the Web Bot Auth IETF draft standard allows friendly bots to authenticate themselves, and allows websites receiving requests from bots to identify them. A bot signs its HTTP requests, and the receiving site ve",
+      "Not all sites need to implement this. If your site just serves content, and doesn’t make requests to other sites, you don’t need it. But as more sites on the Internet run their own agents that make requests to other site",
+      "\"description\": \"Search documentation by keyword or question\","
+    ],
+    "sections": {
+      "overview": "The web has always had to adapt to new standards. It learned to speak to web browsers, and then it learned to speak to search engines. Now, it needs to speak to AI agents.",
+      "technical_breakdown": "Integrating agent readiness into Cloudflare URL Scanner \n \n \n \n \n Cloudflare's URL Scanner lets you submit any URL and get a detailed report on it: HTTP headers, TLS certificates, DNS records, technologies used, performance data, and security signals.\n\nThink of it as a sitemap written for an LLM to read rather than a crawler to index:\n\n # My Site\n> A developer platform for building on the edge.\n## Documentation\n- [Getting Started](https://example.com/docs/start.md)\n- [API Reference](https://example.com/docs/api.md)\n## Changelog\n- [Release Notes](https://example.com/changelog.md) \n Markdown content negotiation goes even further.\n\nUnlike links buried inside HTML, the Link header is part of the HTTP response itself, which means an agent can find links to resources without having to parse any markup:\n\n HTTP/1.1 200 OK\nLink: </.well-known/api-catalog>; rel=\"api-catalog\" \n \n \n Content accessibility \n \n \n \n \n Getting an agent onto your site is one thing.\n\nAn agent reads this file and knows everything it needs to start using your server:\n\n {\n \"$schema\": \"https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json\",\n \"version\": \"1.0\",\n \"protocolVersion\": \"2025-06-18\",\n \"serverInfo\": {\n \"name\": \"search-mcp-server\",\n \"title\": \"Search MCP Server\",\n \"version\": \"1.0.0\"\n },\n \"description\": \"Search across all documentation and knowledge base articles\",\n \"transport\": {\n \"type\": \"streamable-http\",\n \"endpoint\": \"/mcp\"\n },\n \"authentication\": {\n \"required\": false\n },\n \"tools\": [\n {\n \"name\": \"search\",\n \"title\": \"Search\",\n \"description\": \"Search documentation by keyword or question\",\n \"inputSchema\": {\n \"type\": \"object\",\n \"properties\": {\n \"query\": { \"type\": \"string\" }\n },\n \"required\": [\"query\"]\n }\n }\n ]\n} \n Agents work best when they have Agent Skills that help them perform specific tasks — but how can agents discover what skills a site provides?\n\nFor example, we omit roughly 450 pages that only serve as localized directory listings, like https://developers.cloudflare.com/workers/databases/ .",
+      "impact": "Using a Content-Signal directive in your robots.txt , you can independently control three things: whether your content can be used for AI training ( ai-train ), whether it can be used as AI input for inference and grounding ( ai-input ), and whether it should appear in search results ( search ):\n\n User-agent: *\nContent-Signal: ai-train=no, search=yes, ai-input=yes \n Inversely, the Web Bot Auth IETF draft standard allows friendly bots to authenticate themselves, and allows websites receiving requests from bots to identify them. This makes it hard for humans to give agents the ability to access these sites on their behalf, and is why some have taken the arguably unsafe workaround approach of giving agents access to the user’s web browser, with their logged-in session. Announced at Agents Week 2026, Cloudflare Access now fully supports this OAuth flow , and we showed how agents like OpenCode can make use of this standard to make things just work when users give agents protected URLs:\n\n \n \n \n \n Commerce \n \n \n \n \n Agents can also buy things on your behalf — but payments on the web were designed for humans. To include agent readiness results in a scan, pass the agentReadiness option in your scan request:\n\n curl -X POST https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/urlscanner/v2/scan \\\n -H 'Content-Type: application/json' \\\n -H \"Authorization: Bearer $CLOUDFLARE_API_TOKEN\" \\\n -d '{\n \"url\": \"https://www.example.com\",\n \"options\": {\"agentReadiness\": true}\n }' \n \n \n Leading by example: upgrading Cloudflare Docs \n \n \n \n \n As we built the tools to measure the Web’s readiness, we knew we had to ensure our own house was in order.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "It also publishes an Agent Skills index (https://isitagentready.com/.well-known/agent-skills/index.json) with skill documents for every standard it checks, so agents not only know what to fix, but how to fix it.\n\nThis makes it hard for humans to give agents the ability to access these sites on their behalf, and is why some have taken the arguably unsafe workaround approach of giving agents access to the user’s web browser, with their logged-in session.",
+      "lessons_learned": "It learned to speak to web browsers, and then it learned to speak to search engines.\n\nThere’s a better way that allows humans to explicitly grant access: sites that support OAuth can tell agents where to find the authorization server ( RFC 9728 ), allowing agents to send humans through an OAuth flow, where they can choose to properly grant access to the agent.\n\nWhen you scan any URL, you'll now see its full agent readiness report alongside the existing analysis: which of the checks pass, what level the site is at, and actionable guidance to improve your score.\n\nIf we’ve learned anything from the past year, it’s that a lot can change very quickly!",
+      "root_cause_highlight": "Likely root-cause theme: database issue. For example, we omit roughly 450 pages that only serve as localized directory listings, like https://developers.cloudflare.com/workers/databases/ . Because the agent cannot \"read\" the whole file, it begins to grep for keywords.",
+      "incident_timeline": "We want to lead by example. That is why we are also sharing how we recently overhauled Cloudflare's Developer Documentation to make it the most agent-friendly documentation site, allowing AI tools to answer questions fas\nScores and audits that provide actionable feedback have helped to drive adoption of new standards before. For example, Google Lighthouse scores websites on performance and security best practices, and guides site owners \nWhen you enter your site, Cloudflare makes requests to it to check which standards it supports, and provides a score based on four dimensions:\nNow that agents can navigate your site and consume your content, the next question is: do you want to let any bot do it?\nrobots.txt does more than point to sitemaps. It is also where you define your access rules. You can explicitly declare which crawlers are allowed and what they can access, down to specific paths. This convention is well \nInversely, the Web Bot Auth IETF draft standard allows friendly bots to authenticate themselves, and allows websites receiving requests from bots to identify them. A bot signs its HTTP requests, and the receiving site ve\nNot all sites need to implement this. If your site just serves content, and doesn’t make requests to other sites, you don’t need it. But as more sites on the Internet run their own agents that make requests to other site\n\"description\": \"Search documentation by keyword or question\",",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "The web has always had to adapt to new standards. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "9fda63fedd46fe33",
+    "title": "Shared Dictionaries: compression that keeps up with the agentic web",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/shared-dictionaries/",
+    "published": "2026-04-17T13:02:00+00:00",
+    "fetched_at": "2026-04-19T02:22:20.539511+00:00",
+    "summary": "Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often those pages get rebuilt and how many clients request them. Both are skyrocketing because of agents. ",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often t",
+      "Today, we’re excited to give you a sneak peek of our support for shared compression dictionaries, show you what we’ve seen in early testing, and reveal when you’ll be able to try the beta yourself (hint: it’s April 30, 2",
+      "Agentic crawlers, browsers, and other tools hit endpoints repeatedly, fetching full pages, often to extract a fragment of information. Agentic actors represented just under 10% of total requests across Cloudflare's netwo",
+      "In order to scale with more requests hitting heavier pages that are re-deployed more often, compression has to get smarter.",
+      "Delta compression is what turns the version the browser already has into the dictionary. The protocol looks to when the server first serves a resource, it attaches a Use-As-Dictionary response header, telling the browser",
+      "The RFC mitigates the security problems but dictionary transport has always been complex to implement. An origin may have to generate dictionaries, serve them with the right headers, check every request for an Available-",
+      "This complexity is a coordination problem. And exactly the kind of thing that belongs at the edge. A CDN already sits in front of every request, already manages compression, and already handles cache variants ( watch thi",
+      "Shared dictionary compression touches every layer of the stack between the browser and the origin. We've seen strong customer interest: some people have already built their own implementations like RFC author Patrick Mee"
+    ],
+    "sections": {
+      "overview": "Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often those pages get rebuilt and how many clients request them.",
+      "technical_breakdown": "A CDN already sits in front of every request, already manages compression, and already handles cache variants ( watch this space for a soon-to-come announcement blog ).\n\nOn a cache miss (where DCZ has to compress against the dictionary at the origin) TTFB is only about 20ms slower than gzip.\n\nBut Cloudflare has the right pieces: we see the traffic patterns across the entire network, we already manage the cache layer where dictionaries need to live, and our RUM beacon to clients can help give us a validation loop to confirm that a dictionary actually improves compression before we commit to serving it.\n\nShared dictionaries shrink asset transfers from servers to browsers so pages load faster with less bloat on the wire, especially for returning users or visitors on a slow connection.\n\nInstead of re-downloading entire JavaScript bundles after every deploy, the browser tells the server what it already has cached, and the server only sends the file diffs.",
+      "impact": "What is changing is how often those pages get rebuilt and how many clients request them. Shared dictionaries shrink asset transfers from servers to browsers so pages load faster with less bloat on the wire, especially for returning users or visitors on a slow connection. As agents push a one-line fix, the bundler re-chunks, filenames change, and every user on earth could re-download the entire application. Not because the code is meaningfully any different, but because the browser/client has no way to know specifically what changed.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "As agents push a one-line fix, the bundler re-chunks, filenames change, and every user on earth could re-download the entire application.\n\nRemember the deploy problem where a team ships a one-line fix and every user re-downloads the full bundle?\n\nBut SDCH accumulated problems faster than anyone was able to fix them.\n\nKeep your eyes fixed on the changelog for when this becomes available and more documentation for how to use it.",
+      "lessons_learned": "It worked well with some early adopters reporting double-digit improvements in page load times.\n\nFor example, it enforces that an advertised dictionary is only usable on responses from the same-origin, preventing many conditions that made side-channel compression attacks possible.\n\nOn a cache miss, DCZ completed in 31ms versus 166ms for gzip (an 81% improvement).\n\nOn a cache hit, 16ms versus 143ms (89% improvement).",
+      "root_cause_highlight": "",
+      "incident_timeline": "Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing. What is changing is how often t\nToday, we’re excited to give you a sneak peek of our support for shared compression dictionaries, show you what we’ve seen in early testing, and reveal when you’ll be able to try the beta yourself (hint: it’s April 30, 2\nAgentic crawlers, browsers, and other tools hit endpoints repeatedly, fetching full pages, often to extract a fragment of information. Agentic actors represented just under 10% of total requests across Cloudflare's netwo\nIn order to scale with more requests hitting heavier pages that are re-deployed more often, compression has to get smarter.\nDelta compression is what turns the version the browser already has into the dictionary. The protocol looks to when the server first serves a resource, it attaches a Use-As-Dictionary response header, telling the browser\nThe RFC mitigates the security problems but dictionary transport has always been complex to implement. An origin may have to generate dictionaries, serve them with the right headers, check every request for an Available-\nThis complexity is a coordination problem. And exactly the kind of thing that belongs at the edge. A CDN already sits in front of every request, already manages compression, and already handles cache variants ( watch thi\nShared dictionary compression touches every layer of the stack between the browser and the origin. We've seen strong customer interest: some people have already built their own implementations like RFC author Patrick Mee",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Web pages have grown 6-9% heavier every year for the past decade, spurred by the web becoming more framework-driven, interactive, and media-rich. Nothing about that trajectory is changing.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "e285de33b08383e8",
+    "title": "Redirects for AI Training enforces canonical content",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/ai-redirects/",
+    "published": "2026-04-17T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:20.541125+00:00",
+    "summary": "Cloudflare's Wrangler CLI has published several major versions over the past six years, each containing at least some critical changes to commands, configuration, or how developers interact with the platform. Like any actively maintained open-source project, we keep documentation for older versions available. The v1 documentation carries a deprecation banner, a noindex meta tag , and canonical...",
+    "tags": [
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "We use AI Crawl Control on developers.cloudflare.com , so we know that bots in the AI Crawler Category visited 4.8 million times over the last 30 days, and they consumed deprecated content at the same rate as current con",
+      "For search engines, noindex functions as a rich signal system, but there’s no equivalent inline directive a page can carry that says “don’t train on this”. Keeping a deprecated page live with a warning banner may work fo",
+      "When a request arrives from a verified AI Crawler, Cloudflare reads the response HTML. If a non-self-referencing canonical tag is present, Cloudflare issues a 301 Moved Permanently to the canonical URL before returning t",
+      "Here’s what the exchange looks like for a GPTBot request to a deprecated path:",
+      "It doesn't retroactively correct training data already ingested or cover unverified crawlers outside the AI Crawler bot category. Humans and AI Agents visiting deprecated pages will not be redirected. We also exclude cro",
+      "So we enabled Redirects for AI Training on developers.cloudflare.com and measured the response. In the first seven days, 100% of AI training crawler requests to pages with non-self-referencing canonical tags were redirec",
+      "Radar’s AI Insights page now includes a Response status code analysis graph illustrating the distribution of the top response status codes or response status code groupings (selectable via a dropdown) for AI crawler traf",
+      "In the general example shown below, we can see that for the time period covered by the graph, just over 70% of requests were serviced successfully ( 200 ), while 10.1% of the requests were redirected ( 301 , 302 ) to ano"
+    ],
+    "sections": {
+      "overview": "Cloudflare's Wrangler CLI has published several major versions over the past six years, each containing at least some critical changes to commands, configuration, or how developers interact with the platform. Like any actively maintained open-source project, we keep documentation for older versions available. The v1 documentation carries a deprecation banner, a noindex meta tag , and canonical tags pointing to current docs.",
+      "technical_breakdown": "Your existing canonical tags become HTTP 301 redirects for verified AI training crawlers, automatically, with one toggle, on all paid Cloudflare plans.\n\nHere’s what the exchange looks like for a GPTBot request to a deprecated path:\n\n GET /durable-objects/api/legacy-kv-storage-api/\n\nHost: developers.cloudflare.com\n\nUser-Agent: Mozilla/5.0 (compatible; GPTBot/1.1; +https://openai.com/gptbot)\n \n \n HTTP/1.1 301 Moved Permanently\n\nLocation: https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/\n \n \n \n What this does not do \n \n \n \n \n It doesn't retroactively correct training data already ingested or cover unverified crawlers outside the AI Crawler bot category.\n\nWe run AI Crawl Control on developers.cloudflare.com using the same dashboard available to all Cloudflare customers.\n\nIn the dashboard: on any domain, go to AI Crawl Control > Quick Actions > Redirects for AI training > toggle on.",
+      "impact": "And because status codes are ultimately how the web communicates policy to crawlers, Radar's AI Insights page now includes Response status code analysis showing the various types ( successful ( 2xx ), redirection ( 3xx ), client error ( 4xx ), and server error ( 5xx ) of status codes AI crawlers receive across all Cloudflare traffic as a view of how the web responds to AI crawlers today. Grouped, we find that nearly 74% of requests received successful responses ( 2xx ), 13.7% received client error responses ( 4xx ), 11.3% received redirection messages ( 3xx ), and 1.2% were sent server error responses ( 5xx ). Grouped, we find that 83% of requests received successful responses (2xx), nearly 10% received client error responses ( 4xx ), 5.1% received redirection messages ( 3xx ), and the remaining 2.2% got server error responses ( 5xx ). Human traffic, search indexing, and other automated traffic is unaffected.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We expect that redirecting crawlers to current content eventually improves AI-generated answers about legacy tools.\n\nGiven the closed nature of training pipelines and variability in recrawl timing, this is a hypothesis we will continue to verify.\n\nBut what the crawler receives at the point of access has seen immediate improvement.",
+      "root_cause_highlight": "",
+      "incident_timeline": "We use AI Crawl Control on developers.cloudflare.com , so we know that bots in the AI Crawler Category visited 4.8 million times over the last 30 days, and they consumed deprecated content at the same rate as current con\nFor search engines, noindex functions as a rich signal system, but there’s no equivalent inline directive a page can carry that says “don’t train on this”. Keeping a deprecated page live with a warning banner may work fo\nWhen a request arrives from a verified AI Crawler, Cloudflare reads the response HTML. If a non-self-referencing canonical tag is present, Cloudflare issues a 301 Moved Permanently to the canonical URL before returning t\nHere’s what the exchange looks like for a GPTBot request to a deprecated path:\nIt doesn't retroactively correct training data already ingested or cover unverified crawlers outside the AI Crawler bot category. Humans and AI Agents visiting deprecated pages will not be redirected. We also exclude cro\nSo we enabled Redirects for AI Training on developers.cloudflare.com and measured the response. In the first seven days, 100% of AI training crawler requests to pages with non-self-referencing canonical tags were redirec\nRadar’s AI Insights page now includes a Response status code analysis graph illustrating the distribution of the top response status codes or response status code groupings (selectable via a dropdown) for AI crawler traf\nIn the general example shown below, we can see that for the time period covered by the graph, just over 70% of requests were serviced successfully ( 200 ), while 10.1% of the requests were redirected ( 301 , 302 ) to ano",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Cloudflare's Wrangler CLI has published several major versions over the past six years, each containing at least some critical changes to commands, configuration, or how developers interact with the platform. Like any actively maintained open-source project, we keep documentation for older versions available.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "7062949efcbeef1e",
+    "title": "Unweight: how we compressed an LLM 22% without sacrificing quality",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/unweight-tensor-compression/",
+    "published": "2026-04-17T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:20.543680+00:00",
+    "summary": "Running inference within 50ms of 95% of the world's Internet-connected population means being ruthlessly efficient with GPU memory. Last year we improved memory utilization with Infire , our Rust-based inference engine, and eliminated cold-starts with Omni , our model scheduling platform. Now we are tackling the next big bottleneck in our inference platform: model weights.",
+    "tags": [
+      "capacity",
+      "latency",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-17",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "To solve this problem, we built Unweight : a lossless compression system that can make model weights up to 15–22% smaller while preserving bit-exact outputs, without relying on any special hardware. The core breakthrough",
+      "Prior research has established that across trained LLMs, out of 256 possible exponent values, just a handful dominate. The top 16 most common exponents cover over 99% of all weights in a typical layer. Information theory",
+      "There's no single best way to use compressed weights during inference. The right approach depends on the workload — the batch size, the shape of the weight matrix, and how much GPU time is available for decompression. Un",
+      "The four pipelines form a spectrum. At one end, full decode completely reconstructs the original BF16 weights and hands them to NVIDIA’s cuBLAS library for a standard matrix multiplication. This is the simplest path with",
+      "This is why Unweight doesn't hard-code a single strategy. The runtime picks the best pipeline for each weight matrix at each batch size, informed by an autotuning process that measures actual end-to-end throughput on the",
+      "The reconstructive matmul comes in multiple variants, differing in how many output tiles each compute unit handles and how deep the circular buffer runs. Wider output tiles improve data reuse at large batch sizes; deeper",
+      "The down projection benefits most from this overlap: it's consumed last in the MLP sequence (after gate, activation, and up), so its decode has the longest runway to complete.",
+      "A single model bundle doesn't need to commit to one strategy at packaging time. The runtime selects the best execution path per projection and per batch size on the fly."
+    ],
+    "sections": {
+      "overview": "Running inference within 50ms of 95% of the world's Internet-connected population means being ruthlessly efficient with GPU memory. Last year we improved memory utilization with Infire , our Rust-based inference engine, and eliminated cold-starts with Omni , our model scheduling platform. Now we are tackling the next big bottleneck in our inference platform: model weights.",
+      "technical_breakdown": "Traditional decompression vs Unweight \n\n \n \n With Unweight, ~30% fewer bytes cross the memory bus for MLP weight matrices \n\n Inside this kernel, the GPU's thread groups are split into two roles:\n\n A producer group loads compressed inputs from HBM into shared memory using dedicated memory-copy hardware (TMA).\n\nFor Cloudflare's network, Unweight gives us better capacity: it allows us to serve state-of-the-art models with less GPU memory per instance, which translates to cost savings and the ability to deploy more models in more places.\n\nThe core breakthrough here is that decompressing weights in fast on-chip memory and feeding them directly to the tensor cores avoids an extra round-trip through slow main memory.\n\nOn an H100, the tensor cores sit idle waiting for memory most of the time — but that idle capacity can't simply be repurposed for decompression.\n\nEach GPU compute unit can run either the decompression kernel or the matrix multiplication kernel, not both simultaneously, due to shared memory constraints.",
+      "impact": "Classified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "With small batch sizes (i.e. 1-64 tokens), the matmul is tiny, so there isn't much computation to overlap with, and the fixed costs of a custom kernel dominate.\n\nIt sweeps candidate configurations for the gate projection while holding up and down fixed, then sweeps up, then down, repeating until no further improvement is found.\n\nThree known sources – small-batch fixed costs, redundant weight-tile reconstruction, and the excluded down projection – are under active optimization.\n\nThe current 30–40% throughput overhead has three identified sources: small-batch fixed costs in the reconstructive matmul, redundant weight reconstruction at large batch sizes, and the missing down projection.",
+      "lessons_learned": "Last year we improved memory utilization with Infire , our Rust-based inference engine, and eliminated cold-starts with Omni , our model scheduling platform.\n\nWider output tiles improve data reuse at large batch sizes; deeper buffers hide memory latency at small batch sizes.\n\nIt sweeps candidate configurations for the gate projection while holding up and down fixed, then sweeps up, then down, repeating until no further improvement is found.\n\nThis gap narrows at larger batches (where preprocess overlap improves) and is expected to narrow further as we optimize — in particular, we haven't yet compressed the down projection in each MLP layer (about one-third of the compressible weights), and several kernel improvements are in active development.",
+      "root_cause_highlight": "",
+      "incident_timeline": "To solve this problem, we built Unweight : a lossless compression system that can make model weights up to 15–22% smaller while preserving bit-exact outputs, without relying on any special hardware. The core breakthrough\nPrior research has established that across trained LLMs, out of 256 possible exponent values, just a handful dominate. The top 16 most common exponents cover over 99% of all weights in a typical layer. Information theory\nThere's no single best way to use compressed weights during inference. The right approach depends on the workload — the batch size, the shape of the weight matrix, and how much GPU time is available for decompression. Un\nThe four pipelines form a spectrum. At one end, full decode completely reconstructs the original BF16 weights and hands them to NVIDIA’s cuBLAS library for a standard matrix multiplication. This is the simplest path with\nThis is why Unweight doesn't hard-code a single strategy. The runtime picks the best pipeline for each weight matrix at each batch size, informed by an autotuning process that measures actual end-to-end throughput on the\nThe reconstructive matmul comes in multiple variants, differing in how many output tiles each compute unit handles and how deep the circular buffer runs. Wider output tiles improve data reuse at large batch sizes; deeper\nThe down projection benefits most from this overlap: it's consumed last in the MLP sequence (after gate, activation, and up), so its decode has the longest runway to complete.\nA single model bundle doesn't need to commit to one strategy at packaging time. The runtime selects the best execution path per projection and per batch size on the fly.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Running inference within 50ms of 95% of the world's Internet-connected population means being ruthlessly efficient with GPU memory. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "901df22c5085a154",
+    "title": "Agents that remember: introducing Agent Memory",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/introducing-agent-memory/",
+    "published": "2026-04-17T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:20.546258+00:00",
+    "summary": "As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. The quality of results produced by models is directly tied to the quality of context they operate with, but even as context window sizes grow past one million (1M) tokens, context rot remains an unsolved problem. A natural...",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-17",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare",
+      "Stripe"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. The quality of results produced by models is d",
+      "Agentic memory is one of the fastest-moving spaces in AI infrastructure, with new open-source libraries, managed services, and research prototypes launching on a near-weekly basis. These offerings vary widely in what the",
+      "Agent Memory is a managed service with an opinionated API and retrieval-based architecture. We've carefully considered the alternatives, and we believe this combination is the right default for most production workloads.",
+      "They need fast ingestion. They need retrieval that doesn't block the conversation. And they need to run on models that keep the per-query cost reasonable.",
+      "Agent Memory stores memories in a profile, which is addressed by name. A profile gives you several operations: ingest a conversation, remember something specific, recall what you need, list memories, or forget a specific",
+      "async fetch(request: Request, env: Env): Promise<Response> {",
+      "// Ingest -- extract memories from a conversation (typically called at compaction)",
+      "await profile.ingest(["
+    ],
+    "sections": {
+      "overview": "As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. The quality of results produced by models is directly tied to the quality of context they operate with, but even as context window sizes grow past one million (1M) tokens, context rot remains an unsolved problem. A natural tension emerges between two bad options: keep everything in context and watch quality degrade, or aggressively prune and risk losing information the agent needs later.",
+      "technical_breakdown": "Some expose constrained, purpose-built APIs that keep memory logic out of the agent's main context; others give the model raw access to a database or filesystem and let it design its own queries, burning tokens on storage and retrieval strategy instead of the actual task.\n\nAnd dark mode by default.\" },\n { role: \"assistant\", content: \"Got it -- pnpm and dark mode as default.\" },\n ], { sessionId: \"session-001\" });\n // Remember -- store a single memory explicitly (direct tool use by the model)\n const memory = await profile.remember({\n content: \"API rate limit was increased to 10,000 req/s per zone after the April 10 incident.\",\n sessionId: \"session-001\",\n });\n // Recall -- retrieve memories and get a synthesized answer\n const results = await profile.recall(\"What package manager does the user prefer?\");\n console.log(results.result); // \"The user prefers pnpm over npm.\"\n return Response.json({ ok: true });\n },\n}; \n Agent Memory is accessed via a binding from any Cloudflare Worker.\n\nA team of engineers can share a memory profile so that knowledge learned by one person's coding agent is available to everyone: coding conventions, architectural decisions, tribal knowledge that currently lives in people's heads or gets lost when context is pruned.\n\nYour memories are yours \n \n \n \n \n As agents become more capable and more deeply embedded in business processes, the memory they accumulate becomes genuinely valuable — not just as an operational state, but as institutional knowledge that took real work to build.\n\nEvery memory is exportable, and we're committed to making sure the knowledge your agents accumulate on Cloudflare can leave with you if your needs change.",
+      "impact": "Recall runs the full retrieval pipeline and returns a synthesized answer.\n\n export default {\n async fetch(request: Request, env: Env): Promise<Response> {\n // Get a profile -- an isolated memory store shared across sessions, agents, and users\n const profile = await env.MEMORY.getProfile(\"my-project\");\n // Ingest -- extract memories from a conversation (typically called at compaction)\n await profile.ingest([\n { role: \"user\", content: \"Set up the project with React and TypeScript.\" },\n { role: \"assistant\", content: \"Done. Scaffolded a React + TS project targeting Workers.\" },\n { role: \"user\", content: \"Use pnpm, not npm. And dark mode by default.\" },\n { role: \"assistant\", content: \"Got it -- pnpm and dark mode as default.\" },\n ], { sessionId: \"session-001\" });\n // Remember -- store a single memory explicitly (direct tool use by the model)\n const memory = await profile.remember({\n content: \"API rate limit was increased to 10,000 req/s per zone after the April 10 incident.\",\n sessionId: \"session-001\",\n });\n // Recall -- retrieve memories and get a synthesized answer\n const results = await profile.recall(\"What package manager does the user prefer?\");\n console.log(results.result); // \"The user prefers pnpm over npm.\"\n return Response.json({ ok: true });\n },\n}; \n Agent Memory is accessed via a binding from any Cloudflare Worker. We're hearing growing concern from customers about what it means to tie that asset to a single vendor, which is reasonable.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "Each chunk gets a structured transcript with role labels, relative dates resolved to absolutes (\"yesterday\" becomes \"2026-04-14\"), and line indices for source provenance.",
+      "lessons_learned": "In addition to improved cost and performance, they provide a better foundation for complex reasoning tasks required in production, like temporal logic, supersession, and instruction following.\n\nA team of engineers can share a memory profile so that knowledge learned by one person's coding agent is available to everyone: coding conventions, architectural decisions, tribal knowledge that currently lives in people's heads or gets lost when context is pruned.\n\nAlong the way we had to guard carefully against overfitting the benchmarks in ways that didn't genuinely make the product better for the general case.\n\nOver time, this got us to a place where benchmark scores improved consistently with each iteration and we had a generalized architecture that would work in the real world.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. We built Agent Memory because the workloads we see on our platform exposed gaps that existing approaches don't fully address. Facts represent what is true right now, atomic, stable knowledge like \"the project uses GraphQL\" or \"the user prefers dark mode.\" \n\n Events capture what happened at a specific time, like a deployment or a decision. Fact-key matches get the highest weight because an exact topic match is the strongest signal.",
+      "incident_timeline": "As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. The quality of results produced by models is d\nAgentic memory is one of the fastest-moving spaces in AI infrastructure, with new open-source libraries, managed services, and research prototypes launching on a near-weekly basis. These offerings vary widely in what the\nAgent Memory is a managed service with an opinionated API and retrieval-based architecture. We've carefully considered the alternatives, and we believe this combination is the right default for most production workloads.\nThey need fast ingestion. They need retrieval that doesn't block the conversation. And they need to run on models that keep the per-query cost reasonable.\nAgent Memory stores memories in a profile, which is addressed by name. A profile gives you several operations: ingest a conversation, remember something specific, recall what you need, list memories, or forget a specific\nasync fetch(request: Request, env: Env): Promise<Response> {\n// Ingest -- extract memories from a conversation (typically called at compaction)\nawait profile.ingest([",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "As developers build increasingly sophisticated agents on Cloudflare, one of the biggest challenges they face is getting the right information into context at the right time. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c2adcb60ba3faca4",
+    "title": "Agents Week: network performance update",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/network-performance-agents-week/",
+    "published": "2026-04-17T13:00:00+00:00",
+    "fetched_at": "2026-04-19T02:22:20.547191+00:00",
+    "summary": "When it comes to the Internet, performance is everything. Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build. That's why, at Cloudflare, we measure our performance constantly and share updates on a regular basis. ",
+    "tags": [
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-17",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "In our last performance post , published during Birthday Week 2025, we shared that Cloudflare was the fastest network in 40% of the largest 1,000 networks in the world. At the time, we noted a nuanced reading of that fig",
+      "Before diving into the results, let’s review how we collect the data. We start with the 1,000 largest networks in the world by estimated population, using APNIC's data as our source. These networks represent real users i",
+      "To measure performance, we use connection time, which is the time it takes for an end user's device to complete a handshake with the endpoint they're trying to reach. We chose this metric because it most closely approxim",
+      "To capture this data, we rely on Real User Measurements (RUM). When users encounter a Cloudflare-branded error page, a small speed test runs silently in the background. The browser retrieves small files from multiple pro",
+      "The answer there has to do with improving how our network handles connections in software. By leveraging protocols like HTTP/3 and changing how we manage congestion windows, we can reduce processing time by milliseconds ",
+      "As we noted above, by December, Cloudflare had become the fastest provider in 60% of the top networks, up from 40% when we last reported. Since Birthday Week in September 2025 we have steadily increased the networks wher",
+      "This means that between September and December, we became the fastest in 40 additional countries and in 261 additional networks. We saw the biggest increase in the United States, where we are the fastest in 54 more ASNs.",
+      "On average throughout December, we were 6ms faster than the next-fastest provider. As shown above, the line representing Cloudflare’s latency, or connection time, is consistently lower throughout December than the next f"
+    ],
+    "sections": {
+      "overview": "When it comes to the Internet, performance is everything. Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build. That's why, at Cloudflare, we measure our performance constantly and share updates on a regular basis.",
+      "technical_breakdown": "By improving CPU usage and memory usage in our software that handles fundamental actions like establishing connections, SSL/TLS termination, traffic management, and the core proxy that all requests flow through, we can make that software more efficient in its usage of resources across our global fleet of hardware.\n\nIn our last performance post , published during Birthday Week 2025, we shared that Cloudflare was the fastest network in 40% of the largest 1,000 networks in the world.\n\nAt the time, we noted a nuanced reading of that figure; we were competitive in many more networks, and the gaps were often notably small.\n\nBy December 2025 (our most recent available analysis), we had become the fastest provider in 60% of the top networks .\n\nHow do we measure and compare network performance?",
+      "impact": "These networks represent real users in nearly every geography, giving us a broad and meaningful picture of how Internet users experience the web. To measure performance, we use connection time, which is the time it takes for an end user's device to complete a handshake with the endpoint they're trying to reach. We chose this metric because it most closely approximates what users actually perceive as \"Internet speed.\" It's not so abstract that it ignores real-world constraints like congestion and distance, but it's precise enough to give us actionable data. (We've previously written about why we favor this metric over alternatives.)\n\n We calculate our rankings using the trimean of connection times. This approach smooths out noise and outliers, giving us a cleaner signal about the typical user experience rather than an extreme case that might skew the picture.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build.\n\nHow did we improve?\n\nWhen we deployed our location in Wroclaw, our free users went from an average of 19ms round-trip time (RTT) to an average of 12ms round trip time (RTT), a 40% improvement.\n\nIn Malang, Enterprise traffic went from a 39ms average RTT to a 37ms average RTT, a 5% improvement.",
+      "root_cause_highlight": "",
+      "incident_timeline": "In our last performance post , published during Birthday Week 2025, we shared that Cloudflare was the fastest network in 40% of the largest 1,000 networks in the world. At the time, we noted a nuanced reading of that fig\nBefore diving into the results, let’s review how we collect the data. We start with the 1,000 largest networks in the world by estimated population, using APNIC's data as our source. These networks represent real users i\nTo measure performance, we use connection time, which is the time it takes for an end user's device to complete a handshake with the endpoint they're trying to reach. We chose this metric because it most closely approxim\nTo capture this data, we rely on Real User Measurements (RUM). When users encounter a Cloudflare-branded error page, a small speed test runs silently in the background. The browser retrieves small files from multiple pro\nThe answer there has to do with improving how our network handles connections in software. By leveraging protocols like HTTP/3 and changing how we manage congestion windows, we can reduce processing time by milliseconds \nAs we noted above, by December, Cloudflare had become the fastest provider in 60% of the top networks, up from 40% when we last reported. Since Birthday Week in September 2025 we have steadily increased the networks wher\nThis means that between September and December, we became the fastest in 40 additional countries and in 261 additional networks. We saw the biggest increase in the United States, where we are the fastest in 54 more ASNs.\nOn average throughout December, we were 6ms faster than the next-fastest provider. As shown above, the line representing Cloudflare’s latency, or connection time, is consistently lower throughout December than the next f",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "When it comes to the Internet, performance is everything. Every millisecond shaved off a connection is a better experience for the real people using the applications and websites you build.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1f109dc7557338bf",
+    "title": "No country left behind with sovereign AI",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/17/no-country-left-behind-with-sovereign-ai/",
+    "published": "2026-04-17T07:40:00+00:00",
+    "fetched_at": "2026-04-19T02:22:22.183807+00:00",
+    "summary": "Ryan welcomes Stephen Watt, distinguished engineer and VP of Red Hat’s Office of the CTO, to chat about digital sovereignty and sovereign AI.",
+    "tags": [],
+    "day": "2026-04-17",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Stephen Watt, distinguished engineer and VP of Red Hat’s Office of the CTO, to chat about digital sovereignty and sovereign AI.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Stephen Watt, distinguished engineer and VP of Red Hat’s Office of the CTO, to chat about digital sovereignty and sovereign AI.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

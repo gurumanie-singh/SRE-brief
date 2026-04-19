@@ -1,0 +1,45 @@
+[
+  {
+    "id": "86f2260e70ad0b9c",
+    "title": "AWS Weekly Roundup: AWS DevOps Agent & Security Agent GA, Product Lifecycle updates, and more (April 6, 2026)",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-devops-agent-security-agent-ga-product-lifecycle-updates-and-more-april-6-2026/",
+    "published": "2026-04-06T16:51:00+00:00",
+    "fetched_at": "2026-04-19T02:22:19.820896+00:00",
+    "summary": "Last week, I visited AWS Hong Kong User Group with my team. Hong Kong has a small but strong community, and their energy and passion are high. They recently started a new AI user group, and we hope more people will join. I was able to strengthen my bond with the community through great food and conversation.",
+    "tags": [
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-06",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "At the last re:Invent, we introduced the concept of frontier agents that work autonomously across multiple steps to achieve outcomes, operating continuously until the job is done. The first two— AWS DevOps Agent and AWS ",
+      "AWS DevOps Agent helps you run cloud operations—investigating incidents, reducing time to resolution, and preventing issues before they happen. Customers like United Airlines, Western Governors University, and T-Mobile a",
+      "AWS Security Agent brings continuous, context-aware penetration testing into the development lifecycle. This agent operates like a human penetration tester. Customers including LG CNS, HENNGE, and Wayspring are seeing st",
+      "Here are some additional news items that you might find interesting:"
+    ],
+    "sections": {
+      "overview": "Last week, I visited AWS Hong Kong User Group with my team. Hong Kong has a small but strong community, and their energy and passion are high. They recently started a new AI user group, and we hope more people will join.",
+      "technical_breakdown": "Additional updates \n Here are some additional news items that you might find interesting:\n\n \n \n Architecting for agentic AI development on AWS \n \n Optimizing data transfer costs when using AWS Network Load Balancer \n \n Announcing AWS World Sports Innovation Cup – Will your idea change the game? \n \n 5 Techniques to Stop AI agent hallucinations in production \n \n Explore the global AWS Community through a 3D interactive globe \n \n \n For a full list of AWS blog posts, be sure to keep an eye on the AWS Blogs page.\n\nLast week’s launches \n Here are last week’s launches that caught my attention:\n\n \n \n Amazon ECS announces Managed Daemons for ECS Managed Instances \n \n New AWS Sustainability console: Scope 1–3 reporting in one place \n \n Amazon Bedrock AgentCore Evaluations is now generally available \n \n AWS Transform custom announces general availability of automated codebase analysis \n \n Amazon CloudWatch launches OpenTelemetry Container Insights for Amazon EKS (Preview) \n \n New compute-optimized instance bundles for Amazon Lightsail with up to 72 vCPUs \n \n Amazon CloudFront now supports SHA-256 for signed URLs and signed cookies \n \n \n For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page.\n\nLearn more in Sébastien’s preview blog post and GA announcement .\n\nLearn more in Esra’s preview blog post and GA announcement .",
+      "impact": "At WGU, resolution time dropped from hours to minutes, and in preview customers report up to 75% lower MTTR and 3 to 5 times faster resolution. Availability change guide for services in maintenance \n \n AWS App Runner \n \n AWS Audit Manager \n \n AWS CloudTrail – Lake \n \n AWS Glue – Ray jobs \n \n AWS IoT FleetWise \n \n Amazon Application Recovery Controller (ARC) – Readiness Check \n \n Amazon Comprehend – Topic Modeling, Event Detection, and Prompt Safety Classification \n \n Amazon Rekognition – Streaming Events and Batch Image Content Moderation \n \n Amazon Simple Notification Service (Amazon SNS) – Message Data Protection (MDP) \n \n \n \n Availability change guide for services in sunset: \n \n AWS Service Management Connector \n \n Amazon RDS Custom for Oracle \n \n Amazon WorkMail \n \n Amazon WorkSpaces – Thin Client \n \n \n \n Services reaching in sunset: \n \n Amazon Chime SDK – Proxy Sessions\n \n \n \n \n We understand that changes in availability can impact your operations. AWS Service Availability Updates \n When the availability of an AWS service or feature changes, we provide customers guidance in AWS Product Lifecycle Changes on available alternatives and support for migration so that disruptions to your operations are minimized. Last week’s launches \n Here are last week’s launches that caught my attention:\n\n \n \n Amazon ECS announces Managed Daemons for ECS Managed Instances \n \n New AWS Sustainability console: Scope 1–3 reporting in one place \n \n Amazon Bedrock AgentCore Evaluations is now generally available \n \n AWS Transform custom announces general availability of automated codebase analysis \n \n Amazon CloudWatch launches OpenTelemetry Container Insights for Amazon EKS (Preview) \n \n New compute-optimized instance bundles for Amazon Lightsail with up to 72 vCPUs \n \n Amazon CloudFront now supports SHA-256 for signed URLs and signed cookies \n \n \n For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "AWS DevOps Agent helps you run cloud operations—investigating incidents, reducing time to resolution, and preventing issues before they happen.",
+      "root_cause_highlight": "",
+      "incident_timeline": "At the last re:Invent, we introduced the concept of frontier agents that work autonomously across multiple steps to achieve outcomes, operating continuously until the job is done. The first two— AWS DevOps Agent and AWS \nAWS DevOps Agent helps you run cloud operations—investigating incidents, reducing time to resolution, and preventing issues before they happen. Customers like United Airlines, Western Governors University, and T-Mobile a\nAWS Security Agent brings continuous, context-aware penetration testing into the development lifecycle. This agent operates like a human penetration tester. Customers including LG CNS, HENNGE, and Wayspring are seeing st\nHere are some additional news items that you might find interesting:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Last week, I visited AWS Hong Kong User Group with my team. Hong Kong has a small but strong community, and their energy and passion are high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
