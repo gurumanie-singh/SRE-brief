@@ -2,18 +2,18 @@
   "fetch": {
     "feeds_configured": 11,
     "feeds_attempted": 11,
-    "feeds_ok": 11,
-    "entries_raw_total": 268,
+    "feeds_ok": 10,
+    "entries_raw_total": 258,
     "entries_parse_failed": 0,
-    "articles_after_dedup": 268,
+    "articles_after_dedup": 258,
     "feeds_detail": [
       {
         "name": "Netflix TechBlog",
         "url": "https://netflixtechblog.com/feed",
-        "ok": true,
-        "entries_raw": 10,
-        "entries_accepted": 10,
-        "error": null
+        "ok": false,
+        "entries_raw": 0,
+        "entries_accepted": 0,
+        "error": "zero entries (bozo=True <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>)"
       },
       {
         "name": "AWS News Blog",
@@ -100,14 +100,14 @@
   "process": {
     "retention_max_days": 30,
     "retention_cutoff_day": "2026-03-20",
-    "incoming_total": 268,
-    "incoming_after_retention": 94,
-    "dropped_by_retention": 174,
-    "new_articles_this_run": 94,
-    "day_files_touched": 22,
+    "incoming_total": 258,
+    "incoming_after_retention": 88,
+    "dropped_by_retention": 170,
+    "new_articles_this_run": 18,
+    "day_files_touched": 6,
     "total_articles_on_disk": 75,
     "day_json_file_count": 22,
     "warnings": []
   },
-  "written_at": "2026-04-19T18:03:55.723426+00:00"
+  "written_at": "2026-04-19T19:03:49.213848+00:00"
 }
