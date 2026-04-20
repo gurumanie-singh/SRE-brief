@@ -1,5 +1,102 @@
 [
   {
+    "id": "043701fc0f94386d",
+    "title": "Building the agentic cloud: everything we launched during Agents Week 2026",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/agents-week-in-review/",
+    "published": "2026-04-20T13:00:00+00:00",
+    "fetched_at": "2026-04-20T14:04:55.651969+00:00",
+    "summary": "Today marks the end of our first Agents Week, an innovation week dedicated entirely to the age of agents. It couldn’t have been more timely: over the past year, agents have swiftly changed how people work. Coding agents are helping developers ship faster than ever. Support agents resolve tickets end-to-end. Research agents validate hypotheses across hundreds of sources in minutes. And people...",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-20",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The best infrastructure is also one that’s easy to use. We want to meet developers and their agents where they’re already working: in the terminal, in the editor, in a prompt, and make the full Cloudflare platform access",
+      "Soft directives don’t stop crawlers from ingesting deprecated content. Redirects for AI Training allows anybody on Cloudflare to redirect verified crawlers to canonical pages with one toggle and no origin changes.",
+      "By migrating our request handling layer to a Rust-based architecture called FL2, Cloudflare has increased its performance lead to 60% of the world’s top networks. We use real-user measurements and TCP connection trimeans",
+      "We also have more blog posts coming out today and tomorrow to continue the story, so keep an eye out for the latest at our blog ."
+    ],
+    "sections": {
+      "overview": "Today marks the end of our first Agents Week, an innovation week dedicated entirely to the age of agents. It couldn’t have been more timely: over the past year, agents have swiftly changed how people work. Coding agents are helping developers ship faster than ever.",
+      "technical_breakdown": "Introducing Flagship: feature flags built for the age of AI \n\n Introducing Flagship, a native feature flag service built on Cloudflare’s global network to eliminate the latency of third-party providers.\n\nAs Cloudflare's CTO Dane Knecht and VP of Product Rita Kozlov noted in our welcome to Agents Week post , the potential scale of agents is staggering: If even a fraction of the world's knowledge workers each run a few agents in parallel, you need compute capacity for tens of millions of simultaneous sessions.\n\nAnnouncement \n\n Summary \n\n Secure private networking for everyone: users, nodes, agents, Workers — introducing Cloudflare Mesh \n\n Cloudflare Mesh provides secure, private network access for users, nodes, and autonomous AI agents.\n\nUnweight: how we compressed an LLM 22% without sacrificing quality \n\n Running large LLMs across Cloudflare’s network requires us to be smarter and more efficient about GPU memory bandwidth.\n\nTurns out, the containerless, serverless compute platform we launched eight years ago with Workers was ready-made for this moment.",
+      "impact": "Research agents validate hypotheses across hundreds of sources in minutes. The one-app-serves-many-users model the cloud was built on doesn't work for that. But that's exactly what developers and businesses want to do: build agents, deploy them to users, and run them at scale. Create tens of millions of repos, fork from any remote, and hand off a URL to any Git client.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We use real-user measurements and TCP connection trimeans to ensure our data reflects the actual experience of people on the Internet\n\n Shared dictionary compression that keeps up with the agentic web \n\n We give you a sneak peek of our support for shared compression dictionaries, show you how it improves page load times, and reveal when you’ll be able to try the beta yourself.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Dynamic, identity-aware, and secure: egress controls for Sandboxes \n\n Outbound Workers for Sandboxes provide a programmable, zero-trust egress proxy for AI agents. Rearchitecting the Workflows control plane for the agentic era \n\n Cloudflare Workflows, a durable execution engine for multi-step applications, now supports 50,000 concurrency and 300 creation rate limits through a rearchitectured control plane, helping scale to meet the use cases for durable background agents. Existing websites need new tools to control what bots can access their content, package and present it for agents, and measure how ready they are for this shift.",
+      "incident_timeline": "The best infrastructure is also one that’s easy to use. We want to meet developers and their agents where they’re already working: in the terminal, in the editor, in a prompt, and make the full Cloudflare platform access\nSoft directives don’t stop crawlers from ingesting deprecated content. Redirects for AI Training allows anybody on Cloudflare to redirect verified crawlers to canonical pages with one toggle and no origin changes.\nBy migrating our request handling layer to a Rust-based architecture called FL2, Cloudflare has increased its performance lead to 60% of the world’s top networks. We use real-user measurements and TCP connection trimeans\nWe also have more blog posts coming out today and tomorrow to continue the story, so keep an eye out for the latest at our blog .",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Today marks the end of our first Agents Week, an innovation week dedicated entirely to the age of agents. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "cd08f34ec159e7a3",
+    "title": "The AI engineering stack we built internally — on the platform we ship",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/internal-ai-engineering-stack/",
+    "published": "2026-04-20T13:00:00+00:00",
+    "fetched_at": "2026-04-20T14:04:55.655118+00:00",
+    "summary": "In the last 30 days, 93% of Cloudflare’s R&D organization used AI coding tools powered by infrastructure we built on our own platform.",
+    "tags": [
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-20",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare",
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "47.95 million AI requests",
+      "20.18 million AI Gateway requests per month",
+      "The impact on developer velocity internally is clear: we’ve never seen a quarter-to-quarter increase in merge requests to this degree.",
+      "Isolated environments for cloning, building, and testing",
+      "Everything starts with Cloudflare Access , which handles all authentication and zero-trust policy enforcement. Once authenticated, every LLM request routes through AI Gateway . This gives us a single place to manage prov",
+      "The OpenCode AI Gateway overview: 688.46k requests per day, 10.57B tokens per day, routing to four providers through one endpoint.",
+      "AI Gateway analytics show how monthly usage is distributed across model providers. Over the last month, internal request volume broke down as follows.",
+      "Requests/month"
+    ],
+    "sections": {
+      "overview": "In the last 30 days, 93% of Cloudflare’s R&D organization used AI coding tools powered by infrastructure we built on our own platform. Eleven months ago, we undertook a major project: to truly integrate AI into our engineering stack. We needed to build the internal MCP servers, access layer, and AI tooling necessary for agents to be useful at Cloudflare.",
+      "technical_breakdown": "No cross-cloud hops to deal with, which cause more latency, network flakiness, and additional networking configuration to manage.\n\nBeyond security, we use Workers AI for documentation review in our CI pipeline, for generating AGENTS.md context files across thousands of repositories, and for lightweight inference tasks where same-network latency matters more than peak model capability.\n\nHow it works: one URL to configure everything \n \n \n \n \n The entire setup starts with one command:\n\n opencode auth login https://opencode.internal.domain\n \n That command triggers a chain that configures providers, models, MCP servers, agents, commands, and permissions, without the user touching a config file.\n\nEach layer maps to a Cloudflare product or tool we use:\n\n What we built\n\n Built with\n\n Zero Trust authentication\n\n Cloudflare Access \n\n Centralized LLM routing, cost tracking, BYOK, and Zero Data Retention controls\n\n AI Gateway \n\n On-platform inference with open-weight models\n\n Workers AI \n\n MCP Server Portal with single OAuth\n\n Workers + Access \n\n AI Code Reviewer CI integration\n\n Workers + AI Gateway \n\n Sandboxed execution for agent-generated code (Code Mode)\n\n Dynamic Workers \n\n Stateful, long-running agent sessions\n\n Agents SDK (McpAgent, Durable Objects)\n\n Isolated environments for cloning, building, and testing\n\n Sandbox SDK — GA as of Agents Week\n\n Durable multi-step workflows\n\n Workflows — scaled 10x during Agents Week\n\n 16K+ entity knowledge graph\n\n Backstage (OSS)\n\n None of this is internal-only infrastructure.\n\nWe’ll walk through this in three acts:\n\n The platform layer — how authentication, routing, and inference work (AI Gateway, Workers AI, MCP Portal, Code Mode)\n\n The knowledge layer — how agents understand our systems (Backstage, AGENTS.md)\n\n The enforcement layer — how we keep quality high at scale (AI Code Reviewer, Engineering Codex)\n\n \n \n Act 1: The platform layer \n \n \n \n \n \n \n How AI Gateway helped us stay secure and improve the developer experience \n \n \n \n \n When you have over 3,600+ internal users using AI coding tools daily, you need to solve for access and visibility across many clients, use cases, and roles.",
+      "impact": "Here are some numbers that capture our own agentic AI use over the last 30 days:\n\n 3,683 internal users actively using AI coding tools (60% company-wide, 93% across R&D), out of approximately 6,100 total employees\n\n 47.95 million AI requests \n\n 295 teams are currently utilizing agentic AI tools and coding assistants.\n\n 20.18 million AI Gateway requests per month\n\n 241.37 billion tokens routed through AI Gateway\n\n 51.83 billion tokens processed on Workers AI\n\n The impact on developer velocity internally is clear: we’ve never seen a quarter-to-quarter increase in merge requests to this degree. We’ll walk through this in three acts:\n\n The platform layer — how authentication, routing, and inference work (AI Gateway, Workers AI, MCP Portal, Code Mode)\n\n The knowledge layer — how agents understand our systems (Backstage, AGENTS.md)\n\n The enforcement layer — how we keep quality high at scale (AI Code Reviewer, Engineering Codex)\n\n \n \n Act 1: The platform layer \n \n \n \n \n \n \n How AI Gateway helped us stay secure and improve the developer experience \n \n \n \n \n When you have over 3,600+ internal users using AI coding tools daily, you need to solve for access and visibility across many clients, use cases, and roles. But centralizing through a Worker meant we could add per-user attribution, model catalog management, and permission enforcement later without touching any client configs. Users can override the default model, add their own agents, or adjust project and user scoped permissions without affecting anyone else.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "Each layer maps to a Cloudflare product or tool we use:\n\n What we built\n\n Built with\n\n Zero Trust authentication\n\n Cloudflare Access \n\n Centralized LLM routing, cost tracking, BYOK, and Zero Data Retention controls\n\n AI Gateway \n\n On-platform inference with open-weight models\n\n Workers AI \n\n MCP Server Portal with single OAuth\n\n Workers + Access \n\n AI Code Reviewer CI integration\n\n Workers + AI Gateway \n\n Sandboxed execution for agent-generated code (Code Mode)\n\n Dynamic Workers \n\n Stateful, long-running agent sessions\n\n Agents SDK (McpAgent, Durable Objects)\n\n Isolated environments for cloning, building, and testing\n\n Sandbox SDK — GA as of Agents Week\n\n Durable multi-step workflows\n\n Workflows — scaled 10x during Agents Week\n\n 16K+ entity knowledge graph\n\n Backstage (OSS)\n\n None of this is internal-only infrastructure.\n\nEach provider gets a path prefix ( /anthropic, /openai, /google-ai-studio/v1beta, /compat for Workers AI) that the Worker forwards to the corresponding AI Gateway route.\n\nCode Mode is the emerging fix: instead of loading every tool schema up front, the model discovers and calls tools through code.\n\nIf it flagged something in a previous review round that has since been fixed, it acknowledges that rather than re-raising the same issue.",
+      "lessons_learned": "We’ll walk through this in three acts:\n\n The platform layer — how authentication, routing, and inference work (AI Gateway, Workers AI, MCP Portal, Code Mode)\n\n The knowledge layer — how agents understand our systems (Backstage, AGENTS.md)\n\n The enforcement layer — how we keep quality high at scale (AI Code Reviewer, Engineering Codex)\n\n \n \n Act 1: The platform layer \n \n \n \n \n \n \n How AI Gateway helped us stay secure and improve the developer experience \n \n \n \n \n When you have over 3,600+ internal users using AI coding tools daily, you need to solve for access and visibility across many clients, use cases, and roles.\n\nBeyond huge cost improvements compared to frontier models, a key advantage is that inference stays on the same network as your Workers, Durable Objects, and storage.\n\nAs open-source models continue to improve, we expect Workers AI to handle a growing share of our internal workloads.\n\nThe first pass wasn't always perfect, especially for polyglot repos or unusual build setups, but even that baseline was much better than asking agents to infer everything from scratch.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. We're publishing now, to close out Agents Week, because the AI engineering stack we built internally runs on the same products we’re shipping and enhancing this week. Each layer maps to a Cloudflare product or tool we use:\n\n What we built\n\n Built with\n\n Zero Trust authentication\n\n Cloudflare Access \n\n Centralized LLM routing, cost tracking, BYOK, and Zero Data Retention controls\n\n AI Gateway \n\n On-platform inference with open-weight models\n\n Workers AI \n\n MCP Server Portal with single OAuth\n\n Workers + Access \n\n AI Code Reviewer CI integration\n\n Workers + AI Gateway \n\n Sandboxed execution for agent-generated code (Code Mode)\n\n Dynamic Workers \n\n Stateful, long-running agent sessions\n\n Agents SDK (McpAgent, Durable Objects)\n\n Isolated environments for cloning, building, and testing\n\n Sandbox SDK — GA as of Agents Week\n\n Durable multi-step workflows\n\n Workflows — scaled 10x during Agents Week\n\n 16K+ entity knowledge graph\n\n Backstage (OSS)\n\n None of this is internal-only infrastructure. Every feature described in the bootstrap section below exists because we had that single choke point.",
+      "incident_timeline": "47.95 million AI requests\n20.18 million AI Gateway requests per month\nThe impact on developer velocity internally is clear: we’ve never seen a quarter-to-quarter increase in merge requests to this degree.\nIsolated environments for cloning, building, and testing\nEverything starts with Cloudflare Access , which handles all authentication and zero-trust policy enforcement. Once authenticated, every LLM request routes through AI Gateway . This gives us a single place to manage prov\nThe OpenCode AI Gateway overview: 688.46k requests per day, 10.57B tokens per day, routing to four providers through one endpoint.\nAI Gateway analytics show how monthly usage is distributed across model providers. Over the last month, internal request volume broke down as follows.\nRequests/month",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In the last 30 days, 93% of Cloudflare’s R&D organization used AI coding tools powered by infrastructure we built on our own platform. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "32c115a5e2a48352",
     "title": "Deploy hosted control planes with OpenShift Virtualization",
     "source": "Red Hat Developer Blog",
@@ -45,7 +142,12 @@
       "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/ai-code-review/"
+      }
+    ],
     "highlighted": false
   }
 ]
