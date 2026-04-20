@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">20 April 2026</h1>
-      <span class="brief-sub">3 items</span>
+      <span class="brief-sub">4 items</span>
     </div>
   </div>
 
@@ -50,6 +50,7 @@
     </div>
     <div class="quick-filters" id="quickFilters">
       <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
         More
@@ -64,6 +65,7 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
@@ -74,6 +76,7 @@
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
@@ -81,18 +84,53 @@
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="database,deployment,outage"
+       data-vendors="GitHub"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="highlights from git 2.54"
+       data-id="617d4589837f733c"
+       data-published="2026-04-20T16:43:57+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-04-20T16:43:57+00:00" title="20 April 2026, 11:43">20 April 2026, 11:43</time>
+      </div>
+      <h3 class="card-title">Highlights from Git 2.54</h3>
+      <p class="card-summary">The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released .</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released . To celebrate this most recent release, here is GitHub s look at some of the most interesting features and changes introduced since last time.</p></div>
+      <div class="detail-links">
+        <a href="../articles/617d4589837f733c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/open-source/git/highlights-from-git-2-54/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--high"
        data-tags="capacity,database,deployment,latency,networking,observability,outage,scaling"
        data-vendors="Cloudflare"

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Highlights from Git 2.54 — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-20.html" class="back-link">← 20 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">GitHub Blog</span>
+        <span class="card-date">20 April 2026, 11:43</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Highlights from Git 2.54</h1>
+
+      <p class="subtitle">The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released .</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>database issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released .</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released . To celebrate this most recent release, here is GitHub s look at some of the most interesting features and changes introduced since last time.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The new http.maxRetries and http.maxRetryTime configuration options provide control over how many times to retry and how long to wait, respectively.</p>
+<p>[ source ]</p>
+<p>git log L , which traces the history of a range of lines within a file, has historically used its own custom output path that bypassed much of Git s standard diff machinery.</p>
+<p>Git can now retry the request, honoring the server s Retry-After header when present, or fall back to a configurable delay via the new http.retryAfter setting.</p>
+<p>Say you want to trace the history of strbuf_addstr() in strbuf.c , but only see commits where len was added or removed within that function:</p>
+<p>$ git log -L :strbuf_addstr:strbuf.c -S len --oneline -1 a70f8f19ad2 strbuf: introduce strbuf_addstrings() to repeatedly add a string</p>
+<p>diff --git a/strbuf.c b/strbuf.c --- a/strbuf.c +++ b/strbuf.c @@ -316,0 +316,9 @@ +void strbuf_addstrings(struct strbuf *sb, const char *s, size_t n) +{ + size_t len = strlen(s); + + strbuf_grow(sb, st_mult(len, n)); + for (size_t i = 0; i &lt; n; i++) + strbuf_add(sb, s, len); +}   Prior to this release, options like -S , (and -G , --word-diff , along with --color-moved ) were silently ignored when used with -L .</p>
+<p>Since the last Git release we wrote about was Git 2.52, this blog post covers the highlights from both the 2.53 and 2.54 releases.</p>
+<p>Many built-in hooks that were previously invoked through ad-hoc code paths (like pre-push , post-rewrite , and the various receive-pack hooks) have been migrated to use the new hook API, meaning they all benefit from the new configuration-based hook machinery.</p>
+<p>[ source , source , source ]</p>
+<p>Geometric repacking during maintenance by default</p>
+<p>Returning readers of this series may recall our coverage of the new geometric strategy within git maintenance , which was introduced in Git 2.52.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Git now detects when this happens and re-diffs the affected region, resulting in tighter output that better matches what you would expect.</p>
+<p>[ source ]</p>
+<p>the rest of the iceberg</p>
+<p>That s just a sample of changes from the latest release. Since this is just configuration, it can live in your per-user ~/.gitconfig , a system-wide /etc/gitconfig , or in a repository s local config. The traditional hook script in $GIT_DIR/hooks still works, and runs last, so existing hooks are unaffected. Now they work together naturally: -L scopes the output to the function you care about, and -S filters down to just the commits that touched the symbol you re searching for within it.</p>
+<p>[ source ]</p>
+<p>Incremental multi-pack indexes, which we first covered in our discussion of Git 2.47 and followed up on in Git 2.50 , received further work in this release.</p>
+<p>Classified impact band: medium. Affected layer signal: data store.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new.</p>
+<p>If all you want to do is fix a typo in a commit message three commits back, or split one commit into two, an interactive rebase works, but requires you to set up a to-do list, mark the right commit for editing, and then drive the rebase to completion.</p>
+<p>The ODB source API has been refactored to use a pluggable backend design, with individual functions like read_object() , write_object() , and for_each_object() now dispatched through function pointers on a per-source basis.</p>
+<p>Shell completion has been updated to handle these aliases as well.</p>
+<p>[ source , source ]</p>
+<p>The histogram diff algorithm received a fix for a subtle output quality issue.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>This release brings several improvements: replay now performs atomic reference updates by default (instead of printing update-ref commands to stdout ), has learned a new --revert mode that reverses the changes from a range of commits, can now drop commits that become empty during replay, and supports replaying all the way down to the root commit.</p>
+<p>[ source , source , source , source ]</p>
+<p>Git s HTTP transport now handles HTTP 429 Too Many Requests responses.</p>
+<p>Even better, you can now run multiple hooks for the same event.</p>
+<p>The git add p command, Git s tool for interactively staging individual hunks, received a handful of usability improvements in this release.</p>
+<p>This is an important step toward making incremental MIDXs practical for long-lived repositories that accumulate many layers over time.</p>
+<p>[ source ]</p>
+<p>git status learned a new status.compareBranches configuration option.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: database issue. That s because, historically, Git hooks could only be defined as executable scripts living in one place: the hooks subdirectory of your .git directory (or whatever core.hooksPath points to). This can sometimes produce meaningfully different (and more useful) blame output, depending on the nature of the changes in your repository s history.</p>
+<p>[ source ]</p>
+<p>Under the hood, a significant amount of work went into restructuring Git s object database (ODB) internals. While none of this is user-visible today, it lays the groundwork for future features like alternative storage backends or more flexible object database configurations.</p>
+<p>[ source , source , source , source ]</p>
+<p>git backfill , the experimental command for downloading missing blobs in a partial clone , learned to accept revision and pathspec arguments.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released .</li>
+            <li>To celebrate this most recent release, here is GitHub s look at some of the most interesting features and changes introduced since last time.</li>
+            <li>Git s HTTP transport now handles HTTP 429 Too Many Requests responses. Previously, a 429 from the server would be treated as a fatal error. Git can now retry the request, honoring the server s Retry-After header when pre</li>
+            <li>git status learned a new status.compareBranches configuration option. By default, git status shows how your current branch compares to its configured upstream (e.g., Your branch is ahead of origin/main by 3 commits ). Wi</li>
+            <li>compareBranches = @{upstream} @{push} This is useful if your push destination differs from your upstream, as is common in triangular workflows where you fetch from one remote and push to another (like a fork).</li>
+            <li>Under the hood, a significant amount of work went into restructuring Git s object database (ODB) internals. The ODB source API has been refactored to use a pluggable backend design, with individual functions like read_ob</li>
+            <li>Git s alias configuration has historically been limited to ASCII alphanumeric characters and hyphens. That meant alias names like h mta (Swedish for fetch ) or (Japanese for status ) were off-limits. Git 2.54 lifts that </li>
+            <li>the rest of the iceberg</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://github.blog/open-source/git/highlights-from-git-2-54/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at GitHub Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
