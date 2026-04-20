@@ -1,0 +1,51 @@
+[
+  {
+    "id": "32c115a5e2a48352",
+    "title": "Deploy hosted control planes with OpenShift Virtualization",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/20/deploy-hosted-control-planes-openshift-virtualization",
+    "published": "2026-04-20T07:16:14+00:00",
+    "fetched_at": "2026-04-20T09:13:03.279032+00:00",
+    "summary": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. When paired with KubeVirt which is an upstream project for Red Hat OpenShift Virtualization where cluster worker nodes run as virtual machines (VMs) while the control plane runs as lightweight pods. This...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "networking"
+    ],
+    "day": "2026-04-20",
+    "impact": "high",
+    "vendors": [
+      "HashiCorp",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. When paired with KubeVirt whic",
+      "This is the simplest, most compact setup, ideal for learning, labs, POCs, and small-scale environments.",
+      "Now, let’s begin with the simplest model: everything in one cluster. Figure 1 illustrates the all-in-one architecture.",
+      "For demonstration purposes, we tested this on VMs running on vSphere using nested virtualization.",
+      "Note : This step is required only when you use LVM StorageClass for OpenShift Virtualization and for testing purposes. In the production scenario, you might choose a different storage solution which supports RWX and the ",
+      "-p '[{ \"op\": \"add\", \"path\": \"/spec/routeAdmission\", \"value\": {wildcardPolicy: \"WildcardsAllowed\"}}]' Install OpenShift Virtualization operator and Hyperconverged CR Once you’ve successfully installed all the operators, i",
+      "hc1 true https://192.168.34.205:6443 True True 13m",
+      "https://192.168.34.205:6443 The API address points to the IP address provided by our configured MetalLB range."
+    ],
+    "sections": {
+      "overview": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. When paired with KubeVirt which is an upstream project for Red Hat OpenShift Virtualization where cluster worker nodes run as virtual machines (VMs) while the control plane runs as lightweight pods. This dramatically compresses the hardware footprint and enables multi-cluster scale unattainable with traditional OpenShift installation.",
+      "technical_breakdown": "Nodes sizing: \n\n 3 x Master Nodes - 8 vCPU / 32G Memory / 1 x 125 GB disk \n 3 x Worker Nodes - 16 vCPU / 48G Memory / 1 x 125 GB disk + 1 x 500 GB disk \n Once you have all the prerequisites, install the OpenShift cluster using your preferred installation method.\n\nWe can check the status of the hosted cluster and NodePool from Red Hat Advanced Cluster Management. \n\n $ oc get managedcluster \nNAME HUB ACCEPTED MANAGED CLUSTER URLS JOINED AVAILABLE AGE\nhc1 true https://192.168.34.205:6443 True True 13m\nlocal-cluster true https://api.hub.example.com:6443 True True 5h53m\n\n$ oc get hostedcluster -n clusters\nNAME VERSION KUBECONFIG PROGRESS AVAILABLE PROGRESSING MESSAGE\nhc1 hc1-admin-kubeconfig Partial True False The hosted control plane is available\n\n$ oc get vmi -n clusters-hc1\nNAME AGE PHASE IP NODENAME READY\nhc1-jtzj5-8jdgx 7m49s Running 10.129.3.48 hub-worker2 True\nhc1-jtzj5-l2r96 8m19s Running 10.128.2.193 hub-worker3 True Finally, we can check the access of the hosted cluster and run the following commands. \n\n $ hcp create kubeconfig --name hc1 --namespace clusters > kubeconfig-hc1\n\n$ oc --kubeconfig=kubeconfig-hc1 get nodes\nNAME STATUS ROLES AGE VERSION\nhc1-jtzj5-8jdgx Ready worker 5m47s v1.31.13\nhc1-jtzj5-l2r96 Ready worker 5m56s v1.31.13\n\n$ oc --kubeconfig=kubeconfig-hc1 whoami --show-console\nhttps://console-openshift-console.apps.hc1.apps.hub.example.com Notice that the console points to a wildcard DNS of the cluster. \n\n $ oc --kubeconfig=kubeconfig-hc1 whoami --show-server\nhttps://192.168.34.205:6443 The API address points to the IP address provided by our configured MetalLB range.\n\nWhen paired with KubeVirt which is an upstream project for Red Hat OpenShift Virtualization where cluster worker nodes run as virtual machines (VMs) while the control plane runs as lightweight pods.\n\nPart 3 discusses split control plane and dataplane further: Red Hat Advanced Cluster Management on Cluster A, multicluster engine for Kubernetes /HCP on Cluster B, and OpenShift Virtualization worker VMs for nodepools on Cluster C.\n\nOnce you’ve installed the MetalLB operator, create the following. \n\n $ cat <<EOF | oc apply -f -\napiVersion: metallb.io/v1beta1\nkind: MetalLB\nmetadata:\n name: metallb\n namespace: metallb-system\nEOF\n\n$ cat <<EOF | oc apply -f -\napiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n name: metallb\n namespace: metallb-system\nspec:\n addresses:\n - 192.168.34.205-192.168.34.215\nEOF\n\n$ cat <<EOF | oc apply -f -\napiVersion: metallb.io/v1beta1\nkind: L2Advertisement\nmetadata:\n name: l2advertisement\n namespace: metallb-system\nspec:\n ipAddressPools:\n - metallb\nEOF Once you’ve installed multicluster engine for Kubernetes successfully, make sure the hub cluster is seen as the managed cluster. \n\n $ oc get managedclusters local-cluster\nNAME HUB ACCEPTED MANAGED CLUSTER URLS JOINED AVAILABLE AGE\nlocal-cluster true https://api.hub.example.com:6443 True True 5h37m Patch the network operator. \n\n $ oc patch ingresscontroller -n openshift-ingress-operator default \\\n --type=json \\\n -p '[{ \"op\": \"add\", \"path\": \"/spec/routeAdmission\", \"value\": {wildcardPolicy: \"WildcardsAllowed\"}}]' Install OpenShift Virtualization operator and Hyperconverged CR Once you’ve successfully installed all the operators, it’s time to test it by creating a simple VM to make sure OCP Virtualization is functioning.",
+      "impact": "Create the hosted cluster Provision the hosted cluster and node pools using OpenShift Virtualization with this command: hcp create cluster . \n\n $ hcp create cluster kubevirt \\\n --name hc1 \\\n --pull-secret pull-secret.txt \\\n --node-pool-replicas 2 \\\n --memory 8Gi \\\n --cores 2 \\\n --etcd-storage-class=lvm-immediate \\\n --namespace clusters \\\n --release-image quay.io/openshift-release-dev/ocp-release:4.18.28-multi Wait for 10 to 15 minutes to create the hosted cluster. But in real enterprise environments, customers rarely run everything in a single cluster.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "This leads us to part 2, where we will separate the responsibilities as follows: \n\n Red Hat Advanced Cluster Management runs on its own hub cluster.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. When paired with KubeVirt which is an upstream project for Red Hat OpenShift Virtualization where cluster worker nodes run as virtual machines (VMs) while the control plane runs as lightweight pods. This three-part series walks through the three most common hosted control plane and OpenShift Virtualization topologies deployed in enterprises today.",
+      "incident_timeline": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. When paired with KubeVirt whic\nThis is the simplest, most compact setup, ideal for learning, labs, POCs, and small-scale environments.\nNow, let’s begin with the simplest model: everything in one cluster. Figure 1 illustrates the all-in-one architecture.\nFor demonstration purposes, we tested this on VMs running on vSphere using nested virtualization.\nNote : This step is required only when you use LVM StorageClass for OpenShift Virtualization and for testing purposes. In the production scenario, you might choose a different storage solution which supports RWX and the \n-p '[{ \"op\": \"add\", \"path\": \"/spec/routeAdmission\", \"value\": {wildcardPolicy: \"WildcardsAllowed\"}}]' Install OpenShift Virtualization operator and Hyperconverged CR Once you’ve successfully installed all the operators, i\nhc1 true https://192.168.34.205:6443 True True 13m\nhttps://192.168.34.205:6443 The API address points to the IP address provided by our configured MetalLB range.",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

@@ -66,10 +66,6 @@
         "link": "https://developers.redhat.com/articles/2026/04/14/building-red-hat-mcp-ready-images-image-mode-red-hat-enterprise-linux"
       },
       {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/04/14/deploying-agents-red-hat-ai-openclaw"
-      },
-      {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/vault-enterprise-20-modernizes-identity-security-at-scale"
       },
