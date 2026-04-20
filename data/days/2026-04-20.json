@@ -93,7 +93,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In the last 30 days, 93% of Cloudflare’s R&D organization used AI coding tools powered by infrastructure we built on our own platform. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Elastic Blog",
+        "link": "https://www.elastic.co/blog/cross-project-search-serverless-tech-preview"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -143,6 +148,10 @@
     },
     "email_summary": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. Impact band: high.",
     "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/"
+      },
       {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/ai-code-review/"
