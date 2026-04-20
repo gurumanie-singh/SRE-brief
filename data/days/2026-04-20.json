@@ -36,7 +36,12 @@
       "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -82,12 +87,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released .",
-    "related_sources": [
-      {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
