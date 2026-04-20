@@ -1,5 +1,45 @@
 [
   {
+    "id": "c950341cb16e5e02",
+    "title": "Changes to GitHub Copilot Individual plans",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/news-insights/company-news/changes-to-github-copilot-individual-plans/",
+    "published": "2026-04-20T18:15:28+00:00",
+    "fetched_at": "2026-04-20T20:04:01.680841+00:00",
+    "summary": "Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. We know these changes are disruptive, and we want to be clear about why we re making them and how they will affect you.",
+    "tags": [
+      "capacity"
+    ],
+    "day": "2026-04-20",
+    "impact": "high",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Weekly limits represent a cap on the total number of tokens a user can consume during the week. We introduced weekly limits recently to control for parallelized, long-trajectory requests that often run for extended perio",
+      "The weekly limits for each plan are also set so that most users will not be impacted. If you hit a weekly limit and have premium requests remaining, you can continue to use Copilot with Auto model selection. Model choice",
+      "Usage limits are separate from your premium request entitlements. Premium requests determine which models you can access and how many requests you can make. Usage limits, by contrast, are token-based guardrails that cap ",
+      "We ve seen usage intensify for all users as they realize the value of agents and subagents in tackling complex coding problems. These long-running, parallelized workflows can yield great value, but they have also challen"
+    ],
+    "sections": {
+      "overview": "Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. We know these changes are disruptive, and we want to be clear about why we re making them and how they will affect you. Agentic workflows have fundamentally changed Copilot s compute demands.",
+      "technical_breakdown": "As we announced in our changelog , Opus 4.5 and Opus 4.6 will be removed from Pro+.\n\nThe post Changes to GitHub Copilot Individual plans appeared first on The GitHub Blog .",
+      "impact": "Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. They re set so most users shouldn t be impacted. The weekly limits for each plan are also set so that most users will not be impacted. As Copilot s agentic capabilities have expanded rapidly, agents are doing more work, and more customers are hitting usage limits designed to maintain service reliability.\n\nClassified impact band: high. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We ve heard your frustrations about usage limits and model availability, and we need to do a better job communicating the guardrails we are adding here s what s changing and why.\n\nUse plan mode ( VS Code , Copilot CLI ) to improve task efficiency.\n\nPlan mode also improves task success.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Weekly limits represent a cap on the total number of tokens a user can consume during the week. We introduced weekly limits recently to control for parallelized, long-trajectory requests that often run for extended perio\nThe weekly limits for each plan are also set so that most users will not be impacted. If you hit a weekly limit and have premium requests remaining, you can continue to use Copilot with Auto model selection. Model choice\nUsage limits are separate from your premium request entitlements. Premium requests determine which models you can access and how many requests you can make. Usage limits, by contrast, are token-based guardrails that cap \nWe ve seen usage intensify for all users as they realize the value of agents and subagents in tackling complex coding problems. These long-running, parallelized workflows can yield great value, but they have also challen",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "617d4589837f733c",
     "title": "Highlights from Git 2.54",
     "source": "GitHub Blog",
@@ -42,7 +82,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "The open-source Git project just released Git 2.54 with features and bug fixes from over 137 contributors, 66 of them new. We last caught up with you on the latest in Git back when 2.52 was released .",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -194,10 +239,6 @@
     },
     "email_summary": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. Impact band: high.",
     "related_sources": [
-      {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/"
-      },
       {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/ai-code-review/"
