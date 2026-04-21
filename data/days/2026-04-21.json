@@ -1,5 +1,53 @@
 [
   {
+    "id": "a0d0ba37a705aa23",
+    "title": "Moving past bots vs. humans",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/past-bots-and-humans/",
+    "published": "2026-04-21T13:00:00+00:00",
+    "fetched_at": "2026-04-21T14:51:36.269886+00:00",
+    "summary": "For us humans to interact with the online world, we need a gateway: keyboard, screen, browser, device. What is called \"human detection\" online are patterns that humans use when interacting with such devices. These patterns have changed in recent years: a startup CEO now uses their browser to summarize the news, a tech enthusiast automates the process to book their concert tickets when sales open...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-21",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "What actually matters is not humanity in the abstract, but questions such as: is this attack traffic, is that crawler load proportional to the traffic it returns, do I expect this user to connect from this new country, a",
+      "When we use the Web, we don't talk directly to the thousands of servers we interact with every day. We use Web browsers. These are also known as \" user agents \" because they act on our behalf, representing our interests ",
+      "Websites also have an interest in how browsers work. They want to make sure that their content is presented accurately (fits the screen on mobile, has the right background color, the correct language). Websites also want",
+      "This tension between the interests of browser users and websites has been going on for a long time. Publishers typically want pixel-level control over the experiences of their users, but the people on the other side of t",
+      "Web browser vendors and the standards ecosystem around them have paid careful attention to balancing these interests, sometimes with great controversy. For example, you can use browser extensions to block ads, but over t",
+      "Now, however, that balance is shifting. Having an assistant summarize the news or aggregate research is not a new concept, but AI democratizes this capability for everyone. The friction comes from how these emerging clie",
+      "Let’s take a step back, and look at one of the main deployment patterns on the Internet: the client-server model. A client makes a request to a server to obtain a resource:",
+      "Figure 1: Client-Server model. A client sends a request which the server responds to."
+    ],
+    "sections": {
+      "overview": "For us humans to interact with the online world, we need a gateway: keyboard, screen, browser, device. What is called \"human detection\" online are patterns that humans use when interacting with such devices. These patterns have changed in recent years: a startup CEO now uses their browser to summarize the news, a tech enthusiast automates the process to book their concert tickets when sales open at night, someone who's visually impaired enables accessibility on their screen reader, and companies route their employee traffic through zero trust proxies.",
+      "technical_breakdown": "To handle more requests, a website can increase its capacity to serve; it can deploy additional servers or place a cache in front of static traffic.\n\nWe have touched on this with bot authentication with http message signatures for crawlers that want to identify without being impersonated.\n\nThe client-server model \n \n \n \n \n Let’s take a step back, and look at one of the main deployment patterns on the Internet: the client-server model.\n\nFigure 2: Multiple clients send multiple requests to different servers, with one fronted by a CDN.\n\nIt allows many kinds of clients to exist, and it allows the network to evolve without each server needing to know exactly what software is on the other end.",
+      "impact": "Servers also try to distinguish among clients for many other reasons: to separate attacks from ordinary traffic, to manage non-malicious load, to prevent extraction of data, to limit ad fraud, to prevent fake account creation, or to stop automated actions being taken on a user's behalf. Active client signals : voluntarily provided by the client, often invisible to the end user. A blocked client can spawn a new account without impact on its reputation. The client holds these credentials and decides when to present them, within the right scope.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "This transforms a mitigation vector to a tracking vector.\n\nPrivacy Pass has scaled to billions of tokens per day across Cloudflare’s infrastructure, primarily for privacy relay services .",
+      "lessons_learned": "At the same time, website owners are still looking to protect their data, manage their resources, control content distribution, and prevent abuse.\n\nServers also try to distinguish among clients for many other reasons: to separate attacks from ordinary traffic, to manage non-malicious load, to prevent extraction of data, to limit ad fraud, to prevent fake account creation, or to stop automated actions being taken on a user's behalf.\n\nBut it is better than waiting.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. These are also known as \" user agents \" because they act on our behalf, representing our interests so that we can safely shop, read, and watch the Web without giving sites access to our entire computer or phone. For publishers, because of their overlap with pre-existing browser traffic, these clients are inherently opaque. The client-server model \n \n \n \n \n Let’s take a step back, and look at one of the main deployment patterns on the Internet: the client-server model.",
+      "incident_timeline": "What actually matters is not humanity in the abstract, but questions such as: is this attack traffic, is that crawler load proportional to the traffic it returns, do I expect this user to connect from this new country, a\nWhen we use the Web, we don't talk directly to the thousands of servers we interact with every day. We use Web browsers. These are also known as \" user agents \" because they act on our behalf, representing our interests \nWebsites also have an interest in how browsers work. They want to make sure that their content is presented accurately (fits the screen on mobile, has the right background color, the correct language). Websites also want\nThis tension between the interests of browser users and websites has been going on for a long time. Publishers typically want pixel-level control over the experiences of their users, but the people on the other side of t\nWeb browser vendors and the standards ecosystem around them have paid careful attention to balancing these interests, sometimes with great controversy. For example, you can use browser extensions to block ads, but over t\nNow, however, that balance is shifting. Having an assistant summarize the news or aggregate research is not a new concept, but AI democratizes this capability for everyone. The friction comes from how these emerging clie\nLet’s take a step back, and look at one of the main deployment patterns on the Internet: the client-server model. A client makes a request to a server to obtain a resource:\nFigure 1: Client-Server model. A client sends a request which the server responds to.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "For us humans to interact with the online world, we need a gateway: keyboard, screen, browser, device. What is called \"human detection\" online are patterns that humans use when interacting with such devices.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "55cfd4e5b84e0188",
     "title": "We still need developer communities",
     "source": "Stack Overflow Blog",
