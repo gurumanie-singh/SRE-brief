@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">21 April 2026</h1>
-      <span class="brief-sub">5 items</span>
+      <span class="brief-sub">7 items</span>
     </div>
   </div>
 
@@ -50,6 +50,7 @@
     </div>
     <div class="quick-filters" id="quickFilters">
       <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -67,9 +68,12 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
       </div>
     </div>
     <div class="adv-group">
@@ -85,19 +89,55 @@
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--high"
+       data-tags="deployment,latency,networking,observability,outage,scaling"
+       data-vendors="HashiCorp"
+       data-impact="high"
+       data-theme="observability"
+       data-title="from 80 days to 5: how banco bradesco accelerated digital product delivery with hcp terraform"
+       data-id="56ae4207b462045e"
+       data-published="2026-04-21T16:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-04-21T16:00:00+00:00" title="21 April 2026, 11:00">21 April 2026, 11:00</time>
+      </div>
+      <h3 class="card-title">From 80 days to 5: How Banco Bradesco accelerated digital product delivery with HCP Terraform</h3>
+      <p class="card-summary">At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">HashiCorp Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Every new environment required coordination across platform engineering, security, networking, and IT service management teams. Governance controls were strict.</p></div>
+      <div class="detail-links">
+        <a href="../articles/56ae4207b462045e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.hashicorp.com/blog/from-80-days-to-5-how-banco-bradesco-accelerated-digital-product-delivery-with-hc" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="capacity,deployment,networking,outage"
        data-vendors="AWS,Cloudflare"
@@ -269,6 +309,39 @@
       <div class="detail-links">
         <a href="../articles/a397f2435f3b20f9.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/04/21/3-lessons-building-reliable-servicenow-ai-integrations" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="observability"
+       data-vendors="Elastic,Google Cloud"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="elastic wins fifth google cloud partner of the year award"
+       data-id="09d24c71a27d1f1d"
+       data-published="2026-04-21T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span><span class="vtag">Google Cloud</span>        <time class="meta-time" data-iso="2026-04-21T00:00:00+00:00" title="20 April 2026, 19:00">20 April 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">Elastic wins fifth Google Cloud Partner of the Year award</h3>
+      <p class="card-summary">For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.</p></div>
+      <div class="detail-links">
+        <a href="../articles/09d24c71a27d1f1d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/elastic-wins-fifth-google-cloud-partner-of-the-year" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

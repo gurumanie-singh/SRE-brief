@@ -1,5 +1,54 @@
 [
   {
+    "id": "56ae4207b462045e",
+    "title": "From 80 days to 5: How Banco Bradesco accelerated digital product delivery with HCP Terraform",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/from-80-days-to-5-how-banco-bradesco-accelerated-digital-product-delivery-with-hc",
+    "published": "2026-04-21T16:00:00+00:00",
+    "fetched_at": "2026-04-21T20:10:30.580762+00:00",
+    "summary": "At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Every new environment required coordination across platform engineering, security, networking, and IT service management teams. Governance controls were strict. Cloud adoption was accelerating. Complexity was growing. ",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-21",
+    "impact": "high",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Every new environment required coordination",
+      "The bank did not need more scripts. It needed orchestration.",
+      "From automation at scale to orchestration at scale  Internally, Bradesco defined orchestration as the structured coordination of automated steps executed in a predefined and governed sequence — from validation through pr",
+      "Rather than allowing Terraform to operate as an isolated provisioning engine, the bank embedded it into a broader execution framework. Terraform became the centralized backend for platform engineering orchestration, conn",
+      "Every infrastructure request now flows through a consistent model that:",
+      "To enable this, Bradesco built a curated module ecosystem supported by a standardized CI/CD pipeline. Every module follows trunk-based development and semantic versioning rules. Pull requests generate ephemeral module ve",
+      "Abstracting complexity with a custom provider  To further simplify consumption, Bradesco implemented a custom provider composition layer. This abstraction orchestrates multiple Terraform modules internally, enforces nami",
+      "Improving visibility and efficiency  Centralizing orchestration in Terraform created new visibility across the platform. Engineering teams gained insight into:"
+    ],
+    "sections": {
+      "overview": "At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Every new environment required coordination across platform engineering, security, networking, and IT service management teams. Governance controls were strict.",
+      "technical_breakdown": "Every new environment required coordination across platform engineering, security, networking, and IT service management teams.\n\nScaling across more than 20 internal producer teams contributing to a curated catalog of more than 500 HCP Terraform modules required a structured governance model, not just shared repositories.\n\nBy positioning Terraform as the control plane for its platform engineering strategy, Bradesco transformed infrastructure delivery into a governed, scalable, and self-service operating model.\n\nEvery infrastructure request now flows through a consistent model that: \n\n Validates Sentinel policies before deployment \n\n Enforces approval requirements for production \n\n Integrates automatically with ServiceNow change workflows \n\n Registers infrastructure assets in the CMDB via run tasks \n\n Maintains a complete audit trail of every execution \n\n Terraform became the execution engine that coordinates people, policies, and processes.\n\nDevelopers should not need to understand module composition, backend configuration, or compliance logic to provision infrastructure.",
+      "impact": "For a large financial institution, this challenge is not just operational — it directly affects the speed at which new products and features can be delivered to customers. Producer teams can introduce enhancements or fix bugs without impacting existing environments, since changes are versioned and promoted through controlled pipelines.\n\nClassified impact band: high. Affected layer signal: networking.",
+      "resolution": "Producer teams can introduce enhancements or fix bugs without impacting existing environments, since changes are versioned and promoted through controlled pipelines.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Governance controls were strict. By positioning Terraform as the control plane for its platform engineering strategy, Bradesco transformed infrastructure delivery into a governed, scalable, and self-service operating model. Initiatives that once waited weeks for approved infrastructure can now go to production in days, accelerating the innovation cycle without compromising mandatory controls.",
+      "incident_timeline": "At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Every new environment required coordination\nThe bank did not need more scripts. It needed orchestration.\nFrom automation at scale to orchestration at scale  Internally, Bradesco defined orchestration as the structured coordination of automated steps executed in a predefined and governed sequence — from validation through pr\nRather than allowing Terraform to operate as an isolated provisioning engine, the bank embedded it into a broader execution framework. Terraform became the centralized backend for platform engineering orchestration, conn\nEvery infrastructure request now flows through a consistent model that:\nTo enable this, Bradesco built a curated module ecosystem supported by a standardized CI/CD pipeline. Every module follows trunk-based development and semantic versioning rules. Pull requests generate ephemeral module ve\nAbstracting complexity with a custom provider  To further simplify consumption, Bradesco implemented a custom provider composition layer. This abstraction orchestrates multiple Terraform modules internally, enforces nami\nImproving visibility and efficiency  Centralizing orchestration in Terraform created new visibility across the platform. Engineering teams gained insight into:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "At Banco Bradesco, one of the largest banks in Latin America, delivering a fully compliant infrastructure product could take up to 80 days from request to production readiness. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "a0d0ba37a705aa23",
     "title": "Moving past bots vs. humans",
     "source": "Cloudflare Blog",
@@ -226,6 +275,42 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "09d24c71a27d1f1d",
+    "title": "Elastic wins fifth Google Cloud Partner of the Year award",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-wins-fifth-google-cloud-partner-of-the-year",
+    "published": "2026-04-21T00:00:00+00:00",
+    "fetched_at": "2026-04-21T20:10:31.933952+00:00",
+    "summary": "For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-04-21",
+    "impact": "medium",
+    "vendors": [
+      "Elastic",
+      "Google Cloud"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — gcp",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.",
+      "technical_breakdown": "For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.",
+      "impact": "For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.\n\nClassified impact band: medium. Affected layer signal: cloud — gcp.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "For the fifth time, Elastic has been recognized for its achievements in the Google Cloud ecosystem, helping joint customers deploy generative AI solutions in search, security, and observability.",
     "related_sources": [],
     "highlighted": false
   }
