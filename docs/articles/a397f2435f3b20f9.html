@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 lessons for building reliable ServiceNow AI integrations — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-21.html" class="back-link">← 21 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">21 April 2026, 02:16</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">3 lessons for building reliable ServiceNow AI integrations</h1>
+
+      <p class="subtitle">In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="vendor-tag">Slack</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. This agent is part of the it-self-service-agent AI quickstart. Whether you&#39;re a developer building AI integrations, an IT administrator managing ServiceNow instances, or an architect designing AI-driven enterprise workflows, these insights can help you avoid common pitfalls and build more reliable enterprise AI solutions.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Setup target: https://dev183500.service-now.com/  Admin user: admin  Agent user: mcp_agent  Catalog item: PC Refresh  Steps to execute:  1.</p>
+<p>Swap the specialist agent, add your own MCP servers for different integrations, customize the knowledge base and define your own evaluation metrics.</p>
+<p>Read this post to learn:</p>
+<p>How to structure testing environments for enterprise integrations without impacting production systems  Best practices for implementing safeguards in AI-powered automation tools  A phased approach to deploy enterprise AI integrations from development to production  About AI quickstarts AI quickstarts are a catalog of ready-to-run industry-specific use cases for your Red Hat AI environment.</p>
+<p>Configuration management database API Endpoint: /api/now/table/cmdb_ci_computer   Purpose: Retrieves computer/laptop assets assigned to specific users.</p>
+<p>Service catalog API Endpoint: /api/sn_sc/servicecatalog/items/{laptop_refresh_id}/order_now   Purpose: Creates new laptop refresh requests through ServiceNow&#39;s service catalog.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Read this post to learn:</p>
+<p>How to structure testing environments for enterprise integrations without impacting production systems  Best practices for implementing safeguards in AI-powered automation tools  A phased approach to deploy enterprise AI integrations from development to production  About AI quickstarts AI quickstarts are a catalog of ready-to-run industry-specific use cases for your Red Hat AI environment. ServiceNow REST API integration Our MCP ServiceNow server ( mcp-servers/snow/src/snow/servicenow/client.py ) integrates with four primary ServiceNow REST API endpoints. User management API Endpoint: /api/now/table/sys_user   Purpose: Retrieves user information by email address for laptop assignment. Query pattern: Uses sysparm_query=email={email} to find users.</p>
+<p>Classified impact band: critical. Affected layer signal: data store.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests.</p>
+<p>Catch up on the previous parts in the series:</p>
+<p>Part 1: AI quickstart: Self-service agent for IT process automation   Part 2: AI meets you where you are: Slack, email &amp; ServiceNow   Part 3: Prompt engineering: Big vs. small prompts for AI agents   Part 4: Automate AI agents with the Responses API in Llama Stack   Part 5: Eval-driven development: Build and evaluate reliable AI agents   Part 6: Distributed tracing for agentic workflows with OpenTelemetry   ServiceNow APIs and integration overview Before diving into the lessons learned, it&#39;s helpful to understand the ServiceNow APIs we used and how our MCP server connects to them.</p>
+<p>It also improves the user experience by connecting users to relevant existing tickets rather than leaving them to wait for a new one</p>
+<p># Step 2: Check if there&#39;s already an open request for the same laptop model current_laptop_model = params.laptop_choices has_existing_model_request, existing_request = (  self._has_existing_request_for_laptop_model(  existing_requests, current_laptop_model  ) ) Rate limiting per user This SERVICENOW_LAPTOP_REQUEST_LIMITS safeguard prevents a user from overwhelming the system.</p>
+<p>This is the seventh post in a series covering what we learned while developing the it-self-service-agent AI quickstart.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Simplified debugging When issues arise, we can be confident they&#39;re not caused by mock-specific logic, since the same code runs in both environments. Without proper controls, we could face scenarios like:</p>
+<p>Ticket flooding: An AI agent might create dozens of duplicate requests due to repeated user queries. User already has {len(existing_requests)} open request(s), which meets or exceeds the limit of {self.laptop_request_limits}.&#34;,  &#34;data&#34;: {  &#34;existing_requests&#34;: existing_requests,  &#34;limit&#34;: self.laptop_request_limits,  },  } Configuration flexibility for enterprise needs Both safeguards are disabled by default, which allows organizations to manage their own implementation:</p>
+<p># Enable duplicate prevention only SERVICENOW_LAPTOP_AVOID_DUPLICATES=true # Enable rate limiting with custom threshold SERVICENOW_LAPTOP_REQUEST_LIMITS=3 # Enable both safeguards SERVICENOW_LAPTOP_AVOID_DUPLICATES=true SERVICENOW_LAPTOP_REQUEST_LIMITS=5 This approach allows you to test the AI agent without restrictions during initial deployment and gradually enable safeguards as usage patterns emerge.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. This agent is part of the it-self-</li>
+            <li>How to structure testing environments for enterprise integrations without impacting production systems</li>
+            <li>Best practices for implementing safeguards in AI-powered automation tools</li>
+            <li>ServiceNow REST API integration Our MCP ServiceNow server ( mcp-servers/snow/src/snow/servicenow/client.py ) integrates with four primary ServiceNow REST API endpoints.</li>
+            <li>Purpose: Creates new laptop refresh requests through ServiceNow&#39;s service catalog.</li>
+            <li>Request format: Uses structured JSON with sysparm_quantity and variables containing laptop choice and requester information.</li>
+            <li>Integration: Automatically links requests to users and populates required catalog item variables.</li>
+            <li>Service request item API Endpoint: /api/now/table/sc_req_item</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/21/3-lessons-building-reliable-servicenow-ai-integrations" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

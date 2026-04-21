@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Build a personal organization command center with GitHub Copilot CLI — SRE Brief</title>
+  <title>AI-powered documentation updates: From code diff to docs PR in one comment — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,23 +23,24 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-04-15.html" class="back-link">← 15 April 2026 day sheet</a>
+    <a href="../daily/2026-04-21.html" class="back-link">← 21 April 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
-        <span class="card-source">GitHub Blog</span>
-        <span class="card-date">15 April 2026, 12:00</span>
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">21 April 2026, 02:16</span>
         <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Build a personal organization command center with GitHub Copilot CLI</h1>
+      <h1 class="title">AI-powered documentation updates: From code diff to docs PR in one comment</h1>
 
-      <p class="subtitle">What if you could remove the struggle of context switching across several apps, bringing them together into one place. Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work.</p>
+      <p class="subtitle">TL;DR: Want to automatically update your documentation following code changes. See it in action with this interactive demo .</p>
 
 
       <div class="article-tags">
         <span class="vendor-tag">GitHub</span>
-        <span class="vendor-tag">Slack</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">latency</span>
         <span class="tag">outage</span>
       </div>
 
@@ -54,38 +55,31 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">What if you could remove the struggle of context switching across several apps, bringing them together into one place. Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work.</p>
+      <p class="quick-take-text">TL;DR: Want to automatically update your documentation following code changes. See it in action with this interactive demo .</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>What if you could remove the struggle of context switching across several apps, bringing them together into one place? Meet Brittany Ellich , Staff Software Engineer, and the productivity tool she built to streamline her work. We sat down with Brittany to learn about this project what she built, how she did it, and how AI supported the development process from ideation to implementation.</p>
+          <p>TL;DR: Want to automatically update your documentation following code changes? See it in action with this interactive demo . Every developer knows the feeling: You merge a pull request changing how a configuration option works, or refactors an API endpoint, and somewhere in a separate repository, the documentation still describes the old behavior.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>I stay on top of industry news through articles, podcasts, and social media.</p>
-<p>I read articles that are shared internally on GitHub s Slack, and I read the GitHub blog.</p>
-<p>There are a few podcasts that I like for keeping up with things, like How I AI and Last Week in AI.</p>
-<p>You ll need the following on your machine:</p>
-<p>Node.js (v18 or higher)</p>
-<p>GitHub Copilot CLI (for WorkIQ setup)</p>
-<p>A Microsoft 365 account (for calendar sync)</p>
-<p>An ElevenLabs account (for voice assistant setup)</p>
-<p>There are more detailed instructions in her repository README file !</p>
-<p>Get started with GitHub Copilot CLI &gt;</p>
-<p>The post Build a personal organization command center with GitHub Copilot CLI appeared first on The GitHub Blog .</p>
+          <p>In a project with hundreds of doc files, scanning every one with AI on each run would be slow and expensive.</p>
+<p>These summaries are cached in a .doc-index directory and committed to your main branch.</p>
+<p>File summaries: For long documentation files, the GitHub Action generates and caches concise summaries so it doesn&#39;t need to send the full file content to the AI on every run.</p>
+<p>Performance improves over time as more summaries are built up, and when a documentation file is updated, its cached summary is regenerated automatically.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>My day-to-day work mostly consists of working on metered billing, so things like keeping records of Actions minutes, storage amounts, and copilot usage. I typically try to keep a few asynchronous tasks flowing with Copilot Cloud Agent, like bug fixes or tech debt changes that have been well-scoped, while I m focusing on the work that needs more oversight in VS Code.</p>
+          <p>Weeks later, a user or fellow contributor follows those outdated instructions and hits a wall. It uses AI to analyze your code changes, identify which documentation files are affected, and generate updated content all triggered by a simple comment on your pull request. Smart file discovery with semantic indexing One of the biggest challenges is figuring out which documentation files are affected by a code change. This cuts runtime from around 20 minutes to about 4 minutes on large documentation sets.</p>
 <p>Classified impact band: medium. Affected layer signal: general production.</p>
         </div>
       </div>
@@ -93,18 +87,15 @@
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>I typically try to keep a few asynchronous tasks flowing with Copilot Cloud Agent, like bug fixes or tech debt changes that have been well-scoped, while I m focusing on the work that needs more oversight in VS Code.</p>
-<p>Follow-up loaded question: Do you care what tech stack your apps use now?</p>
-<p>Try Brittany s approach</p>
-<p>Brittany s project is a good reminder that the most useful projects often start as small fixes for everyday problems.</p>
+          <p>It&#39;s that keeping docs in sync with code is a separate task, often in a separate repository, that&#39;s easy to forget when you&#39;re focused on shipping features and fixing bugs.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>Follow-up loaded question: Do you care what tech stack your apps use now?</p>
-<p>I ve always wanted to build an Electron app and this is technically my first one, but I can t say I learned a ton about Electron during this process since it was almost completely built by Agent Mode.</p>
+          <p>The next time someone comments [review-docs] on a pull request, the GitHub Action kicks in.</p>
+<p>Performance improves over time as more summaries are built up, and when a documentation file is updated, its cached summary is regenerated automatically.</p>
         </div>
       </div>
 
@@ -113,8 +104,14 @@
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
         <div class="article-section-content">
           <ul class="timeline-list">
-            <li>While planning, I have Copilot interview me with questions about how something should work until we have a plan that I think is adequate. That way, there s less guesswork about what I want done and implementation goes mo</li>
-            <li>Follow-up loaded question: Do you care what tech stack your apps use now?</li>
+            <li>Every developer knows the feeling: You merge a pull request changing how a configuration option works, or refactors an API endpoint, and somewhere in a separate repository, the documentation still describes the old behav</li>
+            <li>Code-to-Docs is an open source GitHub Action that addresses this gap. It uses AI to analyze your code changes, identify which documentation files are affected, and generate updated content all triggered by a simple comme</li>
+            <li>How Code-to-Docs works Code-to-Docs integrates into your pull request workflow through two commands, typed as PR comments:</li>
+            <li>[update-docs] : Takes the files you approved in the review (or runs the full pipeline if you skipped the review step) and creates a pull request in your docs repository with the generated updates.</li>
+            <li>Recommended workflow for Code-to-Docs The two-step approach keeps humans in control while letting AI handle the discovery and drafting: AI suggests (as in Figure 1), and you decide. Nothing gets merged without human appr</li>
+            <li>Figure 1: The GitHub Action analyzes the code diff and posts a review listing which documentation files need updates, with checkboxes for the reviewer to accept or reject each suggestion. This image is from the interacti</li>
+            <li>A developer opens a pull request (PR) that changes a configuration option.</li>
+            <li>That&#39;s it. The next time someone comments [review-docs] on a pull request, the GitHub Action kicks in.</li>
           </ul>
         </div>
       </div>
@@ -126,20 +123,14 @@
         </div>
       </div>
 
-      <div class="article-section">
-        <div class="article-section-label">Related coverage</div>
-        <div class="article-section-content">
-          <p><a href="https://blog.cloudflare.com/project-think/" target="_blank" rel="noopener">Cloudflare Blog</a></p>
-        </div>
-      </div>
 
-      <a href="https://github.blog/ai-and-ml/github-copilot/build-a-personal-organization-command-center-with-github-copilot-cli/" class="source-card" target="_blank" rel="noopener">
+      <a href="https://developers.redhat.com/articles/2026/04/21/ai-powered-documentation-updates-code-diff-docs-pr-one-comment" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="source-card-text">
           <div class="source-card-label">External source</div>
-          <div class="source-card-name">Read the original write-up at GitHub Blog</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
         </div>
         <span class="source-card-arrow">→</span>
       </a>

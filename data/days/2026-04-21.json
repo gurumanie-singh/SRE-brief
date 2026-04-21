@@ -1,0 +1,184 @@
+[
+  {
+    "id": "55cfd4e5b84e0188",
+    "title": "We still need developer communities",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/21/we-still-need-developer-communities/",
+    "published": "2026-04-21T07:40:00+00:00",
+    "fetched_at": "2026-04-21T08:57:55.058280+00:00",
+    "summary": "Ryan welcomes Mike Swift, co-founder and CEO of Major League Hacking, to the show to chat about the never-ending need for software developer communities and entry points into programming; MHL’s recent acquisition of DEV and how they’re creating a place for shared knowledge, building, and publishing; and why now is the best time to be both an artisan and a builder in a world with AI software...",
+    "tags": [],
+    "day": "2026-04-21",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Ryan welcomes Mike Swift, co-founder and CEO of Major League Hacking, to the show to chat about the never-ending need for software developer communities and entry points into programming; MHL’s recent acquisition of DEV "
+    ],
+    "sections": {
+      "overview": "Ryan welcomes Mike Swift, co-founder and CEO of Major League Hacking, to the show to chat about the never-ending need for software developer communities and entry points into programming; MHL’s recent acquisition of DEV and how they’re creating a place for shared knowledge, building, and publishing; and why now is the best time to be both an artisan and a builder in a world with AI software...",
+      "technical_breakdown": "Ryan welcomes Mike Swift, co-founder and CEO of Major League Hacking, to the show to chat about the never-ending need for software developer communities and entry points into programming; MHL’s recent acquisition of DEV and how they’re creating a place for shared knowledge, building, and publishing; and why now is the best time to be both an artisan and a builder in a world with AI software development tools.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Ryan welcomes Mike Swift, co-founder and CEO of Major League Hacking, to the show to chat about the never-ending need for software developer communities and entry points into programming; MHL’s recent acquisition of DEV ",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Mike Swift, co-founder and CEO of Major League Hacking, to the show to chat about the never-ending need for software developer communities and entry points into programming; MHL’s recent acquisition of DEV and how they’re creating a place for shared knowledge, building, and publishing; and why now is the best time to be both an artisan and a builder in a world with AI software development tools.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "407e6853a8b48d60",
+    "title": "Combining KServe and llm-d for optimized generative AI inference",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/21/kserve-llm-d-optimized-gen-ai-inference",
+    "published": "2026-04-21T07:16:32+00:00",
+    "fetched_at": "2026-04-21T08:57:55.873517+00:00",
+    "summary": "Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-04-21",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Platform engineering leaders require more than model deployment capabilities. They need a Kubernetes-native infrastructure that supports efficient GPU utilization and intelligent request routing. This foundation also ena",
+      "Inference as a service: What happens when a request comes in Instead of thinking about InferenceService as a list of features, it's more useful to follow the life of a single request: A request enters the system for exam",
+      "First, KServe determines where the request should go. If no pods are running, it triggers scale-from-zero. If traffic increases, it scales horizontally based on real-time demand. Then, it routes the request through the a",
+      "Before reaching the model, optional preprocessing steps might enrich or transform the request. Then, the system hands it off to the serving runtime, such as vLLM or TGI, where the model inference occurs. As tokens begin ",
+      "From the developer's perspective, it feels simple: send a request, get a response. From the platform engineer's perspective, it's a fully orchestrated, adaptive system managing compute, traffic, and lifecycle in real tim",
+      "When KServe alone is not enough: The engineer's reality Initial KServe deployments often look successful: the model is live, autoscaling responds to requests, and GPUs are active. This stability is often tested, however,",
+      "You might notice inconsistent performance, where some requests are fast while others are unexpectedly slow. GPU utilization can appear high without being effective, and identical prompts might fail to benefit from cache ",
+      "You realize that requests are being routed without awareness of where their data already exists . KV cache a key optimization in LLM inference is effectively random in a multi-replica setup. Then comes the next challenge"
+    ],
+    "sections": {
+      "overview": "Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs. Platform engineering leaders require more than model deployment capabilities.",
+      "technical_breakdown": "Optimization area Naive architecture (round-robin LB) \n\n Optimized (KServe + llm-d) \n\n Source \n\n Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.\n\nIntelligent inference scheduler llm-d's inference scheduler evaluates the following metrics:\n\n GPU utilization\n Queue depth\n Cache residency\n SLA constraints\n Load distribution\n The system uses an intelligent scheduler to decrease serving latency and increase throughput.\n\nIn contrast, llm-d handles different operational concerns, including runtime-aware scheduling, cache locality optimization, and intelligence across pods and nodes.\n\nKServe: Simplifying AI model deployment on Kubernetes KServe is a Kubernetes-based model serving platform that simplifies deploying and managing ML models, including LLMs, at scale.\n\nThen, it routes the request through the appropriate revision of the service, whether that's a stable deployment or a canary rollout receiving partial traffic.",
+      "impact": "The decode phase is latency-sensitive and generates tokens step by step, where responsiveness impacts user experience.\n\n llm-d separates these phases across different GPU groups, assigning compute-optimized resources to prefill and latency-optimized resources to decode. Inference as a service: What happens when a request comes in Instead of thinking about InferenceService as a list of features, it's more useful to follow the life of a single request: A request enters the system for example, a /v1/chat/completions call from an application using an OpenAI-compatible client. As tokens begin streaming back, KServe maintains the connection to ensure low-latency responses for the client. Optimization area Naive architecture (round-robin LB) \n\n Optimized (KServe + llm-d) \n\n Source \n\n Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "The architectural flow for intelligent request routing and distributed prefix caching in Kubernetes is shown in Figure 3.\n\nOptimization area Naive architecture (round-robin LB) \n\n Optimized (KServe + llm-d) \n\n Source \n\n Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.\n\nModern runtimes such as vLLM introduced prefix (KV) caching to reduce redundant computation, but without smart scheduling, much of that benefit is lost.\n\nIt achieves this through prefix-cache aware routing, utilization-based load balancing, fairness and prioritization for multi-tenant serving, and predicted latency balancing.",
+      "lessons_learned": "Once we introduced cache-aware routing and phase separation, system behavior improved.\n\nKey outcomes:\n\n Up to 57 times improvement in Time to First Token (P90)\n Double the token throughput\n Approximately 50% reduction in tail latency\n More consistent and predictable performance under load\n Improved GPU utilization\n Table 1: Results are based on benchmarks published by the llm-d project.\n\nOptimization area Naive architecture (round-robin LB) \n\n Optimized (KServe + llm-d) \n\n Source \n\n Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Optimization area Naive architecture (round-robin LB) \n\n Optimized (KServe + llm-d) \n\n Source \n\n Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs. For platform engineers, KServe acts as the model serving control plane the layer responsible for lifecycle, scaling, and operational governance.",
+      "incident_timeline": "Platform engineering leaders require more than model deployment capabilities. They need a Kubernetes-native infrastructure that supports efficient GPU utilization and intelligent request routing. This foundation also ena\nInference as a service: What happens when a request comes in Instead of thinking about InferenceService as a list of features, it's more useful to follow the life of a single request: A request enters the system for exam\nFirst, KServe determines where the request should go. If no pods are running, it triggers scale-from-zero. If traffic increases, it scales horizontally based on real-time demand. Then, it routes the request through the a\nBefore reaching the model, optional preprocessing steps might enrich or transform the request. Then, the system hands it off to the serving runtime, such as vLLM or TGI, where the model inference occurs. As tokens begin \nFrom the developer's perspective, it feels simple: send a request, get a response. From the platform engineer's perspective, it's a fully orchestrated, adaptive system managing compute, traffic, and lifecycle in real tim\nWhen KServe alone is not enough: The engineer's reality Initial KServe deployments often look successful: the model is live, autoscaling responds to requests, and GPUs are active. This stability is often tested, however,\nYou might notice inconsistent performance, where some requests are fast while others are unexpectedly slow. GPU utilization can appear high without being effective, and identical prompts might fail to benefit from cache \nYou realize that requests are being routed without awareness of where their data already exists . KV cache a key optimization in LLM inference is effectively random in a multi-replica setup. Then comes the next challenge",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "677082e9a7d942df",
+    "title": "AI-powered documentation updates: From code diff to docs PR in one comment",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/21/ai-powered-documentation-updates-code-diff-docs-pr-one-comment",
+    "published": "2026-04-21T07:16:30+00:00",
+    "fetched_at": "2026-04-21T08:57:55.874492+00:00",
+    "summary": "TL;DR: Want to automatically update your documentation following code changes? See it in action with this interactive demo .",
+    "tags": [
+      "latency",
+      "outage"
+    ],
+    "day": "2026-04-21",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Every developer knows the feeling: You merge a pull request changing how a configuration option works, or refactors an API endpoint, and somewhere in a separate repository, the documentation still describes the old behav",
+      "Code-to-Docs is an open source GitHub Action that addresses this gap. It uses AI to analyze your code changes, identify which documentation files are affected, and generate updated content all triggered by a simple comme",
+      "How Code-to-Docs works Code-to-Docs integrates into your pull request workflow through two commands, typed as PR comments:",
+      "[update-docs] : Takes the files you approved in the review (or runs the full pipeline if you skipped the review step) and creates a pull request in your docs repository with the generated updates.",
+      "Recommended workflow for Code-to-Docs The two-step approach keeps humans in control while letting AI handle the discovery and drafting: AI suggests (as in Figure 1), and you decide. Nothing gets merged without human appr",
+      "Figure 1: The GitHub Action analyzes the code diff and posts a review listing which documentation files need updates, with checkboxes for the reviewer to accept or reject each suggestion. This image is from the interacti",
+      "A developer opens a pull request (PR) that changes a configuration option.",
+      "That's it. The next time someone comments [review-docs] on a pull request, the GitHub Action kicks in."
+    ],
+    "sections": {
+      "overview": "TL;DR: Want to automatically update your documentation following code changes? See it in action with this interactive demo . Every developer knows the feeling: You merge a pull request changing how a configuration option works, or refactors an API endpoint, and somewhere in a separate repository, the documentation still describes the old behavior.",
+      "technical_breakdown": "In a project with hundreds of doc files, scanning every one with AI on each run would be slow and expensive.\n\nThese summaries are cached in a .doc-index directory and committed to your main branch.\n\nFile summaries: For long documentation files, the GitHub Action generates and caches concise summaries so it doesn't need to send the full file content to the AI on every run.\n\nPerformance improves over time as more summaries are built up, and when a documentation file is updated, its cached summary is regenerated automatically.",
+      "impact": "Weeks later, a user or fellow contributor follows those outdated instructions and hits a wall. It uses AI to analyze your code changes, identify which documentation files are affected, and generate updated content all triggered by a simple comment on your pull request. Smart file discovery with semantic indexing One of the biggest challenges is figuring out which documentation files are affected by a code change. This cuts runtime from around 20 minutes to about 4 minutes on large documentation sets.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "It's that keeping docs in sync with code is a separate task, often in a separate repository, that's easy to forget when you're focused on shipping features and fixing bugs.",
+      "lessons_learned": "The next time someone comments [review-docs] on a pull request, the GitHub Action kicks in.\n\nPerformance improves over time as more summaries are built up, and when a documentation file is updated, its cached summary is regenerated automatically.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Every developer knows the feeling: You merge a pull request changing how a configuration option works, or refactors an API endpoint, and somewhere in a separate repository, the documentation still describes the old behav\nCode-to-Docs is an open source GitHub Action that addresses this gap. It uses AI to analyze your code changes, identify which documentation files are affected, and generate updated content all triggered by a simple comme\nHow Code-to-Docs works Code-to-Docs integrates into your pull request workflow through two commands, typed as PR comments:\n[update-docs] : Takes the files you approved in the review (or runs the full pipeline if you skipped the review step) and creates a pull request in your docs repository with the generated updates.\nRecommended workflow for Code-to-Docs The two-step approach keeps humans in control while letting AI handle the discovery and drafting: AI suggests (as in Figure 1), and you decide. Nothing gets merged without human appr\nFigure 1: The GitHub Action analyzes the code diff and posts a review listing which documentation files need updates, with checkboxes for the reviewer to accept or reject each suggestion. This image is from the interacti\nA developer opens a pull request (PR) that changes a configuration option.\nThat's it. The next time someone comments [review-docs] on a pull request, the GitHub Action kicks in.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "TL;DR: Want to automatically update your documentation following code changes. See it in action with this interactive demo .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a397f2435f3b20f9",
+    "title": "3 lessons for building reliable ServiceNow AI integrations",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/21/3-lessons-building-reliable-servicenow-ai-integrations",
+    "published": "2026-04-21T07:16:27+00:00",
+    "fetched_at": "2026-04-21T08:57:55.876414+00:00",
+    "summary": "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. This agent is part of the it-self-service-agent AI quickstart. Whether you're a developer building AI integrations, an IT administrator managing ServiceNow instances, or an architect designing AI-driven enterprise...",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-04-21",
+    "impact": "critical",
+    "vendors": [
+      "GitHub",
+      "Red Hat",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. This agent is part of the it-self-",
+      "How to structure testing environments for enterprise integrations without impacting production systems",
+      "Best practices for implementing safeguards in AI-powered automation tools",
+      "ServiceNow REST API integration Our MCP ServiceNow server ( mcp-servers/snow/src/snow/servicenow/client.py ) integrates with four primary ServiceNow REST API endpoints.",
+      "Purpose: Creates new laptop refresh requests through ServiceNow's service catalog.",
+      "Request format: Uses structured JSON with sysparm_quantity and variables containing laptop choice and requester information.",
+      "Integration: Automatically links requests to users and populates required catalog item variables.",
+      "Service request item API Endpoint: /api/now/table/sc_req_item"
+    ],
+    "sections": {
+      "overview": "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. This agent is part of the it-self-service-agent AI quickstart. Whether you're a developer building AI integrations, an IT administrator managing ServiceNow instances, or an architect designing AI-driven enterprise workflows, these insights can help you avoid common pitfalls and build more reliable enterprise AI solutions.",
+      "technical_breakdown": "Setup target: https://dev183500.service-now.com/\n Admin user: admin\n Agent user: mcp_agent\n Catalog item: PC Refresh\n Steps to execute:\n 1.\n\nSwap the specialist agent, add your own MCP servers for different integrations, customize the knowledge base and define your own evaluation metrics.\n\nRead this post to learn:\n\n How to structure testing environments for enterprise integrations without impacting production systems\n Best practices for implementing safeguards in AI-powered automation tools\n A phased approach to deploy enterprise AI integrations from development to production\n About AI quickstarts AI quickstarts are a catalog of ready-to-run industry-specific use cases for your Red Hat AI environment.\n\nConfiguration management database API Endpoint: /api/now/table/cmdb_ci_computer \n Purpose: Retrieves computer/laptop assets assigned to specific users.\n\nService catalog API Endpoint: /api/sn_sc/servicecatalog/items/{laptop_refresh_id}/order_now \n Purpose: Creates new laptop refresh requests through ServiceNow's service catalog.",
+      "impact": "Read this post to learn:\n\n How to structure testing environments for enterprise integrations without impacting production systems\n Best practices for implementing safeguards in AI-powered automation tools\n A phased approach to deploy enterprise AI integrations from development to production\n About AI quickstarts AI quickstarts are a catalog of ready-to-run industry-specific use cases for your Red Hat AI environment. ServiceNow REST API integration Our MCP ServiceNow server ( mcp-servers/snow/src/snow/servicenow/client.py ) integrates with four primary ServiceNow REST API endpoints. User management API Endpoint: /api/now/table/sys_user \n Purpose: Retrieves user information by email address for laptop assignment. Query pattern: Uses sysparm_query=email={email} to find users.\n\nClassified impact band: critical. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests.\n\nCatch up on the previous parts in the series:\n\n Part 1: AI quickstart: Self-service agent for IT process automation \n Part 2: AI meets you where you are: Slack, email & ServiceNow \n Part 3: Prompt engineering: Big vs. small prompts for AI agents \n Part 4: Automate AI agents with the Responses API in Llama Stack \n Part 5: Eval-driven development: Build and evaluate reliable AI agents \n Part 6: Distributed tracing for agentic workflows with OpenTelemetry \n ServiceNow APIs and integration overview Before diving into the lessons learned, it's helpful to understand the ServiceNow APIs we used and how our MCP server connects to them.\n\nIt also improves the user experience by connecting users to relevant existing tickets rather than leaving them to wait for a new one\n\n # Step 2: Check if there's already an open request for the same laptop model\ncurrent_laptop_model = params.laptop_choices\nhas_existing_model_request, existing_request = (\n self._has_existing_request_for_laptop_model(\n existing_requests, current_laptop_model\n )\n) Rate limiting per user This SERVICENOW_LAPTOP_REQUEST_LIMITS safeguard prevents a user from overwhelming the system.\n\nThis is the seventh post in a series covering what we learned while developing the it-self-service-agent AI quickstart.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Simplified debugging When issues arise, we can be confident they're not caused by mock-specific logic, since the same code runs in both environments. Without proper controls, we could face scenarios like:\n\n Ticket flooding: An AI agent might create dozens of duplicate requests due to repeated user queries. User already has {len(existing_requests)} open request(s), which meets or exceeds the limit of {self.laptop_request_limits}.\",\n \"data\": {\n \"existing_requests\": existing_requests,\n \"limit\": self.laptop_request_limits,\n },\n } Configuration flexibility for enterprise needs Both safeguards are disabled by default, which allows organizations to manage their own implementation:\n\n # Enable duplicate prevention only\nSERVICENOW_LAPTOP_AVOID_DUPLICATES=true\n# Enable rate limiting with custom threshold\nSERVICENOW_LAPTOP_REQUEST_LIMITS=3\n# Enable both safeguards\nSERVICENOW_LAPTOP_AVOID_DUPLICATES=true\nSERVICENOW_LAPTOP_REQUEST_LIMITS=5 This approach allows you to test the AI agent without restrictions during initial deployment and gradually enable safeguards as usage patterns emerge.",
+      "incident_timeline": "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. This agent is part of the it-self-\nHow to structure testing environments for enterprise integrations without impacting production systems\nBest practices for implementing safeguards in AI-powered automation tools\nServiceNow REST API integration Our MCP ServiceNow server ( mcp-servers/snow/src/snow/servicenow/client.py ) integrates with four primary ServiceNow REST API endpoints.\nPurpose: Creates new laptop refresh requests through ServiceNow's service catalog.\nRequest format: Uses structured JSON with sysparm_quantity and variables containing laptop choice and requester information.\nIntegration: Automatically links requests to users and populates required catalog item variables.\nService request item API Endpoint: /api/now/table/sc_req_item",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In this post, I share three critical lessons learned from building a Model Context Protocol (MCP)-powered AI agent that integrates with ServiceNow for automated laptop refresh requests. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

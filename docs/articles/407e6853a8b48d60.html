@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combining KServe and llm-d for optimized generative AI inference — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-21.html" class="back-link">← 21 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">21 April 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Combining KServe and llm-d for optimized generative AI inference</h1>
+
+      <p class="subtitle">Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="vendor-tag">Slack</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs. Platform engineering leaders require more than model deployment capabilities.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Optimization area Naive architecture (round-robin LB)</p>
+<p>Optimized (KServe + llm-d)</p>
+<p>Source</p>
+<p>Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.</p>
+<p>Intelligent inference scheduler llm-d&#39;s inference scheduler evaluates the following metrics:</p>
+<p>GPU utilization  Queue depth  Cache residency  SLA constraints  Load distribution  The system uses an intelligent scheduler to decrease serving latency and increase throughput.</p>
+<p>In contrast, llm-d handles different operational concerns, including runtime-aware scheduling, cache locality optimization, and intelligence across pods and nodes.</p>
+<p>KServe: Simplifying AI model deployment on Kubernetes KServe is a Kubernetes-based model serving platform that simplifies deploying and managing ML models, including LLMs, at scale.</p>
+<p>Then, it routes the request through the appropriate revision of the service, whether that&#39;s a stable deployment or a canary rollout receiving partial traffic.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>The decode phase is latency-sensitive and generates tokens step by step, where responsiveness impacts user experience.</p>
+<p>llm-d separates these phases across different GPU groups, assigning compute-optimized resources to prefill and latency-optimized resources to decode. Inference as a service: What happens when a request comes in Instead of thinking about InferenceService as a list of features, it&#39;s more useful to follow the life of a single request: A request enters the system for example, a /v1/chat/completions call from an application using an OpenAI-compatible client. As tokens begin streaming back, KServe maintains the connection to ensure low-latency responses for the client. Optimization area Naive architecture (round-robin LB)</p>
+<p>Optimized (KServe + llm-d)</p>
+<p>Source</p>
+<p>Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>The architectural flow for intelligent request routing and distributed prefix caching in Kubernetes is shown in Figure 3.</p>
+<p>Optimization area Naive architecture (round-robin LB)</p>
+<p>Optimized (KServe + llm-d)</p>
+<p>Source</p>
+<p>Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.</p>
+<p>Modern runtimes such as vLLM introduced prefix (KV) caching to reduce redundant computation, but without smart scheduling, much of that benefit is lost.</p>
+<p>It achieves this through prefix-cache aware routing, utilization-based load balancing, fairness and prioritization for multi-tenant serving, and predicted latency balancing.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Once we introduced cache-aware routing and phase separation, system behavior improved.</p>
+<p>Key outcomes:</p>
+<p>Up to 57 times improvement in Time to First Token (P90)  Double the token throughput  Approximately 50% reduction in tail latency  More consistent and predictable performance under load  Improved GPU utilization  Table 1: Results are based on benchmarks published by the llm-d project.</p>
+<p>Optimization area Naive architecture (round-robin LB)</p>
+<p>Optimized (KServe + llm-d)</p>
+<p>Source</p>
+<p>Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. Optimization area Naive architecture (round-robin LB)</p>
+<p>Optimized (KServe + llm-d)</p>
+<p>Source</p>
+<p>Cache locality Requests routed randomly KV cache frequently missed Cache-aware routing preserves prefix locality KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Time to First Token (P90) Baseline latency under cache-blind scheduling Up to ~57 faster P90 TTFT in benchmark KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Token throughput ~4,400 tokens/sec (baseline test cluster) ~8,730 tokens/sec (~2 improvement) KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d Throughput at scale Degrades under multi-tenant load Sustained 4.5k 11k tokens/sec llm-d 0.5: Sustaining Performance at Scale Tail latency (P95/P99) Higher tail latency due to stragglers and imbalance ~50% tail latency reduction (reported tests) llm-d: Kubernetes-native distributed inferencing GPU utilization Uneven utilization, idle GPUs possible Improved effective utilization via routing intelligence Well-lit Path: Intelligent Inference Scheduling Autoscaling control Scale reacts to load only Works with KServe autoscaling and routing intelligence Autoscaling with Knative Pod Autoscaler The model remained the same; the performance gains came from the orchestration and routing logic of the system. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs. For platform engineers, KServe acts as the model serving control plane the layer responsible for lifecycle, scaling, and operational governance.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Platform engineering leaders require more than model deployment capabilities. They need a Kubernetes-native infrastructure that supports efficient GPU utilization and intelligent request routing. This foundation also ena</li>
+            <li>Inference as a service: What happens when a request comes in Instead of thinking about InferenceService as a list of features, it&#39;s more useful to follow the life of a single request: A request enters the system for exam</li>
+            <li>First, KServe determines where the request should go. If no pods are running, it triggers scale-from-zero. If traffic increases, it scales horizontally based on real-time demand. Then, it routes the request through the a</li>
+            <li>Before reaching the model, optional preprocessing steps might enrich or transform the request. Then, the system hands it off to the serving runtime, such as vLLM or TGI, where the model inference occurs. As tokens begin </li>
+            <li>From the developer&#39;s perspective, it feels simple: send a request, get a response. From the platform engineer&#39;s perspective, it&#39;s a fully orchestrated, adaptive system managing compute, traffic, and lifecycle in real tim</li>
+            <li>When KServe alone is not enough: The engineer&#39;s reality Initial KServe deployments often look successful: the model is live, autoscaling responds to requests, and GPUs are active. This stability is often tested, however,</li>
+            <li>You might notice inconsistent performance, where some requests are fast while others are unexpectedly slow. GPU utilization can appear high without being effective, and identical prompts might fail to benefit from cache </li>
+            <li>You realize that requests are being routed without awareness of where their data already exists . KV cache a key optimization in LLM inference is effectively random in a multi-replica setup. Then comes the next challenge</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/21/kserve-llm-d-optimized-gen-ai-inference" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

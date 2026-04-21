@@ -39,10 +39,6 @@
       {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/project-think/"
-      },
-      {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/04/15/governance-lessons-red-hat-hybrid-cloud-console"
       }
     ],
     "highlighted": false
