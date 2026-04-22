@@ -83,7 +83,12 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/making-rust-workers-reliable/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -116,6 +121,39 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Chase Roossin, group engineering manager, and Steven Kulesza, staff software engineer, from Intuit join the podcast to chat about what might be the hardest problem in engineering right now: getting multiple AI agents to work together in a complex system.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1bec21d2de594072",
+    "title": "Securing air-gapped environments with Elastic on Google Distributed Cloud",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/google-distributed-cloud-air-gapped-environments",
+    "published": "2026-04-22T00:00:00+00:00",
+    "fetched_at": "2026-04-22T14:51:52.897215+00:00",
+    "summary": "Elastic Security is now a native, embedded security layer for GDC air-gapped environments — bringing its agentic SecOps platform to government, defense, finance, and telecom teams running workloads disconnected from the public internet.",
+    "tags": [],
+    "day": "2026-04-22",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Elastic Security is now a native, embedded security layer for GDC air-gapped environments — bringing its agentic SecOps platform to government, defense, finance, and telecom teams running workloads disconnected from the public internet.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Elastic Security is now a native, embedded security layer for GDC air-gapped environments — bringing its agentic SecOps platform to government, defense, finance, and telecom teams running workloads disconnected from the public internet.",
     "related_sources": [],
     "highlighted": false
   }

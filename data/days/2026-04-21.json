@@ -177,7 +177,12 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Enterprises today seek to integrate generative AI capabilities into their applications. However, scaling large AI models introduces complexity, such as managing high-volume traffic from large language models (LLMs), optimizing inference performance, maintaining predictable latency, and controlling infrastructure costs.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/04/21/gateway-api-v1-5/"
+      }
+    ],
     "highlighted": false
   },
   {
