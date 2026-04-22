@@ -56,10 +56,6 @@
       {
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/04/16/build-deterministic-openshift-dataplane-performance-trex"
-      },
-      {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/04/16/performance-improvements-speculative-decoding-vllm-gpt-oss"
       }
     ],
     "highlighted": false

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenCode: A model-neutral AI coding assistant for OpenShift Dev Spaces — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-22.html" class="back-link">← 22 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">22 April 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">OpenCode: A model-neutral AI coding assistant for OpenShift Dev Spaces</h1>
+
+      <p class="subtitle">AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">observability</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider. What if your development environment could switch between GPT, Claude, Gemini, or even local models without changing tools?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>In the user dashboard, go to the Create Workspace tab and enter the repository URL for this activity: https://github.com/che-incubator/cli-ai-tools/ .</p>
+<p>Follow these steps to configure Google Vertex AI authentication:</p>
+<p>On your local machine, run the following command (This opens a browser for authentication and saves credentials to ~/.config/gcloud/application_default_credentials.json ):</p>
+<p>gcloud auth application-default login gcloud auth application-default set-quota-project cloudability-it-gemini   Create a Kubernetes secret from application_default_credentials.json (ensure you have appropriate permissions in the namespace):</p>
+<p>kubectl create secret generic gcloud-adc -n &lt;your-namespace&gt; --from-file=adc.json=$HOME/.config/gcloud/application_default_credentials.json   Label and annotate the secret so that OpenShift Dev Spaces mounts it automatically:</p>
+<p>kubectl label secret gcloud-adc -n &lt;your-namespace&gt; \  controller.devfile.io/mount-to-devworkspace=true \  controller.devfile.io/watch-secret=true --overwrite kubectl annotate secret gcloud-adc -n &lt;your-namespace&gt; \  controller.devfile.io/mount-path=/credentials \  controller.devfile.io/mount-as=file --overwrite   Create a ConfigMap to mount environment variables automatically for your workspaces:</p>
+<p>kubectl create configmap ai-tools-env -n &lt;your-namespace&gt; \  --from-literal=GOOGLE_APPLICATION_CREDENTIALS=/credentials/adc.json \  --from-literal=GOOGLE_CLOUD_PROJECT=&lt;your-gcp-project-name&gt; \  --dry-run=client -o yaml | kubectl apply -f - kubectl label configmap ai-tools-env -n &lt;your-namespace&gt; \  controller.devfile.io/mount-to-devworkspace=true \  controller.devfile.io/watch-configmap=true --overwrite kubectl annotate configmap ai-tools-env -n &lt;your-namespace&gt; \  controller.devfile.io/mount-as=env --overwrite   Interact with OpenCode Once you configure the model, you can issue commands to OpenCode.</p>
+<p>Follow these steps to set up your cloud development environment:</p>
+<p>To access Red Hat OpenShift Dev Spaces, navigate to the user dashboard (Figure 2).</p>
+<p>Figure 2: Red Hat OpenShift Dev Spaces User Dashboard</p>
+<p>Figure 2: Red Hat OpenShift Dev Spaces user dashboard.</p>
+<p>Conclusion This blog post explored how the OpenCode CLI supports a wide range of model providers for AI-powered development.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Follow these steps to set up your cloud development environment:</p>
+<p>To access Red Hat OpenShift Dev Spaces, navigate to the user dashboard (Figure 2). Figure 2: Red Hat OpenShift Dev Spaces User Dashboard</p>
+<p>Figure 2: Red Hat OpenShift Dev Spaces user dashboard. In the user dashboard, go to the Create Workspace tab and enter the repository URL for this activity: https://github.com/che-incubator/cli-ai-tools/ . Follow these steps to configure Google Vertex AI authentication:</p>
+<p>On your local machine, run the following command (This opens a browser for authentication and saves credentials to ~/.config/gcloud/application_default_credentials.json ):</p>
+<p>gcloud auth application-default login gcloud auth application-default set-quota-project cloudability-it-gemini   Create a Kubernetes secret from application_default_credentials.json (ensure you have appropriate permissions in the namespace):</p>
+<p>kubectl create secret generic gcloud-adc -n &lt;your-namespace&gt; --from-file=adc.json=$HOME/.config/gcloud/application_default_credentials.json   Label and annotate the secret so that OpenShift Dev Spaces mounts it automatically:</p>
+<p>kubectl label secret gcloud-adc -n &lt;your-namespace&gt; \  controller.devfile.io/mount-to-devworkspace=true \  controller.devfile.io/watch-secret=true --overwrite kubectl annotate secret gcloud-adc -n &lt;your-namespace&gt; \  controller.devfile.io/mount-path=/credentials \  controller.devfile.io/mount-as=file --overwrite   Create a ConfigMap to mount environment variables automatically for your workspaces:</p>
+<p>kubectl create configmap ai-tools-env -n &lt;your-namespace&gt; \  --from-literal=GOOGLE_APPLICATION_CREDENTIALS=/credentials/adc.json \  --from-literal=GOOGLE_CLOUD_PROJECT=&lt;your-gcp-project-name&gt; \  --dry-run=client -o yaml | kubectl apply -f - kubectl label configmap ai-tools-env -n &lt;your-namespace&gt; \  controller.devfile.io/mount-to-devworkspace=true \  controller.devfile.io/watch-configmap=true --overwrite kubectl annotate configmap ai-tools-env -n &lt;your-namespace&gt; \  controller.devfile.io/mount-as=env --overwrite   Interact with OpenCode Once you configure the model, you can issue commands to OpenCode.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Capability OpenCode CLI Typical agentic CLIs License Open source (MIT) Proprietary Model support Multi-model (75+) Single provider Vendor lock-in No Yes Local model support Yes Limited or none Cost optimization Flexible Restricted Air-gapped compatibility Possible Rare Enterprise flexibility High Moderate to low Workflow changes required Minimal Often required Run OpenCode in Red Hat OpenShift Dev Spaces We will run OpenCode inside our cloud development environment, powered by OpenShift Dev Spaces , as illustrated in Figure 1.</p>
+<p>We will use this repository , which contains the OpenCode CLI and other AI tools.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Capability OpenCode CLI Typical agentic CLIs License Open source (MIT) Proprietary Model support Multi-model (75+) Single provider Vendor lock-in No Yes Local model support Yes Limited or none Cost optimization Flexible </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/22/opencode-model-neutral-ai-coding-assistant-openshift-dev-spaces" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -27,10 +27,20 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">22 April 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">3 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -39,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -51,13 +62,103 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--action card--high"
+       data-tags="deployment,latency,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="how we rewrote a production ui without stopping it"
+       data-id="654996261ce4a787"
+       data-published="2026-04-22T07:01:29+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-04-22T07:01:29+00:00" title="22 April 2026, 02:01">22 April 2026, 02:01</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">How we rewrote a production UI without stopping it</h3>
+      <p class="card-summary">This is part 2 of a four-part series. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>This is part 2 of a four-part series. In part 1, we covered governance: how we made the code base AI-ready. This post details the architectural shift of the migration itself.</p></div>
+      <div class="detail-links">
+        <a href="../articles/654996261ce4a787.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/04/22/how-we-rewrote-production-ui-without-stopping-it" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="kubernetes,observability"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="opencode: a model-neutral ai coding assistant for openshift dev spaces"
+       data-id="027e0f2f9f25d7de"
+       data-published="2026-04-22T07:01:26+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-04-22T07:01:26+00:00" title="22 April 2026, 02:01">22 April 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">OpenCode: A model-neutral AI coding assistant for OpenShift Dev Spaces</h3>
+      <p class="card-summary">AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider. What if your development environment could switch between GPT, Claude, Gemini, or even local models without changing tools?</p></div>
+      <div class="detail-links">
+        <a href="../articles/027e0f2f9f25d7de.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/04/22/opencode-model-neutral-ai-coding-assistant-openshift-dev-spaces" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""

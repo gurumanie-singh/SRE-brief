@@ -1,5 +1,92 @@
 [
   {
+    "id": "654996261ce4a787",
+    "title": "How we rewrote a production UI without stopping it",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/22/how-we-rewrote-production-ui-without-stopping-it",
+    "published": "2026-04-22T07:01:29+00:00",
+    "fetched_at": "2026-04-22T08:53:24.084141+00:00",
+    "summary": "This is part 2 of a four-part series. In part 1, we covered governance: how we made the code base AI-ready. This post details the architectural shift of the migration itself. Future installments will cover verification, specifically how we turned Storybook into a behavioral specification engine (part 3), and infrastructure, focusing on building a unified data layer for the UI, the mocks, and the...",
+    "tags": [
+      "deployment",
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-22",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "This is part 2 of a four-part series. In part 1, we covered governance: how we made the code base AI-ready. This post details the architectural shift of the migration itself. Future installments will cover verification, ",
+      "In July 2025, we faced a challenge with one of our React applications: it needed to become a completely different application (new permission model, new API layer, new data management) while the original version kept run",
+      "The counterintuitive part: We spent the first two months writing tests for code we were about to delete.",
+      "That meant we couldn't do a branch-and-merge rewrite. We needed both versions living in the same repository, sharing code where possible, completely isolated where necessary and both fully tested at all times.",
+      "The bet: Specify the old system before touching it The project had been running for more than a year before I joined. When I took ownership of the repository in July 2025, I assessed two things: the velocity the team cou",
+      "Like most long-lived production apps, the code base had evolved under real-world pressure: shifting requirements, tight deadlines, team changes. Test coverage was thin and what existed was structural (comparing rendered ",
+      "So before writing a single line of V2 code, we wrote behavioral specifications for V1. Every table. Every modal. Every wizard. Every permission guard. Tests that ran in a real browser, selected real buttons, and asserted",
+      "This felt slow. Two months of writing tests for code we planned to replace. But it was the single most important decision of the entire migration, for two reasons."
+    ],
+    "sections": {
+      "overview": "This is part 2 of a four-part series. In part 1, we covered governance: how we made the code base AI-ready. This post details the architectural shift of the migration itself.",
+      "technical_breakdown": "We identified the three async patterns responsible for the majority of test flakiness (a double-retry race condition, debug logging that polluted test output and arbitrary wait timers that masked real timing bugs) and banned all three at the lint level.\n\nA feature flag controls the switch.\n\nRollback is a flag flip.\n\nEdge cases added under deadline pressure.\n\nWe found several of these: a default group behavior tied to a specific API interaction, permission edge cases that had grown organically, features added in earlier development cycles that hadn't yet been covered by tests.",
+      "impact": "We added three more rules:\n\n Require a shared utility for every table\n Prevent direct user identity lookups that bypass the shared utility\n Restrict API client imports to the data layer only. Nine months later, we'd replaced the entire stack in a zero-downtime migration. Permission checks were baked into the platform shell (a system we call \"Chrome\"), meaning the UI asked the shell, \"Can this user do X?\" and trusted whatever came back. Customers on V1 see no change.\n\nClassified impact band: high. Affected layer signal: general production.",
+      "resolution": "Rollback is a flag flip.\n\nBan flakiness patterns, don't fix flaky tests.",
+      "lessons_learned": "We added three more rules:\n\n Require a shared utility for every table\n Prevent direct user identity lookups that bypass the shared utility\n Restrict API client imports to the data layer only.\n\nThe suite is better now because of what got through, not despite it.\n\nPrevention beats remediation.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Some regressions still shipped, because no test suite catches everything. The distinction matters because accountability should be specific. I built the infrastructure because the alternative was shipping something I couldn't stand behind.",
+      "incident_timeline": "This is part 2 of a four-part series. In part 1, we covered governance: how we made the code base AI-ready. This post details the architectural shift of the migration itself. Future installments will cover verification, \nIn July 2025, we faced a challenge with one of our React applications: it needed to become a completely different application (new permission model, new API layer, new data management) while the original version kept run\nThe counterintuitive part: We spent the first two months writing tests for code we were about to delete.\nThat meant we couldn't do a branch-and-merge rewrite. We needed both versions living in the same repository, sharing code where possible, completely isolated where necessary and both fully tested at all times.\nThe bet: Specify the old system before touching it The project had been running for more than a year before I joined. When I took ownership of the repository in July 2025, I assessed two things: the velocity the team cou\nLike most long-lived production apps, the code base had evolved under real-world pressure: shifting requirements, tight deadlines, team changes. Test coverage was thin and what existed was structural (comparing rendered \nSo before writing a single line of V2 code, we wrote behavioral specifications for V1. Every table. Every modal. Every wizard. Every permission guard. Tests that ran in a real browser, selected real buttons, and asserted\nThis felt slow. Two months of writing tests for code we planned to replace. But it was the single most important decision of the entire migration, for two reasons.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "This is part 2 of a four-part series. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "027e0f2f9f25d7de",
+    "title": "OpenCode: A model-neutral AI coding assistant for OpenShift Dev Spaces",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/22/opencode-model-neutral-ai-coding-assistant-openshift-dev-spaces",
+    "published": "2026-04-22T07:01:26+00:00",
+    "fetched_at": "2026-04-22T08:53:24.085296+00:00",
+    "summary": "AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.",
+    "tags": [
+      "kubernetes",
+      "observability"
+    ],
+    "day": "2026-04-22",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Capability OpenCode CLI Typical agentic CLIs License Open source (MIT) Proprietary Model support Multi-model (75+) Single provider Vendor lock-in No Yes Local model support Yes Limited or none Cost optimization Flexible "
+    ],
+    "sections": {
+      "overview": "AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider. What if your development environment could switch between GPT, Claude, Gemini, or even local models without changing tools?",
+      "technical_breakdown": "In the user dashboard, go to the Create Workspace tab and enter the repository URL for this activity: https://github.com/che-incubator/cli-ai-tools/ .\n\nFollow these steps to configure Google Vertex AI authentication:\n\n On your local machine, run the following command (This opens a browser for authentication and saves credentials to ~/.config/gcloud/application_default_credentials.json ):\n\n gcloud auth application-default login\ngcloud auth application-default set-quota-project cloudability-it-gemini \n Create a Kubernetes secret from application_default_credentials.json (ensure you have appropriate permissions in the namespace):\n\n kubectl create secret generic gcloud-adc -n <your-namespace> --from-file=adc.json=$HOME/.config/gcloud/application_default_credentials.json \n Label and annotate the secret so that OpenShift Dev Spaces mounts it automatically:\n\n kubectl label secret gcloud-adc -n <your-namespace> \\\n controller.devfile.io/mount-to-devworkspace=true \\\n controller.devfile.io/watch-secret=true --overwrite\nkubectl annotate secret gcloud-adc -n <your-namespace> \\\n controller.devfile.io/mount-path=/credentials \\\n controller.devfile.io/mount-as=file --overwrite \n Create a ConfigMap to mount environment variables automatically for your workspaces:\n\n kubectl create configmap ai-tools-env -n <your-namespace> \\\n --from-literal=GOOGLE_APPLICATION_CREDENTIALS=/credentials/adc.json \\\n --from-literal=GOOGLE_CLOUD_PROJECT=<your-gcp-project-name> \\\n --dry-run=client -o yaml | kubectl apply -f -\nkubectl label configmap ai-tools-env -n <your-namespace> \\\n controller.devfile.io/mount-to-devworkspace=true \\\n controller.devfile.io/watch-configmap=true --overwrite\nkubectl annotate configmap ai-tools-env -n <your-namespace> \\\n controller.devfile.io/mount-as=env --overwrite \n Interact with OpenCode Once you configure the model, you can issue commands to OpenCode.\n\nFollow these steps to set up your cloud development environment:\n\n To access Red Hat OpenShift Dev Spaces, navigate to the user dashboard (Figure 2).\n\nFigure 2: Red Hat OpenShift Dev Spaces User Dashboard \n \n\n Figure 2: Red Hat OpenShift Dev Spaces user dashboard.\n\nConclusion This blog post explored how the OpenCode CLI supports a wide range of model providers for AI-powered development.",
+      "impact": "Follow these steps to set up your cloud development environment:\n\n To access Red Hat OpenShift Dev Spaces, navigate to the user dashboard (Figure 2). Figure 2: Red Hat OpenShift Dev Spaces User Dashboard \n \n\n Figure 2: Red Hat OpenShift Dev Spaces user dashboard. In the user dashboard, go to the Create Workspace tab and enter the repository URL for this activity: https://github.com/che-incubator/cli-ai-tools/ . Follow these steps to configure Google Vertex AI authentication:\n\n On your local machine, run the following command (This opens a browser for authentication and saves credentials to ~/.config/gcloud/application_default_credentials.json ):\n\n gcloud auth application-default login\ngcloud auth application-default set-quota-project cloudability-it-gemini \n Create a Kubernetes secret from application_default_credentials.json (ensure you have appropriate permissions in the namespace):\n\n kubectl create secret generic gcloud-adc -n <your-namespace> --from-file=adc.json=$HOME/.config/gcloud/application_default_credentials.json \n Label and annotate the secret so that OpenShift Dev Spaces mounts it automatically:\n\n kubectl label secret gcloud-adc -n <your-namespace> \\\n controller.devfile.io/mount-to-devworkspace=true \\\n controller.devfile.io/watch-secret=true --overwrite\nkubectl annotate secret gcloud-adc -n <your-namespace> \\\n controller.devfile.io/mount-path=/credentials \\\n controller.devfile.io/mount-as=file --overwrite \n Create a ConfigMap to mount environment variables automatically for your workspaces:\n\n kubectl create configmap ai-tools-env -n <your-namespace> \\\n --from-literal=GOOGLE_APPLICATION_CREDENTIALS=/credentials/adc.json \\\n --from-literal=GOOGLE_CLOUD_PROJECT=<your-gcp-project-name> \\\n --dry-run=client -o yaml | kubectl apply -f -\nkubectl label configmap ai-tools-env -n <your-namespace> \\\n controller.devfile.io/mount-to-devworkspace=true \\\n controller.devfile.io/watch-configmap=true --overwrite\nkubectl annotate configmap ai-tools-env -n <your-namespace> \\\n controller.devfile.io/mount-as=env --overwrite \n Interact with OpenCode Once you configure the model, you can issue commands to OpenCode.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Capability OpenCode CLI Typical agentic CLIs License Open source (MIT) Proprietary Model support Multi-model (75+) Single provider Vendor lock-in No Yes Local model support Yes Limited or none Cost optimization Flexible Restricted Air-gapped compatibility Possible Rare Enterprise flexibility High Moderate to low Workflow changes required Minimal Often required Run OpenCode in Red Hat OpenShift Dev Spaces We will run OpenCode inside our cloud development environment, powered by OpenShift Dev Spaces , as illustrated in Figure 1.\n\nWe will use this repository , which contains the OpenCode CLI and other AI tools.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Capability OpenCode CLI Typical agentic CLIs License Open source (MIT) Proprietary Model support Multi-model (75+) Single provider Vendor lock-in No Yes Local model support Yes Limited or none Cost optimization Flexible ",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "8032ec3bed52a758",
     "title": "How to get multiple agents to play nice at scale",
     "source": "Stack Overflow Blog",
