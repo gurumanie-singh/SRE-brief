@@ -128,6 +128,14 @@
       {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/making-rust-workers-reliable/"
+      },
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/04/22/breaking-changes-in-selinux-volume-labeling/"
+      },
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/04/22/kubernetes-v1-36-release/"
       }
     ],
     "highlighted": false
