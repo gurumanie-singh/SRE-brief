@@ -37,12 +37,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions. This week, we built a very fun project together using the GitHub Copilot CLI .",
-    "related_sources": [
-      {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/04/17/integrate-red-hat-enterprise-linux-vms-openshift-service-mesh"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

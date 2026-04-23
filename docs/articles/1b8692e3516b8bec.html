@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building an emoji list generator with the GitHub Copilot CLI — SRE Brief</title>
+  <title>CodeCov and CodeRabbit in action for a SCLORG organization — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,24 +23,23 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-04-17.html" class="back-link">← 17 April 2026 day sheet</a>
+    <a href="../daily/2026-04-23.html" class="back-link">← 23 April 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
-        <span class="card-source">GitHub Blog</span>
-        <span class="card-date">17 April 2026, 13:00</span>
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">23 April 2026, 02:01</span>
         <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Building an emoji list generator with the GitHub Copilot CLI</h1>
+      <h1 class="title">CodeCov and CodeRabbit in action for a SCLORG organization</h1>
 
-      <p class="subtitle">Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions. This week, we built a very fun project together using the GitHub Copilot CLI .</p>
+      <p class="subtitle">Analyzing and improving the quality of code should be one of the top priorities. AI brings a lot of positive and negative approaches.</p>
 
 
       <div class="article-tags">
         <span class="vendor-tag">GitHub</span>
-        <span class="tag">deployment</span>
-        <span class="tag">latency</span>
+        <span class="vendor-tag">Red Hat</span>
         <span class="tag">outage</span>
       </div>
 
@@ -55,36 +54,31 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions. This week, we built a very fun project together using the GitHub Copilot CLI .</p>
+      <p class="quick-take-text">Analyzing and improving the quality of code should be one of the top priorities. AI brings a lot of positive and negative approaches.</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions! This week, we built a very fun project together using the GitHub Copilot CLI ! Let me tell you about it.</p>
+          <p>Analyzing and improving the quality of code should be one of the top priorities. AI brings a lot of positive and negative approaches. Our team recently needed to migrate our Bash container test suite, container-common-scripts (https://github.com/sclorg/container-common-scripts/), to a new Python-based CI suite ( container-ci-suite ).</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>But coming up with the perfect emoji is far too slow for me in this move fast and break things world.</p>
-<p>And thus, on the stream, we build an emoji list generator (very descriptively called Emoji List Generator) that:</p>
-<p>Runs in the terminal  You paste or write a list  You hit Ctrl + S  You get the list on your clipboard</p>
-<p>(Can you tell I m dogfooding the product here?)</p>
-<p>How we built it</p>
-<p>We used a few cool technologies for this project:</p>
-<p>@opentui/core for the terminal UI  @github/copilot-sdk for the AI brain  clipboardy for clipboard access</p>
-<p>To start the project off, we opened up the GitHub Copilot CLI.</p>
-<p>The post Building an emoji list generator with the GitHub Copilot CLI appeared first on The GitHub Blog .</p>
+          <p>Our team recently needed to migrate our Bash container test suite, container-common-scripts (https://github.com/sclorg/container-common-scripts/), to a new Python-based CI suite ( container-ci-suite ).</p>
+<p>We would like to ensure that the code in container-ci-suite is well written and well covered by tests.</p>
+<p>We have decided to onboard two tools, CodeCov and CodeRabbit, into several repositories, such as container-ci-suite, ci-scripts and others.</p>
+<p>First, log into app.codecov.io .</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>We implemented the plan using Claude Opus 4.7 (which was recently released !) and a few minutes later, voil , we had a fun little terminal UI to work with!</p>
+          <p>In case we would like to deliver a code that is shipped to customers, then the CodeCoverage should be added to all upstream projects. Install CodeRabbit For open source repositories, you can use the free version of CodeRabbit; though this version has a limitation of four pull requests per user per day. Ideally it would be nice to use an AI in case users want to increase code quality. What was a pleasant surprise was that CodeRabbit scans the entire file when a change is made to it, therefore uncovering potential issues even outside the scope of the changes inside the pull request.</p>
 <p>Classified impact band: medium. Affected layer signal: general production.</p>
         </div>
       </div>
@@ -92,7 +86,7 @@
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+          <p>We strongly recommend not merging or even proposing the fixes caught by CodeRabbit automatically.</p>
         </div>
       </div>
 
@@ -108,9 +102,14 @@
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
         <div class="article-section-content">
           <ul class="timeline-list">
-            <li>Every week, the GitHub team runs a stream called Rubber Duck Thursdays , where we build projects live, cowork with our community, and answer questions!</li>
-            <li>It s beautiful. But coming up with the perfect emoji is far too slow for me in this move fast and break things world. I have projects to build! Repos to vibe! Pull requests to merge! I can t be thinking about emojis!</li>
-            <li>Copilot asked me a bunch of clarifying questions, for example around the tech stack and what libraries we should use (shoutout to Gabor in the chat for suggesting OpenTUI ), and from there, we had a fully thought-out pla</li>
+            <li>Analyzing and improving the quality of code should be one of the top priorities. AI brings a lot of positive and negative approaches. Our team recently needed to migrate our Bash container test suite, container-common-sc</li>
+            <li>Get started CodeCov from code coverage works pretty smoothly. It perfectly detects what the code is really covered by tests. It does not generate the test code automatically. In case we would like to deliver a code that </li>
+            <li>Deploy CodeCov In order to deploy CodeCov to your repository, you need to call it for each pull request by GitHub action. You can refer to this example .</li>
+            <li>pull_request:</li>
+            <li>name: Run Tox tests on daily-tests</li>
+            <li>runs-on: ubuntu-latest</li>
+            <li>workdir: YOUR_PYTHON_WORKDIR in our case &#34;daily-tests/&#34;</li>
+            <li>flags: daily-tests-unit</li>
           </ul>
         </div>
       </div>
@@ -123,13 +122,13 @@
       </div>
 
 
-      <a href="https://github.blog/ai-and-ml/github-copilot/building-an-emoji-list-generator-with-the-github-copilot-cli/" class="source-card" target="_blank" rel="noopener">
+      <a href="https://developers.redhat.com/articles/2026/04/23/codecov-and-coderabbit-action-sclorg-organization" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="source-card-text">
           <div class="source-card-label">External source</div>
-          <div class="source-card-name">Read the original write-up at GitHub Blog</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
         </div>
         <span class="source-card-arrow">→</span>
       </a>

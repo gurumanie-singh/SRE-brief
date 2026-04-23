@@ -48,14 +48,6 @@
       {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/artifacts-git-for-agents-beta/"
-      },
-      {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/04/16/pip-install-vllm-single-command"
-      },
-      {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/04/16/build-deterministic-openshift-dataplane-performance-trex"
       }
     ],
     "highlighted": false
