@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deploy OpenViking on OpenShift AI to improve AI agent memory — SRE Brief</title>
+  <title>From zero trust to continuous trust: Securing autonomous AI systems — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,35 +23,29 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-04-23.html" class="back-link">← 23 April 2026 day sheet</a>
+    <a href="../daily/2026-04-22.html" class="back-link">← 22 April 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
-        <span class="card-source">Red Hat Developer Blog</span>
-        <span class="card-date">23 April 2026, 02:01</span>
-        <span class="card-severity high" title="High Impact">High Impact</span>
+        <span class="card-source">HashiCorp Blog</span>
+        <span class="card-date">22 April 2026, 00:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Deploy OpenViking on OpenShift AI to improve AI agent memory</h1>
+      <h1 class="title">From zero trust to continuous trust: Securing autonomous AI systems</h1>
 
-      <p class="subtitle">Every AI agent has the same Achilles&#39; heel, memory. Impact band: high.</p>
+      <p class="subtitle">Zero trust changed how we think about security. It replaced implicit trust with a simple principle: never trust, always verify.</p>
 
 
       <div class="article-tags">
-        <span class="vendor-tag">GitHub</span>
         <span class="vendor-tag">HashiCorp</span>
-        <span class="vendor-tag">Red Hat</span>
-        <span class="tag">capacity</span>
-        <span class="tag">database</span>
-        <span class="tag">deployment</span>
         <span class="tag">outage</span>
-        <span class="tag">scaling</span>
       </div>
 
       <dl class="article-facts">
-        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
-        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
-        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>general production</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
       </dl>
     </header>
 
@@ -60,57 +54,62 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">Every AI agent has the same Achilles&#39; heel, memory. Impact band: high.</p>
+      <p class="quick-take-text">Zero trust changed how we think about security. It replaced implicit trust with a simple principle: never trust, always verify.</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>Every AI agent has the same Achilles&#39; heel, memory. Once a conversation ends, the context vanishes. The agent forgets what it learned, the user&#39;s preferences, and the resources it had.</p>
+          <p>Zero trust changed how we think about security. It replaced implicit trust with a simple principle: never trust, always verify. The traditional zero trust   at model works well in environments where behavior is relatively predictable.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>The deployment uses persistent storage for OpenViking&#39;s vector index and AGFS file storage, with an OpenShift Route providing TLS edge termination for external access.</p>
-<p>Every AI agent has the same Achilles&#39; heel, memory.</p>
-<p>Traditional RAG systems try to solve this with flat vector databases, but they bring their own problems, such as fragmented context, ballooning token costs, and retrieval pipelines that behave like black boxes.</p>
-<p>OpenViking , an open source context database from ByteDance&#39;s Volcengine team, takes a different approach.</p>
-<p>The OpenViking OpenShift project provides a starting point for deploying it on Red Hat OpenShift , with self-hosted embeddings, TLS-terminated routes, and compatibility with OpenShift&#39;s security model.</p>
+          <p>Actions become harder to trace.</p>
+<p>The evolution of zero trust to continuous trust   Zero trust was developed with the assumption that trust would be evaluated at defined checkpoints, login, token issuance, or access approval.</p>
+<p>A runtime control plane closes this gap by ensuring trust is evaluated at each action.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>The agent forgets what it learned, the user&#39;s preferences, and the resources it had. Clients can connect via the REST API, the Python SDK ( SyncHTTPClient / AsyncHTTPClient ), or the ov CLI. If you&#39;ve spent hours debugging SCC issues before, you&#39;ll appreciate this. Client access: REST API, Python SDK, and CLI Beyond the REST API, OpenViking provides a Python SDK and CLI for connecting to your OpenShift-hosted instance.</p>
-<p>Classified impact band: high. Affected layer signal: data store.</p>
+          <p>Access is granted within a defined scope. Systems like  HashiCorp Vault  issue short-lived, scoped credentials as part of the workflow, aligning access with what the agent is doing in that moment. Credentials must be:</p>
+<p>Ephemeral</p>
+<p>Scoped to specific tasks</p>
+<p>Automatically revoked</p>
+<p>Vault enables this by issuing short-lived credentials aligned to real-time activity rather than static roles. IBM Verify establishes who or what is acting, Vault issues task-scoped credentials, and Boundary brokers and governs access to target systems.</p>
+<p>Classified impact band: medium. Affected layer signal: general production.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+          <p>Agents don’t authenticate once and operate within fixed boundaries.</p>
+<p>Continuous trust in practice   In an  agentic environment , systems don’t operate within fixed boundaries.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>The agent forgets what it learned, the user&#39;s preferences, and the resources it had.</p>
-<p>Over time, agents can actually get better as they build up context.</p>
-<p>The post Deploy OpenViking on OpenShift AI to improve AI agent memory appeared first on Red Hat Developer .</p>
+          <p>While these behaviors can improve outcomes, they also introduce new uncertainty in how access is used and expanded across systems.</p>
+<p>However, those that move toward continuous identity verification, dynamic access, and real-time enforcement will be better positioned to manage both the speed and complexity of autonomous systems.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
         <div class="article-section-content">
-          <p>Likely root-cause theme: deployment failure. The deployment architecture with Red Hat AI The OpenViking-OpenShift repository provides a clean, Kustomize-based deployment across two namespaces:</p>
-<p>First, the openviking-models component utilizes two KServe InferenceServices running in RawDeployment mode, both served by vLLM on a shared A100 80GB GPU through Red Hat OpenShift AI model serving. Figure 1 shows the OpenViking Deployment Architecture with Red Hat AI . Figure 1: The OpenViking Deployment Architecture with Red Hat AI.</p>
+          <p>Likely root-cause theme: control plane issue. The path becomes harder to predict and harder to control. Without dynamic access controls, systems tend to fall back on broader, longer-lived permissions simply to keep workflows moving ,  which is a pattern dynamic secrets platforms like Vault are designed to avoid. This means:</p>
+<p>Identity must be continuously verified in context</p>
+<p>Access must be issued dynamically and expire automatically</p>
+<p>Enforcement must happen at the point of interaction</p>
+<p>In practice, this requires coordinating identity systems, dynamic credential management, and controlled access pathways as part of a runtime model.</p>
         </div>
       </div>
 
@@ -118,14 +117,13 @@
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
         <div class="article-section-content">
           <ul class="timeline-list">
-            <li>The interesting part is tiered context loading . Every piece of context processes into three layers:</li>
-            <li>Second, t he OpenViking server, deployed from quay.io/aicatalyst/openviking:latest and exposing a REST API on port 1933, serves as the context database and handles resource ingestion, the virtual filesystem, semantic sea</li>
-            <li>Before deploying, edit manifests/02-openviking-secret.yaml and replace the placeholder root key value with a strong key for API access (e.g., generate one with openssl rand -hex 16 ).</li>
-            <li>Then deploy the stack. First, apply the OpenShift AI manifests and run the model download jobs to pull the weights from HuggingFace into PVCs:</li>
-            <li>oc apply -k manifests/openshift-ai/</li>
-            <li>oc apply -f manifests/openshift-ai/07-download-jobs.yaml Once the downloads complete and the InferenceServices are ready, deploy OpenViking:</li>
-            <li>oc apply -k manifests/ Why this architecture matters for OpenShift AI teams It&#39;s still an early project, but the manifests handle several OpenShift-specific concerns that anyone who&#39;s tried to run AI workloads on the pla</li>
-            <li>It works with restricted-v2 SCC out of the box. The OpenViking manifests and the OpenShift AI model serving manifests run cleanly under restricted-v2 , OpenShift&#39;s default security context constraint. That means runAsNon</li>
+            <li>Agentic AI introduces  a different operating model. Agents don’t authenticate once and operate within fixed boundaries. They act continuously, make decisions in real time, and request access as part of completing tasks. </li>
+            <li>Agentic systems don’t follow that pattern. An agent begins with a task and then interacts with the environment continuously, calling APIs, requesting access, generating credentials, and moving from one step to the next. </li>
+            <li>Request elevated permissions</li>
+            <li>Over time, this creates access paths that were never explicitly designed or reviewed. In some instances, like in the case of  Anthropic Mythos , these systems begin to exhibit behaviors that weren’t explicitly programmed</li>
+            <li>Zero trust established an essential principle, trust should never be assumed .  but agentic systems require that principle to be applied differently:  Trust must be evaluated continuously, immediately upon execution</li>
+            <li>In practice, this means coordinating identity and access as a single system. IBM Verify establishes who or what is acting, Vault issues task-scoped credentials, and Boundary brokers and governs access to target systems. </li>
+            <li>Trust is no longer something you establish once and revisit periodically. It is something you evaluate continuously.</li>
           </ul>
         </div>
       </div>
@@ -134,24 +132,17 @@
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
         <div class="article-section-content">
           <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
-<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
         </div>
       </div>
 
-      <div class="article-section">
-        <div class="article-section-label">Related coverage</div>
-        <div class="article-section-content">
-          <p><a href="https://www.hashicorp.com/blog/bridging-the-trust-gap-unified-public-ca-orchestration-with-ibm-vault" target="_blank" rel="noopener">HashiCorp Blog</a></p>
-        </div>
-      </div>
 
-      <a href="https://developers.redhat.com/articles/2026/04/23/deploy-openviking-openshift-ai-improve-ai-agent-memory" class="source-card" target="_blank" rel="noopener">
+      <a href="https://www.hashicorp.com/blog/from-zero-trust-to-continuous-trust-securing-autonomous-ai-systems" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="source-card-text">
           <div class="source-card-label">External source</div>
-          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+          <div class="source-card-name">Read the original write-up at HashiCorp Blog</div>
         </div>
         <span class="source-card-arrow">→</span>
       </a>

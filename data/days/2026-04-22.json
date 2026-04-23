@@ -126,6 +126,10 @@
     "email_summary": "AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.",
     "related_sources": [
       {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/faster-threat-detection-with-boundary-session-recording-auditbeat"
+      },
+      {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/making-rust-workers-reliable/"
       },
@@ -138,6 +142,49 @@
         "link": "https://kubernetes.io/blog/2026/04/22/kubernetes-v1-36-release/"
       }
     ],
+    "highlighted": false
+  },
+  {
+    "id": "c5a2b7b8a56ab048",
+    "title": "From zero trust to continuous trust: Securing autonomous AI systems",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/from-zero-trust-to-continuous-trust-securing-autonomous-ai-systems",
+    "published": "2026-04-22T05:00:00+00:00",
+    "fetched_at": "2026-04-23T17:40:27.766069+00:00",
+    "summary": "Zero trust changed how we think about security. It replaced implicit trust with a simple principle: never trust, always verify. ",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-04-22",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Agentic AI introduces  a different operating model. Agents don’t authenticate once and operate within fixed boundaries. They act continuously, make decisions in real time, and request access as part of completing tasks. ",
+      "Agentic systems don’t follow that pattern. An agent begins with a task and then interacts with the environment continuously, calling APIs, requesting access, generating credentials, and moving from one step to the next. ",
+      "Request elevated permissions",
+      "Over time, this creates access paths that were never explicitly designed or reviewed. In some instances, like in the case of  Anthropic Mythos , these systems begin to exhibit behaviors that weren’t explicitly programmed",
+      "Zero trust established an essential principle, trust should never be assumed .  but agentic systems require that principle to be applied differently:  Trust must be evaluated continuously, immediately upon execution",
+      "In practice, this means coordinating identity and access as a single system. IBM Verify establishes who or what is acting, Vault issues task-scoped credentials, and Boundary brokers and governs access to target systems. ",
+      "Trust is no longer something you establish once and revisit periodically. It is something you evaluate continuously."
+    ],
+    "sections": {
+      "overview": "Zero trust changed how we think about security. It replaced implicit trust with a simple principle: never trust, always verify. The traditional zero trust   at model works well in environments where behavior is relatively predictable.",
+      "technical_breakdown": "Actions become harder to trace.\n\nThe evolution of zero trust to continuous trust   Zero trust was developed with the assumption that trust would be evaluated at defined checkpoints, login, token issuance, or access approval.\n\nA runtime control plane closes this gap by ensuring trust is evaluated at each action.",
+      "impact": "Access is granted within a defined scope. Systems like  HashiCorp Vault  issue short-lived, scoped credentials as part of the workflow, aligning access with what the agent is doing in that moment. Credentials must be: \n\n Ephemeral \n\n Scoped to specific tasks \n\n Automatically revoked \n\n Vault enables this by issuing short-lived credentials aligned to real-time activity rather than static roles. IBM Verify establishes who or what is acting, Vault issues task-scoped credentials, and Boundary brokers and governs access to target systems.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Agents don’t authenticate once and operate within fixed boundaries.\n\nContinuous trust in practice   In an  agentic environment , systems don’t operate within fixed boundaries.",
+      "lessons_learned": "While these behaviors can improve outcomes, they also introduce new uncertainty in how access is used and expanded across systems.\n\nHowever, those that move toward continuous identity verification, dynamic access, and real-time enforcement will be better positioned to manage both the speed and complexity of autonomous systems.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. The path becomes harder to predict and harder to control. Without dynamic access controls, systems tend to fall back on broader, longer-lived permissions simply to keep workflows moving ,  which is a pattern dynamic secrets platforms like Vault are designed to avoid. This means: \n\n Identity must be continuously verified in context \n\n Access must be issued dynamically and expire automatically \n\n Enforcement must happen at the point of interaction \n\n In practice, this requires coordinating identity systems, dynamic credential management, and controlled access pathways as part of a runtime model.",
+      "incident_timeline": "Agentic AI introduces  a different operating model. Agents don’t authenticate once and operate within fixed boundaries. They act continuously, make decisions in real time, and request access as part of completing tasks. \nAgentic systems don’t follow that pattern. An agent begins with a task and then interacts with the environment continuously, calling APIs, requesting access, generating credentials, and moving from one step to the next. \nRequest elevated permissions\nOver time, this creates access paths that were never explicitly designed or reviewed. In some instances, like in the case of  Anthropic Mythos , these systems begin to exhibit behaviors that weren’t explicitly programmed\nZero trust established an essential principle, trust should never be assumed .  but agentic systems require that principle to be applied differently:  Trust must be evaluated continuously, immediately upon execution\nIn practice, this means coordinating identity and access as a single system. IBM Verify establishes who or what is acting, Vault issues task-scoped credentials, and Boundary brokers and governs access to target systems. \nTrust is no longer something you establish once and revisit periodically. It is something you evaluate continuously.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Zero trust changed how we think about security. It replaced implicit trust with a simple principle: never trust, always verify.",
+    "related_sources": [],
     "highlighted": false
   },
   {
