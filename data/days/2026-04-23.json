@@ -1,5 +1,36 @@
 [
   {
+    "id": "def6ead2e9635245",
+    "title": "Black box AI drift: AI tools are making design decisions nobody asked for",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/23/black-box-ai-drift-ai-tools-are-making-design-decisions-nobody-asked-for/",
+    "published": "2026-04-23T14:00:00+00:00",
+    "fetched_at": "2026-04-23T15:20:20.837093+00:00",
+    "summary": "Prompts go in, output comes out, and the decisions made in between are hidden from view.",
+    "tags": [],
+    "day": "2026-04-23",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Prompts go in, output comes out, and the decisions made in between are hidden from view.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Prompts go in, output comes out, and the decisions made in between are hidden from view.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "0e4521e4638e7edb",
     "title": "Introducing Apache Tomcat 10.1 in RHEL 10",
     "source": "Red Hat Developer Blog",

@@ -101,13 +101,13 @@
     "retention_max_days": 30,
     "retention_cutoff_day": "2026-03-24",
     "incoming_total": 258,
-    "incoming_after_retention": 97,
-    "dropped_by_retention": 161,
-    "new_articles_this_run": 16,
-    "day_files_touched": 9,
-    "total_articles_on_disk": 95,
+    "incoming_after_retention": 98,
+    "dropped_by_retention": 160,
+    "new_articles_this_run": 17,
+    "day_files_touched": 10,
+    "total_articles_on_disk": 96,
     "day_json_file_count": 24,
     "warnings": []
   },
-  "written_at": "2026-04-23T12:04:28.876042+00:00"
+  "written_at": "2026-04-23T15:20:21.762368+00:00"
 }
