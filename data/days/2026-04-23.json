@@ -184,5 +184,39 @@
     "email_summary": "Analyzing and improving the quality of code should be one of the top priorities. AI brings a lot of positive and negative approaches.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "5c03f419a58c327a",
+    "title": "Google Axion instances now available on Elastic Cloud Hosted",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/google-axion-arm-instances-elastic-cloud-hosted",
+    "published": "2026-04-23T00:00:00+00:00",
+    "fetched_at": "2026-04-23T10:42:44.305271+00:00",
+    "summary": "Elastic Cloud now supports Google Axion-powered Arm hardware profiles. CPU-optimized Arm profile on Google Cloud now delivers up to 25% better price-performance.",
+    "tags": [],
+    "day": "2026-04-23",
+    "impact": "medium",
+    "vendors": [
+      "Elastic",
+      "Google Cloud"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — gcp",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Elastic Cloud now supports Google Axion-powered Arm hardware profiles. CPU-optimized Arm profile on Google Cloud now delivers up to 25% better price-performance.",
+      "technical_breakdown": "CPU-optimized Arm profile on Google Cloud now delivers up to 25% better price-performance.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — gcp.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "CPU-optimized Arm profile on Google Cloud now delivers up to 25% better price-performance.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Elastic Cloud now supports Google Axion-powered Arm hardware profiles. CPU-optimized Arm profile on Google Cloud now delivers up to 25% better price-performance.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
