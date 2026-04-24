@@ -29,5 +29,47 @@
     "email_summary": "Ryan is joined on the show by Cult.Repo producers Emma Tracey and Josiah Mcgarvie to discuss making documentaries about open-source software and the people behind the major technologies that uphold the internet.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "0613b7e380f0799d",
+    "title": "From 200 lines to 15: How Helion is rewriting the rules of GPU programming",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/24/200-lines-15-how-helion-rewriting-rules-gpu-programming",
+    "published": "2026-04-24T07:01:04+00:00",
+    "fetched_at": "2026-04-24T09:05:51.168277+00:00",
+    "summary": "The evolution of programming efficient GPU kernels has led to a continuous push towards higher levels of abstraction, moving developer focus from hardware management to computational logic. CUDA provides maximum control, with developers manually managing every detail like thread blocks, memory access, synchronization, and index calculations. It's a powerful process, but also complex. Triton...",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-04-24",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "The evolution of programming efficient GPU kernels has led to a continuous push towards higher levels of abstraction, moving developer focus from hardware management to computational logic. CUDA provides maximum control,",
+      "You write a simple loop like for tile_m , tile_n in hl.tile([m, n]): and use operations like torch.addmm() , while Helion handles indexing, tiling, masks, grid sizing, memory layouts, and all the hardware-level configura",
+      "The evolution from CUDA (hundreds of lines and fully manual tuning) to Triton (dozens of lines with block level abstractions) to Helion (10 to 30 lines of PyTorch-like code with hundreds of automatically tuned variants) ",
+      "Debug in eager Python mode: Test with HELION_INTERPRET=1",
+      "LFBO explores configs: 1000+ Triton variants tested",
+      "Best config printed: Copy into @helion.kernel(configs )"
+    ],
+    "sections": {
+      "overview": "The evolution of programming efficient GPU kernels has led to a continuous push towards higher levels of abstraction, moving developer focus from hardware management to computational logic. CUDA provides maximum control, with developers manually managing every detail like thread blocks, memory access, synchronization, and index calculations. It's a powerful process, but also complex.",
+      "technical_breakdown": "The evolution of programming efficient GPU kernels has led to a continuous push towards higher levels of abstraction, moving developer focus from hardware management to computational logic.\n\nCUDA provides maximum control, with developers manually managing every detail like thread blocks, memory access, synchronization, and index calculations.\n\nInstead of writing and tweaking GPU kernels manually, you create a single Helion kernel and the compiler automatically generates hundreds or even thousands of Triton variants, each with different choices, including block sizes, loop orders, indexing methods, program ID mappings, wrap counts, pipeline depths, unrolling strategies, and cache optimizations.\n\nThe compiler builds the full configuration space, and for each option converts the internal representation into Triton code for right indexing, masking, and memory access logic.\n\nAnd because Helion can explore optimization spaces far beyond what a human can test, developers can spend more time innovating and less time with thread layouts and memory management.",
+      "impact": "Typical kernels tune within minutes, while more complex kernels may take longer. Real-world impact: Less code, faster kernels Helion provides boost to both performance and productivity for machine learning (ML) engineers requiring custom GPU kernels. Define kernel functions: @helion.kernel() decorator\n Write host code (CPU): Allocate tensors, compute shapes\n Write device code (GPU): hl.tile loops and PyTorch ops\n Debug in eager Python mode: Test with HELION_INTERPRET=1 \n Phase 2: Tune This usually takes 10 minutes for each kernel, for each shape.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The evolution of programming efficient GPU kernels has led to a continuous push towards higher levels of abstraction, moving developer focus from hardware management to computational logic. CUDA provides maximum control,\nYou write a simple loop like for tile_m , tile_n in hl.tile([m, n]): and use operations like torch.addmm() , while Helion handles indexing, tiling, masks, grid sizing, memory layouts, and all the hardware-level configura\nThe evolution from CUDA (hundreds of lines and fully manual tuning) to Triton (dozens of lines with block level abstractions) to Helion (10 to 30 lines of PyTorch-like code with hundreds of automatically tuned variants) \nDebug in eager Python mode: Test with HELION_INTERPRET=1\nLFBO explores configs: 1000+ Triton variants tested\nBest config printed: Copy into @helion.kernel(configs )",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "The evolution of programming efficient GPU kernels has led to a continuous push towards higher levels of abstraction, moving developer focus from hardware management to computational logic. CUDA provides maximum control, with developers manually managing every detail like thread blocks, memory access, synchronization, and index calculations.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
