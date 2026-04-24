@@ -173,7 +173,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In the modern cloud-native ecosystem, observability is no longer optional it's the lifeblood of reliable system architecture. We rely on OpenTelemetry (OTel) to gather traces, metrics, and logs necessary to keep our applications running smoothly.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/04/23/kubernetes-v1-36-userns-ga/"
+      }
+    ],
     "highlighted": false
   },
   {
