@@ -1,5 +1,54 @@
 [
   {
+    "id": "cecdebeaf3757904",
+    "title": "Kubernetes v1.36: Fine-Grained Kubelet API Authorization Graduates to GA",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/04/24/kubernetes-v1-36-fine-grained-kubelet-authorization-ga/",
+    "published": "2026-04-24T10:35:00-08:00",
+    "fetched_at": "2026-04-24T22:53:39.919596+00:00",
+    "summary": "On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-04-24",
+    "impact": "high",
+    "vendors": [
+      "Datadog",
+      "Kubernetes",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "requires an HTTP GET request for the initial connection handshake. The kubelet",
+      "maps this GET to the RBAC get verb and authorizes the request without",
+      "request is authorized. If it fails, the kubelet retries with the coarse-grained",
+      "or ServiceAccount making the request.",
+      "Apply both manifests:",
+      "--restart = Never \\",
+      "This enhancement was driven by SIG Auth and SIG Node. If you are interested in"
+    ],
+    "sections": {
+      "overview": "On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the\ngraduation of fine-grained kubelet API authorization to General Availability\n(GA) in Kubernetes v1.36! The KubeletFineGrainedAuthz feature gate was introduced as an opt-in alpha\nfeature in Kubernetes v1.32, then graduated to beta (enabled by default) in\nv1.33. Now, the feature is generally available and the feature gate is locked\nto enabled.",
+      "technical_breakdown": "Motivation: the nodes/proxy problem \n The kubelet exposes an HTTPS endpoint with several APIs that give access to data\nof varying sensitivity, including pod listings, node metrics, container logs,\nand, critically, the ability to execute commands inside running containers.\n\nStep 1: Create a ServiceAccount and ClusterRole \n\n apiVersion : v1 \n kind : ServiceAccount \n metadata : \n name : kubelet-metrics-checker \n namespace : default \n --- \n apiVersion : rbac.authorization.k8s.io/v1 \n kind : ClusterRole \n metadata : \n name : kubelet-metrics-reader \n rules : \n - apiGroups : [ \"\" ] \n resources : [ \"nodes/metrics\" ] \n verbs : [ \"get\" ] \n Step 2: Bind the ClusterRole to the ServiceAccount \n\n apiVersion : rbac.authorization.k8s.io/v1 \n kind : ClusterRoleBinding \n metadata : \n name : kubelet-metrics-checker \n subjects : \n - kind : ServiceAccount \n name : kubelet-metrics-checker \n namespace : default \n roleRef : \n kind : ClusterRole \n name : kubelet-metrics-reader \n apiGroup : rbac.authorization.k8s.io \n Apply both manifests:\n\n kubectl apply -f serviceaccount.yaml\n kubectl apply -f clusterrole.yaml\n kubectl apply -f clusterrolebinding.yaml\n Step 3: Run a pod with the ServiceAccount and check the feature flag \n\n kubectl run kubelet-check \\\n --image = curlimages/curl \\\n --serviceaccount = kubelet-metrics-checker \\\n --restart = Never \\\n --rm -it \\\n -- sh\n Then from within the pod, retrieve the node IP and query the metrics endpoint:\n\n # Get the token \n TOKEN = $( cat /var/run/secrets/kubernetes.io/serviceaccount/token ) \n \n # Query the kubelet metrics and filter for the feature gate \n curl -sk \\\n --header \"Authorization: Bearer $TOKEN \" \\\n https:// $NODE_IP :10250/metrics \\\n | grep kubernetes_feature_enabled \\\n | grep KubeletFineGrainedAuthz\n If the feature is enabled, you should see output like:\n\n kubernetes_feature_enabled{name=\"KubeletFineGrainedAuthz\",stage=\"GA\"} 1\n \n Note: Replace $NODE_IP with the IP address of the node you want to check.\n\nSeveral commonly used kubelet API paths are mapped to their own\ndedicated subresources:\n\n \n \n \n kubelet API \n Resource \n Subresource \n \n \n \n \n /stats/* \n nodes \n stats \n \n \n /metrics/* \n nodes \n metrics \n \n \n /logs/* \n nodes \n log \n \n \n /pods \n nodes \n pods, proxy \n \n \n /runningPods/ \n nodes \n pods, proxy \n \n \n /healthz \n nodes \n healthz, proxy \n \n \n /configz \n nodes \n configz, proxy \n \n \n /spec/* \n nodes \n spec \n \n \n /checkpoint/* \n nodes \n checkpoint \n \n \n all others \n nodes \n proxy \n \n \n \n For the endpoints that now have fine-grained subresources ( /pods ,\n /runningPods/ , /healthz , /configz ), the kubelet first sends a\n SubjectAccessReview for the specific subresource.\n\nThe role now includes permissions for:\n\n \n nodes/proxy \n\n nodes/stats \n\n nodes/metrics \n\n nodes/log \n\n nodes/spec \n\n nodes/checkpoint \n\n nodes/configz \n\n nodes/healthz \n\n nodes/pods \n\n \n Upgrade considerations \n Because the kubelet performs a dual authorization check (fine-grained first,\nthen falling back to nodes/proxy ), upgrading to v1.36 should be seamless for\nmost clusters:\n\n \n Existing workloads with nodes/proxy permissions continue to work without\nchanges.\n\nThis feature enables more precise, least-privilege access control\nover the kubelet 's HTTPS API, replacing the need to grant the overly broad\n nodes/proxy permission for common monitoring and observability use cases.",
+      "impact": "On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the\ngraduation of fine-grained kubelet API authorization to General Availability\n(GA) in Kubernetes v1.36! The nodes/proxy permission is effectively a node-level\nsuperuser capability, and granting it broadly dramatically increases the blast\nradius of a security incident. Using a WebSocket client like websocat ,\nan attacker can reach the kubelet 's /exec endpoint directly on port 10250 and\nexecute arbitrary commands:\n\n websocat --insecure \\\n --header \"Authorization: Bearer $TOKEN \" \\\n --protocol v4.channel.k8s.io \\\n \"wss:// $NODE_IP :10250/exec/default/nginx/nginx?output=1&error=1&command=id\" \n \n uid = 0 ( root ) gid = 0 ( root ) groups = 0 ( root ) \n Fine-grained kubelet authorization: how it works \n With KubeletFineGrainedAuthz , the kubelet now performs an additional, more\nspecific authorization check before falling back to the nodes/proxy \nsubresource. With\nfine-grained authorization, you can now scope the permissions precisely:\n\n # New approach: least privilege \n apiVersion : rbac.authorization.k8s.io/v1 \n kind : ClusterRole \n metadata : \n name : monitoring-agent \n rules : \n - apiGroups : [ \"\" ] \n resources : [ \"nodes/metrics\" , \"nodes/stats\" ] \n verbs : [ \"get\" ] \n The monitoring agent can now read metrics and stats from the kubelet without\never being able to execute commands in containers.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "The root cause is a mismatch between how WebSocket connections work and how the\n kubelet maps HTTP methods to RBAC verbs.",
+      "lessons_learned": "This reads as a retrospective or postmortem-style narrative; extract concrete action items from the source.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. This feature enables more precise, least-privilege access control\nover the kubelet 's HTTPS API, replacing the need to grant the overly broad\n nodes/proxy permission for common monitoring and observability use cases. The role now includes permissions for:\n\n \n nodes/proxy \n\n nodes/stats \n\n nodes/metrics \n\n nodes/log \n\n nodes/spec \n\n nodes/checkpoint \n\n nodes/configz \n\n nodes/healthz \n\n nodes/pods \n\n \n Upgrade considerations \n Because the kubelet performs a dual authorization check (fine-grained first,\nthen falling back to nodes/proxy ), upgrading to v1.36 should be seamless for\nmost clusters:\n\n \n Existing workloads with nodes/proxy permissions continue to work without\nchanges. Policy enforcement: Admission controllers and policy engines can flag or\nreject RBAC bindings that grant nodes/proxy when fine-grained alternatives\nexist, helping organizations adopt least-privilege access at scale.",
+      "incident_timeline": "requires an HTTP GET request for the initial connection handshake. The kubelet\nmaps this GET to the RBAC get verb and authorizes the request without\nrequest is authorized. If it fails, the kubelet retries with the coarse-grained\nor ServiceAccount making the request.\nApply both manifests:\n--restart = Never \\\nThis enhancement was driven by SIG Auth and SIG Node. If you are interested in",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the\ngraduation of fine-grained kubelet API authorization to General Availability\n(GA) in Kubernetes v1.36. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "ac4ffe23d804e0ae",
     "title": "Lights, camera, open source!",
     "source": "Stack Overflow Blog",

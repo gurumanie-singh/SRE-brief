@@ -28,16 +28,24 @@
       <h1 class="brief-title">24 April 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-04-24T16:58:07.805600-05:00">24 April 2026, 16:58</time>
+        <time data-iso="2026-04-24T17:53:42.187874-05:00">24 April 2026, 17:53</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">2 items today</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">3 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
@@ -80,14 +88,14 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Datadog">Datadog</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
       </div>
     </div>
     <div class="adv-group">
@@ -104,8 +112,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
@@ -120,10 +128,48 @@
   <div class="day-group">
     <h2 class="day-heading">
       24 April 2026
-      <span class="day-count">2</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
+  <div class="article-card card--high"
+       data-tags="deployment,kubernetes,observability,outage,postmortem"
+       data-vendors="Datadog,Kubernetes,Slack"
+       data-impact="high"
+       data-theme="observability"
+       data-title="kubernetes v1.36: fine-grained kubelet api authorization graduates to ga"
+       data-id="cecdebeaf3757904"
+       data-published="2026-04-24T10:35:00-08:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Datadog</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-04-24T10:35:00-08:00" title="24 April 2026, 13:35">24 April 2026, 13:35</time>
+      </div>
+      <h3 class="card-title">Kubernetes v1.36: Fine-Grained Kubelet API Authorization Graduates to GA</h3>
+      <p class="card-summary">On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the
+graduation of fine-grained kubelet API authorization to General Availability
+(GA) in Kubernetes v1.36. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Kubernetes Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the graduation of fine-grained kubelet API authorization to General Availability (GA) in Kubernetes v1.36! The KubeletFineGrainedAuthz feature gate was introduced as an opt-in alpha feature in Kubernetes v1.32, then graduated to beta (enabled by default) in v1.33. Now, the feature is generally available and the feature gate is locked to enabled.</p></div>
+      <div class="detail-links">
+        <a href="articles/cecdebeaf3757904.html" class="detail-read">Open structured brief →</a>
+        <a href="https://kubernetes.io/blog/2026/04/24/kubernetes-v1-36-fine-grained-kubelet-authorization-ga/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""
@@ -1052,7 +1098,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       17 April 2026
-      <span class="day-count">4</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
@@ -1164,42 +1210,6 @@
       <div class="detail-links">
         <a href="articles/c57c4866fc8a275b.html" class="detail-read">Open structured brief →</a>
         <a href="https://netflixtechblog.com/the-human-infrastructure-how-netflix-built-the-operations-layer-behind-live-at-scale-33e2a311c597?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,latency,outage"
-       data-vendors="AWS,Azure,Google Cloud,HashiCorp"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="advancing secret sync with workload identity federation"
-       data-id="c0122672722e99bd"
-       data-published="2026-04-17T14:45:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-04-17T14:45:00+00:00" title="17 April 2026, 09:45">17 April 2026, 09:45</time>
-      </div>
-      <h3 class="card-title">Advancing secret sync with workload identity federation</h3>
-      <p class="card-summary">With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <div class="card-related">Also: Cloudflare Blog</div>
-      <span class="card-source">HashiCorp Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>With the release of Vault Enterprise 2.0 , we are continuing to modernize how organizations secure and distribute secrets across hybrid and multi-cloud environments. As part of this release, Vault secret sync now supports workload identity federation for cloud service provider destinations, eliminating the need for long-lived static cloud credentials. Modern cloud environments are built on short-lived identity, dynamic infrastructure, and policy-driven access.</p></div>
-      <div class="detail-links">
-        <a href="articles/c0122672722e99bd.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
