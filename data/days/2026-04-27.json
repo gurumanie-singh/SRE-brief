@@ -80,6 +80,10 @@
       {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-anthropic-meta-partnership-aws-lambda-s3-files-amazon-bedrock-agentcore-cli-and-more-april-27-2026/"
+      },
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/04/27/kubernetes-v1-36-mutable-pod-resources-for-suspended-jobs/"
       }
     ],
     "highlighted": false
