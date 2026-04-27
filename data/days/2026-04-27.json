@@ -1,0 +1,135 @@
+[
+  {
+    "id": "d96ebe26016acef0",
+    "title": "Deploy hosted control planes with OpenShift Virtualization: Split hub",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/27/deploy-hosted-control-planes-openshift-virtualization-split-hub",
+    "published": "2026-04-27T07:01:04+00:00",
+    "fetched_at": "2026-04-27T09:27:01.134804+00:00",
+    "summary": "In Part 1 of this article series, we deployed Red Hat Advanced Cluster Management for Kubernetes , hosted control plane (HCP) and Red Hat OpenShift Virtualization entirely inside one Red Hat OpenShift cluster. While the all-in-one model is simple and easy to understand, enterprises rarely operate this way in production. Large organizations prefer to separate fleet management from cluster hosting...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "networking",
+      "scaling"
+    ],
+    "day": "2026-04-27",
+    "impact": "high",
+    "vendors": [
+      "HashiCorp",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Cluster A (Red Hat Advanced Cluster Management) For demonstration purposes, we tested this on VMs running on vSphere using nested virtualization.",
+      "For the demonstration purpose, this was tested on VMs running on vSphere using nested virtualization.",
+      "Note : This step is required only when you are using LVM StorageClass for OpenShift Virtualization and for testing purposes. In the production scenario, you might be choosing a different storage solution which supports R",
+      "Once you've installed all the operators successfully, it s time to test by creating a simple VM to make sure OCP Virtualization is functioning. Once VM validation is successful, proceed with next steps to configure a mul",
+      "mce-with-ocpv-mce-hc1 true https://192.168.34.205:6443 True True 4h2m Notice that the hosted cluster mce-hc1 is prefixed with mce-with-ocpv as it was configured to import automatically with the name of the managed cluste",
+      "mce-hc1 true https://192.168.34.205:6443 True True 4h10m",
+      "https://192.168.34.205:6443 Notice that the API address is pointing to the IP address provided by the MetalLB range we previously configured."
+    ],
+    "sections": {
+      "overview": "In Part 1 of this article series, we deployed Red Hat Advanced Cluster Management for Kubernetes , hosted control plane (HCP) and Red Hat OpenShift Virtualization entirely inside one Red Hat OpenShift cluster. While the all-in-one model is simple and easy to understand, enterprises rarely operate this way in production. Large organizations prefer to separate fleet management from cluster hosting, allowing different teams and infrastructure zones to scale independently and cleanly.",
+      "technical_breakdown": "Figure 2: Installed Operators on Cluster A \n \n Prerequisites for Cluster B (multicluster engine for Kubernetes + hosted control plane + OCP-V): \n\n For the demonstration purpose, this was tested on VMs running on vSphere using nested virtualization. \n\n 3 x Master Nodes - 8 vCPU / 32G Memory / 1 x 125 GB disk \n\n 3 x Worker Nodes - 16 vCPU / 48G Memory / 1 x 125 GB disk + 1 x 500 GB disk \n\n To keep things simple, we are going to use LVM Storage Class for both etcd PVs of hosted clusters and for OCP-V requirements.\n\nThe following lists pros & cons of this topology: \n\n Pros: \n\n The most stable and scalable production design \n Hub is lightweight and secure \n Hosting resources scale independently \n Enterprise teams can align with operational boundaries \n Cons: \n\n Slightly more operational complexity \n HostedClusters must be imported manually (unless automated) \n Networking dependencies between clusters \n Wrap up In this installment, we separated Red Hat Advanced Cluster Management (hub) and the multicluster engine for Kubernetes/hosted control plane/OpenShift Virtualization (management and hosting) across two clusters.\n\nCluster A (the Red Hat Advanced Cluster Management hub): \n\n Runs Red Hat Advanced Cluster Management \n Does not host control planes \n Does not run worker VMs \n Manages lifecycle and governance of many clusters \n Cluster B (management/hosting cluster multicluster engine for Kubernetes , hosted control plane, and OpenShift Virtualization): \n\n Runs multicluster engine for Kubernetes \n Runs hosted control plane \n Runs OpenShift Virtualization \n Creates HostedClusters and NodePools \n Hosts both control plane pods and worker VMs \n Hosted clusters created in Cluster B are then imported into Cluster A for Day-2 operations (Figure 1).\n\nNodes Sizing (Compact 3 node cluster): 3 x Master/Worker Nodes - 8 vCPU / 32G Memory / 1 x 125 GB disk \n\n Once all the pre-requisite are met, install the OpenShift cluster using your preferred installation method.\n\nWe can check the status of the hosted cluster from Red Hat Advanced Cluster Management (Cluster A) and Nodepools status from the multicluster engine for Kubernetes cluster (Cluster B) as in the following. \n\n $ oc --kubeconfig=kubeconfig-acm get managedcluster \nNAME HUB ACCEPTED MANAGED CLUSTER URLS JOINED AVAILABLE AGE\nlocal-cluster true https://api.acm.example.com:6443 True True 46h\nmce-with-ocpv true https://api.mce.example.com:6443 True True 4h10m\nmce-with-ocpv-mce-hc1 true https://192.168.34.205:6443 True True 4h2m Notice that the hosted cluster mce-hc1 is prefixed with mce-with-ocpv as it was configured to import automatically with the name of the managed cluster. \n\n $ oc --kubeconfig=kubeconfig-mce get managedcluster \nNAME HUB ACCEPTED MANAGED CLUSTER URLS JOINED AVAILABLE AGE\nlocal-cluster true https://api.mce.example.com:6443 True True 4h26m\nmce-hc1 true https://192.168.34.205:6443 True True 4h10m\n\n$ oc --kubeconfig=kubeconfig-mce get hostedcluster -n clusters\nNAME VERSION KUBECONFIG PROGRESS AVAILABLE PROGRESSING MESSAGE\nmce-hc1 4.18.28 mce-hc1-admin-kubeconfig Completed True False The hosted control plane is available\n\n$ oc --kubeconfig=kubeconfig-mce get vmi -n clusters-mce-hc1\nNAME AGE PHASE IP NODENAME READY\nmce-hc1-j6vtm-8c5kd 4h4m Running 10.130.0.158 mce-worker1 True\nmce-hc1-j6vtm-gnpc9 4h5m Running 10.130.0.157 mce-worker1 True We can see the Red Hat Advanced Cluster Management Cluster A in Figure 6.",
+      "impact": "Supports multi-datacenter strategies Hub cluster can run centrally; hosting cluster may run in different regions. This single hcp create cluster command provisions the hosted cluster on the multicluster engine for Kubernetes (Cluster B) using nodepools VMs using KubeVirt. \n\n $ export KUBECONFIG=kubeconfig-mce\n\n$ hcp create cluster kubevirt \\\n --name mce-hc1 \\\n --pull-secret pull-secret.txt \\\n --node-pool-replicas 2 \\\n --memory 8Gi \\\n --cores 2 \\\n --etcd-storage-class=lvm-immediate \\\n --namespace clusters \\\n --release-image quay.io/openshift-release-dev/ocp-release:4.18.28-multi Wait for 10 to 15 minutes to have the hosted cluster created. But some customers operate on yet another level of scale and flexibility: they split control-plane hosting from worker-node hosting.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "We can check the status of the hosted cluster from Red Hat Advanced Cluster Management (Cluster A) and Nodepools status from the multicluster engine for Kubernetes cluster (Cluster B) as in the following. \n\n $ oc --kubeconfig=kubeconfig-acm get managedcluster \nNAME HUB ACCEPTED MANAGED CLUSTER URLS JOINED AVAILABLE AGE\nlocal-cluster true https://api.acm.example.com:6443 True True 46h\nmce-with-ocpv true https://api.mce.example.com:6443 True True 4h10m\nmce-with-ocpv-mce-hc1 true https://192.168.34.205:6443 True True 4h2m Notice that the hosted cluster mce-hc1 is prefixed with mce-with-ocpv as it was configured to import automatically with the name of the managed cluster. \n\n $ oc --kubeconfig=kubeconfig-mce get managedcluster \nNAME HUB ACCEPTED MANAGED CLUSTER URLS JOINED AVAILABLE AGE\nlocal-cluster true https://api.mce.example.com:6443 True True 4h26m\nmce-hc1 true https://192.168.34.205:6443 True True 4h10m\n\n$ oc --kubeconfig=kubeconfig-mce get hostedcluster -n clusters\nNAME VERSION KUBECONFIG PROGRESS AVAILABLE PROGRESSING MESSAGE\nmce-hc1 4.18.28 mce-hc1-admin-kubeconfig Completed True False The hosted control plane is available\n\n$ oc --kubeconfig=kubeconfig-mce get vmi -n clusters-mce-hc1\nNAME AGE PHASE IP NODENAME READY\nmce-hc1-j6vtm-8c5kd 4h4m Running 10.130.0.158 mce-worker1 True\nmce-hc1-j6vtm-gnpc9 4h5m Running 10.130.0.157 mce-worker1 True We can see the Red Hat Advanced Cluster Management Cluster A in Figure 6.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. In Part 1 of this article series, we deployed Red Hat Advanced Cluster Management for Kubernetes , hosted control plane (HCP) and Red Hat OpenShift Virtualization entirely inside one Red Hat OpenShift cluster. Cluster A (the Red Hat Advanced Cluster Management hub): \n\n Runs Red Hat Advanced Cluster Management \n Does not host control planes \n Does not run worker VMs \n Manages lifecycle and governance of many clusters \n Cluster B (management/hosting cluster multicluster engine for Kubernetes , hosted control plane, and OpenShift Virtualization): \n\n Runs multicluster engine for Kubernetes \n Runs hosted control plane \n Runs OpenShift Virtualization \n Creates HostedClusters and NodePools \n Hosts both control plane pods and worker VMs \n Hosted clusters created in Cluster B are then imported into Cluster A for Day-2 operations (Figure 1). Enterprises choose this model for these reasons: \n\n Clear separation of duties Hub team controls governance, policy, visibility \n Hosting platform team manages actual cluster creation + compute resources \n \n Red Hat Advanced Cluster Management cluster stays lightweight No workload hosting or control-plane workloads overload the hub.",
+      "incident_timeline": "Cluster A (Red Hat Advanced Cluster Management) For demonstration purposes, we tested this on VMs running on vSphere using nested virtualization.\nFor the demonstration purpose, this was tested on VMs running on vSphere using nested virtualization.\nNote : This step is required only when you are using LVM StorageClass for OpenShift Virtualization and for testing purposes. In the production scenario, you might be choosing a different storage solution which supports R\nOnce you've installed all the operators successfully, it s time to test by creating a simple VM to make sure OCP Virtualization is functioning. Once VM validation is successful, proceed with next steps to configure a mul\nmce-with-ocpv-mce-hc1 true https://192.168.34.205:6443 True True 4h2m Notice that the hosted cluster mce-hc1 is prefixed with mce-with-ocpv as it was configured to import automatically with the name of the managed cluste\nmce-hc1 true https://192.168.34.205:6443 True True 4h10m\nhttps://192.168.34.205:6443 Notice that the API address is pointing to the IP address provided by the MetalLB range we previously configured.",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In Part 1 of this article series, we deployed Red Hat Advanced Cluster Management for Kubernetes , hosted control plane (HCP) and Red Hat OpenShift Virtualization entirely inside one Red Hat OpenShift cluster. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "382ed579e68ed72b",
+    "title": "Automate Infoblox DDI with Red Hat Ansible Automation Platform",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/27/automate-infoblox-ddi-red-hat-ansible-automation-platform",
+    "published": "2026-04-27T07:01:02+00:00",
+    "fetched_at": "2026-04-27T09:27:01.135916+00:00",
+    "summary": "Managing DNS, DHCP and IP addresses across hybrid, multi-cloud environments is one of those invisible jobs that is only noticed when something breaks. An IP conflict takes down a production service. A stale DNS record sends traffic to a decommissioned host. A manual subnet change propagates inconsistently across locations. These are not hypothetical scenarios. They are a common reality for...",
+    "tags": [
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-27",
+    "impact": "high",
+    "vendors": [
+      "GitHub",
+      "Red Hat",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "networking",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Workflows on Ansible Automation Platform Running Ansible Playbooks from the command line is fine for development and testing, but production automation should be orchestrated through Ansible Automation Platform. In this ",
+      "Each workflow follows the same pattern. First, the Ansible Automation Platform project repository and inventory are synchronized in parallel to ensure the Ansible Automation Platform controller has the latest code and co",
+      "ServiceNow-initiated provisioning integrates DDI automation into your existing ITSM workflows. A user submits a ServiceNow catalog item, ServiceNow calls the Ansible Automation Platform REST API to launch the provisionin"
+    ],
+    "sections": {
+      "overview": "Managing DNS, DHCP and IP addresses across hybrid, multi-cloud environments is one of those invisible jobs that is only noticed when something breaks. An IP conflict takes down a production service. A stale DNS record sends traffic to a decommissioned host.",
+      "technical_breakdown": "They are a common reality for network and cloud operations teams managing DDI (DNS, DHCP, and IPAM) infrastructure at scale.\n\nThis is particularly valuable for application teams needing DNS and DHCP records as part of their deployment process.\n\nRead the Infoblox blog post: Automating Infoblox DDI with Red Hat Ansible: Bringing Configuration as Code to Critical Network Services\n \n\nThe post Automate Infoblox DDI with Red Hat Ansible Automation Platform appeared first on Red Hat Developer .\n\nManaging DNS, DHCP and IP addresses across hybrid, multi-cloud environments is one of those invisible jobs that is only noticed when something breaks.\n\nA stale DNS record sends traffic to a decommissioned host.",
+      "impact": "Human errors cause IP conflicts and outages, provisioning takes longer, changes are harder to track and configuration drift begins to build across environments that should be identical. Self-service provisioning with Ansible Automation Platform Surveys allows users provision hosts through a web form without touching any code. A user submits a ServiceNow catalog item, ServiceNow calls the Ansible Automation Platform REST API to launch the provisioning workflow, and the Ansible servicenow.itsm collection updates and closes the request with the results.\n\nClassified impact band: high. Affected layer signal: networking.",
+      "resolution": "The workload_provision role handles host provisioning within that setup by allocating IP addresses, creating DNS records and, when needed, configuring fixed DHCP or MAC reservations.\n\nIn this project, Ansible Automation Platform workflow job templates connect synchronization, provisioning and verification steps in a fixed sequence.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. This is the role teams are most likely to use during day-to-day service deployment. There's no \"it works on my machine\" problem because the execution environment is the same everywhere. This is particularly valuable for application teams needing DNS and DHCP records as part of their deployment process.",
+      "incident_timeline": "Workflows on Ansible Automation Platform Running Ansible Playbooks from the command line is fine for development and testing, but production automation should be orchestrated through Ansible Automation Platform. In this \nEach workflow follows the same pattern. First, the Ansible Automation Platform project repository and inventory are synchronized in parallel to ensure the Ansible Automation Platform controller has the latest code and co\nServiceNow-initiated provisioning integrates DDI automation into your existing ITSM workflows. A user submits a ServiceNow catalog item, ServiceNow calls the Ansible Automation Platform REST API to launch the provisionin",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Managing DNS, DHCP and IP addresses across hybrid, multi-cloud environments is one of those invisible jobs that is only noticed when something breaks. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "52f1e175ba9d9e75",
+    "title": "Beyond the next token: Why diffusion LLMs are changing the game",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/28/beyond-next-token-why-diffusion-llms-are-changing-game",
+    "published": "2026-04-27T07:00:59+00:00",
+    "fetched_at": "2026-04-27T09:27:01.136781+00:00",
+    "summary": "If you've spent time deploying traditional large language models (LLMs), you've likely wrestled with the classic tradeoff between accuracy and performance. Typically, we're forced to make a rigid architectural choice: Do you deploy a massive, slow model for deep reasoning, or a small, lightning-fast one for everyday chat? Often, we end up gluing these models together with complex semantic...",
+    "tags": [
+      "latency",
+      "outage"
+    ],
+    "day": "2026-04-27",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "If you've spent time deploying traditional large language models (LLMs), you've likely wrestled with the classic tradeoff between accuracy and performance. Typically, we're forced to make a rigid architectural choice: Do",
+      "The runtime tradeoff So why is this architecture so different? The magic is a beautifully simple, dynamic runtime tradeoff. With standard AR models, the compute spent on a token is baked into the architecture. If you wan",
+      "Building the future at Red Hat At Red Hat, we believe in taking brave leaps forward along with the rest of the open source community. We aren't just watching this dLLM trend happen, we're actively exploring this promisin",
+      "You can also leverage the no-cost 60-day Red Hat AI trial to test leading and emerging models and experience the benefits they can unlock for your unique business use cases."
+    ],
+    "sections": {
+      "overview": "If you've spent time deploying traditional large language models (LLMs), you've likely wrestled with the classic tradeoff between accuracy and performance. Typically, we're forced to make a rigid architectural choice: Do you deploy a massive, slow model for deep reasoning, or a small, lightning-fast one for everyday chat? Often, we end up gluing these models together with complex semantic routers.",
+      "technical_breakdown": "Because a dLLM drafts multiple tokens simultaneously and refines them over multiple \"steps\" (similar to how an AI image slowly comes into focus), you can tune quality against latency on the fly.\n\nTypically, we're forced to make a rigid architectural choice: Do you deploy a massive, slow model for deep reasoning, or a small, lightning-fast one for everyday chat?\n\nInstead of writing a sentence word-by-word, the model drafts a full sentence with blanks like \"The quick [MASK] fox jumps over the [MASK] dog.\" In the next step, it looks at the whole sentence to perfectly fill in \"brown\" and \"lazy.\" It loops back to enhance the quality and logic of the draft with each pass.\n\nIf you want more intelligence, you need a bigger model or complex, latency-heavy test-time compute loops.\n\nThere's no need to swap models, maintain multiple endpoints, or build complex routing logic.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "By operating on smaller chunks (typically 8 to 64 tokens at a time) and enabling block-wise KV caching, they drastically improved inference speed and made dLLMs practical for real-world use.",
+      "root_cause_highlight": "",
+      "incident_timeline": "If you've spent time deploying traditional large language models (LLMs), you've likely wrestled with the classic tradeoff between accuracy and performance. Typically, we're forced to make a rigid architectural choice: Do\nThe runtime tradeoff So why is this architecture so different? The magic is a beautifully simple, dynamic runtime tradeoff. With standard AR models, the compute spent on a token is baked into the architecture. If you wan\nBuilding the future at Red Hat At Red Hat, we believe in taking brave leaps forward along with the rest of the open source community. We aren't just watching this dLLM trend happen, we're actively exploring this promisin\nYou can also leverage the no-cost 60-day Red Hat AI trial to test leading and emerging models and experience the benefits they can unlock for your unique business use cases.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "If you've spent time deploying traditional large language models (LLMs), you've likely wrestled with the classic tradeoff between accuracy and performance. Typically, we're forced to make a rigid architectural choice: Do you deploy a massive, slow model for deep reasoning, or a small, lightning-fast one for everyday chat.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
