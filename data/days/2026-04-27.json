@@ -76,7 +76,12 @@
       "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "In Part 1 of this article series, we deployed Red Hat Advanced Cluster Management for Kubernetes , hosted control plane (HCP) and Red Hat OpenShift Virtualization entirely inside one Red Hat OpenShift cluster. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-anthropic-meta-partnership-aws-lambda-s3-files-amazon-bedrock-agentcore-cli-and-more-april-27-2026/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -119,7 +124,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Managing DNS, DHCP and IP addresses across hybrid, multi-cloud environments is one of those invisible jobs that is only noticed when something breaks. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/"
+      }
+    ],
     "highlighted": false
   },
   {
