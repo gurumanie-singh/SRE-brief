@@ -1,5 +1,40 @@
 [
   {
+    "id": "a5d9fff5bb722594",
+    "title": "Turning scattered knowledge into trusted intelligence: Stack Internal 2026.3",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/28/turn-scattered-knowledge-into-trusted-intelligence/",
+    "published": "2026-04-28T13:00:00+00:00",
+    "fetched_at": "2026-04-28T12:26:48.704658+00:00",
+    "summary": "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI.",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-28",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI."
+    ],
+    "sections": {
+      "overview": "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI.",
+      "technical_breakdown": "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "045ad271fbedee69",
     "title": "Your LLM issues are really data issues",
     "source": "Stack Overflow Blog",
@@ -214,6 +249,39 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Project Hummingbird container images are standard container images. These images fit into your existing workflow and tools with minimal disruption and act as drop-in replacements for other container images you might be used to, such as those from Docker Hub.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "cdd2afa68c67d0be",
+    "title": "State of Observability in Financial Services 2026: From implementation to business impact",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/state-of-observability-2026-financial-services",
+    "published": "2026-04-28T00:00:00+00:00",
+    "fetched_at": "2026-04-28T12:26:49.749125+00:00",
+    "summary": "Explore the 2026 state of observability financial services report. Discover trends in GenAI adoption, OTel, cost optimization, and compliance.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-04-28",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Explore the 2026 state of observability financial services report. Discover trends in GenAI adoption, OTel, cost optimization, and compliance.",
+      "technical_breakdown": "Explore the 2026 state of observability financial services report.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Explore the 2026 state of observability financial services report. Discover trends in GenAI adoption, OTel, cost optimization, and compliance.",
     "related_sources": [],
     "highlighted": false
   }
