@@ -1,5 +1,46 @@
 [
   {
+    "id": "b033f34c582c6e7d",
+    "title": "Turning secret detection into measurable risk reduction",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/turning-secret-detection-into-measurable-risk-reduction",
+    "published": "2026-04-28T16:00:00+00:00",
+    "fetched_at": "2026-04-28T17:53:37.909686+00:00",
+    "summary": "Detection surfaces secret sprawl across code repositories, collaboration tools, and cloud environments. But discovery alone does not reduce risk. Once a secret is exposed, the real challenge is understanding its relevance, validating whether it is still active, determining whether it is already being managed securely, and what the right remediation path should be. In practice, this process rarely...",
+    "tags": [
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-28",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The outcome is a more direct path from discovery to control. Rather than treating secret scanning as a standalone visibility layer, organizations can use correlation to prioritize remediation with greater confidence and ",
+      "Teams can use trends such as open versus resolved secrets, remediation timelines, and patterns across repositories and data sources to prioritize more confidently and strengthen follow-through. Security leaders gain a cl",
+      "From detection to measurable security outcomes   Secret detection is an important starting point, but the strongest outcomes come from how well organizations can act on what they find."
+    ],
+    "sections": {
+      "overview": "Detection surfaces secret sprawl across code repositories, collaboration tools, and cloud environments. But discovery alone does not reduce risk. Once a secret is exposed, the real challenge is understanding its relevance, validating whether it is still active, determining whether it is already being managed securely, and what the right remediation path should be.",
+      "technical_breakdown": "For others, it may mean sending alerts into collaboration tools or triggering internal automation.\n\nBy showing what is new, what has been resolved, how long remediation is taking, and where response may be slowing, teams gain a clearer view into how secret remediation is performing across the organization.\n\nTraceability: Creating accountability across the remediation lifecycle  Traceability builds confidence in the remediation process.\n\nBy preserving the lifecycle history of each detected secret from discovery through resolution, traceability gives teams a clear view of how remediation is progressing over time.\n\nRather than reducing an event to a single status, it shows when a secret was identified, when it was acknowledged, what actions were taken, and when it was resolved.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "The work likely also spans multiple workflows, from notifying the right owner to triggering follow-up and tracking the issue through resolution.\n\nOwnership, follow-up, and resolution often move through ticketing platforms, messaging tools, internal automation, and incident workflows.\n\nBy showing what is new, what has been resolved, how long remediation is taking, and where response may be slowing, teams gain a clearer view into how secret remediation is performing across the organization.\n\nTeams can use trends such as open versus resolved secrets, remediation timelines, and patterns across repositories and data sources to prioritize more confidently and strengthen follow-through.",
+      "lessons_learned": "The work likely also spans multiple workflows, from notifying the right owner to triggering follow-up and tracking the issue through resolution.\n\nThe goal is not only to help teams detect secrets, but also to help organizations build a more mature remediation process around them – one with stronger context, better workflow alignment, clearer accountability, and that shows measurable progress over time.\n\nTeams can better understand which exposed secrets may need rotation, which are already managed in an approved system, and where exposure may reflect a broader governance gap.\n\nOwnership, follow-up, and resolution often move through ticketing platforms, messaging tools, internal automation, and incident workflows.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The outcome is a more direct path from discovery to control. Rather than treating secret scanning as a standalone visibility layer, organizations can use correlation to prioritize remediation with greater confidence and \nTeams can use trends such as open versus resolved secrets, remediation timelines, and patterns across repositories and data sources to prioritize more confidently and strengthen follow-through. Security leaders gain a cl\nFrom detection to measurable security outcomes   Secret detection is an important starting point, but the strongest outcomes come from how well organizations can act on what they find.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Detection surfaces secret sprawl across code repositories, collaboration tools, and cloud environments. But discovery alone does not reduce risk.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "a5d9fff5bb722594",
     "title": "Turning scattered knowledge into trusted intelligence: Stack Internal 2026.3",
     "source": "Stack Overflow Blog",
@@ -31,6 +72,55 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Ingestion is now generally available in Stack Internal as part of the 2026.3 release, allowing you to transform content siloed across your tools into structured, verified knowledge that's ready for your teams and AI.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a836f96f6f52c144",
+    "title": "Shutdowns, power outages, and conflict: a review of Q1 2026 Internet disruptions",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/q1-2026-internet-disruption-summary/",
+    "published": "2026-04-28T13:00:00+00:00",
+    "fetched_at": "2026-04-28T17:53:36.458354+00:00",
+    "summary": "In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. This quarter, we also observed a number of Internet disruptions caused by power outages , including three separate collapses of Cuba's national electrical...",
+    "tags": [
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-04-28",
+    "impact": "critical",
+    "vendors": [
+      "AWS",
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "dns issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "This post is intended as a summary overview of observed and confirmed disruptions and is not an exhaustive or complete list of issues that have occurred during the quarter. A larger list of detected traffic anomalies is ",
+      "In advance of the January 15 presidential election, Ugandan authorities ordered a nationwide Internet shutdown. The Uganda Communications Commission (UCC) instructed mobile network operators to suspend public Internet ac",
+      "Similarly, Cloudflare data shows a near-complete loss of traffic from Uganda coincident with the start of the shutdown, with traffic remaining effectively at zero through 23:00 local time (20:00 UTC) on January 17, when ",
+      "Full Internet restoration was announced by the UCC on January 26 , with mobile network operators MTN Uganda and Airtel Uganda both confirming on social media that restrictions had been lifted. The shutdown prompted lawsu",
+      "Uganda also blocked Internet access during its 2021 election. Authorities had repeatedly promised this time would be different, stating as recently as January 5 that \"claims suggesting otherwise are false, misleading.\"",
+      "Iranian citizens spent a large part of Q1 2026 offline, or with severely limited connectivity, due to two nationwide Internet shutdowns. The first began around 20:00 local time (16:30 UTC) on January 8, and we explored t",
+      "A near-complete loss of announced IPv6 address space started several hours before the drop in traffic took place on January 8. Asiatech (AS43754) was by far the single largest contributor, losing 4.46 million /48-equival",
+      "On February 28, as military strikes on Iran escalated, a second nationwide Internet shutdown began. Cloudflare Radar observed a sharp drop in traffic from Iran beginning around 10:30 local time (07:00 UTC). Traffic level"
+    ],
+    "sections": {
+      "overview": "In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. This quarter, we also observed a number of Internet disruptions caused by power outages , including three separate collapses of Cuba's national electrical grid. Military action continued to disrupt connectivity in Ukraine and also impacted hyperscaler cloud infrastructure in the Middle East.",
+      "technical_breakdown": "In a status post on the AWS Health Dashboard, Amazon acknowledged: \"These strikes have caused structural damage, disrupted power delivery to our infrastructure, and in some cases required fire suppression activities that resulted in additional water damage.\" The company warned that instability was likely to continue in the Middle East, making operations \"unpredictable,\" and urged customers with workloads in the affected regions to back up their data or migrate to other AWS regions.\n\nRecovery was slow: over 290,000 customers remained without power as late as January 30, and Cloudflare continued tracking gradual recovery of regional traffic over the following weeks. (Coimbra returned to expected levels within the first several days after the storm.) More than three weeks after the storm, over 6,000 customers in Leiria reportedly remained without electricity.\n\nNote that both bytes-based and request-based traffic graphs are used within this post to illustrate the impact of the observed disruptions, with the choice of metric generally made based on which better illustrates the impact of the disruption.\n\nThe Uganda Communications Commission (UCC) instructed mobile network operators to suspend public Internet access, effective 18:00 local time (15:00 UTC) on January 13.\n\nFull Internet restoration was announced by the UCC on January 26 , with mobile network operators MTN Uganda and Airtel Uganda both confirming on social media that restrictions had been lifted.",
+      "impact": "In a status post on the AWS Health Dashboard, Amazon acknowledged: \"These strikes have caused structural damage, disrupted power delivery to our infrastructure, and in some cases required fire suppression activities that resulted in additional water damage.\" The company warned that instability was likely to continue in the Middle East, making operations \"unpredictable,\" and urged customers with workloads in the affected regions to back up their data or migrate to other AWS regions. Military action \n \n \n \n \n \n \n Ukraine (Dnipropetrovsk) \n \n \n \n \n On January 7-8, Russian attacks on energy infrastructure in Ukraine caused power outages that disrupted Internet connectivity in Dnipropetrovsk and surrounding regions. These graphs illustrate the increased rate of failures experienced when attempting to connect to servers in these impacted regions. The outage caused nominal disruptions in Internet connectivity for customers of multiple providers in the Buenos Aires area, including Telecom Argentina (AS7303) , Telecentro (AS27747) , and IPLAN (AS16814) , with traffic from these networks dropping between 17:30 and 19:30 local time (20:30 - 22:30 UTC).\n\nClassified impact band: critical. Affected layer signal: cloud — aws.",
+      "resolution": "Internet traffic from the country dropped sharply beginning around 10:50 local time (14:50 UTC), and recovered around midnight local time (04:00 UTC) on February 24, in line with a confirmation posted by ETED that “The authorities of the electric sector reported that the Interconnected National Electric System (SENI) was fully restored to 100% at 11:53 p.m. on this Monday…”.\n\nSimilarly, Cloudflare data shows a near-complete loss of traffic from Uganda coincident with the start of the shutdown, with traffic remaining effectively at zero through 23:00 local time (20:00 UTC) on January 17, when Internet connectivity was partially restored after incumbent President Yoweri Museveni was declared winner of his seventh term.\n\nA similar brief restoration also occurred on January 25, before traffic recovered more aggressively starting on January 27.\n\nRecovery progressed through January 27 as power was gradually restored.",
+      "lessons_learned": "Note that both bytes-based and request-based traffic graphs are used within this post to illustrate the impact of the observed disruptions, with the choice of metric generally made based on which better illustrates the impact of the disruption.\n\nA follow-up post from Congo Telecom confirmed that repairs were ongoing, with users potentially experiencing slowdowns during peak hours.",
+      "root_cause_highlight": "Likely root-cause theme: dns issue. This quarter, we also observed a number of Internet disruptions caused by power outages , including three separate collapses of Cuba's national electrical grid. Authorities had repeatedly promised this time would be different, stating as recently as January 5 that \"claims suggesting otherwise are false, misleading.\"\n\n \n Iran \n \n \n \n \n Iranian citizens spent a large part of Q1 2026 offline, or with severely limited connectivity, due to two nationwide Internet shutdowns. Traffic levels fell to well under 1% of previous levels, with only small amounts of Web and DNS traffic egressing the country.",
+      "incident_timeline": "This post is intended as a summary overview of observed and confirmed disruptions and is not an exhaustive or complete list of issues that have occurred during the quarter. A larger list of detected traffic anomalies is \nIn advance of the January 15 presidential election, Ugandan authorities ordered a nationwide Internet shutdown. The Uganda Communications Commission (UCC) instructed mobile network operators to suspend public Internet ac\nSimilarly, Cloudflare data shows a near-complete loss of traffic from Uganda coincident with the start of the shutdown, with traffic remaining effectively at zero through 23:00 local time (20:00 UTC) on January 17, when \nFull Internet restoration was announced by the UCC on January 26 , with mobile network operators MTN Uganda and Airtel Uganda both confirming on social media that restrictions had been lifted. The shutdown prompted lawsu\nUganda also blocked Internet access during its 2021 election. Authorities had repeatedly promised this time would be different, stating as recently as January 5 that \"claims suggesting otherwise are false, misleading.\"\nIranian citizens spent a large part of Q1 2026 offline, or with severely limited connectivity, due to two nationwide Internet shutdowns. The first began around 20:00 local time (16:30 UTC) on January 8, and we explored t\nA near-complete loss of announced IPv6 address space started several hours before the drop in traffic took place on January 8. Asiatech (AS43754) was by far the single largest contributor, losing 4.46 million /48-equival\nOn February 28, as military strikes on Iran escalated, a second nationwide Internet shutdown began. Cloudflare Radar observed a sharp drop in traffic from Iran beginning around 10:30 local time (07:00 UTC). Traffic level",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. Impact band: critical.",
     "related_sources": [],
     "highlighted": false
   },
@@ -197,6 +287,10 @@
     },
     "email_summary": "Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you're using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.",
     "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/security/securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vulnerability/"
+      },
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/news-insights/company-news/an-update-on-github-availability/"

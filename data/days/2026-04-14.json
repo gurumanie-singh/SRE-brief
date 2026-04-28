@@ -50,10 +50,6 @@
     "email_summary": "Today, we’re announcing the general availability of AWS Interconnect – multicloud , a managed private connectivity service that connects your Amazon Virtual Private Cloud (Amazon VPC) directly to VPCs on other cloud providers. Impact band: high.",
     "related_sources": [
       {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/security/hack-the-ai-agent-build-agentic-ai-security-skills-with-the-github-secure-code-game/"
-      },
-      {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/vault-enterprise-20-modernizes-identity-security-at-scale"
       },

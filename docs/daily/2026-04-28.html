@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">28 April 2026</h1>
-      <span class="brief-sub">7 items</span>
+      <span class="brief-sub">9 items</span>
     </div>
   </div>
 
@@ -35,7 +35,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 critical incident signal in the feed window</li>
+        <li>2 critical incident signals in the feed window</li>
         <li>1 story flagged for operational follow-up</li>
         <li>Repeated coverage across Red Hat, Kubernetes</li>
         <li>Multiple outage or availability narratives detected</li>
@@ -69,13 +69,16 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
       </div>
@@ -83,19 +86,54 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="latency,observability,outage"
+       data-vendors="HashiCorp"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="turning secret detection into measurable risk reduction"
+       data-id="b033f34c582c6e7d"
+       data-published="2026-04-28T16:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-04-28T16:00:00+00:00" title="28 April 2026, 11:00">28 April 2026, 11:00</time>
+      </div>
+      <h3 class="card-title">Turning secret detection into measurable risk reduction</h3>
+      <p class="card-summary">Detection surfaces secret sprawl across code repositories, collaboration tools, and cloud environments. But discovery alone does not reduce risk.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">HashiCorp Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Detection surfaces secret sprawl across code repositories, collaboration tools, and cloud environments. But discovery alone does not reduce risk. Once a secret is exposed, the real challenge is understanding its relevance, validating whether it is still active, determining whether it is already being managed securely, and what the right remediation path should be.</p></div>
+      <div class="detail-links">
+        <a href="../articles/b033f34c582c6e7d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.hashicorp.com/blog/turning-secret-detection-into-measurable-risk-reduction" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="deployment"
        data-vendors=""
@@ -126,6 +164,42 @@
       <div class="detail-links">
         <a href="../articles/a5d9fff5bb722594.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/04/28/turn-scattered-knowledge-into-trusted-intelligence/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="latency,networking,observability,outage,postmortem"
+       data-vendors="AWS,Cloudflare"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="shutdowns, power outages, and conflict: a review of q1 2026 internet disruptions"
+       data-id="a836f96f6f52c144"
+       data-published="2026-04-28T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">AWS</span><span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-04-28T13:00:00+00:00" title="28 April 2026, 08:00">28 April 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Shutdowns, power outages, and conflict: a review of Q1 2026 Internet disruptions</h3>
+      <p class="card-summary">In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. This quarter, we also observed a number of Internet disruptions caused by power outages , including three separate collapses of Cuba&#39;s national electrical grid. Military action continued to disrupt connectivity in Ukraine and also impacted hyperscaler cloud infrastructure in the Middle East.</p></div>
+      <div class="detail-links">
+        <a href="../articles/a836f96f6f52c144.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/q1-2026-internet-disruption-summary/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -257,7 +331,7 @@
           <span class="ttag">kubernetes</span>
         </div>
       </div>
-      <div class="card-related">Also: GitHub Blog</div>
+      <div class="card-related">Also: GitHub Blog, GitHub Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">

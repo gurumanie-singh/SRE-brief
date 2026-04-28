@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shutdowns, power outages, and conflict: a review of Q1 2026 Internet disruptions — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-28.html" class="back-link">← 28 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">28 April 2026, 08:00</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Shutdowns, power outages, and conflict: a review of Q1 2026 Internet disruptions</h1>
+
+      <p class="subtitle">In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">AWS</span>
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>dns issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. This quarter, we also observed a number of Internet disruptions caused by power outages , including three separate collapses of Cuba&#39;s national electrical grid. Military action continued to disrupt connectivity in Ukraine and also impacted hyperscaler cloud infrastructure in the Middle East.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>In a status post on the AWS Health Dashboard, Amazon acknowledged: &#34;These strikes have caused structural damage, disrupted power delivery to our infrastructure, and in some cases required fire suppression activities that resulted in additional water damage.&#34; The company warned that instability was likely to continue in the Middle East, making operations &#34;unpredictable,&#34; and urged customers with workloads in the affected regions to back up their data or migrate to other AWS regions.</p>
+<p>Recovery was slow: over 290,000 customers remained without power as late as January 30, and Cloudflare continued tracking gradual recovery of regional traffic over the following weeks. (Coimbra returned to expected levels within the first several days after the storm.) More than three weeks after the storm, over 6,000 customers in Leiria reportedly remained without electricity.</p>
+<p>Note that both bytes-based and request-based traffic graphs are used within this post to illustrate the impact of the observed disruptions, with the choice of metric generally made based on which better illustrates the impact of the disruption.</p>
+<p>The Uganda Communications Commission (UCC) instructed mobile network operators to suspend public Internet access, effective 18:00 local time (15:00 UTC) on January 13.</p>
+<p>Full Internet restoration was announced by the UCC on January 26 , with mobile network operators MTN Uganda and Airtel Uganda both confirming on social media that restrictions had been lifted.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>In a status post on the AWS Health Dashboard, Amazon acknowledged: &#34;These strikes have caused structural damage, disrupted power delivery to our infrastructure, and in some cases required fire suppression activities that resulted in additional water damage.&#34; The company warned that instability was likely to continue in the Middle East, making operations &#34;unpredictable,&#34; and urged customers with workloads in the affected regions to back up their data or migrate to other AWS regions. Military action               Ukraine (Dnipropetrovsk)           On January 7-8, Russian attacks on energy infrastructure in Ukraine caused power outages that disrupted Internet connectivity in Dnipropetrovsk and surrounding regions. These graphs illustrate the increased rate of failures experienced when attempting to connect to servers in these impacted regions. The outage caused nominal disruptions in Internet connectivity for customers of multiple providers in the Buenos Aires area, including Telecom Argentina (AS7303) , Telecentro (AS27747) , and IPLAN (AS16814) , with traffic from these networks dropping between 17:30 and 19:30 local time (20:30 - 22:30 UTC).</p>
+<p>Classified impact band: critical. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Internet traffic from the country dropped sharply beginning around 10:50 local time (14:50 UTC), and recovered around midnight local time (04:00 UTC) on February 24, in line with a confirmation posted by ETED that “The authorities of the electric sector reported that the Interconnected National Electric System (SENI) was fully restored to 100% at 11:53 p.m. on this Monday…”.</p>
+<p>Similarly, Cloudflare data shows a near-complete loss of traffic from Uganda coincident with the start of the shutdown, with traffic remaining effectively at zero through 23:00 local time (20:00 UTC) on January 17, when Internet connectivity was partially restored after incumbent President Yoweri Museveni was declared winner of his seventh term.</p>
+<p>A similar brief restoration also occurred on January 25, before traffic recovered more aggressively starting on January 27.</p>
+<p>Recovery progressed through January 27 as power was gradually restored.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Note that both bytes-based and request-based traffic graphs are used within this post to illustrate the impact of the observed disruptions, with the choice of metric generally made based on which better illustrates the impact of the disruption.</p>
+<p>A follow-up post from Congo Telecom confirmed that repairs were ongoing, with users potentially experiencing slowdowns during peak hours.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: dns issue. This quarter, we also observed a number of Internet disruptions caused by power outages , including three separate collapses of Cuba&#39;s national electrical grid. Authorities had repeatedly promised this time would be different, stating as recently as January 5 that &#34;claims suggesting otherwise are false, misleading.&#34;</p>
+<p>Iran           Iranian citizens spent a large part of Q1 2026 offline, or with severely limited connectivity, due to two nationwide Internet shutdowns. Traffic levels fell to well under 1% of previous levels, with only small amounts of Web and DNS traffic egressing the country.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>This post is intended as a summary overview of observed and confirmed disruptions and is not an exhaustive or complete list of issues that have occurred during the quarter. A larger list of detected traffic anomalies is </li>
+            <li>In advance of the January 15 presidential election, Ugandan authorities ordered a nationwide Internet shutdown. The Uganda Communications Commission (UCC) instructed mobile network operators to suspend public Internet ac</li>
+            <li>Similarly, Cloudflare data shows a near-complete loss of traffic from Uganda coincident with the start of the shutdown, with traffic remaining effectively at zero through 23:00 local time (20:00 UTC) on January 17, when </li>
+            <li>Full Internet restoration was announced by the UCC on January 26 , with mobile network operators MTN Uganda and Airtel Uganda both confirming on social media that restrictions had been lifted. The shutdown prompted lawsu</li>
+            <li>Uganda also blocked Internet access during its 2021 election. Authorities had repeatedly promised this time would be different, stating as recently as January 5 that &#34;claims suggesting otherwise are false, misleading.&#34;</li>
+            <li>Iranian citizens spent a large part of Q1 2026 offline, or with severely limited connectivity, due to two nationwide Internet shutdowns. The first began around 20:00 local time (16:30 UTC) on January 8, and we explored t</li>
+            <li>A near-complete loss of announced IPv6 address space started several hours before the drop in traffic took place on January 8. Asiatech (AS43754) was by far the single largest contributor, losing 4.46 million /48-equival</li>
+            <li>On February 28, as military strikes on Iran escalated, a second nationwide Internet shutdown began. Cloudflare Radar observed a sharp drop in traffic from Iran beginning around 10:30 local time (07:00 UTC). Traffic level</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/q1-2026-internet-disruption-summary/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
