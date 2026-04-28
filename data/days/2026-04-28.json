@@ -161,7 +161,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you're using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/company-news/an-update-on-github-availability/"
+      }
+    ],
     "highlighted": false
   },
   {
