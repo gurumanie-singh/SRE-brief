@@ -1,0 +1,215 @@
+[
+  {
+    "id": "045ad271fbedee69",
+    "title": "Your LLM issues are really data issues",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/28/your-llm-issues-are-really-data-issues/",
+    "published": "2026-04-28T07:40:00+00:00",
+    "fetched_at": "2026-04-28T07:34:54.202066+00:00",
+    "summary": "Ryan welcomes Harsha Chintalapani, co-founder and CTO at Collate and co-creator of Open Metadata, to the show to discuss why AI and LLMs struggle with real-time, structured production data.",
+    "tags": [],
+    "day": "2026-04-28",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Harsha Chintalapani, co-founder and CTO at Collate and co-creator of Open Metadata, to the show to discuss why AI and LLMs struggle with real-time, structured production data.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Harsha Chintalapani, co-founder and CTO at Collate and co-creator of Open Metadata, to the show to discuss why AI and LLMs struggle with real-time, structured production data.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "55b6affd4c01f4ef",
+    "title": "New features in GCC 16: Improved error messages and SARIF output",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/28/gcc-16-improved-error-messages-sarif-output",
+    "published": "2026-04-28T07:16:25+00:00",
+    "fetched_at": "2026-04-28T07:34:55.306870+00:00",
+    "summary": "I work at Red Hat on the GNU Compiler Collection (GCC) . GCC 16 is about to be released, so I'm sharing some of the new features I worked on this year. Some changes are visible to users, while others improve the system more subtly.",
+    "tags": [
+      "deployment",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-04-28",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "GCC error messages have a hierarchical structure to them. In GCC 15, I added an experimental option that shows this structure as a collection of nested bullet points.",
+      "In GCC 16, this behavior is now the default. You can return to the previous behavior using -fno-diagnostics-show-nesting or -fdiagnostics-plain-output . I fixed several bugs and made use of the hierarchical structure in ",
+      "void test(int i, int j, void *ptr, int k);",
+      "void foo::test(int i, int j, const void *ptr, int k)",
+      "<source>:8:6: error: no declaration matches 'void foo::test(int, int, const void*, int)'",
+      "8 | void foo::test(int i, int j, const void *ptr, int k)",
+      "<source>:4:10: note: candidate is: 'void foo::test(int, int, void*, int)'",
+      "4 | void test(int i, int j, void *ptr, int k);"
+    ],
+    "sections": {
+      "overview": "I work at Red Hat on the GNU Compiler Collection (GCC) . GCC 16 is about to be released, so I'm sharing some of the new features I worked on this year. Some changes are visible to users, while others improve the system more subtly.",
+      "technical_breakdown": "For example, when reporting a missing return *this in an assignment operator:\n\n namespace foo { \nnamespace bar { \nclass foo { \n foo&\n operator= (const foo &other)\n {\n m_val = other.m_val;\n }\n int m_val;\n};\n} // namespace bar\n} // namespace foo The SARIF output now captures the nested structure of logical locations.\n\nThis allows a SARIF viewer to filter for diagnostics within the foo::bar namespace:\n\n \"logicalLocations\": [{\"name\": \"foo\",\n \"fullyQualifiedName\": \"foo\",\n \"kind\": \"namespace\",\n \"index\": 0},\n {\"name\": \"bar\",\n \"fullyQualifiedName\": \"foo::bar\",\n \"kind\": \"namespace\",\n \"parentIndex\": 0,\n \"index\": 1},\n {\"name\": \"baz\",\n \"kind\": \"type\",\n \"parentIndex\": 1,\n \"index\": 2},\n {\"name\": \"operator=\",\n \"fullyQualifiedName\": \"foo::bar::baz::operator=\",\n \"decoratedName\": \"_ZN3foo3bar3bazaSERKS1_\",\n \"kind\": \"function\",\n \"parentIndex\": 2,\n \"index\": 3}] GCC 16 also adds data to SARIF output to better express non-standard control flow (such as exception-handling and longjmp ) within code paths.\n\nIf you press j and k , you can move forward and backward through the path, with diagrams showing the predicted state of memory at each event, and what pointers are pointing to what buffers (Figure 3).\n\nFigure 3: An experimental GCC state diagram visualizing the heap and stack memory transitions, illustrating a pointer referencing a freed buffer.\n\nI also updated the data structure that tracks simulated memory buffer contents, replacing a rather clunky hashing approach with a simple std::map from bit ranges to contents.",
+      "impact": "Some changes are visible to users, while others improve the system more subtly. The new code has much clearer separation of concerns (between places in the user's code versus operations that occur on the transitions between these places), and I'm already finding it makes it easier to add new features. My colleague Andrew MacLeod has spent several years on a project called Ranger to improve how GCC tracks properties of values in the user's code for use by the optimizer.\n\nClassified impact band: high. Affected layer signal: general production.",
+      "resolution": "I fixed several bugs and made use of the hierarchical structure in more places.\n\nStatic analyzer improvements The visualization made it easier to spot and fix problems in the analyzer, leading to several internal improvements in GCC 16.",
+      "lessons_learned": "Some changes are visible to users, while others improve the system more subtly.\n\nNew C++ error improvements A well-known challenge for C++ developers is the readability of template-related error messages.\n\nGCC 16 includes several improvements to the generated SARIF output.\n\nThis allows a SARIF viewer to filter for diagnostics within the foo::bar namespace:\n\n \"logicalLocations\": [{\"name\": \"foo\",\n \"fullyQualifiedName\": \"foo\",\n \"kind\": \"namespace\",\n \"index\": 0},\n {\"name\": \"bar\",\n \"fullyQualifiedName\": \"foo::bar\",\n \"kind\": \"namespace\",\n \"parentIndex\": 0,\n \"index\": 1},\n {\"name\": \"baz\",\n \"kind\": \"type\",\n \"parentIndex\": 1,\n \"index\": 2},\n {\"name\": \"operator=\",\n \"fullyQualifiedName\": \"foo::bar::baz::operator=\",\n \"decoratedName\": \"_ZN3foo3bar3bazaSERKS1_\",\n \"kind\": \"function\",\n \"parentIndex\": 2,\n \"index\": 3}] GCC 16 also adds data to SARIF output to better express non-standard control flow (such as exception-handling and longjmp ) within code paths.",
+      "root_cause_highlight": "",
+      "incident_timeline": "GCC error messages have a hierarchical structure to them. In GCC 15, I added an experimental option that shows this structure as a collection of nested bullet points.\nIn GCC 16, this behavior is now the default. You can return to the previous behavior using -fno-diagnostics-show-nesting or -fdiagnostics-plain-output . I fixed several bugs and made use of the hierarchical structure in \nvoid test(int i, int j, void *ptr, int k);\nvoid foo::test(int i, int j, const void *ptr, int k)\n<source>:8:6: error: no declaration matches 'void foo::test(int, int, const void*, int)'\n8 | void foo::test(int i, int j, const void *ptr, int k)\n<source>:4:10: note: candidate is: 'void foo::test(int, int, void*, int)'\n4 | void test(int i, int j, void *ptr, int k);",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "I work at Red Hat on the GNU Compiler Collection (GCC) . Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "4b3b31d06afd11c0",
+    "title": "OpenShift AI observability summarizer: Transform metrics into meaning",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/28/openshift-ai-observability-summarizer-transform-metrics-meaning",
+    "published": "2026-04-28T07:16:23+00:00",
+    "fetched_at": "2026-04-28T07:34:55.308918+00:00",
+    "summary": "Every SRE knows the feeling. You open Grafana, stare at 14 panels of time-series data, and try to answer one deceptively simple question: Is anything wrong?",
+    "tags": [
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-04-28",
+    "impact": "critical",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Every SRE knows the feeling. You open Grafana, stare at 14 panels of time-series data, and try to answer one deceptively simple question: Is anything wrong?",
+      "Dashboards are excellent at displaying data. They are far less effective at conveying meaning. As Red Hat OpenShift clusters grow with dozens of namespaces, GPU-accelerated AI workloads, and vLLM inference services, the ",
+      "We asked a different question: What if the system could combine that data for you?",
+      "Intent extraction: Understanding what you are really asking When a user asks, \"How are my GPUs doing?,\" the system does not simply search for metrics containing the word GPU. It classifies the intent behind the question ",
+      "Intent Example question Query strategy current_value \"What is the GPU temperature?\" Instant query count \"How many pods are running?\" Aggregated count average \"What is average CPU usage?\" avg() over time range percentile ",
+      "Metric discovery: Signal selection at scale This layer is where the core design work lives. An OpenShift cluster running GPU-accelerated workloads can expose thousands of Prometheus metrics. Most of these metrics are irr",
+      "Instead, the system queries Prometheus at startup for metrics that match configurable vendor prefixes. It detects the primary GPU vendor present in the cluster and merges discovered GPU metrics into the catalog with the ",
+      "Semantic scoring When a user asks a question, the system ranks candidate metrics using a relevance scoring system. Each metric is scored across four dimensions:"
+    ],
+    "sections": {
+      "overview": "Every SRE knows the feeling. You open Grafana, stare at 14 panels of time-series data, and try to answer one deceptively simple question: Is anything wrong? Dashboards are excellent at displaying data.",
+      "technical_breakdown": "Intent Example question Query strategy current_value \"What is the GPU temperature?\" Instant query count \"How many pods are running?\" Aggregated count average \"What is average CPU usage?\" avg() over time range percentile \"What is P95 latency?\" histogram_quantile() top_n \"Which pods use the most memory?\" topk() comparison \"Compare latency across models\" Multi-series query trend \"How has GPU utilization changed?\" Range query with slope analysis rate \"What is token throughput?\" rate() or increase() This classification is important because the same metric requires different PromQL depending on the user intent.\n\nThese are organized into 19 categories, including Cluster Health , Node Hardware , Pods & Containers , GPU & AI/ML , Networking , and Storage .\n\nTempo trace inspection combined with kube-state-metrics reveals crashing pods as the root cause of request slowness.\n\nContainer logs show the exact error and code location, completing the metrics-traces-logs correlation chain.\n\nPlatform teams end up mentally stitching together CPU utilization graphs, pod restart counts, GPU temperatures, and request queue depths.",
+      "impact": "The pipeline flows through five distinct layers:\n\n Intent extraction: Classifying what the user asks. Intent extraction: Understanding what you are really asking When a user asks, \"How are my GPUs doing?,\" the system does not simply search for metrics containing the word GPU. Intent Example question Query strategy current_value \"What is the GPU temperature?\" Instant query count \"How many pods are running?\" Aggregated count average \"What is average CPU usage?\" avg() over time range percentile \"What is P95 latency?\" histogram_quantile() top_n \"Which pods use the most memory?\" topk() comparison \"Compare latency across models\" Multi-series query trend \"How has GPU utilization changed?\" Range query with slope analysis rate \"What is token throughput?\" rate() or increase() This classification is important because the same metric requires different PromQL depending on the user intent. Semantic keywords: These are generated through a five-tier relevance system to enable fast matching against user queries.\n\nClassified impact band: critical. Affected layer signal: platform — kubernetes.",
+      "resolution": "AMD uses its own prefix conventions.\n\nInstead, the system queries Prometheus at startup for metrics that match configurable vendor prefixes.\n\nTo prepare for new metric naming conventions, platform teams can supply additional prefixes via environment variables: GPU_METRICS_PREFIX_NVIDIA , GPU_METRICS_PREFIX_INTEL , and GPU_METRICS_PREFIX_AMD .\n\nCustom prefixes extend the built-in defaults instead of replacing them.",
+      "lessons_learned": "The intent layer prevents these errors at the source.\n\nThis prevents errors that lead to incorrect data.\n\nThe system provides a summary of vLLM metrics with recommendations, as shown in Figure 4.\n\nThis prevents the model from processing hundreds of individual time-series, which reduces noise.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Every SRE knows the feeling. You open Grafana, stare at 14 panels of time-series data, and try to answer one deceptively simple question: Is anything wrong?\nDashboards are excellent at displaying data. They are far less effective at conveying meaning. As Red Hat OpenShift clusters grow with dozens of namespaces, GPU-accelerated AI workloads, and vLLM inference services, the \nWe asked a different question: What if the system could combine that data for you?\nIntent extraction: Understanding what you are really asking When a user asks, \"How are my GPUs doing?,\" the system does not simply search for metrics containing the word GPU. It classifies the intent behind the question \nIntent Example question Query strategy current_value \"What is the GPU temperature?\" Instant query count \"How many pods are running?\" Aggregated count average \"What is average CPU usage?\" avg() over time range percentile \nMetric discovery: Signal selection at scale This layer is where the core design work lives. An OpenShift cluster running GPU-accelerated workloads can expose thousands of Prometheus metrics. Most of these metrics are irr\nInstead, the system queries Prometheus at startup for metrics that match configurable vendor prefixes. It detects the primary GPU vendor present in the cluster and merges discovered GPU metrics into the catalog with the \nSemantic scoring When a user asks a question, the system ranks candidate metrics using a relevance scoring system. Each metric is scored across four dimensions:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Every SRE knows the feeling. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "97790bc1c5b7e940",
+    "title": "Build .NET container images with Tekton",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/28/build-net-container-images-tekton",
+    "published": "2026-04-28T07:16:21+00:00",
+    "fetched_at": "2026-04-28T07:34:55.310043+00:00",
+    "summary": "Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you're using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.",
+    "tags": [
+      "deployment",
+      "kubernetes"
+    ],
+    "day": "2026-04-28",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you're using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile. In this post, we'll walk through setting up a minimal Tekton pipeline that clones a .NET application from Git, builds a container image, and pushes it to quay.io .",
+      "technical_breakdown": "Run the pipeline Create a PipelineRun to execute the pipeline:\n\n apiVersion: tekton.dev/v1\nkind: PipelineRun\nmetadata:\n generateName: dotnet-build-image-\nspec:\n pipelineRef:\n name: dotnet-build-image\n params:\n - name: git-url\n value: https://github.com/redhat-developer/s2i-dotnetcore-ex\n - name: image-name\n value: quay.io/<your-quay-username>/s2i-dotnetcore-ex\n workspaces:\n - name: source\n volumeClaimTemplate:\n spec:\n accessModes:\n - ReadWriteOnce\n resources:\n requests:\n storage: 1Gi Now, start the pipeline run:\n\n kubectl create -f pipelinerun.yaml You can follow the progress with the Tekton CLI:\n\n tkn pipelinerun logs --last -f Once complete, the image will be available at quay.io/<your-quay-username>/s2i-dotnetcore-ex .\n\nTekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources.\n\nIf you're using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.\n\nIn this post, we'll walk through setting up a minimal Tekton pipeline that clones a .NET application from Git, builds a container image, and pushes it to quay.io .\n\nHow the task works The dotnet-publish-image Tekton task uses .NET's built-in container publishing support to build and push container images.",
+      "impact": "Note that the username for a robot account is your quay.io username prefixed to the robot name (e.g., myuser+myrobot ):\n\n kubectl create secret docker-registry quay-credentials \\\n --docker-server=quay.io \\\n --docker-username=\"<username>+<robot-name>\" \\\n --docker-password=\"<robot-token>\" Finally, link the secret to the pipeline service account so Tekton can provide it to all pipeline tasks:\n\n oc secret link pipeline quay-credentials\n# or: kubectl patch serviceaccount pipeline -p '{\"secrets\": [{\"name\": \"quay-credentials\"}]}' Alternatively, instead of linking the secret to the ServiceAccount , you can pass the credentials directly to the dotnet-publish-image task using its optional dockerconfig workspace. Run the pipeline Create a PipelineRun to execute the pipeline:\n\n apiVersion: tekton.dev/v1\nkind: PipelineRun\nmetadata:\n generateName: dotnet-build-image-\nspec:\n pipelineRef:\n name: dotnet-build-image\n params:\n - name: git-url\n value: https://github.com/redhat-developer/s2i-dotnetcore-ex\n - name: image-name\n value: quay.io/<your-quay-username>/s2i-dotnetcore-ex\n workspaces:\n - name: source\n volumeClaimTemplate:\n spec:\n accessModes:\n - ReadWriteOnce\n resources:\n requests:\n storage: 1Gi Now, start the pipeline run:\n\n kubectl create -f pipelinerun.yaml You can follow the progress with the Tekton CLI:\n\n tkn pipelinerun logs --last -f Once complete, the image will be available at quay.io/<your-quay-username>/s2i-dotnetcore-ex . To control how many completed runs are retained, you can configure Tekton Pruner with history-based or time-based policies—either globally, per namespace, or scoped to specific pipelines using label selectors.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Note that the username for a robot account is your quay.io username prefixed to the robot name (e.g., myuser+myrobot ):\n\n kubectl create secret docker-registry quay-credentials \\\n --docker-server=quay.io \\\n --docker-username=\"<username>+<robot-name>\" \\\n --docker-password=\"<robot-token>\" Finally, link the secret to the pipeline service account so Tekton can provide it to all pipeline tasks:\n\n oc secret link pipeline quay-credentials\n# or: kubectl patch serviceaccount pipeline -p '{\"secrets\": [{\"name\": \"quay-credentials\"}]}' Alternatively, instead of linking the secret to the ServiceAccount , you can pass the credentials directly to the dotnet-publish-image task using its optional dockerconfig workspace.",
+      "lessons_learned": "Install them using the Tekton CLI:\n\n tkn hub install task git-clone\ntkn hub install task dotnet-publish-image --type artifact --from redhat-tekton-tasks Set up the image repository We will push our example application to quay.io using a robot account.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you're using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "f298cc0d4757662f",
+    "title": "Exploring distroless containers with Project Hummingbird",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/28/exploring-distroless-containers-project-hummingbird",
+    "published": "2026-04-28T07:16:18+00:00",
+    "fetched_at": "2026-04-28T07:34:55.311975+00:00",
+    "summary": "Project Hummingbird container images are standard container images. These images fit into your existing workflow and tools with minimal disruption and act as drop-in replacements for other container images you might be used to, such as those from Docker Hub.",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-28",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "data store",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "This article answers these questions using concrete examples run on Fedora Linux with the podman command in rootless mode . For readability, this article omits most command outputs, including them only to highlight speci",
+      "mariadb -hdbserver-hub -uroot -ps3cret@hub From now on, you can use database administrator commands, such as CREATE DATABASE, to initialize your test database.",
+      "-p 127.0.0.1:8000:80 --network network-hub \\",
+      "docker.io/library/nginx:1.28 I set up port forwarding so you can test the application in a local web browser. For simplicity, you can verify that your web server is up and running by using curl :",
+      "$ curl 127.0.0.1:8000",
+      "-p 127.0.0.1:8001:8080 --network network-bird \\",
+      "$ curl 127.0.0.1:8001",
+      "31 While it might be interesting to compare the number of binary files between Project Hummingbird and Docker Hub containers (such as commands, shared libraries, and even the container image size), be aware that these ar"
+    ],
+    "sections": {
+      "overview": "Project Hummingbird container images are standard container images. These images fit into your existing workflow and tools with minimal disruption and act as drop-in replacements for other container images you might be used to, such as those from Docker Hub. But Project Hummingbird container images are distroless .",
+      "technical_breakdown": "You wouldn't usually expose your database to the world, so I'm not using port forwarding; I'm using a local virtual network instead.\n\n $ podman network create network-hub\n$ podman pull docker.io/library/mariadb:11.8\n$ podman run --name dbserver-hub -d \\\n--network network-hub \\\n-e MARIADB_ROOT_PASSWORD=s3cret@hub \\\ndocker.io/library/mariadb:11.8 You can then start another container to run the database client from the same database container image:\n\n $ podman run --name dbclient-hub --rm -it \\\n--network network-hub \\\ndocker.io/library/mariadb:11.8 \\\nmariadb -hdbserver-hub -uroot -ps3cret@hub From now on, you can use database administrator commands, such as CREATE DATABASE, to initialize your test database.\n\nI changed names of containers, local networks, local ports, and the database password so you can run both side-by-side.\n\n $ podman network create network-bird\n$ podman pull registry.access.redhat.com/hi/mariadb:11.8\n$ podman run --name dbserver-bird -d \\\n--network network-bird \\\n-e MARIADB_ROOT_PASSWORD=s3cret@bird \\\nregistry.access.redhat.com/hi/mariadb:11.8\n$ # give a few moments for the database server initialization\n$ podman run --name dbclient-bird --rm -it \\\n--network network-bird \\\nregistry.access.redhat.com/hi/mariadb:11.8 \\\nmariadb -hdbserver-bird -uroot -ps3cret@bird Project Hummingbird images might not function exactly like their counterparts on DockerHub.\n\nAvailable images include programming language runtimes (Python, Go, Node.js, Rust, PHP), databases (PostgreSQL, MariaDB), web servers (httpd, Caddy, nginx), tools (curl, git), and base runtime images.\n\nYou can adapt my examples to any environment that runs Open Container Initiative (OCI)-compliant containers, including Ubuntu Linux, Windows, and macOS using Podman Desktop or Docker Community Edition.\n\nRunning a database server with Project Hummingbird Let's start by showing a few typical tasks for a developer using containers to illustrate how many Project Hummingbird images fit into existing tools and workflows.",
+      "impact": "Red Hat Enterprise Linux and Red Hat OpenShift users receive support for Red Hat Hardened Images containers under their standard service-level agreement (SLA). You wouldn't usually expose your database to the world, so I'm not using port forwarding; I'm using a local virtual network instead.\n\n $ podman network create network-hub\n$ podman pull docker.io/library/mariadb:11.8\n$ podman run --name dbserver-hub -d \\\n--network network-hub \\\n-e MARIADB_ROOT_PASSWORD=s3cret@hub \\\ndocker.io/library/mariadb:11.8 You can then start another container to run the database client from the same database container image:\n\n $ podman run --name dbclient-hub --rm -it \\\n--network network-hub \\\ndocker.io/library/mariadb:11.8 \\\nmariadb -hdbserver-hub -uroot -ps3cret@hub From now on, you can use database administrator commands, such as CREATE DATABASE, to initialize your test database. I changed names of containers, local networks, local ports, and the database password so you can run both side-by-side.\n\n $ podman network create network-bird\n$ podman pull registry.access.redhat.com/hi/mariadb:11.8\n$ podman run --name dbserver-bird -d \\\n--network network-bird \\\n-e MARIADB_ROOT_PASSWORD=s3cret@bird \\\nregistry.access.redhat.com/hi/mariadb:11.8\n$ # give a few moments for the database server initialization\n$ podman run --name dbclient-bird --rm -it \\\n--network network-bird \\\nregistry.access.redhat.com/hi/mariadb:11.8 \\\nmariadb -hdbserver-bird -uroot -ps3cret@bird Project Hummingbird images might not function exactly like their counterparts on DockerHub. Running a web server with Project Hummingbird Next, suppose you need a web server container to run a client-side HTML application.\n\nClassified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Using alternative non-GNU shells and utilities does not necessarily improve security and might even reduce it.\n\nWhile hardening requires minor changes to Containerfiles and workflows, it's a relatively small price to pay for peace of mind and better integration with secure development processes.\n\nA future article will focus on using Project Hummingbird images, including builder variants, and trusted libraries from the Calunga project to improve application security.\n\nIt provides the infrastructure Project Hummingbird uses to operationalize its software development lifecycle and offers capabilities like provenance and attestation to help you avoid tampering risks and improve auditability.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. The following example lists the artifacts included in the MariaDB database image using its SBOM.\n\n $ cosign download sbom --platform linux/amd64 registry.access.redhat.com/hi/nginx:1.28 > webserver-bird.sbom\n$ cat webserver-bird.sbom | jq -r '.packages[].name' | sort | uniq | wc -l\n50 An SBOM is expected to contain duplicated names because it describes the complete dependency graph of all included software artifacts. Available images include programming language runtimes (Python, Go, Node.js, Rust, PHP), databases (PostgreSQL, MariaDB), web servers (httpd, Caddy, nginx), tools (curl, git), and base runtime images. Running a database server with Project Hummingbird Let's start by showing a few typical tasks for a developer using containers to illustrate how many Project Hummingbird images fit into existing tools and workflows.",
+      "incident_timeline": "This article answers these questions using concrete examples run on Fedora Linux with the podman command in rootless mode . For readability, this article omits most command outputs, including them only to highlight speci\nmariadb -hdbserver-hub -uroot -ps3cret@hub From now on, you can use database administrator commands, such as CREATE DATABASE, to initialize your test database.\n-p 127.0.0.1:8000:80 --network network-hub \\\ndocker.io/library/nginx:1.28 I set up port forwarding so you can test the application in a local web browser. For simplicity, you can verify that your web server is up and running by using curl :\n$ curl 127.0.0.1:8000\n-p 127.0.0.1:8001:8080 --network network-bird \\\n$ curl 127.0.0.1:8001\n31 While it might be interesting to compare the number of binary files between Project Hummingbird and Docker Hub containers (such as commands, shared libraries, and even the container image size), be aware that these ar",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Project Hummingbird container images are standard container images. These images fit into your existing workflow and tools with minimal disruption and act as drop-in replacements for other container images you might be used to, such as those from Docker Hub.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build .NET container images with Tekton — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-28.html" class="back-link">← 28 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">28 April 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Build .NET container images with Tekton</h1>
+
+      <p class="subtitle">Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you&#39;re using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>general reliability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you&#39;re using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources. If you&#39;re using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile. In this post, we&#39;ll walk through setting up a minimal Tekton pipeline that clones a .NET application from Git, builds a container image, and pushes it to quay.io .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Run the pipeline Create a PipelineRun to execute the pipeline:</p>
+<p>apiVersion: tekton.dev/v1 kind: PipelineRun metadata:  generateName: dotnet-build-image- spec:  pipelineRef:  name: dotnet-build-image  params:  - name: git-url  value: https://github.com/redhat-developer/s2i-dotnetcore-ex  - name: image-name  value: quay.io/&lt;your-quay-username&gt;/s2i-dotnetcore-ex  workspaces:  - name: source  volumeClaimTemplate:  spec:  accessModes:  - ReadWriteOnce  resources:  requests:  storage: 1Gi Now, start the pipeline run:</p>
+<p>kubectl create -f pipelinerun.yaml You can follow the progress with the Tekton CLI:</p>
+<p>tkn pipelinerun logs --last -f Once complete, the image will be available at quay.io/&lt;your-quay-username&gt;/s2i-dotnetcore-ex .</p>
+<p>Tekton is a Kubernetes-native CI/CD framework that lets you define pipelines as Kubernetes resources.</p>
+<p>If you&#39;re using Tekton to build and deploy .NET applications, the dotnet-publish-image task lets you build and push container images directly using the .NET SDK without writing a Dockerfile.</p>
+<p>In this post, we&#39;ll walk through setting up a minimal Tekton pipeline that clones a .NET application from Git, builds a container image, and pushes it to quay.io .</p>
+<p>How the task works The dotnet-publish-image Tekton task uses .NET&#39;s built-in container publishing support to build and push container images.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Note that the username for a robot account is your quay.io username prefixed to the robot name (e.g., myuser+myrobot ):</p>
+<p>kubectl create secret docker-registry quay-credentials \  --docker-server=quay.io \  --docker-username=&#34;&lt;username&gt;+&lt;robot-name&gt;&#34; \  --docker-password=&#34;&lt;robot-token&gt;&#34; Finally, link the secret to the pipeline service account so Tekton can provide it to all pipeline tasks:</p>
+<p>oc secret link pipeline quay-credentials # or: kubectl patch serviceaccount pipeline -p &#39;{&#34;secrets&#34;: [{&#34;name&#34;: &#34;quay-credentials&#34;}]}&#39; Alternatively, instead of linking the secret to the ServiceAccount , you can pass the credentials directly to the dotnet-publish-image task using its optional dockerconfig workspace. Run the pipeline Create a PipelineRun to execute the pipeline:</p>
+<p>apiVersion: tekton.dev/v1 kind: PipelineRun metadata:  generateName: dotnet-build-image- spec:  pipelineRef:  name: dotnet-build-image  params:  - name: git-url  value: https://github.com/redhat-developer/s2i-dotnetcore-ex  - name: image-name  value: quay.io/&lt;your-quay-username&gt;/s2i-dotnetcore-ex  workspaces:  - name: source  volumeClaimTemplate:  spec:  accessModes:  - ReadWriteOnce  resources:  requests:  storage: 1Gi Now, start the pipeline run:</p>
+<p>kubectl create -f pipelinerun.yaml You can follow the progress with the Tekton CLI:</p>
+<p>tkn pipelinerun logs --last -f Once complete, the image will be available at quay.io/&lt;your-quay-username&gt;/s2i-dotnetcore-ex . To control how many completed runs are retained, you can configure Tekton Pruner with history-based or time-based policies—either globally, per namespace, or scoped to specific pipelines using label selectors.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Note that the username for a robot account is your quay.io username prefixed to the robot name (e.g., myuser+myrobot ):</p>
+<p>kubectl create secret docker-registry quay-credentials \  --docker-server=quay.io \  --docker-username=&#34;&lt;username&gt;+&lt;robot-name&gt;&#34; \  --docker-password=&#34;&lt;robot-token&gt;&#34; Finally, link the secret to the pipeline service account so Tekton can provide it to all pipeline tasks:</p>
+<p>oc secret link pipeline quay-credentials # or: kubectl patch serviceaccount pipeline -p &#39;{&#34;secrets&#34;: [{&#34;name&#34;: &#34;quay-credentials&#34;}]}&#39; Alternatively, instead of linking the secret to the ServiceAccount , you can pass the credentials directly to the dotnet-publish-image task using its optional dockerconfig workspace.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Install them using the Tekton CLI:</p>
+<p>tkn hub install task git-clone tkn hub install task dotnet-publish-image --type artifact --from redhat-tekton-tasks Set up the image repository We will push our example application to quay.io using a robot account.</p>
+        </div>
+      </div>
+
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>This item contributes to the broader reliability narrative for production engineering teams.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/28/build-net-container-images-tekton" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
