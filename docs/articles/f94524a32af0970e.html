@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boosting speed: Use eBPF and netstacklat to troubleshoot latency — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-29.html" class="back-link">← 29 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">29 April 2026, 02:01</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Boosting speed: Use eBPF and netstacklat to troubleshoot latency</h1>
+
+      <p class="subtitle">Needless waiting is annoying. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>networking</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Needless waiting is annoying. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Needless waiting is annoying. It gets in the way of what we&#39;re trying to do, and slows everything down. This is especially true for computer applications.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>When a network packet arrives at the network interface on its destined host, the packet data still must be transferred from the network card to the CPU, pass through the kernel&#39;s network stack to be queued on the correct socket, and then actually read from the socket by the application.</p>
+<p>If the issue is between tcp-socket-enqueued and tcp-start , the TCP layer processing is slow, and if it&#39;s between ip-start and tcp-start , then the latency is added at the IP layer, for example by the Netfilter firewall subsystem.</p>
+<p>The core idea behind how to turn these hook points into a latency measurement originally came from Jesper Dangaard Brouer: If any application socket requests to receive software timestamps for incoming packets with SOF_TIMESTAMPING_RX_SOFTWARE , the kernel will, early on in the network stack, record a timestamp and attach it to each packet.</p>
+<p>Specifically, netstacklat can track the time between when the packet entered the kernel and was timestamped, up to one of the following points (as output by the utility itself):</p>
+<p>$ netstacklat --list-probes available hooks:  ip-start: packet has reached the IP-stack, i.e. past the traffic control layer  tcp-start: packet has reached the local TCP-stack, i.e. past the IP (and routing) stack  udp-start: packet has reached the local UDP-stack, i.e. past the IP (and routing) stack  tcp-socket-enqueued: packet has been enqueued to a TCP socket, i.e. end of the kernel receive stack  udp-socket-enqueued: packed has been enqueued to a UDP socket, i.e. end of the kernel receive stack  tcp-socket-read: packet payload has been read from TCP socket, i.e. delivered to user space  udp-socket-read: packet payload has been read from UDP socket, i.e. delivered to user space To illustrate what this means, Figure 1 shows the packet path of the Linux kernel.</p>
+<p>If the tcp-socket-read latency is high, we know there&#39;s added latency somewhere in the kernel.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>For commercial web sites, making customers wait needlessly results in a measurable loss of customer business, as Google and Amazon first discovered almost 20 years ago . Specifically, netstacklat can track the time between when the packet entered the kernel and was timestamped, up to one of the following points (as output by the utility itself):</p>
+<p>$ netstacklat --list-probes available hooks:  ip-start: packet has reached the IP-stack, i.e. past the traffic control layer  tcp-start: packet has reached the local TCP-stack, i.e. past the IP (and routing) stack  udp-start: packet has reached the local UDP-stack, i.e. past the IP (and routing) stack  tcp-socket-enqueued: packet has been enqueued to a TCP socket, i.e. end of the kernel receive stack  udp-socket-enqueued: packed has been enqueued to a UDP socket, i.e. end of the kernel receive stack  tcp-socket-read: packet payload has been read from TCP socket, i.e. delivered to user space  udp-socket-read: packet payload has been read from UDP socket, i.e. delivered to user space To illustrate what this means, Figure 1 shows the packet path of the Linux kernel. To test this, we run a load test against an nginx server using oha , while simultaneously monitoring it with netstacklat .</p>
+<p>$ oha -c 1000 -q 15000 -z 2m -w --no-tui -u ms http://10.70.2.1:4242/pi_10k.html Summary:  Success rate: 100.00%  Total: 120124.1787 ms  Slowest: 24985.3176 ms # This is terrible! There&#39;s also a small fraction of entries in the multi-second region, reflecting the high 99.9 percentiles it was reporting.</p>
+<p>Classified impact band: critical. Affected layer signal: networking.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>While there&#39;s still much work to be done to reduce network latency across all our networks, thanks to the phenomenal work of Dave T ht and many of his collaborators at the Bufferbloat project , we now have good solutions to prevent some of the worst network latency issues (getting people to actually use those solutions is another matter though).</p>
+<p>Fri Sep 19 17:55:56 2025 ip-start: (128ns, 256ns] 416363 |@@@@@@@@@@ | (256ns, 512ns] 1960357 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@| (512ns, 1.02us] 1599772 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ | (1.02us, 2.05us] 540108 |@@@@@@@@@@@@@ | (2.05us, 4.1us] 26613 |@ | (4.1us, 8.19us] 8547 | | (8.19us, 16.4us] 3 | | (16.4us, 32.8us] 0 | | (32.8us, 65.5us] 1 | | count: 4551764, average: 596.68ns tcp-start: (32.8us, 65.5us] 2985648 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@| (65.5us, 131us] 1018633 |@@@@@@@@@@@@@@@@ | (131us, 262us] 480952 |@@@@@@@@ | (262us, 524us] 66530 |@ | (524us, 1.05ms] 1 | | count: 4551764, average: 89.58us tcp-socket-enqueued: (32.8us, 65.5us] 637278 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ | (65.5us, 131us] 743314 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@| (131us, 262us] 377210 |@@@@@@@@@@@@@@@@@@@@@@@@ | (262us, 524us] 43755 |@@@ | (524us, 1.05ms] 3 | | count: 1801560, average: 109.30us tcp-socket-read: (32.8us, 65.5us] 2 | | (65.5us, 131us] 89619 |@@@@@@@@ | (131us, 262us] 244998 |@@@@@@@@@@@@@@@@@@@@@@ | (262us, 524us] 457758 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ | (524us, 1.05ms] 532210 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@| (1.05ms, 2.1ms] 355492 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ | (2.1ms, 4.19ms] 98446 |@@@@@@@@@ | (4.19ms, 8.39ms] 8798 |@ | (8.39ms, 16.8ms] 3242 | | (16.8ms, 33.6ms] 4861 | | (33.6ms, 67.1ms] 4266 | | (67.1ms, 134ms] 252 | | (134ms, 268ms] 48 | | count: 1799992, average: 1.02ms Much better!</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>However, from the point when an application writes data into its socket until the data can be consumed on the opposite end of the connection, the total end-to-end latency doesn&#39;t only depend on the network. When a networ</li>
+            <li>The core idea behind how to turn these hook points into a latency measurement originally came from Jesper Dangaard Brouer: If any application socket requests to receive software timestamps for incoming packets with SOF_T</li>
+            <li>Specifically, netstacklat can track the time between when the packet entered the kernel and was timestamped, up to one of the following points (as output by the utility itself):</li>
+            <li>A small netstacklat demo To see how netstacklat can be used in practice, let&#39;s walk through a small latency analysis. Everyone likes pi, so we&#39;ve set up an nginx server that serves a small (10 kB) web page containing the</li>
+            <li>$ oha -c 1000 -q 15000 -z 2m -w --no-tui -u ms http://10.70.2.1:4242/pi_10k.html</li>
+            <li>Slowest: 24985.3176 ms # This is terrible!</li>
+            <li>Fastest: 0.5899 ms # Some responses were very fast...</li>
+            <li>Requests/sec: 9036.0992</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/29/boosting-speed-use-ebpf-and-netstacklat-troubleshoot-latency" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

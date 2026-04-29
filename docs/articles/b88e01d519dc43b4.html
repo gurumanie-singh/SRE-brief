@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How we turned Storybook into a behavioral verification engine — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-29.html" class="back-link">← 29 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">29 April 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">How we turned Storybook into a behavioral verification engine</h1>
+
+      <p class="subtitle">This is part 3 of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">database</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>database issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">This is part 3 of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>This is part 3 of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready. In part 2 , we covered delivery: the migration strategy.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>When the SDK updates a response shape, the factory breaks at compile time.</p>
+<p>// DO: Factory calls — typed, reusable, version-aware handlers: [...v2RolesHandlers()] // happy path, default seed data handlers: [...v2RolesHandlers(customRoles, { onList: spy })] // custom data + spy callback handlers: [...groupsHandlers([])] // empty state handlers: [...groupsErrorHandlers(500)] // error state handlers: [...v2RolesLoadingHandlers()] // loading state (skeleton screens) // DONT: Inline handlers — untyped, duplicated, invisible to SDK updates parameters: {  msw: {  handlers: [  http.get(&#39;/api/rbac/v2/roles/&#39;, () =&gt;  HttpResponse.json({ data: [{ name: &#39;Admin&#39;, uuid: &#39;123&#39; }] })  ),  ],  }, }, One factory update fixes every story that uses it.</p>
+<p>By the twentieth test, you have twenty slightly different implementations of &#34;open a modal and fill in a form.&#34;</p>
+<p>We extracted every reusable interaction into shared helpers and banned the inline alternatives:</p>
+<p>// DO: Shared helpers — async-safe, reusable, maintained in one place const modal = await waitForModal(); await clickWizardNext(user, modal); await confirmDestructiveModal(user, { buttonLabel: /remove/i }); await selectTableRow(user, canvas, ROLE_TENANT_ADMIN.name); // DONT: Banned in play functions document.querySelector(&#39;[role=&#34;dialog&#34;]&#39;); // direct DOM access await delay(500); // arbitrary waits element.dispatchEvent(new MouseEvent(&#39;click&#39;)); // raw DOM events canvas.getByRole(&#39;button&#39;, { name: /save/i }); // sync query after async boundary The helpers enforce correct async patterns.</p>
+<p>These use stateful mock databases that support real create, read, update, and delete (CRUD) operations in memory—the handler factories read from and write to the same collection.</p>
+<p>The only thing that&#39;s simulated is the network.</p>
+<p>A combination of patterns (typed mock factories, seed data, interaction helpers, stateful databases, and step isolation) turns individual stories into executable specifications.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>When seed data changes, hardcoded strings silently break.</p>
+<p>// DO: Named constants — breaks visibly when seed data changes await canvas.findByText(ROLE_TENANT_ADMIN.name); await expandWorkspaceRow(user, canvas, WS_ROOT.name); // DONT: Hardcoded strings — silently wrong when seed data changes await canvas.findByText(&#39;Tenant admin&#39;); await expandWorkspaceRow(user, canvas, &#39;Root Workspace&#39;); Interaction helpers, not copy-paste The first test inlines every Document Object Model (DOM) query. By the twentieth test, you have twenty slightly different implementations of &#34;open a modal and fill in a form.&#34;</p>
+<p>We extracted every reusable interaction into shared helpers and banned the inline alternatives:</p>
+<p>// DO: Shared helpers — async-safe, reusable, maintained in one place const modal = await waitForModal(); await clickWizardNext(user, modal); await confirmDestructiveModal(user, { buttonLabel: /remove/i }); await selectTableRow(user, canvas, ROLE_TENANT_ADMIN.name); // DONT: Banned in play functions document.querySelector(&#39;[role=&#34;dialog&#34;]&#39;); // direct DOM access await delay(500); // arbitrary waits element.dispatchEvent(new MouseEvent(&#39;click&#39;)); // raw DOM events canvas.getByRole(&#39;button&#39;, { name: /save/i }); // sync query after async boundary The helpers enforce correct async patterns. The no-fake-layers principle Most user interface (UI) test suites mock at the wrong layer. After the third API change required updating dozens of files, we extracted the factories and never looked back.)</p>
+<p>Seed constants, not hardcoded strings Play functions (Storybook&#39;s mechanism for running user interactions) must never use string literals for entity names.</p>
+<p>Classified impact band: medium. Affected layer signal: data store.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>When the SDK updates a response shape, the factory breaks at compile time.</p>
+<p>// DO: Factory calls — typed, reusable, version-aware handlers: [...v2RolesHandlers()] // happy path, default seed data handlers: [...v2RolesHandlers(customRoles, { onList: spy })] // custom data + spy callback handlers: [...groupsHandlers([])] // empty state handlers: [...groupsErrorHandlers(500)] // error state handlers: [...v2RolesLoadingHandlers()] // loading state (skeleton screens) // DONT: Inline handlers — untyped, duplicated, invisible to SDK updates parameters: {  msw: {  handlers: [  http.get(&#39;/api/rbac/v2/roles/&#39;, () =&gt;  HttpResponse.json({ data: [{ name: &#39;Admin&#39;, uuid: &#39;123&#39; }] })  ),  ],  }, }, One factory update fixes every story that uses it.</p>
+<p>When the API changes, you update the factory and every consumer gets the fix.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Each one exists because we hit the problem it prevents.</p>
+<p>This prevents a category of flaky tests where a stale reference causes a later assertion to fail:</p>
+<p>play: async ({ canvasElement, step }) =&gt; {  const canvas = within(canvasElement);  await step(&#39;Navigate to roles list&#39;, async () =&gt; {  const table = await canvas.findByRole(&#39;grid&#39;);  await expect(within(table).findByText(FIRST_ROLE.name)).resolves.toBeInTheDocument();  });  await step(&#39;Create a new role&#39;, async () =&gt; {  await user.click(await canvas.findByRole(&#39;button&#39;, { name: /create role/i }));  const modal = await waitForModal();  await clearAndType(user, modal, /role name/i, &#39;New role&#39;);  await clickWizardNext(user, modal);  await expect(createRoleSpy).toHaveBeenCalled();  }); }; What the engine looks like at scale None of these patterns are remarkable on their own.</p>
+<p>Step isolation prevents flakiness.</p>
+<p>Learn more Red Hat Hybrid Cloud Console   Inventory Groups are now Workspaces   Read part 1: Engineering an AI-ready code base: Governance lessons from the Red Hat Hybrid Cloud Console   Read part 2: How we rewrote a production UI without stopping it    The post How we turned Storybook into a behavioral verification engine appeared first on Red Hat Developer .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: database issue. A combination of patterns (typed mock factories, seed data, interaction helpers, stateful databases, and step isolation) turns individual stories into executable specifications. Bugs ship because the mock boundary was too close to the component. If the error handling path has a bug, the test catches it because the error response comes through the same code path as a real one.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>This is part 3 of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready. In part 2 , we covered delivery: the migration strategy. This post details how we made the test suite trustwort</li>
+            <li>A common approach is to use Storybook to render components in isolation with static props. We use it to verify that the application behaves correctly end-to-end: real components, real routing, real data fetching, real pe</li>
+            <li>The no-fake-layers principle Most user interface (UI) test suites mock at the wrong layer. They replace data-fetching functions with static returns. The tests pass, but the integration between the component and the netwo</li>
+            <li>We use Mock Service Worker (MSW) to intercept HTTP requests at the browser level and return controlled responses. Each story exercises the full stack from the component down to the network boundary. If a component makes </li>
+            <li>Handler factories, not inline mocks The most common source of technical debt in test code is hardcoding mock responses inline. Each test defines its own data, with its own field names. When the API changes, you update th</li>
+            <li>await expandWorkspaceRow(user, canvas, &#39;Root Workspace&#39;); Interaction helpers, not copy-paste The first test inlines every Document Object Model (DOM) query. The second test copies the first. By the twentieth test, you h</li>
+            <li>await confirmDestructiveModal(user, { buttonLabel: /remove/i });</li>
+            <li>Step isolation in journey stories Component stories test individual surfaces. Journey stories test multi-step flows: create a role, see it appear, edit it, delete it, verify it&#39;s gone. These use stateful mock databases t</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/04/29/how-we-turned-storybook-behavioral-verification-engine" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
