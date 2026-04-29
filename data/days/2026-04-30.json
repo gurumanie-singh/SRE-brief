@@ -1,0 +1,49 @@
+[
+  {
+    "id": "f771f66e98382903",
+    "title": "Agents can now create Cloudflare accounts, buy domains, and deploy",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/agents-stripe-projects/",
+    "published": "2026-04-30T13:00:00+00:00",
+    "fetched_at": "2026-04-29T20:16:33.335672+00:00",
+    "summary": "Coding agents are great at building software. But to deploy to production they need three things from the cloud they want to host their app — an account, a way to pay, and an API token. Until now these have been tasks that humans handle directly. Increasingly, agents handle them on the user’s behalf. The agent needs to perform all the tasks a human customer can. They’re given higher-order...",
+    "tags": [
+      "database",
+      "kubernetes",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare",
+      "Stripe"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Authorization — the platform attests to the identity of the user, allowing providers to provision accounts or link existing ones, and securely issue credentials back to the agent.",
+      "The full set of Cloudflare products and services from other providers is long and growing — arguably overwhelming to humans. But for agents, this catalog of services is exactly the context they need. The agent chooses se",
+      "Remember how at the start, the user signed in to their Stripe account? Stripe acts as the identity provider, attesting to the user’s identity. Cloudflare automatically provisions a new account for the user if no account ",
+      "The protocol accounts for this in two ways. When an agent provisions a paid service, Stripe includes a payment token in the request to the Provider (Cloudflare). Raw payment details like credit card numbers aren’t ever s",
+      "Any platform with signed-in users can act as the “Orchestrator”, playing the same role Stripe does with Stripe Projects, and integrate with Cloudflare.",
+      "Your platform acts as the Orchestrator, with the already signed-in user. When your user needs a domain , a storage bucket , a sandbox to give their agent, or anything else , you make one API call to Cloudflare to provisi",
+      "Or let’s say you want Cloudflare customers to be able to easily provision your service, similar to how Cloudflare is partnering with Planetscale to make it possible to create Planetscale Postgres databases directly from "
+    ],
+    "sections": {
+      "overview": "Coding agents are great at building software. But to deploy to production they need three things from the cloud they want to host their app — an account, a way to pay, and an API token. Until now these have been tasks that humans handle directly.",
+      "technical_breakdown": "The agent chooses services to use from this catalog based on what the user has asked them to do and the user’s preferences — but the user needs no prior knowledge of what services are offered by which providers, and does not need to provide any input.\n\nThere’s no need to go to the dashboard, copy and paste API tokens, or enter credit card details.\n\nHow it works: zero to production without any setup or manual steps \n \n \n \n \n Install the Stripe CLI with the Stripe Projects plugin , login to Stripe, and then start a new project:\n\n stripe projects init \n Then prompt your agent to build something new and deploy it to a new domain.\n\nYou can watch a condensed two-minute video of this entire flow below:\n\n \n \n \n \n\n If the email you’re logged into Stripe with already has a Cloudflare account, you’ll be prompted with a typical OAuth flow to grant the agent access.\n\nIf there is no existing Cloudflare account for the email you’re logged in with, Cloudflare will provision an account automatically for you and your agent, without a human in the loop:\n\n \n \n You will see the agent build and deploy a site to a new Cloudflare account, and then use the Stripe Projects CLI to register the domain:\n\n \n \n The agent will prompt for input and approval when necessary.",
+      "impact": "Increasingly, agents handle them on the user’s behalf. The agent needs to perform all the tasks a human customer can. Starting today, agents can provision Cloudflare on behalf of their users. But this new protocol also makes it possible for any platform with signed-in users to integrate with Cloudflare in the same way Stripe does, with zero friction for the end user.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "And with Cloudflare’s Code Mode MCP server and Agent Skills , they’re even better at it.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. Or let’s say you want Cloudflare customers to be able to easily provision your service, similar to how Cloudflare is partnering with Planetscale to make it possible to create Planetscale Postgres databases directly from Cloudflare . Cloudflare acts as the Orchestrator, letting you connect to your PlanetScale account, create databases, and use the user’s existing payment method for billing.",
+      "incident_timeline": "Authorization — the platform attests to the identity of the user, allowing providers to provision accounts or link existing ones, and securely issue credentials back to the agent.\nThe full set of Cloudflare products and services from other providers is long and growing — arguably overwhelming to humans. But for agents, this catalog of services is exactly the context they need. The agent chooses se\nRemember how at the start, the user signed in to their Stripe account? Stripe acts as the identity provider, attesting to the user’s identity. Cloudflare automatically provisions a new account for the user if no account \nThe protocol accounts for this in two ways. When an agent provisions a paid service, Stripe includes a payment token in the request to the Provider (Cloudflare). Raw payment details like credit card numbers aren’t ever s\nAny platform with signed-in users can act as the “Orchestrator”, playing the same role Stripe does with Stripe Projects, and integrate with Cloudflare.\nYour platform acts as the Orchestrator, with the already signed-in user. When your user needs a domain , a storage bucket , a sandbox to give their agent, or anything else , you make one API call to Cloudflare to provisi\nOr let’s say you want Cloudflare customers to be able to easily provision your service, similar to how Cloudflare is partnering with Planetscale to make it possible to create Planetscale Postgres databases directly from ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Coding agents are great at building software. But to deploy to production they need three things from the cloud they want to host their app — an account, a way to pay, and an API token.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
