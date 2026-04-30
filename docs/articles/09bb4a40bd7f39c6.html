@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kubernetes v1.36 Sneak Peek — SRE Brief</title>
+  <title>Kubernetes v1.36: Tiered Memory Protection with Memory QoS — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,33 +23,31 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-03-30.html" class="back-link">← 30 March 2026 day sheet</a>
+    <a href="../daily/2026-04-29.html" class="back-link">← 29 April 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
         <span class="card-source">Kubernetes Blog</span>
-        <span class="card-date">29 March 2026, 19:00</span>
-        <span class="card-severity high" title="High Impact">High Impact</span>
+        <span class="card-date">29 April 2026, 13:35</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Kubernetes v1.36 Sneak Peek</h1>
+      <h1 class="title">Kubernetes v1.36: Tiered Memory Protection with Memory QoS</h1>
 
-      <p class="subtitle">Kubernetes v1.36 is coming at the end of April 2026. Impact band: high.</p>
+      <p class="subtitle">On behalf of SIG Node, we are pleased to announce updates to the Memory QoS
+feature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory
+controller to give the kernel better guidance on how to treat container memory.</p>
 
 
       <div class="article-tags">
         <span class="vendor-tag">Kubernetes</span>
         <span class="vendor-tag">Slack</span>
-        <span class="vendor-tag">Stack Overflow</span>
-        <span class="tag">deployment</span>
+        <span class="tag">capacity</span>
         <span class="tag">kubernetes</span>
-        <span class="tag">networking</span>
         <span class="tag">observability</span>
-        <span class="tag">scaling</span>
       </div>
 
       <dl class="article-facts">
-        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
         <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
         <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
       </dl>
@@ -60,70 +58,72 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">Kubernetes v1.36 is coming at the end of April 2026. Impact band: high.</p>
+      <p class="quick-take-text">On behalf of SIG Node, we are pleased to announce updates to the Memory QoS
+feature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory
+controller to give the kernel better guidance on how to treat container memory.</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>Kubernetes v1.36 is coming at the end of April 2026. This release will include removals and deprecations, and it is packed with an impressive number of enhancements. Here are some of the features we are most excited about in this cycle!</p>
+          <p>On behalf of SIG Node, we are pleased to announce updates to the Memory QoS feature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory controller to give the kernel better guidance on how to treat container memory. It was first introduced in v1.22 and updated in v1.27.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>Ingress NGINX retirement   To prioritize the safety and security of the ecosystem, Kubernetes SIG Network and the Security Response Committee have retired Ingress NGINX on March 24, 2026.</p>
-<p>Existing deployments of Ingress NGINX will continue to function, and installation artifacts like Helm charts and container images will remain available.</p>
-<p>However, we expect this feature to create the risk of breaking changes in the future Kubernetes releases, due to the potential for mixing of privileged and unprivileged pods.</p>
-<p>Setting the seLinuxChangePolicy field and SELinux volume labels on Pods, correctly, is the responsibility of the Pod author Developers have that responsibility whether they are writing a Deployment, StatefulSet, DaemonSet or even a custom resource that includes a Pod template.</p>
-<p>DRA support for partitionable devices   Kubernetes v1.36 expands Dynamic Resource Allocation (DRA) by introducing support for partitionable devices, allowing a single hardware accelerator to be split into multiple logical units that can be shared across workloads.</p>
+          <p>Observability metrics   Two alpha-stability metrics are exposed on the kubelet /metrics endpoint:</p>
+<p>Metric   Description           kubelet_memory_qos_node_memory_min_bytes   Total memory.min across Guaranteed Pods       kubelet_memory_qos_node_memory_low_bytes   Total memory.low across Burstable Pods         These are useful for capacity planning.</p>
+<p>If kubelet_memory_qos_node_memory_min_bytes  is creeping toward your node&#39;s physical memory, you know hard reservation is getting tight.</p>
+<p>$ curl -sk https://localhost:10250/metrics | grep memory_qos # HELP kubelet_memory_qos_node_memory_min_bytes [ALPHA] Total memory.min in bytes for Guaranteed pods kubelet_memory_qos_node_memory_min_bytes 5.36870912e+08 # HELP kubelet_memory_qos_node_memory_low_bytes [ALPHA] Total memory.low in bytes for Burstable pods kubelet_memory_qos_node_memory_low_bytes 2.147483648e+09  Kernel version check   On kernels older than 5.9, memory.high throttling can trigger the  kernel livelock issue.</p>
+<p>KEP-2570: Memory QoS</p>
+<p>Pod Quality of Service Classes</p>
+<p>Managing Resources for Containers</p>
+<p>Kubernetes cgroups v2 support</p>
+<p>Linux kernel cgroups v2 documentation</p>
+<p>Getting involved   This feature is driven by SIG Node .</p>
+<p>In Kubernetes v1.36, we&#39;re introducing: opt-in memory reservation, tiered protection by QoS class, observability metrics, and kernel-version warning for memory.high .</p>
+<p>For example, a Guaranteed Pod requesting 512 MiB of memory results in:</p>
+<p>$ cat /sys/fs/cgroup/kubepods.slice/kubepods-pod6a4f2e3b_1c9d_4a5e_8f7b_2d3e4f5a6b7c.slice/memory.min 536870912  The kernel will not reclaim this memory under any circumstances.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>In Kubernetes v1.36, this feature graduates to beta with more comprehensive testing complete, making it accessible by default without the need for a feature flag and open to user feedback.</p>
-<p>Classified impact band: high. Affected layer signal: platform — kubernetes.</p>
+          <p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>Since that date, there have been no further releases, no bugfixes, and no updates to resolve any security vulnerabilities discovered.</p>
+          <p>The bug was fixed in kernel 5.9.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>Although gitRepo has been deprecated for years and better alternatives have been recommended, it was still technically possible to use it in previous releases.</p>
-<p>Faster SELinux labelling for volumes (GA)   Kubernetes v1.36 makes the SELinux volume mounting improvement generally available.</p>
-<p>This improves security and simplifies key management services for clusters that rely on centralized signing infrastructure.</p>
-<p>This improves scheduling control and helps ensure that specialized hardware resources are only used by workloads that explicitly request them.</p>
+          <p>Memory QoS uses the cgroup v2 memory controller to give the kernel better guidance on how to treat container memory.</p>
         </div>
       </div>
 
-      <div class="article-section">
-        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
-        <div class="article-section-content">
-          <p>Likely root-cause theme: deployment failure. Whether an API is removed as a result of a feature graduating from beta to stable, or because that API simply did not succeed, all removals comply with this deprecation policy. Existing deployments of Ingress NGINX will continue to function, and installation artifacts like Helm charts and container images will remain available. However, we expect this feature to create the risk of breaking changes in the future Kubernetes releases, due to the potential for mixing of privileged and unprivileged pods.</p>
-        </div>
-      </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
         <div class="article-section-content">
           <ul class="timeline-list">
-            <li>best practices. This transition reflects the same lifecycle discipline that underpins Kubernetes itself,</li>
-            <li>driver) as tainted. This improves scheduling control and helps ensure that specialized hardware resources are only used by workloads that explicitly request them.</li>
-            <li>In Kubernetes v1.36, this feature graduates to beta with more comprehensive testing complete, making it accessible by default without the need for a feature</li>
-            <li>The simplest way to get involved with Kubernetes is by joining one of the many Special Interest Groups (SIGs) that align with your interests. Have something you’d like to broadcast to the Kubernetes community? Share your</li>
-            <li>Follow us on Bluesky @kubernetes.io for the latest updates</li>
-            <li>Post questions (or answer questions) on Server Fault or Stack Overflow</li>
+            <li>Guaranteed Pod requesting 512 MiB of memory results in:</li>
+            <li>request on a Burstable Pod:</li>
+            <li>BestEffort Pods get neither memory.min nor memory.low . Their memory</li>
+            <li>In earlier versions, enabling the MemoryQoS feature gate immediately set memory.min for every container with a memory request. memory.min is a hard reservation that the kernel will not reclaim, regardless of memory press</li>
+            <li>Consider a node with 8 GiB of RAM where Burstable Pod requests total 7 GiB. In earlier versions, that 7 GiB would be locked as memory.min , leaving little headroom for the kernel, system daemons, or BestEffort workloads </li>
+            <li>With v1.36 tiered reservation, those Burstable requests map to memory.low instead of memory.min . Under normal pressure, the kernel still protects that memory, but under extreme pressure it can reclaim part of it to avoi</li>
+            <li>Set to requests.memory</li>
+            <li>(requests == limits, so throttling is not useful)</li>
           </ul>
         </div>
       </div>
@@ -137,7 +137,7 @@
       </div>
 
 
-      <a href="https://kubernetes.io/blog/2026/03/30/kubernetes-v1-36-sneak-peek/" class="source-card" target="_blank" rel="noopener">
+      <a href="https://kubernetes.io/blog/2026/04/29/kubernetes-v1-36-memory-qos-tiered-protection/" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>

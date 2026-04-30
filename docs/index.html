@@ -28,13 +28,13 @@
       <h1 class="brief-title">29 April 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-04-29T17:06:59.817772-05:00">29 April 2026, 17:06</time>
+        <time data-iso="2026-04-29T19:02:38.839562-05:00">29 April 2026, 19:02</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
       <span class="stat stat-critical">2 critical</span>
-      <span class="stat">4 items today</span>
+      <span class="stat">5 items today</span>
     </div>
   </div>
 
@@ -50,12 +50,12 @@
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">openshift<span class="trend-count">4</span></span>
         <span class="trend-pill">deploy<span class="trend-count">3</span></span>
+        <span class="trend-pill">memory<span class="trend-count">3</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">3</span></span>
         <span class="trend-pill">observability<span class="trend-count">3</span></span>
-        <span class="trend-pill">trust<span class="trend-count">3</span></span>
-        <span class="trend-pill">agents<span class="trend-count">2</span></span>
-        <span class="trend-pill">scale<span class="trend-count">2</span></span>
+        <span class="trend-pill">kubernetes<span class="trend-count">2</span></span>
+        <span class="trend-pill">turning<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -86,16 +86,16 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Datadog">Datadog</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
       </div>
     </div>
@@ -116,8 +116,8 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
@@ -172,7 +172,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       29 April 2026
-      <span class="day-count">4</span>
+      <span class="day-count">5</span>
     </h2>
   </div>
 
@@ -209,6 +209,43 @@
       <div class="detail-links">
         <a href="articles/ce62afa7820ac5e2.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.hashicorp.com/blog/managing-ssh-access-at-scale-with-hashicorp-vault-update" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="capacity,kubernetes,observability"
+       data-vendors="Kubernetes,Slack"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="kubernetes v1.36: tiered memory protection with memory qos"
+       data-id="09bb4a40bd7f39c6"
+       data-published="2026-04-29T10:35:00-08:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-04-29T10:35:00-08:00" title="29 April 2026, 13:35">29 April 2026, 13:35</time>
+      </div>
+      <h3 class="card-title">Kubernetes v1.36: Tiered Memory Protection with Memory QoS</h3>
+      <p class="card-summary">On behalf of SIG Node, we are pleased to announce updates to the Memory QoS
+feature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory
+controller to give the kernel better guidance on how to treat container memory.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Kubernetes Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>On behalf of SIG Node, we are pleased to announce updates to the Memory QoS feature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory controller to give the kernel better guidance on how to treat container memory. It was first introduced in v1.22 and updated in v1.27.</p></div>
+      <div class="detail-links">
+        <a href="articles/09bb4a40bd7f39c6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://kubernetes.io/blog/2026/04/29/kubernetes-v1-36-memory-qos-tiered-protection/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1101,120 +1138,6 @@ graduation of fine-grained kubelet API authorization to General Availability
       <div class="detail-links">
         <a href="articles/5c03f419a58c327a.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/google-axion-arm-instances-elastic-cloud-hosted" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      22 April 2026
-      <span class="day-count">3</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--medium"
-       data-tags="deployment,networking,observability"
-       data-vendors="AWS,HashiCorp"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="terraform adds pre-written sentinel policies for iso 27001"
-       data-id="c83742e21e22723d"
-       data-published="2026-04-22T16:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">AWS</span><span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-04-22T16:00:00+00:00" title="22 April 2026, 11:00">22 April 2026, 11:00</time>
-      </div>
-      <h3 class="card-title">Terraform adds pre-written Sentinel policies for ISO 27001</h3>
-      <p class="card-summary">We’re excited to announce a new set of pre-written Sentinel policies for AWS designed to support ISO/IEC 27001 compliance. These policy sets aim to lower the barrier to adopting policy as code while helping organizations align their Terraform-managed AWS resources with globally recognized security standards.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">networking</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">HashiCorp Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>We’re excited to announce a new set of pre-written Sentinel policies for AWS designed to support ISO/IEC 27001 compliance. These policy sets aim to lower the barrier to adopting policy as code while helping organizations align their Terraform-managed AWS resources with globally recognized security standards. Co-created and co-owned by HashiCorp and AWS, these policies map to key ISO 27001 Annex A controls and are now available for use in the Terraform Registry.</p></div>
-      <div class="detail-links">
-        <a href="articles/c83742e21e22723d.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.hashicorp.com/blog/terraform-adds-pre-written-sentinel-policies-for-iso-27001" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--action card--high"
-       data-tags="deployment,latency,observability,outage"
-       data-vendors="Red Hat"
-       data-impact="high"
-       data-theme="observability"
-       data-title="how we rewrote a production ui without stopping it"
-       data-id="654996261ce4a787"
-       data-published="2026-04-22T07:01:29+00:00"
-       data-priority="true">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-04-22T07:01:29+00:00" title="22 April 2026, 02:01">22 April 2026, 02:01</time>
-        <span class="action-badge">Ops</span>
-      </div>
-      <h3 class="card-title">How we rewrote a production UI without stopping it</h3>
-      <p class="card-summary">This is part 2 of a four-part series. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>This is part 2 of a four-part series. In part 1, we covered governance: how we made the code base AI-ready. This post details the architectural shift of the migration itself.</p></div>
-      <div class="detail-links">
-        <a href="articles/654996261ce4a787.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/04/22/how-we-rewrote-production-ui-without-stopping-it" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="kubernetes,observability"
-       data-vendors="GitHub,Kubernetes,Red Hat"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="opencode: a model-neutral ai coding assistant for openshift dev spaces"
-       data-id="027e0f2f9f25d7de"
-       data-published="2026-04-22T07:01:26+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-04-22T07:01:26+00:00" title="22 April 2026, 02:01">22 April 2026, 02:01</time>
-      </div>
-      <h3 class="card-title">OpenCode: A model-neutral AI coding assistant for OpenShift Dev Spaces</h3>
-      <p class="card-summary">AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <div class="card-related">Also: HashiCorp Blog, Cloudflare Blog, Kubernetes Blog, Kubernetes Blog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>AI coding assistants have shifted from novelty to necessity, changing how developers work. However, most current tools come with a hidden constraint: they are tightly coupled to a primary model provider. What if your development environment could switch between GPT, Claude, Gemini, or even local models without changing tools?</p></div>
-      <div class="detail-links">
-        <a href="articles/027e0f2f9f25d7de.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/04/22/opencode-model-neutral-ai-coding-assistant-openshift-dev-spaces" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

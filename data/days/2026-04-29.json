@@ -48,6 +48,53 @@
     "highlighted": false
   },
   {
+    "id": "09bb4a40bd7f39c6",
+    "title": "Kubernetes v1.36: Tiered Memory Protection with Memory QoS",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/04/29/kubernetes-v1-36-memory-qos-tiered-protection/",
+    "published": "2026-04-29T10:35:00-08:00",
+    "fetched_at": "2026-04-30T00:02:36.288277+00:00",
+    "summary": "On behalf of SIG Node, we are pleased to announce updates to the Memory QoS",
+    "tags": [
+      "capacity",
+      "kubernetes",
+      "observability"
+    ],
+    "day": "2026-04-29",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Guaranteed Pod requesting 512 MiB of memory results in:",
+      "request on a Burstable Pod:",
+      "BestEffort Pods get neither memory.min nor memory.low . Their memory",
+      "In earlier versions, enabling the MemoryQoS feature gate immediately set memory.min for every container with a memory request. memory.min is a hard reservation that the kernel will not reclaim, regardless of memory press",
+      "Consider a node with 8 GiB of RAM where Burstable Pod requests total 7 GiB. In earlier versions, that 7 GiB would be locked as memory.min , leaving little headroom for the kernel, system daemons, or BestEffort workloads ",
+      "With v1.36 tiered reservation, those Burstable requests map to memory.low instead of memory.min . Under normal pressure, the kernel still protects that memory, but under extreme pressure it can reclaim part of it to avoi",
+      "Set to requests.memory",
+      "(requests == limits, so throttling is not useful)"
+    ],
+    "sections": {
+      "overview": "On behalf of SIG Node, we are pleased to announce updates to the Memory QoS\nfeature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory\ncontroller to give the kernel better guidance on how to treat container memory. It was first introduced in v1.22 and updated in v1.27.",
+      "technical_breakdown": "Observability metrics \n Two alpha-stability metrics are exposed on the kubelet /metrics endpoint:\n\n \n \n \n Metric \n Description \n \n \n \n \n kubelet_memory_qos_node_memory_min_bytes \n Total memory.min across Guaranteed Pods \n \n \n kubelet_memory_qos_node_memory_low_bytes \n Total memory.low across Burstable Pods \n \n \n \n These are useful for capacity planning.\n\nIf kubelet_memory_qos_node_memory_min_bytes \nis creeping toward your node's physical memory, you know hard reservation is\ngetting tight.\n\n $ curl -sk https://localhost:10250/metrics | grep memory_qos\n# HELP kubelet_memory_qos_node_memory_min_bytes [ALPHA] Total memory.min in bytes for Guaranteed pods\nkubelet_memory_qos_node_memory_min_bytes 5.36870912e+08\n# HELP kubelet_memory_qos_node_memory_low_bytes [ALPHA] Total memory.low in bytes for Burstable pods\nkubelet_memory_qos_node_memory_low_bytes 2.147483648e+09\n Kernel version check \n On kernels older than 5.9, memory.high throttling can trigger the\n kernel livelock issue.\n\nKEP-2570: Memory QoS \n\n Pod Quality of Service Classes \n\n Managing Resources for Containers \n\n Kubernetes cgroups v2 support \n\n Linux kernel cgroups v2 documentation \n\n \n Getting involved \n This feature is driven by SIG Node .\n\nIn Kubernetes v1.36, we're introducing: opt-in memory reservation, tiered\nprotection by QoS class, observability metrics, and kernel-version warning for memory.high .\n\nFor example, a\nGuaranteed Pod requesting 512 MiB of memory results in:\n\n $ cat /sys/fs/cgroup/kubepods.slice/kubepods-pod6a4f2e3b_1c9d_4a5e_8f7b_2d3e4f5a6b7c.slice/memory.min\n536870912\n The kernel will not reclaim this memory under any circumstances.",
+      "impact": "Classified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "The bug was fixed\nin kernel 5.9.",
+      "lessons_learned": "Memory QoS uses the cgroup v2 memory\ncontroller to give the kernel better guidance on how to treat container memory.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Guaranteed Pod requesting 512 MiB of memory results in:\nrequest on a Burstable Pod:\nBestEffort Pods get neither memory.min nor memory.low . Their memory\nIn earlier versions, enabling the MemoryQoS feature gate immediately set memory.min for every container with a memory request. memory.min is a hard reservation that the kernel will not reclaim, regardless of memory press\nConsider a node with 8 GiB of RAM where Burstable Pod requests total 7 GiB. In earlier versions, that 7 GiB would be locked as memory.min , leaving little headroom for the kernel, system daemons, or BestEffort workloads \nWith v1.36 tiered reservation, those Burstable requests map to memory.low instead of memory.min . Under normal pressure, the kernel still protects that memory, but under extreme pressure it can reclaim part of it to avoi\nSet to requests.memory\n(requests == limits, so throttling is not useful)",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "On behalf of SIG Node, we are pleased to announce updates to the Memory QoS\nfeature (alpha) in Kubernetes v1.36. Memory QoS uses the cgroup v2 memory\ncontroller to give the kernel better guidance on how to treat container memory.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "b88e01d519dc43b4",
     "title": "How we turned Storybook into a behavioral verification engine",
     "source": "Red Hat Developer Blog",
