@@ -45,5 +45,52 @@
     "email_summary": "Coding agents are great at building software. But to deploy to production they need three things from the cloud they want to host their app — an account, a way to pay, and an API token.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "c20341ca50cc38ff",
+    "title": "How StatefulSet deployments tripled OpenShift Pipelines throughput",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/04/30/how-statefulset-deployments-tripled-openshift-pipelines-throughput",
+    "published": "2026-04-30T07:15:48+00:00",
+    "fetched_at": "2026-04-30T07:32:53.558701+00:00",
+    "summary": "Running Red Hat OpenShift Pipelines at scale usually means watching execution times slowly degrade as concurrency increases. Most teams hit a wall. Execution times balloon from seconds to minutes, and adding more controller replicas barely helps. But OpenShift Pipelines 1.20 changes this with StatefulSet-based deployments, and the results are dramatic. ",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-04-30",
+    "impact": "high",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "StatefulSet-based sharding distributes work across all replicas using hash-based assignment. Each pod receives a stable identity (controller-0, controller-1, etc.) and processes a deterministic subset of work. The contro",
+      "Test setup We ran 1,000 PipelineRuns (4,000 TaskRuns total) on Red Hat OpenShift 4.x using the math benchmark scenario from our performance test suite . The math scenario executes a basic pipeline with 4 simple tasks tha",
+      "We measured execution time, scheduling delays, and controller resource utilization using Prometheus metrics collected every 30 seconds. Full test configuration and scripts are available in our performance repository .",
+      "We stress-tested both HA approaches across concurrency levels ranging from 50 to 200 pipelines. Results are based on the test setup, using OpenShift Pipelines 1.20 with both deployment and StatefulSet configurations (10 ",
+      "Test in staging with your actual workloads."
+    ],
+    "sections": {
+      "overview": "Running Red Hat OpenShift Pipelines at scale usually means watching execution times slowly degrade as concurrency increases. Most teams hit a wall. Execution times balloon from seconds to minutes, and adding more controller replicas barely helps.",
+      "technical_breakdown": "This table shows key improvements at 200 concurrent pipelines: \n\n Metric \n\n Deployment (Leader Election) \n\n StatefulSet (Sharding) \n\n Improvement \n\n PipelineRun duration (avg) \n\n 176.1 s \n\n 57.3 s \n\n ~3 faster \n\n TaskRun duration (avg) \n\n 87.9 s \n\n 44.7 s \n\n ~2 faster \n\n TaskRun scheduling delay (avg) \n\n 31.7 s \n\n 14.5 s \n\n ~2.2 lower \n\n Controller CPU usage (avg) \n\n ~0.42 cores \n\n ~0.70 cores \n\n Higher utilization \n\n Controller memory usage (avg) \n\n ~4.5 GB \n\n ~5.0 GB \n\n +12% (slight increase) \n\n Workqueue depth (avg) \n\n ~658 \n\n ~2649 \n\n ~4 higher concurrency \n\n Observations: \n\n Faster feedback loops: Pipeline execution time drops significantly, reducing developer wait time from minutes to under a minute at scale.\n\nCluster configuration: \n\n Control plane: 3 m6a.2xlarge (8 vCPUs, 32 GB memory each) \n Compute plane: 5 m6a.2xlarge (8 vCPUs, 32 GB memory each) \n Controller pods: 10 replicas, each allocated 1 CPU core and 2 GiB memory \n We measured execution time, scheduling delays, and controller resource utilization using Prometheus metrics collected every 30 seconds.\n\nStatefulSet-based sharding is optimized for high-concurrency workloads where maximizing throughput and resource utilization across replicas becomes important.\n\nWith stable pod identities and deterministic work assignment, the sharding approach achieves consistent ownership of reconciliation work and predictable distribution across replicas.\n\nConcurrent Pipelines \n\n Deployment (Leader Election) \n\n StatefulSet (Sharding) \n\n Improvement \n\n 50 \n\n 30.4 s \n\n 8.8 s \n\n 3.5 faster \n\n 100 \n\n 79.3 s \n\n 14.2 s \n\n 5.6 faster \n\n 150 \n\n 127.7 s \n\n 41.7 s \n\n 3 faster \n\n 200 \n\n 176.1 s \n\n 57.3 s \n\n 3 faster \n\n This behavior is further illustrated by examining workload distribution across controller replicas.",
+      "impact": "This table shows key improvements at 200 concurrent pipelines: \n\n Metric \n\n Deployment (Leader Election) \n\n StatefulSet (Sharding) \n\n Improvement \n\n PipelineRun duration (avg) \n\n 176.1 s \n\n 57.3 s \n\n ~3 faster \n\n TaskRun duration (avg) \n\n 87.9 s \n\n 44.7 s \n\n ~2 faster \n\n TaskRun scheduling delay (avg) \n\n 31.7 s \n\n 14.5 s \n\n ~2.2 lower \n\n Controller CPU usage (avg) \n\n ~0.42 cores \n\n ~0.70 cores \n\n Higher utilization \n\n Controller memory usage (avg) \n\n ~4.5 GB \n\n ~5.0 GB \n\n +12% (slight increase) \n\n Workqueue depth (avg) \n\n ~658 \n\n ~2649 \n\n ~4 higher concurrency \n\n Observations: \n\n Faster feedback loops: Pipeline execution time drops significantly, reducing developer wait time from minutes to under a minute at scale. Execution times balloon from seconds to minutes, and adding more controller replicas barely helps. The real difference: Leader election vs. sharding High availability (HA) mode provides fault tolerance with multiple controller replicas. The gap widens as concurrency increases, demonstrating the performance impact of the different HA approaches under load.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "This approach provides automatic failover and simpler operational characteristics, making it well-suited for environments where resilience is the primary concern.\n\nLeader election excels when operational simplicity and automatic failover are critical.",
+      "lessons_learned": "StatefulSet-based deployments provide significantly better performance, more predictable behavior, and improved resource utilization.\n\nFor teams running pipelines at scale with high concurrency, sharding can provide substantial performance improvements.\n\nConcurrent Pipelines \n\n Deployment (Leader Election) \n\n StatefulSet (Sharding) \n\n Improvement \n\n 50 \n\n 30.4 s \n\n 8.8 s \n\n 3.5 faster \n\n 100 \n\n 79.3 s \n\n 14.2 s \n\n 5.6 faster \n\n 150 \n\n 127.7 s \n\n 41.7 s \n\n 3 faster \n\n 200 \n\n 176.1 s \n\n 57.3 s \n\n 3 faster \n\n This behavior is further illustrated by examining workload distribution across controller replicas.\n\nThe impact is twofold: \n\n Better parallelism: Work is processed across multiple controllers instead of being concentrated on a few.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Execution times balloon from seconds to minutes, and adding more controller replicas barely helps. The real difference: Leader election vs. sharding High availability (HA) mode provides fault tolerance with multiple controller replicas. One controller holds the lease and processes all reconciliation work, while others stand by ready to take over if the leader fails.",
+      "incident_timeline": "StatefulSet-based sharding distributes work across all replicas using hash-based assignment. Each pod receives a stable identity (controller-0, controller-1, etc.) and processes a deterministic subset of work. The contro\nTest setup We ran 1,000 PipelineRuns (4,000 TaskRuns total) on Red Hat OpenShift 4.x using the math benchmark scenario from our performance test suite . The math scenario executes a basic pipeline with 4 simple tasks tha\nWe measured execution time, scheduling delays, and controller resource utilization using Prometheus metrics collected every 30 seconds. Full test configuration and scripts are available in our performance repository .\nWe stress-tested both HA approaches across concurrency levels ranging from 50 to 200 pipelines. Results are based on the test setup, using OpenShift Pipelines 1.20 with both deployment and StatefulSet configurations (10 \nTest in staging with your actual workloads.",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Running Red Hat OpenShift Pipelines at scale usually means watching execution times slowly degrade as concurrency increases. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
