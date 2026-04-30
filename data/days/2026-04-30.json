@@ -1,5 +1,80 @@
 [
   {
+    "id": "884df717bcf2b681",
+    "title": "The Worst Coder in the World goes agentic: building a leaderboard cracking AI",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/04/30/worst-coder-in-the-world-goes-agentic/",
+    "published": "2026-04-30T16:00:00+00:00",
+    "fetched_at": "2026-04-30T15:18:14.440165+00:00",
+    "summary": "Agents are everywhere, so isn't it fitting that the Worst Coder in the World goes agentic? A coding newbie explores the challenges and rewards of building an agent for work—and trying to learn a few things about coding along the way.",
+    "tags": [],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Agents are everywhere, so isn't it fitting that the Worst Coder in the World goes agentic? A coding newbie explores the challenges and rewards of building an agent for work—and trying to learn a few things about coding along the way.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Agents are everywhere, so isn't it fitting that the Worst Coder in the World goes agentic. A coding newbie explores the challenges and rewards of building an agent for work—and trying to learn a few things about coding along the way.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "7c523845462c77be",
+    "title": "Post-quantum encryption for Cloudflare IPsec is generally available",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/post-quantum-ipsec/",
+    "published": "2026-04-30T14:00:00+00:00",
+    "fetched_at": "2026-04-30T15:18:12.613402+00:00",
+    "summary": "While more than two-thirds of human-generated TLS traffic to Cloudflare is already protected by post-quantum cryptography, the world of site-to-site networking has been a different story. For years, the IPsec community remained caught between the high bar of Internet-scale interoperability and the niche requirements of specialized hardware. That gap is now closing. ",
+    "tags": [
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Using the new IETF draft for hybrid ML-KEM ( FIPS 203 ), we’ve successfully tested interoperability with branch connectors from Fortinet and Cisco — meaning you can start protecting your wide-area network (WAN) against h",
+      "Cloudflare IPsec is a WAN Network-as-a-Service that replaces legacy network architectures by connecting data centers, branch offices, and cloud VPCs to Cloudflare's global IP Anycast network. Customers get simplified con",
+      "Cloudflare IPsec now uses post-quantum encryption with hybrid ML-KEM ( FIPS 203 ) to stop harvest-now-decrypt-later attacks. These are attacks where an adversary harvests data today and then decrypts later, after Q-Day, ",
+      "Earlier we announced the closed beta of our implementation of draft-ietf-ipsecme-ikev2-mlkem in production in our Cloudflare IPsec product and tested it against a reference implementation (strongswan). Now that we have m",
+      "Cisco: Customers using Cisco 8000 Series Secure Routers after version 26.1.1 as their branch connector can also now establish post-quantum Cloudflare IPsec tunnels per draft-ietf-ipsecme-ikev2-mlkem.",
+      "Fortinet: Customers using Fortinet FortiOS 7.6.6 and later as their branch connector can now establish post-quantum Cloudflare IPsec tunnels to Cloudflare's global network per draft-ietf-ipsecme-ikev2-mlkem.",
+      "The four-year delay is likely due in part to the IPsec community's continued interest in Quantum Key Distribution (QKD), as codified in RFC 8784 , published in 2020. We've written before about why QKD is not part of our "
+    ],
+    "sections": {
+      "overview": "While more than two-thirds of human-generated TLS traffic to Cloudflare is already protected by post-quantum cryptography, the world of site-to-site networking has been a different story. For years, the IPsec community remained caught between the high bar of Internet-scale interoperability and the niche requirements of specialized hardware. That gap is now closing.",
+      "technical_breakdown": "While more than two-thirds of human-generated TLS traffic to Cloudflare is already protected by post-quantum cryptography, the world of site-to-site networking has been a different story.\n\nToday more than two-thirds of the human-generated TLS traffic to Cloudflare's network is protected with hybrid ML-KEM.)\n\n The four-year delay is likely due in part to the IPsec community's continued interest in Quantum Key Distribution (QKD), as codified in RFC 8784 , published in 2020.\n\nUsing the new IETF draft for hybrid ML-KEM ( FIPS 203 ), we’ve successfully tested interoperability with branch connectors from Fortinet and Cisco — meaning you can start protecting your wide-area network (WAN) against harvest-now-decrypt-later attacks today using hardware you already have.\n\nThis post explains how we implemented the new hybrid IPsec handshake, why it took four years longer to land than its TLS counterpart, and how the industry is finally consolidating around a standard that works at Internet scale.\n\nCloudflare IPsec \n \n \n \n \n Cloudflare IPsec is a WAN Network-as-a-Service that replaces legacy network architectures by connecting data centers, branch offices, and cloud VPCs to Cloudflare's global IP Anycast network.",
+      "impact": "Customers get simplified configuration, high availability (if a data center becomes unavailable, traffic is automatically rerouted to the nearest healthy one), and the scale of Cloudflare's global network. Cisco: Customers using Cisco 8000 Series Secure Routers after version 26.1.1 as their branch connector can also now establish post-quantum Cloudflare IPsec tunnels per draft-ietf-ipsecme-ikev2-mlkem. Fortinet: Customers using Fortinet FortiOS 7.6.6 and later as their branch connector can now establish post-quantum Cloudflare IPsec tunnels to Cloudflare's global network per draft-ietf-ipsecme-ikev2-mlkem. Towards an interoperable post-quantum Internet \n \n \n \n \n At Cloudflare, we’re helping make a secure and post-quantum Internet accessible to everyone, without specialized hardware and at no extra cost to our customers .\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Customers get simplified configuration, high availability (if a data center becomes unavailable, traffic is automatically rerouted to the nearest healthy one), and the scale of Cloudflare's global network.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Using the new IETF draft for hybrid ML-KEM ( FIPS 203 ), we’ve successfully tested interoperability with branch connectors from Fortinet and Cisco — meaning you can start protecting your wide-area network (WAN) against h\nCloudflare IPsec is a WAN Network-as-a-Service that replaces legacy network architectures by connecting data centers, branch offices, and cloud VPCs to Cloudflare's global IP Anycast network. Customers get simplified con\nCloudflare IPsec now uses post-quantum encryption with hybrid ML-KEM ( FIPS 203 ) to stop harvest-now-decrypt-later attacks. These are attacks where an adversary harvests data today and then decrypts later, after Q-Day, \nEarlier we announced the closed beta of our implementation of draft-ietf-ipsecme-ikev2-mlkem in production in our Cloudflare IPsec product and tested it against a reference implementation (strongswan). Now that we have m\nCisco: Customers using Cisco 8000 Series Secure Routers after version 26.1.1 as their branch connector can also now establish post-quantum Cloudflare IPsec tunnels per draft-ietf-ipsecme-ikev2-mlkem.\nFortinet: Customers using Fortinet FortiOS 7.6.6 and later as their branch connector can now establish post-quantum Cloudflare IPsec tunnels to Cloudflare's global network per draft-ietf-ipsecme-ikev2-mlkem.\nThe four-year delay is likely due in part to the IPsec community's continued interest in Quantum Key Distribution (QKD), as codified in RFC 8784 , published in 2020. We've written before about why QKD is not part of our ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "While more than two-thirds of human-generated TLS traffic to Cloudflare is already protected by post-quantum cryptography, the world of site-to-site networking has been a different story. For years, the IPsec community remained caught between the high bar of Internet-scale interoperability and the niche requirements of specialized hardware.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "f771f66e98382903",
     "title": "Agents can now create Cloudflare accounts, buy domains, and deploy",
     "source": "Cloudflare Blog",
@@ -90,6 +165,39 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Running Red Hat OpenShift Pipelines at scale usually means watching execution times slowly degrade as concurrency increases. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a3f1d6642fd9834d",
+    "title": "Built on patterns: How Susan Chang’s econometrics roots drive machine learning for security and her minimalist workspace",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/top-down-with-susan-chang",
+    "published": "2026-04-30T00:00:00+00:00",
+    "fetched_at": "2026-04-30T15:18:15.130072+00:00",
+    "summary": "How econometrics and machine learning come together to secure modern systems",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Built on patterns: How Susan Chang’s econometrics roots drive machine learning for security and her minimalist workspace. How econometrics and machine learning come together to secure modern systems",
+      "technical_breakdown": "How econometrics and machine learning come together to secure modern systems",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "How econometrics and machine learning come together to secure modern systems.",
     "related_sources": [],
     "highlighted": false
   }
