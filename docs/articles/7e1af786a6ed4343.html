@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure SSH access at scale with HashiCorp Vault and Boundary — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-04-29.html" class="back-link">← 29 April 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">HashiCorp Blog</span>
+        <span class="card-date">29 April 2026, 14:00</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Secure SSH access at scale with HashiCorp Vault and Boundary</h1>
+
+      <p class="subtitle">Overview This post updates the earlier approach to managing SSH access with HashiCorp Vault. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Azure</span>
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — azure</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Overview This post updates the earlier approach to managing SSH access with HashiCorp Vault. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Overview This post updates the earlier approach to managing SSH access with HashiCorp Vault. It also introduces HashiCorp Boundary integration with HashiCorp Vault for passwordless access using just-in-time SSH credentials. As enterprises accelerate their digital strategies, hybrid and multi-cloud architectures have become the norm.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Updated best practices : Refined configurations for modern Vault deployments.</p>
+<p>Who this is for:  This blog is designed for systems administrators, DevOps engineers, platform engineers, and security teams that want to implement secure, scalable SSH access management.</p>
+<p>Access to Linux hosts where you want to enable certificate-based SSH</p>
+<p>Vault CLI installed</p>
+<p>Basic familiarity with SSH concepts</p>
+<p>Important: Changes since Vault 1.13  Before diving in, note that the  Vault SSH secrets engine  has evolved since the original blog post .</p>
+<p>It can provide just-in-time secrets such as database credentials, PKI certificates, cloud IAM credentials, and many others.</p>
+<p>The Vault policies will be set up at a later stage.</p>
+<p># Enable userpass authentication  vault auth enable userpass    # Create users (policies will be attached later)  vault write auth/userpass/users/alice password=&#34;passw0rd&#34; policies=&#34;administrator-policy&#34;  vault write auth/userpass/users/bob password=&#34;passw0rd&#34; policies=&#34;team-a-policy&#34;  vault write auth/userpass/users/tim password=&#34;passw0rd&#34; policies=&#34;team-b-policy&#34; For production deployments, consider using  OIDC authentication  with your identity provider.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>What we’ll cover:</p>
+<p>Risks with SSH key-based authentication</p>
+<p>SSH certificate authentication with Vault</p>
+<p>Architecture and workflow design</p>
+<p>Step-by-step Vault and host configurations</p>
+<p>Client workflows for SSH access</p>
+<p>New : Vault + Boundary integration for JIT SSH credentials</p>
+<p>Time to complete:  45-60 minutes</p>
+<p>Prerequisites  Before starting this tutorial, you’ll need:</p>
+<p>To have the  HashiCorp Vault  running and unsealed. Users must re-authenticate and request new certificates after expiry.</p>
+<p>vault write ssh-client-signer/roles/administrator-role -&lt;&lt;EOH  {   &#34;allow_user_certificates&#34;: true,   &#34;allowed_users&#34;: &#34;administrator&#34;,   &#34;allowed_extensions&#34;: &#34;&#34;,   &#34;default_extensions&#34;: {   &#34;permit-pty&#34;: &#34;&#34;   },   &#34;key_type&#34;: &#34;ca&#34;,   &#34;default_user&#34;: &#34;administrator&#34;,   &#34;ttl&#34;: &#34;30m0s&#34;  }  EOH team-a-role:</p>
+<p>vault write ssh-client-signer/roles/team-a-role -&lt;&lt;EOH  {   &#34;allow_user_certificates&#34;: true,   &#34;allowed_users&#34;: &#34;team-a&#34;,   &#34;allowed_extensions&#34;: &#34;&#34;,   &#34;default_extensions&#34;: {   &#34;permit-pty&#34;: &#34;&#34;   },   &#34;key_type&#34;: &#34;ca&#34;,   &#34;default_user&#34;: &#34;team-a&#34;,   &#34;ttl&#34;: &#34;30m0s&#34;  }  EOH team-b-role:</p>
+<p>vault write ssh-client-signer/roles/team-b-role -&lt;&lt;EOH  {   &#34;allow_user_certificates&#34;: true,   &#34;allowed_users&#34;: &#34;team-b&#34;,   &#34;allowed_extensions&#34;: &#34;&#34;,   &#34;default_extensions&#34;: {   &#34;permit-pty&#34;: &#34;&#34;   },   &#34;key_type&#34;: &#34;ca&#34;,   &#34;default_user&#34;: &#34;team-b&#34;,   &#34;ttl&#34;: &#34;30m0s&#34;  }  EOH Step 4: Create Vault policies  Create policies that restrict each user’s access to their authorized Vault SSH role. Vault applies an implicit deny to any path not explicitly permitted in a policy, ensuring users can only access their authorized SSH roles.</p>
+<p>administrator-policy:</p>
+<p>vault policy write administrator-policy - &lt;&lt; EOF  # List available SSH roles  path &#34;ssh-client-signer/roles/*&#34; {   capabilities = [&#34;list&#34;]  }    # Allow access to SSH role  path &#34;ssh-client-signer/sign/administrator-role&#34; {   capabilities = [&#34;create&#34;,&#34;update&#34;]  }  EOF team-a-policy:</p>
+<p>vault policy write team-a-policy - &lt;&lt; EOF  # List available SSH roles  path &#34;ssh-client-signer/roles/*&#34; {   capabilities = [&#34;list&#34;]  }    # Allow access to SSH role  path &#34;ssh-client-signer/sign/team-a-role&#34; {   capabilities = [&#34;create&#34;,&#34;update&#34;]  }  EOF team-b-policy:</p>
+<p>vault policy write team-b-policy - &lt;&lt; EOF  # List available SSH roles  path &#34;ssh-client-signer/roles/*&#34; {   capabilities = [&#34;list&#34;]  }    # Allow access to SSH role  path &#34;ssh-client-signer/sign/team-b-role&#34; {   capabilities = [&#34;create&#34;,&#34;update&#34;]  }  EOF Host configurations  These steps configure the SSH server to trust certificates signed by Vault. Don’t forget to restart the SSH service:</p>
+<p>sudo service sshd restart Client configurations  The user will need to create an SSH key pair.</p>
+<p>Classified impact band: critical. Affected layer signal: cloud — azure.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>A better alternative: SSH certificate authentication  It’s imperative to improve the SSH user experience and the security of SSH access to your hosts using a standard architecture that can be deployed in any environment.</p>
+<p>Step 3: Create Vault roles for SSH key signing  We will create Vault roles to sign and issue SSH certificates with specific configurations based on users’ functional roles.</p>
+<p>We will revisit team-b principal later on.</p>
+<p>Since we are using three users in this blog, we will use specific named keys so we can differentiate.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Updated best practices : Refined configurations for modern Vault deployments. The likelihood of incidents due to SSH key mismanagement is growing, and so is the level of harm these incidents can cause. The Vault policies will be set up at a later stage.</p>
+<p># Enable userpass authentication  vault auth enable userpass    # Create users (policies will be attached later)  vault write auth/userpass/users/alice password=&#34;passw0rd&#34; policies=&#34;administrator-policy&#34;  vault write auth/userpass/users/bob password=&#34;passw0rd&#34; policies=&#34;team-a-policy&#34;  vault write auth/userpass/users/tim password=&#34;passw0rd&#34; policies=&#34;team-b-policy&#34; For production deployments, consider using  OIDC authentication  with your identity provider.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Updated best practices : Refined configurations for modern Vault deployments.</li>
+            <li>To have the  HashiCorp Vault  running and unsealed. It is possible to test these configurations locally by running Vault in dev mode. For Vault installation instructions, read the  getting started with Vault guide .</li>
+            <li>The SSH certificate approach described in this guide remains the  recommended best practice  for managing SSH access at scale.</li>
+            <li>Architecture requirements  This architecture achieves the following outcomes:</li>
+            <li>Once a user successfully authenticates to Vault, a Vault token is dynamically generated with attached policies that dictate which SSH roles the user can access for certificate signing. For example, Bob’s  team-a-policy  </li>
+            <li>allowed_users : The list of principals this role will sign for. Requests for principals not in this list will fail.</li>
+            <li>ttl : This is the certificate expiry time. Set to 30 minutes in this example. Users must re-authenticate and request new certificates after expiry.</li>
+            <li>EOH Step 4: Create Vault policies  Create policies that restrict each user’s access to their authorized Vault SSH role.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://www.hashicorp.com/blog/secure-ssh-access-at-scale-with-hashicorp-vault-and-boundary" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at HashiCorp Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

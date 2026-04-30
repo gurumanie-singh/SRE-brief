@@ -48,6 +48,54 @@
     "highlighted": false
   },
   {
+    "id": "7e1af786a6ed4343",
+    "title": "Secure SSH access at scale with HashiCorp Vault and Boundary",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/secure-ssh-access-at-scale-with-hashicorp-vault-and-boundary",
+    "published": "2026-04-29T19:00:00+00:00",
+    "fetched_at": "2026-04-30T21:10:40.318556+00:00",
+    "summary": "Overview This post updates the earlier approach to managing SSH access with HashiCorp Vault. It also introduces HashiCorp Boundary integration with HashiCorp Vault for passwordless access using just-in-time SSH credentials.",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-04-29",
+    "impact": "critical",
+    "vendors": [
+      "Azure",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — azure",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Updated best practices : Refined configurations for modern Vault deployments.",
+      "To have the  HashiCorp Vault  running and unsealed. It is possible to test these configurations locally by running Vault in dev mode. For Vault installation instructions, read the  getting started with Vault guide .",
+      "The SSH certificate approach described in this guide remains the  recommended best practice  for managing SSH access at scale.",
+      "Architecture requirements  This architecture achieves the following outcomes:",
+      "Once a user successfully authenticates to Vault, a Vault token is dynamically generated with attached policies that dictate which SSH roles the user can access for certificate signing. For example, Bob’s  team-a-policy  ",
+      "allowed_users : The list of principals this role will sign for. Requests for principals not in this list will fail.",
+      "ttl : This is the certificate expiry time. Set to 30 minutes in this example. Users must re-authenticate and request new certificates after expiry.",
+      "EOH Step 4: Create Vault policies  Create policies that restrict each user’s access to their authorized Vault SSH role."
+    ],
+    "sections": {
+      "overview": "Overview This post updates the earlier approach to managing SSH access with HashiCorp Vault. It also introduces HashiCorp Boundary integration with HashiCorp Vault for passwordless access using just-in-time SSH credentials. As enterprises accelerate their digital strategies, hybrid and multi-cloud architectures have become the norm.",
+      "technical_breakdown": "Updated best practices : Refined configurations for modern Vault deployments.\n\nWho this is for:  This blog is designed for systems administrators, DevOps engineers, platform engineers, and security teams that want to implement secure, scalable SSH access management.\n\nAccess to Linux hosts where you want to enable certificate-based SSH \n\n Vault CLI installed \n\n Basic familiarity with SSH concepts \n\n Important: Changes since Vault 1.13  Before diving in, note that the  Vault SSH secrets engine  has evolved since the original blog post .\n\nIt can provide just-in-time secrets such as database credentials, PKI certificates, cloud IAM credentials, and many others.\n\nThe Vault policies will be set up at a later stage.\n\n # Enable userpass authentication \nvault auth enable userpass \n \n# Create users (policies will be attached later) \nvault write auth/userpass/users/alice password=\"passw0rd\" policies=\"administrator-policy\" \nvault write auth/userpass/users/bob password=\"passw0rd\" policies=\"team-a-policy\" \nvault write auth/userpass/users/tim password=\"passw0rd\" policies=\"team-b-policy\" For production deployments, consider using  OIDC authentication  with your identity provider.",
+      "impact": "What we’ll cover:  \n\n Risks with SSH key-based authentication \n\n SSH certificate authentication with Vault \n\n Architecture and workflow design \n\n Step-by-step Vault and host configurations \n\n Client workflows for SSH access \n\n New : Vault + Boundary integration for JIT SSH credentials \n\n Time to complete:  45-60 minutes \n\n Prerequisites  Before starting this tutorial, you’ll need: \n\n To have the  HashiCorp Vault  running and unsealed. Users must re-authenticate and request new certificates after expiry. \n\n vault write ssh-client-signer/roles/administrator-role -<<EOH \n{ \n \"allow_user_certificates\": true, \n \"allowed_users\": \"administrator\", \n \"allowed_extensions\": \"\", \n \"default_extensions\": { \n \"permit-pty\": \"\" \n }, \n \"key_type\": \"ca\", \n \"default_user\": \"administrator\", \n \"ttl\": \"30m0s\" \n} \nEOH team-a-role:  \n\n vault write ssh-client-signer/roles/team-a-role -<<EOH \n{ \n \"allow_user_certificates\": true, \n \"allowed_users\": \"team-a\", \n \"allowed_extensions\": \"\", \n \"default_extensions\": { \n \"permit-pty\": \"\" \n }, \n \"key_type\": \"ca\", \n \"default_user\": \"team-a\", \n \"ttl\": \"30m0s\" \n} \nEOH team-b-role:  \n\n vault write ssh-client-signer/roles/team-b-role -<<EOH \n{ \n \"allow_user_certificates\": true, \n \"allowed_users\": \"team-b\", \n \"allowed_extensions\": \"\", \n \"default_extensions\": { \n \"permit-pty\": \"\" \n }, \n \"key_type\": \"ca\", \n \"default_user\": \"team-b\", \n \"ttl\": \"30m0s\" \n} \nEOH Step 4: Create Vault policies  Create policies that restrict each user’s access to their authorized Vault SSH role. Vault applies an implicit deny to any path not explicitly permitted in a policy, ensuring users can only access their authorized SSH roles.\n\n administrator-policy:  \n\n vault policy write administrator-policy - << EOF \n# List available SSH roles \npath \"ssh-client-signer/roles/*\" { \n capabilities = [\"list\"] \n} \n \n# Allow access to SSH role \npath \"ssh-client-signer/sign/administrator-role\" { \n capabilities = [\"create\",\"update\"] \n} \nEOF team-a-policy:  \n\n vault policy write team-a-policy - << EOF \n# List available SSH roles \npath \"ssh-client-signer/roles/*\" { \n capabilities = [\"list\"] \n} \n \n# Allow access to SSH role \npath \"ssh-client-signer/sign/team-a-role\" { \n capabilities = [\"create\",\"update\"] \n} \nEOF team-b-policy: \n\n vault policy write team-b-policy - << EOF \n# List available SSH roles \npath \"ssh-client-signer/roles/*\" { \n capabilities = [\"list\"] \n} \n \n# Allow access to SSH role \npath \"ssh-client-signer/sign/team-b-role\" { \n capabilities = [\"create\",\"update\"] \n} \nEOF Host configurations  These steps configure the SSH server to trust certificates signed by Vault. Don’t forget to restart the SSH service: \n\n sudo service sshd restart Client configurations  The user will need to create an SSH key pair.\n\nClassified impact band: critical. Affected layer signal: cloud — azure.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "A better alternative: SSH certificate authentication  It’s imperative to improve the SSH user experience and the security of SSH access to your hosts using a standard architecture that can be deployed in any environment.\n\nStep 3: Create Vault roles for SSH key signing  We will create Vault roles to sign and issue SSH certificates with specific configurations based on users’ functional roles.\n\nWe will revisit team-b principal later on.\n\nSince we are using three users in this blog, we will use specific named keys so we can differentiate.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Updated best practices : Refined configurations for modern Vault deployments. The likelihood of incidents due to SSH key mismanagement is growing, and so is the level of harm these incidents can cause. The Vault policies will be set up at a later stage.\n\n # Enable userpass authentication \nvault auth enable userpass \n \n# Create users (policies will be attached later) \nvault write auth/userpass/users/alice password=\"passw0rd\" policies=\"administrator-policy\" \nvault write auth/userpass/users/bob password=\"passw0rd\" policies=\"team-a-policy\" \nvault write auth/userpass/users/tim password=\"passw0rd\" policies=\"team-b-policy\" For production deployments, consider using  OIDC authentication  with your identity provider.",
+      "incident_timeline": "Updated best practices : Refined configurations for modern Vault deployments.\nTo have the  HashiCorp Vault  running and unsealed. It is possible to test these configurations locally by running Vault in dev mode. For Vault installation instructions, read the  getting started with Vault guide .\nThe SSH certificate approach described in this guide remains the  recommended best practice  for managing SSH access at scale.\nArchitecture requirements  This architecture achieves the following outcomes:\nOnce a user successfully authenticates to Vault, a Vault token is dynamically generated with attached policies that dictate which SSH roles the user can access for certificate signing. For example, Bob’s  team-a-policy  \nallowed_users : The list of principals this role will sign for. Requests for principals not in this list will fail.\nttl : This is the certificate expiry time. Set to 30 minutes in this example. Users must re-authenticate and request new certificates after expiry.\nEOH Step 4: Create Vault policies  Create policies that restrict each user’s access to their authorized Vault SSH role.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Overview This post updates the earlier approach to managing SSH access with HashiCorp Vault. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "09bb4a40bd7f39c6",
     "title": "Kubernetes v1.36: Tiered Memory Protection with Memory QoS",
     "source": "Kubernetes Blog",
