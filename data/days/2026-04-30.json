@@ -1,5 +1,43 @@
 [
   {
+    "id": "5de4a89642b36a55",
+    "title": "GitHub Copilot CLI for Beginners: Interactive v. non-interactive mode",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-interactive-v-non-interactive-mode/",
+    "published": "2026-04-30T16:09:02+00:00",
+    "fetched_at": "2026-04-30T17:39:24.731304+00:00",
+    "summary": "Welcome to GitHub Copilot CLI for Beginners! In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI , from your first prompt to tips for navigating the command line like a pro!",
+    "tags": [],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "In interactive mode, you can ask GitHub Copilot a question, review its response, and then either follow up with questions or another prompt all within the same session. This is the mode for those who want to work hands-o",
+      "Ask Copilot a question, like How do I run this project locally?",
+      "Take this with you GitHub Copilot CLI interactive and non-interactive modes are the fastest ways to prompt Copilot directly from your terminal. Having the option to pick between back-and-forth coding and quick prompting ",
+      "Best practices for GitHub Copilot CLI"
+    ],
+    "sections": {
+      "overview": "Welcome to GitHub Copilot CLI for Beginners! In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI , from your first prompt to tips for navigating the command line like a pro! In this blog, we ll cover the two main modes of the CLI: interactive and non-interactive.",
+      "technical_breakdown": "In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI , from your first prompt to tips for navigating the command line like a pro!\n\nIn this blog, we ll cover the two main modes of the CLI: interactive and non-interactive.\n\nMore resources to explore: \n\n \n GitHub Copilot CLI for Beginners video series \n\n GitHub Copilot CLI for Beginners: Getting started with GitHub Copilot CLI \n\n GitHub Copilot CLI 101: how to use GitHub Copilot from the command line \n\n Best practices for GitHub Copilot CLI \n\n \n\n The post GitHub Copilot CLI for Beginners: Interactive v. non-interactive mode appeared first on The GitHub Blog .",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "In interactive mode, you can ask GitHub Copilot a question, review its response, and then either follow up with questions or another prompt all within the same session. This is the mode for those who want to work hands-o\nAsk Copilot a question, like How do I run this project locally?\nTake this with you GitHub Copilot CLI interactive and non-interactive modes are the fastest ways to prompt Copilot directly from your terminal. Having the option to pick between back-and-forth coding and quick prompting \nBest practices for GitHub Copilot CLI",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Welcome to GitHub Copilot CLI for Beginners. In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI , from your first prompt to tips for navigating the command line like a pro.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "884df717bcf2b681",
     "title": "The Worst Coder in the World goes agentic: building a leaderboard cracking AI",
     "source": "Stack Overflow Blog",
@@ -198,6 +236,80 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "How econometrics and machine learning come together to secure modern systems.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "2a241a46152d486d",
+    "title": "Elastic Stack 8.19.15 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-8-19-15-released",
+    "published": "2026-04-30T00:00:00+00:00",
+    "fetched_at": "2026-04-30T17:39:26.683297+00:00",
+    "summary": "Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.15 over the previous versions 8.19.14",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.15 over the previous versions 8.19.14"
+    ],
+    "sections": {
+      "overview": "Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.15 over the previous versions 8.19.14\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.",
+      "technical_breakdown": "We recommend 8.19.15 over the previous versions 8.19.14\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.",
+      "impact": "We recommend 8.19.15 over the previous versions 8.19.14\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 8.19.15 over the previous versions 8.19.14\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.\n\nFor details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.15 over the previous versions 8.19.14",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "f7e412fc67530b12",
+    "title": "Elastic Stack 9.3.4 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-9-3-4-released",
+    "published": "2026-04-30T00:00:00+00:00",
+    "fetched_at": "2026-04-30T17:39:26.683551+00:00",
+    "summary": "Version 9.3.4 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.4 over the previous versions 9.3.3",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-04-30",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 9.3.4 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.4 over the previous versions 9.3.3"
+    ],
+    "sections": {
+      "overview": "Version 9.3.4 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.4 over the previous versions 9.3.3\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.",
+      "technical_breakdown": "We recommend 9.3.4 over the previous versions 9.3.3\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.",
+      "impact": "We recommend 9.3.4 over the previous versions 9.3.3\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 9.3.4 over the previous versions 9.3.3\n\n Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.\n\nFor details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 9.3.4 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.4 over the previous versions 9.3.3",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 9.3.4 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
     "related_sources": [],
     "highlighted": false
   }
