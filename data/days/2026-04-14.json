@@ -52,10 +52,6 @@
       {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/vault-enterprise-20-modernizes-identity-security-at-scale"
-      },
-      {
-        "source": "Elastic Blog",
-        "link": "https://www.elastic.co/blog/cloud-serverless-recap-2025"
       }
     ],
     "highlighted": false
