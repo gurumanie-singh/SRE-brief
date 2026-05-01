@@ -111,7 +111,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "As artificial intelligence systems become increasingly autonomous and agentic, ensuring their identity and trustworthiness becomes a critical challenge. Traditional identity frameworks built around human users and static credentials fall short when applied to dynamic, ephemeral, and non-human entities.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/04/30/kubernetes-v1-36-inplace-pod-level-resources-beta/"
+      }
+    ],
     "highlighted": false
   },
   {
