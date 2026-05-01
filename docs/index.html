@@ -25,37 +25,28 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">30 April 2026</h1>
+      <h1 class="brief-title">1 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-04-30T23:53:39.811754-05:00">30 April 2026, 23:53</time>
+        <time data-iso="2026-05-01T02:30:29.832820-05:00">1 May 2026, 02:30</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">1 high impact</span>
-      <span class="stat">9 items today</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
-    <div class="strip-section">
-      <span class="strip-label">Operations picture</span>
-      <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
-        <li>Repeated coverage across Cloudflare, Elastic</li>
-        <li>Multiple outage or availability narratives detected</li>
-      </ul>
-    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">openshift<span class="trend-count">3</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">4</span></span>
         <span class="trend-pill">stack<span class="trend-count">3</span></span>
+        <span class="trend-pill">openshift virtualization<span class="trend-count">2</span></span>
         <span class="trend-pill">agentic<span class="trend-count">2</span></span>
         <span class="trend-pill">cloudflare<span class="trend-count">2</span></span>
         <span class="trend-pill">deploy<span class="trend-count">2</span></span>
-        <span class="trend-pill">security<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -116,8 +107,8 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -128,7 +119,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       1 May 2026
-      <span class="day-count">1</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -161,6 +152,42 @@
       <div class="detail-links">
         <a href="articles/c97e100bec5be483.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/01/time-is-a-construct-but-it-can-break-your-software/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="capacity,kubernetes,networking,observability,outage"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="how to monitor openshift virtualization vms with zabbix"
+       data-id="14e9ea7b3542f793"
+       data-published="2026-05-01T07:01:31+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-01T07:01:31+00:00" title="1 May 2026, 02:01">1 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">How to monitor Openshift Virtualization VMs with Zabbix</h3>
+      <p class="card-summary">In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc. This is for users who need to create and monitor their Openshift Virtualization using Zabbix, creating capacity alerts, applications, etc.</p></div>
+      <div class="detail-links">
+        <a href="articles/14e9ea7b3542f793.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/01/how-monitor-openshift-virtualization-vms-zabbix" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1162,51 +1189,6 @@ controller to give the kernel better guidance on how to treat container memory.<
       <div class="detail-links">
         <a href="articles/52f1e175ba9d9e75.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/04/28/beyond-next-token-why-diffusion-llms-are-changing-game" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      24 April 2026
-      <span class="day-count">1</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--high"
-       data-tags="deployment,kubernetes,observability,outage,postmortem"
-       data-vendors="Datadog,Kubernetes,Slack"
-       data-impact="high"
-       data-theme="observability"
-       data-title="kubernetes v1.36: fine-grained kubelet api authorization graduates to ga"
-       data-id="cecdebeaf3757904"
-       data-published="2026-04-24T10:35:00-08:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">Datadog</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-04-24T10:35:00-08:00" title="24 April 2026, 13:35">24 April 2026, 13:35</time>
-      </div>
-      <h3 class="card-title">Kubernetes v1.36: Fine-Grained Kubelet API Authorization Graduates to GA</h3>
-      <p class="card-summary">On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the
-graduation of fine-grained kubelet API authorization to General Availability
-(GA) in Kubernetes v1.36. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Kubernetes Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>On behalf of Kubernetes SIG Auth and SIG Node, we are pleased to announce the graduation of fine-grained kubelet API authorization to General Availability (GA) in Kubernetes v1.36! The KubeletFineGrainedAuthz feature gate was introduced as an opt-in alpha feature in Kubernetes v1.32, then graduated to beta (enabled by default) in v1.33. Now, the feature is generally available and the feature gate is locked to enabled.</p></div>
-      <div class="detail-links">
-        <a href="articles/cecdebeaf3757904.html" class="detail-read">Open structured brief →</a>
-        <a href="https://kubernetes.io/blog/2026/04/24/kubernetes-v1-36-fine-grained-kubelet-authorization-ga/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

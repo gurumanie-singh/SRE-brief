@@ -29,5 +29,54 @@
     "email_summary": "Ryan welcomes  Jason Williams, senior software engineer at Bloomberg and  the creator of Rust-based JavaScript engine Boa, to the show to dive into why date and time handling in JavaScript is so difficult and how the Temporal proposal aims to fix it.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "14e9ea7b3542f793",
+    "title": "How to monitor Openshift Virtualization VMs with Zabbix",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/01/how-monitor-openshift-virtualization-vms-zabbix",
+    "published": "2026-05-01T07:01:31+00:00",
+    "fetched_at": "2026-05-01T07:30:29.687062+00:00",
+    "summary": "In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc. This is for users who need to create and monitor their Openshift Virtualization using Zabbix, creating capacity alerts, applications, etc. I...",
+    "tags": [
+      "capacity",
+      "kubernetes",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-01",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "To validate that our Preprocessing is working correctly, click Test all steps .",
+      "Then click Get value and test as shown in Figure 3.",
+      "Figure 3: Testing Zabbix item with Prometheus API, validating macros and LLD preprocessing output.",
+      "Note With this test, we can see that our script is working correctly.",
+      "Key: kubevirt.vm.cpu.request[{#NAMESPACE},{#VM}]",
+      "Value: max by (namespace, name) (kubevirt_vm_resource_requests{resource=\"cpu\", name=\"{#VM}\", namespace=\"{#NAMESPACE}\"} )",
+      "Key: kubevirt.vm.mem.request[{#NAMESPACE},{#VM}]",
+      "Value: max by (namespace, name)(kubevirt_vm_resource_requests{resource=\"memory\", name=\"{#VM}\", namespace=\"{#NAMESPACE}\"})"
+    ],
+    "sections": {
+      "overview": "In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc. This is for users who need to create and monitor their Openshift Virtualization using Zabbix, creating capacity alerts, applications, etc.",
+      "technical_breakdown": "Create the item prototype With the LLD of nodes, we can also create ITEM Prototype such as CPU, memory, network, uptime, and phase using the discovery rule's Macros (variables), NODE .\n\nWe will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc.\n\nCreate the item prototype \n\n With the Item Prototype , we will create specific queries such as CPU, memory, network, uptime, and phase using the discovery rule's Macros (variables), VM, and namespace.\n\nFor this use case, we will monitor: CPU, memory, network, and VM status.\n\nFigure 4: Zabbix trigger prototype configured to alert on high VM CPU usage using LLD macros and Prometheus-based metrics.",
+      "impact": "Using the oc CLI, connect to OpenShift as follows.\n\n $ oc project openshift-monitoring\n$ oc create sa zabbix-sa\n$ oc adm policy add-cluster-role-to-user cluster-monitoring-view -z zabbix-sa Now let's create a token to perform our authentication. $ oc create token zabbix-sa -n openshift-monitoring --duration=8760h Note Using this command, we will have a token valid for 1 year. This is for users who need to create and monitor their Openshift Virtualization using Zabbix, creating capacity alerts, applications, etc. Prerequisites:\n\n \n\n User with the cluster-admin cluster role\n Openshift 4.16+\n Zabbix server\n In this article, we will use the following versions:\n\n Openshift v4.18.23\n Kubernetes v1.31.11\n Zabbix 6.0.43\n \n\n Create a ServiceAccount \n\n Let's create a ServiceAccount in OpenShift to use in our Zabbix connection to Prometheus/Thanos.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc.\n\nGet started We will create a template using the LLD resource to process the collection of metrics for defining and creating the items and triggers.\n\nWe will use Zabbix to connect to the Prometheus/Thanos API and have access to all metrics available in the environment, such as kubevirt metrics and infrastructure.\n\nPrerequisites:\n\n \n\n User with the cluster-admin cluster role\n Openshift 4.16+\n Zabbix server\n In this article, we will use the following versions:\n\n Openshift v4.18.23\n Kubernetes v1.31.11\n Zabbix 6.0.43\n \n\n Create a ServiceAccount \n\n Let's create a ServiceAccount in OpenShift to use in our Zabbix connection to Prometheus/Thanos.",
+      "root_cause_highlight": "",
+      "incident_timeline": "To validate that our Preprocessing is working correctly, click Test all steps .\nThen click Get value and test as shown in Figure 3.\nFigure 3: Testing Zabbix item with Prometheus API, validating macros and LLD preprocessing output.\nNote With this test, we can see that our script is working correctly.\nKey: kubevirt.vm.cpu.request[{#NAMESPACE},{#VM}]\nValue: max by (namespace, name) (kubevirt_vm_resource_requests{resource=\"cpu\", name=\"{#VM}\", namespace=\"{#NAMESPACE}\"} )\nKey: kubevirt.vm.mem.request[{#NAMESPACE},{#VM}]\nValue: max by (namespace, name)(kubevirt_vm_resource_requests{resource=\"memory\", name=\"{#VM}\", namespace=\"{#NAMESPACE}\"})",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
