@@ -1,5 +1,38 @@
 [
   {
+    "id": "f8b3e7d7217bc36d",
+    "title": "Dispatches from O'Reilly: Fast Paths and Slow Paths",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/01/dispatches-from-o-reilly-fast-paths-and-slow-paths/",
+    "published": "2026-05-01T14:00:00+00:00",
+    "fetched_at": "2026-05-01T15:04:54.366763+00:00",
+    "summary": "Selective control in autonomous AI systems: Why governing every decision breaks autonomy—and how runtime control actually works at scale",
+    "tags": [
+      "latency"
+    ],
+    "day": "2026-05-01",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "reliability governance",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Selective control in autonomous AI systems: Why governing every decision breaks autonomy—and how runtime control actually works at scale",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Selective control in autonomous AI systems: Why governing every decision breaks autonomy—and how runtime control actually works at scale.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "437f23d59dca8aee",
     "title": "Introducing Dynamic Workflows: durable execution that follows the tenant",
     "source": "Cloudflare Blog",
@@ -126,6 +159,39 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "83d1f853ec5b132e",
+    "title": "Rethinking public sector AI: 5 shifts driving mission outcomes",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/5-shifts-driving-mission-outcomes",
+    "published": "2026-05-01T00:00:00+00:00",
+    "fetched_at": "2026-05-01T15:04:55.237352+00:00",
+    "summary": "Everyone had a theory on AI in the public sector. Now, see what’s actually working. Join IDC and Elastic to discuss the realities of AI adoption, data sovereignty, and building systems that deliver real impact.",
+    "tags": [],
+    "day": "2026-05-01",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Everyone had a theory on AI in the public sector. Now, see what’s actually working. Join IDC and Elastic to discuss the realities of AI adoption, data sovereignty, and building systems that deliver real impact.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Join IDC and Elastic to discuss the realities of AI adoption, data sovereignty, and building systems that deliver real impact.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Everyone had a theory on AI in the public sector. Now, see what’s actually working.",
     "related_sources": [],
     "highlighted": false
   }
