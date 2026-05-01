@@ -1,5 +1,54 @@
 [
   {
+    "id": "d1297ccac62879a5",
+    "title": "Code Orange: Fail Small is complete. The result is a stronger Cloudflare network",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/code-orange-fail-small-complete/",
+    "published": "2026-05-01T21:07:30+00:00",
+    "fetched_at": "2026-05-01T22:56:58.026082+00:00",
+    "summary": "Over the past two and a bit quarters, we've undertaken an intensive engineering effort, internally code-named \" Code Orange: Fail Small \", focused on making Cloudflare's infrastructure more resilient, secure, and reliable for every customer.",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-05-01",
+    "impact": "critical",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Central to this is a new internal component we call Snapstone, which we built to bring health-mediated deployment to configuration changes. Snapstone is a system that bundles configuration change into a package, and then",
+      "What makes Snapstone particularly powerful is its flexibility. Rather than being a fix for specific past failures, Snapstone allows teams to dynamically define any unit of configuration that needs health mediation, wheth",
+      "This gives us something we didn't have before: when a risk review or operational experience identifies a dangerous configuration pattern, the fix is straightforward -- bring it into Snapstone, and the configuration patte",
+      "Let’s look at an example of how this works. Our November 2025 outage was triggered by a failed rollout of our Bot Management detection machine learning classifier. Under our new procedures, if data were generated again t",
+      "Cloudflare runs on Cloudflare. We use our own Zero Trust products to secure our infrastructure, but this creates a dependency: if a network-wide outage impacts these tools, we lose the very pathways we need to fix them. ",
+      "To bridge this gap, we established a dedicated communications team to work in lockstep with incident responders during major events. Just as our engineers practiced their \"break glass\" procedures, this team used the Code",
+      "The Codex is part of our answer. It's a living repository of engineering standards written by domain experts through our Request For Comments (RFC) process, then distilled into actionable rules. Best practices that previ",
+      "For example, one RFC now states: \"Do not use .unwrap() outside of tests and `build.rs.`\" Another captures a broader principle: \"Services MUST validate that upstream dependencies are in an expected state before processing"
+    ],
+    "sections": {
+      "overview": "Over the past two and a bit quarters, we've undertaken an intensive engineering effort, internally code-named \" Code Orange: Fail Small \", focused on making Cloudflare's infrastructure more resilient, secure, and reliable for every customer. Earlier this month, the Cloudflare team finished this work. While improving resiliency will never be a “job done” and will always be a top priority across our development lifecycle, we have now completed the work that would have avoided the November 18, 2025 and December 5, 2025 global outages.",
+      "technical_breakdown": "Instead, relevant teams have adopted a “health-mediated deployment” methodology, the same we use when releasing software , for all configuration deployments.\n\nSnapstone closes this gap by providing a unified way to bring progressive rollout, real-time health monitoring, and automated rollback to configuration deployments by default.\n\nYou can see how each happens in “waves” as the change propagates to the edge, often in parallel to the following and prior releases:\n\n \n \n We’re working on extending this pattern of deployment to many more of our systems in the future.\n\nAs part of the broader Code Orange initiatives, we have introduced additional service level objectives (SLOs) to all our services, enforced a global changelog, onboarded all teams to our maintenance coordination system, and improved transparency across the company on our incident “prevents” ticket backlog.\n\nSafer configuration changes \n \n \n \n \n What it means for you : In most cases, Cloudflare internal configuration changes no longer reach our network instantly and are instead rolled out progressively with real-time health monitoring.",
+      "impact": "We also introduced measures to prevent drift and regressions over time, and strengthened the way we communicate to our customers during an outage. If the old configuration was not available for some reason, it would fail open to ensure customer production traffic continues to be served, which is a much better outcome than downtime. We use our own Zero Trust products to secure our infrastructure, but this creates a dependency: if a network-wide outage impacts these tools, we lose the very pathways we need to fix them. The November and December outages shared a common failure mode: code that assumed inputs would always be valid, with no graceful degradation when that assumption broke.\n\nClassified impact band: critical. Affected layer signal: edge — cdn.",
+      "resolution": "Snapstone closes this gap by providing a unified way to bring progressive rollout, real-time health monitoring, and automated rollback to configuration deployments by default.\n\nRather than being a fix for specific past failures, Snapstone allows teams to dynamically define any unit of configuration that needs health mediation, whether that's a data file like the one that caused the November 18 outage , or a control flag in our global configuration system like the one involved in the December 5 outage .\n\nThis gives us something we didn't have before: when a risk review or operational experience identifies a dangerous configuration pattern, the fix is straightforward -- bring it into Snapstone, and the configuration pattern immediately inherits safe deployment.\n\nCloudflare already takes advantage of these customer cohorts for blast radius mitigation with traffic management techniques today, and this additional process segmentation work provides a powerful reliability capability for us going forward.",
+      "lessons_learned": "We have codified our improvements \n \n \n \n \n What it means for you : We will remember the learnings from our incidents and have codified the resolutions.\n\nBoth patterns are preventable if the lessons are captured and enforced.\n\nAs part of the broader Code Orange initiatives, we have introduced additional service level objectives (SLOs) to all our services, enforced a global changelog, onboarded all teams to our maintenance coordination system, and improved transparency across the company on our incident “prevents” ticket backlog.\n\nWe also introduced measures to prevent drift and regressions over time, and strengthened the way we communicate to our customers during an outage.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. In order to catch potentially dangerous deployments before they reach production, we've identified high-risk configuration pipelines, and built new tools to manage configuration changes better. Instead, relevant teams have adopted a “health-mediated deployment” methodology, the same we use when releasing software , for all configuration deployments. Central to this is a new internal component we call Snapstone, which we built to bring health-mediated deployment to configuration changes.",
+      "incident_timeline": "Central to this is a new internal component we call Snapstone, which we built to bring health-mediated deployment to configuration changes. Snapstone is a system that bundles configuration change into a package, and then\nWhat makes Snapstone particularly powerful is its flexibility. Rather than being a fix for specific past failures, Snapstone allows teams to dynamically define any unit of configuration that needs health mediation, wheth\nThis gives us something we didn't have before: when a risk review or operational experience identifies a dangerous configuration pattern, the fix is straightforward -- bring it into Snapstone, and the configuration patte\nLet’s look at an example of how this works. Our November 2025 outage was triggered by a failed rollout of our Bot Management detection machine learning classifier. Under our new procedures, if data were generated again t\nCloudflare runs on Cloudflare. We use our own Zero Trust products to secure our infrastructure, but this creates a dependency: if a network-wide outage impacts these tools, we lose the very pathways we need to fix them. \nTo bridge this gap, we established a dedicated communications team to work in lockstep with incident responders during major events. Just as our engineers practiced their \"break glass\" procedures, this team used the Code\nThe Codex is part of our answer. It's a living repository of engineering standards written by domain experts through our Request For Comments (RFC) process, then distilled into actionable rules. Best practices that previ\nFor example, one RFC now states: \"Do not use .unwrap() outside of tests and `build.rs.`\" Another captures a broader principle: \"Services MUST validate that upstream dependencies are in an expected state before processing",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Over the past two and a bit quarters, we've undertaken an intensive engineering effort, internally code-named \" Code Orange: Fail Small \", focused on making Cloudflare's infrastructure more resilient, secure, and reliable for every customer. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "f8b3e7d7217bc36d",
     "title": "Dispatches from O'Reilly: Fast Paths and Slow Paths",
     "source": "Stack Overflow Blog",

@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">1 May 2026</h1>
-      <span class="brief-sub">5 items</span>
+      <span class="brief-sub">6 items</span>
     </div>
   </div>
 
@@ -35,6 +35,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Cloudflare</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -47,6 +50,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -83,14 +87,52 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--action card--critical"
+       data-tags="deployment,latency,networking,observability,outage,postmortem"
+       data-vendors="Cloudflare"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="code orange: fail small is complete. the result is a stronger cloudflare network"
+       data-id="d1297ccac62879a5"
+       data-published="2026-05-01T21:07:30+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-01T21:07:30+00:00" title="1 May 2026, 16:07">1 May 2026, 16:07</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Code Orange: Fail Small is complete. The result is a stronger Cloudflare network</h3>
+      <p class="card-summary">Over the past two and a bit quarters, we&#39;ve undertaken an intensive engineering effort, internally code-named &#34; Code Orange: Fail Small &#34;, focused on making Cloudflare&#39;s infrastructure more resilient, secure, and reliable for every customer. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Over the past two and a bit quarters, we&#39;ve undertaken an intensive engineering effort, internally code-named &#34; Code Orange: Fail Small &#34;, focused on making Cloudflare&#39;s infrastructure more resilient, secure, and reliable for every customer. Earlier this month, the Cloudflare team finished this work. While improving resiliency will never be a “job done” and will always be a top priority across our development lifecycle, we have now completed the work that would have avoided the November 18, 2025 and December 5, 2025 global outages.</p></div>
+      <div class="detail-links">
+        <a href="../articles/d1297ccac62879a5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/code-orange-fail-small-complete/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="latency"
        data-vendors=""

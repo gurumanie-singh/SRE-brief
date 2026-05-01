@@ -28,12 +28,14 @@
       <h1 class="brief-title">1 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-01T16:02:43.424861-05:00">1 May 2026, 16:02</time>
+        <time data-iso="2026-05-01T17:57:00.645889-05:00">1 May 2026, 17:57</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">5 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat stat-action">1 ops priority</span>
+      <span class="stat">6 items today</span>
     </div>
   </div>
 
@@ -41,6 +43,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Cloudflare</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -48,11 +53,11 @@
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
         <span class="trend-pill">openshift<span class="trend-count">4</span></span>
+        <span class="trend-pill">cloudflare<span class="trend-count">3</span></span>
         <span class="trend-pill">stack<span class="trend-count">3</span></span>
         <span class="trend-pill">paths<span class="trend-count">2</span></span>
         <span class="trend-pill">openshift virtualization<span class="trend-count">2</span></span>
         <span class="trend-pill">agentic<span class="trend-count">2</span></span>
-        <span class="trend-pill">cloudflare<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -84,9 +89,9 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
@@ -98,8 +103,8 @@
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="reliability governance">reliability governance</button>
@@ -116,8 +121,8 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
@@ -126,10 +131,47 @@
   <div class="day-group">
     <h2 class="day-heading">
       1 May 2026
-      <span class="day-count">5</span>
+      <span class="day-count">6</span>
     </h2>
   </div>
 
+  <div class="article-card card--action card--critical"
+       data-tags="deployment,latency,networking,observability,outage,postmortem"
+       data-vendors="Cloudflare"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="code orange: fail small is complete. the result is a stronger cloudflare network"
+       data-id="d1297ccac62879a5"
+       data-published="2026-05-01T21:07:30+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-01T21:07:30+00:00" title="1 May 2026, 16:07">1 May 2026, 16:07</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Code Orange: Fail Small is complete. The result is a stronger Cloudflare network</h3>
+      <p class="card-summary">Over the past two and a bit quarters, we&#39;ve undertaken an intensive engineering effort, internally code-named &#34; Code Orange: Fail Small &#34;, focused on making Cloudflare&#39;s infrastructure more resilient, secure, and reliable for every customer. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Over the past two and a bit quarters, we&#39;ve undertaken an intensive engineering effort, internally code-named &#34; Code Orange: Fail Small &#34;, focused on making Cloudflare&#39;s infrastructure more resilient, secure, and reliable for every customer. Earlier this month, the Cloudflare team finished this work. While improving resiliency will never be a “job done” and will always be a top priority across our development lifecycle, we have now completed the work that would have avoided the November 18, 2025 and December 5, 2025 global outages.</p></div>
+      <div class="detail-links">
+        <a href="articles/d1297ccac62879a5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/code-orange-fail-small-complete/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="latency"
        data-vendors=""
@@ -1151,45 +1193,6 @@ controller to give the kernel better guidance on how to treat container memory.<
       <div class="detail-links">
         <a href="articles/cdd2afa68c67d0be.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/state-of-observability-2026-financial-services" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      27 April 2026
-      <span class="day-count">1</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="welcome to the “find out” stage of ai"
-       data-id="b26d4136202afdda"
-       data-published="2026-04-27T13:56:07+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-04-27T13:56:07+00:00" title="27 April 2026, 08:56">27 April 2026, 08:56</time>
-      </div>
-      <h3 class="card-title">Welcome to the “find out” stage of AI</h3>
-      <p class="card-summary">AI companies are looking a little different after going through renewal cycle.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Welcome to the “find out” stage of AI. AI companies are looking a little different after going through renewal cycle.</p></div>
-      <div class="detail-links">
-        <a href="articles/b26d4136202afdda.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/04/27/welcome-to-the-find-out-stage-of-ai/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
