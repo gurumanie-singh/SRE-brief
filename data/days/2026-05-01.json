@@ -1,5 +1,55 @@
 [
   {
+    "id": "437f23d59dca8aee",
+    "title": "Introducing Dynamic Workflows: durable execution that follows the tenant",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/dynamic-workflows/",
+    "published": "2026-05-01T13:00:00+00:00",
+    "fetched_at": "2026-05-01T13:46:08.374230+00:00",
+    "summary": "When we first launched Workers eight years ago, it was a direct-to-developers platform. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications. We now see on Workers: Applications where users describe what they want, and the AI writes...",
+    "tags": [
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-01",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare",
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Cloudflare Workflows is our durable execution engine. It turns a run(event, step) function into a program where every step survives failures, can sleep for hours or days, can wait for external events, and resumes exactly",
+      "Say you're building an app platform where the AI writes TypeScript for every tenant. Say you're running a CI/CD product where each repository has its own pipeline. Say you're using an agents SDK where each agent writes i",
+      "fetch(request, env) {",
+      "const tenantId = request.headers.get('x-tenant-id');",
+      "return loadTenant(env, tenantId).getEntrypoint().fetch(request);",
+      "async fetch(request, env) {",
+      "const instance = await env.WORKFLOWS.create({ params: await request.json() });",
+      "When a request reaches the Worker Loader, it routes the execution to the correct dynamic code on the fly. The rest of the execution is a handoff between these three layers, left-to-right in time: the request enters, boun"
+    ],
+    "sections": {
+      "overview": "When we first launched Workers eight years ago, it was a direct-to-developers platform. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications. We now see on Workers: Applications where users describe what they want, and the AI writes the implementation.",
+      "technical_breakdown": "The escape hatch \n \n \n \n \n If you want to subclass WorkflowEntrypoint yourself — to add logging around run() , wire up per-tenant observability, or thread custom state through — the library exposes the lower-level dispatchWorkflow primitive that createDynamicWorkflowEntrypoint is built on:\n\n import { dispatchWorkflow } from '@cloudflare/dynamic-workflows';\n\nexport class MyDynamicWorkflow extends WorkflowEntrypoint {\n async run(event, step) {\n return dispatchWorkflow(\n { env: this.env, ctx: this.ctx },\n event,\n step,\n ({ metadata, env }) => loadRunnerForTenant(env, metadata),\n );\n }\n}\n \n Everything else — IDs, pause/resume, sendEvent , retries — falls through to the real Workflows engine untouched.\n\nEvery binding that Workers currently exposes is heading for a dynamic counterpart — queues where each producer ships its own handler, caches, databases, object stores, AI bindings, and MCP servers where every tenant brings their own tools.\n\nShipping a multi-tenant product used to mean giving every customer their own container, their own database, their own disk, their own scheduler, and stitching it together with orchestration glue, service meshes, and hair-pulling billing math.\n\nEach pull request spawns an instance of that pipeline that has to run to completion, survive a machine crash, retry a flaky step, stream logs, pause for approvals, and persist results.\n\nMulti-tenant SaaS where every customer's business logic is, at runtime, some TypeScript the platform has never seen before.",
+      "impact": "SDKs and frameworks where the user brings the logic \n \n \n \n \n If you're shipping a framework where your customer writes the run(event, step) function — a workflow builder UI, a visual automation tool, a per-tenant extension system, a low-code tool for non-developers — Dynamic Workflows is now the primitive that makes it work without compromise. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications. Multi-tenant SaaS where every customer's business logic is, at runtime, some TypeScript the platform has never seen before. It lets a single Worker — the Worker Loader — route every create() call to a different tenant's code, and, critically, have the Workflows engine dispatch run(event, step) back to that same code when the workflow actually executes, seconds or hours or days later.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications.\n\nThey have no idea they're being dispatched:\n\n import { WorkflowEntrypoint } from 'cloudflare:workers';\n\nexport class TenantWorkflow extends WorkflowEntrypoint {\n async run(event, step) {\n return step.do('greet', async () => `Hello, ${event.payload.name}!`);\n }\n}\n\nexport default {\n async fetch(request, env) {\n const instance = await env.WORKFLOWS.create({ params: await request.json() });\n return Response.json({ id: await instance.id });\n },\n}; \n That's it.\n\nWhatever you bind to a Worker today, you will soon be able to bind dynamically: dispatched per tenant, per agent, per request, at zero idle cost.\n\nThe reason CI hasn't been built that way until now is that nobody had a cloud primitive where the workflow itself is different for every repo, dispatched at runtime, at zero provisioning cost.",
+      "lessons_learned": "What this unlocks \n \n \n \n \n \n \n Agent platforms that plan like engineers \n \n \n \n \n Coding agents — OpenCode , Claude Code , Codex, Pi — have been proving for the past year that LLMs are far better at writing code than at making sequential tool calls.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. So, we have dynamic deployment for storage and source control. Today, we are bridging durable execution and dynamic deployment with Dynamic Workflows . But Workflows has always had one assumption baked in: the workflow code is part of your deployment.",
+      "incident_timeline": "Cloudflare Workflows is our durable execution engine. It turns a run(event, step) function into a program where every step survives failures, can sleep for hours or days, can wait for external events, and resumes exactly\nSay you're building an app platform where the AI writes TypeScript for every tenant. Say you're running a CI/CD product where each repository has its own pipeline. Say you're using an agents SDK where each agent writes i\nfetch(request, env) {\nconst tenantId = request.headers.get('x-tenant-id');\nreturn loadTenant(env, tenantId).getEntrypoint().fetch(request);\nasync fetch(request, env) {\nconst instance = await env.WORKFLOWS.create({ params: await request.json() });\nWhen a request reaches the Worker Loader, it routes the execution to the correct dynamic code on the fly. The rest of the execution is a handoff between these three layers, left-to-right in time: the request enters, boun",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "When we first launched Workers eight years ago, it was a direct-to-developers platform. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "c97e100bec5be483",
     "title": "Time is a construct but it can still break your software",
     "source": "Stack Overflow Blog",

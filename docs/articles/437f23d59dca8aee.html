@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing Dynamic Workflows: durable execution that follows the tenant — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-01.html" class="back-link">← 1 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">1 May 2026, 08:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Introducing Dynamic Workflows: durable execution that follows the tenant</h1>
+
+      <p class="subtitle">When we first launched Workers eight years ago, it was a direct-to-developers platform. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="vendor-tag">GitHub</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">When we first launched Workers eight years ago, it was a direct-to-developers platform. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>When we first launched Workers eight years ago, it was a direct-to-developers platform. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications. We now see on Workers: Applications where users describe what they want, and the AI writes the implementation.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The escape hatch           If you want to subclass WorkflowEntrypoint yourself — to add logging around run() , wire up per-tenant observability, or thread custom state through — the library exposes the lower-level dispatchWorkflow primitive that createDynamicWorkflowEntrypoint is built on:</p>
+<p>import { dispatchWorkflow } from &#39;@cloudflare/dynamic-workflows&#39;;</p>
+<p>export class MyDynamicWorkflow extends WorkflowEntrypoint {  async run(event, step) {  return dispatchWorkflow(  { env: this.env, ctx: this.ctx },  event,  step,  ({ metadata, env }) =&gt; loadRunnerForTenant(env, metadata),  );  } }    Everything else — IDs, pause/resume, sendEvent , retries — falls through to the real Workflows engine untouched.</p>
+<p>Every binding that Workers currently exposes is heading for a dynamic counterpart — queues where each producer ships its own handler, caches, databases, object stores, AI bindings, and MCP servers where every tenant brings their own tools.</p>
+<p>Shipping a multi-tenant product used to mean giving every customer their own container, their own database, their own disk, their own scheduler, and stitching it together with orchestration glue, service meshes, and hair-pulling billing math.</p>
+<p>Each pull request spawns an instance of that pipeline that has to run to completion, survive a machine crash, retry a flaky step, stream logs, pause for approvals, and persist results.</p>
+<p>Multi-tenant SaaS where every customer&#39;s business logic is, at runtime, some TypeScript the platform has never seen before.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>SDKs and frameworks where the user brings the logic           If you&#39;re shipping a framework where your customer writes the run(event, step) function — a workflow builder UI, a visual automation tool, a per-tenant extension system, a low-code tool for non-developers — Dynamic Workflows is now the primitive that makes it work without compromise. Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications. Multi-tenant SaaS where every customer&#39;s business logic is, at runtime, some TypeScript the platform has never seen before. It lets a single Worker — the Worker Loader — route every create() call to a different tenant&#39;s code, and, critically, have the Workflows engine dispatch run(event, step) back to that same code when the workflow actually executes, seconds or hours or days later.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Over the years, we have expanded and scaled the ecosystem so that platforms could not only build on Workers directly, but they could also enable their customers to ship code to us through many multi-tenant applications.</p>
+<p>They have no idea they&#39;re being dispatched:</p>
+<p>import { WorkflowEntrypoint } from &#39;cloudflare:workers&#39;;</p>
+<p>export class TenantWorkflow extends WorkflowEntrypoint {  async run(event, step) {  return step.do(&#39;greet&#39;, async () =&gt; `Hello, ${event.payload.name}!`);  } }</p>
+<p>export default {  async fetch(request, env) {  const instance = await env.WORKFLOWS.create({ params: await request.json() });  return Response.json({ id: await instance.id });  }, };   That&#39;s it.</p>
+<p>Whatever you bind to a Worker today, you will soon be able to bind dynamically: dispatched per tenant, per agent, per request, at zero idle cost.</p>
+<p>The reason CI hasn&#39;t been built that way until now is that nobody had a cloud primitive where the workflow itself is different for every repo, dispatched at runtime, at zero provisioning cost.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>What this unlocks               Agent platforms that plan like engineers           Coding agents — OpenCode , Claude Code , Codex, Pi — have been proving for the past year that LLMs are far better at writing code than at making sequential tool calls.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. So, we have dynamic deployment for storage and source control. Today, we are bridging durable execution and dynamic deployment with Dynamic Workflows . But Workflows has always had one assumption baked in: the workflow code is part of your deployment.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Cloudflare Workflows is our durable execution engine. It turns a run(event, step) function into a program where every step survives failures, can sleep for hours or days, can wait for external events, and resumes exactly</li>
+            <li>Say you&#39;re building an app platform where the AI writes TypeScript for every tenant. Say you&#39;re running a CI/CD product where each repository has its own pipeline. Say you&#39;re using an agents SDK where each agent writes i</li>
+            <li>fetch(request, env) {</li>
+            <li>const tenantId = request.headers.get(&#39;x-tenant-id&#39;);</li>
+            <li>return loadTenant(env, tenantId).getEntrypoint().fetch(request);</li>
+            <li>async fetch(request, env) {</li>
+            <li>const instance = await env.WORKFLOWS.create({ params: await request.json() });</li>
+            <li>When a request reaches the Worker Loader, it routes the execution to the correct dynamic code on the fly. The rest of the execution is a handoff between these three layers, left-to-right in time: the request enters, boun</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/dynamic-workflows/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
