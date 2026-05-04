@@ -1,5 +1,52 @@
 [
   {
+    "id": "2719e29139cf4f54",
+    "title": "Register now for OpenClaw: After Hours @ GitHub",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/open-source/register-now-for-openclaw-after-hours-github/",
+    "published": "2026-05-04T15:00:00+00:00",
+    "fetched_at": "2026-05-04T15:14:26.228218+00:00",
+    "summary": "OpenClaw , one of the fastest-growing open source projects, has already picked up over 350,000 stars and an early community of builders exploring what agentic systems can actually do in practice. ",
+    "tags": [],
+    "day": "2026-05-04",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "OpenClaw , one of the fastest-growing open source projects, has already picked up over 350,000 stars and an early community of builders exploring what agentic systems can actually do in practice.",
+      "June 3 , 5:30 p.m. 9 p.m.",
+      "Livestream : twitch.tv/github",
+      "OpenClaw is an open source framework for building and running agentic systems, focused on giving developers real control over how agents execute tasks in the wild. It provides the core pieces for orchestrating tools, man"
+    ],
+    "sections": {
+      "overview": "OpenClaw , one of the fastest-growing open source projects, has already picked up over 350,000 stars and an early community of builders exploring what agentic systems can actually do in practice. That s why, on June 3, 2026, we are hosting OpenClaw: After Hours at GitHub HQ in San Francisco. The event will take place during Microsoft Build 2026 .",
+      "technical_breakdown": "Hear more about OpenClaw from the creator himself, Peter Steinberger: \n\n \n\n \n \n \n \n\n The post Register now for OpenClaw: After Hours @ GitHub appeared first on The GitHub Blog .",
+      "impact": "That s why, on June 3, 2026, we are hosting OpenClaw: After Hours at GitHub HQ in San Francisco. Hear more about OpenClaw from the creator himself, Peter Steinberger: \n\n \n\n \n \n \n \n\n The post Register now for OpenClaw: After Hours @ GitHub appeared first on The GitHub Blog .\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "OpenClaw , one of the fastest-growing open source projects, has already picked up over 350,000 stars and an early community of builders exploring what agentic systems can actually do in practice.\nJune 3 , 5:30 p.m. 9 p.m.\nLivestream : twitch.tv/github\nOpenClaw is an open source framework for building and running agentic systems, focused on giving developers real control over how agents execute tasks in the wild. It provides the core pieces for orchestrating tools, man",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "OpenClaw , one of the fastest-growing open source projects, has already picked up over 350,000 stars and an early community of builders exploring what agentic systems can actually do in practice. That s why, on June 3, 2026, we are hosting OpenClaw: After Hours at GitHub HQ in San Francisco.",
+    "related_sources": [
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/05/04/how-kagenti-adk-simplifies-production-ai-agent-management"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/05/04/guardrails-enterprise-safety-shields-llama-stack"
+      }
+    ],
+    "highlighted": false
+  },
+  {
     "id": "53068d38ded991bd",
     "title": "Deploy hosted control planes with OpenShift Virtualization: Distributed hosting",
     "source": "Red Hat Developer Blog",
@@ -46,6 +93,41 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "In Parts 1 and 2 of this series, we covered an all-in-one deployment and the common two-cluster hub/management split. In this final installment, we will discuss a stronger separation suited for large enterprises, including the following three clusters with a single, clear responsibility.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "76019f8d91ae7ad4",
+    "title": "How IT leaders can measure the ROI of agentic AI initiatives",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/how-it-leaders-measure-roi-of-agentic-ai-initiatives",
+    "published": "2026-05-04T00:00:00+00:00",
+    "fetched_at": "2026-05-04T15:14:27.393984+00:00",
+    "summary": "Gartner® estimates that over 70% of agentic AI use cases will fail to deliver the expected value. Traditional ROI models don't apply. See how we’re successfully measuring agentic AI ROI at Elastic.",
+    "tags": [],
+    "day": "2026-05-04",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Gartner® estimates that over 70% of agentic AI use cases will fail to deliver the expected value. Traditional ROI models don't apply. See how we’re successfully measuring agentic AI ROI at Elastic."
+    ],
+    "sections": {
+      "overview": "Gartner® estimates that over 70% of agentic AI use cases will fail to deliver the expected value. Traditional ROI models don't apply. See how we’re successfully measuring agentic AI ROI at Elastic.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Gartner® estimates that over 70% of agentic AI use cases will fail to deliver the expected value. Traditional ROI models don't apply. See how we’re successfully measuring agentic AI ROI at Elastic.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Gartner® estimates that over 70% of agentic AI use cases will fail to deliver the expected value. Traditional ROI models don't apply.",
     "related_sources": [],
     "highlighted": false
   }
