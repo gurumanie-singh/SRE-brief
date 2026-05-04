@@ -25,39 +25,28 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">3 May 2026</h1>
+      <h1 class="brief-title">4 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-03T23:01:12.795296-05:00">3 May 2026, 23:01</time>
+        <time data-iso="2026-05-04T02:51:01.488169-05:00">4 May 2026, 02:51</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-critical">1 critical</span>
-      <span class="stat stat-action">1 ops priority</span>
-      <span class="stat">6 items today</span>
+      <span class="stat">1 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
-    <div class="strip-section">
-      <span class="strip-label">Operations picture</span>
-      <ul class="strip-bullets">
-        <li>1 critical incident signal in the feed window</li>
-        <li>1 story flagged for operational follow-up</li>
-        <li>Repeated coverage across Cloudflare</li>
-        <li>Multiple outage or availability narratives detected</li>
-      </ul>
-    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">openshift<span class="trend-count">4</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">5</span></span>
+        <span class="trend-pill">deploy<span class="trend-count">3</span></span>
+        <span class="trend-pill">openshift virtualization<span class="trend-count">3</span></span>
         <span class="trend-pill">cloudflare<span class="trend-count">3</span></span>
         <span class="trend-pill">stack<span class="trend-count">3</span></span>
-        <span class="trend-pill">paths<span class="trend-count">2</span></span>
-        <span class="trend-pill">openshift virtualization<span class="trend-count">2</span></span>
-        <span class="trend-pill">agentic<span class="trend-count">2</span></span>
+        <span class="trend-pill">deploy hosted<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -118,15 +107,58 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      4 May 2026
+      <span class="day-count">1</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="capacity,deployment,kubernetes,networking,observability,scaling"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="deploy hosted control planes with openshift virtualization: distributed hosting"
+       data-id="53068d38ded991bd"
+       data-published="2026-05-04T07:16:12+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-04T07:16:12+00:00" title="4 May 2026, 02:16">4 May 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Deploy hosted control planes with OpenShift Virtualization: Distributed hosting</h3>
+      <p class="card-summary">In Parts 1 and 2 of this series, we covered an all-in-one deployment and the common two-cluster hub/management split. In this final installment, we will discuss a stronger separation suited for large enterprises, including the following three clusters with a single, clear responsibility.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In Parts 1 and 2 of this series, we covered an all-in-one deployment and the common two-cluster hub/management split. In this final installment, we will discuss a stronger separation suited for large enterprises, including the following three clusters with a single, clear responsibility. Cluster A: Red Hat Advanced Cluster Management for Kubernetes (hub), fleet management, policy, placement, Day-2 operations   Cluster B: Multicluster engine for Kubernetes , hosted control plane (control plane hosts) runs HostedCluster control plane pods.</p></div>
+      <div class="detail-links">
+        <a href="articles/53068d38ded991bd.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/04/deploy-hosted-control-planes-openshift-virtualization-distributed-hosting" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       1 May 2026
@@ -878,7 +910,7 @@ controller to give the kernel better guidance on how to treat container memory.<
   <div class="day-group">
     <h2 class="day-heading">
       28 April 2026
-      <span class="day-count">9</span>
+      <span class="day-count">8</span>
     </h2>
   </div>
 
@@ -1160,39 +1192,6 @@ controller to give the kernel better guidance on how to treat container memory.<
       <div class="detail-links">
         <a href="articles/f298cc0d4757662f.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/04/28/exploring-distroless-containers-project-hummingbird" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="observability"
-       data-vendors=""
-       data-impact="medium"
-       data-theme="observability"
-       data-title="state of observability in financial services 2026: from implementation to business impact"
-       data-id="cdd2afa68c67d0be"
-       data-published="2026-04-28T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-04-28T00:00:00+00:00" title="27 April 2026, 19:00">27 April 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">State of Observability in Financial Services 2026: From implementation to business impact</h3>
-      <p class="card-summary">Explore the 2026 state of observability financial services report. Discover trends in GenAI adoption, OTel, cost optimization, and compliance.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Explore the 2026 state of observability financial services report. Discover trends in GenAI adoption, OTel, cost optimization, and compliance.</p></div>
-      <div class="detail-links">
-        <a href="articles/cdd2afa68c67d0be.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/state-of-observability-2026-financial-services" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
