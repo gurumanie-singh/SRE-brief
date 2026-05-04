@@ -1,5 +1,47 @@
 [
   {
+    "id": "173b74e6d0da5ab6",
+    "title": "Introducing HCP Terraform powered by Infragraph - now in public preview",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/introducing-hcp-terraform-powered-by-infragraph-in-public-preview",
+    "published": "2026-05-04T18:45:00+00:00",
+    "fetched_at": "2026-05-04T23:02:19.077520+00:00",
+    "summary": "Migrating to the cloud was supposed to make infrastructure easier to provision and manage. For many enterprises, the reality is more complicated. New pain points emerged that undermine the cloud’s speed, security, and scale. ",
+    "tags": [
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-04",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "A centralized, event-driven knowledge graph, Infragraph provides the unified visibility that keeps the focus where it belongs: empowering organizations to secure and optimize infrastructure. Static insights are replaced ",
+      "For example, when AI lets hackers target vulnerabilities with remarkable speed and precision, any security lapses must be discovered and patched in real-time. Or to keep a cap on costs, platform teams need to investigate",
+      "Add a connection to AWS, HCP Terraform, and HCP Packer to view how your cloud estate connects to infrastructure as code",
+      "To stay up to date on the latest Infragraph news,  sign up here ."
+    ],
+    "sections": {
+      "overview": "Migrating to the cloud was supposed to make infrastructure easier to provision and manage. For many enterprises, the reality is more complicated. New pain points emerged that undermine the cloud’s speed, security, and scale.",
+      "technical_breakdown": "A centralized, event-driven knowledge graph, Infragraph provides the unified visibility that keeps the focus where it belongs: empowering organizations to secure and optimize infrastructure.\n\nIn this blog, we’ll outline why Infragraph is a must-have resource for platform teams as they combat the ever-growing challenges of managing complex infrastructure in the era of AI.\n\nThis static view slows down response times and leads to unexpected spending.\n\nBut instead of proactive alerts, legacy approaches to hybrid and multi-cloud management often leave organizations with so-called “dirty data” — outdated information from servers, VMs, and cloud systems.\n\nAnd as more companies look to adopt AI, Infragraph will serve as the unified knowledge foundation to power trusted, automated workflows.",
+      "impact": "At IBM Think, we are excited to announce that HCP Terraform powered by Infragraph will be available to qualified US HCP Terraform customers in public preview. We’ll also detail how HCP Terraform customers can begin using this functionality now. How to get started with the public preview:  As announced at IBM Think 2026, if you are already an HCP Terraform customer, as of May 8, you will be able to access the Terraform powered by Infragraph public preview. Get started with Infragraph by  logging in to your HCP organization , then click the Infragraph tile to configure connections, set up queries, and add users.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Security patching and risk mitigation get harder, complexity grows, and costs escalate.\n\nFor example, when AI lets hackers target vulnerabilities with remarkable speed and precision, any security lapses must be discovered and patched in real-time.",
+      "lessons_learned": "The problem isn’t getting better, especially as infrastructure changes happen more frequently, exploits materialize faster, and costs get out of control quicker.\n\nEven with more powerful security and data capabilities, if data is dispersed, the company will still operate from behind when it comes to identifying, remediating, and preventing issues.",
+      "root_cause_highlight": "",
+      "incident_timeline": "A centralized, event-driven knowledge graph, Infragraph provides the unified visibility that keeps the focus where it belongs: empowering organizations to secure and optimize infrastructure. Static insights are replaced \nFor example, when AI lets hackers target vulnerabilities with remarkable speed and precision, any security lapses must be discovered and patched in real-time. Or to keep a cap on costs, platform teams need to investigate\nAdd a connection to AWS, HCP Terraform, and HCP Packer to view how your cloud estate connects to infrastructure as code\nTo stay up to date on the latest Infragraph news,  sign up here .",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Migrating to the cloud was supposed to make infrastructure easier to provision and manage. For many enterprises, the reality is more complicated.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "2719e29139cf4f54",
     "title": "Register now for OpenClaw: After Hours @ GitHub",
     "source": "GitHub Blog",

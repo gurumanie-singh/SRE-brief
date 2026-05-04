@@ -1,0 +1,50 @@
+[
+  {
+    "id": "9763ae894604a874",
+    "title": "Mitigate credential exposure in Windows environments with Boundary and Vault",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/mitigate-credential-exposure-in-windows-environments-with-boundary-and-vault",
+    "published": "2026-05-14T07:09:00+00:00",
+    "fetched_at": "2026-05-04T23:02:19.076719+00:00",
+    "summary": "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access. We will then focus on how you can address these challenges with Boundary and Vault. Configuration steps will also be provided for anyone who wishes to test this out.  ",
+    "tags": [
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-05-14",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "GitHub",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access. We will then focu",
+      "Due to the lack of automation in place and the burden of manual rotation, these credentials often remain valid for months and sometimes years, destined to fall into the wrong hands.",
+      "2. Boundary will detect the connection and automatically send an API to Vault requesting a new dynamic credential with a limited lifespan (TTL).",
+      "3. Vault will use its LDAP secrets engine to request a new Windows user from the Windows AD DS server.",
+      "The lifespan of a session and a credential are customizable and determined by the administrator. Once a session expires, Boundary will terminate the session, and the user will need to initiate a new session. Similarly, w",
+      "Getting started  Want to set this up yourself? Below is a step-by-step guide to set up a proof-of-concept with Boundary, Vault, and Windows AD DS. For simplicity and brevity purposes, the steps provided may not include e",
+      "A Vault server (version 1.21+).  HCP Vault  is the easiest and quickest to get running.",
+      "A Boundary instance (version 0.21+).  HCP Boundary  is the easiest and quickest to get running."
+    ],
+    "sections": {
+      "overview": "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access. We will then focus on how you can address these challenges with Boundary and Vault. Configuration steps will also be provided for anyone who wishes to test this out.",
+      "technical_breakdown": "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access.\n\nWhile multi-factor authentication (MFA) and directory integrations have improved identity verification at login, many organizations still rely on an underlying credential model with static passwords that are often reused across sessions.\n\nWhile VPNs provide secure access into a network, it is often much more complex to limit lateral movement throughout the network.\n\nOrganizations can use traditional firewalls, security groups, and network segmentation, which all control access based on IP addresses rather than a user’s unique identity.\n\nRather than granting broad network access, it provides access directly between a user and a target resource based on a user’s identity.",
+      "impact": "When an authorized user initiates an RDP session using their preferred RDP client tool, Boundary can inject credentials resulting in a passwordless connection. A user who has already authenticated to Boundary initiates a new RDP session to a target machine using their preferred RDP client tool.  \n\n 2. In many environments, users authenticate to Windows machines using: \n\n Shared local administrator accounts \n\n Long-lived domain accounts \n\n Service accounts with static passwords \n\n Manually provisioned privileged credentials \n\n Due to the lack of automation in place and the burden of manual rotation, these credentials often remain valid for months and sometimes years, destined to fall into the wrong hands. Organizations can use traditional firewalls, security groups, and network segmentation, which all control access based on IP addresses rather than a user’s unique identity.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We will then focus on how you can address these challenges with Boundary and Vault.\n\nWhile multi-factor authentication (MFA) and directory integrations have improved identity verification at login, many organizations still rely on an underlying credential model with static passwords that are often reused across sessions.\n\nThe broad access challenge with VPNs  As organizations seek to improve security posture, overly broad access needs to be considered.\n\nA better model: access and credential management  IBM Boundary fundamentally changes the model by combining authentication and authorization onto a single platform.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. In many environments, users authenticate to Windows machines using: \n\n Shared local administrator accounts \n\n Long-lived domain accounts \n\n Service accounts with static passwords \n\n Manually provisioned privileged credentials \n\n Due to the lack of automation in place and the burden of manual rotation, these credentials often remain valid for months and sometimes years, destined to fall into the wrong hands. Example output: \n\n Outputs: \n\nDeployment_Status = <<EOT \n================================================================ \nDEPLOYMENT STARTED SUCCESSFULLY \n================================================================ \nServer IP: 100.95.220.189 \nDomain: adldap.lab \nSubnet CIDR: 172.31.10.0/24 \nUsername: Administrator \nPassword: H4fE9t_3U-e*ABCDJ>uH \nCA Cert: Saved to 'ca.pem' Configure Windows AD DS server   In this section, you will create a new user account ( vault-svc ) and two new groups ( vault-user  and  vault-svc-admin ) in Windows Active Directory. Create another new group from the Active Directory Administrative Center: \n\n On left side panel, double-click on  adlap (local) \n\n Right-click on  Users \n\n Select  New \n\n Select  Group \n\n Note: The reason you are creating this group is because when a Boundary user connects to a Windows target in this domain, a temporary user account will be created in this group.",
+      "incident_timeline": "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access. We will then focu\nDue to the lack of automation in place and the burden of manual rotation, these credentials often remain valid for months and sometimes years, destined to fall into the wrong hands.\n2. Boundary will detect the connection and automatically send an API to Vault requesting a new dynamic credential with a limited lifespan (TTL).\n3. Vault will use its LDAP secrets engine to request a new Windows user from the Windows AD DS server.\nThe lifespan of a session and a credential are customizable and determined by the administrator. Once a session expires, Boundary will terminate the session, and the user will need to initiate a new session. Similarly, w\nGetting started  Want to set this up yourself? Below is a step-by-step guide to set up a proof-of-concept with Boundary, Vault, and Windows AD DS. For simplicity and brevity purposes, the steps provided may not include e\nA Vault server (version 1.21+).  HCP Vault  is the easiest and quickest to get running.\nA Boundary instance (version 0.21+).  HCP Boundary  is the easiest and quickest to get running.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access. We will then focus on how you can address these challenges with Boundary and Vault.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

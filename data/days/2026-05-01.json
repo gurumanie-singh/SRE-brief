@@ -210,6 +210,10 @@
     "email_summary": "In this article, I will demonstrate how to use Zabbix integrated with Prometheus/Thanos in the Red Hat OpenShift Virtualization cluster. We will use low level discovery (LLD) to automate the discovery of all VMs, and thus monitor CPU, memory, network, etc.",
     "related_sources": [
       {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/how-vault-secrets-operator-vso-automates-secret-management-for-enterprises-on-kub"
+      },
+      {
         "source": "Kubernetes Blog",
         "link": "https://kubernetes.io/blog/2026/05/01/kubernetes-v1-36-feature-pod-level-resource-managers-alpha/"
       }
