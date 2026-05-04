@@ -36,6 +36,10 @@
     "email_summary": "OpenClaw , one of the fastest-growing open source projects, has already picked up over 350,000 stars and an early community of builders exploring what agentic systems can actually do in practice. That s why, on June 3, 2026, we are hosting OpenClaw: After Hours at GitHub HQ in San Francisco.",
     "related_sources": [
       {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-whats-next-with-aws-2026-amazon-quick-openai-partnership-and-more-may-4-2026/"
+      },
+      {
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/05/04/how-kagenti-adk-simplifies-production-ai-agent-management"
       },
@@ -128,6 +132,39 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Gartner® estimates that over 70% of agentic AI use cases will fail to deliver the expected value. Traditional ROI models don't apply.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "ae1c78e098d794dd",
+    "title": "Is your SIEM actually ready? A new way to find out",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/siem-readiness",
+    "published": "2026-05-04T00:00:00+00:00",
+    "fetched_at": "2026-05-04T17:48:12.731164+00:00",
+    "summary": "SIEM Readiness is a new capability in Elastic Security, available in technical preview as of 9.4, that provides a centralized, continuously updated, and actionable view of your SIEM's operational health.",
+    "tags": [],
+    "day": "2026-05-04",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "SIEM Readiness is a new capability in Elastic Security, available in technical preview as of 9.4, that provides a centralized, continuously updated, and actionable view of your SIEM's operational health.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "SIEM Readiness is a new capability in Elastic Security, available in technical preview as of 9.4, that provides a centralized, continuously updated, and actionable view of your SIEM's operational health.",
     "related_sources": [],
     "highlighted": false
   }
