@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run multiple OpenStack Services on OpenShift with HCPs — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-05.html" class="back-link">← 5 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">5 May 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Run multiple OpenStack Services on OpenShift with HCPs</h1>
+
+      <p class="subtitle">When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">networking</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>general reliability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1. But we didn&#39;t stop there.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Hub cluster requirements:</p>
+<p>At least 3 nodes (master/worker compact cluster)   Minimum of 16 CPU cores and 32 GB of RAM per node and the requirements for each hosted cluster   A dedicated NIC or bond for network attachments   An NVMe or SSD-backed StorageClass for hosted cluster etcd pods   A wildcard-enabled ingress controller or a dedicated network per hosted cluster to expose APIs   Step 1: Install required operators</p>
+<p>Install the following operators on the hub cluster:</p>
+<p>Red Hat OpenShift Virtualization   Storage provider for etcd (e.g., LVM Storage)   Storage provider for VMs (e.g., Red Hat OpenShift Data Foundation )   MetalLB and NMState   Multicluster engine for Kubernetes or Red Hat Advanced Cluster Management for Kubernetes   Step 2: Configure the network</p>
+<p>Create a NodeNetworkConfigurationPolicy (NNCP) for each node to define VLANs and bridges for isolated networks.</p>
+<p>Hosted control planes (HCPs) are an OpenShift cluster deployment mechanism that utilizes an OpenShift hub cluster and multiple hosted clusters through a variety of infrastructure providers.</p>
+<p>This architecture enables the use of multiple independent OpenShift clusters sharing the same OpenShift infrastructure for the control plane (hub cluster different namespaces) with multiple options to deploy the hosted clusters&#39; dataplane, such as virtual machines (OCPVirt) and bare metal nodes.</p>
+<p>Step 3: Deploy the hosted cluster</p>
+<p>Use the hcp command line interface (CLI) to create the hosted cluster using the kubevirt provider as in the following example.</p>
+<p>cluster using the kubevirt provider. hcp create cluster kubevirt \  --name rhoso-hcp-0 \  --node-pool-replicas 3 \  --pull-secret /root/.docker/config.json \  --additional-trust-bundle /root/hcpscripts/bastion-ocp4.crt \  --memory 32Gi \  --cores 16 \  --etcd-storage-class=lvms-vg1 \  --root-volume-storage-class=ocs-external-storagecluster-ceph-rbd \  --root-volume-size 85 \  --release-image=quay.io/openshift-release-dev/ocp-release:4.18.34-x86_64 Step 4: Configure OpenStack services on the hosted cluster</p>
+<p>Once the hosted cluster is live, gain access using the generated kubeconfig and deploy the supporting operators, including the OpenStack operator.</p>
+<p>For more details, including configuring pre-provisioned data plane nodes, refer to the KBA .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. Using hosted control planes with Red Hat OpenStack Services on OpenShift offers three distinct advantages:</p>
+<p>Version isolation: Because each hosted cluster has isolated custom resource definitions (CRDs) and operators, you can deploy different versions or feature releases of OpenStack services without version conflicts. To provide even greater granularity and efficiency, we are now focusing on deploying OpenStack Services on OpenShift using hosted control planes (HCPs). What are hosted control planes?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>-name rhoso-hcp-0 \</li>
+            <li>-node-pool-replicas 3 \</li>
+            <li>-additional-trust-bundle /root/hcpscripts/bastion-ocp4.crt \</li>
+            <li>-memory 32Gi \</li>
+            <li>-cores 16 \</li>
+            <li>-etcd-storage-class=lvms-vg1 \</li>
+            <li>-root-volume-size 85 \</li>
+            <li>-release-image=quay.io/openshift-release-dev/ocp-release:4.18.34-x86_64 Step 4: Configure OpenStack services on the hosted cluster</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>This item contributes to the broader reliability narrative for production engineering teams.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/05/run-multiple-openstack-services-openshift-hcps" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -31,5 +31,199 @@
     "email_summary": "Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing into video embeddings and local-agent contexts.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "7c95b4b05ce60153",
+    "title": "Build trusted Python containers with Project Hummingbird and Calunga",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/05/build-trusted-python-containers-project-hummingbird-and-calunga",
+    "published": "2026-05-05T07:16:27+00:00",
+    "fetched_at": "2026-05-05T09:13:15.167669+00:00",
+    "summary": "Project Hummingbird and Calunga are open source projects that offer the beginnings of a secure software supply chain. These projects help open source and commercial developers build application containers with confidence that they are not shipping malicious content.",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-05-05",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "data store",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "You can find the code for this article on GitHub . I tested these commands on my Fedora Linux laptop using the podman command in rootless mode . You can easily adapt these steps for other Linux distributions, Windows, ma",
+      "Red Hat Hardened Images provides base container images, while trusted libraries provides trusted dependency libraries. Red Hat builds both using a strict, security-focused software development lifecycle. These artifacts ",
+      "$ podman build --no-cache -t flask-app -f Containerfile.dockerhub Start a test container using your new image:",
+      "$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app Finally, test your application container using a web browser or a curl command:",
+      "$ curl 127.0.0.1:5000 The output should look similar to this:",
+      "} When you're done, stop and delete your test container. You will reuse this container name to test the different variations of your application container image.",
+      "CMD [\"python3\", \"app.py\"] To build and test your Project Hummingbird application container, use the same commands as the previous example but replace the Containerfile name.",
+      "$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app"
+    ],
+    "sections": {
+      "overview": "Project Hummingbird and Calunga are open source projects that offer the beginnings of a secure software supply chain. These projects help open source and commercial developers build application containers with confidence that they are not shipping malicious content. This article describes how to use container images produced by Project Hummingbird with libraries produced by the Calunga project to build application containers free of code from unknown origins.",
+      "technical_breakdown": "EXPOSE 5000\nCMD [\"python\", \"app.py\"] Build the container image using Podman:\n\n $ podman build --no-cache -t flask-app -f Containerfile.dockerhub Start a test container using your new image:\n\n $ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app Finally, test your application container using a web browser or a curl command:\n\n $ curl 127.0.0.1:5000 The output should look similar to this:\n\n {\n \"flask_version\": \"3.1.3\",\n \"python_version\": \"3.12.13\"\n} When you're done, stop and delete your test container.\n\nEXPOSE 5000\nCMD [\"python3\", \"app.py\"] To build and test your Project Hummingbird application container, use the same commands as the previous example but replace the Containerfile name.\n\n $ podman build --no-cache -t flask-app -f Containerfile.hummingbird\n$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app\n$ curl 127.0.0.1:5000 When you're satisfied with your tests, stop and delete your application container.\n\nThen build your container image using the pip.conf file as a secret mounted into the build container.\n\n $ podman build --no-cache -t flask-app --secret id=pip.conf,src=pip.conf -f Containerfile.calunga As your build progresses, notice that it downloads Python wheels from packages.redhat.com .\n\nBe sure to navigate to the multi-stage directory.\n\n $ cd ../multi-stage\n$ podman build --no-cache -t flask-app -f Containerfile.dockerhub\n$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app\n$ curl 127.0.0.1:5000\n$ podman stop my-flask-app ; podman rm my-flask-app For Project Hummingbird, use the builder image variant for the first stage and the regular image for the second stage.\n\nThen, run the podman and curl commands:\n\n $ cp ../single-stage/pip.conf .\n$ podman build --no-cache -t flask-app --secret id=pip.conf,src=pip.conf -f Containerfile.calunga\n$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app\n$ curl 127.0.0.1:5000\n$ podman stop my-flask-app ; podman rm my-flask-app Continuing your security journey Using secure base images and trusted dependency libraries is an important first step for your software supply chain.",
+      "impact": "When you include that compromised code in your application, it can harm your organization, your customers, and your users. It runs the application as a non-root user to improve security. RUN pip install --no-cache-dir -r requirements.txt \nRUN useradd -m -u 1000 appuser && \\\n chown -R appuser:appuser /app\nUSER appuser\nCOPY app . Switch to the root user ( USER 0 ) before performing operation that require elevated privileges.\n\nClassified impact band: medium. Affected layer signal: data store.",
+      "resolution": "This process is similar to updating an operating system's libraries and binaries to fix issues at the server or workstation machine level.",
+      "lessons_learned": "Start in the single-stage directory; we will switch to the multi-stage directory later.\n\n $ cd python-hello/single-stage This very simple Python application uses the Flask framework.\n\nIt runs the application as a non-root user to improve security.\n\nWe will demonstrate this later in the article.\n\nThis prevents the secrets from being recorded in the final application image layers.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. Part 1 describes how to use Project Hummingbird to run databases and web servers and explores its distroless nature. This example is not production-ready because it enables debugging and does not use a production-grade web server. EXPOSE 5000\nCMD [\"python3\", \"app.py\"] You can use the string syntax for RUN instructions in the first stage because Project Hummingbird builder images include a shell.",
+      "incident_timeline": "You can find the code for this article on GitHub . I tested these commands on my Fedora Linux laptop using the podman command in rootless mode . You can easily adapt these steps for other Linux distributions, Windows, ma\nRed Hat Hardened Images provides base container images, while trusted libraries provides trusted dependency libraries. Red Hat builds both using a strict, security-focused software development lifecycle. These artifacts \n$ podman build --no-cache -t flask-app -f Containerfile.dockerhub Start a test container using your new image:\n$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app Finally, test your application container using a web browser or a curl command:\n$ curl 127.0.0.1:5000 The output should look similar to this:\n} When you're done, stop and delete your test container. You will reuse this container name to test the different variations of your application container image.\nCMD [\"python3\", \"app.py\"] To build and test your Project Hummingbird application container, use the same commands as the previous example but replace the Containerfile name.\n$ podman run -d -p 127.0.0.1:5000:5000 --name my-flask-app flask-app",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Project Hummingbird and Calunga are open source projects that offer the beginnings of a secure software supply chain. These projects help open source and commercial developers build application containers with confidence that they are not shipping malicious content.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c0d25632141d5194",
+    "title": "Simplify distributed tracing: ObservabilityInstaller installation",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/05/simplify-distributed-tracing-observabilityinstaller-installation",
+    "published": "2026-05-05T07:16:26+00:00",
+    "fetched_at": "2026-05-05T09:13:15.168943+00:00",
+    "summary": "In modern cloud-native environments, distributed tracing is essential for maintaining visibility into complex microservices. However, deploying a complete, end-to-end tracing stack on Red Hat OpenShift has traditionally required significant manual effort. To address this, the cluster observability operator now introduces the ObservabilityInstaller custom resource (CR). This new capability...",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "observability"
+    ],
+    "day": "2026-05-05",
+    "impact": "medium",
+    "vendors": [
+      "Azure",
+      "Google Cloud",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Red Hat build of OpenTelemetry manages data collection and ingestion.",
+      "Streamline deployment with ObservabilityInstaller The ObservabilityInstaller CR acts as a high-level orchestrator. It simplifies the process by automating the provisioning of the OpenTelemetryCollector , TempoStack , and",
+      "After deploying the object storage, we can continue by deploying an end-to-end distributed tracing system. Do not forget to update the accessKeyID. The command to get the updated ID is provided in the manifest.",
+      "After applying the manifest, the cluster observability begins provisioning the necessary objects:",
+      "NAME READY STATUS RESTARTS AGE",
+      "tempo-tracing-ingester-0 1/1 Running 0 83s",
+      "tempo-tracing-ingester: 3200/TCP, 9095/TCP",
+      "key: Learn more The ObservabilityInstaller is designed to accelerate time-to-value for teams implementing distributed tracing. It provides an optimized out-of-the-box experience while maintaining flexibility for power us"
+    ],
+    "sections": {
+      "overview": "In modern cloud-native environments, distributed tracing is essential for maintaining visibility into complex microservices. However, deploying a complete, end-to-end tracing stack on Red Hat OpenShift has traditionally required significant manual effort. To address this, the cluster observability operator now introduces the ObservabilityInstaller custom resource (CR).",
+      "technical_breakdown": "The command to get the updated ID is provided in the manifest. \n\n apiVersion: v1\nkind: Namespace\nmetadata:\n name: observability\n---\n# ObjectBucketClaim for tracing storage\napiVersion: objectbucket.io/v1alpha1\nkind: ObjectBucketClaim\nmetadata:\n name: tracing-bucket\n namespace: observability\nspec:\n bucketName: tracing-bucket\n storageClassName: openshift-storage.noobaa.io\n---\napiVersion: v1\nkind: ConfigMap\nmetadata:\n name: openshift-service-ca\n namespace: observability\n annotations:\n service.beta.openshift.io/inject-cabundle: \"true\"\ndata: {}\n---\napiVersion: observability.openshift.io/v1alpha1\nkind: ObservabilityInstaller\nmetadata:\n name: tracing\n namespace: observability\nspec:\n capabilities:\n tracing:\n enabled: true\n operators:\n install: true\n storage:\n objectStorage:\n s3:\n endpoint: https://s3.openshift-storage.svc:443\n bucket: tracing-bucket\n accessKeyID: alpBATHU5yrA4oQJdwv3 # oc get secret tracing-bucket -n observability -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 -d\n accessKeySecret:\n name: tracing-bucket\n key: AWS_SECRET_ACCESS_KEY\n tls:\n caConfigMap:\n name: openshift-service-ca\n key: service-ca.crt The tracing.enabled command instructs the cluster observability to provision the tracing infrastructure.\n\nStreamline deployment with ObservabilityInstaller The ObservabilityInstaller CR acts as a high-level orchestrator.\n\nFor this purpose, we will utilize Red Hat OpenShift Data Foundation , specifically leveraging the lightweight multicluster gateway component. \n\n apiVersion: v1\nkind: Namespace\nmetadata:\n name: openshift-storage\n labels:\n openshift.io/cluster-monitoring: \"true\"\n---\napiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n name: openshift-storage-operatorgroup\n namespace: openshift-storage\nspec:\n targetNamespaces:\n - openshift-storage\n---\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n name: mcg-operator\n namespace: openshift-storage\nspec:\n channel: stable-4.19\n installPlanApproval: Automatic\n name: mcg-operator\n source: redhat-operators\n sourceNamespace: openshift-marketplace\n---\napiVersion: noobaa.io/v1alpha1\nkind: NooBaa\nmetadata:\n name: noobaa\n namespace: openshift-storage\nspec:\n dbResources:\n requests:\n cpu: \"0.1\"\n memory: 1Gi\n dbType: postgres\n coreResources:\n requests:\n cpu: \"0.1\"\n memory: 1Gi The NooBaa CR provisions the object storage backed by PVs with cluster s default storage class.\n\nAfter applying the manifest, the cluster observability begins provisioning the necessary objects: \n\n NAME READY STATUS RESTARTS AGE\ntempo-tracing-compactor-56b4f5f678-k2t5p 1/1 Running 0 83s\ntempo-tracing-distributor-b548d48bb-hwxqt 1/1 Running 0 84s\ntempo-tracing-gateway-5698c9c5fc-gwrdc 2/2 Running 0 83s\ntempo-tracing-ingester-0 1/1 Running 0 83s\ntempo-tracing-querier-644d6bd4bf-sdtd9 1/1 Running 0 83s\ntempo-tracing-query-frontend-7fb779f696-gck2d 1/1 Running 0 83s\ntracing-collector-675d5cf48f-bdwtg 1/1 Running 0 82s\nAnd services:\ntempo-tracing-compactor: 7946/TCP, 3200/TCP\ntempo-tracing-distributor: 4318/TCP, 4317/TCP, 3200/TCP\ntempo-tracing-gateway: 8090/TCP, 8081/TCP, 8080/TCP\ntempo-tracing-gossip-ring: 7946/TCP\ntempo-tracing-ingester: 3200/TCP, 9095/TCP\ntempo-tracing-querier: 7946/TCP, 3200/TCP, 9095/TCP\ntempo-tracing-query-frontend: 3200/TCP, 9095/TCP\ntempo-tracing-query-frontend-discovery: 3200/TCP, 9095/TCP, 9096/TCP\ntracing-collector: 14250/TCP, 4317/TCP, 4318/TCP, 14268/TCP, 6831/UDP, 6832/UDP, 9411/TCP\ntracing-collector-headless: 14250/TCP, 4317/TCP, 4318/TCP, 14268/TCP, 6831/UDP, 6832/UDP, 9411/TCP After installation, there is no need for manual UI configuration.\n\nThe following is an Azure example: \n\n apiVersion: observability.openshift.io/v1alpha1\nkind: ObservabilityInstaller\nmetadata:\n name: tracing\n namespace: observability\nspec:\n capabilities:\n tracing:\n enabled: true\n operators:\n install: true\n storage:\n objectStorage:\n azure:\n container:\n accountName:\n accountKeySecret:\n name:\n key: Learn more The ObservabilityInstaller is designed to accelerate time-to-value for teams implementing distributed tracing.",
+      "impact": "Your workload traces will be accessible under the application tenant. Figure 2: Users can query and visualize trace data from the provisioned Tempo instance. It provides an optimized out-of-the-box experience while maintaining flexibility for power users.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "For this purpose, we will utilize Red Hat OpenShift Data Foundation , specifically leveraging the lightweight multicluster gateway component. \n\n apiVersion: v1\nkind: Namespace\nmetadata:\n name: openshift-storage\n labels:\n openshift.io/cluster-monitoring: \"true\"\n---\napiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n name: openshift-storage-operatorgroup\n namespace: openshift-storage\nspec:\n targetNamespaces:\n - openshift-storage\n---\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n name: mcg-operator\n namespace: openshift-storage\nspec:\n channel: stable-4.19\n installPlanApproval: Automatic\n name: mcg-operator\n source: redhat-operators\n sourceNamespace: openshift-marketplace\n---\napiVersion: noobaa.io/v1alpha1\nkind: NooBaa\nmetadata:\n name: noobaa\n namespace: openshift-storage\nspec:\n dbResources:\n requests:\n cpu: \"0.1\"\n memory: 1Gi\n dbType: postgres\n coreResources:\n requests:\n cpu: \"0.1\"\n memory: 1Gi The NooBaa CR provisions the object storage backed by PVs with cluster s default storage class.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. This new capability automates the deployment and integration of the entire tracing ecosystem, moving from a fragmented manual process to a unified, declarative installation. Streamline deployment with ObservabilityInstaller The ObservabilityInstaller CR acts as a high-level orchestrator.",
+      "incident_timeline": "Red Hat build of OpenTelemetry manages data collection and ingestion.\nStreamline deployment with ObservabilityInstaller The ObservabilityInstaller CR acts as a high-level orchestrator. It simplifies the process by automating the provisioning of the OpenTelemetryCollector , TempoStack , and\nAfter deploying the object storage, we can continue by deploying an end-to-end distributed tracing system. Do not forget to update the accessKeyID. The command to get the updated ID is provided in the manifest.\nAfter applying the manifest, the cluster observability begins provisioning the necessary objects:\nNAME READY STATUS RESTARTS AGE\ntempo-tracing-ingester-0 1/1 Running 0 83s\ntempo-tracing-ingester: 3200/TCP, 9095/TCP\nkey: Learn more The ObservabilityInstaller is designed to accelerate time-to-value for teams implementing distributed tracing. It provides an optimized out-of-the-box experience while maintaining flexibility for power us",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In modern cloud-native environments, distributed tracing is essential for maintaining visibility into complex microservices. However, deploying a complete, end-to-end tracing stack on Red Hat OpenShift has traditionally required significant manual effort.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "2cc6483e929b3ce5",
+    "title": "Storage isolation with OpenStack Services on OpenShift distributed zones",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/05/storage-isolation-openstack-services-openshift-distributed-zones",
+    "published": "2026-05-05T07:16:24+00:00",
+    "fetched_at": "2026-05-05T09:13:15.170329+00:00",
+    "summary": "Building a truly reliable cloud environment requires more than redundancy. It demands architectural isolation to guarantee business continuity even when local infrastructure components fail. For environments leveraging high-speed, low-latency interconnections (i.e., large data centers or interconnected campus facilities), Red Hat OpenStack Services on OpenShift distributed zones (DZ) provide the...",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-05-05",
+    "impact": "critical",
+    "vendors": [
+      "HashiCorp",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "networking",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "3 Internal Glance APIs: Distributed evenly across the zones to serve default requests.",
+      "The key point here is the two dedicated Glance APIs per zone. These services are configured to serve local-to-zone image requests and scheduled to run only in their respective zones. Each local Glance service exposes a d",
+      "In terms of placement, we orchestrate the Cinder services as follows:",
+      "Things become interesting with cinder-volume . Because this service manages the relationship with the storage backend, we must schedule it in the same zone as that backend. One Cinder volume service is dedicated per back",
+      "In terms of backup, we are currently limited to a single backup target backend. Administrators must choose which zone hosts the backups. While the backup target backend is not AZ-aware, we can back up the volumes and res",
+      "3 Manila schedulers: Distributed evenly across zones. Manila benefits from multiple schedulers for resilience since each scheduler can independently handle share provisioning requests across the environment.",
+      "Ultimately, distributed zones provide a unified stretch cluster experience that gives users full control over scheduling workloads. By leveraging availability zones, organizations can strategically deploy these workloads"
+    ],
+    "sections": {
+      "overview": "Building a truly reliable cloud environment requires more than redundancy. It demands architectural isolation to guarantee business continuity even when local infrastructure components fail. For environments leveraging high-speed, low-latency interconnections (i.e., large data centers or interconnected campus facilities), Red Hat OpenStack Services on OpenShift distributed zones (DZ) provide the necessary framework to deliver this level of resiliency.",
+      "technical_breakdown": "Let s look at an example where a user imports an image to Zone 2, creates a volume, and boots a virtual machine (VM) on that zone: \n\n # Import image to zone 2\n$ glance image-create-via-import \\\n--disk-format qcow2 --container-format bare --name cirros \\\n--uri http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img \\\n--import-method web-download \\\n--stores zone2\n\n# Create volume from image on zone 2\n$ IMG_ID=$(openstack image show cirros -c id -f value)\n$ openstack volume create --size 10 --availability-zone zone2 cirros-vol-zone2 --image $IMG_ID\n\n# Boot VM from volume on zone2\n$ VOL_ID=$(openstack volume show -f value -c id cirros-vol-zone2)\n$ openstack server create --flavor tiny --key-name mykey --network site2-network-0 --security-group basic \\\n--availability-zone zone2 --volume $VOL_ID cirros-vm\n\n# Create an NFS share on zone2\n $ openstack share create --name shared-data-zone2 \\\n --share-type zone2-gold --availability-zone zone2 NFS 50\n\n # List the export location for mounting\n $ openstack share export location list shared-data-zone2\n\n # Mount the share on the VM in zone2 (or any VM in another zone if networking permits)\n # the ability to cross attach makes Manila shares well suited for workloads that need\n # shared data across zones.\n\n $ sudo mount -t nfs <export_location> /mnt/shared-data If a zone goes down, the impact is confined to that zone's resources.\n\nTo achieve true isolation, it s necessary to isolate the control and data plane in case one zone goes down; the control plane still has two zones to rely on.\n\nWorkers are the nodes hosting the OpenStack Services on OpenShift control plane services.\n\nBecause some control plane services are latency-sensitive, a 15ms maximum latency (RTT) is supported between zones.\n\nFor environments leveraging high-speed, low-latency interconnections (i.e., large data centers or interconnected campus facilities), Red Hat OpenStack Services on OpenShift distributed zones (DZ) provide the necessary framework to deliver this level of resiliency.",
+      "impact": "Let s look at an example where a user imports an image to Zone 2, creates a volume, and boots a virtual machine (VM) on that zone: \n\n # Import image to zone 2\n$ glance image-create-via-import \\\n--disk-format qcow2 --container-format bare --name cirros \\\n--uri http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img \\\n--import-method web-download \\\n--stores zone2\n\n# Create volume from image on zone 2\n$ IMG_ID=$(openstack image show cirros -c id -f value)\n$ openstack volume create --size 10 --availability-zone zone2 cirros-vol-zone2 --image $IMG_ID\n\n# Boot VM from volume on zone2\n$ VOL_ID=$(openstack volume show -f value -c id cirros-vol-zone2)\n$ openstack server create --flavor tiny --key-name mykey --network site2-network-0 --security-group basic \\\n--availability-zone zone2 --volume $VOL_ID cirros-vm\n\n# Create an NFS share on zone2\n $ openstack share create --name shared-data-zone2 \\\n --share-type zone2-gold --availability-zone zone2 NFS 50\n\n # List the export location for mounting\n $ openstack share export location list shared-data-zone2\n\n # Mount the share on the VM in zone2 (or any VM in another zone if networking permits)\n # the ability to cross attach makes Manila shares well suited for workloads that need\n # shared data across zones.\n\n $ sudo mount -t nfs <export_location> /mnt/shared-data If a zone goes down, the impact is confined to that zone's resources. Distributed zones act as a unified stretch cluster, meaning users still rely on traditional OpenStack Services on OpenShift APIs and leverage availability zones to schedule their workloads. By splitting the infrastructure into autonomous domains with locally confined storage backends, it ensures robust local failure management where one zone's outage cannot impact the others. No cross-zone impact after a local failure.\n\nClassified impact band: critical. Affected layer signal: networking.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "If needed, administrators can prevent cross-zone share access at the network layer.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Because some control plane services are latency-sensitive, a 15ms maximum latency (RTT) is supported between zones. To achieve true isolation, it s necessary to isolate the control and data plane in case one zone goes down; the control plane still has two zones to rely on. We need to ensure that the OpenShift and OpenStack Services on OpenShift control planes are evenly distributed.",
+      "incident_timeline": "3 Internal Glance APIs: Distributed evenly across the zones to serve default requests.\nThe key point here is the two dedicated Glance APIs per zone. These services are configured to serve local-to-zone image requests and scheduled to run only in their respective zones. Each local Glance service exposes a d\nIn terms of placement, we orchestrate the Cinder services as follows:\nThings become interesting with cinder-volume . Because this service manages the relationship with the storage backend, we must schedule it in the same zone as that backend. One Cinder volume service is dedicated per back\nIn terms of backup, we are currently limited to a single backup target backend. Administrators must choose which zone hosts the backups. While the backup target backend is not AZ-aware, we can back up the volumes and res\n3 Manila schedulers: Distributed evenly across zones. Manila benefits from multiple schedulers for resilience since each scheduler can independently handle share provisioning requests across the environment.\nUltimately, distributed zones provide a unified stretch cluster experience that gives users full control over scheduling workloads. By leveraging availability zones, organizations can strategically deploy these workloads",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Building a truly reliable cloud environment requires more than redundancy. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "065b7dc07be39263",
+    "title": "Run multiple OpenStack Services on OpenShift with HCPs",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/05/run-multiple-openstack-services-openshift-hcps",
+    "published": "2026-05-05T07:16:20+00:00",
+    "fetched_at": "2026-05-05T09:13:15.171114+00:00",
+    "summary": "When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1. ",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "networking"
+    ],
+    "day": "2026-05-05",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "-name rhoso-hcp-0 \\",
+      "-node-pool-replicas 3 \\",
+      "-additional-trust-bundle /root/hcpscripts/bastion-ocp4.crt \\",
+      "-memory 32Gi \\",
+      "-cores 16 \\",
+      "-etcd-storage-class=lvms-vg1 \\",
+      "-root-volume-size 85 \\",
+      "-release-image=quay.io/openshift-release-dev/ocp-release:4.18.34-x86_64 Step 4: Configure OpenStack services on the hosted cluster"
+    ],
+    "sections": {
+      "overview": "When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1. But we didn't stop there.",
+      "technical_breakdown": "Hub cluster requirements: \n\n At least 3 nodes (master/worker compact cluster) \n Minimum of 16 CPU cores and 32 GB of RAM per node and the requirements for each hosted cluster \n A dedicated NIC or bond for network attachments \n An NVMe or SSD-backed StorageClass for hosted cluster etcd pods \n A wildcard-enabled ingress controller or a dedicated network per hosted cluster to expose APIs \n Step 1: Install required operators \n\n Install the following operators on the hub cluster: \n\n Red Hat OpenShift Virtualization \n Storage provider for etcd (e.g., LVM Storage) \n Storage provider for VMs (e.g., Red Hat OpenShift Data Foundation ) \n MetalLB and NMState \n Multicluster engine for Kubernetes or Red Hat Advanced Cluster Management for Kubernetes \n Step 2: Configure the network \n\n Create a NodeNetworkConfigurationPolicy (NNCP) for each node to define VLANs and bridges for isolated networks.\n\nHosted control planes (HCPs) are an OpenShift cluster deployment mechanism that utilizes an OpenShift hub cluster and multiple hosted clusters through a variety of infrastructure providers.\n\nThis architecture enables the use of multiple independent OpenShift clusters sharing the same OpenShift infrastructure for the control plane (hub cluster different namespaces) with multiple options to deploy the hosted clusters' dataplane, such as virtual machines (OCPVirt) and bare metal nodes.\n\nStep 3: Deploy the hosted cluster \n\n Use the hcp command line interface (CLI) to create the hosted cluster using the kubevirt provider as in the following example. \n\n cluster using the kubevirt provider.\nhcp create cluster kubevirt \\\n --name rhoso-hcp-0 \\\n --node-pool-replicas 3 \\\n --pull-secret /root/.docker/config.json \\\n --additional-trust-bundle /root/hcpscripts/bastion-ocp4.crt \\\n --memory 32Gi \\\n --cores 16 \\\n --etcd-storage-class=lvms-vg1 \\\n --root-volume-storage-class=ocs-external-storagecluster-ceph-rbd \\\n --root-volume-size 85 \\\n --release-image=quay.io/openshift-release-dev/ocp-release:4.18.34-x86_64 Step 4: Configure OpenStack services on the hosted cluster \n\n Once the hosted cluster is live, gain access using the generated kubeconfig and deploy the supporting operators, including the OpenStack operator.\n\nFor more details, including configuring pre-provisioned data plane nodes, refer to the KBA .",
+      "impact": "Classified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Using hosted control planes with Red Hat OpenStack Services on OpenShift offers three distinct advantages: \n\n Version isolation: Because each hosted cluster has isolated custom resource definitions (CRDs) and operators, you can deploy different versions or feature releases of OpenStack services without version conflicts. To provide even greater granularity and efficiency, we are now focusing on deploying OpenStack Services on OpenShift using hosted control planes (HCPs). What are hosted control planes?",
+      "incident_timeline": "-name rhoso-hcp-0 \\\n-node-pool-replicas 3 \\\n-additional-trust-bundle /root/hcpscripts/bastion-ocp4.crt \\\n-memory 32Gi \\\n-cores 16 \\\n-etcd-storage-class=lvms-vg1 \\\n-root-volume-size 85 \\\n-release-image=quay.io/openshift-release-dev/ocp-release:4.18.34-x86_64 Step 4: Configure OpenStack services on the hosted cluster",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
