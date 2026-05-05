@@ -184,12 +184,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In the last 30 days, 93% of Cloudflare’s R&D organization used AI coding tools powered by infrastructure we built on our own platform. Impact band: high.",
-    "related_sources": [
-      {
-        "source": "Elastic Blog",
-        "link": "https://www.elastic.co/blog/cross-project-search-serverless-tech-preview"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

@@ -77,7 +77,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Project Hummingbird and Calunga are open source projects that offer the beginnings of a secure software supply chain. These projects help open source and commercial developers build application containers with confidence that they are not shipping malicious content.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/open-source/maintainers/welcome-to-maintainer-month-celebrating-the-people-behind-the-code/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -223,6 +228,48 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1.",
+    "related_sources": [
+      {
+        "source": "Slack Engineering",
+        "link": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "9210b30390009199",
+    "title": "Elastic 9.4: Workflows GA, Agent Builder updates, and Prometheus/PromQL support",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/whats-new-elastic-9-4-0",
+    "published": "2026-05-05T00:00:00+00:00",
+    "fetched_at": "2026-05-05T16:47:54.050709+00:00",
+    "summary": "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-05-05",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for "
+    ],
+    "sections": {
+      "overview": "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.",
+      "technical_breakdown": "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for ",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.",
     "related_sources": [],
     "highlighted": false
   }
