@@ -79,6 +79,10 @@
     "email_summary": "Project Hummingbird and Calunga are open source projects that offer the beginnings of a secure software supply chain. These projects help open source and commercial developers build application containers with confidence that they are not shipping malicious content.",
     "related_sources": [
       {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/modernize-your-workflows-amazon-workspaces-now-gives-ai-agents-their-own-desktop-preview/"
+      },
+      {
         "source": "GitHub Blog",
         "link": "https://github.blog/open-source/maintainers/welcome-to-maintainer-month-celebrating-the-people-behind-the-code/"
       }

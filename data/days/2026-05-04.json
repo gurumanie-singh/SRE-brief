@@ -88,6 +88,10 @@
       {
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/05/04/guardrails-enterprise-safety-shields-llama-stack"
+      },
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/mitigate-credential-exposure-in-windows-environments-with-boundary-and-vault"
       }
     ],
     "highlighted": false
