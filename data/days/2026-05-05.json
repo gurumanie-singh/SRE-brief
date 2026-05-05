@@ -1,0 +1,35 @@
+[
+  {
+    "id": "4aa207335b7d4b30",
+    "title": "What (un)exactly do you mean by semantic search?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/05/what-un-exactly-do-you-mean-by-semantic-search/",
+    "published": "2026-05-05T07:40:00+00:00",
+    "fetched_at": "2026-05-05T06:25:05.522420+00:00",
+    "summary": "Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing...",
+    "tags": [
+      "database"
+    ],
+    "day": "2026-05-05",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "data store",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing...",
+      "technical_breakdown": "Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing into video embeddings and local-agent contexts.",
+      "impact": "Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing into video embeddings and local-agent contexts.\n\nClassified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing into video embeddings and local-agent contexts.",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Bryan O’Grady,  Head of Field Research and Solutions Architecture at Qdrant, to discuss the differences between traditional text search engines powered by Lucene and modern vector databases, when vector search’s exact-match needs work for things like logs and security analytics and when semantic search works for user-facing discovery and non-exact results, and how Qdrant is growing into video embeddings and local-agent contexts.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
