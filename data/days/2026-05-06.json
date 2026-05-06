@@ -1,5 +1,91 @@
 [
   {
+    "id": "3adc8180460faa19",
+    "title": "Red Hat UBI 8 builders have been promoted to the Paketo Buildpacks organization",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/06/red-hat-ubi-8-builders-have-been-promoted-paketo-buildpacks-organization",
+    "published": "2026-05-06T12:39:21+00:00",
+    "fetched_at": "2026-05-06T14:38:47.669011+00:00",
+    "summary": "Over the past year, we worked to keep Red Hat Universal Base Image 8 (UBI) builders stable under the Paketo Community GitHub organization . Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 builders could consistently build applications for Java and Node.js. We have good news! UBI 8 builders have been promoted from the Paketo Community GitHub organization to the Paketo...",
+    "tags": [
+      "deployment",
+      "outage"
+    ],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Over the past year, we worked to keep Red Hat Universal Base Image 8 (UBI) builders stable under the Paketo Community GitHub organization . Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 buil",
+      "podman run -d -p 8080:8080 my-node-app With the container listening on port 8080, confirm that the app responds:",
+      "Conclusion The promotion of the Red Hat UBI 8 builders to the main Paketo Buildpacks organization means these assets have moved beyond the testing phase and are ready for you to use. Try the new repository and container "
+    ],
+    "sections": {
+      "overview": "Over the past year, we worked to keep Red Hat Universal Base Image 8 (UBI) builders stable under the Paketo Community GitHub organization . Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 builders could consistently build applications for Java and Node.js. We have good news!",
+      "technical_breakdown": "If you need a sample application, clone the Paketo Buildpacks samples repository:\n\n git clone https://github.com/paketo-buildpacks/samples Build the Node.js application with pack and the ubi8-base-builder builder:\n\n pack --docker-host=inherit build my-node-app \\\n--builder index.docker.io/paketobuildpacks/builder-ubi8-base \\ --path ./samples/nodejs/npm When the build finishes, the image name appears at the end of the build logs:\n\n Successfully built image my-node-app To run the application, use Podman:\n\n podman run -d -p 8080:8080 my-node-app With the container listening on port 8080, confirm that the app responds:\n\n curl http://localhost:8080 You get an HTTP/1.1 200 OK response followed by HTML content.\n\nThis change means some repositories have migrated from the Paketo Community organization to the Paketo Buildpacks organization:\n\n Builder (formerly paketo-community/builder-ubi-base ) New repository: paketo-buildpacks/builder-ubi8-base \n \n Buildpackless Builder (formerly paketo-community/builder-ubi-buildpackless-base ) New repository: paketo-buildpacks/builder-ubi8-buildpackless-base \n \n Stacks/base images (formerly github.com/paketo-community/ubi-base-stack ) New repository: github.com/paketo-buildpacks/ubi8-base-stack \n \n Node.js Extension (formerly paketo-community/ubi-nodejs-extension ) New repository: paketo-buildpacks/ubi-nodejs-extension \n \n In addition, the following images moved to a different namespace on Docker hub:\n\n Builder image (formerly paketocommunity/builder-ubi-base) New name: paketobuildpacks/builder-ubi8-base\n \n Builder image (formerly paketocommunity/builder-ubi-buildpackless-base) New name: paketobuildpacks/builder-ubi8-buildpackless-base\n \n Run image (formerly paketocommunity/run-ubi-base) New name: paketobuildpacks/run-ubi8-base\n \n Build image (formerly paketocommunity/build-ubi-base) New name: paketobuildpacks/build-ubi8-base\n \n For Node.js:\n\n Extension (formerly paketocommunity/ubi-nodejs-extension) New name: paketobuildpacks/ubi-nodejs-extension\n \n Run image (formerly paketocommunity/run-nodejs-16-ubi-base) New name: paketobuildpacks/run-nodejs-16-ubi8-base\n \n Run image (formerly paketocommunity/run-nodejs-18-ubi-base) New name: paketobuildpacks/run-nodejs-18-ubi8-base\n \n Run image (formerly paketocommunity/run-nodejs-20-ubi-base) New name: paketobuildpacks/run-nodejs-20-ubi8-base\n \n For Java:\n\n Run image (formerly paketocommunity/run-java-8-ubi-base) New name: paketobuildpacks/run-java-8-ubi8-base\n \n Run image (formerly paketocommunity/run-java-11-ubi-base) New name: paketobuildpacks/run-java-11-ubi8-base\n \n Run image (formerly paketocommunity/run-java-17-ubi-base) New name: paketobuildpacks/run-java-17-ubi8-base\n \n Run image (formerly paketocommunity/run-java-21-ubi-base) New name: paketobuildpacks/run-java-21-ubi8-base\n \n The previous container image names remain available on Docker Hub, but they will not receive updates.\n\nBuild a Node.js application with UBI 8 and Paketo Buildpacks Before you begin, ensure that Podman (5.1.0 or greater) is installed.\n\nConfigure Podman according to Paketo Buildpacks documentation :\n\n First, start and enable the service using systemd:\n\n systemctl enable --user --now podman.socket Route the Docker command-line interface (CLI) to Podman:\n\n export DOCKER_HOST=\"unix://$(podman info \\\n-f \"{{.Host.RemoteSocket.Path}}\")\" Install pack CLI Next, you must install the pack command:\n\n dnf install pack Currently, the extension is in the experimental phase, and therefore the experimental features must be enabled:\n\n pack config experimental true Building a Node.js application For this example, you can use any Node.js application you might have locally.\n\nTry the new repository and container images out for your own Java and Node.js applications!",
+      "impact": "Configure Podman according to Paketo Buildpacks documentation :\n\n First, start and enable the service using systemd:\n\n systemctl enable --user --now podman.socket Route the Docker command-line interface (CLI) to Podman:\n\n export DOCKER_HOST=\"unix://$(podman info \\\n-f \"{{.Host.RemoteSocket.Path}}\")\" Install pack CLI Next, you must install the pack command:\n\n dnf install pack Currently, the extension is in the experimental phase, and therefore the experimental features must be enabled:\n\n pack config experimental true Building a Node.js application For this example, you can use any Node.js application you might have locally.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 builders could consistently build applications for Java and Node.js.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Over the past year, we worked to keep Red Hat Universal Base Image 8 (UBI) builders stable under the Paketo Community GitHub organization . Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 buil\npodman run -d -p 8080:8080 my-node-app With the container listening on port 8080, confirm that the app responds:\nConclusion The promotion of the Red Hat UBI 8 builders to the main Paketo Buildpacks organization means these assets have moved beyond the testing phase and are ready for you to use. Try the new repository and container ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Over the past year, we worked to keep Red Hat Universal Base Image 8 (UBI) builders stable under the Paketo Community GitHub organization . Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 builders could consistently build applications for Java and Node.js.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "fe4f04c322e134cd",
+    "title": "Using eBPF in Red Hat products",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/06/using-ebpf-red-hat-products",
+    "published": "2026-05-06T12:36:51+00:00",
+    "fetched_at": "2026-05-06T14:38:47.669733+00:00",
+    "summary": "eBPF (formerly known as extended Berkeley Packet Filter) has become a foundational technology in the Linux kernel, which is getting a lot of traction. At Red Hat, we have been supportive of eBPF since its introduction and have adopted the technology throughout our portfolio.. With eBPF continually evolving with new capabilities and spanning more and more domains, this article provides a...",
+    "tags": [
+      "deployment",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Red Hat's adoption of eBPF Red Hat first introduced the technology to Red Hat Enterprise Linux 7 (RHEL) as a technology preview. We regularly contribute to various eBPF-related upstream projects, including the Linux kern",
+      "Since then, we have actively supported eBPF in RHEL, prioritising backports of the full upstream feature set for the newest RHEL releases. Today, this means that in the latest major release of RHEL, the eBPF subsystem is",
+      "A note on RHEL kernel version numbers As mentioned above, the eBPF subsystem in RHEL kernels is regularly synchronized with its upstream counterpart. However, the RHEL kernel does not follow upstream versioning. Instead,",
+      "To help with this, the exact corresponding upstream version along with the list of the most significant features can be found in the release notes of each minor RHEL release (for example, see RHEL 9.6 Release Notes ).",
+      "libbpf : The canonical C library that provides many abstractions for writing eBPF programs and a stable API for their management. Because libbpf is developed as part of the kernel source tree, it always contains the late"
+    ],
+    "sections": {
+      "overview": "eBPF (formerly known as extended Berkeley Packet Filter) has become a foundational technology in the Linux kernel, which is getting a lot of traction. At Red Hat, we have been supportive of eBPF since its introduction and have adopted the technology throughout our portfolio.. With eBPF continually evolving with new capabilities and spanning more and more domains, this article provides a high-level overview of the way eBPF is integrated in Red Hat products, and outlines the options available to you for creating your own eBPF-powered solutions.",
+      "technical_breakdown": "Among these, the most important are:\n\n Red Hat OpenShift uses eBPF in its network observability operator ( GitHub repository ) and ingress node firewall operator ( GitHub repository ).\n\neBPF (formerly known as extended Berkeley Packet Filter) has become a foundational technology in the Linux kernel, which is getting a lot of traction.\n\nWe regularly contribute to various eBPF-related upstream projects, including the Linux kernel eBPF subsystem, bpftrace, and xdp-tools.\n\nBecause libbpf is developed as part of the kernel source tree, it always contains the latest and most up-to-date features.\n bpftrace : A high-level tracing language allowing to write short scripts, which are then transformed into eBPF applications.\n\nFurther reading For more in-depth information on eBPF as a technology, you can visit eBPF.io and the Linux kernel documentation on eBPF .",
+      "impact": "Today, this means that in the latest major release of RHEL, the eBPF subsystem is regularly synchronized with its upstream counterpart, ensuring users benefit from the latest features and improvements.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "For preceding releases, such as RHEL 9, critical fixes and security updates are consistently backported from upstream to maintain stability and reliability.\n\nInstead, its version number is fixed at the first release of a RHEL major version (for example, 6.12.0 for RHEL 10) and only the release number (for example, -123 ) is gradually increased afterwards.",
+      "lessons_learned": "Today, this means that in the latest major release of RHEL, the eBPF subsystem is regularly synchronized with its upstream counterpart, ensuring users benefit from the latest features and improvements.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Red Hat's adoption of eBPF Red Hat first introduced the technology to Red Hat Enterprise Linux 7 (RHEL) as a technology preview. We regularly contribute to various eBPF-related upstream projects, including the Linux kern\nSince then, we have actively supported eBPF in RHEL, prioritising backports of the full upstream feature set for the newest RHEL releases. Today, this means that in the latest major release of RHEL, the eBPF subsystem is\nA note on RHEL kernel version numbers As mentioned above, the eBPF subsystem in RHEL kernels is regularly synchronized with its upstream counterpart. However, the RHEL kernel does not follow upstream versioning. Instead,\nTo help with this, the exact corresponding upstream version along with the list of the most significant features can be found in the release notes of each minor RHEL release (for example, see RHEL 9.6 Release Notes ).\nlibbpf : The canonical C library that provides many abstractions for writing eBPF programs and a stable API for their management. Because libbpf is developed as part of the kernel source tree, it always contains the late",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "eBPF (formerly known as extended Berkeley Packet Filter) has become a foundational technology in the Linux kernel, which is getting a lot of traction. At Red Hat, we have been supportive of eBPF since its introduction and have adopted the technology throughout our portfolio..",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "3d56b9dfc0aaa02f",
     "title": "How we made one data layer serve the UI, the mocks, and the E2E tests",
     "source": "Red Hat Developer Blog",
@@ -42,6 +128,42 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "This is the final installment of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1f393894fc407be7",
+    "title": "The agentic era: Elastic at Google Cloud Next 2026",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/google-cloud-next-2026-recap",
+    "published": "2026-05-06T00:00:00+00:00",
+    "fetched_at": "2026-05-06T14:38:47.436436+00:00",
+    "summary": "Elastic’s collaboration with Google Cloud was on full display at Google Cloud Next 2026. Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for any scale.",
+    "tags": [],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "Elastic",
+      "Google Cloud"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — gcp",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Elastic’s collaboration with Google Cloud was on full display at Google Cloud Next 2026. Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for a"
+    ],
+    "sections": {
+      "overview": "Elastic’s collaboration with Google Cloud was on full display at Google Cloud Next 2026. Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for any scale.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for any scale.\n\nClassified impact band: medium. Affected layer signal: cloud — gcp.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Elastic’s collaboration with Google Cloud was on full display at Google Cloud Next 2026. Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for a",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Elastic’s collaboration with Google Cloud was on full display at Google Cloud Next 2026. Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for any scale.",
     "related_sources": [],
     "highlighted": false
   }
