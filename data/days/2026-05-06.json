@@ -1,5 +1,52 @@
 [
   {
+    "id": "72536c27dc1c07b1",
+    "title": "The AWS MCP Server is now generally available",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/",
+    "published": "2026-05-06T15:36:44+00:00",
+    "fetched_at": "2026-05-06T16:49:47.443922+00:00",
+    "summary": "I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom? Today, there is an answer.",
+    "tags": [
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom? Today, there is a",
+      "The AWS MCP Server addresses this through a compact set of tools that do not consume your model’s context window. The call_aws tool executes any of the 15,000+ AWS API operations using your existing IAM credentials. When",
+      "The most significant addition is the transition from Agent SOPs to Skills. Skills provide curated guidance and best practices for the tasks where agents most commonly make mistakes. This helps agents complete work faster",
+      "For enterprise customers, the AWS MCP Server provides a clear separation between human and agent permissions. You can use IAM policies or Service Control Policies to specify that a given user can perform mutating operati",
+      "Opus 4.6 has a knowledge cutoff date in May 2025 . It means it doesn’t know anything that happened after May last year. I ask a question about an AWS service that was introduced recently: Amazon S3 Vectors , launched in ",
+      "The question is “how to store embedding on S3″. (embedding is a kind of vector)",
+      "'{\"command\":\"uvx\",\"args\":[\"mcp-proxy-for-aws@latest\",\"https://aws-mcp.us-east-1.api.aws/mcp\",\"--metadata\",\"AWS_REGION=us-west-2\"]}'",
+      "uvx mcp-proxy-for-aws is the command to launch the proxy; the rest of the arguments are parameters passed to the proxy."
+    ],
+    "sections": {
+      "overview": "I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom? Today, there is an answer. I’m happy to announce the general availability of the AWS MCP Server , a managed remote Model Context Protocol (MCP) server that gives AI agents and coding assistants secure, authenticated access to all AWS services through a small, fixed set of tools.",
+      "technical_breakdown": "I add the MCP configuration with this command:\n\n \n claude mcp add-json aws-mcp --scope user \\\n '{\"command\":\"uvx\",\"args\":[\"mcp-proxy-for-aws@latest\",\"https://aws-mcp.us-east-1.api.aws/mcp\",\"--metadata\",\"AWS_REGION=us-west-2\"]}'\n \n Let’s analyze the JSON configuration:\n\n \n \n I use the user scope to make the server available to all my projects on my laptop.\n \n uvx mcp-proxy-for-aws is the command to launch the proxy; the rest of the arguments are parameters passed to the proxy.\n \n https://aws-mcp.us-east-1.api.aws/mcp is one of the two regional endpoints for the AWS MCP Server.\n\nThe sandbox inherits your IAM permissions but has no network access, so you can give an agent the ability to process data without giving it access to your local file system or a shell.\n\nWhen an agent needs to call multiple APIs and combine the results, making them one at a time is slow and burns context.\n\nAmazon CloudWatch metrics published under the AWS-MCP namespace let you observe MCP server calls separately from direct human calls, giving you the audit trail that compliance teams require.\n\nOpus 4.6 has a knowledge cutoff date in May 2025 .",
+      "impact": "I add the MCP configuration with this command:\n\n \n claude mcp add-json aws-mcp --scope user \\\n '{\"command\":\"uvx\",\"args\":[\"mcp-proxy-for-aws@latest\",\"https://aws-mcp.us-east-1.api.aws/mcp\",\"--metadata\",\"AWS_REGION=us-west-2\"]}'\n \n Let’s analyze the JSON configuration:\n\n \n \n I use the user scope to make the server available to all my projects on my laptop.\n \n uvx mcp-proxy-for-aws is the command to launch the proxy; the rest of the arguments are parameters passed to the proxy.\n \n https://aws-mcp.us-east-1.api.aws/mcp is one of the two regional endpoints for the AWS MCP Server. I’m happy to announce the general availability of the AWS MCP Server , a managed remote Model Context Protocol (MCP) server that gives AI agents and coding assistants secure, authenticated access to all AWS services through a small, fixed set of tools. With general availability, we are introducing several new capabilities. For enterprise customers, the AWS MCP Server provides a clear separation between human and agent permissions.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "I’m happy to announce the general availability of the AWS MCP Server , a managed remote Model Context Protocol (MCP) server that gives AI agents and coding assistants secure, authenticated access to all AWS services through a small, fixed set of tools.",
+      "lessons_learned": "When we will launch new APIs, they will be supported within days.",
+      "root_cause_highlight": "",
+      "incident_timeline": "I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom? Today, there is a\nThe AWS MCP Server addresses this through a compact set of tools that do not consume your model’s context window. The call_aws tool executes any of the 15,000+ AWS API operations using your existing IAM credentials. When\nThe most significant addition is the transition from Agent SOPs to Skills. Skills provide curated guidance and best practices for the tasks where agents most commonly make mistakes. This helps agents complete work faster\nFor enterprise customers, the AWS MCP Server provides a clear separation between human and agent permissions. You can use IAM policies or Service Control Policies to specify that a given user can perform mutating operati\nOpus 4.6 has a knowledge cutoff date in May 2025 . It means it doesn’t know anything that happened after May last year. I ask a question about an AWS service that was introduced recently: Amazon S3 Vectors , launched in \nThe question is “how to store embedding on S3″. (embedding is a kind of vector)\n'{\"command\":\"uvx\",\"args\":[\"mcp-proxy-for-aws@latest\",\"https://aws-mcp.us-east-1.api.aws/mcp\",\"--metadata\",\"AWS_REGION=us-west-2\"]}'\nuvx mcp-proxy-for-aws is the command to launch the proxy; the rest of the arguments are parameters passed to the proxy.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom. Today, there is an answer.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "3adc8180460faa19",
     "title": "Red Hat UBI 8 builders have been promoted to the Paketo Buildpacks organization",
     "source": "Red Hat Developer Blog",
@@ -164,6 +211,41 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Elastic’s collaboration with Google Cloud was on full display at Google Cloud Next 2026. Read about our joint developments and latest announcements as we strive to help customers build secure AI applications faster for any scale.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "629be38de62fd385",
+    "title": "Elasticsearch 9.4 powers the next phase of the Elastic AI Ecosystem: Dell AI Data Platform with NVIDIA",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/dell-ai-data-platform-nvidia",
+    "published": "2026-05-06T00:00:00+00:00",
+    "fetched_at": "2026-05-06T16:49:50.855675+00:00",
+    "summary": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.",
+    "tags": [],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentat"
+    ],
+    "sections": {
+      "overview": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentat",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.",
     "related_sources": [],
     "highlighted": false
   }

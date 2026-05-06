@@ -28,12 +28,12 @@
       <h1 class="brief-title">6 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-06T09:38:47.909071-05:00">6 May 2026, 09:38</time>
+        <time data-iso="2026-05-06T11:49:51.437246-05:00">6 May 2026, 11:49</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">4 items today</span>
+      <span class="stat">6 items today</span>
     </div>
   </div>
 
@@ -48,9 +48,9 @@
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
+        <span class="trend-pill">elastic<span class="trend-count">5</span></span>
         <span class="trend-pill">openshift<span class="trend-count">5</span></span>
         <span class="trend-pill">agentic<span class="trend-count">4</span></span>
-        <span class="trend-pill">elastic<span class="trend-count">4</span></span>
         <span class="trend-pill">vault<span class="trend-count">3</span></span>
         <span class="trend-pill">distributed<span class="trend-count">3</span></span>
         <span class="trend-pill">cloudflare<span class="trend-count">3</span></span>
@@ -84,14 +84,14 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
       </div>
@@ -109,13 +109,13 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
@@ -169,10 +169,46 @@
   <div class="day-group">
     <h2 class="day-heading">
       6 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">6</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="latency,networking,observability,outage"
+       data-vendors="AWS"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="the aws mcp server is now generally available"
+       data-id="72536c27dc1c07b1"
+       data-published="2026-05-06T15:36:44+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span>        <time class="meta-time" data-iso="2026-05-06T15:36:44+00:00" title="6 May 2026, 10:36">6 May 2026, 10:36</time>
+      </div>
+      <h3 class="card-title">The AWS MCP Server is now generally available</h3>
+      <p class="card-summary">I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom. Today, there is an answer.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">AWS News Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>I have been building with AI agents and MCP tools for a while now, and one question kept coming up: how do you give an agent real, authenticated access to AWS without handing it the keys to the kingdom? Today, there is an answer. I’m happy to announce the general availability of the AWS MCP Server , a managed remote Model Context Protocol (MCP) server that gives AI agents and coding assistants secure, authenticated access to all AWS services through a small, fixed set of tools.</p></div>
+      <div class="detail-links">
+        <a href="articles/72536c27dc1c07b1.html" class="detail-read">Open structured brief →</a>
+        <a href="https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="deployment,outage"
        data-vendors="GitHub,Red Hat"
@@ -307,6 +343,38 @@
       <div class="detail-links">
         <a href="articles/1f393894fc407be7.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/google-cloud-next-2026-recap" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="elasticsearch 9.4 powers the next phase of the elastic ai ecosystem: dell ai data platform with nvidia"
+       data-id="629be38de62fd385"
+       data-published="2026-05-06T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-05-06T00:00:00+00:00" title="5 May 2026, 19:00">5 May 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">Elasticsearch 9.4 powers the next phase of the Elastic AI Ecosystem: Dell AI Data Platform with NVIDIA</h3>
+      <p class="card-summary">With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.</p></div>
+      <div class="detail-links">
+        <a href="articles/629be38de62fd385.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/dell-ai-data-platform-nvidia" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -922,7 +990,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       30 April 2026
-      <span class="day-count">8</span>
+      <span class="day-count">6</span>
     </h2>
   </div>
 
@@ -1130,73 +1198,6 @@
       <div class="detail-links">
         <a href="articles/c20341ca50cc38ff.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/04/30/how-statefulset-deployments-tripled-openshift-pipelines-throughput" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="observability"
-       data-vendors=""
-       data-impact="medium"
-       data-theme="observability"
-       data-title="built on patterns: how susan chang’s econometrics roots drive machine learning for security and her minimalist workspace"
-       data-id="a3f1d6642fd9834d"
-       data-published="2026-04-30T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-04-30T00:00:00+00:00" title="29 April 2026, 19:00">29 April 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Built on patterns: How Susan Chang’s econometrics roots drive machine learning for security and her minimalist workspace</h3>
-      <p class="card-summary">How econometrics and machine learning come together to secure modern systems.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Built on patterns: How Susan Chang’s econometrics roots drive machine learning for security and her minimalist workspace. How econometrics and machine learning come together to secure modern systems</p></div>
-      <div class="detail-links">
-        <a href="articles/a3f1d6642fd9834d.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/top-down-with-susan-chang" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment"
-       data-vendors="Elastic"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="elastic stack 8.19.15 released"
-       data-id="2a241a46152d486d"
-       data-published="2026-04-30T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-04-30T00:00:00+00:00" title="29 April 2026, 19:00">29 April 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Elastic Stack 8.19.15 released</h3>
-      <p class="card-summary">Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version .</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Version 8.19.15 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.15 over the previous versions 8.19.14</p>
-<p>Fixed a regression where APM’s HTTP/2 connections could fail with strict clients due to framing errors.</p></div>
-      <div class="detail-links">
-        <a href="articles/2a241a46152d486d.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/elastic-stack-8-19-15-released" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
