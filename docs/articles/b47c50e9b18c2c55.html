@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When DNSSEC goes wrong: how we responded to the .de TLD outage — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-06.html" class="back-link">← 6 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">6 May 2026, 12:00</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+        <span class="card-action-badge">Ops priority</span>
+      </div>
+
+      <h1 class="title">When DNSSEC goes wrong: how we responded to the .de TLD outage</h1>
+
+      <p class="subtitle">On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Impact band: critical.</p>
+
+      <div class="article-action-banner">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        This item is flagged for operational follow-up — see resolution and lessons sections.
+      </div>
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>misconfiguration</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Impact band: critical.</p>
+      <p class="quick-take-action">Review mitigation and verification steps in the resolution section.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Any validating DNS resolver receiving these signatures was required by the DNSSEC specification to reject them and return SERVFAIL to clients, including 1.1.1.1 , the public DNS resolver operated by Cloudflare. The country-code top-level domain for Germany, .de , is one of the largest on the Internet.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Unlike encrypted DNS protocols, such as DNS over TLS (DoT) and DNS over HTTPs (DoH), DNSSEC is about integrity, not privacy.</p>
+<p>After the immediate spike in SERVFAILs at 19:30 UTC, it climbed steadily over the following three hours as cached records slowly started expiring.</p>
+<p>This is typical during DNS incidents, as clients retry failed queries, often three or more times, inflating the raw numbers.</p>
+<p>Extended DNS Errors           Before our mitigation, queries that couldn&#39;t be served from cache received a SERVFAIL response from 1.1.1.1.</p>
+<p>Is this a failure of DNSSEC as a technology?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>To mitigate impact we applied a similar NTA for .de on the internal resolver service, restoring origin connectivity for affected customers. The SERVFAIL rate looks more alarming than the actual user impact, as many of those queries represent the same user retrying the same domain. This significantly cushions the impact of an upstream outage, buying time for operators to respond. Our mitigation           While the issue was largely out of our own control, and serve stale was doing its job, there was still a legitimate impact for a lot of users.</p>
+<p>Classified impact band: critical. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>In this post, we’ll walk through what we saw, the impact of these events, and how we applied temporary mitigations while DENIC resolved the issue.</p>
+<p>Our mitigation           While the issue was largely out of our own control, and serve stale was doing its job, there was still a legitimate impact for a lot of users.</p>
+<p>Continuing to return SERVFAIL in that situation provides no security value: the failure is already known, public, and being fixed.</p>
+<p>Instead, we used an existing override rule mechanism to mark .de as an insecure zone, which causes all .de queries to be resolved as if they don’t have DNSSEC enabled.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>We will be working on our EDE errors to better surface DNSSEC errors.</p>
+<p>Luckily, there were some actions we were able to take to improve the situation.</p>
+<p>We also came away with some points to improve for ourselves.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: misconfiguration. A break anywhere in that chain causes validation to fail for everything below it, which is why a misconfiguration at a TLD like .de affects every domain under it. Rotating a KSK is more involved, because the parent’s DS record must also be updated, often requiring coordination with a registrar or registry. If the signatures published in the zone are made with a key that resolvers cannot verify against the zone’s published DNSKEY records, whether because the signing step failed, the timing was wrong, or the new key wasn’t fully distributed yet, resolvers have no choice but to reject the responses and return SERVFAIL.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Any validating DNS resolver receiving t</li>
+            <li>The country-code top-level domain for Germany, .de , is one of the largest on the Internet. On Cloudflare Radar , it consistently ranks among the most broadly queried TLDs globally. An outage at this level of the DNS hie</li>
+            <li>On May 5, 2026, at roughly 19:30 UTC, DENIC, the operator for the .de TLD, started publishing incorrect DNSSEC signatures for the .de zone. Any validating resolver receiving these records was required by the DNSSEC speci</li>
+            <li>After the immediate spike in SERVFAILs at 19:30 UTC, it climbed steadily over the following three hours as cached records slowly started expiring. As each domain&#39;s cached records expired and resolvers went back to DENIC </li>
+            <li>During the outage, freshly requested records ended up resolving to SERVFAIL. The DNSSEC signatures were broken and the resolver correctly rejected them. But many .de records were still sitting in cache from before the in</li>
+            <li>1.1.1.1 implements RFC 8767 , which formalizes this behavior. When upstream resolution fails, a resolver may continue serving expired cached records rather than returning an error. This significantly cushions the impact </li>
+            <li>The result is visible in the graph below, which shows response codes for .de queries during the incident excluding the stale-served responses. Without stale-served responses, the NOERROR rate drops steadily from 19:30 on</li>
+            <li>We rolled out our mitigation at 22:17 UTC, which marked the end of impact for 1.1.1.1. We communicated this with fellow DNS operators in the DNS-OARC Mattermost .</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/de-tld-outage-dnssec/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,5 +1,87 @@
 [
   {
+    "id": "345f196b59f30af4",
+    "title": "How we replaced NGINX-Ingress at Stack Overflow",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/06/how-we-replaced-nginx-ingress-at-stack-overflow/",
+    "published": "2026-05-06T18:47:46+00:00",
+    "fetched_at": "2026-05-06T20:40:55.281538+00:00",
+    "summary": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+    "tags": [
+      "kubernetes"
+    ],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+      "technical_breakdown": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+      "impact": "Classified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "b47c50e9b18c2c55",
+    "title": "When DNSSEC goes wrong: how we responded to the .de TLD outage",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/de-tld-outage-dnssec/",
+    "published": "2026-05-06T17:00:00+00:00",
+    "fetched_at": "2026-05-06T20:40:53.467783+00:00",
+    "summary": "On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Any validating DNS resolver receiving these signatures was required by the DNSSEC specification to reject them and return SERVFAIL to clients, including 1.1.1.1 , the public DNS resolver operated by Cloudflare. ",
+    "tags": [
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-05-06",
+    "impact": "critical",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": true,
+    "root_cause": "misconfiguration",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Any validating DNS resolver receiving t",
+      "The country-code top-level domain for Germany, .de , is one of the largest on the Internet. On Cloudflare Radar , it consistently ranks among the most broadly queried TLDs globally. An outage at this level of the DNS hie",
+      "On May 5, 2026, at roughly 19:30 UTC, DENIC, the operator for the .de TLD, started publishing incorrect DNSSEC signatures for the .de zone. Any validating resolver receiving these records was required by the DNSSEC speci",
+      "After the immediate spike in SERVFAILs at 19:30 UTC, it climbed steadily over the following three hours as cached records slowly started expiring. As each domain's cached records expired and resolvers went back to DENIC ",
+      "During the outage, freshly requested records ended up resolving to SERVFAIL. The DNSSEC signatures were broken and the resolver correctly rejected them. But many .de records were still sitting in cache from before the in",
+      "1.1.1.1 implements RFC 8767 , which formalizes this behavior. When upstream resolution fails, a resolver may continue serving expired cached records rather than returning an error. This significantly cushions the impact ",
+      "The result is visible in the graph below, which shows response codes for .de queries during the incident excluding the stale-served responses. Without stale-served responses, the NOERROR rate drops steadily from 19:30 on",
+      "We rolled out our mitigation at 22:17 UTC, which marked the end of impact for 1.1.1.1. We communicated this with fellow DNS operators in the DNS-OARC Mattermost ."
+    ],
+    "sections": {
+      "overview": "On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Any validating DNS resolver receiving these signatures was required by the DNSSEC specification to reject them and return SERVFAIL to clients, including 1.1.1.1 , the public DNS resolver operated by Cloudflare. The country-code top-level domain for Germany, .de , is one of the largest on the Internet.",
+      "technical_breakdown": "Unlike encrypted DNS protocols, such as DNS over TLS (DoT) and DNS over HTTPs (DoH), DNSSEC is about integrity, not privacy.\n\nAfter the immediate spike in SERVFAILs at 19:30 UTC, it climbed steadily over the following three hours as cached records slowly started expiring.\n\nThis is typical during DNS incidents, as clients retry failed queries, often three or more times, inflating the raw numbers.\n\nExtended DNS Errors \n \n \n \n \n Before our mitigation, queries that couldn't be served from cache received a SERVFAIL response from 1.1.1.1.\n\nIs this a failure of DNSSEC as a technology?",
+      "impact": "To mitigate impact we applied a similar NTA for .de on the internal resolver service, restoring origin connectivity for affected customers. The SERVFAIL rate looks more alarming than the actual user impact, as many of those queries represent the same user retrying the same domain. This significantly cushions the impact of an upstream outage, buying time for operators to respond. Our mitigation \n \n \n \n \n While the issue was largely out of our own control, and serve stale was doing its job, there was still a legitimate impact for a lot of users.\n\nClassified impact band: critical. Affected layer signal: edge — cdn.",
+      "resolution": "In this post, we’ll walk through what we saw, the impact of these events, and how we applied temporary mitigations while DENIC resolved the issue.\n\nOur mitigation \n \n \n \n \n While the issue was largely out of our own control, and serve stale was doing its job, there was still a legitimate impact for a lot of users.\n\nContinuing to return SERVFAIL in that situation provides no security value: the failure is already known, public, and being fixed.\n\nInstead, we used an existing override rule mechanism to mark .de as an insecure zone, which causes all .de queries to be resolved as if they don’t have DNSSEC enabled.",
+      "lessons_learned": "We will be working on our EDE errors to better surface DNSSEC errors.\n\nLuckily, there were some actions we were able to take to improve the situation.\n\nWe also came away with some points to improve for ourselves.",
+      "root_cause_highlight": "Likely root-cause theme: misconfiguration. A break anywhere in that chain causes validation to fail for everything below it, which is why a misconfiguration at a TLD like .de affects every domain under it. Rotating a KSK is more involved, because the parent’s DS record must also be updated, often requiring coordination with a registrar or registry. If the signatures published in the zone are made with a key that resolvers cannot verify against the zone’s published DNSKEY records, whether because the signing step failed, the timing was wrong, or the new key wasn’t fully distributed yet, resolvers have no choice but to reject the responses and return SERVFAIL.",
+      "incident_timeline": "On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Any validating DNS resolver receiving t\nThe country-code top-level domain for Germany, .de , is one of the largest on the Internet. On Cloudflare Radar , it consistently ranks among the most broadly queried TLDs globally. An outage at this level of the DNS hie\nOn May 5, 2026, at roughly 19:30 UTC, DENIC, the operator for the .de TLD, started publishing incorrect DNSSEC signatures for the .de zone. Any validating resolver receiving these records was required by the DNSSEC speci\nAfter the immediate spike in SERVFAILs at 19:30 UTC, it climbed steadily over the following three hours as cached records slowly started expiring. As each domain's cached records expired and resolvers went back to DENIC \nDuring the outage, freshly requested records ended up resolving to SERVFAIL. The DNSSEC signatures were broken and the resolver correctly rejected them. But many .de records were still sitting in cache from before the in\n1.1.1.1 implements RFC 8767 , which formalizes this behavior. When upstream resolution fails, a resolver may continue serving expired cached records rather than returning an error. This significantly cushions the impact \nThe result is visible in the graph below, which shows response codes for .de queries during the incident excluding the stale-served responses. Without stale-served responses, the NOERROR rate drops steadily from 19:30 on\nWe rolled out our mitigation at 22:17 UTC, which marked the end of impact for 1.1.1.1. We communicated this with fellow DNS operators in the DNS-OARC Mattermost .",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "On May 5, 2026, at roughly 19:30 UTC, DENIC, the registry operator for the .de country-code top-level domain (TLD), started publishing incorrect DNSSEC signatures for the .de zone. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "72536c27dc1c07b1",
     "title": "The AWS MCP Server is now generally available",
     "source": "AWS News Blog",
