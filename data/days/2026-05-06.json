@@ -1,0 +1,48 @@
+[
+  {
+    "id": "3d56b9dfc0aaa02f",
+    "title": "How we made one data layer serve the UI, the mocks, and the E2E tests",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/06/how-we-made-one-data-layer-serve-ui-mocks-and-e2e-tests",
+    "published": "2026-05-06T07:16:10+00:00",
+    "fetched_at": "2026-05-06T09:32:17.966112+00:00",
+    "summary": "This is the final installment of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready. In part 2 , we covered delivery: the migration strategy. Part 3 described how we built a verification engine inside Storybook: real components, real network interception, and typed mock data.",
+    "tags": [
+      "deployment",
+      "networking",
+      "observability"
+    ],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Storybook tests run against simulated APIs, but eventually, you will need to test against the real thing.",
+      "This post describes the underlying architecture: a single typed data layer that serves the access management interface on Red Hat Hybrid Cloud Console at runtime, Storybook mocks during development, and a standalone CLI ",
+      "The problem with separate test infrastructure A common pattern is to treat test infrastructure as a separate codebase. The UI talks to the API using one set of types and clients. The test mocks use a different set, often",
+      "The seeder/cleaner CLI E2E tests that depend on pre-existing data are fragile. If someone deletes the test role from staging, the tests fail. If two continuous integration (CI) runs execute simultaneously, they corrupt e",
+      "We built a CLI tool that solves all three problems. It reuses the application's own API clients to create and destroy test data against real environments.",
+      "Seeding works from a declarative JSON fixture. The fixture defines roles, groups, workspaces , and the relationships between them. The CLI reads the fixture, prefixes every resource name with a unique identifier (like ci",
+      "Cleanup finds every resource with a matching prefix and deletes it. Cleanup runs even if the tests fail: it's unconditional, so a test crash doesn't leave orphaned data.",
+      "Because the CLI uses the same API clients as the UI, it validates the web layer by proxy. The CLI has its own test suite that exercises the same API client code the UI calls at runtime. When a CLI test fails because a re"
+    ],
+    "sections": {
+      "overview": "This is the final installment of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready. In part 2 , we covered delivery: the migration strategy.",
+      "technical_breakdown": "The next step is plugging these tests into the observability dashboards that operations teams already monitor.\n\nPart 3 described how we built a verification engine inside Storybook: real components, real network interception, and typed mock data.\n\nIt also means three places where a renamed field goes unnoticed until something breaks in a way that's hard to trace.\n\nAn ESLint rule enforces this: If any other file tries to import the SDK directly, the build fails.\n\nIt calls the same factory functions the UI uses, just pointed at a real API instead of a browser cache.",
+      "impact": "The UI talks to the API using one set of types and clients. One data layer, three consumers The API client packages are imported in exactly one place: the data layer. The hooks call the API clients. The CLI imports the same API client constructors.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "We wanted a guarantee: When the API contract changes, you fix it in one place and every consumer updates automatically.\n\nSeeding works from a declarative JSON fixture.\n\nThe fixture defines roles, groups, workspaces , and the relationships between them.\n\nThe CLI reads the fixture, prefixes every resource name with a unique identifier (like ci-1234__ ), and creates the resources through the API.",
+      "lessons_learned": "Learn more Red Hat Hybrid Cloud Console \n Inventory Groups are now Workspaces \n Read part 1: Engineering an AI-ready code base: Governance lessons from the Red Hat Hybrid Cloud Console \n Read part 2: How we rewrote a production UI without stopping it \n Read part 3: How we turned Storybook into a behavioral verification engine \n \nThe post How we made one data layer serve the UI, the mocks, and the E2E tests appeared first on Red Hat Developer .",
+      "root_cause_highlight": "",
+      "incident_timeline": "Storybook tests run against simulated APIs, but eventually, you will need to test against the real thing.\nThis post describes the underlying architecture: a single typed data layer that serves the access management interface on Red Hat Hybrid Cloud Console at runtime, Storybook mocks during development, and a standalone CLI \nThe problem with separate test infrastructure A common pattern is to treat test infrastructure as a separate codebase. The UI talks to the API using one set of types and clients. The test mocks use a different set, often\nThe seeder/cleaner CLI E2E tests that depend on pre-existing data are fragile. If someone deletes the test role from staging, the tests fail. If two continuous integration (CI) runs execute simultaneously, they corrupt e\nWe built a CLI tool that solves all three problems. It reuses the application's own API clients to create and destroy test data against real environments.\nSeeding works from a declarative JSON fixture. The fixture defines roles, groups, workspaces , and the relationships between them. The CLI reads the fixture, prefixes every resource name with a unique identifier (like ci\nCleanup finds every resource with a matching prefix and deletes it. Cleanup runs even if the tests fail: it's unconditional, so a test crash doesn't leave orphaned data.\nBecause the CLI uses the same API clients as the UI, it validates the web layer by proxy. The CLI has its own test suite that exercises the same API client code the UI calls at runtime. When a CLI test fails because a re",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "This is the final installment of a four-part series. In part 1 , we covered governance: how we made the code base AI-ready.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
