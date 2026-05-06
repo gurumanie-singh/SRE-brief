@@ -184,7 +184,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Building a truly reliable cloud environment requires more than redundancy. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/05/kubernetes-v1-36-declarative-validation-ga/"
+      }
+    ],
     "highlighted": false
   },
   {

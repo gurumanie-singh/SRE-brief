@@ -143,7 +143,12 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "In Parts 1 and 2 of this series, we covered an all-in-one deployment and the common two-cluster hub/management split. In this final installment, we will discuss a stronger separation suited for large enterprises, including the following three clusters with a single, clear responsibility.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/04/kubernetes-v1-36-manifest-based-admission-control/"
+      }
+    ],
     "highlighted": false
   },
   {
