@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidential virtual machine storage attack scenarios — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-07.html" class="back-link">← 7 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">7 May 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Confidential virtual machine storage attack scenarios</h1>
+
+      <p class="subtitle">Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Azure</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="vendor-tag">Stripe</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — azure</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. QEMU/KVM support for the technologies has also significantly matured, making it possible to deploy an on-premise CVM setup.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The attacker does not have access to the VM’s memory and/or CPU register state because such attacks are presumably mitigated by CVM technologies (e.g., AMD SEV-SNP and Intel TDX).</p>
+<p>CVM technologies provide reliable guarantees that the key cannot be extracted from VMs memory.</p>
+<p>QEMU/KVM support for the technologies has also significantly matured, making it possible to deploy an on-premise CVM setup.</p>
+<p>The main focus of these technologies is to provide data confidentiality guarantees for the VM at runtime, but it is equally important to consider the confidentiality of data at rest (e.g., in the situation where the VM gets restarted) migrates to another host or simply when the VM is required to be stateful.</p>
+<p>This section explores several hypothetical attack scenarios where an attacker with read/write access to the CVM&#39;s storage attempts to breach data confidentiality, integrity, or availability, despite the use of traditional Linux disk encryption tools like dm-crypt/LUKS.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. This section explores several hypothetical attack scenarios where an attacker with read/write access to the CVM&#39;s storage attempts to breach data confidentiality, integrity, or availability, despite the use of traditional Linux disk encryption tools like dm-crypt/LUKS. This may have a significant impact on the storage performance.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — azure.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Potential mitigations:</p>
+<p>For dedicated pre-encrypting environments: The environment which creates the LUKS key can use a dedicated key to sign a derivation of the key and, possibly, some facts about the source image, the encrypting environment and so on.</p>
+<p>Possible mitigations include:</p>
+<p>UKI must be used.</p>
+<p>Using authenticated disk encryption in cryptsetup(8) does not mitigate the attack as authentication tags can also be restored.</p>
+<p>The list of the attacks and possible mitigations is certainly incomplete.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>UKI’s initramfs must be hardened to prevent interactive access.</p>
+<p>To prevent this attack, PCR12(system extensions)/PCR13(configuration extensions)/PCR14(MOK) need to be added to the set of the PCRs used for secret sealing.</p>
+<p>Encrypted data (non-root) disks which are mounted from the interactive system must be sealed to the guest identity to prevent secret unlocking if the disk is connected to a different guest which is under the attacker&#39;s control.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. QEMU/KVM support for the techno</li>
+            <li>When using a stateful vTPM, the attacker does not possess vTPM seeds and thus cannot recover private keys. The attacker, however, has the same level of access to the vTPM as the guest operating system. For example, the a</li>
+            <li>Possible attack scenarios The shift to CVMs fundamentally alters the threat model for data at rest. The underlying storage remains vulnerable to a privileged, malicious host. This section explores several hypothetical at</li>
+            <li>Note, SRK public of the target VM is not a secret, and the attacker can extract it by running a specially crafted guest OS. The attack script is as follows:</li>
+            <li>The attacker extracts SRK public from the guest vTPM by running a specially crafted guest OS instead of the attack target.</li>
+            <li>The attacker takes the guest OS image (which can be publicly available), encrypts it, and seals the key to the vTPM by using the extracted SRK public. The attacker also records the generated LUKS master key.</li>
+            <li>The attacker may modify the guest OS image and inject a backdoor (optionally). This makes the attack possible even if the guest decides to re-encrypt the whole disk with a new, randomly generated master key.</li>
+            <li>For self-encryption: The storage encryption key must be created in a non-interactive environment (where even the owner cannot perform arbitrary actions) and the evidence of it must be preserved. In particular, the eviden</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/07/confidential-virtual-machine-storage-attack-scenarios" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

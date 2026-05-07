@@ -82,10 +82,6 @@
         "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-whats-next-with-aws-2026-amazon-quick-openai-partnership-and-more-may-4-2026/"
       },
       {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/05/04/how-kagenti-adk-simplifies-production-ai-agent-management"
-      },
-      {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/mitigate-credential-exposure-in-windows-environments-with-boundary-and-vault"
       }

@@ -1,5 +1,51 @@
 [
   {
+    "id": "b1867fe1f938a412",
+    "title": "Confidential virtual machine storage attack scenarios",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/07/confidential-virtual-machine-storage-attack-scenarios",
+    "published": "2026-05-07T07:01:51+00:00",
+    "fetched_at": "2026-05-07T09:42:06.872570+00:00",
+    "summary": "Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. QEMU/KVM support for the technologies has also significantly matured, making it possible to deploy an on-premise CVM setup. The main focus of these technologies is to provide data confidentiality guarantees for...",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-05-07",
+    "impact": "medium",
+    "vendors": [
+      "Azure",
+      "Red Hat",
+      "Stripe"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — azure",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. QEMU/KVM support for the techno",
+      "When using a stateful vTPM, the attacker does not possess vTPM seeds and thus cannot recover private keys. The attacker, however, has the same level of access to the vTPM as the guest operating system. For example, the a",
+      "Possible attack scenarios The shift to CVMs fundamentally alters the threat model for data at rest. The underlying storage remains vulnerable to a privileged, malicious host. This section explores several hypothetical at",
+      "Note, SRK public of the target VM is not a secret, and the attacker can extract it by running a specially crafted guest OS. The attack script is as follows:",
+      "The attacker extracts SRK public from the guest vTPM by running a specially crafted guest OS instead of the attack target.",
+      "The attacker takes the guest OS image (which can be publicly available), encrypts it, and seals the key to the vTPM by using the extracted SRK public. The attacker also records the generated LUKS master key.",
+      "The attacker may modify the guest OS image and inject a backdoor (optionally). This makes the attack possible even if the guest decides to re-encrypt the whole disk with a new, randomly generated master key.",
+      "For self-encryption: The storage encryption key must be created in a non-interactive environment (where even the owner cannot perform arbitrary actions) and the evidence of it must be preserved. In particular, the eviden"
+    ],
+    "sections": {
+      "overview": "Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. QEMU/KVM support for the technologies has also significantly matured, making it possible to deploy an on-premise CVM setup.",
+      "technical_breakdown": "The attacker does not have access to the VM’s memory and/or CPU register state because such attacks are presumably mitigated by CVM technologies (e.g., AMD SEV-SNP and Intel TDX).\n\nCVM technologies provide reliable guarantees that the key cannot be extracted from VMs memory.\n\nQEMU/KVM support for the technologies has also significantly matured, making it possible to deploy an on-premise CVM setup.\n\nThe main focus of these technologies is to provide data confidentiality guarantees for the VM at runtime, but it is equally important to consider the confidentiality of data at rest (e.g., in the situation where the VM gets restarted) migrates to another host or simply when the VM is required to be stateful.\n\nThis section explores several hypothetical attack scenarios where an attacker with read/write access to the CVM's storage attempts to breach data confidentiality, integrity, or availability, despite the use of traditional Linux disk encryption tools like dm-crypt/LUKS.",
+      "impact": "It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. This section explores several hypothetical attack scenarios where an attacker with read/write access to the CVM's storage attempts to breach data confidentiality, integrity, or availability, despite the use of traditional Linux disk encryption tools like dm-crypt/LUKS. This may have a significant impact on the storage performance.\n\nClassified impact band: medium. Affected layer signal: cloud — azure.",
+      "resolution": "Potential mitigations: \n\n For dedicated pre-encrypting environments: The environment which creates the LUKS key can use a dedicated key to sign a derivation of the key and, possibly, some facts about the source image, the encrypting environment and so on.\n\nPossible mitigations include: \n\n UKI must be used.\n\nUsing authenticated disk encryption in cryptsetup(8) does not mitigate the attack as authentication tags can also be restored.\n\nThe list of the attacks and possible mitigations is certainly incomplete.",
+      "lessons_learned": "UKI’s initramfs must be hardened to prevent interactive access.\n\nTo prevent this attack, PCR12(system extensions)/PCR13(configuration extensions)/PCR14(MOK) need to be added to the set of the PCRs used for secret sealing.\n\nEncrypted data (non-root) disks which are mounted from the interactive system must be sealed to the guest identity to prevent secret unlocking if the disk is connected to a different guest which is under the attacker's control.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes. QEMU/KVM support for the techno\nWhen using a stateful vTPM, the attacker does not possess vTPM seeds and thus cannot recover private keys. The attacker, however, has the same level of access to the vTPM as the guest operating system. For example, the a\nPossible attack scenarios The shift to CVMs fundamentally alters the threat model for data at rest. The underlying storage remains vulnerable to a privileged, malicious host. This section explores several hypothetical at\nNote, SRK public of the target VM is not a secret, and the attacker can extract it by running a specially crafted guest OS. The attack script is as follows:\nThe attacker extracts SRK public from the guest vTPM by running a specially crafted guest OS instead of the attack target.\nThe attacker takes the guest OS image (which can be publicly available), encrypts it, and seals the key to the vTPM by using the extracted SRK public. The attacker also records the generated LUKS master key.\nThe attacker may modify the guest OS image and inject a backdoor (optionally). This makes the attack possible even if the guest decides to re-encrypt the whole disk with a new, randomly generated master key.\nFor self-encryption: The storage encryption key must be created in a non-interactive environment (where even the owner cannot perform arbitrary actions) and the evidence of it must be preserved. In particular, the eviden",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Confidential virtual machines (CVMs) are becoming increasingly ubiquitous. It is possible to provision an AMD SEV-SNP or an Intel TDX CVM from major cloud providers in a matter of minutes.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "ba640c71e9f0072f",
     "title": "Introducing virtualization platform autopilot",
     "source": "Red Hat Developer Blog",
