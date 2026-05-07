@@ -1,5 +1,84 @@
 [
   {
+    "id": "b1bc47235a11bc31",
+    "title": "Building for the future",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/building-for-the-future/",
+    "published": "2026-05-07T20:15:12+00:00",
+    "fetched_at": "2026-05-07T22:10:18.214255+00:00",
+    "summary": "This afternoon, we sent the following email to our global team. One of our core values at Cloudflare is transparency, and we believe it's important that you hear this directly from us because it’s a major moment at Cloudflare. ",
+    "tags": [
+      "latency",
+      "outage"
+    ],
+    "day": "2026-05-07",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "It’s important to us that we treat departing team members right and in a way that exceeds what we’ve seen from other companies. We believe acting with empathy isn’t about avoiding hard decisions but rather about how you ",
+      "We’ve asked the team to do this only once, as hard as that may be today. We don’t want to do it again for the foreseeable future. By taking decisive action now, we provide immediate clarity to those departing and protect",
+      "Cloudflare started as a digitally native company built in the cloud. That allowed us to catch up to and pass companies that had a head start of years or decades but were slowed down by outdated systems and processes. As "
+    ],
+    "sections": {
+      "overview": "This afternoon, we sent the following email to our global team. One of our core values at Cloudflare is transparency, and we believe it's important that you hear this directly from us because it’s a major moment at Cloudflare. Team: \n\n We are writing to let you know directly that we’ve made the decision to reduce Cloudflare’s workforce by more than 1,100 employees globally.",
+      "technical_breakdown": "That allowed us to catch up to and pass companies that had a head start of years or decades but were slowed down by outdated systems and processes.",
+      "impact": "We are our own most demanding customer. That means we have to be intentional in how we architect our company for the agentic AI era in order to supercharge the value we deliver to our customers and to honor our mission to help build a better Internet for everyone, everywhere. We have the utmost respect for your work and gratitude for the impact you have made.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "That means we have to be intentional in how we architect our company for the agentic AI era in order to supercharge the value we deliver to our customers and to honor our mission to help build a better Internet for everyone, everywhere.\n\nRather than trickling out notices through managers, we will be sending emails to every employee.\n\nFor those departing today, we will send this update to both their personal and Cloudflare addresses to ensure they receive the information immediately.\n\nWe’re confident you will land at other great places and build many future great companies, bringing with you a unique set of skills learned while building Cloudflare.",
+      "root_cause_highlight": "",
+      "incident_timeline": "It’s important to us that we treat departing team members right and in a way that exceeds what we’ve seen from other companies. We believe acting with empathy isn’t about avoiding hard decisions but rather about how you \nWe’ve asked the team to do this only once, as hard as that may be today. We don’t want to do it again for the foreseeable future. By taking decisive action now, we provide immediate clarity to those departing and protect\nCloudflare started as a digitally native company built in the cloud. That allowed us to catch up to and pass companies that had a head start of years or decades but were slowed down by outdated systems and processes. As ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "This afternoon, we sent the following email to our global team. One of our core values at Cloudflare is transparency, and we believe it's important that you hear this directly from us because it’s a major moment at Cloudflare.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c22e1b0730f6edd4",
+    "title": "LDAP secrets management now available in IBM Vault Enterprise 2.0",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/ldap-secrets-management-now-available-in-ibm-vault-enterprise-20",
+    "published": "2026-05-07T16:00:00+00:00",
+    "fetched_at": "2026-05-07T22:10:19.655373+00:00",
+    "summary": "For the modern technical decision-maker, the mandate is clear: Reduce the attack surface without stifling organizational velocity. As enterprises scale, identity remains the most targeted perimeter. Among the various identity providers, Lightweight Directory Access Protocol (LDAP) remains a cornerstone of enterprise authentication and authorization. However, managing the secrets associated with...",
+    "tags": [
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-05-07",
+    "impact": "critical",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Solving for “initial state”  One of the most requested features now available is the ability to set an initial password when onboarding an LDAP account. This eliminates the \"initial state\" problem. When a static role is "
+    ],
+    "sections": {
+      "overview": "For the modern technical decision-maker, the mandate is clear: Reduce the attack surface without stifling organizational velocity. As enterprises scale, identity remains the most targeted perimeter. Among the various identity providers, Lightweight Directory Access Protocol (LDAP) remains a cornerstone of enterprise authentication and authorization.",
+      "technical_breakdown": "If a rotation fails due to network instability or directory locking, the retry logic is often opaque.\n\nIntelligent retries:  If an LDAP server is unreachable, the rotation manager uses configurable backoff and retry logic, ensuring that temporary outages don't result in permanently locked-out accounts.\n\nThe ability to control, pause, and retry rotations through a standard API means less time spent firefighting directory lockouts and more time focusing on high-value security engineering.\n\nYou can also learn about more great new Vault 2.0 features in  the release blog .",
+      "impact": "Integration with Vault’s centralized rotation manager  By migrating LDAP static roles to the Vault rotation manager, the LDAP secrets engine inherits a new set of management capabilities: \n\n Configurable scheduling:  Define exactly when credentials rotate to avoid peak business hours or synchronization windows. Intelligent retries:  If an LDAP server is unreachable, the rotation manager uses configurable backoff and retry logic, ensuring that temporary outages don't result in permanently locked-out accounts. It does not prevent the ordinary operation of the LDAP secrets engine; users can still fetch credentials and manage roles as they normally would.\n\nClassified impact band: critical. Affected layer signal: networking.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "By introducing a new architecture for the LDAP secrets engine, Vault is providing a robust automation framework for better securing and automating these accounts.\n\nIt does not prevent the ordinary operation of the LDAP secrets engine; users can still fetch credentials and manage roles as they normally would.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Solving for “initial state”  One of the most requested features now available is the ability to set an initial password when onboarding an LDAP account. This eliminates the \"initial state\" problem. When a static role is ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "For the modern technical decision-maker, the mandate is clear: Reduce the attack surface without stifling organizational velocity. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "c278b5f0e8acf719",
     "title": "How Cloudflare responded to the “Copy Fail” Linux vulnerability",
     "source": "Cloudflare Blog",
