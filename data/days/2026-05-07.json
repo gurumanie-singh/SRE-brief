@@ -1,5 +1,52 @@
 [
   {
+    "id": "c278b5f0e8acf719",
+    "title": "How Cloudflare responded to the “Copy Fail” Linux vulnerability",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/copy-fail-linux-vulnerability-mitigation/",
+    "published": "2026-05-07T13:00:00+00:00",
+    "fetched_at": "2026-05-07T14:40:45.273369+00:00",
+    "summary": "On April 29, 2026, a Linux kernel local privilege escalation vulnerability was publicly disclosed under the name \"Copy Fail\" ( CVE-2026-31431 ). Cloudflare’s Security and Engineering teams began assessing the vulnerability as soon as it was disclosed. We reviewed the exploit technique, evaluated exposure across our infrastructure, and validated that our existing behavioral detections could...",
+    "tags": [
+      "deployment",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-07",
+    "impact": "critical",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": true,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The community regularly merges and releases security and stability updates which trigger an automated job to generate a new internal kernel build approximately every week. These builds undergo testing in our staging data",
+      "By the time a CVE becomes public knowledge, the necessary fix has typically been integrated into stable Linux LTS releases for several weeks. Our established procedures ensure that we have already deployed these patches.",
+      "The Linux kernel's internal crypto API manages functions like kTLS and IPsec. Userspace programs access this via the AF_ALG socket family, allowing unprivileged processes to request encryption or decryption. The algif_ae",
+      "Sets a key and accepts a request socket.",
+      "The crypto API utilizes scatterlists , which are structures linking various memory pages. In 2017, algif_aead was optimized for in-place operations, chaining destination and reference pages together. This design lacked e",
+      "Setup: Create an AF_ALG socket, bind() to authencesn(hmac(sha256),cbc(aes)) , set a key, and accept a request socket without needing privileges.",
+      "The upstream fix ( commit a664bf3d603d ) reverts the 2017 in-place optimization, removing the exploit.",
+      "While our engineering team moved to a more targeted mitigation, our security investigation had been running since disclosure. This is our standard procedure for any critical vulnerability."
+    ],
+    "sections": {
+      "overview": "On April 29, 2026, a Linux kernel local privilege escalation vulnerability was publicly disclosed under the name \"Copy Fail\" ( CVE-2026-31431 ). Cloudflare’s Security and Engineering teams began assessing the vulnerability as soon as it was disclosed. We reviewed the exploit technique, evaluated exposure across our infrastructure, and validated that our existing behavioral detections could identify the exploit pattern within minutes.",
+      "technical_breakdown": "The vulnerability: out-of-bounds write \n \n \n \n \n When the user executes recvmsg() , the authencesn wrapper in the kernel performs a 4-byte write past the legitimate output region:\n\n scatterwalk_map_and_copy(tmp + 1, dst, assoclen + cryptlen, 4, 1);\n \n By using splice() , an attacker can chain a target file's page cache pages to the scatterlist.\n\nThe exploit leaves a distinctive trace in kernel logs when it runs.\n\nOur control plane infrastructure typically adopts the most recent kernel, with reboots scheduled according to specific workload requirements.\n\nAF_ALG and the kernel crypto API \n \n \n \n \n The Linux kernel's internal crypto API manages functions like kTLS and IPsec.\n\nMemory mechanics: page cache and in-place crypto \n \n \n \n \n The page cache is a shared system cache for file contents.",
+      "impact": "There was no impact to the Cloudflare environment, no customer data was at risk, and no services were disrupted at any point. The vulnerability: out-of-bounds write \n \n \n \n \n When the user executes recvmsg() , the authencesn wrapper in the kernel performs a 4-byte write past the legitimate output region:\n\n scatterwalk_map_and_copy(tmp + 1, dst, assoclen + cryptlen, 4, 1);\n \n By using splice() , an attacker can chain a target file's page cache pages to the scatterlist. There was no customer impact at any point during this response. Rolling it out \n \n \n \n \n Before enabling enforcement, we verified that our known internal service was the sole legitimate AF_ALG user to avoid accidental outages.\n\nClassified impact band: critical. Affected layer signal: edge — cdn.",
+      "resolution": "The deployment process surfaced a dependency conflict; the mitigation was rolled back.\n\nSecurity performed fleetwide threat hunting of historical data to confirm that no malicious activity was present on Cloudflare systems. \n \n \n 2026-04-30 (morning) \n Engineering tested the bpf-lsm mitigation program and made it production-ready. \n \n \n 2026-04-30 14:25 \n Engineering incident declared to coordinate mitigation program and Linux patch rollout. \n \n \n 2026-04-30 ~17:00 \n Decision made: ship a patched build of the previous LTS line through reboot automation; do not accelerate the new LTS; lean on bpf-lsm in the meantime. \n \n \n 2026-04-30 (afternoon) \n Visibility pipeline (eBPF tracing of AF_ALG socket usage) deployed fleet-wide.\n\nBy the time a CVE becomes public knowledge, the necessary fix has typically been integrated into stable Linux LTS releases for several weeks.\n\nThe upstream fix ( commit a664bf3d603d ) reverts the 2017 in-place optimization, removing the exploit.",
+      "lessons_learned": "There was no customer impact at any point during this incident, and we have committed to the follow-up work above to make our response faster and our visibility better the next time something like this lands.\n\nKey areas we identified for improvement:\n\n Better visibility into kernel-API dependencies.\n\nThis design lacked enforcement to prevent algorithms from writing past intended boundaries.\n\nRemediation and follow-up steps \n \n \n \n \n While we were prepared for this scenario, at Cloudflare we’re always learning and improving.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Our control plane infrastructure typically adopts the most recent kernel, with reboots scheduled according to specific workload requirements. The out-of-bounds write then taints the cached file, allowing an attacker to control which file is modified, the offset, and the specific 4 bytes written. Value: Controlled via AAD bytes 4-7 in sendmsg() \n\n \n \n The exploit, step by step \n \n \n \n \n \n \n \n The default exploit targets /usr/bin/su , a setuid-root binary present on essentially every distribution.",
+      "incident_timeline": "The community regularly merges and releases security and stability updates which trigger an automated job to generate a new internal kernel build approximately every week. These builds undergo testing in our staging data\nBy the time a CVE becomes public knowledge, the necessary fix has typically been integrated into stable Linux LTS releases for several weeks. Our established procedures ensure that we have already deployed these patches.\nThe Linux kernel's internal crypto API manages functions like kTLS and IPsec. Userspace programs access this via the AF_ALG socket family, allowing unprivileged processes to request encryption or decryption. The algif_ae\nSets a key and accepts a request socket.\nThe crypto API utilizes scatterlists , which are structures linking various memory pages. In 2017, algif_aead was optimized for in-place operations, chaining destination and reference pages together. This design lacked e\nSetup: Create an AF_ALG socket, bind() to authencesn(hmac(sha256),cbc(aes)) , set a key, and accept a request socket without needing privileges.\nThe upstream fix ( commit a664bf3d603d ) reverts the 2017 in-place optimization, removing the exploit.\nWhile our engineering team moved to a more targeted mitigation, our security investigation had been running since disclosure. This is our standard procedure for any critical vulnerability.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "On April 29, 2026, a Linux kernel local privilege escalation vulnerability was publicly disclosed under the name \"Copy Fail\" ( CVE-2026-31431 ). Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "b1867fe1f938a412",
     "title": "Confidential virtual machine storage attack scenarios",
     "source": "Red Hat Developer Blog",
@@ -139,6 +186,40 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "By incorporating identities provided by SPIFFE and SPIRE, Argo CD can communicate with remote clusters without the need for long-lived tokens. This is made possible by components from the open source community, specifically KIND as the Kubernetes runtime environment, and the upstream Argo CD project.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "05727a69c8c8cd4e",
+    "title": "How one partnership powers search for over 2 million WP Engine users",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/wp-engine-partnership",
+    "published": "2026-05-07T00:00:00+00:00",
+    "fetched_at": "2026-05-07T14:40:48.001122+00:00",
+    "summary": "Discover how WP Engine innovates with Google Cloud and Elastic to deliver high-precision search and seamless integration for modern software vendors.",
+    "tags": [],
+    "day": "2026-05-07",
+    "impact": "medium",
+    "vendors": [
+      "Elastic",
+      "Google Cloud"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — gcp",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Discover how WP Engine innovates with Google Cloud and Elastic to deliver high-precision search and seamless integration for modern software vendors.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — gcp.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Discover how WP Engine innovates with Google Cloud and Elastic to deliver high-precision search and seamless integration for modern software vendors.",
     "related_sources": [],
     "highlighted": false
   }
