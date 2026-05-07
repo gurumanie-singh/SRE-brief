@@ -41,6 +41,42 @@
     "highlighted": false
   },
   {
+    "id": "603248c0a4105df9",
+    "title": "How we replaced Ingress-NGINX at Stack Overflow",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/06/how-we-replaced-nginx-ingress-at-stack-overflow/",
+    "published": "2026-05-06T18:47:46+00:00",
+    "fetched_at": "2026-05-07T20:21:10.788635+00:00",
+    "summary": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+    "tags": [
+      "kubernetes"
+    ],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+      "technical_breakdown": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+      "impact": "Classified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "b47c50e9b18c2c55",
     "title": "When DNSSEC goes wrong: how we responded to the .de TLD outage",
     "source": "Cloudflare Blog",
