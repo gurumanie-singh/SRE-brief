@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrate zero trust workload identity manager with Red Hat OpenShift GitOps — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-07.html" class="back-link">← 7 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">6 May 2026, 22:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Integrate zero trust workload identity manager with Red Hat OpenShift GitOps</h1>
+
+      <p class="subtitle">By incorporating identities provided by SPIFFE and SPIRE, Argo CD can communicate with remote clusters without the need for long-lived tokens. This is made possible by components from the open source community, specifically KIND as the Kubernetes runtime environment, and the upstream Argo CD project.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">By incorporating identities provided by SPIFFE and SPIRE, Argo CD can communicate with remote clusters without the need for long-lived tokens. This is made possible by components from the open source community, specifically KIND as the Kubernetes runtime environment, and the upstream Argo CD project.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>By incorporating identities provided by SPIFFE and SPIRE, Argo CD can communicate with remote clusters without the need for long-lived tokens. This is made possible by components from the open source community, specifically KIND as the Kubernetes runtime environment, and the upstream Argo CD project. Red Hat OpenShift has included support for Argo CD as OpenShift GitOps for some time now, and starting in OpenShift 4.20 support for SPIFFE and SPIRE projects is available as the zero trust workload identity manager .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>First, install the OpenShift GitOps Operator and configure the newly deployed operator to omit creating the default OpenShift GitOps instance by setting the DISABLE_DEFAULT_ARGOCD_INSTANCE environment variable within the Subscription resource:</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: v1 kind: Namespace metadata:  annotations:  openshift.io/description: OpenShift GitOps Operator  openshift.io/display-name: OpenShift GitOps Operator  labels:  openshift.io/cluster-monitoring: &#39;true&#39;  name: openshift-gitops-operator --- apiVersion: operators.coreos.com/v1 kind: OperatorGroup metadata:  name: openshift-gitops-operator  generateName: openshift-gitops-operator-  namespace: openshift-gitops-operator spec: --- apiVersion: operators.coreos.com/v1alpha1 kind: Subscription metadata:  name: openshift-gitops-operator  namespace: openshift-gitops-operator spec:  channel: latest  installPlanApproval: Automatic  name: openshift-gitops-operator  source: redhat-operators  sourceNamespace: openshift-marketplace  config:  env:  - name: DISABLE_DEFAULT_ARGOCD_INSTANCE  value: &#34;true&#34; EOF Wait until the Operator has created the ArgoCD custom resource definition:</p>
+<p>until oc --context=management-cluster wait --for condition=established crd/argocds.argoproj.io &amp;&gt;/dev/null; do sleep 5; done Now create a new namespace called ztwim-gitops to use to contain the instance of OpenShift GitOps:</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: v1 kind: Namespace metadata:  annotations:  openshift.io/description: Integration of zero trust workload identity Manager and OpenShift GitOps  openshift.io/display-name: zero trust workload identity Manager GitOps  name: ztwim-gitops EOF Next, create the ArgoCD custom resource within the newly created ztwim-gitops namespace with support for obtaining identities from zero trust workload identity manager.</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: argoproj.io/v1beta1  kind: ArgoCD metadata:  name: openshift-gitops  namespace: ztwim-gitops spec:  applicationSet:  resources:  limits:  cpu: &#34;2&#34;  memory: 1Gi  requests:  cpu: 250m  memory: 512Mi  webhookServer:  ingress:  enabled: false  route:  enabled: false  controller:  initContainers:  - command:  - /bin/bash  - &#39;-c&#39;  - &#39;curl -v -L https://github.com/spiffe/k8s-spiffe-workload-jwt-exec-auth/releases/download/v0.0.7/k8s-spiffe-workload-jwt-exec-auth_Linux_x86_64.tar.gz -o /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz &amp;&amp; tar -xzvf /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz -C /tmp &amp;&amp; mv /tmp/k8s-spiffe-workload-jwt-exec-auth /binaries&#39;  image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;  name: install-jwt-spiffe  resources: {}  volumeMounts:  - mountPath: /binaries  name: binaries  volumeMounts:  - mountPath: /binaries  name: binaries  - mountPath: /run/spire/sockets  name: spiffe-workload-api  readOnly: true  volumes:  - emptyDir: {}  name: binaries  - csi:  driver: csi.spiffe.io  readOnly: true  name: spiffe-workload-api  processors: {}  resources:  limits:  cpu: &#34;2&#34;  memory: 2Gi  requests:  cpu: 250m  memory: 1Gi  sharding: {}  grafana:  enabled: false  ingress:  enabled: false  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  route:  enabled: false  ha:  enabled: false  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  initialSSHKnownHosts: {}  monitoring:  enabled: false  notifications:  enabled: false  prometheus:  enabled: false  ingress:  enabled: false  route:  enabled: false  rbac:  defaultPolicy: &#34;role:admin&#34;  policy: |  g, system:cluster-admins, role:admin  g, cluster-admins, role:admin  scopes: &#39;[groups]&#39;  redis:  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  repo:  resources:  limits:  cpu: &#34;1&#34;  memory: 1Gi  requests:  cpu: 250m  memory: 256Mi  resourceExclusions: |  - apiGroups:  - tekton.dev  clusters:  - &#39;*&#39;  kinds:  - TaskRun  - PipelineRun  server:  host: ztwim-gitops.$MANAGEMENT_CLUSTER_APP_DOMAIN  autoscale:  enabled: false  grpc:  ingress:  enabled: false  ingress:  enabled: false  initContainers:  - command:  - /bin/bash  - &#39;-c&#39;  - &#39;curl -v -L https://github.com/spiffe/k8s-spiffe-workload-jwt-exec-auth/releases/download/v0.0.7/k8s-spiffe-workload-jwt-exec-auth_Linux_x86_64.tar.gz -o /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz &amp;&amp; tar -xzvf /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz -C /tmp &amp;&amp; mv /tmp/k8s-spiffe-workload-jwt-exec-auth /binaries&#39;  image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;  name: install-jwt-spiffe  resources: {}  volumeMounts:  - mountPath: /binaries  name: binaries  volumeMounts:  - mountPath: /binaries  name: binaries  - mountPath: /run/spire/sockets  name: spiffe-workload-api  readOnly: true  volumes:  - emptyDir: {}  name: binaries  - csi:  driver: csi.spiffe.io  readOnly: true  name: spiffe-workload-api  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 125m  memory: 128Mi  route:  enabled: true  tls:  termination: reencrypt  insecureEdgeTerminationPolicy: Redirect  service:  type: &#34;&#34;  sso:  dex:  openShiftOAuth: true  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  provider: dex EOF For the purpose of this article, the OpenShift GitOps instance has been configured to elevate any authenticated user to the admin role.</p>
+<p>Create two directories to store Kustomization files used to deploy the zero trust workload identity Manager operator and instance:</p>
+<p>mkdir -p ztwim/{operator,instance} Generate the Kustomization file for zero trust workload identity manager operator:</p>
+<p>cat &lt;&lt; EOF &gt; ztwim/operator/kustomization.yaml apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization</p>
+<p>resources:  - https://github.com/redhat-cop/gitops-catalog/zero-trust-workload-identity-manager/operator/overlays/${MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL}</p>
+<p>patches:  - target:  kind: Subscription  name: openshift-zero-trust-workload-identity-manager  patch: |-  - op: replace  path: /spec/channel  value: &#39;$MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL&#39; EOF Use oc to deploy the zero trust workload identity manager operator to the OpenShift management cluster:</p>
+<p>oc --context=management-cluster apply -k ztwim/operator Wait until the operator has been deployed and the custom resource definitions (CRD) have been installed in the cluster:</p>
+<p>until oc --context=management-cluster wait crd/spireservers.operator.openshift.io --for condition=established --timeout 120s &gt;/dev/null 2&gt;&amp;1 ; do sleep 1 ; done Next, generate the Kustomization file that deploys the zero trust workload identity manager resources:</p>
+<p>cat &lt;&lt; EOF &gt; ztwim/instance/kustomization.yaml apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization</p>
+<p>resources:  - https://github.com/redhat-cop/gitops-catalog/zero-trust-workload-identity-manager/instance/overlays/${MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL}</p>
+<p>patches:  - target:  kind: SpireOIDCDiscoveryProvider  group: operator.openshift.io  version: v1alpha1  patch: |-  - op: replace  path: /spec/jwtIssuer  value: &#39;https://spire-spiffe-oidc-discovery-provider.$MANAGEMENT_CLUSTER_APP_DOMAIN&#39;  - target:  kind: ZeroTrustWorkloadIdentityManager  group: operator.openshift.io  version: v1alpha1  patch: |-  - op: replace  path: /spec/trustDomain  value: &#39;$MANAGEMENT_CLUSTER_APP_DOMAIN&#39;  - target:  kind: SpireServer  group: operator.openshift.io  version: v1alpha1  patch: |-  - op: replace  path: /spec/jwtIssuer  value: &#39;https://spire-spiffe-oidc-discovery-provider.$MANAGEMENT_CLUSTER_APP_DOMAIN&#39; EOF You can now deploy zero trust workload identity manager:</p>
+<p>oc --context=management-cluster apply -k ztwim/instance After a few minutes, zero trust workload identity manager is deployed to OpenShift.</p>
+<p>Now that the tooling has been made available to OpenShift GitOps to retrieve identities provided by zero trust workload identity manager, execute the following command within the OpenShift GitOps server component to emulate the way Argo CD obtains an SPIFFE/SPIRE identity:</p>
+<p>oc --context=management-cluster rsh -n ztwim-gitops \ -c argocd-server $(oc --context=management-cluster get pods \ -n ztwim-gitops \ -l=app.kubernetes.io/name=openshift-gitops-server \ -o jsonpath=&#39;{ .items[].metadata.name }&#39;) bash -c  &#34;SPIFFE_ENDPOINT_SOCKET=unix:///run/spire/sockets/spire-agent.sock SPIFFE_JWT_AUDIENCE=openshift-spoke/binaries/k8s-spiffe-workload-jwt-exec-auth | grep token&#34; | tr -d &#39;\r&#39; | awk &#39;{ print $2 }&#39; This command invokes the k8s-spiffe-workload-jwt-exec-auth binary configured by the init container to return a SPIFFE JWT.</p>
+<p>Utilize the same command to obtain a JWT from zero trust workload identity manager:</p>
+<p>OPENSHIFT_GITOPS_JWT=$(oc --context=management-cluster rsh -n ztwim-gitops -c argocd-server $(oc --context=management-cluster get pods -n ztwim-gitops -l=app.kubernetes.io/name=openshift-gitops-server -o jsonpath=&#39;{ .items[].metadata.name }&#39;) bash -c &#34;SPIFFE_ENDPOINT_SOCKET=unix:///run/spire/sockets/spire-agent.sock SPIFFE_JWT_AUDIENCE=openshift-spoke /binaries/k8s-spiffe-workload-jwt-exec-auth | grep token&#34; | tr -d &#39;\r&#39; | awk &#39;{ print $2 }&#39;) Use this token to log in to the spoke cluster:</p>
+<p>oc login --token=${OPENSHIFT_GITOPS_JWT} --server=$(oc --context=spoke-cluster whoami --show-server) Once authenticated, the oc login command creates a new context using details from the location of the OpenShift API server and the authenticated user.</p>
+<p>Create the secret on the management cluster to add the spoke cluster to OpenShift GitOps:</p>
+<p>oc apply --context=management-cluster -f - &lt;&lt;EOF apiVersion: v1 kind: Secret metadata:  name: spoke-cluster  namespace: ztwim-gitops  labels:  argocd.argoproj.io/secret-type: cluster type: Opaque stringData:  name: spoke-cluster  server: &#34;https://$(oc --context=spoke-cluster whoami --show-server)&#34;  config: |   {  &#34;tlsClientConfig&#34;: {   &#34;insecure&#34;: true  } ,  &#34;execProviderConfig&#34;: {  &#34;command&#34;: &#34;/binaries/k8s-spiffe-workload-jwt-exec-auth&#34;,  &#34;apiVersion&#34;: &#34;client.authentication.k8s.io/v1beta1&#34;,  &#34;env&#34;: {  &#34;SPIFFE_ENDPOINT_SOCKET&#34;: &#34;unix:///run/spire/sockets/spire-agent.sock&#34;,  &#34;SPIFFE_JWT_AUDIENCE&#34;: &#34;openshift-spoke&#34;,  &#34;EXEC_CREDENTIAL_VERSION&#34;: &#34;v1beta1&#34;  }  }  } EOF This example secret definition disables TLS verification for the sake of brevity, which is not recommended for production deployment.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>First, install the OpenShift GitOps Operator and configure the newly deployed operator to omit creating the default OpenShift GitOps instance by setting the DISABLE_DEFAULT_ARGOCD_INSTANCE environment variable within the Subscription resource:</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: v1 kind: Namespace metadata:  annotations:  openshift.io/description: OpenShift GitOps Operator  openshift.io/display-name: OpenShift GitOps Operator  labels:  openshift.io/cluster-monitoring: &#39;true&#39;  name: openshift-gitops-operator --- apiVersion: operators.coreos.com/v1 kind: OperatorGroup metadata:  name: openshift-gitops-operator  generateName: openshift-gitops-operator-  namespace: openshift-gitops-operator spec: --- apiVersion: operators.coreos.com/v1alpha1 kind: Subscription metadata:  name: openshift-gitops-operator  namespace: openshift-gitops-operator spec:  channel: latest  installPlanApproval: Automatic  name: openshift-gitops-operator  source: redhat-operators  sourceNamespace: openshift-marketplace  config:  env:  - name: DISABLE_DEFAULT_ARGOCD_INSTANCE  value: &#34;true&#34; EOF Wait until the Operator has created the ArgoCD custom resource definition:</p>
+<p>until oc --context=management-cluster wait --for condition=established crd/argocds.argoproj.io &amp;&gt;/dev/null; do sleep 5; done Now create a new namespace called ztwim-gitops to use to contain the instance of OpenShift GitOps:</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: v1 kind: Namespace metadata:  annotations:  openshift.io/description: Integration of zero trust workload identity Manager and OpenShift GitOps  openshift.io/display-name: zero trust workload identity Manager GitOps  name: ztwim-gitops EOF Next, create the ArgoCD custom resource within the newly created ztwim-gitops namespace with support for obtaining identities from zero trust workload identity manager.</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: argoproj.io/v1beta1  kind: ArgoCD metadata:  name: openshift-gitops  namespace: ztwim-gitops spec:  applicationSet:  resources:  limits:  cpu: &#34;2&#34;  memory: 1Gi  requests:  cpu: 250m  memory: 512Mi  webhookServer:  ingress:  enabled: false  route:  enabled: false  controller:  initContainers:  - command:  - /bin/bash  - &#39;-c&#39;  - &#39;curl -v -L https://github.com/spiffe/k8s-spiffe-workload-jwt-exec-auth/releases/download/v0.0.7/k8s-spiffe-workload-jwt-exec-auth_Linux_x86_64.tar.gz -o /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz &amp;&amp; tar -xzvf /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz -C /tmp &amp;&amp; mv /tmp/k8s-spiffe-workload-jwt-exec-auth /binaries&#39;  image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;  name: install-jwt-spiffe  resources: {}  volumeMounts:  - mountPath: /binaries  name: binaries  volumeMounts:  - mountPath: /binaries  name: binaries  - mountPath: /run/spire/sockets  name: spiffe-workload-api  readOnly: true  volumes:  - emptyDir: {}  name: binaries  - csi:  driver: csi.spiffe.io  readOnly: true  name: spiffe-workload-api  processors: {}  resources:  limits:  cpu: &#34;2&#34;  memory: 2Gi  requests:  cpu: 250m  memory: 1Gi  sharding: {}  grafana:  enabled: false  ingress:  enabled: false  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  route:  enabled: false  ha:  enabled: false  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  initialSSHKnownHosts: {}  monitoring:  enabled: false  notifications:  enabled: false  prometheus:  enabled: false  ingress:  enabled: false  route:  enabled: false  rbac:  defaultPolicy: &#34;role:admin&#34;  policy: |  g, system:cluster-admins, role:admin  g, cluster-admins, role:admin  scopes: &#39;[groups]&#39;  redis:  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  repo:  resources:  limits:  cpu: &#34;1&#34;  memory: 1Gi  requests:  cpu: 250m  memory: 256Mi  resourceExclusions: |  - apiGroups:  - tekton.dev  clusters:  - &#39;*&#39;  kinds:  - TaskRun  - PipelineRun  server:  host: ztwim-gitops.$MANAGEMENT_CLUSTER_APP_DOMAIN  autoscale:  enabled: false  grpc:  ingress:  enabled: false  ingress:  enabled: false  initContainers:  - command:  - /bin/bash  - &#39;-c&#39;  - &#39;curl -v -L https://github.com/spiffe/k8s-spiffe-workload-jwt-exec-auth/releases/download/v0.0.7/k8s-spiffe-workload-jwt-exec-auth_Linux_x86_64.tar.gz -o /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz &amp;&amp; tar -xzvf /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz -C /tmp &amp;&amp; mv /tmp/k8s-spiffe-workload-jwt-exec-auth /binaries&#39;  image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;  name: install-jwt-spiffe  resources: {}  volumeMounts:  - mountPath: /binaries  name: binaries  volumeMounts:  - mountPath: /binaries  name: binaries  - mountPath: /run/spire/sockets  name: spiffe-workload-api  readOnly: true  volumes:  - emptyDir: {}  name: binaries  - csi:  driver: csi.spiffe.io  readOnly: true  name: spiffe-workload-api  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 125m  memory: 128Mi  route:  enabled: true  tls:  termination: reencrypt  insecureEdgeTerminationPolicy: Redirect  service:  type: &#34;&#34;  sso:  dex:  openShiftOAuth: true  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  provider: dex EOF For the purpose of this article, the OpenShift GitOps instance has been configured to elevate any authenticated user to the admin role. Update this resource:</p>
+<p>oc --context=spoke-cluster apply -f - &lt;&lt;EOF apiVersion: config.openshift.io/v1 kind: Authentication metadata:  name: cluster spec:  oidcProviders:  - claimMappings:  groups:  claim: groups  username:  claim: sub  prefixPolicy: NoPrefix  issuer:  audiences:  - openshift-spoke  issuerCertificateAuthority:  name: &#34;&#34;  issuerURL: https://$ZTWIM_OIDC_PROVIDER_INGRESS_HOST  name: ztwim-oidc-server  oidcClients:  - clientID: openshift-cli  componentName: cli  componentNamespace: openshift-console  type: OIDC  webhookTokenAuthenticator: null EOF Some notes on this configuration:</p>
+<p>The value of ZTWIM_OIDC_PROVIDER_INGRESS_HOST was set previously to the value of the host associated with the zero trust workload identity manager OIDC discovery provider ingress. Create two directories to store Kustomization files used to deploy the zero trust workload identity Manager operator and instance:</p>
+<p>mkdir -p ztwim/{operator,instance} Generate the Kustomization file for zero trust workload identity manager operator:</p>
+<p>cat &lt;&lt; EOF &gt; ztwim/operator/kustomization.yaml apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization</p>
+<p>resources:  - https://github.com/redhat-cop/gitops-catalog/zero-trust-workload-identity-manager/operator/overlays/${MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL}</p>
+<p>patches:  - target:  kind: Subscription  name: openshift-zero-trust-workload-identity-manager  patch: |-  - op: replace  path: /spec/channel  value: &#39;$MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL&#39; EOF Use oc to deploy the zero trust workload identity manager operator to the OpenShift management cluster:</p>
+<p>oc --context=management-cluster apply -k ztwim/operator Wait until the operator has been deployed and the custom resource definitions (CRD) have been installed in the cluster:</p>
+<p>until oc --context=management-cluster wait crd/spireservers.operator.openshift.io --for condition=established --timeout 120s &gt;/dev/null 2&gt;&amp;1 ; do sleep 1 ; done Next, generate the Kustomization file that deploys the zero trust workload identity manager resources:</p>
+<p>cat &lt;&lt; EOF &gt; ztwim/instance/kustomization.yaml apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization</p>
+<p>resources:  - https://github.com/redhat-cop/gitops-catalog/zero-trust-workload-identity-manager/instance/overlays/${MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL}</p>
+<p>patches:  - target:  kind: SpireOIDCDiscoveryProvider  group: operator.openshift.io  version: v1alpha1  patch: |-  - op: replace  path: /spec/jwtIssuer  value: &#39;https://spire-spiffe-oidc-discovery-provider.$MANAGEMENT_CLUSTER_APP_DOMAIN&#39;  - target:  kind: ZeroTrustWorkloadIdentityManager  group: operator.openshift.io  version: v1alpha1  patch: |-  - op: replace  path: /spec/trustDomain  value: &#39;$MANAGEMENT_CLUSTER_APP_DOMAIN&#39;  - target:  kind: SpireServer  group: operator.openshift.io  version: v1alpha1  patch: |-  - op: replace  path: /spec/jwtIssuer  value: &#39;https://spire-spiffe-oidc-discovery-provider.$MANAGEMENT_CLUSTER_APP_DOMAIN&#39; EOF You can now deploy zero trust workload identity manager:</p>
+<p>oc --context=management-cluster apply -k ztwim/instance After a few minutes, zero trust workload identity manager is deployed to OpenShift. Get the location of the OpenShift GitOps user interface with this command:</p>
+<p>echo https://$(oc --context=management-cluster get routes \ -n ztwim-gitops openshift-gitops-server \ -o=jsonpath=&#39;{ .spec.host }&#39;) Open the URL in a web browser, and log in with your OpenShift credentials.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Update this resource:</p>
+<p>oc --context=spoke-cluster apply -f - &lt;&lt;EOF apiVersion: config.openshift.io/v1 kind: Authentication metadata:  name: cluster spec:  oidcProviders:  - claimMappings:  groups:  claim: groups  username:  claim: sub  prefixPolicy: NoPrefix  issuer:  audiences:  - openshift-spoke  issuerCertificateAuthority:  name: &#34;&#34;  issuerURL: https://$ZTWIM_OIDC_PROVIDER_INGRESS_HOST  name: ztwim-oidc-server  oidcClients:  - clientID: openshift-cli  componentName: cli  componentNamespace: openshift-console  type: OIDC  webhookTokenAuthenticator: null EOF Some notes on this configuration:</p>
+<p>The value of ZTWIM_OIDC_PROVIDER_INGRESS_HOST was set previously to the value of the host associated with the zero trust workload identity manager OIDC discovery provider ingress.</p>
+<p>This example does not make use of prefixes for either users or groups.</p>
+<p>The use of prefixes is beneficial to segregate users and groups that originate from the external authentication source (zero trust workload identity manager), and will be important when multiple OIDC issuers are supported in the future.</p>
+<p>After the authentication custom resource has been patched, a new revision of the Kubernetes API server is applied to all control plane instances.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. This environment must be an OpenShift cluster with version 4.18 or higher, because these releases include support for zero trust workload identity manager. To confirm, first verify the contents of the zero-trust-workload-identity-manager namespace:</p>
+<p>oc --context=management-cluster -n \ zero-trust-workload-identity-manager get pods Wait until all of the pods are both in a running and READY status, similar to the following:</p>
+<p>NAME READY STATUS RESTARTS AGE spire-agent-gfdhq 1/1 Running 1 (78s ago) 2m7s spire-agent-gkw4q 1/1 Running 1 (78s ago) 2m7s spire-agent-xbxdc 1/1 Running 1 (79s ago) 2m7s spire-server-0 2/2 Running 0 2m7s spire-spiffe-csi-driver-lx7mf 2/2 Running 0 2m7s spire-spiffe-csi-driver-nb2fs 2/2 Running 0 2m7s spire-spiffe-csi-driver-pfnjz 2/2 Running 0 2m7s spire-spiffe-oidc-discovery-provider-9fc47c7f4-mpd72 1/1 Running 0 2m7s zero-trust-workload-identity-manager-controller-manager-8dwmjpd 1/1 Running 0 21m It&#39;s important to note that the number of spire-agent- pods are relative to the number of nodes in your cluster. First, install the OpenShift GitOps Operator and configure the newly deployed operator to omit creating the default OpenShift GitOps instance by setting the DISABLE_DEFAULT_ARGOCD_INSTANCE environment variable within the Subscription resource:</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: v1 kind: Namespace metadata:  annotations:  openshift.io/description: OpenShift GitOps Operator  openshift.io/display-name: OpenShift GitOps Operator  labels:  openshift.io/cluster-monitoring: &#39;true&#39;  name: openshift-gitops-operator --- apiVersion: operators.coreos.com/v1 kind: OperatorGroup metadata:  name: openshift-gitops-operator  generateName: openshift-gitops-operator-  namespace: openshift-gitops-operator spec: --- apiVersion: operators.coreos.com/v1alpha1 kind: Subscription metadata:  name: openshift-gitops-operator  namespace: openshift-gitops-operator spec:  channel: latest  installPlanApproval: Automatic  name: openshift-gitops-operator  source: redhat-operators  sourceNamespace: openshift-marketplace  config:  env:  - name: DISABLE_DEFAULT_ARGOCD_INSTANCE  value: &#34;true&#34; EOF Wait until the Operator has created the ArgoCD custom resource definition:</p>
+<p>until oc --context=management-cluster wait --for condition=established crd/argocds.argoproj.io &amp;&gt;/dev/null; do sleep 5; done Now create a new namespace called ztwim-gitops to use to contain the instance of OpenShift GitOps:</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: v1 kind: Namespace metadata:  annotations:  openshift.io/description: Integration of zero trust workload identity Manager and OpenShift GitOps  openshift.io/display-name: zero trust workload identity Manager GitOps  name: ztwim-gitops EOF Next, create the ArgoCD custom resource within the newly created ztwim-gitops namespace with support for obtaining identities from zero trust workload identity manager.</p>
+<p>oc --context=management-cluster apply -f - &lt;&lt;EOF apiVersion: argoproj.io/v1beta1  kind: ArgoCD metadata:  name: openshift-gitops  namespace: ztwim-gitops spec:  applicationSet:  resources:  limits:  cpu: &#34;2&#34;  memory: 1Gi  requests:  cpu: 250m  memory: 512Mi  webhookServer:  ingress:  enabled: false  route:  enabled: false  controller:  initContainers:  - command:  - /bin/bash  - &#39;-c&#39;  - &#39;curl -v -L https://github.com/spiffe/k8s-spiffe-workload-jwt-exec-auth/releases/download/v0.0.7/k8s-spiffe-workload-jwt-exec-auth_Linux_x86_64.tar.gz -o /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz &amp;&amp; tar -xzvf /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz -C /tmp &amp;&amp; mv /tmp/k8s-spiffe-workload-jwt-exec-auth /binaries&#39;  image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;  name: install-jwt-spiffe  resources: {}  volumeMounts:  - mountPath: /binaries  name: binaries  volumeMounts:  - mountPath: /binaries  name: binaries  - mountPath: /run/spire/sockets  name: spiffe-workload-api  readOnly: true  volumes:  - emptyDir: {}  name: binaries  - csi:  driver: csi.spiffe.io  readOnly: true  name: spiffe-workload-api  processors: {}  resources:  limits:  cpu: &#34;2&#34;  memory: 2Gi  requests:  cpu: 250m  memory: 1Gi  sharding: {}  grafana:  enabled: false  ingress:  enabled: false  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  route:  enabled: false  ha:  enabled: false  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  initialSSHKnownHosts: {}  monitoring:  enabled: false  notifications:  enabled: false  prometheus:  enabled: false  ingress:  enabled: false  route:  enabled: false  rbac:  defaultPolicy: &#34;role:admin&#34;  policy: |  g, system:cluster-admins, role:admin  g, cluster-admins, role:admin  scopes: &#39;[groups]&#39;  redis:  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  repo:  resources:  limits:  cpu: &#34;1&#34;  memory: 1Gi  requests:  cpu: 250m  memory: 256Mi  resourceExclusions: |  - apiGroups:  - tekton.dev  clusters:  - &#39;*&#39;  kinds:  - TaskRun  - PipelineRun  server:  host: ztwim-gitops.$MANAGEMENT_CLUSTER_APP_DOMAIN  autoscale:  enabled: false  grpc:  ingress:  enabled: false  ingress:  enabled: false  initContainers:  - command:  - /bin/bash  - &#39;-c&#39;  - &#39;curl -v -L https://github.com/spiffe/k8s-spiffe-workload-jwt-exec-auth/releases/download/v0.0.7/k8s-spiffe-workload-jwt-exec-auth_Linux_x86_64.tar.gz -o /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz &amp;&amp; tar -xzvf /tmp/k8s-spiffe-workload-jwt-exec-auth.tar.gz -C /tmp &amp;&amp; mv /tmp/k8s-spiffe-workload-jwt-exec-auth /binaries&#39;  image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;  name: install-jwt-spiffe  resources: {}  volumeMounts:  - mountPath: /binaries  name: binaries  volumeMounts:  - mountPath: /binaries  name: binaries  - mountPath: /run/spire/sockets  name: spiffe-workload-api  readOnly: true  volumes:  - emptyDir: {}  name: binaries  - csi:  driver: csi.spiffe.io  readOnly: true  name: spiffe-workload-api  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 125m  memory: 128Mi  route:  enabled: true  tls:  termination: reencrypt  insecureEdgeTerminationPolicy: Redirect  service:  type: &#34;&#34;  sso:  dex:  openShiftOAuth: true  resources:  limits:  cpu: 500m  memory: 256Mi  requests:  cpu: 250m  memory: 128Mi  provider: dex EOF For the purpose of this article, the OpenShift GitOps instance has been configured to elevate any authenticated user to the admin role.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>By incorporating identities provided by SPIFFE and SPIRE, Argo CD can communicate with remote clusters without the need for long-lived tokens. This is made possible by components from the open source community, specifica</li>
+            <li>There&#39;s one drawback to this architecture. Once external authentication has been enabled within an OpenShift environment to integrate Red Hat zero trust workload identity manager, only SPIFFE identities can authenticate </li>
+            <li>export MANAGEMENT_CLUSTER_ZTWIM_OPERATOR_CHANNEL=$(oc --context=management-cluster get packagemanifests openshift-zero-trust-workload-identity-manager -o jsonpath=&#39;{ .status.defaultChannel }&#39;) The deployment of the zero </li>
+            <li>until oc --context=management-cluster wait crd/spireservers.operator.openshift.io --for condition=established --timeout 120s &gt;/dev/null 2&gt;&amp;1 ; do sleep 1 ; done Next, generate the Kustomization file that deploys the zero</li>
+            <li>NAME READY STATUS RESTARTS AGE</li>
+            <li>channel: latest</li>
+            <li>until oc --context=management-cluster wait --for condition=established crd/argocds.argoproj.io &amp;&gt;/dev/null; do sleep 5; done Now create a new namespace called ztwim-gitops to use to contain the instance of OpenShift GitO</li>
+            <li>image: &#39;registry.redhat.io/ubi9/ubi:latest&#39;</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/07/integrate-zero-trust-workload-identity-manager-red-hat-openshift-gitops" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

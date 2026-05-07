@@ -32,7 +32,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Ingress-NGINX had been handling our traffic routing since moving to Kubernetes, but when it was announced it would be retired, we were forced to consider a new traffic routing solution.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/06/kubernetes-v1-36-server-side-sharded-list-and-watch/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -333,6 +338,39 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "3119dce8029e635b",
+    "title": "Takeaways from Elastic’s Forge the Future Hackathon 2026 in Singapore",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/singapore-forge-the-future-hackathon-2026-recap",
+    "published": "2026-05-06T00:00:00+00:00",
+    "fetched_at": "2026-05-07T03:57:16.600979+00:00",
+    "summary": "Elastic's 2026 Forge the Future Hackathon in Singapore captured how quickly AI is moving to agentic systems that can reason, recommend, and act. Learn how 77 participants came together to design and build AI agent solutions in just four hours.",
+    "tags": [],
+    "day": "2026-05-06",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Elastic's 2026 Forge the Future Hackathon in Singapore captured how quickly AI is moving to agentic systems that can reason, recommend, and act. Learn how 77 participants came together to design and build AI agent solutions in just four hours.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Learn how 77 participants came together to design and build AI agent solutions in just four hours.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Elastic's 2026 Forge the Future Hackathon in Singapore captured how quickly AI is moving to agentic systems that can reason, recommend, and act. Learn how 77 participants came together to design and build AI agent solutions in just four hours.",
     "related_sources": [],
     "highlighted": false
   }
