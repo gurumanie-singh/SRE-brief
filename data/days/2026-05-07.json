@@ -268,6 +268,10 @@
     "related_sources": [
       {
         "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/improving-token-efficiency-in-github-agentic-workflows/"
+      },
+      {
+        "source": "GitHub Blog",
         "link": "https://github.blog/ai-and-ml/generative-ai/agent-pull-requests-are-everywhere-heres-how-to-review-them/"
       }
     ],
