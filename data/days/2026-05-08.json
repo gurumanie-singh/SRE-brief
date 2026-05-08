@@ -1,0 +1,33 @@
+[
+  {
+    "id": "7312dd0eb405eda8",
+    "title": "AI giveth and AI taketh CPU",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/08/ai-giveth-and-ai-taketh-cpu/",
+    "published": "2026-05-08T07:40:00+00:00",
+    "fetched_at": "2026-05-08T06:56:02.391889+00:00",
+    "summary": "Recorded on the floor of HumanX, Ryan is joined by AMD CTO Mark Papermaster to discuss AMD’s silicon strategy for AI borne of their long history of heterogeneous CPU/GPU computing, how chipmakers are dealing the wide range of AI workloads from training to inference, and the paradox of agents both eating up all the compute and helping AMD accelerate chip innovation.",
+    "tags": [],
+    "day": "2026-05-08",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Recorded on the floor of HumanX, Ryan is joined by AMD CTO Mark Papermaster to discuss AMD’s silicon strategy for AI borne of their long history of heterogeneous CPU/GPU computing, how chipmakers are dealing the wide range of AI workloads from training to inference, and the paradox of agents both eating up all the compute and helping AMD accelerate chip innovation.",
+      "technical_breakdown": "Recorded on the floor of HumanX, Ryan is joined by AMD CTO Mark Papermaster to discuss AMD’s silicon strategy for AI borne of their long history of heterogeneous CPU/GPU computing, how chipmakers are dealing the wide range of AI workloads from training to inference, and the paradox of agents both eating up all the compute and helping AMD accelerate chip innovation.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Recorded on the floor of HumanX, Ryan is joined by AMD CTO Mark Papermaster to discuss AMD’s silicon strategy for AI borne of their long history of heterogeneous CPU/GPU computing, how chipmakers are dealing the wide range of AI workloads from training to inference, and the paradox of agents both eating up all the compute and helping AMD accelerate chip innovation.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
