@@ -213,7 +213,12 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "The latest releases of Red Hat OpenShift's assisted installer now include a virtualization bundle, which provides the recommended set of operators commonly utilized with Red Hat OpenShift Virtualization . This simplification of operator delivery and installation in disconnected environments is the foundation for a new feature: Virtualization platform autopilot, available as a Developer Preview in Red Hat OpenShift Virtualization 4.22.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/07/kubernetes-v1-36-dra-136-updates/"
+      }
+    ],
     "highlighted": false
   },
   {
