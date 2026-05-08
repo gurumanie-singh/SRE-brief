@@ -128,12 +128,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Managing DNS, DHCP and IP addresses across hybrid, multi-cloud environments is one of those invisible jobs that is only noticed when something breaks. Impact band: high.",
-    "related_sources": [
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

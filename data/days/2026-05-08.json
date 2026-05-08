@@ -111,7 +111,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/policy-news-and-insights/how-researchers-are-using-github-innovation-graph-data-to-reveal-the-digital-complexity-of-nations/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -146,6 +151,41 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Logs have returned to center stage for observability with new insights and information for your SRE team. Driving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal available: your logs.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a3aebd780c8e209a",
+    "title": "Beyond debugging: How GenAI can turn logs into business intelligence",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/generative-ai-logs-business-intelligence",
+    "published": "2026-05-08T00:00:00+00:00",
+    "fetched_at": "2026-05-08T16:25:14.684619+00:00",
+    "summary": "Logs have returned to center stage for observability with new capabilities given the emergence of generative AI. Find out how GenAI and logs can provide visibility and insights to manage your operations and improve business outcomes.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-05-08",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Logs have returned to center stage for observability with new capabilities given the emergence of generative AI. Find out how GenAI and logs can provide visibility and insights to manage your operations and improve busin"
+    ],
+    "sections": {
+      "overview": "Logs have returned to center stage for observability with new capabilities given the emergence of generative AI. Find out how GenAI and logs can provide visibility and insights to manage your operations and improve business outcomes.",
+      "technical_breakdown": "Logs have returned to center stage for observability with new capabilities given the emergence of generative AI.\n\nFind out how GenAI and logs can provide visibility and insights to manage your operations and improve business outcomes.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Find out how GenAI and logs can provide visibility and insights to manage your operations and improve business outcomes.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Logs have returned to center stage for observability with new capabilities given the emergence of generative AI. Find out how GenAI and logs can provide visibility and insights to manage your operations and improve busin",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Logs have returned to center stage for observability with new capabilities given the emergence of generative AI. Find out how GenAI and logs can provide visibility and insights to manage your operations and improve business outcomes.",
     "related_sources": [],
     "highlighted": false
   }
