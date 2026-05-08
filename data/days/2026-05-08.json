@@ -1,5 +1,38 @@
 [
   {
+    "id": "2f97cb1c8f6b60a1",
+    "title": "No Dumb Questions: What is an MCP server and why do I care?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/08/no-dumb-questions-mcp/",
+    "published": "2026-05-08T16:00:00+00:00",
+    "fetched_at": "2026-05-08T14:59:07.706220+00:00",
+    "summary": "Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack's Director of Ecosystem Strategy Ben Marconi teaches us the basics of MCP servers and why they matter.",
+    "tags": [],
+    "day": "2026-05-08",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack's Director of Ecosystem Strategy Ben "
+    ],
+    "sections": {
+      "overview": "Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack's Director of Ecosystem Strategy Ben Marconi teaches us the basics of MCP servers and why they matter.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack's Director of Ecosystem Strategy Ben ",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack's Director of Ecosystem Strategy Ben Marconi teaches us the basics of MCP servers and why they matter.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "7312dd0eb405eda8",
     "title": "AI giveth and AI taketh CPU",
     "source": "Stack Overflow Blog",
@@ -78,6 +111,41 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a86820938b6f42e1",
+    "title": "From noise to knowledge: How GenAI is revolutionizing log management and analytics",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/generative-ai-log-management-and-analytics",
+    "published": "2026-05-08T00:00:00+00:00",
+    "fetched_at": "2026-05-08T14:59:08.581548+00:00",
+    "summary": "Logs have returned to center stage for observability with new insights and information for your SRE team. Driving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal available: your logs.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-05-08",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Logs have returned to center stage for observability with new insights and information for your SRE team. Driving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal av"
+    ],
+    "sections": {
+      "overview": "Logs have returned to center stage for observability with new insights and information for your SRE team. Driving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal available: your logs.",
+      "technical_breakdown": "Logs have returned to center stage for observability with new insights and information for your SRE team.\n\nDriving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal available: your logs.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Logs have returned to center stage for observability with new insights and information for your SRE team. Driving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal av",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Logs have returned to center stage for observability with new insights and information for your SRE team. Driving efficiency in your day to day operations is possible with GenAI applied to the richest telemetry signal available: your logs.",
     "related_sources": [],
     "highlighted": false
   }
