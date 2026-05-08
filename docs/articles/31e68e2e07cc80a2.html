@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Federated identity across the hybrid cloud using zero trust workload identity manager — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-08.html" class="back-link">← 8 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">8 May 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Federated identity across the hybrid cloud using zero trust workload identity manager</h1>
+
+      <p class="subtitle">Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">AWS</span>
+        <span class="vendor-tag">Azure</span>
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Google Cloud</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud. It&#39;s crucial that any interaction between resources be facilitated in a secure fashion, regardless of where they are running.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>First, log in to your OpenShift environment using the OpenShift command-line Interface and set a variable called OPENSHIFT_CLUSTER_APP_DOMAIN :</p>
+<p>export OPENSHIFT_CLUSTER_APP_DOMAIN=apps.$(oc get dns cluster -o jsonpath=&#39;{ .spec.baseDomain }&#39;) Next, obtain the channel for the zero trust workload identity manager operator:</p>
+<p>export ZTWIM_OPERATOR_CHANNEL=$(oc get packagemanifests openshift-zero-trust-workload-identity-manager -o jsonpath=&#39;{ .status.defaultChannel }&#39;) Now render the Kustomization file that will deploy the zero trust workload identity manager operator:</p>
+<p>envsubst &lt; $GIT_REPO_ROOT/templates/ztwim-operator-kustomization.template &gt; $GIT_REPO_ROOT/install/ztwim/operator/kustomization.yaml Deploy the zero trust workload identity manager operator:</p>
+<p>oc apply -k $GIT_REPO_ROOT/install/ztwim/operator Wait until the operator has been deployed and the Custom Resource Definitions have been installed within the cluster.</p>
+<p>until oc wait crd/spireservers.operator.openshift.io --for condition=established --timeout 120s &gt;/dev/null 2&gt;&amp;1 ; do sleep 1 ; done Next, render the Kustomization file that will deploy the zero trust workload identity manager resources:</p>
+<p>envsubst &lt; $GIT_REPO_ROOT/templates/ztwim-instance-kustomization.template &gt; $GIT_REPO_ROOT/install/ztwim/instance/kustomization.yaml Deploy zero trust workload identity manager:</p>
+<p>oc apply -k $GIT_REPO_ROOT/install/ztwim/instance After a few minutes, zero trust workload identity manager will be deployed to OpenShift.</p>
+<p>Finally, update the app-workload Secret within the spire-federated-identities namespace with the values from Azure.</p>
+<p>envsubst &lt; $GIT_REPO_ROOT/templates/app-workload-secret-azure.template | oc apply -f- Restart the workload application deployment so that it picks up the values provided within the Secret as they are injected as environment variables into the pod.</p>
+<p>oc rollout restart -n spire-federated-identities deployment/workload-app Once again, wait until the Deployment is ready, at which point the configuration process is complete.</p>
+<p>oc wait -n spire-federated-identities --for=condition=Available deployment/workload-app --timeout=600s Verification Now that the SPIFFE identity has been federated with Azure, let&#39;s demonstrate that we can manage content in the blob storage from our application workload.</p>
+<p>Create a new file called openshift-spire-federated-identities.txt within the application workload Pod.</p>
+<p>echo Hello from OpenShift &gt; $HOME/openshift-spire-federated-identities.txt Next, upload the file to the Azure blob storage:</p>
+<p>az storage blob upload \  --account-name ${BLOB_STORE_ACCOUNT} \  --container-name ${BLOB_STORE_ACCOUNT} \  --name openshift-spire-federated-identities.txt \  --file $HOME/openshift-spire-federated-identities.txt \  --auth-mode login Confirm the file was uploaded successfully by listing the files contained within the blob storage:</p>
+<p>az storage blob list \  --account-name=${BLOB_STORE_ACCOUNT} \  --container-name=${BLOB_STORE_ACCOUNT} \  --auth-mode=login \  -o table The file that was previously uploaded should be displayed.</p>
+<p>This value will be used when creating a trust policy that grants the workload application Pod permission to assume an AWS role that provides access to manage content in S3.</p>
+<p>export SPIFFE_ID_WORKLOAD_APP=spiffe://$(oc get cm -n zero-trust-workload-identity-manager spire-server -o jsonpath=&#39;{ .data.server\.conf }&#39; | jq -r &#39;.server.trust_domain&#39;)/ns/spire-federated-identities/sa/workload-app Render the trust policy that connects the OIDC Discovery Provider, the SPIFFE ID, and the audience previously assigned:</p>
+<p>envsubst &lt; $GIT_REPO_ROOT/templates/aws-trust-policy.template &gt; $GIT_REPO_ROOT/rendered/aws-trust-policy.json Create a new AWS IAM role that leverages the previously rendered Trust Policy:</p>
+<p>export ROLE_ARN=$(aws iam create-role --role-name ${UNIQUE_NAME} --assume-role-policy-document file://$GIT_REPO_ROOT/rendered/aws-trust-policy.json --query Role.Arn --output text) Finally, attach the created policy to the IAM role:</p>
+<p>aws iam attach-role-policy --role-name ${UNIQUE_NAME} --policy-arn ${S3_POLICY_ARN} Now that the configurations in AWS are complete, update the app-workload secret within the spire-federated-identities namespace with the values that were previously set:</p>
+<p>envsubst &lt; $GIT_REPO_ROOT/templates/app-workload-secret-aws.template | oc apply -f- Roll out the workload application so that it can leverage the Secret containing details related to the configuration:</p>
+<p>oc rollout restart -n spire-federated-identities deployment/workload-app Wait for the application to roll out successfully:</p>
+<p>oc wait -n spire-federated-identities --for=condition=Available deployment/workload-app --timeout=600s Verification Now that the configuration to enable the workload application to manage content in S3 is complete, let&#39;s showcase the capabilities that are available:</p>
+<p>Obtain a remote shell within the application workload pod:</p>
+<p>oc rsh -n spire-federated-identities deployment/workload-app A Python script called get-spiffe-token.py is present within the current directory ( /opt/app-root/src ) and is used to retrieve a JWT token from the SPIFFE Workload API.</p>
+<p>Examples include networking offerings like DNS or routing, application-based messaging, or storage solutions, just to name a few.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Associate this role with the service principal associated with the user-assigned managed identity:</p>
+<p>az role assignment create --role &#34;Storage Blob Data Contributor&#34; --assignee &#34;${IDENTITY_CLIENT_ID}&#34; --scope $(az storage account show -n ${STORAGE_NAME} -g ${UNIQUE_NAME} --query id --out tsv) The user-assigned managed identity and the SPIFFE identity associated with the workload application are bridged by federating the identities using the az identity federated-credential create command:</p>
+<p>az identity federated-credential create \  --name ${UNIQUE_NAME} \  --identity-name ${UNIQUE_NAME} \  --resource-group ${UNIQUE_NAME} \  --issuer $(oc get cm -n zero-trust-workload-identity-manager spire-server -o jsonpath=&#39;{ .data.server\.conf }&#39; | jq -r &#39;.server.jwt_issuer&#39;) \  --subject spiffe://$(oc get cm -n zero-trust-workload-identity-manager spire-server -o jsonpath=&#39;{ .data.server\.conf }&#39; | jq -r &#39;.server.trust_domain&#39;)/ns/spire-federated-identities/sa/workload-app \  --audience api://AzureADTokenExchange The command is doing a number of things:</p>
+<p>--name : Giving a name to the new federated credential using the  --identity-name : Referencing the name of the service principal previously configured with rights to manage Azure blob storage.  --issuer : Location of the OIDC Discovery Provider component of SPIRE in the OpenShift environment that is used to verify JWT tokens.  --subject : The SPIFFE ID that is included in the sub field of the JWT token.  --audience api://AzureADTokenExchange : Name that identifies the recipient of the JWT token. Create a new user-assigned managed identity, then obtain the client ID of the related service principal associated with that user-assigned managed identity:</p>
+<p>export USER_ASSIGNED_IDENTITY_NAME=&#34;spire-${NAME}&#34; az identity create --name ${USER_ASSIGNED_IDENTITY_NAME} --resource-group ${UNIQUE_NAME} export IDENTITY_CLIENT_ID=$(az identity show --resource-group &#34;${UNIQUE_NAME}&#34; --name &#34;${USER_ASSIGNED_IDENTITY_NAME}&#34; --query &#39;clientId&#39; -otsv) Azure includes a role called Storage Blob Data Contributor that provides a baseline set of capabilities for managing storage containers and blobs. Set the output from the script to a new variable called TOKEN :</p>
+<p>export TOKEN=$(/opt/app-root/src/get-spiffe-token.py --audience=$AZURE_AUDIENCE) Log in to the Azure CLI included within the pod using the value of the token:</p>
+<p>az login --service-principal \  -u $AZURE_CLIENT_ID \  -t $AZURE_TENANT_ID \  --federated-token $TOKEN If the login command returned a response related to the Azure environment and Service Principal, not only has the Azure CLI authenticated successfully, but the identities have been successfully federated as well. Traditional mechanisms, such as username/password pairs (or access key/secret key pairs) are no longer sufficient, which makes alternative solutions necessary.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>The Secret that was patched earlier contained a property ( AZURE_AUDIENCE ) matching the value that was configured previously when federating the identity ( api://AzureADTokenExchange ).</p>
+<p>The Secret that was patched earlier contained a property ( AWS_AUDIENCE ) matching the value that was configured previously when federating the identity.</p>
+<p>The secret that was patched earlier contained a property ( GOOGLE_AUDIENCE ) matching the value that Google Cloud expects (the full canonical name of the workload identity pool provider).</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Breaking down the pieces While the configuration may differ slightly within each cloud provider, the following is the high-level set of steps that we will work through together:</p>
+<p>Deploy zero trust workload identity manager to an OpenShift environment  Deploy a sample application within the OpenShift environment that will be used to consume storage from the public cloud providers  Configure cloud storage within the target cloud provider  Federate the identity provided to the application by zero trust workload identity manager with the cloud provider to enable access to the previously configured storage solution  Verify access to the cloud storage from within the previously deployed application on OpenShift  Figure 1 illustrates these steps.</p>
+<p>However, if you understand the steps necessary to integrate zero trust workload identity manager on OpenShift in detail with each cloud provider, you will better understand your current area of interest today and can help support potential opportunities in the future.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. The installation and configuration of SPIRE on OpenShift, as well as the deployment of a sample application to demonstrate how SPIRE federated identities can access resources within each of the cloud providers, will leverage assets found in this GitHub repository . Execute the following command to confirm that it deployed successfully:</p>
+<p>until [[ $(oc get zerotrustworkloadidentitymanager cluster -o jsonpath=&#39;{ .status.conditions[?(@.type==&#34;Ready&#34;)].status }&#39;) == &#34;True&#34; ]]; do sleep 10; done Workload deployment Now that zero trust workload identity manager has been made available, the next step is to deploy a sample application that will demonstrate how to leverage SPIFFE federated identities to access resources within each of the public clouds. Execute the following command to create a new namespace called spire-federated-identities along with a ServiceAccount , Secret and Deployment , all called app-workload :</p>
+<p>oc apply -f ${GIT_REPO_ROOT}/install/workload/ The names of the Namespace and ServiceAccount are significant as they will influence how the workload is identified and constrain access to the cloud-based resources.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>While SPIFFE and SPIRE provide a path forward to enable a more secure operating model, the process of integrating these technologies with public cloud providers like Amazon Web Services (AWS), Microsoft Azure, or Google </li>
+            <li>There is a good chance that only a portion of the cloud offerings presented is of interest to you at this time, so feel free to review the solutions that matter the most to you. However, if you understand the steps neces</li>
+            <li>export ZTWIM_OPERATOR_CHANNEL=$(oc get packagemanifests openshift-zero-trust-workload-identity-manager -o jsonpath=&#39;{ .status.defaultChannel }&#39;) Now render the Kustomization file that will deploy the zero trust workload </li>
+            <li>until oc wait crd/spireservers.operator.openshift.io --for condition=established --timeout 120s &gt;/dev/null 2&gt;&amp;1 ; do sleep 1 ; done Next, render the Kustomization file that will deploy the zero trust workload identity ma</li>
+            <li>The tools and libraries included within the dependencies will allow you to test and verify access.</li>
+            <li>Now that you have an understanding of the identity that SPIRE has provided for our workload, you&#39;re ready to walk through the steps for each of the 3 major public cloud providers (AWS, Azure, and Google Cloud) that demon</li>
+            <li>export LOCATION=&#34;&lt;location&gt;&#34; Next, you will allocate variables related to the names of the resources that will be created. Microsoft Azure storage accounts have several restrictions related to naming, including a require</li>
+            <li>envsubst &lt; $GIT_REPO_ROOT/templates/app-workload-secret-azure.template | oc apply -f- Restart the workload application deployment so that it picks up the values provided within the Secret as they are injected as environm</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/08/federated-identity-across-hybrid-cloud-using-zero-trust-workload-identity" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
