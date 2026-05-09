@@ -33,6 +33,51 @@
     "highlighted": false
   },
   {
+    "id": "56a6bc137c504492",
+    "title": "Kubernetes v1.36: Moving Volume Group Snapshots to GA",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/05/08/kubernetes-v1-36-volume-group-snapshot-ga/",
+    "published": "2026-05-08T10:35:00-08:00",
+    "fetched_at": "2026-05-09T04:29:20.366372+00:00",
+    "summary": "Volume group snapshots were introduced as an Alpha feature with the Kubernetes v1.27 release, moved to Beta in v1.32, and to a second Beta in v1.34. We are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) .",
+    "tags": [
+      "deployment",
+      "kubernetes"
+    ],
+    "day": "2026-05-08",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes"
+    ],
+    "operational_priority": true,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "The support for volume group snapshots relies on a set of extension APIs for group snapshots . These APIs allow users to take crash-consistent snapshots for a set of volumes. Behind the scenes, Kubernetes uses a label se",
+      "Some storage systems provide the ability to create a crash-consistent snapshot of multiple volumes. A group snapshot represents copies made from multiple volumes that are taken at the same point-in-time. A group snapshot",
+      "There was already a VolumeSnapshot API that provides the ability to take a snapshot of a persistent volume to protect against data loss or data corruption. However, some storage systems support consistent group snapshots",
+      "Created by a Kubernetes user (or automation) to request creation of a volume group snapshot for multiple persistent volume claims.",
+      "Enhanced stability and bug fixes based on feedback from the beta releases, including the improvements introduced in v1beta2 for accurate restoreSize reporting.",
+      "Once a VolumeGroupSnapshotClass object is defined and you have volumes you want to snapshot together, you may request a new group snapshot by creating a VolumeGroupSnapshot object.",
+      "How to use group snapshot for restore",
+      "At restore time, request a new PersistentVolumeClaim to be created from a VolumeSnapshot object that is part of a VolumeGroupSnapshot . Repeat this for all volumes that are part of the group snapshot."
+    ],
+    "sections": {
+      "overview": "Volume group snapshots were introduced as an Alpha feature with the Kubernetes v1.27 release, moved to Beta in v1.32, and to a second Beta in v1.34. We are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) . The support for volume group snapshots relies on a set of extension APIs for group snapshots .",
+      "technical_breakdown": "Volume group snapshots were introduced as an Alpha feature with the Kubernetes v1.27 release, moved to Beta in v1.32, and to a second Beta in v1.34.\n\nWe are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) .\n\nBehind the scenes, Kubernetes uses a label selector to group multiple PersistentVolumeClaim objects for snapshotting.\n\nWhy add volume group snapshots to Kubernetes?\n\nThe Kubernetes volume plugin system already provides a powerful abstraction that automates the provisioning, attaching, mounting, resizing, and snapshotting of block and file storage.",
+      "impact": "We are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) . These APIs allow users to take crash-consistent snapshots for a set of volumes. Kubernetes APIs for volume group snapshots \n Kubernetes' support for volume group snapshots relies on three API kinds that are used for managing snapshots:\n\n \n VolumeGroupSnapshot \n Created by a Kubernetes user (or automation) to request creation of a volume group snapshot for multiple persistent volume claims.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "If snapshots for these volumes are taken at different times, the application will not be consistent and will not function properly if restored from those snapshots.\n\nEnhanced stability and bug fixes based on feedback from the beta releases, including the improvements introduced in v1beta2 for accurate restoreSize reporting.\n\nRepeat this for all volumes that are part of the group snapshot.\n\n apiVersion : v1 \n kind : PersistentVolumeClaim \n metadata : \n name : examplepvc-restored-2026-04-22 \n namespace : demo-namespace \n spec : \n storageClassName : example-sc \n dataSource : \n name : snapshot-0962a745b2bf930bb385b7b50c9b08af471f1a16780726de19429dd9c94eaca0 \n kind : VolumeSnapshot \n apiGroup : snapshot.storage.k8s.io \n accessModes : \n - ReadWriteOncePod \n resources : \n requests : \n storage : 100Mi \n As a storage vendor, how do I add support for group snapshots?",
+      "lessons_learned": "Enhanced stability and bug fixes based on feedback from the beta releases, including the improvements introduced in v1beta2 for accurate restoreSize reporting.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The support for volume group snapshots relies on a set of extension APIs for group snapshots . These APIs allow users to take crash-consistent snapshots for a set of volumes. Behind the scenes, Kubernetes uses a label se\nSome storage systems provide the ability to create a crash-consistent snapshot of multiple volumes. A group snapshot represents copies made from multiple volumes that are taken at the same point-in-time. A group snapshot\nThere was already a VolumeSnapshot API that provides the ability to take a snapshot of a persistent volume to protect against data loss or data corruption. However, some storage systems support consistent group snapshots\nCreated by a Kubernetes user (or automation) to request creation of a volume group snapshot for multiple persistent volume claims.\nEnhanced stability and bug fixes based on feedback from the beta releases, including the improvements introduced in v1beta2 for accurate restoreSize reporting.\nOnce a VolumeGroupSnapshotClass object is defined and you have volumes you want to snapshot together, you may request a new group snapshot by creating a VolumeGroupSnapshot object.\nHow to use group snapshot for restore\nAt restore time, request a new PersistentVolumeClaim to be created from a VolumeSnapshot object that is part of a VolumeGroupSnapshot . Repeat this for all volumes that are part of the group snapshot.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Volume group snapshots were introduced as an Alpha feature with the Kubernetes v1.27 release, moved to Beta in v1.32, and to a second Beta in v1.34. We are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "7312dd0eb405eda8",
     "title": "AI giveth and AI taketh CPU",
     "source": "Stack Overflow Blog",
