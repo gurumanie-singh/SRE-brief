@@ -1,5 +1,69 @@
 [
   {
+    "id": "0752d27144a82343",
+    "title": "Introducing the Heap, the software engineering blog for everyone",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/11/introducing-the-heap-the-software-engineering-blog-for-everyone/",
+    "published": "2026-05-11T14:03:48+00:00",
+    "fetched_at": "2026-05-11T16:09:10.687674+00:00",
+    "summary": "If you’ve got something you’ve been dying to share with the Stack Overflow community but don’t quite have a place to share it, we've got you.",
+    "tags": [],
+    "day": "2026-05-11",
+    "impact": "medium",
+    "vendors": [
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "If you’ve got something you’ve been dying to share with the Stack Overflow community but don’t quite have a place to share it, we've got you.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "If you’ve got something you’ve been dying to share with the Stack Overflow community but don’t quite have a place to share it, we've got you.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d949d68d29ff5b01",
+    "title": "Compile-Time Map and Compile-Time Mutable Variable with C++26 Reflection",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/11/compile-time-map-and-compile-time-mutable-variable-with-c-26-reflection/",
+    "published": "2026-05-11T13:55:00+00:00",
+    "fetched_at": "2026-05-11T16:09:10.687854+00:00",
+    "summary": "Compile-Time Map and Compile-Time Mutable Variable with C++26 Reflection",
+    "tags": [],
+    "day": "2026-05-11",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Compile-Time Map and Compile-Time Mutable Variable with C++26 Reflection. Compile-Time Map and Compile-Time Mutable Variable with C++26 Reflection",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Compile-Time Map and Compile-Time Mutable Variable with C++26 Reflection.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "cc3685c46f9a85d0",
     "title": "Tekton joins the CNCF as an incubating project",
     "source": "Red Hat Developer Blog",
@@ -39,7 +103,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Tekton has joined the Cloud Native Computing Foundation (CNCF) as an incubating project. For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-oss-contributions/"
+      }
+    ],
     "highlighted": false
   }
 ]

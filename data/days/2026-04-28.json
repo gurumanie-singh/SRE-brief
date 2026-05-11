@@ -300,10 +300,6 @@
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-markdown/"
-      },
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/security/securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vulnerability/"
       }
     ],
     "highlighted": false
