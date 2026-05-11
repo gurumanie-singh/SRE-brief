@@ -1,0 +1,45 @@
+[
+  {
+    "id": "cc3685c46f9a85d0",
+    "title": "Tekton joins the CNCF as an incubating project",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/11/tekton-joins-cncf-new-era-cloud-native-cicd",
+    "published": "2026-05-11T07:01:11+00:00",
+    "fetched_at": "2026-05-11T08:29:53.137653+00:00",
+    "summary": "Tekton has joined the Cloud Native Computing Foundation (CNCF) as an incubating project. For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD. This transition from the Continuous Delivery Foundation (CDF) to the CNCF aligns the project even more closely with the broader Kubernetes ecosystem and the community it serves.",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-11",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Enterprise readiness: We help ensure Tekton meets the security and scalability needs of the world's largest organizations.",
+      "Increased security: The project will use CNCF security audits and best practices to further harden the software supply chain."
+    ],
+    "sections": {
+      "overview": "Tekton has joined the Cloud Native Computing Foundation (CNCF) as an incubating project. For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD. This transition from the Continuous Delivery Foundation (CDF) to the CNCF aligns the project even more closely with the broader Kubernetes ecosystem and the community it serves.",
+      "technical_breakdown": "For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD.\n\nThis transition from the Continuous Delivery Foundation (CDF) to the CNCF aligns the project even more closely with the broader Kubernetes ecosystem and the community it serves.\n\nTekton was created to meet the need for a CI/CD framework that doesn't just run on Kubernetes—it is built for Kubernetes.\n\nJoining the foundation that hosts Kubernetes, Argo CD, and Helm integrates the project more closely with standardized delivery.\n\nUser experience: We developed the Tekton Dashboard and CLI (tkn) to make Tekton more accessible to developers.",
+      "impact": "User experience: We developed the Tekton Dashboard and CLI (tkn) to make Tekton more accessible to developers. Impact on the ecosystem Joining the CNCF benefits the entire open source community.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "This support aligns with our strategy to use open standards to prevent vendor lock-in in the CI/CD space.\n\nWe will work with the community to keep Tekton a primary choice for cloud-native delivery.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Enterprise readiness: We help ensure Tekton meets the security and scalability needs of the world's largest organizations.\nIncreased security: The project will use CNCF security audits and best practices to further harden the software supply chain.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Tekton has joined the Cloud Native Computing Foundation (CNCF) as an incubating project. For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
