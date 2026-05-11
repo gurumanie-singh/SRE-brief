@@ -1,5 +1,69 @@
 [
   {
+    "id": "c3ba8ef13f4d915e",
+    "title": "When the Sensor Starts Thinking: SnortML, Agentic AI, and the Evolving Architecture of Intrusion Detection",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/11/when-the-sensor-starts-thinking-snortml-agentic-ai-and-the-evolving-architecture-of-intrusion-detection/",
+    "published": "2026-05-11T16:25:54+00:00",
+    "fetched_at": "2026-05-11T19:03:28.490495+00:00",
+    "summary": "Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from \"does this match a known pattern?\" to \"does this actually make sense in context?\"",
+    "tags": [],
+    "day": "2026-05-11",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from \"does this match a known pattern?\" to \"does this actually make "
+    ],
+    "sections": {
+      "overview": "Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from \"does this match a known pattern?\" to \"does this actually make sense in context?\"",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from \"does this match a known pattern?\" to \"does this actually make ",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from \"does this match a known pattern?\" to \"does this actually make sense in context?\".",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "29fbac0c2c34404e",
+    "title": "OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/11/oauth-2-0-device-flow-explained-for-engineers-especially-for-backend-engineers/",
+    "published": "2026-05-11T16:11:05+00:00",
+    "fetched_at": "2026-05-11T19:03:28.490693+00:00",
+    "summary": "OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers",
+    "tags": [],
+    "day": "2026-05-11",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "0752d27144a82343",
     "title": "Introducing the Heap, the software engineering blog for everyone",
     "source": "Stack Overflow Blog",
@@ -104,6 +168,10 @@
     },
     "email_summary": "Tekton has joined the Cloud Native Computing Foundation (CNCF) as an incubating project. For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD.",
     "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-amazon-bedrock-agentcore-payments-agent-toolkit-for-aws-and-more-may-11-2026/"
+      },
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-oss-contributions/"
