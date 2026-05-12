@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">12 May 2026</h1>
-      <span class="brief-sub">3 items</span>
+      <span class="brief-sub">4 items</span>
     </div>
   </div>
 
@@ -37,6 +37,7 @@
       <ul class="strip-bullets">
         <li>1 high-impact reliability event surfaced</li>
         <li>Repeated coverage across Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
   </div>
@@ -64,6 +65,7 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
@@ -79,19 +81,56 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="capacity,deployment,latency,networking,observability,outage,postmortem"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="when &#34;idle&#34; isn&#39;t idle: how a linux kernel optimization became a quic bug"
+       data-id="c54e7c4d882b8bdd"
+       data-published="2026-05-12T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-12T13:00:00+00:00" title="12 May 2026, 08:00">12 May 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">When &#34;idle&#34; isn&#39;t idle: how a Linux kernel optimization became a QUIC bug</h3>
+      <p class="card-summary">CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect loss, and recover afterward. At Cloudflare, our open-source implementation of QUIC, quiche , uses CUBIC as its default congestion controller, meaning this code is in the critical path for a significant share of the traffic we serve.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect loss, and recover afterward. At Cloudflare, our open-source implementation of QUIC, quiche , uses CUBIC as its default congestion controller, meaning this code is in the critical path for a significant share of the traffic we serve. In this post, we’ll tell the story of a bug in which CUBIC&#39;s congestion window (cwnd) gets permanently pinned at its minimum and never recovers from a congestion collapse event.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c54e7c4d882b8bdd.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/quic-death-spiral-fix/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="database,deployment,networking,observability"
        data-vendors="Red Hat,Stack Overflow"
@@ -154,6 +193,7 @@
           <span class="ttag">kubernetes</span>
         </div>
       </div>
+      <div class="card-related">Also: GitHub Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">

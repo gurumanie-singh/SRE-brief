@@ -1,5 +1,55 @@
 [
   {
+    "id": "c54e7c4d882b8bdd",
+    "title": "When \"idle\" isn't idle: how a Linux kernel optimization became a QUIC bug",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/quic-death-spiral-fix/",
+    "published": "2026-05-12T13:00:00+00:00",
+    "fetched_at": "2026-05-12T15:44:07.937171+00:00",
+    "summary": "CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect loss, and recover afterward. At Cloudflare, our open-source implementation of QUIC, quiche , uses CUBIC as its default congestion controller, meaning this code is in the critical...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-05-12",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "network issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect l",
+      "In this post, we’ll tell the story of a bug in which CUBIC's congestion window (cwnd) gets permanently pinned at its minimum and never recovers from a congestion collapse event.",
+      "The central knob a CCA turns is the congestion window ( cwnd ): the sender-side cap on how many bytes can be in flight (sent but not yet acknowledged) at any moment. A larger cwnd lets the sender push more data per round",
+      "The symptom: a test that fails 61% of the time",
+      "Our investigation started with the report of unexpected failures in our ingress proxy integration test pipeline. This erratic behavior appeared in tests where CUBIC was evaluated in a scenario of heavy loss in the early ",
+      "Recovery after congestion collapse is an uncommon regime, but it is exactly the regime a congestion controller exists to handle. Most congestion control tests exercise the steady-state and growth phases of an algorithm; ",
+      "The simulated test setup includes the following details:",
+      "Using CUBIC congestion control"
+    ],
+    "sections": {
+      "overview": "CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect loss, and recover afterward. At Cloudflare, our open-source implementation of QUIC, quiche , uses CUBIC as its default congestion controller, meaning this code is in the critical path for a significant share of the traffic we serve. In this post, we’ll tell the story of a bug in which CUBIC's congestion window (cwnd) gets permanently pinned at its minimum and never recovers from a congestion collapse event.",
+      "technical_breakdown": "The story starts with a Linux kernel change aimed at bringing CUBIC into line with the app-limited exclusion described in RFC 9438 §4.2-12 — a fix to a real problem in TCP that, when ported to our QUIC implementation, surfaced unexpected behaviors in quiche.\n\nThe family of loss-based algorithms, to which CUBIC belongs, operate on a fundamental premise: (1) if there is no packet loss, increase the sending rate (i.e. increase the bandwidth utilization); (2) if there is loss, loss-based algorithms assume that the network's capacity has been exceeded, and the sender must back off (i.e. decrease the bandwidth utilization).\n\nBugs in this corner of the state space are invisible in throughput dashboards, undetectable by static review, and only surface when you deliberately drive a CCA into it and watch whether it can climb back out — which is exactly what this test did.\n\nThe simulated test setup includes the following details:\n\n \n \n Quiche HTTP/3 client and server running at locally (localhost)\n\n RTT = 10ms (set up in the configuration)\n\n A 10 MB file download over HTTP/3\n\n Using CUBIC congestion control\n\n With 30% random packet loss injected during the first two seconds \n\n After two seconds, loss stops entirely\n\n The test has a generous 10-second timeout to complete the download, which is expected to be completed in four or five seconds\n\n The expected behavior is straightforward: CUBIC should take some hits during the loss phase, reduce its congestion window, and once loss stops, steadily ramp up and finish the download well within the timeout.\n\nHowever, the number of bytes in flight remains flat, which contradicts the core logic of the CUBIC algorithm: in the absence of loss, apply more gas to increase throttle (more bytes in our world).",
+      "impact": "The simulated test setup includes the following details:\n\n \n \n Quiche HTTP/3 client and server running at locally (localhost)\n\n RTT = 10ms (set up in the configuration)\n\n A 10 MB file download over HTTP/3\n\n Using CUBIC congestion control\n\n With 30% random packet loss injected during the first two seconds \n\n After two seconds, loss stops entirely\n\n The test has a generous 10-second timeout to complete the download, which is expected to be completed in four or five seconds\n\n The expected behavior is straightforward: CUBIC should take some hits during the loss phase, reduce its congestion window, and once loss stops, steadily ramp up and finish the download well within the timeout. When we zoom into that region, our analysis shows that CUBIC enters a rapid oscillation, shown in our plot as an extended recovery phase, between congestion avoidance state (the operational regime phase) and recovery state (the packet loss recovery state) — 999 transitions in approximately 6.7 seconds . Whatever is triggering the recovery/avoidance flip is happening once per round trip, in lockstep with connection's ACK clock; the self-clocking rhythm in which each round-trip's ACKs from the client trigger the server's next send. Because this is a download (server to client), the ACKs in question travel client to server, and CUBIC's state machine runs on the server side: every time those ACKs land, bytes_in_flight drops to zero and the server sends the next two-packet burst, which is what triggers the bug.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Validation \n \n \n \n \n With the fix applied, the 100% pass rate of our quiche testing suite was restored.\n\nThe story starts with a Linux kernel change aimed at bringing CUBIC into line with the app-limited exclusion described in RFC 9438 §4.2-12 — a fix to a real problem in TCP that, when ported to our QUIC implementation, surfaced unexpected behaviors in quiche.\n\nIt has a happy ending: an elegant (near-)one-line fix that broke the cycle.\n\nThe results were conclusive: 100% pass rate, showing Reno recovered cleanly after the loss phase, and revealing that this is a CUBIC-related bug.",
+      "lessons_learned": "This reads as a retrospective or postmortem-style narrative; extract concrete action items from the source.",
+      "root_cause_highlight": "Likely root-cause theme: network issue. In essence, CCAs aim to maximize data transfer by inferring the \"available bandwidth\" of the network; because no one wants to pay for a 1 Gbps subscription and only use a fraction of it. Every loss-based CCA, CUBIC included, is ultimately a policy for how to grow cwnd when the network looks healthy and how to shrink it when it doesn't. The family of loss-based algorithms, to which CUBIC belongs, operate on a fundamental premise: (1) if there is no packet loss, increase the sending rate (i.e. increase the bandwidth utilization); (2) if there is loss, loss-based algorithms assume that the network's capacity has been exceeded, and the sender must back off (i.e. decrease the bandwidth utilization).",
+      "incident_timeline": "CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect l\nIn this post, we’ll tell the story of a bug in which CUBIC's congestion window (cwnd) gets permanently pinned at its minimum and never recovers from a congestion collapse event.\nThe central knob a CCA turns is the congestion window ( cwnd ): the sender-side cap on how many bytes can be in flight (sent but not yet acknowledged) at any moment. A larger cwnd lets the sender push more data per round\nThe symptom: a test that fails 61% of the time\nOur investigation started with the report of unexpected failures in our ingress proxy integration test pipeline. This erratic behavior appeared in tests where CUBIC was evaluated in a scenario of heavy loss in the early \nRecovery after congestion collapse is an uncommon regime, but it is exactly the regime a congestion controller exists to handle. Most congestion control tests exercise the steady-state and growth phases of an algorithm; \nThe simulated test setup includes the following details:\nUsing CUBIC congestion control",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "CUBIC, standardized in RFC 9438 , is the default congestion controller in Linux, and as a result governs how most TCP and QUIC connections on the public Internet probe for available bandwidth, back off when they detect loss, and recover afterward. At Cloudflare, our open-source implementation of QUIC, quiche , uses CUBIC as its default congestion controller, meaning this code is in the critical path for a significant share of the traffic we serve.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "ff28e1fb3fa153c6",
     "title": "Red Hat Hardened Images: Top 5 benefits for software developers",
     "source": "Red Hat Developer Blog",
@@ -93,7 +143,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Running AI evaluations in production is not a one-time script. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/dungeons-desktops-building-a-procedurally-generated-roguelike-with-github-copilot-cli/"
+      }
+    ],
     "highlighted": false
   },
   {
