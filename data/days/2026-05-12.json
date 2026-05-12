@@ -1,5 +1,102 @@
 [
   {
+    "id": "ff28e1fb3fa153c6",
+    "title": "Red Hat Hardened Images: Top 5 benefits for software developers",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/12/red-hat-hardened-images-top-5-benefits-software-developers",
+    "published": "2026-05-12T12:01:24+00:00",
+    "fetched_at": "2026-05-12T12:03:09.842740+00:00",
+    "summary": "When you use a standard container image, you usually get a lot of extra software you didn't ask for. This extra software can bring along security bugs because it effectively increases the attack surface. Once bugs are present, you have to spend time looking at them, looking for resolutions, workarounds or just proving they don't matter. This takes time away from writing code. ",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "observability"
+    ],
+    "day": "2026-05-12",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat",
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "1. Fewer security alerts The primary challenge in security today isn't finding bugs; it is the time spent fixing them. Recent industry publications suggest the biggest bottleneck for teams is remediation toil.",
+      "Developer tools: These include tools for development and testing, such as curl and jq (a tool for processing JSON data).",
+      "These images are updated frequently to ensure they remain secure and compatible with the latest versions of your favorite languages.",
+      "5. Tested by Red Hat Red Hat does more than provide small images; we make sure they work. We track where the code comes from and test it to make sure it is stable. If a new bug is found in the foundation, we provide a fi"
+    ],
+    "sections": {
+      "overview": "When you use a standard container image, you usually get a lot of extra software you didn't ask for. This extra software can bring along security bugs because it effectively increases the attack surface. Once bugs are present, you have to spend time looking at them, looking for resolutions, workarounds or just proving they don't matter.",
+      "technical_breakdown": "Databases and data management: These include containerized, SQL-compliant databases like MariaDB and PostgreSQL, as well as key-value stores such as Memcached and Valkey.\n\nThe image uses approximately 10% of the space on your system and moves across the network faster during deployment.\n\nNetworking: These include tools like dig and Unbound for troubleshooting DNS issues.\n\nWhen you use a standard container image, you usually get a lot of extra software you didn't ask for.\n\nThis week Red Hat announced Red Hat Hardened Images , small containers that incorporate a minimal set of files for delivering purpose-built applications .",
+      "impact": "Classified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Once bugs are present, you have to spend time looking at them, looking for resolutions, workarounds or just proving they don't matter.\n\nFewer security alerts The primary challenge in security today isn't finding bugs; it is the time spent fixing them.\n\nIf a new bug is found in the foundation, we provide a fix quickly.",
+      "lessons_learned": "By starting with a cleaner image, we help you remove the tasks that prevent you from focusing on your core work.\n\nBetter performance with smaller image footprints Because these images are smaller, they are faster.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. This extra software can bring along security bugs because it effectively increases the attack surface. Industry analysts predict that by 2027, 30% of application vulnerabilities will be caused by vibe coding —code generated using AI without a full understanding of the underlying code. Better performance with smaller image footprints Because these images are smaller, they are faster.",
+      "incident_timeline": "1. Fewer security alerts The primary challenge in security today isn't finding bugs; it is the time spent fixing them. Recent industry publications suggest the biggest bottleneck for teams is remediation toil.\nDeveloper tools: These include tools for development and testing, such as curl and jq (a tool for processing JSON data).\nThese images are updated frequently to ensure they remain secure and compatible with the latest versions of your favorite languages.\n5. Tested by Red Hat Red Hat does more than provide small images; we make sure they work. We track where the code comes from and test it to make sure it is stable. If a new bug is found in the foundation, we provide a fi",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "When you use a standard container image, you usually get a lot of extra software you didn't ask for. This extra software can bring along security bugs because it effectively increases the attack surface.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "4fbcc570bf02a95f",
+    "title": "How EvalHub manages two-layer Kubernetes control planes",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/12/how-evalhub-manages-two-layer-kubernetes-control-planes",
+    "published": "2026-05-12T12:01:22+00:00",
+    "fetched_at": "2026-05-12T12:03:09.844656+00:00",
+    "summary": "Running AI evaluations in production is not a one-time script. It is a continuous operational discipline. This includes scheduling compute-intensive jobs, managing concurrency, tracking experiments across model versions, enforcing resource quotas of workloads competing for precious accelerator resources, and surviving cluster restarts without losing state. ",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-05-12",
+    "impact": "high",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Running AI evaluations in production is not a one-time script. It is a continuous operational discipline. This includes scheduling compute-intensive jobs, managing concurrency, tracking experiments across model versions,",
+      "A framework-agnostic orchestration layer Red Hat AI 3.4 introduces the evaluation hub, a unified control plane for AI evaluation and safety capabilities based on the upstream EvalHub project.",
+      "The core value proposition is simple: We do not force you to choose the evaluation frameworks we \"think\" are best. Because new evaluation harnesses and safety techniques are published almost every week, the evaluation hu",
+      "Onboard any framework: Move to the latest techniques the moment they are released.",
+      "The second layer is the EvalHub Server . It acts as the evaluation orchestration control plane. It exposes a versioned REST API ( /api/v1/... ) and receives evaluation requests from clients such as code, notebooks, CI pi",
+      "Inside the EvalHub server Once the operator brings the EvalHub pod online, the server handles the runtime orchestration. The server is written in Go. It uses the standard net/http router, structured JSON logging with zap",
+      "The storage layer is abstracted behind a pluggable interface. It supports SQLite in-memory for local development and single-node testing and PostgreSQL for production multi-replica deployments. Configuration is loaded fr",
+      "The executor factory: How evaluation backends are invoked When evaluation job requests arrive at the EvalHub service, we first identify the backend runtime. This internal abstraction manages the workflow based on the env"
+    ],
+    "sections": {
+      "overview": "Running AI evaluations in production is not a one-time script. It is a continuous operational discipline. This includes scheduling compute-intensive jobs, managing concurrency, tracking experiments across model versions, enforcing resource quotas of workloads competing for precious accelerator resources, and surviving cluster restarts without losing state.",
+      "technical_breakdown": "The EvalHub custom resource You can deploy EvalHub to a Kubernetes or Red Hat OpenShift cluster using a single YAML declaration managed by the TrustyAI Service Operator:\n\n apiVersion: trustyai.opendatahub.io/v1alpha1\nkind: EvalHub\nmetadata:\n name: evalhub\n namespace: my-namespace\nspec:\n replicas: 1\n env:\n - name: MLFLOW_TRACKING_URI\n value: \"http://mlflow:5000\" The operator watches for these resources and reconciles them into a running deployment.\n\nIt uses the standard net/http router, structured JSON logging with zap , and Prometheus metrics.\n\nIt supports SQLite in-memory for local development and single-node testing and PostgreSQL for production multi-replica deployments.\n\nThe provider YAML declares this deployment model:\n\n id: lighteval\nruntime:\n k8s:\n image: quay.io/evalhub/community-lighteval:latest\n entrypoint: [python, main.py]\n cpu_request: 100m\n memory_request: 128Mi This is the same pattern any BYOF adapter uses.\n\nGuideLLM measures throughput, latency, memory usage, and token cost across hardware configurations.",
+      "impact": "These clients support multi-tenant deployments through a per-request tenant parameter.\n\n evalhub.cli The evalhub.cli module is a fully implemented CLI ( evalhub ) built on Click. In multi-tenant deployments, experiments are scoped to the tenant's namespace. This ensures every SQL query is automatically filtered by tenant scope without extra logic in every handler. You can register providers as system -scoped or tenant -scoped.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. A framework-agnostic orchestration layer Red Hat AI 3.4 introduces the evaluation hub, a unified control plane for AI evaluation and safety capabilities based on the upstream EvalHub project. Because new evaluation harnesses and safety techniques are published almost every week, the evaluation hub acts as a framework-agnostic orchestration layer. Evaluations are not run on Kubernetes as an afterthought; the cluster is the control plane.",
+      "incident_timeline": "Running AI evaluations in production is not a one-time script. It is a continuous operational discipline. This includes scheduling compute-intensive jobs, managing concurrency, tracking experiments across model versions,\nA framework-agnostic orchestration layer Red Hat AI 3.4 introduces the evaluation hub, a unified control plane for AI evaluation and safety capabilities based on the upstream EvalHub project.\nThe core value proposition is simple: We do not force you to choose the evaluation frameworks we \"think\" are best. Because new evaluation harnesses and safety techniques are published almost every week, the evaluation hu\nOnboard any framework: Move to the latest techniques the moment they are released.\nThe second layer is the EvalHub Server . It acts as the evaluation orchestration control plane. It exposes a versioned REST API ( /api/v1/... ) and receives evaluation requests from clients such as code, notebooks, CI pi\nInside the EvalHub server Once the operator brings the EvalHub pod online, the server handles the runtime orchestration. The server is written in Go. It uses the standard net/http router, structured JSON logging with zap\nThe storage layer is abstracted behind a pluggable interface. It supports SQLite in-memory for local development and single-node testing and PostgreSQL for production multi-replica deployments. Configuration is loaded fr\nThe executor factory: How evaluation backends are invoked When evaluation job requests arrive at the EvalHub service, we first identify the backend runtime. This internal abstraction manages the workflow based on the env",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Running AI evaluations in production is not a one-time script. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "9ee1aea27477633d",
     "title": "Connecting the dots for accurate AI",
     "source": "Stack Overflow Blog",

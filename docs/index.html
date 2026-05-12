@@ -28,16 +28,24 @@
       <h1 class="brief-title">12 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-12T04:46:50.049436-05:00">12 May 2026, 04:46</time>
+        <time data-iso="2026-05-12T07:03:10.100670-05:00">12 May 2026, 07:03</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">1 items today</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">3 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+        <li>Repeated coverage across Red Hat</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
@@ -45,8 +53,8 @@
         <span class="trend-pill">identity<span class="trend-count">3</span></span>
         <span class="trend-pill">openshift<span class="trend-count">3</span></span>
         <span class="trend-pill">vault<span class="trend-count">2</span></span>
-        <span class="trend-pill">agentic<span class="trend-count">2</span></span>
-        <span class="trend-pill">engineers<span class="trend-count">2</span></span>
+        <span class="trend-pill">software<span class="trend-count">2</span></span>
+        <span class="trend-pill">kubernetes<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -59,6 +67,7 @@
     </div>
     <div class="quick-filters" id="quickFilters">
       <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-action" data-filter-group="special" data-filter-value="priority">Ops priority</button>
       <button class="qf-btn" data-filter-group="special" data-filter-value="6h">Last 6h</button>
@@ -80,9 +89,9 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
@@ -108,6 +117,7 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
       </div>
     </div>
   </div>
@@ -158,10 +168,82 @@
   <div class="day-group">
     <h2 class="day-heading">
       12 May 2026
-      <span class="day-count">1</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="database,deployment,networking,observability"
+       data-vendors="Red Hat,Stack Overflow"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="red hat hardened images: top 5 benefits for software developers"
+       data-id="ff28e1fb3fa153c6"
+       data-published="2026-05-12T12:01:24+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span><span class="vtag">Stack Overflow</span>        <time class="meta-time" data-iso="2026-05-12T12:01:24+00:00" title="12 May 2026, 07:01">12 May 2026, 07:01</time>
+      </div>
+      <h3 class="card-title">Red Hat Hardened Images: Top 5 benefits for software developers</h3>
+      <p class="card-summary">When you use a standard container image, you usually get a lot of extra software you didn&#39;t ask for. This extra software can bring along security bugs because it effectively increases the attack surface.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When you use a standard container image, you usually get a lot of extra software you didn&#39;t ask for. This extra software can bring along security bugs because it effectively increases the attack surface. Once bugs are present, you have to spend time looking at them, looking for resolutions, workarounds or just proving they don&#39;t matter.</p></div>
+      <div class="detail-links">
+        <a href="articles/ff28e1fb3fa153c6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/12/red-hat-hardened-images-top-5-benefits-software-developers" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,kubernetes,latency,observability,outage,scaling"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="how evalhub manages two-layer kubernetes control planes"
+       data-id="4fbcc570bf02a95f"
+       data-published="2026-05-12T12:01:22+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-12T12:01:22+00:00" title="12 May 2026, 07:01">12 May 2026, 07:01</time>
+      </div>
+      <h3 class="card-title">How EvalHub manages two-layer Kubernetes control planes</h3>
+      <p class="card-summary">Running AI evaluations in production is not a one-time script. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Running AI evaluations in production is not a one-time script. It is a continuous operational discipline. This includes scheduling compute-intensive jobs, managing concurrency, tracking experiments across model versions, enforcing resource quotas of workloads competing for precious accelerator resources, and surviving cluster restarts without losing state.</p></div>
+      <div class="detail-links">
+        <a href="articles/4fbcc570bf02a95f.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/12/how-evalhub-manages-two-layer-kubernetes-control-planes" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""
@@ -830,7 +912,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       6 May 2026
-      <span class="day-count">10</span>
+      <span class="day-count">8</span>
     </h2>
   </div>
 
@@ -1108,70 +1190,6 @@
       <div class="detail-links">
         <a href="articles/1f393894fc407be7.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/google-cloud-next-2026-recap" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors="Elastic"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="elasticsearch 9.4 powers the next phase of the elastic ai ecosystem: dell ai data platform with nvidia"
-       data-id="629be38de62fd385"
-       data-published="2026-05-06T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-05-06T00:00:00+00:00" title="5 May 2026, 19:00">5 May 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Elasticsearch 9.4 powers the next phase of the Elastic AI Ecosystem: Dell AI Data Platform with NVIDIA</h3>
-      <p class="card-summary">With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>With the launch of Elasticsearch 9.4, we are reaching an important milestone: the general availability of our joint offerings with NVIDIA and Dell and a major step forward in helping enterprises move from AI experimentation to scaled implementation.</p></div>
-      <div class="detail-links">
-        <a href="articles/629be38de62fd385.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/dell-ai-data-platform-nvidia" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors="Elastic"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="takeaways from elastic’s forge the future hackathon 2026 in singapore"
-       data-id="3119dce8029e635b"
-       data-published="2026-05-06T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-05-06T00:00:00+00:00" title="5 May 2026, 19:00">5 May 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Takeaways from Elastic’s Forge the Future Hackathon 2026 in Singapore</h3>
-      <p class="card-summary">Elastic&#39;s 2026 Forge the Future Hackathon in Singapore captured how quickly AI is moving to agentic systems that can reason, recommend, and act. Learn how 77 participants came together to design and build AI agent solutions in just four hours.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Elastic&#39;s 2026 Forge the Future Hackathon in Singapore captured how quickly AI is moving to agentic systems that can reason, recommend, and act. Learn how 77 participants came together to design and build AI agent solutions in just four hours.</p></div>
-      <div class="detail-links">
-        <a href="articles/3119dce8029e635b.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/singapore-forge-the-future-hackathon-2026-recap" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
