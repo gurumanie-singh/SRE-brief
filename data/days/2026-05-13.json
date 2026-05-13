@@ -89,7 +89,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In the modern healthcare enterprise, development agility often conflicts with strict security compliance. Organizations want to rapidly deploy modern AI models, but when processing protected health information (PHI), they must enforce zero trust policies to prevent data leakage.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/open-source/gaming/dungeons-desktops-10-roguelikes-that-never-die-because-their-communities-wont-let-them/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -171,6 +176,43 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Jon Hyman, co-founder and CTO of Braze, shares how he's led the company's engineering organization over nearly 15 years of growth — and how they transformed into an AI-first team in just a few months.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "0592a7696eb8e52a",
+    "title": "Elastic Stack 9.4.1 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-9-4-1-released",
+    "published": "2026-05-13T00:00:00+00:00",
+    "fetched_at": "2026-05-13T16:27:33.208931+00:00",
+    "summary": "Version 9.4.1 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.1 over the previous versions 9.4.0",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-05-13",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 9.4.1 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.1 over the previous versions 9.4.0"
+    ],
+    "sections": {
+      "overview": "Version 9.4.1 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.1 over the previous versions 9.4.0\n\n For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 9.4.1 over the previous versions 9.4.0\n\n For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 9.4.1 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.1 over the previous versions 9.4.0",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 9.4.1 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
     "related_sources": [],
     "highlighted": false
   }
