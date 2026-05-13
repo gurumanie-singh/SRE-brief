@@ -99,7 +99,7 @@
   },
   "process": {
     "retention_max_days": 30,
-    "retention_cutoff_day": "2026-04-12",
+    "retention_cutoff_day": "2026-04-13",
     "incoming_total": 258,
     "incoming_after_retention": 126,
     "dropped_by_retention": 132,
@@ -109,5 +109,5 @@
     "day_json_file_count": 23,
     "warnings": []
   },
-  "written_at": "2026-05-12T22:18:36.544502+00:00"
+  "written_at": "2026-05-13T00:08:46.531456+00:00"
 }
