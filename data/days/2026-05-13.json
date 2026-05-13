@@ -1,0 +1,33 @@
+[
+  {
+    "id": "293dc1f2085bcefa",
+    "title": "How Braze’s CTO is rethinking engineering for the agentic area",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/13/rethinking-engineering-for-the-agentic-area/",
+    "published": "2026-05-13T07:40:00+00:00",
+    "fetched_at": "2026-05-13T04:54:07.959526+00:00",
+    "summary": "Jon Hyman, co-founder and CTO of Braze, shares how he's led the company's engineering organization over nearly 15 years of growth — and how they transformed into an AI-first team in just a few months.",
+    "tags": [],
+    "day": "2026-05-13",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Jon Hyman, co-founder and CTO of Braze, shares how he's led the company's engineering organization over nearly 15 years of growth — and how they transformed into an AI-first team in just a few months.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Jon Hyman, co-founder and CTO of Braze, shares how he's led the company's engineering organization over nearly 15 years of growth — and how they transformed into an AI-first team in just a few months.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

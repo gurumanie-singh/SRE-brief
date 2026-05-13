@@ -1,5 +1,36 @@
 [
   {
+    "id": "c08ace9f60f62f63",
+    "title": "You Shipped It Fast. But Did You Ship It Right?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/12/you-shipped-it-fast-but-did-you-ship-it-right/",
+    "published": "2026-05-12T16:41:40+00:00",
+    "fetched_at": "2026-05-13T04:54:07.959730+00:00",
+    "summary": "Why AI-accelerated teams keep breaking production — and what the ones that don't are doing differently",
+    "tags": [],
+    "day": "2026-05-12",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Why AI-accelerated teams keep breaking production — and what the ones that don't are doing differently",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Why AI-accelerated teams keep breaking production — and what the ones that don't are doing differently.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "3406a49606bd4e97",
     "title": "Building a Google Drive Sync Engine that Survives MV3 Service Workers",
     "source": "Stack Overflow Blog",
