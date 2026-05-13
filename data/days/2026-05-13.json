@@ -213,6 +213,147 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Version 9.4.1 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/13/kubernetes-v1-36-advancing-workload-aware-scheduling/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "41258a802c1ce75a",
+    "title": "The Elasticsearch Agent Builder Hackathon",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/the-elasticsearch-agent-builder-hackathon",
+    "published": "2026-05-13T00:00:00+00:00",
+    "fetched_at": "2026-05-13T19:01:24.222451+00:00",
+    "summary": "The Elasticsearch Agent Builder Hackathon showed AI agents built with Elastic tools to solve real-world problems. Winners include PHAROS (drug safety in <60s), Gauntlet (adversarial testing), and a duplicate detection agent for Kenya’s HIV program.",
+    "tags": [],
+    "day": "2026-05-13",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "The Elasticsearch Agent Builder Hackathon showed AI agents built with Elastic tools to solve real-world problems. Winners include PHAROS (drug safety in <60s), Gauntlet (adversarial testing), and a duplicate detection ag"
+    ],
+    "sections": {
+      "overview": "The Elasticsearch Agent Builder Hackathon showed AI agents built with Elastic tools to solve real-world problems. Winners include PHAROS (drug safety in <60s), Gauntlet (adversarial testing), and a duplicate detection agent for Kenya’s HIV program.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The Elasticsearch Agent Builder Hackathon showed AI agents built with Elastic tools to solve real-world problems. Winners include PHAROS (drug safety in <60s), Gauntlet (adversarial testing), and a duplicate detection ag",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "The Elasticsearch Agent Builder Hackathon showed AI agents built with Elastic tools to solve real-world problems. Winners include PHAROS (drug safety in <60s), Gauntlet (adversarial testing), and a duplicate detection agent for Kenya’s HIV program.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "aeefd92102dba238",
+    "title": "Gauntlet: What happens when your agent's tools fight back",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/agent-builder-hackathon-gauntlet",
+    "published": "2026-05-13T00:00:00+00:00",
+    "fetched_at": "2026-05-13T19:01:24.222709+00:00",
+    "summary": "The Elasticsearch Agent Builder Hackathon spotlighted Gauntlet, a top-three project that uses mocking agents to mutate tool calls, expose hidden failures, and improve AI agent reliability.",
+    "tags": [],
+    "day": "2026-05-13",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "The Elasticsearch Agent Builder Hackathon spotlighted Gauntlet, a top-three project that uses mocking agents to mutate tool calls, expose hidden failures, and improve AI agent reliability.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "The Elasticsearch Agent Builder Hackathon spotlighted Gauntlet, a top-three project that uses mocking agents to mutate tool calls, expose hidden failures, and improve AI agent reliability.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "The Elasticsearch Agent Builder Hackathon spotlighted Gauntlet, a top-three project that uses mocking agents to mutate tool calls, expose hidden failures, and improve AI agent reliability.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "f32516e238c47e99",
+    "title": "Catching invisible errors: How I built a duplicate detection agent for Kenya's HIV program",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/agent-builder-hackathon-catching-invisible-errors",
+    "published": "2026-05-13T00:00:00+00:00",
+    "fetched_at": "2026-05-13T19:01:24.222912+00:00",
+    "summary": "A multi-agent duplicate detection system built with Elastic Agent Builder addresses the 56% failure rate of manual duplicate detection in Kenya's HIV patient records. It uses tiered risk scoring and specific recs to provide $195K annual savings.",
+    "tags": [],
+    "day": "2026-05-13",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "A multi-agent duplicate detection system built with Elastic Agent Builder addresses the 56% failure rate of manual duplicate detection in Kenya's HIV patient records. It uses tiered risk scoring and specific recs to provide $195K annual savings.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "A multi-agent duplicate detection system built with Elastic Agent Builder addresses the 56% failure rate of manual duplicate detection in Kenya's HIV patient records. It uses tiered risk scoring and specific recs to provide $195K annual savings.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a618dcbbb7cd6e64",
+    "title": "PHAROS: 4 agents, 60 seconds, 1 missed drug safety signal away from disaster",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/agent-builder-hackathon-pharos",
+    "published": "2026-05-13T00:00:00+00:00",
+    "fetched_at": "2026-05-13T19:01:24.223106+00:00",
+    "summary": "PHAROS is a 4-agent system built with Elasticsearch that automates pharmacovigilance. It detects adverse drug safety signals using WHO-standard analysis, generates regulatory reports, and sends critical alerts in under 60 seconds.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-05-13",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "PHAROS is a 4-agent system built with Elasticsearch that automates pharmacovigilance. It detects adverse drug safety signals using WHO-standard analysis, generates regulatory reports, and sends critical alerts in under 60 seconds.",
+      "technical_breakdown": "It detects adverse drug safety signals using WHO-standard analysis, generates regulatory reports, and sends critical alerts in under 60 seconds.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "PHAROS is a 4-agent system built with Elasticsearch that automates pharmacovigilance. It detects adverse drug safety signals using WHO-standard analysis, generates regulatory reports, and sends critical alerts in under 60 seconds.",
     "related_sources": [],
     "highlighted": false
   }
