@@ -27,10 +27,20 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">13 May 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">4 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>Repeated coverage across Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -39,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -51,13 +62,143 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,observability"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="trusted software factory: building trust in the agentic ai era"
+       data-id="90ba7b622750496e"
+       data-published="2026-05-13T13:05:42+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-13T13:05:42+00:00" title="13 May 2026, 08:05">13 May 2026, 08:05</time>
+      </div>
+      <h3 class="card-title">Trusted software factory: Building trust in the agentic AI era</h3>
+      <p class="card-summary">Generative AI is reshaping software development. Developers are no longer just writing code; they&#39;re working alongside AI agents that generate, modify, and operate software.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Generative AI is reshaping software development. Developers are no longer just writing code; they&#39;re working alongside AI agents that generate, modify, and operate software. As agentic AI becomes more common, the volume of AI-generated code, dependencies, and artifacts continues to grow.</p></div>
+      <div class="detail-links">
+        <a href="../articles/90ba7b622750496e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/13/trusted-software-factory-building-trust-agentic-ai-era" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,observability,outage"
+       data-vendors="AWS,Azure,GitHub,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="build a zero trust ai pipeline with openshift and rhel cvms"
+       data-id="990d697e62fc2395"
+       data-published="2026-05-13T13:05:25+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-05-13T13:05:25+00:00" title="13 May 2026, 08:05">13 May 2026, 08:05</time>
+      </div>
+      <h3 class="card-title">Build a zero trust AI pipeline with OpenShift and RHEL CVMs</h3>
+      <p class="card-summary">In the modern healthcare enterprise, development agility often conflicts with strict security compliance. Organizations want to rapidly deploy modern AI models, but when processing protected health information (PHI), they must enforce zero trust policies to prevent data leakage.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In the modern healthcare enterprise, development agility often conflicts with strict security compliance. Organizations want to rapidly deploy modern AI models, but when processing protected health information (PHI), they must enforce zero trust policies to prevent data leakage. This technical hands-on blog post explores how Red Hat OpenShift, confidential containers (CoCo), and Red Hat Enterprise Linux (RHEL) confidential virtual machines (CVMs) bridge this gap.</p></div>
+      <div class="detail-links">
+        <a href="../articles/990d697e62fc2395.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/13/build-zero-trust-ai-pipeline-openshift-rhel-cvms" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="capacity,database,deployment,latency,networking,observability,outage,scaling"
+       data-vendors="Cloudflare"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="browser run: now running on cloudflare containers, it’s faster and more scalable"
+       data-id="c4f9a57efc050a8f"
+       data-published="2026-05-13T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-13T13:00:00+00:00" title="13 May 2026, 08:00">13 May 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Browser Run: now running on Cloudflare Containers, it’s faster and more scalable</h3>
+      <p class="card-summary">We’ve enabled higher usage limits, faster performance, and better reliability for Browser Run by rebuilding on top of Cloudflare’s Containers . Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>We’ve enabled higher usage limits, faster performance, and better reliability for Browser Run by rebuilding on top of Cloudflare’s Containers . You can now spin up 60 browsers per minute via the Workers binding and run up to 120 concurrently — 4x the previous limit. Also, Quick Action response times dropped more than 50%.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c4f9a57efc050a8f.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/browser-run-containers/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""
