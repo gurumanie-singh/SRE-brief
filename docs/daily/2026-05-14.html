@@ -27,10 +27,19 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">14 May 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">4 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -39,6 +48,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -53,27 +63,107 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="fun in the run instruction: why container builds with distroless images can surprise you"
+       data-id="6d67111e18ea2057"
+       data-published="2026-05-14T13:01:14+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-14T13:01:14+00:00" title="14 May 2026, 08:01">14 May 2026, 08:01</time>
+      </div>
+      <h3 class="card-title">Fun in the RUN instruction: Why container builds with distroless images can surprise you</h3>
+      <p class="card-summary">I&#39;ve done a fair amount of work with Containerfiles recently, working with image mode hosts. I wasn&#39;t doing anything particularly complicated in design—some multi-stage builds, some heredoc usage.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>I&#39;ve done a fair amount of work with Containerfiles recently, working with image mode hosts. I wasn&#39;t doing anything particularly complicated in design—some multi-stage builds, some heredoc usage. Nothing really challenged my fundamental understanding of how podman build reads and executes instructions.</p></div>
+      <div class="detail-links">
+        <a href="../articles/6d67111e18ea2057.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/14/understanding-distroless-images-red-hat-hardened-images" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,latency,observability,outage,scaling"
+       data-vendors="Cloudflare"
+       data-impact="high"
+       data-theme="observability"
+       data-title="our billing pipeline was suddenly slow. the culprit was a hidden bottleneck in clickhouse"
+       data-id="588e43f5e50ea5f5"
+       data-published="2026-05-14T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-14T13:00:00+00:00" title="14 May 2026, 08:00">14 May 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Our billing pipeline was suddenly slow. The culprit was a hidden bottleneck in ClickHouse</h3>
+      <p class="card-summary">At Cloudflare, we are heavy users of ClickHouse, an open-source analytical database management system. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>At Cloudflare, we are heavy users of ClickHouse, an open-source analytical database management system. We redesigned one of our largest ClickHouse tables to add a column to the partitioning key. The change enabled per-tenant retention on a table that serves hundreds of internal teams.</p></div>
+      <div class="detail-links">
+        <a href="../articles/588e43f5e50ea5f5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/clickhouse-query-plan-contention/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="deployment,networking,outage"
        data-vendors="AWS,GitHub,HashiCorp"
@@ -99,6 +189,7 @@
           <span class="ttag">outage</span>
         </div>
       </div>
+      <div class="card-related">Also: Red Hat Developer Blog</div>
       <span class="card-source">HashiCorp Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -106,6 +197,39 @@
       <div class="detail-links">
         <a href="../articles/9763ae894604a874.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.hashicorp.com/blog/mitigate-credential-exposure-in-windows-environments-with-boundary-and-vault" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="postmortem"
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="1 year and 1 million messages later: lessons learned building ai agents on the elasticsearch platform"
+       data-id="2341df7b8c4bf399"
+       data-published="2026-05-14T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-05-14T00:00:00+00:00" title="13 May 2026, 19:00">13 May 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">1 year and 1 million messages later: Lessons learned building AI agents on the Elasticsearch Platform</h3>
+      <p class="card-summary">After a year and one million messages, Elastic&#39;s Field Technology team shares five lessons from building production AI agents: why logs matter most, how retrieval thresholds shape quality, and what high token counts actually signal.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">postmortem</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>After a year and one million messages, Elastic&#39;s Field Technology team shares five lessons from building production AI agents: why logs matter most, how retrieval thresholds shape quality, and what high token counts actually signal.</p></div>
+      <div class="detail-links">
+        <a href="../articles/2341df7b8c4bf399.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/building-ai-agents-elasticsearch-platform" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

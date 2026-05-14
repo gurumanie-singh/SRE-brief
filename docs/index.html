@@ -28,24 +28,32 @@
       <h1 class="brief-title">14 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-14T07:59:04.294200-05:00">14 May 2026, 07:59</time>
+        <time data-iso="2026-05-14T10:27:36.608373-05:00">14 May 2026, 10:27</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">1 items today</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">4 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
         <span class="trend-pill">vault<span class="trend-count">4</span></span>
+        <span class="trend-pill">building<span class="trend-count">4</span></span>
         <span class="trend-pill">trust<span class="trend-count">4</span></span>
         <span class="trend-pill">agent<span class="trend-count">4</span></span>
         <span class="trend-pill">software<span class="trend-count">3</span></span>
-        <span class="trend-pill">building<span class="trend-count">3</span></span>
         <span class="trend-pill">agentic<span class="trend-count">3</span></span>
       </div>
     </div>
@@ -80,10 +88,10 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
@@ -103,12 +111,12 @@
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
@@ -120,10 +128,79 @@
   <div class="day-group">
     <h2 class="day-heading">
       14 May 2026
-      <span class="day-count">1</span>
+      <span class="day-count">4</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="fun in the run instruction: why container builds with distroless images can surprise you"
+       data-id="6d67111e18ea2057"
+       data-published="2026-05-14T13:01:14+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-14T13:01:14+00:00" title="14 May 2026, 08:01">14 May 2026, 08:01</time>
+      </div>
+      <h3 class="card-title">Fun in the RUN instruction: Why container builds with distroless images can surprise you</h3>
+      <p class="card-summary">I&#39;ve done a fair amount of work with Containerfiles recently, working with image mode hosts. I wasn&#39;t doing anything particularly complicated in design—some multi-stage builds, some heredoc usage.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>I&#39;ve done a fair amount of work with Containerfiles recently, working with image mode hosts. I wasn&#39;t doing anything particularly complicated in design—some multi-stage builds, some heredoc usage. Nothing really challenged my fundamental understanding of how podman build reads and executes instructions.</p></div>
+      <div class="detail-links">
+        <a href="articles/6d67111e18ea2057.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/14/understanding-distroless-images-red-hat-hardened-images" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,latency,observability,outage,scaling"
+       data-vendors="Cloudflare"
+       data-impact="high"
+       data-theme="observability"
+       data-title="our billing pipeline was suddenly slow. the culprit was a hidden bottleneck in clickhouse"
+       data-id="588e43f5e50ea5f5"
+       data-published="2026-05-14T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-14T13:00:00+00:00" title="14 May 2026, 08:00">14 May 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Our billing pipeline was suddenly slow. The culprit was a hidden bottleneck in ClickHouse</h3>
+      <p class="card-summary">At Cloudflare, we are heavy users of ClickHouse, an open-source analytical database management system. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>At Cloudflare, we are heavy users of ClickHouse, an open-source analytical database management system. We redesigned one of our largest ClickHouse tables to add a column to the partitioning key. The change enabled per-tenant retention on a table that serves hundreds of internal teams.</p></div>
+      <div class="detail-links">
+        <a href="articles/588e43f5e50ea5f5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/clickhouse-query-plan-contention/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="deployment,networking,outage"
        data-vendors="AWS,GitHub,HashiCorp"
@@ -149,6 +226,7 @@
           <span class="ttag">outage</span>
         </div>
       </div>
+      <div class="card-related">Also: Red Hat Developer Blog</div>
       <span class="card-source">HashiCorp Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -156,6 +234,39 @@
       <div class="detail-links">
         <a href="articles/9763ae894604a874.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.hashicorp.com/blog/mitigate-credential-exposure-in-windows-environments-with-boundary-and-vault" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="postmortem"
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="1 year and 1 million messages later: lessons learned building ai agents on the elasticsearch platform"
+       data-id="2341df7b8c4bf399"
+       data-published="2026-05-14T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-05-14T00:00:00+00:00" title="13 May 2026, 19:00">13 May 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">1 year and 1 million messages later: Lessons learned building AI agents on the Elasticsearch Platform</h3>
+      <p class="card-summary">After a year and one million messages, Elastic&#39;s Field Technology team shares five lessons from building production AI agents: why logs matter most, how retrieval thresholds shape quality, and what high token counts actually signal.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">postmortem</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>After a year and one million messages, Elastic&#39;s Field Technology team shares five lessons from building production AI agents: why logs matter most, how retrieval thresholds shape quality, and what high token counts actually signal.</p></div>
+      <div class="detail-links">
+        <a href="articles/2341df7b8c4bf399.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/building-ai-agents-elasticsearch-platform" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1055,7 +1166,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       8 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">1</span>
     </h2>
   </div>
 
@@ -1088,110 +1199,6 @@
       <div class="detail-links">
         <a href="articles/2f97cb1c8f6b60a1.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/08/no-dumb-questions-mcp/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--action card--medium"
-       data-tags="deployment,kubernetes"
-       data-vendors="Kubernetes"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="kubernetes v1.36: moving volume group snapshots to ga"
-       data-id="56a6bc137c504492"
-       data-published="2026-05-08T10:35:00-08:00"
-       data-priority="true">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-08T10:35:00-08:00" title="8 May 2026, 13:35">8 May 2026, 13:35</time>
-        <span class="action-badge">Ops</span>
-      </div>
-      <h3 class="card-title">Kubernetes v1.36: Moving Volume Group Snapshots to GA</h3>
-      <p class="card-summary">Volume group snapshots were introduced as an Alpha feature with the Kubernetes v1.27 release, moved to Beta in v1.32, and to a second Beta in v1.34. We are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) .</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-        </div>
-      </div>
-      <span class="card-source">Kubernetes Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Volume group snapshots were introduced as an Alpha feature with the Kubernetes v1.27 release, moved to Beta in v1.32, and to a second Beta in v1.34. We are excited to announce that in the Kubernetes v1.36 release, support for volume group snapshots has reached General Availability (GA) . The support for volume group snapshots relies on a set of extension APIs for group snapshots .</p></div>
-      <div class="detail-links">
-        <a href="articles/56a6bc137c504492.html" class="detail-read">Open structured brief →</a>
-        <a href="https://kubernetes.io/blog/2026/05/08/kubernetes-v1-36-volume-group-snapshot-ga/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="ai giveth and ai taketh cpu"
-       data-id="7312dd0eb405eda8"
-       data-published="2026-05-08T07:40:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-05-08T07:40:00+00:00" title="8 May 2026, 02:40">8 May 2026, 02:40</time>
-      </div>
-      <h3 class="card-title">AI giveth and AI taketh CPU</h3>
-      <p class="card-summary">Recorded on the floor of HumanX, Ryan is joined by AMD CTO Mark Papermaster to discuss AMD’s silicon strategy for AI borne of their long history of heterogeneous CPU/GPU computing, how chipmakers are dealing the wide range of AI workloads from training to inference, and the paradox of agents both eating up all the compute and helping AMD accelerate chip innovation.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Recorded on the floor of HumanX, Ryan is joined by AMD CTO Mark Papermaster to discuss AMD’s silicon strategy for AI borne of their long history of heterogeneous CPU/GPU computing, how chipmakers are dealing the wide range of AI workloads from training to inference, and the paradox of agents both eating up all the compute and helping AMD accelerate chip innovation.</p></div>
-      <div class="detail-links">
-        <a href="articles/7312dd0eb405eda8.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/05/08/ai-giveth-and-ai-taketh-cpu/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,latency,networking,outage"
-       data-vendors="AWS,Azure,GitHub,Google Cloud,Red Hat"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="federated identity across the hybrid cloud using zero trust workload identity manager"
-       data-id="31e68e2e07cc80a2"
-       data-published="2026-05-08T07:16:06+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-05-08T07:16:06+00:00" title="8 May 2026, 02:16">8 May 2026, 02:16</time>
-      </div>
-      <h3 class="card-title">Federated identity across the hybrid cloud using zero trust workload identity manager</h3>
-      <p class="card-summary">Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">networking</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <div class="card-related">Also: GitHub Blog, GitHub Blog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Modern organizations increasingly rely not on monolithic applications, but on smaller and more specialized systems and services that interact with each other. These assets may reside close by in the same operating environment, or in a totally different environment altogether for instance, one may be in an on-premise datacenter and another in a public cloud. It&#39;s crucial that any interaction between resources be facilitated in a secure fashion, regardless of where they are running.</p></div>
-      <div class="detail-links">
-        <a href="articles/31e68e2e07cc80a2.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/05/08/federated-identity-across-hybrid-cloud-using-zero-trust-workload-identity" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
