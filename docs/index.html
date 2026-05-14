@@ -28,13 +28,13 @@
       <h1 class="brief-title">14 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-14T13:03:36.782403-05:00">14 May 2026, 13:03</time>
+        <time data-iso="2026-05-14T15:40:20.205483-05:00">14 May 2026, 15:40</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">1 high impact</span>
-      <span class="stat">4 items today</span>
+      <span class="stat stat-high">2 high impact</span>
+      <span class="stat">5 items today</span>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
+        <li>2 high-impact reliability events surfaced</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -53,8 +53,8 @@
         <span class="trend-pill">building<span class="trend-count">4</span></span>
         <span class="trend-pill">trust<span class="trend-count">4</span></span>
         <span class="trend-pill">agent<span class="trend-count">4</span></span>
+        <span class="trend-pill">kubernetes<span class="trend-count">3</span></span>
         <span class="trend-pill">software<span class="trend-count">3</span></span>
-        <span class="trend-pill">agentic<span class="trend-count">3</span></span>
       </div>
     </div>
   </div>
@@ -86,12 +86,12 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
@@ -115,9 +115,9 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -128,7 +128,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       14 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">5</span>
     </h2>
   </div>
 
@@ -198,6 +198,43 @@
       <div class="detail-links">
         <a href="articles/588e43f5e50ea5f5.html" class="detail-read">Open structured brief →</a>
         <a href="https://blog.cloudflare.com/clickhouse-query-plan-contention/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,deployment,kubernetes,networking,outage"
+       data-vendors="Kubernetes"
+       data-impact="high"
+       data-theme="capacity and scale"
+       data-title="kubernetes v1.36: deprecation and removal of service externalips"
+       data-id="aab2e1914b6724ad"
+       data-published="2026-05-14T10:35:00-08:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-14T10:35:00-08:00" title="14 May 2026, 13:35">14 May 2026, 13:35</time>
+      </div>
+      <h3 class="card-title">Kubernetes v1.36: Deprecation and removal of Service ExternalIPs</h3>
+      <p class="card-summary">The .spec.externalIPs field for Service was an early attempt to provide
+cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Kubernetes Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The .spec.externalIPs field for Service was an early attempt to provide cloud-load-balancer-like functionality for non-cloud clusters. Unfortunately, the API assumes that every user in the cluster is fully trusted, and in any situation where that is not the case, it enables various security exploits, as described in  CVE-2020-8554 . Since Kubernetes 1.21, the Kubernetes project has recommended that all users disable  .spec.externalIPs .</p></div>
+      <div class="detail-links">
+        <a href="articles/aab2e1914b6724ad.html" class="detail-read">Open structured brief →</a>
+        <a href="https://kubernetes.io/blog/2026/05/14/kubernetes-v1-36-deprecation-and-removal-of-service-externalips/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1160,45 +1197,6 @@
       <div class="detail-links">
         <a href="articles/cc3685c46f9a85d0.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/05/11/tekton-joins-cncf-new-era-cloud-native-cicd" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      8 May 2026
-      <span class="day-count">1</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="no dumb questions: what is an mcp server and why do i care?"
-       data-id="2f97cb1c8f6b60a1"
-       data-published="2026-05-08T16:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-05-08T16:00:00+00:00" title="8 May 2026, 11:00">8 May 2026, 11:00</time>
-      </div>
-      <h3 class="card-title">No Dumb Questions: What is an MCP server and why do I care?</h3>
-      <p class="card-summary">Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack&#39;s Director of Ecosystem Strategy Ben Marconi teaches us the basics of MCP servers and why they matter.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Welcome to No Dumb Questions, a column where our least technical writer asks our technical staff the simple, basic tech questions people are afraid to ask. In this first entry, Stack&#39;s Director of Ecosystem Strategy Ben Marconi teaches us the basics of MCP servers and why they matter.</p></div>
-      <div class="detail-links">
-        <a href="articles/2f97cb1c8f6b60a1.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/05/08/no-dumb-questions-mcp/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
