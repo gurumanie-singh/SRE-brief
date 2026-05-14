@@ -93,6 +93,10 @@
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/open-source/gaming/dungeons-desktops-10-roguelikes-that-never-die-because-their-communities-wont-let-them/"
+      },
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/new-in-terraform-115-dynamic-sources-variable-deprecation-and-more"
       }
     ],
     "highlighted": false
