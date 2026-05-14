@@ -128,7 +128,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "The .spec.externalIPs field for Service was an early attempt to provide\ncloud-load-balancer-like functionality for non-cloud clusters. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/05/14/every-layer-counts-defense-depth-ai-agents-red-hat-ai"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -178,12 +183,16 @@
     "email_summary": "This blog addresses the remote access and security challenges that still plague many organizations with Windows environments, specifically issues with static credentials and overly broad network access. We will then focus on how you can address these challenges with Boundary and Vault.",
     "related_sources": [
       {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/"
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/amazon-bedrock-introduces-new-advanced-prompt-optimization-and-migration-tool/"
       },
       {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/05/14/every-layer-counts-defense-depth-ai-agents-red-hat-ai"
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/company-news/github-availability-report-april-2026/"
+      },
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/"
       }
     ],
     "highlighted": false

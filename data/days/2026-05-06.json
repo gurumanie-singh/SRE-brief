@@ -207,12 +207,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Over the past year, we worked to keep Red Hat Universal Base Image 8 (UBI) builders stable under the Paketo Community GitHub organization . Several fixes across Paketo Buildpacks repositories were necessary so UBI 8 builders could consistently build applications for Java and Node.js.",
-    "related_sources": [
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/ai-and-ml/generative-ai/validating-agentic-behavior-when-correct-isnt-deterministic/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
