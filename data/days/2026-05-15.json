@@ -1,5 +1,85 @@
 [
   {
+    "id": "d60d50edfaeb1fb4",
+    "title": "No Dumb Questions: What is cloud computing and why is everyone doing it?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/15/no-dumb-questions-cloud-computing/",
+    "published": "2026-05-15T16:00:00+00:00",
+    "fetched_at": "2026-05-15T14:27:23.299559+00:00",
+    "summary": "In this No Dumb Questions, Phoebe is joined by Stack Overflow’s tech lead for the infrastructure team, Josh Zhang, to learn about the cloud, compute, and data centers.",
+    "tags": [],
+    "day": "2026-05-15",
+    "impact": "medium",
+    "vendors": [
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "In this No Dumb Questions, Phoebe is joined by Stack Overflow’s tech lead for the infrastructure team, Josh Zhang, to learn about the cloud, compute, and data centers."
+    ],
+    "sections": {
+      "overview": "In this No Dumb Questions, Phoebe is joined by Stack Overflow’s tech lead for the infrastructure team, Josh Zhang, to learn about the cloud, compute, and data centers.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "In this No Dumb Questions, Phoebe is joined by Stack Overflow’s tech lead for the infrastructure team, Josh Zhang, to learn about the cloud, compute, and data centers.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "In this No Dumb Questions, Phoebe is joined by Stack Overflow’s tech lead for the infrastructure team, Josh Zhang, to learn about the cloud, compute, and data centers.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d4be6777f7df7662",
+    "title": "Raising the bar: Quality, shared responsibility, and the future of GitHub’s bug bounty program",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/security/raising-the-bar-quality-shared-responsibility-and-the-future-of-githubs-bug-bounty-program/",
+    "published": "2026-05-15T14:00:00+00:00",
+    "fetched_at": "2026-05-15T14:27:22.729142+00:00",
+    "summary": "The security research community is one of GitHub s greatest assets. Every year, researchers from around the world help us find and fix vulnerabilities, making the platform safer for over 180 million developers. Our bug bounty program exists because we believe that collaboration with external researchers is one of the most effective ways to improve security, and we remain deeply committed to it.",
+    "tags": [
+      "latency",
+      "outage"
+    ],
+    "day": "2026-05-15",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "The security research community is one of GitHub s greatest assets. Every year, researchers from around the world help us find and fix vulnerabilities, making the platform safer for over 180 million developers. Our bug b",
+      "We don t want to go that direction. Instead, we want to invest in making our program better.",
+      "We want to be explicit about this: we have no problem with researchers using AI tools. AI is a force multiplier, and we expect it to play an increasing role in security research. We use AI across our own internal securit",
+      "We d also ask researchers to keep reports concise and structured. A strong report has three things: a short summary of the issue, clear steps to reproduce with supporting evidence (screenshots, HTTP requests, terminal ou",
+      "One pattern we see frequently deserves its own discussion. Many reports describe scenarios where a user interacts with attacker-controlled content (a malicious repository, a crafted issue, untrusted code) and experiences",
+      "We invest heavily in systems and teams dedicated to detecting and handling malicious content across the platform, from automated scanning to manual review. That said, GitHub operates on a shared responsibility model . Us",
+      "If you re newer to bug bounty , welcome! Take a few minutes to read our scope, review the ineligible list, and invest in a working proof of concept before submitting. Quality submissions from new researchers are always v",
+      "Going forward, we re updating how we handle these cases. Submissions that don t demonstrate significant security impact but do result in a code or documentation fix will be recognized with GitHub swag rather than a bount"
+    ],
+    "sections": {
+      "overview": "The security research community is one of GitHub s greatest assets. Every year, researchers from around the world help us find and fix vulnerabilities, making the platform safer for over 180 million developers. Our bug bounty program exists because we believe that collaboration with external researchers is one of the most effective ways to improve security, and we remain deeply committed to it.",
+      "technical_breakdown": "A strong report has three things: a short summary of the issue, clear steps to reproduce with supporting evidence (screenshots, HTTP requests, terminal output), and an impact statement explaining what an attacker can actually achieve.\n\nVerbose reports such as multi-page theoretical narratives, restated background context, or AI-generated filler slow down triage because the actual finding gets buried.\n\nNothing changes for you except faster response times as we reduce queue noise.\n\nThis lets us acknowledge the contribution while focusing our bounty resources on the findings that have the greatest impact on platform security.\n\nThe post Raising the bar: Quality, shared responsibility, and the future of GitHub s bug bounty program appeared first on The GitHub Blog .",
+      "impact": "Reports covering known ineligible categories (DMARC/SPF/DKIM configuration, user enumeration, missing security headers without a demonstrated attack path, and others) will be closed as Not Applicable, which may impact your HackerOne Signal and reputation. Take a few minutes to read our scope, review the ineligible list, and invest in a working proof of concept before submitting. However, alongside the growth in legitimate reports, we ve seen a sharp increase in submissions that don t demonstrate real security impact. Going forward, reports will be evaluated more strictly against these criteria:\n\n \n A working proof of concept with demonstrated security impact.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Every year, researchers from around the world help us find and fix vulnerabilities, making the platform safer for over 180 million developers.\n\nSubmissions that don t demonstrate significant security impact but do result in a code or documentation fix will be recognized with GitHub swag rather than a bounty payout.",
+      "lessons_learned": "Our bug bounty program exists because we believe that collaboration with external researchers is one of the most effective ways to improve security, and we remain deeply committed to it.\n\nInstead, we want to invest in making our program better.\n\nGoing forward, reports will be evaluated more strictly against these criteria:\n\n \n A working proof of concept with demonstrated security impact.\n\nSome reports identify hardening opportunities or documentation gaps that, while not exploitable, still lead to improvements we choose to make.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The security research community is one of GitHub s greatest assets. Every year, researchers from around the world help us find and fix vulnerabilities, making the platform safer for over 180 million developers. Our bug b\nWe don t want to go that direction. Instead, we want to invest in making our program better.\nWe want to be explicit about this: we have no problem with researchers using AI tools. AI is a force multiplier, and we expect it to play an increasing role in security research. We use AI across our own internal securit\nWe d also ask researchers to keep reports concise and structured. A strong report has three things: a short summary of the issue, clear steps to reproduce with supporting evidence (screenshots, HTTP requests, terminal ou\nOne pattern we see frequently deserves its own discussion. Many reports describe scenarios where a user interacts with attacker-controlled content (a malicious repository, a crafted issue, untrusted code) and experiences\nWe invest heavily in systems and teams dedicated to detecting and handling malicious content across the platform, from automated scanning to manual review. That said, GitHub operates on a shared responsibility model . Us\nIf you re newer to bug bounty , welcome! Take a few minutes to read our scope, review the ineligible list, and invest in a working proof of concept before submitting. Quality submissions from new researchers are always v\nGoing forward, we re updating how we handle these cases. Submissions that don t demonstrate significant security impact but do result in a code or documentation fix will be recognized with GitHub swag rather than a bount",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "The security research community is one of GitHub s greatest assets. Every year, researchers from around the world help us find and fix vulnerabilities, making the platform safer for over 180 million developers.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "21f9ad22848cd72a",
     "title": "Observability and human intuition in an AI world",
     "source": "Stack Overflow Blog",
