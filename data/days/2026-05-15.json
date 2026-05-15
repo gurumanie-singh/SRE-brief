@@ -1,0 +1,35 @@
+[
+  {
+    "id": "21f9ad22848cd72a",
+    "title": "Observability and human intuition in an AI world",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/15/observability-and-human-intuition-in-an-ai-world/",
+    "published": "2026-05-15T07:40:00+00:00",
+    "fetched_at": "2026-05-15T04:56:39.806665+00:00",
+    "summary": "In this two for one episode recorded at HumanX, Ryan is first joined by Christine Yen, CEO of Honeycomb, to discuss how AI compresses the software development lifecycle, making observability about capturing the right telemetry. Then, Spiros Xanthos, founder and CEO of Resolve AI, shares with us how AI coding increases code volume but decreases human intuition, making production operations harder...",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-05-15",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "In this two for one episode recorded at HumanX, Ryan is first joined by Christine Yen, CEO of Honeycomb, to discuss how AI compresses the software development lifecycle, making observability about capturing the right telemetry. Then, Spiros Xanthos, founder and CEO of Resolve AI, shares with us how AI coding increases code volume but decreases human intuition, making production operations harder than ever.",
+      "technical_breakdown": "In this two for one episode recorded at HumanX, Ryan is first joined by Christine Yen, CEO of Honeycomb, to discuss how AI compresses the software development lifecycle, making observability about capturing the right telemetry.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In this two for one episode recorded at HumanX, Ryan is first joined by Christine Yen, CEO of Honeycomb, to discuss how AI compresses the software development lifecycle, making observability about capturing the right telemetry. Then, Spiros Xanthos, founder and CEO of Resolve AI, shares with us how AI coding increases code volume but decreases human intuition, making production operations harder than ever.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
