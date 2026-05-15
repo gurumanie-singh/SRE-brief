@@ -35,6 +35,54 @@
     "highlighted": false
   },
   {
+    "id": "cc14e14ac1807e23",
+    "title": "Building a general-purpose accessibility agent—and what we learned in the process",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/building-a-general-purpose-accessibility-agent-and-what-we-learned-in-the-process/",
+    "published": "2026-05-15T16:00:00+00:00",
+    "fetched_at": "2026-05-15T16:56:16.188409+00:00",
+    "summary": "It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility .",
+    "tags": [
+      "latency",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-05-15",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Providing engineers with reliable, just-in-time answers to accessibility questions in the GitHub Copilot CLI and the Copilot VS Code integration.",
+      "To date, the agent has reviewed 3,535 pull requests, with a 68% resolution rate . In order of occurrence, the top five issue types center around:",
+      "Interested? We ll be outlining successes and lessons learned with this experiment, with the hopes that it can help with other teams accessibility journeys.",
+      "The European Accessibility Act is now in effect. Title II of the Americans with Disabilities Act is set to establish meeting WCAG 2.1 AA as the legal definition of done in April of 2027. LLM agents can read and take acti",
+      "To say it plainly: Organizations will be at a disadvantage if they have not already invested in manually identifying and remediating accessibility issues . There are many reasons for this, including building an accessibi",
+      "Crosslinks to the Pull Request that addressed the issue",
+      "Because of this, we instructed the agent to investigate these issues to see if there are related code and language snippets it can extrapolate from. This is one area where the non-deterministic fuzzy matching behavior of",
+      "Much like with any other specialized domain area, vague instructions in a skill file won t cut it. Telling an LLM to use accessibility best practices with a short list of examples won t work well."
+    ],
+    "sections": {
+      "overview": "It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility . GitHub is currently piloting an experimental general-purpose accessibility agent to achieve two main goals:\n\n \n Providing engineers with reliable, just-in-time answers to accessibility questions in the GitHub Copilot CLI and the Copilot VS Code integration.",
+      "technical_breakdown": "In order of occurrence, the top five issue types center around:\n\n \n Making structure and relationships clear to assistive technologies \n\n Providing clear and concise names for interactive controls \n\n Ensuring users are aware of important announcements \n\n Ensuring there are text alternatives for non-text content \n\n Moving keyboard focus through pages and views in a logical order \n\n \n\n Each of these issue types represents friction and barriers automatically removed that would have otherwise inhibited use of GitHub for people who use and rely on assistive technology.\n\nIf you re not familiar, you can learn more about LLMs on our blog .\n\nTo that point, GitHub has a mature system in place for logging accessibility issues, as well as verifying fixes to issues are working as intended.\n\nThis includes:\n\n \n A structured template for reporting problems\n\n Steps to reproduce the issue\n\n A rich layer of metadata about the issue s severity level, service area, and applicable WCAG success criterion \n\n Crosslinks to the Pull Request that addressed the issue\n\n Acceptance criteria\n\n \n\n In addition, all the issues are centralized to a single repository.\n\nWhile this issue-logging effort predated the explosion in popularity of LLM tooling, its highly consistent and structured nature made it an ideal corpus of content for the accessibility agent to reference.",
+      "impact": "In order of occurrence, the top five issue types center around:\n\n \n Making structure and relationships clear to assistive technologies \n\n Providing clear and concise names for interactive controls \n\n Ensuring users are aware of important announcements \n\n Ensuring there are text alternatives for non-text content \n\n Moving keyboard focus through pages and views in a logical order \n\n \n\n Each of these issue types represents friction and barriers automatically removed that would have otherwise inhibited use of GitHub for people who use and rely on assistive technology. We are instead attempting to augment our peers efforts , to better help them remove the barriers that may be created as a result of how we construct GitHub s user interfaces. Understanding, honoring, and socializing this better helps set the agent s scope of responsibility. Efficient token consumption \n\n Accessibility is a holistic concern , intersecting with code, design, copywriting, and numerous other disciplines involved with creating user interfaces.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "To that point, GitHub has a mature system in place for logging accessibility issues, as well as verifying fixes to issues are working as intended.\n\nWe found that compelling the agent to execute its sub-agent instructions in a fixed order was key.\n\nImplementer template schema: This focuses on what to fix and how to fix it.",
+      "lessons_learned": "We ll be outlining successes and lessons learned with this experiment, with the hopes that it can help with other teams accessibility journeys.\n\nImproved when its output is periodically reviewed to identify areas it needs better instruction.\n\nSome specific posts you may find helpful are:\n\n \n A guide to deciding what AI model to use in GitHub Copilot \n\n GitHub for Beginners: How to get LLMs to do what you want \n\n How to write a great agents.md: Lessons from over 2,500 repositories \n\n Multi-agent workflows often fail.\n\nWe are instead attempting to augment our peers efforts , to better help them remove the barriers that may be created as a result of how we construct GitHub s user interfaces.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Providing engineers with reliable, just-in-time answers to accessibility questions in the GitHub Copilot CLI and the Copilot VS Code integration.\nTo date, the agent has reviewed 3,535 pull requests, with a 68% resolution rate . In order of occurrence, the top five issue types center around:\nInterested? We ll be outlining successes and lessons learned with this experiment, with the hopes that it can help with other teams accessibility journeys.\nThe European Accessibility Act is now in effect. Title II of the Americans with Disabilities Act is set to establish meeting WCAG 2.1 AA as the legal definition of done in April of 2027. LLM agents can read and take acti\nTo say it plainly: Organizations will be at a disadvantage if they have not already invested in manually identifying and remediating accessibility issues . There are many reasons for this, including building an accessibi\nCrosslinks to the Pull Request that addressed the issue\nBecause of this, we instructed the agent to investigate these issues to see if there are related code and language snippets it can extrapolate from. This is one area where the non-deterministic fuzzy matching behavior of\nMuch like with any other specialized domain area, vague instructions in a skill file won t cut it. Telling an LLM to use accessibility best practices with a short list of examples won t work well.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "d4be6777f7df7662",
     "title": "Raising the bar: Quality, shared responsibility, and the future of GitHub’s bug bounty program",
     "source": "GitHub Blog",

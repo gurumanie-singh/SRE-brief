@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a general-purpose accessibility agent—and what we learned in the process — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-15.html" class="back-link">← 15 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">GitHub Blog</span>
+        <span class="card-date">15 May 2026, 11:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Building a general-purpose accessibility agent—and what we learned in the process</h1>
+
+      <p class="subtitle">It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility .</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility .</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility . GitHub is currently piloting an experimental general-purpose accessibility agent to achieve two main goals:</p>
+<p>Providing engineers with reliable, just-in-time answers to accessibility questions in the GitHub Copilot CLI and the Copilot VS Code integration.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>In order of occurrence, the top five issue types center around:</p>
+<p>Making structure and relationships clear to assistive technologies</p>
+<p>Providing clear and concise names for interactive controls</p>
+<p>Ensuring users are aware of important announcements</p>
+<p>Ensuring there are text alternatives for non-text content</p>
+<p>Moving keyboard focus through pages and views in a logical order</p>
+<p>Each of these issue types represents friction and barriers automatically removed that would have otherwise inhibited use of GitHub for people who use and rely on assistive technology.</p>
+<p>If you re not familiar, you can learn more about LLMs on our blog .</p>
+<p>To that point, GitHub has a mature system in place for logging accessibility issues, as well as verifying fixes to issues are working as intended.</p>
+<p>This includes:</p>
+<p>A structured template for reporting problems</p>
+<p>Steps to reproduce the issue</p>
+<p>A rich layer of metadata about the issue s severity level, service area, and applicable WCAG success criterion</p>
+<p>Crosslinks to the Pull Request that addressed the issue</p>
+<p>Acceptance criteria</p>
+<p>In addition, all the issues are centralized to a single repository.</p>
+<p>While this issue-logging effort predated the explosion in popularity of LLM tooling, its highly consistent and structured nature made it an ideal corpus of content for the accessibility agent to reference.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>In order of occurrence, the top five issue types center around:</p>
+<p>Making structure and relationships clear to assistive technologies</p>
+<p>Providing clear and concise names for interactive controls</p>
+<p>Ensuring users are aware of important announcements</p>
+<p>Ensuring there are text alternatives for non-text content</p>
+<p>Moving keyboard focus through pages and views in a logical order</p>
+<p>Each of these issue types represents friction and barriers automatically removed that would have otherwise inhibited use of GitHub for people who use and rely on assistive technology. We are instead attempting to augment our peers efforts , to better help them remove the barriers that may be created as a result of how we construct GitHub s user interfaces. Understanding, honoring, and socializing this better helps set the agent s scope of responsibility. Efficient token consumption</p>
+<p>Accessibility is a holistic concern , intersecting with code, design, copywriting, and numerous other disciplines involved with creating user interfaces.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>To that point, GitHub has a mature system in place for logging accessibility issues, as well as verifying fixes to issues are working as intended.</p>
+<p>We found that compelling the agent to execute its sub-agent instructions in a fixed order was key.</p>
+<p>Implementer template schema: This focuses on what to fix and how to fix it.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>We ll be outlining successes and lessons learned with this experiment, with the hopes that it can help with other teams accessibility journeys.</p>
+<p>Improved when its output is periodically reviewed to identify areas it needs better instruction.</p>
+<p>Some specific posts you may find helpful are:</p>
+<p>A guide to deciding what AI model to use in GitHub Copilot</p>
+<p>GitHub for Beginners: How to get LLMs to do what you want</p>
+<p>How to write a great agents.md: Lessons from over 2,500 repositories</p>
+<p>Multi-agent workflows often fail.</p>
+<p>We are instead attempting to augment our peers efforts , to better help them remove the barriers that may be created as a result of how we construct GitHub s user interfaces.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Providing engineers with reliable, just-in-time answers to accessibility questions in the GitHub Copilot CLI and the Copilot VS Code integration.</li>
+            <li>To date, the agent has reviewed 3,535 pull requests, with a 68% resolution rate . In order of occurrence, the top five issue types center around:</li>
+            <li>Interested? We ll be outlining successes and lessons learned with this experiment, with the hopes that it can help with other teams accessibility journeys.</li>
+            <li>The European Accessibility Act is now in effect. Title II of the Americans with Disabilities Act is set to establish meeting WCAG 2.1 AA as the legal definition of done in April of 2027. LLM agents can read and take acti</li>
+            <li>To say it plainly: Organizations will be at a disadvantage if they have not already invested in manually identifying and remediating accessibility issues . There are many reasons for this, including building an accessibi</li>
+            <li>Crosslinks to the Pull Request that addressed the issue</li>
+            <li>Because of this, we instructed the agent to investigate these issues to see if there are related code and language snippets it can extrapolate from. This is one area where the non-deterministic fuzzy matching behavior of</li>
+            <li>Much like with any other specialized domain area, vague instructions in a skill file won t cut it. Telling an LLM to use accessibility best practices with a short list of examples won t work well.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://github.blog/ai-and-ml/github-copilot/building-a-general-purpose-accessibility-agent-and-what-we-learned-in-the-process/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at GitHub Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

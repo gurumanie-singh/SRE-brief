@@ -28,23 +28,30 @@
       <h1 class="brief-title">15 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-15T09:27:25.183152-05:00">15 May 2026, 09:27</time>
+        <time data-iso="2026-05-15T11:56:18.758777-05:00">15 May 2026, 11:56</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">3 items today</span>
+      <span class="stat">4 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>Repeated coverage across GitHub</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">agent<span class="trend-count">4</span></span>
+        <span class="trend-pill">agent<span class="trend-count">5</span></span>
+        <span class="trend-pill">building<span class="trend-count">4</span></span>
         <span class="trend-pill">kubernetes<span class="trend-count">3</span></span>
         <span class="trend-pill">vault<span class="trend-count">3</span></span>
-        <span class="trend-pill">building<span class="trend-count">3</span></span>
         <span class="trend-pill">software<span class="trend-count">3</span></span>
         <span class="trend-pill">trust<span class="trend-count">3</span></span>
       </div>
@@ -76,11 +83,11 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
@@ -101,8 +108,8 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
@@ -119,7 +126,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       15 May 2026
-      <span class="day-count">3</span>
+      <span class="day-count">4</span>
     </h2>
   </div>
 
@@ -152,6 +159,43 @@
       <div class="detail-links">
         <a href="articles/d60d50edfaeb1fb4.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/15/no-dumb-questions-cloud-computing/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="latency,observability,outage,postmortem"
+       data-vendors="GitHub,HashiCorp"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="building a general-purpose accessibility agent—and what we learned in the process"
+       data-id="cc14e14ac1807e23"
+       data-published="2026-05-15T16:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-05-15T16:00:00+00:00" title="15 May 2026, 11:00">15 May 2026, 11:00</time>
+      </div>
+      <h3 class="card-title">Building a general-purpose accessibility agent—and what we learned in the process</h3>
+      <p class="card-summary">It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility .</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+          <span class="ttag">postmortem</span>
+        </div>
+      </div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>It is an understatement to say agents have become a popular way of working with code. GitHub has adopted agent-based code creation and editing for many of its initiatives, including piloting an agent to help with our commitment to accessibility . GitHub is currently piloting an experimental general-purpose accessibility agent to achieve two main goals:</p>
+<p>Providing engineers with reliable, just-in-time answers to accessibility questions in the GitHub Copilot CLI and the Copilot VS Code integration.</p></div>
+      <div class="detail-links">
+        <a href="articles/cc14e14ac1807e23.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/ai-and-ml/github-copilot/building-a-general-purpose-accessibility-agent-and-what-we-learned-in-the-process/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1085,7 +1129,7 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
   <div class="day-group">
     <h2 class="day-heading">
       11 May 2026
-      <span class="day-count">3</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -1150,50 +1194,6 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
       <div class="detail-links">
         <a href="articles/29fbac0c2c34404e.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/11/oauth-2-0-device-flow-explained-for-engineers-especially-for-backend-engineers/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--action card--high"
-       data-tags="deployment,latency,observability,outage,scaling"
-       data-vendors="AWS,Azure,Google Cloud,HashiCorp,Slack"
-       data-impact="high"
-       data-theme="observability"
-       data-title="terraform adds cost visibility, project-level notifications, and more"
-       data-id="5c4f5e57b17a6868"
-       data-published="2026-05-11T16:00:00+00:00"
-       data-priority="true">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-05-11T16:00:00+00:00" title="11 May 2026, 11:00">11 May 2026, 11:00</time>
-        <span class="action-badge">Ops</span>
-      </div>
-      <h3 class="card-title">Terraform adds cost visibility, project-level notifications, and more</h3>
-      <p class="card-summary">In the past few months, the HashiCorp Terraform engineering team has continuously improved features to help organizations eliminate infrastructure blind spots and strengthen governance and security across the entire infrastructure lifecycle. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <div class="card-related">Also: AWS News Blog</div>
-      <span class="card-source">HashiCorp Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>In the past few months, the HashiCorp Terraform engineering team has continuously improved features to help organizations eliminate infrastructure blind spots and strengthen governance and security across the entire infrastructure lifecycle. The latest HCP Terraform and Terraform Enterprise improvements include:</p>
-<p>·       Billable resource analytics (GA)</p>
-<p>·       Project-level remote state sharing (GA)</p>
-<p>·       Module testing for dynamic credentials (GA)</p>
-<p>·       Project-level notification (GA)</p>
-<p>·       Registry tagging (Beta)</p>
-<p>Billable resource analytics Feature gap: Organizations using resources under management  (RUM)-based billing face a significant visibility challenge when trying to understand where infrastructure costs are coming from. Until now, HCP Terraform customers could only view their total billable managed resources at the organization level.</p></div>
-      <div class="detail-links">
-        <a href="articles/5c4f5e57b17a6868.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.hashicorp.com/blog/terraform-adds-cost-visibility-project-level-notifications-and-more" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
