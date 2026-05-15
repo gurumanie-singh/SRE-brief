@@ -28,12 +28,12 @@
       <h1 class="brief-title">15 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-15T11:56:18.758777-05:00">15 May 2026, 11:56</time>
+        <time data-iso="2026-05-15T13:46:16.353502-05:00">15 May 2026, 13:46</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">4 items today</span>
+      <span class="stat">5 items today</span>
     </div>
   </div>
 
@@ -50,7 +50,7 @@
       <div class="trending-pills">
         <span class="trend-pill">agent<span class="trend-count">5</span></span>
         <span class="trend-pill">building<span class="trend-count">4</span></span>
-        <span class="trend-pill">kubernetes<span class="trend-count">3</span></span>
+        <span class="trend-pill">kubernetes<span class="trend-count">4</span></span>
         <span class="trend-pill">vault<span class="trend-count">3</span></span>
         <span class="trend-pill">software<span class="trend-count">3</span></span>
         <span class="trend-pill">trust<span class="trend-count">3</span></span>
@@ -87,13 +87,13 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
       </div>
     </div>
     <div class="adv-group">
@@ -108,14 +108,14 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -126,7 +126,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       15 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">5</span>
     </h2>
   </div>
 
@@ -230,6 +230,41 @@
       <div class="detail-links">
         <a href="articles/d4be6777f7df7662.html" class="detail-read">Open structured brief →</a>
         <a href="https://github.blog/security/raising-the-bar-quality-shared-responsibility-and-the-future-of-githubs-bug-bounty-program/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,networking"
+       data-vendors="Kubernetes,Slack"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="kubernetes v1.36: mixed version proxy graduates to beta"
+       data-id="48d26f667364aab0"
+       data-published="2026-05-15T10:00:00-08:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-05-15T10:00:00-08:00" title="15 May 2026, 13:00">15 May 2026, 13:00</time>
+      </div>
+      <h3 class="card-title">Kubernetes v1.36: Mixed Version Proxy Graduates to Beta</h3>
+      <p class="card-summary">Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect 404 Not Found .</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Kubernetes Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect 404 Not Found . We are excited to announce that the Mixed Version Proxy is moving to Beta in Kubernetes 1.36 and will be enabled by default!</p></div>
+      <div class="detail-links">
+        <a href="articles/48d26f667364aab0.html" class="detail-read">Open structured brief →</a>
+        <a href="https://kubernetes.io/blog/2026/05/15/kubernetes-1-36-feature-mixed-version-proxy-beta/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1129,7 +1164,7 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
   <div class="day-group">
     <h2 class="day-heading">
       11 May 2026
-      <span class="day-count">2</span>
+      <span class="day-count">1</span>
     </h2>
   </div>
 
@@ -1162,38 +1197,6 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
       <div class="detail-links">
         <a href="articles/c3ba8ef13f4d915e.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/11/when-the-sensor-starts-thinking-snortml-agentic-ai-and-the-evolving-architecture-of-intrusion-detection/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="oauth 2.0 – device flow explained for engineers, especially for backend engineers"
-       data-id="29fbac0c2c34404e"
-       data-published="2026-05-11T16:11:05+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-05-11T16:11:05+00:00" title="11 May 2026, 11:11">11 May 2026, 11:11</time>
-      </div>
-      <h3 class="card-title">OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers</h3>
-      <p class="card-summary">OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>OAuth 2.0 – Device flow explained for Engineers, especially for Backend Engineers</p></div>
-      <div class="detail-links">
-        <a href="articles/29fbac0c2c34404e.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/05/11/oauth-2-0-device-flow-explained-for-engineers-especially-for-backend-engineers/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

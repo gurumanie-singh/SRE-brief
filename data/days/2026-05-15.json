@@ -128,6 +128,53 @@
     "highlighted": false
   },
   {
+    "id": "48d26f667364aab0",
+    "title": "Kubernetes v1.36: Mixed Version Proxy Graduates to Beta",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/05/15/kubernetes-1-36-feature-mixed-version-proxy-beta/",
+    "published": "2026-05-15T10:00:00-08:00",
+    "fetched_at": "2026-05-15T18:46:12.861607+00:00",
+    "summary": "Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect...",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "networking"
+    ],
+    "day": "2026-05-15",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make clus",
+      "Without MVP, if a client request lands on an API server that does not serve the requested resource (e.g., a new API version introduced in the upgrade), that server returns a 404 Not Found . This is technically incorrect ",
+      "MVP solves this by proxying the request to a peer API server that can serve it.",
+      "Client->>API_Server_A: 1. Request for Resource (e.g., v2)",
+      "API_Server_A->>API_Server_B: 3. Proxies request (adds x-kubernetes-peer-proxied header)",
+      "API_Server_B->>API_Server_B: 4. Processes request locally",
+      "The 1.28 blog post noted a significant gap: while we could proxy resource requests, discovery requests still only showed what the local API server knew about.",
+      "Client->>API_Server_A: 1. Request Discovery Document"
+    ],
+    "sections": {
+      "overview": "Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect 404 Not Found . We are excited to announce that the Mixed Version Proxy is moving to Beta in Kubernetes 1.36 and will be enabled by default!",
+      "technical_breakdown": "Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post .\n\nWithout this, proxying will fail due to TLS verification errors.\n\n --peer-advertise-ip and --peer-advertise-port : These flags are used to set the network address that peers should use to reach this API server.\n\nIf you have complex network topologies where API servers communicate over a specific internal interface, setting these flags explicitly is highly recommended.\n\nWe are excited to announce that the Mixed Version Proxy is moving to Beta in Kubernetes 1.36 and will be enabled by default!\n\nIn a highly available control plane undergoing an upgrade, you often have API servers running different versions.",
+      "impact": "Without MVP, if a client request lands on an API server that does not serve the requested resource (e.g., a new API version introduced in the upgrade), that server returns a 404 Not Found . MVP solves this by proxying the request to a peer API server that can serve it.\n\n \n \nsequenceDiagram\nparticipant Client\nparticipant API_Server_A as API Server A (Older/Different)\nparticipant API_Server_B as API Server B (Newer/Capable)\nClient->>API_Server_A: 1. Returns Response\nAPI_Server_A-->>Client: 6. Now, when a client performs discovery (e.g., listing available APIs), the API server merges its local view with the discovery data from all active peers.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Configuring with kubeadm \n If you manage your cluster with kubeadm , you can configure these flags in your ClusterConfiguration file:\n\n apiVersion : kubeadm.k8s.io/v1beta4 \n kind : ClusterConfiguration \n apiServer : \n extraArgs : \n peer-ca-file : \"/etc/kubernetes/pki/ca.crt\" \n # peer-advertise-ip and port if needed \n Call to action \n If you are running multi-master clusters and upgrading them regularly, the Mixed Version Proxy is a major safety improvement.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. In a highly available control plane undergoing an upgrade, you often have API servers running different versions. This is technically incorrect because the resource is available in the cluster, just not on that specific server. Without this, proxying will fail due to TLS verification errors.\n\n --peer-advertise-ip and --peer-advertise-port : These flags are used to set the network address that peers should use to reach this API server.",
+      "incident_timeline": "Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make clus\nWithout MVP, if a client request lands on an API server that does not serve the requested resource (e.g., a new API version introduced in the upgrade), that server returns a 404 Not Found . This is technically incorrect \nMVP solves this by proxying the request to a peer API server that can serve it.\nClient->>API_Server_A: 1. Request for Resource (e.g., v2)\nAPI_Server_A->>API_Server_B: 3. Proxies request (adds x-kubernetes-peer-proxied header)\nAPI_Server_B->>API_Server_B: 4. Processes request locally\nThe 1.28 blog post noted a significant gap: while we could proxy resource requests, discovery requests still only showed what the local API server knew about.\nClient->>API_Server_A: 1. Request Discovery Document",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect 404 Not Found .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "21f9ad22848cd72a",
     "title": "Observability and human intuition in an AI world",
     "source": "Stack Overflow Blog",
