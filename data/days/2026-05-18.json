@@ -1,5 +1,45 @@
 [
   {
+    "id": "4d88b742bb2ad3b6",
+    "title": "AWS Weekly Roundup: AWS Transform at 1 year, Claude Platform on AWS, EC2 M3 Ultra Mac instances, and more (May 18, 2026)",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-transform-at-1-year-claude-platform-on-aws-ec2-m3-ultra-mac-instances-and-more-may-18-2026/",
+    "published": "2026-05-18T19:13:20+00:00",
+    "fetched_at": "2026-05-18T20:41:03.683161+00:00",
+    "summary": "Just a year ago, we launched AWS Transform for .NET , Mainframe and VMware workloads , the first agentic AI service purpose-built for modernizing enterprise applications at scale. At re:Invent 2025, we introduced AWS Transform custom , which enables organizations to modernize and transform code at scale using AWS-managed and custom transformations. You can upgrade language versions, migrate...",
+    "tags": [],
+    "day": "2026-05-18",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Azure",
+      "Google Cloud"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Just a year ago, we launched AWS Transform for .NET , Mainframe and VMware workloads , the first agentic AI service purpose-built for modernizing enterprise applications at scale. At re:Invent 2025, we introduced AWS Tra",
+      "AWS Interconnect – multicloud connectivity with Oracle Cloud Infrastructure (preview) – You can quickly provision resilient, scalable private connections to other cloud providers using AWS Interconnect – multicloud conne",
+      "Here are some additional news items that you might find interesting:",
+      "Accelerate AI research and education with Build on Trainium program – Read how the next generation of AI researchers is using Amazon chips to accelerate discovery. AWS invested $110 million to give university researchers"
+    ],
+    "sections": {
+      "overview": "Just a year ago, we launched AWS Transform for .NET , Mainframe and VMware workloads , the first agentic AI service purpose-built for modernizing enterprise applications at scale. At re:Invent 2025, we introduced AWS Transform custom , which enables organizations to modernize and transform code at scale using AWS-managed and custom transformations. You can upgrade language versions, migrate frameworks, optimize performance, and analyze code bases using transformations that are ready to use or can be customized to meet your organization’s specific requirements.",
+      "technical_breakdown": "Amazon EC2 M3 Ultra Mac instances – These instances are built on Apple M3 Ultra Mac Studio computers featuring a 28-core CPU, 60-core GPU, 32-core Neural Engine, and 256GB of unified memory.\n\nCompared to EC2 M4 Max Mac instances, M3 Ultra Mac instances provide 2x the unified memory, 1.75x the CPU cores, 1.5x the GPU cores, and 2x the Neural Engine cores, giving Apple developers the headroom to run significantly more Xcode simulators in parallel and accelerate on-device ML workflows to improve product time to market.\n\nTo learn what happened in 12 months, the four things we learned, and how that evolved our roadmap, visit the one-year anniversary blog post .\n\nTo learn more, visit the deep dive blog post .\n\nAmazon Redshift RG instances powered by AWS Graviton – These instances deliver better performance, running data warehouse and data lake workloads up to 2.4x as fast as previous generation RA3 instances, at 30% lower price per vCPU.",
+      "impact": "In 12 months, thousands of customers migrated hundreds of thousands of servers, saved 1.6+ million hours, and processed 4.5+ billion lines of code with AWS Transform. Last week’s launches \n Here are last week’s launches that caught my attention:\n\n \n \n The general availability of Claude Platform on AWS – You can get direct access to Anthropic’s native Claude Platform experience, including APIs, console, and early-access beta features, directly through your existing AWS account, without managing separate accounts, billing, or tracking. Claude Platform on AWS is operated by Anthropic, and customer data is processed outside the AWS security boundary. This capability is available at no additional charge for existing AWS Security Agent customers during the preview.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "When vulnerabilities are found, the scanner generates code remediation—specific fixes tied to the exact file and line—enabling teams to remediate security vulnerabilities faster than ever before.",
+      "lessons_learned": "To learn what happened in 12 months, the four things we learned, and how that evolved our roadmap, visit the one-year anniversary blog post .\n\nCompared to EC2 M4 Max Mac instances, M3 Ultra Mac instances provide 2x the unified memory, 1.75x the CPU cores, 1.5x the GPU cores, and 2x the Neural Engine cores, giving Apple developers the headroom to run significantly more Xcode simulators in parallel and accelerate on-device ML workflows to improve product time to market.\n\nAmazon Redshift RG instances powered by AWS Graviton – These instances deliver better performance, running data warehouse and data lake workloads up to 2.4x as fast as previous generation RA3 instances, at 30% lower price per vCPU.\n\nYou can also use this if you are migrating to a new model or just want to get better performance on your current model.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Just a year ago, we launched AWS Transform for .NET , Mainframe and VMware workloads , the first agentic AI service purpose-built for modernizing enterprise applications at scale. At re:Invent 2025, we introduced AWS Tra\nAWS Interconnect – multicloud connectivity with Oracle Cloud Infrastructure (preview) – You can quickly provision resilient, scalable private connections to other cloud providers using AWS Interconnect – multicloud conne\nHere are some additional news items that you might find interesting:\nAccelerate AI research and education with Build on Trainium program – Read how the next generation of AI researchers is using Amazon chips to accelerate discovery. AWS invested $110 million to give university researchers",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Just a year ago, we launched AWS Transform for .NET , Mainframe and VMware workloads , the first agentic AI service purpose-built for modernizing enterprise applications at scale. At re:Invent 2025, we introduced AWS Transform custom , which enables organizations to modernize and transform code at scale using AWS-managed and custom transformations.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "ff22bc3da3a032f0",
     "title": "Interviews Aren’t About You (Sorry)",
     "source": "Stack Overflow Blog",
