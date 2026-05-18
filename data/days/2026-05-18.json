@@ -1,5 +1,67 @@
 [
   {
+    "id": "ff22bc3da3a032f0",
+    "title": "Interviews Aren’t About You (Sorry)",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/18/interviews-aren-t-about-you-sorry/",
+    "published": "2026-05-18T16:02:44+00:00",
+    "fetched_at": "2026-05-18T16:31:10.169618+00:00",
+    "summary": "Interviews Aren’t About You (Sorry)",
+    "tags": [],
+    "day": "2026-05-18",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Interviews Aren’t About You (Sorry). Interviews Aren’t About You (Sorry)",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Interviews Aren’t About You (Sorry).",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "ce5ea8e8a2fca370",
+    "title": "“You can't vibe code scale”: What the AI hype gets wrong about software engineering",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/18/what-the-ai-hype-gets-wrong/",
+    "published": "2026-05-18T07:40:00+00:00",
+    "fetched_at": "2026-05-18T16:31:10.169836+00:00",
+    "summary": "Because someone still has to own the consequences of what gets built and whether it can function at scale.",
+    "tags": [],
+    "day": "2026-05-18",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Because someone still has to own the consequences of what gets built and whether it can function at scale.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Because someone still has to own the consequences of what gets built and whether it can function at scale.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "203009ecd6b5c2ec",
     "title": "SQL Server HA on RHEL: Meet Pacemaker HA Agent v2 (tech preview)",
     "source": "Red Hat Developer Blog",
@@ -90,6 +152,52 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a6afea8b4602c43f",
+    "title": "Project Glasswing: what Mythos showed us",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/cyber-frontier-models/",
+    "published": "2026-05-18T06:00:00+00:00",
+    "fetched_at": "2026-05-18T16:31:08.357423+00:00",
+    "summary": "For the last few months, we've been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us what attackers are going to be able to do with the latest models.",
+    "tags": [
+      "deployment",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-05-18",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "For the last few months, we've been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us wh",
+      "Some of what we describe above is not entirely unique to Mythos Preview. When we ran other frontier models through the same harness, they found a fair number of the same underlying bugs, and in some cases they got furthe",
+      "Despite this, the model organically pushes back on certain requests - much like the cyber capabilities that made it useful for vulnerability hunting, the model has its own emergent guardrails that sometimes cause it to p",
+      "In another case, the model found and confirmed several serious memory bugs in a codebase, and then refused to write a demonstration exploit. The same request, framed differently, got a different answer, and even the same",
+      "One of the hardest parts of triaging security vulnerabilities is deciding which bugs are real, which are exploitable, and which need fixing now. This was a hard problem even in the pre-AI world. AI vulnerability scanners",
+      "Context - Coding agents are tuned for one focused stream of work: building a feature, fixing a bug, writing a refactor. They ingest a lot of source code, hold a single hypothesis at a time, and iterate against it. That's",
+      "Throughput - A single-stream agent does one thing at a time, but real codebases need many hypotheses against many components at once, with the ability to fan out further when something interesting turns up. You can drive",
+      "Splitting the chain across agents produces better reasoning - Asking \"Is this code buggy?\" and \"Can an attacker actually reach this bug from outside the system?\" are two different questions, and the model is better at ea"
+    ],
+    "sections": {
+      "overview": "For the last few months, we've been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us what attackers are going to be able to do with the latest models. None of these LLMs has captured more attention than Mythos Preview, from Anthropic.",
+      "technical_breakdown": "It was used to scan live code across our runtime, edge data path, protocol stack, control plane, and the open-source projects we depend on.\n\nWhat changed with Mythos Preview is that a model can now take those low-severity bugs (which would traditionally sit invisible in a backlog) and chain them into a single, more severe exploit.\n\nIn another case, the model found and confirmed several serious memory bugs in a codebase, and then refused to write a demonstration exploit.\n\nTwo factors dominate the noise rate:\n\n Programming language - C and C++ give you direct memory control and, with it, bug classes - buffer overflows, out-of-bounds reads and writes - that memory-safe languages like Rust eliminate at compile time.\n\nWe saw consistently more false positives from projects written in memory-unsafe languages.",
+      "impact": "What a harness actually fixes \n \n \n \n \n Four lessons came out of running the work at scale, and each one pointed to the need for a harness that manages the overall execution:\n\n Narrow scope produces better findings - Telling the model \"Find vulnerabilities in this repository\" makes it wander. Parallel narrow tasks beat one exhaustive agent - Coverage improves when many agents work on tightly scoped questions and we deduplicate the results afterward, rather than asking one agent to be exhaustive. Hunt \n \n \n Each task is one attack class paired with a scope hint. Cloudflare sits in front of millions of those applications, and the architectural principles described above are exactly the ones our products are built to apply on behalf of customers.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us what attackers are going to be able to do with the latest models.\n\nThe signal-to-noise problem \n \n \n \n \n One of the hardest parts of triaging security vulnerabilities is deciding which bugs are real, which are exploitable, and which need fixing now.\n\nBut at triage time, Mythos Preview's output has noticeably higher quality: fewer hedged findings, clearer reproduction steps, and less work to reach a fix-or-dismiss decision.\n\nThere are two main reasons for this:\n\n Context - Coding agents are tuned for one focused stream of work: building a feature, fixing a bug, writing a refactor.",
+      "lessons_learned": "What a harness actually fixes \n \n \n \n \n Four lessons came out of running the work at scale, and each one pointed to the need for a harness that manages the overall execution:\n\n Narrow scope produces better findings - Telling the model \"Find vulnerabilities in this repository\" makes it wander.\n\nMythos Preview represents a clear improvement here, particularly in its ability to chain primitives - combining multiple vulnerabilities into a working proof of concept rather than reporting them in isolation.\n\nSplitting the chain across agents produces better reasoning - Asking \"Is this code buggy?\" and \"Can an attacker actually reach this bug from outside the system?\" are two different questions, and the model is better at each one when you ask them separately, because each question is narrower than the combined version.\n\nParallel narrow tasks beat one exhaustive agent - Coverage improves when many agents work on tightly scoped questions and we deduplicate the results afterward, rather than asking one agent to be exhaustive.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. For instance, it might turn a use-after-free bug into an arbitrary read and write primitive, hijack the control flow, and use return-oriented programming (ROP) chains to take full control over a system. The loop matters as much as the bugs it finds, because a suspected flaw without a working proof is speculation, and Mythos Preview closes that gap on its own. The same request, framed differently, got a different answer, and even the same request can produce different outcomes across runs due to the probabilistic nature of the model.",
+      "incident_timeline": "For the last few months, we've been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us wh\nSome of what we describe above is not entirely unique to Mythos Preview. When we ran other frontier models through the same harness, they found a fair number of the same underlying bugs, and in some cases they got furthe\nDespite this, the model organically pushes back on certain requests - much like the cyber capabilities that made it useful for vulnerability hunting, the model has its own emergent guardrails that sometimes cause it to p\nIn another case, the model found and confirmed several serious memory bugs in a codebase, and then refused to write a demonstration exploit. The same request, framed differently, got a different answer, and even the same\nOne of the hardest parts of triaging security vulnerabilities is deciding which bugs are real, which are exploitable, and which need fixing now. This was a hard problem even in the pre-AI world. AI vulnerability scanners\nContext - Coding agents are tuned for one focused stream of work: building a feature, fixing a bug, writing a refactor. They ingest a lot of source code, hold a single hypothesis at a time, and iterate against it. That's\nThroughput - A single-stream agent does one thing at a time, but real codebases need many hypotheses against many components at once, with the ability to fan out further when something interesting turns up. You can drive\nSplitting the chain across agents produces better reasoning - Asking \"Is this code buggy?\" and \"Can an attacker actually reach this bug from outside the system?\" are two different questions, and the model is better at ea",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse."
+    },
+    "email_summary": "For the last few months, we've been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us what attackers are going to be able to do with the latest models.",
     "related_sources": [],
     "highlighted": false
   }
