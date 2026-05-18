@@ -1,0 +1,96 @@
+[
+  {
+    "id": "203009ecd6b5c2ec",
+    "title": "SQL Server HA on RHEL: Meet Pacemaker HA Agent v2 (tech preview)",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/18/sql-server-ha-rhel-meet-pacemaker-ha-agent-v2-tech-preview",
+    "published": "2026-05-18T07:01:17+00:00",
+    "fetched_at": "2026-05-18T08:50:31.229114+00:00",
+    "summary": "If you’re running an SQL Server on Red Hat Enterprise Linux (RHEL) and care about high availability, this is a big one. We’re introducing Pacemaker HA Agent v2 (tech preview), the next evolution of high availability for SQL Server on RHEL. This release focuses on one thing above all: making failovers faster, smarter, and more reliable than before. ",
+    "tags": [
+      "deployment",
+      "latency",
+      "outage"
+    ],
+    "day": "2026-05-18",
+    "impact": "critical",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Why Pacemaker matters on RHEL If you’re coming from the Windows world, you’re used to SQL Server AlwaysOn Availability Groups working hand-in-hand with Windows Server Failover Clustering (WSFC). That built-in clustering ",
+      "Enter Pacemaker HA Agent v2 With SQL Server 2025 CU3, we’re introducing a completely reworked HA agent, built from the ground up with RHEL deployments in mind. One of the biggest changes is that it’s now service-based. I",
+      "# Restart the mssql-pcsag service",
+      "sudo systemctl restart mssql-pcsag",
+      "Failover you can tune One of the biggest gaps between Windows and Linux HA has been flexibility. That changes with v2. You can now configure failure condition levels (1–5) and health check timeouts. This allows you to de",
+      "This is non-production for the time being. If you’re already running SQL Server 2025 on RHEL and want to test v2, the upgrade path is straightforward."
+    ],
+    "sections": {
+      "overview": "If you’re running an SQL Server on Red Hat Enterprise Linux (RHEL) and care about high availability, this is a big one. We’re introducing Pacemaker HA Agent v2 (tech preview), the next evolution of high availability for SQL Server on RHEL. This release focuses on one thing above all: making failovers faster, smarter, and more reliable than before.",
+      "technical_breakdown": "Here is an example: \n\n ALTER AVAILABILITY GROUP pacemakerag\nSET (FAILURE_CONDITION_LEVEL = 2);\n\nALTER AVAILABILITY GROUP pacemakerag\nSET (HEALTH_CHECK_TIMEOUT = 60000); Behind the scenes, these decisions are driven by sp_Server_diagnostics , which gives much deeper visibility into SQL Server’s internal state, things like: \n\n Memory pressure \n Deadlocks \n Spinlock issues \n Other engine-level problems \n Better protection against split-brain If you’ve worked with clustering on RHEL, you know split-brain scenarios are something you absolutely want to avoid.\n\nThe agent now actively evaluates lease validity before making role changes, resulting in: \n\n Safer failovers \n Better data consistency \n More predictable behavior during edge cases \n Modern security with TLS 1.3 Security also gets an upgrade.\n\nThink of Pacemaker as the control plane for high availability on RHEL.\n\nPacemaker does the following: \n\n Monitors node and SQL Server health \n Decides when failover should happen \n Coordinates role changes between replicas \n Helps prevent split-brain scenarios \n Manages AG resources and listeners \n Sitting between SQL Server and Pacemaker is the Pacemaker HA Agent, the component that translates SQL Server health into something the cluster understands.\n\nHealth checks weren’t always deep enough, missing things like memory pressure or I/O issues.",
+      "impact": "The original Pacemaker HA Agent (v1) did the job, but customers running real production workloads on RHEL quickly ran into these pain points: \n\n Failovers could take anywhere from 30 seconds to 2 minutes. If you’re running an SQL Server on Red Hat Enterprise Linux (RHEL) and care about high availability, this is a big one. We’re introducing Pacemaker HA Agent v2 (tech preview), the next evolution of high availability for SQL Server on RHEL. Why Pacemaker matters on RHEL If you’re coming from the Windows world, you’re used to SQL Server AlwaysOn Availability Groups working hand-in-hand with Windows Server Failover Clustering (WSFC).\n\nClassified impact band: critical. Affected layer signal: general production.",
+      "resolution": "This release focuses on one thing above all: making failovers faster, smarter, and more reliable than before.\n\nWhy Pacemaker matters on RHEL If you’re coming from the Windows world, you’re used to SQL Server AlwaysOn Availability Groups working hand-in-hand with Windows Server Failover Clustering (WSFC).\n\nThat built-in clustering layer handles everything from health checks to failover decisions.\n\nPacemaker does the following: \n\n Monitors node and SQL Server health \n Decides when failover should happen \n Coordinates role changes between replicas \n Helps prevent split-brain scenarios \n Manages AG resources and listeners \n Sitting between SQL Server and Pacemaker is the Pacemaker HA Agent, the component that translates SQL Server health into something the cluster understands.",
+      "lessons_learned": "Pacemaker does the following: \n\n Monitors node and SQL Server health \n Decides when failover should happen \n Coordinates role changes between replicas \n Helps prevent split-brain scenarios \n Manages AG resources and listeners \n Sitting between SQL Server and Pacemaker is the Pacemaker HA Agent, the component that translates SQL Server health into something the cluster understands.\n\nWhat needed improvement?\n\nIn short, it worked; but there was room to make it much better.\n\nBenefits The main improvement is faster, smarter failovers.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Think of Pacemaker as the control plane for high availability on RHEL. On RHEL, you control it just like any other service. \n\n # Start the mssql-pcsag service \nsudo systemctl start mssql-pcsag \n\n# Restart the mssql-pcsag service \nsudo systemctl restart mssql-pcsag \n\n# Check the status of the mssql-pcsag service \nsudo systemctl status mssql-pcsag \n\n# Stop the mssql-pcsag service \nsudo systemctl stop mssql-pcsag This is simple, predictable, and RHEL-native.",
+      "incident_timeline": "Why Pacemaker matters on RHEL If you’re coming from the Windows world, you’re used to SQL Server AlwaysOn Availability Groups working hand-in-hand with Windows Server Failover Clustering (WSFC). That built-in clustering \nEnter Pacemaker HA Agent v2 With SQL Server 2025 CU3, we’re introducing a completely reworked HA agent, built from the ground up with RHEL deployments in mind. One of the biggest changes is that it’s now service-based. I\n# Restart the mssql-pcsag service\nsudo systemctl restart mssql-pcsag\nFailover you can tune One of the biggest gaps between Windows and Linux HA has been flexibility. That changes with v2. You can now configure failure condition levels (1–5) and health check timeouts. This allows you to de\nThis is non-production for the time being. If you’re already running SQL Server 2025 on RHEL and want to test v2, the upgrade path is straightforward.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "If you’re running an SQL Server on Red Hat Enterprise Linux (RHEL) and care about high availability, this is a big one. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "4688da9a9cb673ac",
+    "title": "Deploy with confidence: Continuous integration and continuous delivery for agentic AI",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/18/ci-cd-delivery-agentic-ai",
+    "published": "2026-05-18T07:01:14+00:00",
+    "fetched_at": "2026-05-18T08:50:31.231223+00:00",
+    "summary": "In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way.",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-18",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "One test run is never enough. Responses can change with every run, so you need multiple tests to ensure the system works as expected.",
+      "LLM behavior can drift over time. You must test continuously even after meeting your initial targets because the accuracy can change.",
+      "Running the CI/CD pipelines There are many options for running CI/CD pipelines, such as Red Hat OpenShift Pipelines or GitHub Actions. For the it-self-service-agent AI quickstart, we chose GitHub Actions . The AI quickst",
+      "Keeping CI workflows as thin orchestration wrappers over a project Makefile was a particularly useful practice. Every step in GitHub Actions calls a make target, such as make lint , make test-all , make test-short-resp-i",
+      "This example shows the target used for end-to-end testing in the pull request (PR) testing:",
+      ".PHONY: test-short-resp-integration-request-mgr",
+      "test-short-resp-integration-request-mgr:",
+      "@echo \"Running short responses integration test with Request Manager...\""
+    ],
+    "sections": {
+      "overview": "In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications. For agentic systems, this process is even more important because agents are inherently variable.",
+      "technical_breakdown": "Swap the specialist agent, add your own MCP servers for different integrations, customize the knowledge base, and define your own evaluation metrics.\n\nAbout AI quickstarts AI quickstarts are a catalog of ready-to-run, industry-specific use cases for your Red Hat AI environment.\n\nThese factors make a continuous CI/CD pipeline essential for agentic deployments.\n\nA custom check enforces consistent logging patterns.\n\nThe Helm templates are exported and validated with kubeconform against the Kubernetes schema.",
+      "impact": "If you use externally hosted models either in the cloud or through something like Red Hat OpenShift AI Models-as-a-Service ), shared load from other users can impact performance. This means any user deploying the AI quickstart with the default values gets the most recent stable release. This is the closest approximation to a real user deployment. This ensures we test the same pre-built containers that users receive.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "If you use externally hosted models, their behavior can change as providers tweak them to improve performance, fix bugs, or reduce costs.\n\nBy feeding nightly results into a failure-tracking spreadsheet, we could spot rising error rates, investigate, adjust the prompts, and confirm the fix with the next set of runs.\n\nFigure 8: Tracking results to identify, fix, and validate prompt adjustments.\n\nThis turns a variable cost into a fixed infrastructure cost, which is easier to budget for and avoids surprise bills.",
+      "lessons_learned": "In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way.\n\nThis is the ninth post in a series covering what we learned while developing the it-self-service-agent AI quickstart.\n\nCatch up on the previous parts in the series:\n\n Part 1: AI quickstart: Self-service agent for IT process automation \n Part 2: AI meets you where you are: Slack, email & ServiceNow \n Part 3: Prompt engineering: Big vs. small prompts for AI agents \n Part 4: Automate AI agents with the Responses API in Llama Stack \n Part 5: Eval-driven development: Build and evaluate reliable AI agents \n Part 6: Distributed tracing for agentic workflows with OpenTelemetry \n Part 7: 3 Lessons for building reliable ServiceNow AI integrations \n Part 8: Guardrails: Enterprise safety shields with Llama Stack \n Part 9: Deploy with confidence: Continuous integration and continuous delivery for agentic AI \n If you want to learn more about the business benefits of using agentic AI to automate IT processes, check out AI quickstart: Implementing IT processes with agentic AI on Red Hat OpenShift AI .\n\nIf you use externally hosted models, their behavior can change as providers tweak them to improve performance, fix bugs, or reduce costs.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. For agentic systems, this process is even more important because agents are inherently variable. You must test continuously even after meeting your initial targets because the accuracy can change. These factors make a continuous CI/CD pipeline essential for agentic deployments.",
+      "incident_timeline": "One test run is never enough. Responses can change with every run, so you need multiple tests to ensure the system works as expected.\nLLM behavior can drift over time. You must test continuously even after meeting your initial targets because the accuracy can change.\nRunning the CI/CD pipelines There are many options for running CI/CD pipelines, such as Red Hat OpenShift Pipelines or GitHub Actions. For the it-self-service-agent AI quickstart, we chose GitHub Actions . The AI quickst\nKeeping CI workflows as thin orchestration wrappers over a project Makefile was a particularly useful practice. Every step in GitHub Actions calls a make target, such as make lint , make test-all , make test-short-resp-i\nThis example shows the target used for end-to-end testing in the pull request (PR) testing:\n.PHONY: test-short-resp-integration-request-mgr\ntest-short-resp-integration-request-mgr:\n@echo \"Running short responses integration test with Request Manager...\"",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

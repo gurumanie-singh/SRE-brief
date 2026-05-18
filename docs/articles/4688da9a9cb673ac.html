@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deploy with confidence: Continuous integration and continuous delivery for agentic AI — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-18.html" class="back-link">← 18 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">18 May 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Deploy with confidence: Continuous integration and continuous delivery for agentic AI</h1>
+
+      <p class="subtitle">In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="vendor-tag">Slack</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications. For agentic systems, this process is even more important because agents are inherently variable.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Swap the specialist agent, add your own MCP servers for different integrations, customize the knowledge base, and define your own evaluation metrics.</p>
+<p>About AI quickstarts AI quickstarts are a catalog of ready-to-run, industry-specific use cases for your Red Hat AI environment.</p>
+<p>These factors make a continuous CI/CD pipeline essential for agentic deployments.</p>
+<p>A custom check enforces consistent logging patterns.</p>
+<p>The Helm templates are exported and validated with kubeconform against the Kubernetes schema.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>If you use externally hosted models either in the cloud or through something like Red Hat OpenShift AI Models-as-a-Service ), shared load from other users can impact performance. This means any user deploying the AI quickstart with the default values gets the most recent stable release. This is the closest approximation to a real user deployment. This ensures we test the same pre-built containers that users receive.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>If you use externally hosted models, their behavior can change as providers tweak them to improve performance, fix bugs, or reduce costs.</p>
+<p>By feeding nightly results into a failure-tracking spreadsheet, we could spot rising error rates, investigate, adjust the prompts, and confirm the fix with the next set of runs.</p>
+<p>Figure 8: Tracking results to identify, fix, and validate prompt adjustments.</p>
+<p>This turns a variable cost into a fixed infrastructure cost, which is easier to budget for and avoids surprise bills.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way.</p>
+<p>This is the ninth post in a series covering what we learned while developing the it-self-service-agent AI quickstart.</p>
+<p>Catch up on the previous parts in the series:</p>
+<p>Part 1: AI quickstart: Self-service agent for IT process automation   Part 2: AI meets you where you are: Slack, email &amp; ServiceNow   Part 3: Prompt engineering: Big vs. small prompts for AI agents   Part 4: Automate AI agents with the Responses API in Llama Stack   Part 5: Eval-driven development: Build and evaluate reliable AI agents   Part 6: Distributed tracing for agentic workflows with OpenTelemetry   Part 7: 3 Lessons for building reliable ServiceNow AI integrations   Part 8: Guardrails: Enterprise safety shields with Llama Stack   Part 9: Deploy with confidence: Continuous integration and continuous delivery for agentic AI   If you want to learn more about the business benefits of using agentic AI to automate IT processes, check out AI quickstart: Implementing IT processes with agentic AI on Red Hat OpenShift AI .</p>
+<p>If you use externally hosted models, their behavior can change as providers tweak them to improve performance, fix bugs, or reduce costs.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. For agentic systems, this process is even more important because agents are inherently variable. You must test continuously even after meeting your initial targets because the accuracy can change. These factors make a continuous CI/CD pipeline essential for agentic deployments.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>One test run is never enough. Responses can change with every run, so you need multiple tests to ensure the system works as expected.</li>
+            <li>LLM behavior can drift over time. You must test continuously even after meeting your initial targets because the accuracy can change.</li>
+            <li>Running the CI/CD pipelines There are many options for running CI/CD pipelines, such as Red Hat OpenShift Pipelines or GitHub Actions. For the it-self-service-agent AI quickstart, we chose GitHub Actions . The AI quickst</li>
+            <li>Keeping CI workflows as thin orchestration wrappers over a project Makefile was a particularly useful practice. Every step in GitHub Actions calls a make target, such as make lint , make test-all , make test-short-resp-i</li>
+            <li>This example shows the target used for end-to-end testing in the pull request (PR) testing:</li>
+            <li>.PHONY: test-short-resp-integration-request-mgr</li>
+            <li>test-short-resp-integration-request-mgr:</li>
+            <li>@echo &#34;Running short responses integration test with Request Manager...&#34;</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/18/ci-cd-delivery-agentic-ai" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -25,15 +25,16 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">17 May 2026</h1>
+      <h1 class="brief-title">18 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-17T23:23:04.036421-05:00">17 May 2026, 23:23</time>
+        <time data-iso="2026-05-18T03:50:31.554533-05:00">18 May 2026, 03:50</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">5 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -41,19 +42,20 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>Repeated coverage across GitHub</li>
+        <li>1 critical incident signal in the feed window</li>
+        <li>Repeated coverage across Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">agent<span class="trend-count">5</span></span>
+        <span class="trend-pill">agent<span class="trend-count">6</span></span>
+        <span class="trend-pill">agentic<span class="trend-count">4</span></span>
         <span class="trend-pill">building<span class="trend-count">4</span></span>
         <span class="trend-pill">kubernetes<span class="trend-count">3</span></span>
         <span class="trend-pill">vault<span class="trend-count">3</span></span>
         <span class="trend-pill">software<span class="trend-count">3</span></span>
-        <span class="trend-pill">agentic<span class="trend-count">3</span></span>
       </div>
     </div>
   </div>
@@ -83,24 +85,24 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
@@ -109,12 +111,12 @@
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
@@ -123,6 +125,84 @@
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      18 May 2026
+      <span class="day-count">2</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--critical"
+       data-tags="deployment,latency,outage"
+       data-vendors="Red Hat"
+       data-impact="critical"
+       data-theme="incident response"
+       data-title="sql server ha on rhel: meet pacemaker ha agent v2 (tech preview)"
+       data-id="203009ecd6b5c2ec"
+       data-published="2026-05-18T07:01:17+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-18T07:01:17+00:00" title="18 May 2026, 02:01">18 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">SQL Server HA on RHEL: Meet Pacemaker HA Agent v2 (tech preview)</h3>
+      <p class="card-summary">If you’re running an SQL Server on Red Hat Enterprise Linux (RHEL) and care about high availability, this is a big one. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you’re running an SQL Server on Red Hat Enterprise Linux (RHEL) and care about high availability, this is a big one. We’re introducing Pacemaker HA Agent v2 (tech preview), the next evolution of high availability for SQL Server on RHEL. This release focuses on one thing above all: making failovers faster, smarter, and more reliable than before.</p></div>
+      <div class="detail-links">
+        <a href="articles/203009ecd6b5c2ec.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/18/sql-server-ha-rhel-meet-pacemaker-ha-agent-v2-tech-preview" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,observability,outage"
+       data-vendors="GitHub,Kubernetes,Red Hat,Slack"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="deploy with confidence: continuous integration and continuous delivery for agentic ai"
+       data-id="4688da9a9cb673ac"
+       data-published="2026-05-18T07:01:14+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-18T07:01:14+00:00" title="18 May 2026, 02:01">18 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Deploy with confidence: Continuous integration and continuous delivery for agentic AI</h3>
+      <p class="card-summary">In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications. For agentic systems, this process is even more important because agents are inherently variable.</p></div>
+      <div class="detail-links">
+        <a href="articles/4688da9a9cb673ac.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/18/ci-cd-delivery-agentic-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       15 May 2026
@@ -798,7 +878,7 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
   <div class="day-group">
     <h2 class="day-heading">
       12 May 2026
-      <span class="day-count">10</span>
+      <span class="day-count">9</span>
     </h2>
   </div>
 
@@ -1124,80 +1204,6 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
       <div class="detail-links">
         <a href="articles/9ee1aea27477633d.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/12/connecting-the-dots-for-accurate-ai/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--high"
-       data-tags="capacity,deployment,kubernetes"
-       data-vendors="HashiCorp"
-       data-impact="high"
-       data-theme="capacity and scale"
-       data-title="ibm vault 2.0 adds ui enhancements and improved reporting visibility"
-       data-id="418c38d83afc33da"
-       data-published="2026-05-12T04:12:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-05-12T04:12:00+00:00" title="11 May 2026, 23:12">11 May 2026, 23:12</time>
-      </div>
-      <h3 class="card-title">IBM Vault 2.0 adds UI enhancements and improved reporting visibility</h3>
-      <p class="card-summary">Many educational resources exist outside of IBM Vault to help users get the most value out of their secrets management experience with Vault. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">capacity</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-        </div>
-      </div>
-      <span class="card-source">HashiCorp Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Many educational resources exist outside of IBM Vault to help users get the most value out of their secrets management experience with Vault. From developer docs to videos authored in-house by HashiCorp, an IBM company, to user and community-generated content, users have access to many resources outside of the product. Becoming a Vault expert requires accessing disparate knowledge that isn’t contextualized within the product.With the recent  release of IBM Vault 2.0 , we’ve taken the opportunity to holistically reassess Vault with a clear goal: make Vault easier to use, so that customers can onboard the product without needing a PhD in Vault.</p></div>
-      <div class="detail-links">
-        <a href="articles/418c38d83afc33da.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.hashicorp.com/blog/ibm-vault-2-0-adds-ui-enhancements-and-improved-reporting-visibility" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      11 May 2026
-      <span class="day-count">1</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="when the sensor starts thinking: snortml, agentic ai, and the evolving architecture of intrusion detection"
-       data-id="c3ba8ef13f4d915e"
-       data-published="2026-05-11T16:25:54+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-05-11T16:25:54+00:00" title="11 May 2026, 11:25">11 May 2026, 11:25</time>
-      </div>
-      <h3 class="card-title">When the Sensor Starts Thinking: SnortML, Agentic AI, and the Evolving Architecture of Intrusion Detection</h3>
-      <p class="card-summary">Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from &#34;does this match a known pattern?&#34; to &#34;does this actually make sense in context?&#34;.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Signature-based detection has always known what it was looking for. Machine learning and autonomous agents are changing the question entirely, shifting from &#34;does this match a known pattern?&#34; to &#34;does this actually make sense in context?&#34;</p></div>
-      <div class="detail-links">
-        <a href="articles/c3ba8ef13f4d915e.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/05/11/when-the-sensor-starts-thinking-snortml-agentic-ai-and-the-evolving-architecture-of-intrusion-detection/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
