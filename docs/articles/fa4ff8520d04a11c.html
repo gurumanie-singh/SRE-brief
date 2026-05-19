@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debugging image mode with Red Hat OpenShift 4.20: A practical guide — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-19.html" class="back-link">← 19 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">19 May 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Debugging image mode with Red Hat OpenShift 4.20: A practical guide</h1>
+
+      <p class="subtitle">Image mode is a powerful capability in Red Hat OpenShift that allows customization to CoreOS-based nodes. While this feature provides unprecedented flexibility, it can also introduce new layers of complexity when things go wrong.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Image mode is a powerful capability in Red Hat OpenShift that allows customization to CoreOS-based nodes. While this feature provides unprecedented flexibility, it can also introduce new layers of complexity when things go wrong.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Image mode is a powerful capability in Red Hat OpenShift that allows customization to CoreOS-based nodes. While this feature provides unprecedented flexibility, it can also introduce new layers of complexity when things go wrong. This guide demonstrates common debugging scenarios in OpenShift 4.20 and beyond, and provides practical troubleshooting steps to get clusters back on track.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The container image-build builds the image and pushes it  The container create-digest-configmap creates an auxiliary configmap with the right digest so that it can be read and openshift-machine-config-operator can update the MOSB and MOSC resources  To identify errors in the build process, examine the image-build container in the build pod:</p>
+<p>$ oc -n openshift-machine-config-operator logs \ build-infra-32ef35dea3e553071277954842edb33a-2jg2t \ -c image-build ... time=&#34;2025-10-17T10:51:32Z&#34; level=debug msg=&#34;Running &amp;exec.Cmd{Path:\&#34;/bin/sh\&#34;, Args:[]string{\&#34;/bin/sh\&#34;, \&#34;-c\&#34;, \&#34;curl --fail -L https://github.com/example/yq/releases/latest/download/yq_linux_amd64_wrong -o /usr/bin/yq &amp;&amp; chmod +x /usr/bin/yq\&#34;}, Env:[]string{\&#34;HTTP_PROXY=\&#34;, \&#34;HTTPS_PROXY=\&#34;, \&#34;NO_PROXY=\&#34;, \&#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\&#34;, \&#34;HOSTNAME=0430829320a1\&#34;, \&#34;HOME=/root\&#34;}, Dir:\&#34;/\&#34;, Stdin:(*os.File)(0xc0001280a0), Stdout:(*os.File)(0xc0001280a8), Stderr:(*os.File)(0xc0001280b0), ExtraFiles:[]*os.File(nil), SysProcAttr:(*syscall.SysProcAttr)(0xc00017c0c0), Process:(*os.Process)(nil), ProcessState:(*os.ProcessState)(nil), ctx:context.Context(nil), Err:error(nil), Cancel:(func() error)(nil), WaitDelay:0, childIOFiles:[]io.Closer(nil), parentIOPipes:[]io.Closer(nil), goroutine:[]func() error(nil), goroutineErr:(&lt;-chan error)(nil), ctxResult:(&lt;-chan exec.ctxResult)(nil), createdByStack:[]uint8(nil), lookPathErr:error(nil), cachedLookExtensions:struct { in string; out string }{in:\&#34;\&#34;, out:\&#34;\&#34;}} (PATH = \&#34;\&#34;)&#34; %Total %Rec %Xfer Avg Speed Time Time Time Current Dload Upload...</p>
+<p>The key is knowing where to look:</p>
+<p>openshift-machine-config-operator pod logs for MOSC issues  Build job pod logs for image build failures  machine-config-daemon pod logs for node-level problems  Image mode failures usually happen during the build stage, often caused by pull secret authentication issues, Containerfile errors, or registry permission problems.</p>
+<p>Success The MCP should report an updated status:</p>
+<p>$ oc get mcp infra NAME CONFIG UPDATED UPDATING DEGRADED MACHINECOUNT infra rendered-infra-f47..e74 True False False 3  READYMACHINECOUNT UPDATEDMACHINECOUNT DEGRADEDMACHINECOUNT AGE 3 3 0 61m Verify the proper application of the image on the nodes:</p>
+<p>$ oc debug -q node/ip-10-0-10-154.compute.example -- chroot \ /host rpm-ostree status State: idle Deployments: ostree-unverified-registry:quay.io/sregidor/sregidor-os@sha256:876..ef13   Digest: sha256:8761d4273f3213f2f9c9b4aa9dbe33aa758f17d691f0f53d2b20f55702c9ef13  Version: 9.6.20251013-1 (2025-10-17T12:09:08Z) $ oc debug -q node/ip-10-0-10-154.compute.example -- chroot \ /host which yq /usr/bin/yq</p>
+<p>$ oc debug -q node/ip-10-0-10-154.compute.example -- chroot /host yq -h yq is a portable command-line data file processor (https://github.com/mikefarah/yq/)  See https://mikefarah.gitbook.io/yq/ for detailed documentation and examples.</p>
+<p>Focus on checking the MachineConfigPool status, the information in the MachineConfigNodes resources and the logs of the machine-config-daemon pods.</p>
+<p>Failed to update OS to quay.io/sregidor/sregidor-os@sha256:8761d4273f3213f2f9c9b4aa9dbe33aa758f17d691f0f53d2b20f55702c9ef13  after retries: timed out waiting for the condition&#34;, Node ip-10-0-75-69.compute.example  is reporting: &#34;Failed to update OS to quay.io/sregidor/sregidor-os@sha256:8761d4273f3213f2f9c9b4aa9dbe33aa758f17d691f0f53d2b20f55702c9ef13  after retries: timed out waiting for the condition&#34;&#39;  reason: 1 nodes are reporting degraded status on sync  status: &#34;True&#34;  type: NodeDegraded  And the detailed information can be found in the machine-config-daemon pod logs:</p>
+<p>$ oc logs -n openshift-machine-config-operator $(oc get pods \ -n openshift-machine-config-operator -l &#34;k8s-app=machine-config-daemon&#34; \ --field-selector &#34;spec.nodeName=ip-10-0-75-69.compute.example&#34; \ -o jsonpath=&#34;{.items[0].metadata.name}&#34;) -c machine-config-daemon ...</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>While acquiring the MachineOSBuild resource:</p>
+<p>$ oc -n openshift-machine-config-operator get machineosbuild NAME PREPARED BUILDING SUCCEEDED infra-b1b93a87b88b18b3ad70e9fb2596b2cd False True False INTERRUPTED FAILED AGE False False 108s Creating the job in the MachineOSBuild execution:</p>
+<p>$ oc -n openshift-machine-config-operator get job NAME STATUS COMPLETIONS DURATION AGE build-infra-b1b93a87b..b2cd Running 0/1 105s 105s  The pod controlled by the job, which executes the actual build process:</p>
+<p>$ oc -n openshift-machine-config-operator get pods NAME READY STATUS RESTARTS AGE build-infra-b1b93a87b..b2cd-q7tsb 0/1 Init:0/1 0 2m49s ... The MOSB resource shows as failing:</p>
+<p>$ oc -n openshift-machine-config-operator get machineosbuild NAME PREPARED BUILDING SUCCEEDED INTERRUPTED FAILED AGE infra-32e..33a False False False False True 31m So you locate the job:</p>
+<p>$ oc get job -l machineconfiguration.openshift.io/machine-os-config=infra NAME STATUS COMPLETION DURATION AGE build-infra-32e..33a Failed 0/1 31m 31m These are the pods launched by the failed job:</p>
+<p>$ oc -n openshift-machine-config-operator get pods NAME READY STATUS RESTARTS AGE build-infra-32e..33a-2jg2t 0/1 Init:Error 0 25m build-infra-32e..33a-bzfcp 0/1 Init:Error 0 29m build-infra-32e..33a-cndjm 0/1 Init:Error 0 32m build-infra-32e..33a-lqlk9 0/1 Init:Error 0 22m Examine the logs of the failed pod to determine the cause. What to watch for:</p>
+<p>Pool update status: The MachineConfigPool show Updating=True as nodes begin updating  Image pull failures: Nodes may fail to download the image if currentImagePullSecret is incorrect  Network connectivity: Nodes must be able to reach the registry where the image is stored  Node degradation: Nodes stuck in degraded state due to failed updates should be checked  Reboot issues: Nodes should successfully reboot into the new OS image  Stalled updates: If the pool remains in the Updating state too long, investigate individual node statuses  In this final stage, issues typically relate to a node&#39;s ability to access and apply a layered image.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>When you understand the three distinct stages (MachineOSConfig validation, MachineOSBuild execution, and image deployment to nodes) of the process, failures can be systematically narrowed down to identify where they occur and what the root cause is.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>At this stage, issues are typically configuration errors that prevent a resource from being created or accepted by the cluster.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. There are also events reporting the error:</p>
+<p>$ oc get events -n openshift-machine-config-operator --sort-by metadata.creationTimestamp |tail -3 34s Warning OperatorDegraded: MachineOSBuilderFailed /machine-config Failed to resync 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest because: could not update Machine OS Builder deployment: could not validate renderedImagePushSecret &#34;rendered-image&#34; for MachineOSConfig infra: secret rendered-image from infra is not found. Did you use the right secret name? 11s Warning OperatorDegraded: MachineOSBuilderFailed /machine-config Failed to resync 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest because: could not update Machine OS Builder deployment: could not validate baseImagePullSecret &#34;base-image-pull&#34; for MachineOSConfig infra: secret base-image-pull from infra is not found. You can get information from the machine-config ClusterOperator, too:</p>
+<p>$ oc get co machine-config NAME VERSION AVAILABLE PROGRESSING DEGRADED SINCE MESSAGE machine-config 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest True False True 76m Failed to resync 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest because: could not update Machine OS Builder deployment: could not validate renderedImagePushSecret &#34;rendered-image&#34; for MachineOSConfig infra: secret rendered-image from infra is not found.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>NAME READY STATUS RESTARTS</li>
+            <li>E1017 08:56:53.431756 1 operator.go:467] &#34;Unhandled Error&#34; err=&#34;could not update Machine OS Builder deployment: could not validate renderedImagePushSecret \&#34;rendered-image\&#34; for MachineOSConfig infra: secret rendered-ima</li>
+            <li>$ oc get events -n openshift-machine-config-operator --sort-by metadata.creationTimestamp |tail -3</li>
+            <li>34s Warning OperatorDegraded: MachineOSBuilderFailed /machine-config Failed to resync 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest because: could not update Machine OS Builder deployment: could not validate rende</li>
+            <li>11s Warning OperatorDegraded: MachineOSBuilderFailed /machine-config Failed to resync 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest because: could not update Machine OS Builder deployment: could not validate baseI</li>
+            <li>machine-config 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest True False True 76m Failed to resync 4.20.0-0-2025-10-16-080835-test-ci-ln-bfn63jk-latest because: could not update Machine OS Builder deployment: could</li>
+            <li>Image push errors: A problem pushing to the registry suggests an issue with renderedImagePushSecret or registry permissions.</li>
+            <li>NAME READY STATUS RESTARTS AGE</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/19/debugging-image-mode-red-hat-openshift-420-practical-guide" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

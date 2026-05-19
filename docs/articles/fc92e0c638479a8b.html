@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-19.html" class="back-link">← 19 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">19 May 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark</h1>
+
+      <p class="subtitle">Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo. Leadership is excited.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The default provider set, declared in YAML configuration files, includes:</p>
+<p>lm-evaluation-harness: 167 benchmarks for capability, reasoning, and knowledge evaluation  Garak: Red-teaming, safety probes, and toxicity detection  GuideLLM: Throughput, latency, and infrastructure profiling  LightEval: Fast, lightweight capability benchmarks  MTEB: Massive text embedding benchmarks  A single POST request to /api/v1/evaluations can fan out to multiple backends in parallel, aggregate the results with configurable weights, and write the full experiment record to MLflow without requiring the caller to manage any of that complexity.</p>
+<p>The tooling fragmentation problem A typical enterprise AI team evaluating a new model or RAG pipeline might use several tools: EleutherAI&#39;s LM Evaluation Harness for capability benchmarks, RAGAS for retrieval quality, Garak for red-teaming and safety probes, and GuideLLM for throughput and latency profiling.</p>
+<p>The consequence is that decisions about which model to deploy, which component to tune, or which risk to accept are made on the basis of tribal knowledge rather than traceable evidence.</p>
+<p>Use TrustyAI operator to manage its Kubernetes deployment.</p>
+<p>The team optimized for the demo, not for the deployment.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. Users complain that answers about product returns are confidently wrong. A multilingual customer service agent needs a breakdown by language, not a single aggregate accuracy score. The dev-to-enterprise gap A developer can run a quick evaluation from a Python script on their laptop in minutes.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Calling a collection is as simple as including its ID in an evaluation request:</p>
+<p>curl -X POST /api/v1/evaluations \  -d &#39;{  &#34;name&#34;: &#34;llama-3-v2-healthcare-eval&#34;,  &#34;model&#34;: { &#34;url&#34;: &#34;http://vllm-service:8080/v1&#34; },  &#34;collection&#34;: { &#34;id&#34;: &#34;healthcare_safety_v1&#34; },  &#34;experiment&#34;: { &#34;name&#34;: &#34;llama-3-v2-healthcare-eval&#34; } }&#39; EvalHub looks up the collection, extracts the benchmarks, and groups them by provider to improve execution.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. The operational cost is real: evaluation runs are skipped under deadline pressure, results are not compared across model versions because the formats are incompatible, and the institutional knowledge of &#34;what we ran last time&#34; lives in one engineer&#39;s notebook.</p>
+<p>2. It directly addresses these five problems through a single orchestration control plane and a set of deliberately designed primitives. The post EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark appeared first on Red Hat Developer .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo. Leadership is excited. The lau</li>
+            <li>What went wrong? Most likely, nothing catastrophic and nothing subtle. The evaluation process simply never asked the right questions. &#34;Looks good to me&#34; and a handful of manual spot checks stood in for systematic measure</li>
+            <li>2. The &#34;What should I measure?&#34; problem Generic evaluation tools are built around academic benchmarks: MMLU, ARC, HellaSwag, HumanEval. These are valuable, but they answer the wrong question for most enterprise use cases</li>
+            <li>5. The dev-to-enterprise gap A developer can run a quick evaluation from a Python script on their laptop in minutes. Moving that same evaluation to a Kubernetes cluster for reproducible, production-scale runs—with proper</li>
+            <li>Introducing EvalHub EvalHub is the Red Hat AI unified foundation for AI evaluation. It directly addresses these five problems through a single orchestration control plane and a set of deliberately designed primitives.</li>
+            <li>A single orchestration layer for every framework EvalHub uses a REST API server written in Go and deployed on Kubernetes via the TrustyAI operator. It routes evaluation requests to supported backends without the calling </li>
+            <li>A single POST request to /api/v1/evaluations can fan out to multiple backends in parallel, aggregate the results with configurable weights, and write the full experiment record to MLflow without requiring the caller to m</li>
+            <li>evalhub.client : Sync and async typed REST clients for submitting jobs and querying providers, benchmarks, and collections from Python code or notebooks.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/19/evalhub-because-looks-good-me-isnt-benchmark" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

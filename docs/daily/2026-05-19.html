@@ -27,10 +27,19 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">19 May 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">3 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>Repeated coverage across GitHub, Kubernetes</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -51,9 +60,31 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
       </div>
     </div>
   </div>
@@ -87,6 +118,78 @@
       <div class="detail-links">
         <a href="../articles/f07633ac6f49f801.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/19/your-fridge-could-be-a-threat-to-national-security/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,networking,outage,postmortem"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="debugging image mode with red hat openshift 4.20: a practical guide"
+       data-id="fa4ff8520d04a11c"
+       data-published="2026-05-19T07:01:24+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-19T07:01:24+00:00" title="19 May 2026, 02:01">19 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Debugging image mode with Red Hat OpenShift 4.20: A practical guide</h3>
+      <p class="card-summary">Image mode is a powerful capability in Red Hat OpenShift that allows customization to CoreOS-based nodes. While this feature provides unprecedented flexibility, it can also introduce new layers of complexity when things go wrong.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Image mode is a powerful capability in Red Hat OpenShift that allows customization to CoreOS-based nodes. While this feature provides unprecedented flexibility, it can also introduce new layers of complexity when things go wrong. This guide demonstrates common debugging scenarios in OpenShift 4.20 and beyond, and provides practical troubleshooting steps to get clusters back on track.</p></div>
+      <div class="detail-links">
+        <a href="../articles/fa4ff8520d04a11c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/19/debugging-image-mode-red-hat-openshift-420-practical-guide" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,latency,observability,outage"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="evalhub: because &#34;looks good to me&#34; isn&#39;t a benchmark"
+       data-id="fc92e0c638479a8b"
+       data-published="2026-05-19T07:01:20+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-19T07:01:20+00:00" title="19 May 2026, 02:01">19 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark</h3>
+      <p class="card-summary">Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo. Leadership is excited.</p></div>
+      <div class="detail-links">
+        <a href="../articles/fc92e0c638479a8b.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/19/evalhub-because-looks-good-me-isnt-benchmark" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
