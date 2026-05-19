@@ -131,5 +131,38 @@
     "email_summary": "Your team just finished building a customer support assistant using retrieval-augmented generation (RAG) over the past three months. It handled every test query you threw at it in the demo.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "86817cc53c949373",
+    "title": "Why the Elasticsearch Platform is the missing piece in your AI stack",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elasticsearch-platform-missing-piece-ai-stack",
+    "published": "2026-05-19T00:00:00+00:00",
+    "fetched_at": "2026-05-19T13:57:15.088775+00:00",
+    "summary": "Most enterprise AI initiatives stitch together four to five systems for memory, search, and state. The Elasticsearch Platform handles all of it in one engine — and the architecture is simpler than you think.",
+    "tags": [],
+    "day": "2026-05-19",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Most enterprise AI initiatives stitch together four to five systems for memory, search, and state. The Elasticsearch Platform handles all of it in one engine — and the architecture is simpler than you think.",
+      "technical_breakdown": "Most enterprise AI initiatives stitch together four to five systems for memory, search, and state.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Most enterprise AI initiatives stitch together four to five systems for memory, search, and state. The Elasticsearch Platform handles all of it in one engine — and the architecture is simpler than you think.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
