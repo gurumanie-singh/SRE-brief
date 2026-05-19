@@ -1,5 +1,51 @@
 [
   {
+    "id": "6d4d472eb0e1ad15",
+    "title": "The great AI divide: Why early leaders embrace an AI operating model",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/the-great-ai-divide-why-early-leaders-embrace-an-ai-operating-model",
+    "published": "2026-05-14T16:00:00+00:00",
+    "fetched_at": "2026-05-19T19:08:59.139145+00:00",
+    "summary": "Organizations are entering a new phase of AI adoption — one where experimentation alone is no longer enough. The enterprises pulling ahead are no longer asking whether AI matters. They are determining how to operationalize it at scale before competitors do. ",
+    "tags": [
+      "latency",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-05-14",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Action:  Real-time orchestration that transforms insights into coordinated operational response.",
+      "These fragmented environments create blind spots that slow response, increase operational risk, and limit the value organizations can realize from AI investments. Data exists across systems, but insight often remains dis",
+      "When organizations establish unified visibility across data, infrastructure, applications, and operations, AI systems can begin identifying patterns, surfacing operational risks, and generating recommendations continuous",
+      "This is where operational orchestration becomes critical.",
+      "Read more:  IBM bob ,  watsonx Orchestrate,   HCP Terraform powered by Infragraph",
+      "Achieving this requires standardized workflows for provisioning, configuration, orchestration, governance, and infrastructure lifecycle management that can operate consistently across cloud, on-premises, edge, and missio",
+      "Organizations must be able to answer critical questions continuously:",
+      "Organizations that operationalize trust alongside intelligence, automation, orchestration, and governance will be better positioned to scale AI responsibly while maintaining resilience, compliance, flexibility, and contr"
+    ],
+    "sections": {
+      "overview": "Organizations are entering a new phase of AI adoption — one where experimentation alone is no longer enough. The enterprises pulling ahead are no longer asking whether AI matters. They are determining how to operationalize it at scale before competitors do.",
+      "technical_breakdown": "IBM and HashiCorp are helping organizations address one of the defining challenges of the AI era: operationalizing AI, data, and intelligent agents across fragmented hybrid environments while maintaining governance, resilience, flexibility, and control — enabling enterprises to build from where they are today across cloud, on-premises, edge, and mission-critical systems.\n\nIntelligence: A unified view across hybrid environments   Most organizations now operate across increasingly complex hybrid environments spanning applications, infrastructure, data, cloud services, edge systems, and mission-critical platforms.\n\nThese fragmented environments create blind spots that slow response, increase operational risk, and limit the value organizations can realize from AI investments.\n\nAchieving this requires standardized workflows for provisioning, configuration, orchestration, governance, and infrastructure lifecycle management that can operate consistently across cloud, on-premises, edge, and mission-critical environments.\n\nOrganizations must maintain visibility and control over how AI systems operate across environments, particularly in highly regulated industries and regions with evolving sovereignty requirements.",
+      "impact": "Organizations must maintain visibility and control over how AI systems operate across environments, particularly in highly regulated industries and regions with evolving sovereignty requirements.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "When organizations establish unified visibility across data, infrastructure, applications, and operations, AI systems can begin identifying patterns, surfacing operational risks, and generating recommendations continuously.\n\nInstead of relying on periodic analysis, organizations gain real-time situational awareness that improves resilience and accelerates decision-making.\n\nModern enterprises already generate enormous volumes of operational telemetry, recommendations, and automated decisions.\n\nOrganizations that operationalize trust alongside intelligence, automation, orchestration, and governance will be better positioned to scale AI responsibly while maintaining resilience, compliance, flexibility, and control.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Action:  Real-time orchestration that transforms insights into coordinated operational response.\nThese fragmented environments create blind spots that slow response, increase operational risk, and limit the value organizations can realize from AI investments. Data exists across systems, but insight often remains dis\nWhen organizations establish unified visibility across data, infrastructure, applications, and operations, AI systems can begin identifying patterns, surfacing operational risks, and generating recommendations continuous\nThis is where operational orchestration becomes critical.\nRead more:  IBM bob ,  watsonx Orchestrate,   HCP Terraform powered by Infragraph\nAchieving this requires standardized workflows for provisioning, configuration, orchestration, governance, and infrastructure lifecycle management that can operate consistently across cloud, on-premises, edge, and missio\nOrganizations must be able to answer critical questions continuously:\nOrganizations that operationalize trust alongside intelligence, automation, orchestration, and governance will be better positioned to scale AI responsibly while maintaining resilience, compliance, flexibility, and contr",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse."
+    },
+    "email_summary": "Organizations are entering a new phase of AI adoption — one where experimentation alone is no longer enough. The enterprises pulling ahead are no longer asking whether AI matters.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "6d67111e18ea2057",
     "title": "Fun in the RUN instruction: Why container builds with distroless images can surprise you",
     "source": "Red Hat Developer Blog",
