@@ -1,5 +1,49 @@
 [
   {
+    "id": "db7ac25a5188d835",
+    "title": "Announcing Claude Managed Agents on Cloudflare",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/claude-managed-agents/",
+    "published": "2026-05-19T13:00:00+00:00",
+    "fetched_at": "2026-05-19T16:54:12.539133+00:00",
+    "summary": "Cloudflare and Anthropic have collaborated to integrate Claude Managed Agents with Cloudflare Sandboxes. Our new integration gives you more control over your agent sandboxes, secures connections to private services, and improves observability.",
+    "tags": [
+      "deployment",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-05-19",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Cloudflare",
+      "Datadog"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Our goal is to make Cloudflare the simplest, most secure, and most programmable cloud for agents.",
+      "As we’ve written before , sandboxed workloads on Cloudflare can use an outbound proxy for fully dynamic, customizable, and zero-trust authentication between sandboxes and external services. This lets you inject secrets i"
+    ],
+    "sections": {
+      "overview": "Cloudflare and Anthropic have collaborated to integrate Claude Managed Agents with Cloudflare Sandboxes. Our new integration gives you more control over your agent sandboxes, secures connections to private services, and improves observability. In the past year, Cloudflare’s Developer Platform has expanded to give more developers the tools they need to run agents at scale.",
+      "technical_breakdown": "Sandbox control and observability - Get detailed sandbox metrics and logs.\n\nEach sandbox can be observed in the Cloudflare dashboard, sandbox logs can be queried or shipped to external providers like Datadog or Splunk, and the control plane ships with a built-in UI, making it easy to track the state of sandboxes or SSH into specific machines.\n\nJust add the relevant binding in wrangler config, write a zod definition, and short function in custom-tools.js :\n\n defineTool({\n name: \"r2_host_file\",\n description: \"Upload from sandbox to R2 and get a public URL.\",\n inputSchema: z.object({\n key: z.string().describe(\"Object key\"),\n content: z.string().describe(\"UTF-8 file body\"),\n contentType: z.string().describe(\"MIME type\"),\n }),\n run: async ({ key, content, contentType }, { env }) => {\n await env.PUBLIC_BUCKET.put(\n key, content, { httpMetadata: { contentType }}\n );\n return `${env.PUB_R2_URL.replace(/\\/$/, \"\")}/${encodeURI(key)}`;\n }\n}), \n The Cloudflare Developer Platform provides all sorts of possibilities for extending your agents: give each agent session a git-backed repo with Artifacts , run edge inference with Workers AI , host applications written on the fly with Dynamic Workers , and more.\n\nOur new integration gives you more control over your agent sandboxes, secures connections to private services, and improves observability.\n\nTo get going in just minutes, we’ve created a default deployment template that gives you the following:\n\n Enhanced security - Run all agent traffic through customizable proxies.",
+      "impact": "To get going in just minutes, we’ve created a default deployment template that gives you the following:\n\n Enhanced security - Run all agent traffic through customizable proxies. The Cloudflare environment \n \n \n \n \n Our new integration gives your agents a Cloudflare-based environment for running and executing code within minutes. Each of your customers should be able to run many agents simultaneously; each of your employees should have tens of agents running at once. The integration uses outbound Workers to handle egress however you see fit \n\n You’re able to apply policies per tenant, per agent, or based on whatever metadata is useful.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "This allows you to securely inject credentials, prevent data exfiltration, and better observe how your agents interact with the outside world.\n\nOur new integration gives you more control over your agent sandboxes, secures connections to private services, and improves observability.\n\nBut as models get better, we expect more and more workflows to be managed by agents.\n\nWe recently launched Cloudflare Mesh and Cloudflare Workers VPC to better connect to these private services, whether they’re running on a cloud provider like AWS or on-premises.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Our new integration gives you more control over your agent sandboxes, secures connections to private services, and improves observability. Sandbox control and observability - Get detailed sandbox metrics and logs. Browser Control and Observability - Get an audit trail of every agent’s browser sessions, including session recording and human-in-the-loop flows.",
+      "incident_timeline": "Our goal is to make Cloudflare the simplest, most secure, and most programmable cloud for agents.\nAs we’ve written before , sandboxed workloads on Cloudflare can use an outbound proxy for fully dynamic, customizable, and zero-trust authentication between sandboxes and external services. This lets you inject secrets i",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Cloudflare and Anthropic have collaborated to integrate Claude Managed Agents with Cloudflare Sandboxes. Our new integration gives you more control over your agent sandboxes, secures connections to private services, and improves observability.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "f07633ac6f49f801",
     "title": "Your fridge could be a threat to national security",
     "source": "Stack Overflow Blog",
