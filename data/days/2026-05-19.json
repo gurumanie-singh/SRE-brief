@@ -1,0 +1,35 @@
+[
+  {
+    "id": "f07633ac6f49f801",
+    "title": "Your fridge could be a threat to national security",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/19/your-fridge-could-be-a-threat-to-national-security/",
+    "published": "2026-05-19T07:40:00+00:00",
+    "fetched_at": "2026-05-19T05:07:54.215124+00:00",
+    "summary": "On the floor of HumanX, Ryan is joined by Adam Meyers,  Senior VP of Counter Adversary Operations at Crowdstrike, for a deep dive on their latest Global Threat Report that tracks over 281 adversaries across nation states, e-crime, and hacktivist organizations.",
+    "tags": [],
+    "day": "2026-05-19",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "On the floor of HumanX, Ryan is joined by Adam Meyers,  Senior VP of Counter Adversary Operations at Crowdstrike, for a deep dive on their latest Global Threat Report that tracks over 281 adversaries across nation states"
+    ],
+    "sections": {
+      "overview": "On the floor of HumanX, Ryan is joined by Adam Meyers,  Senior VP of Counter Adversary Operations at Crowdstrike, for a deep dive on their latest Global Threat Report that tracks over 281 adversaries across nation states, e-crime, and hacktivist organizations.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "On the floor of HumanX, Ryan is joined by Adam Meyers,  Senior VP of Counter Adversary Operations at Crowdstrike, for a deep dive on their latest Global Threat Report that tracks over 281 adversaries across nation states",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "On the floor of HumanX, Ryan is joined by Adam Meyers,  Senior VP of Counter Adversary Operations at Crowdstrike, for a deep dive on their latest Global Threat Report that tracks over 281 adversaries across nation states, e-crime, and hacktivist organizations.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
