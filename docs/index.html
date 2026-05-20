@@ -28,14 +28,14 @@
       <h1 class="brief-title">20 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-20T16:04:08.252583-05:00">20 May 2026, 16:04</time>
+        <time data-iso="2026-05-20T18:20:32.173517-05:00">20 May 2026, 18:20</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
       <span class="stat stat-critical">1 critical</span>
       <span class="stat stat-high">1 high impact</span>
-      <span class="stat">5 items today</span>
+      <span class="stat">6 items today</span>
     </div>
   </div>
 
@@ -87,8 +87,8 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
@@ -130,10 +130,43 @@
   <div class="day-group">
     <h2 class="day-heading">
       20 May 2026
-      <span class="day-count">5</span>
+      <span class="day-count">6</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors="GitHub"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="investigating unauthorized access to github’s internal repositories"
+       data-id="b44e153e16570aa0"
+       data-published="2026-05-20T21:07:38+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-05-20T21:07:38+00:00" title="20 May 2026, 16:07">20 May 2026, 16:07</time>
+      </div>
+      <h3 class="card-title">Investigating unauthorized access to GitHub’s internal repositories</h3>
+      <p class="card-summary">On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately. Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only.</p></div>
+      <div class="detail-links">
+        <a href="articles/b44e153e16570aa0.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="latency,networking"
        data-vendors="HashiCorp"
@@ -194,6 +227,7 @@
           <span class="ttag">kubernetes</span>
         </div>
       </div>
+      <div class="card-related">Also: Kubernetes Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -1095,7 +1129,7 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
   <div class="day-group">
     <h2 class="day-heading">
       13 May 2026
-      <span class="day-count">3</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -1167,42 +1201,6 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
       <div class="detail-links">
         <a href="articles/990d697e62fc2395.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/05/13/build-zero-trust-ai-pipeline-openshift-rhel-cvms" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--critical"
-       data-tags="capacity,database,deployment,latency,networking,observability,outage,scaling"
-       data-vendors="Cloudflare"
-       data-impact="critical"
-       data-theme="observability"
-       data-title="browser run: now running on cloudflare containers, it’s faster and more scalable"
-       data-id="c4f9a57efc050a8f"
-       data-published="2026-05-13T13:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
-<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-13T13:00:00+00:00" title="13 May 2026, 08:00">13 May 2026, 08:00</time>
-      </div>
-      <h3 class="card-title">Browser Run: now running on Cloudflare Containers, it’s faster and more scalable</h3>
-      <p class="card-summary">We’ve enabled higher usage limits, faster performance, and better reliability for Browser Run by rebuilding on top of Cloudflare’s Containers . Impact band: critical.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">capacity</span>
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-        </div>
-      </div>
-      <span class="card-source">Cloudflare Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>We’ve enabled higher usage limits, faster performance, and better reliability for Browser Run by rebuilding on top of Cloudflare’s Containers . You can now spin up 60 browsers per minute via the Workers binding and run up to 120 concurrently — 4x the previous limit. Also, Quick Action response times dropped more than 50%.</p></div>
-      <div class="detail-links">
-        <a href="articles/c4f9a57efc050a8f.html" class="detail-read">Open structured brief →</a>
-        <a href="https://blog.cloudflare.com/browser-run-containers/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
