@@ -1,0 +1,87 @@
+[
+  {
+    "id": "9b7b1b1b0214c8de",
+    "title": "What GPU kernels mean for your distributed inference",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/20/what-gpu-kernels-mean-your-distributed-inference",
+    "published": "2026-05-20T07:16:05+00:00",
+    "fetched_at": "2026-05-20T08:32:57.677116+00:00",
+    "summary": "In 2026, Hugging Face elevated kernels to a first-class repository type (alongside models, datasets, and spaces) on their hub. If you are responsible for distributed AI inference in production, your first reaction probably would be: \"My images already ship kernels, and they are working, what actually has changed?\"",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-05-20",
+    "impact": "high",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "What is the Hugging Face Kernel Hub? The Kernel Hub distributes pre-compiled GPU compute kernels the same way the Model Hub distributes weights: As versioned repositories pulled at runtime by a small Python client. We've",
+      "llm-d is the Kubernetes-native distributed inference framework, splitting the workload into prefill and decode roles, adding KV-cache-aware routing, and pooling GPUs across nodes so a single request can span replicas tha",
+      "What breaks when you mix \"pull at first use\" with \"50 replicas\" Imagine a migration of the example above into a production ServingRuntime : A thin image, kernels pip package, get_kernel() at first request. For a develope",
+      "Image pull churn: Every replica, on every new node, on every scale-up event, pulls the kernel artifact from a public registry at first request. KNative scale-from-zero amplifies this, because the first request to a cold ",
+      "Agility and compliance at scale The practical question for platform engineers is not whether agility or compliance is better, it's \"which lane is this workload in?\"",
+      "The Hugging Face Kernel Hub is useful for: Rapid kernel experimentation in dev and staging clusters (for example, a research team testing out a novel fused attention on a branch belonging to the Kernel Hub).",
+      "Custom operators that are not upstream yet. Before an op is in vLLM mainline, the Kernel Hub is the cleanest delivery vehicle to iterate on it.",
+      "Thin developer images where you just want a kernels-backed PyTorch without a full vLLM, useful for unit tests and model surgery."
+    ],
+    "sections": {
+      "overview": "In 2026, Hugging Face elevated kernels to a first-class repository type (alongside models, datasets, and spaces) on their hub. If you are responsible for distributed AI inference in production, your first reaction probably would be: \"My images already ship kernels, and they are working, what actually has changed?\"\n\n The short answer is that nothing has changed inside your inference runtime. However, the versioned, multi-vendor distribution channel for pre-compiled GPU compute kernels is now available for public use, and that could be a great developer tool.",
+      "technical_breakdown": "KServe + Knative Serving provides the control plane, InferenceService CRDs, revision management, traffic splitting, and scale-from-zero.\n llm-d is the Kubernetes-native distributed inference framework, splitting the workload into prefill and decode roles, adding KV-cache-aware routing, and pooling GPUs across nodes so a single request can span replicas that were never meant to share memory on one box.\n\nOperating system (OS) kernel: The Linux kernel on a Kubernetes worker node manages scheduling, memory, cgroups, namespaces, and critically for us the GPU driver kernel module ( nvidia.ko or amdgpu.ko ) loaded by an NVIDIA or AMD GPU operator.\n\nThe problem on a distributed Kubernetes deployment is that the JIT cost is paid on every pod startup, on every node, every time an autoscaler event happens.\n\nAt fleet scale (KServe, llm-d, autoscaling across dozens of pods on heterogeneous GPU nodes, some of them in disconnected regions) the risk is operational, which is subject to penalty (both business and regulatory).\n\nGPU compute kernel: A small compiled program (CUDA PTX/SASS bytecode, ROCm GCN/CDNA bytecode, or Triton IR) that are executed on a GPU's compute units, not on the CPU.",
+      "impact": "They are pure userspace artifacts and live inside the container image next to PyTorch and vLLM, and get loaded into the GPU through the driver interface at runtime. The Kernel Hub distributes pre-compiled GPU compute kernels the same way the Model Hub distributes weights: As versioned repositories pulled at runtime by a small Python client. That's a nice property for edge and air-gapped clusters, and for the disaster-recovery region that may not have Kernel Hub access. LayerRepository makes the Kernel Hub pull device-scoped.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "It's possible to use other libraries of kernels from PyTorch but it can require considerable effort that's probably better spent solving actual problems.\n\nAgility and compliance at scale The practical question for platform engineers is not whether agility or compliance is better, it's \"which lane is this workload in?\"\n\n The Hugging Face Kernel Hub is useful for: Rapid kernel experimentation in dev and staging clusters (for example, a research team testing out a novel fused attention on a branch belonging to the Kernel Hub).",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. This distinction matters because it tells you what admission control, SBOM scanning, and CVE tracking actually cover. KServe + Knative Serving provides the control plane, InferenceService CRDs, revision management, traffic splitting, and scale-from-zero.\n llm-d is the Kubernetes-native distributed inference framework, splitting the workload into prefill and decode roles, adding KV-cache-aware routing, and pooling GPUs across nodes so a single request can span replicas that were never meant to share memory on one box. They are compiled from source code that Red Hat controls, pinned to specific versions, signed as part of the image, and covered by the image SBOM.",
+      "incident_timeline": "What is the Hugging Face Kernel Hub? The Kernel Hub distributes pre-compiled GPU compute kernels the same way the Model Hub distributes weights: As versioned repositories pulled at runtime by a small Python client. We've\nllm-d is the Kubernetes-native distributed inference framework, splitting the workload into prefill and decode roles, adding KV-cache-aware routing, and pooling GPUs across nodes so a single request can span replicas tha\nWhat breaks when you mix \"pull at first use\" with \"50 replicas\" Imagine a migration of the example above into a production ServingRuntime : A thin image, kernels pip package, get_kernel() at first request. For a develope\nImage pull churn: Every replica, on every new node, on every scale-up event, pulls the kernel artifact from a public registry at first request. KNative scale-from-zero amplifies this, because the first request to a cold \nAgility and compliance at scale The practical question for platform engineers is not whether agility or compliance is better, it's \"which lane is this workload in?\"\nThe Hugging Face Kernel Hub is useful for: Rapid kernel experimentation in dev and staging clusters (for example, a research team testing out a novel fused attention on a branch belonging to the Kernel Hub).\nCustom operators that are not upstream yet. Before an op is in vLLM mainline, the Kernel Hub is the cleanest delivery vehicle to iterate on it.\nThin developer images where you just want a kernels-backed PyTorch without a full vLLM, useful for unit tests and model surgery.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In 2026, Hugging Face elevated kernels to a first-class repository type (alongside models, datasets, and spaces) on their hub. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "7093ae6f741c3b19",
+    "title": "Pack your agentic stack in Slack",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/20/pack-your-agentic-stack-in-slack/",
+    "published": "2026-05-20T04:45:00+00:00",
+    "fetched_at": "2026-05-20T08:32:56.513690+00:00",
+    "summary": "Ryan welcomes Jaime DeLanghe, chief product officer at Slack, to chat about how they’re preparing to integrate everybody’s agents in their chat application.",
+    "tags": [],
+    "day": "2026-05-20",
+    "impact": "medium",
+    "vendors": [
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Jaime DeLanghe, chief product officer at Slack, to chat about how they’re preparing to integrate everybody’s agents in their chat application.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Jaime DeLanghe, chief product officer at Slack, to chat about how they’re preparing to integrate everybody’s agents in their chat application.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
