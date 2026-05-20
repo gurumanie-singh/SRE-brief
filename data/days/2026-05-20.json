@@ -1,5 +1,56 @@
 [
   {
+    "id": "5a714314a9228caf",
+    "title": "Red Hat Enterprise Linux 10.2 and 9.8: Top features for developers",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/20/rhel-10-2-and-9-8-top-features-developers",
+    "published": "2026-05-20T13:02:41+00:00",
+    "fetched_at": "2026-05-20T15:49:53.527359+00:00",
+    "summary": "Red Hat Enterprise Linux (RHEL) 10.2 and RHEL 9.8 are now available, providing an enterprise-ready foundation for recent upstream innovations. Many of these tools first appeared in community distributions, but moving new technology into production requires long-term stability and expert support. These latest releases add features and update tools that help you focus on building applications. They...",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-05-20",
+    "impact": "critical",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Red Hat Enterprise Linux (RHEL) 10.2 and RHEL 9.8 are now available, providing an enterprise-ready foundation for recent upstream innovations. Many of these tools first appeared in community distributions, but moving new",
+      "goose RHEL 10.2 includes goose, an optional command-line tool that provides AI assistance. The fully supported command-line assistant remains available in the AppStream repository. goose is available in the Extensions re",
+      "RHEL command-line assistant RHEL 10.2 and 9.8 now support color output. Color output visually separates commands and scripts from the rest of the text. This makes responses easier to read and use.",
+      "Latest updates to databases and tools RHEL 10.2 and 9.8 include updated versions of popular database management systems and developer tools.",
+      "PostgreSQL 18 PostgreSQL 18 includes asynchronous I/O support and skip scan lookups to help speed up queries. It also introduces UUIDv7 generation for timestamp-ordered UUIDs, which improves data locality. To simplify ma",
+      "MariaDB 11.8 MariaDB 11.8 improves performance for AI applications by adding a new VECTOR data type and vector indexing. The TIMESTAMP data type now supports dates up to the year 2106. This fixes the previous limit of 20",
+      "The latest versions of toolsets and compilers RHEL 10.2 and 9.8 provide updated compilers and languages to help you build and maintain modern applications.",
+      "Python 3.14 Python 3.14 supports free-threaded builds to improve performance. This release removes the Global Interpreter Lock (GIL) to enable true multithreaded parallelism for CPU-bound applications. Deferred evaluatio"
+    ],
+    "sections": {
+      "overview": "Red Hat Enterprise Linux (RHEL) 10.2 and RHEL 9.8 are now available, providing an enterprise-ready foundation for recent upstream innovations. Many of these tools first appeared in community distributions, but moving new technology into production requires long-term stability and expert support. These latest releases add features and update tools that help you focus on building applications.",
+      "technical_breakdown": "Simplify container management with Red Hat build of Podman Desktop Podman Desktop is a graphical tool for working with containers and Kubernetes.\n\nEfficient container storage This architecture keeps a separate copy of the OS in a container store to reduce disk space and network bandwidth usage.\n\nIt uses the Podman container engine, which provides a security-focused foundation for local development.\n\nEnterprise-ready development Red Hat build of Podman Desktop is our primary tool for developing traditional and bootable ( image mode for Red Hat Enterprise Linux ) container applications.\n\nThis release removes the Global Interpreter Lock (GIL) to enable true multithreaded parallelism for CPU-bound applications.",
+      "impact": "Availability and support Versions are available for macOS, RHEL, and Windows. The fully supported command-line assistant remains available in the AppStream repository. goose is available in the Extensions repository for users who want more features.\n\nClassified impact band: critical. Affected layer signal: platform — kubernetes.",
+      "resolution": "This fixes the previous limit of 2038, which provides better long-term stability for your applications.",
+      "lessons_learned": "Ruby 4.0 Ruby 4.0 includes a new ZJIT compiler and Ractor improvements for better concurrency.\n\nIt also introduces UUIDv7 generation for timestamp-ordered UUIDs, which improves data locality.\n\nMariaDB 11.8 MariaDB 11.8 improves performance for AI applications by adding a new VECTOR data type and vector indexing.\n\nThis fixes the previous limit of 2038, which provides better long-term stability for your applications.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. This helps reduce deployment times during scheduled maintenance.",
+      "incident_timeline": "Red Hat Enterprise Linux (RHEL) 10.2 and RHEL 9.8 are now available, providing an enterprise-ready foundation for recent upstream innovations. Many of these tools first appeared in community distributions, but moving new\ngoose RHEL 10.2 includes goose, an optional command-line tool that provides AI assistance. The fully supported command-line assistant remains available in the AppStream repository. goose is available in the Extensions re\nRHEL command-line assistant RHEL 10.2 and 9.8 now support color output. Color output visually separates commands and scripts from the rest of the text. This makes responses easier to read and use.\nLatest updates to databases and tools RHEL 10.2 and 9.8 include updated versions of popular database management systems and developer tools.\nPostgreSQL 18 PostgreSQL 18 includes asynchronous I/O support and skip scan lookups to help speed up queries. It also introduces UUIDv7 generation for timestamp-ordered UUIDs, which improves data locality. To simplify ma\nMariaDB 11.8 MariaDB 11.8 improves performance for AI applications by adding a new VECTOR data type and vector indexing. The TIMESTAMP data type now supports dates up to the year 2106. This fixes the previous limit of 20\nThe latest versions of toolsets and compilers RHEL 10.2 and 9.8 provide updated compilers and languages to help you build and maintain modern applications.\nPython 3.14 Python 3.14 supports free-threaded builds to improve performance. This release removes the Global Interpreter Lock (GIL) to enable true multithreaded parallelism for CPU-bound applications. Deferred evaluatio",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Red Hat Enterprise Linux (RHEL) 10.2 and RHEL 9.8 are now available, providing an enterprise-ready foundation for recent upstream innovations. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "9b7b1b1b0214c8de",
     "title": "What GPU kernels mean for your distributed inference",
     "source": "Red Hat Developer Blog",
@@ -81,6 +132,37 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Ryan welcomes Jaime DeLanghe, chief product officer at Slack, to chat about how they’re preparing to integrate everybody’s agents in their chat application.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "515fbeac098d62f2",
+    "title": "Stanford’s AI Index Report 2026 meets the security reality in financial services",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/ai-index-report-insights-2026",
+    "published": "2026-05-20T00:00:00+00:00",
+    "fetched_at": "2026-05-20T15:49:53.356515+00:00",
+    "summary": "AI is becoming core to financial services. But as adoption scales, so does risk. Without secure, real-time data, strong governance, and cyber resilience, AI can amplify threats as quickly as it drives innovation.",
+    "tags": [],
+    "day": "2026-05-20",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "AI is becoming core to financial services. But as adoption scales, so does risk. Without secure, real-time data, strong governance, and cyber resilience, AI can amplify threats as quickly as it drives innovation.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "AI is becoming core to financial services. But as adoption scales, so does risk.",
     "related_sources": [],
     "highlighted": false
   }

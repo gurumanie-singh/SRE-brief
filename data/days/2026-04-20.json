@@ -233,12 +233,7 @@
       "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Enterprises adopting Red Hat OpenShift at scale increasingly look to hosted control planes (HCP) to reduce infrastructure costs, increase cluster density, and speed up cluster provisioning. Impact band: high.",
-    "related_sources": [
-      {
-        "source": "Cloudflare Blog",
-        "link": "https://blog.cloudflare.com/ai-code-review/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   }
 ]
