@@ -1,5 +1,46 @@
 [
   {
+    "id": "bad9f0b9379cc533",
+    "title": "Encrypting large artifacts and streaming workloads with Vault",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/encrypting-large-artifacts-and-streaming-workloads-with-vault",
+    "published": "2026-05-20T17:00:00+00:00",
+    "fetched_at": "2026-05-20T21:04:06.512005+00:00",
+    "summary": "HashiCorp  Vault’s Transit secrets engine  provides encryption-as-a-service, allowing applications to encrypt and decrypt sensitive data without managing cryptographic keys directly. In this model, applications send data to Vault Transit for encryption and make a similar API call to decrypt the ciphertext. ",
+    "tags": [
+      "latency",
+      "networking"
+    ],
+    "day": "2026-05-20",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "The application requests a new data key from Vault Transit.",
+      "This model also enables strong support for large artifacts and streaming workloads. Since applications encrypt data locally, they can process large files or continuous data streams in real time without transferring entir",
+      "If the Transit key is removed, disabled, or destroyed, Vault can no longer decrypt the EDK. Without access to the DEK, the encrypted artifact becomes permanently unreadable.",
+      "Crypto-shredding therefore provides a practical mechanism for secure data retirement, helping organizations reduce exposure to sensitive data while simplifying compliance with data retention and destruction requirements."
+    ],
+    "sections": {
+      "overview": "HashiCorp  Vault’s Transit secrets engine  provides encryption-as-a-service, allowing applications to encrypt and decrypt sensitive data without managing cryptographic keys directly. In this model, applications send data to Vault Transit for encryption and make a similar API call to decrypt the ciphertext. Vault manages the underlying keys while enforcing authentication and authorization policies that determine which clients can encrypt and decrypt data.",
+      "technical_breakdown": "As a result, Vault no longer needs to receive and process large payloads, which reduces network overhead and avoids potential bottlenecks when working with large files or high-throughput data streams.\n\nBecause encryption happens close to where the data is produced or consumed, applications can encrypt and decrypt data with lower latency and improved throughput.\n\nTransferring large payloads to Vault for encryption or decryption can introduce performance bottlenecks and unnecessary network overhead.\n\nDistributed encryption at the edge   With envelope encryption, the actual encryption and decryption of data occurs within the application or service handling the artifact rather than inside Vault itself.\n\nBy combining edge-based encryption with centralized key management, organizations can maintain Vault as the root of trust while achieving the performance and scalability required for modern data pipelines.",
+      "impact": "Vault manages the underlying keys while enforcing authentication and authorization policies that determine which clients can encrypt and decrypt data. Decryption   When a consumer needs to decrypt the artifact: \n\n The client retrieves the encrypted artifact \n\n The client extracts the EDK \n\n The client sends the EDK to Vault Transit for decryption \n\n Vault returns the decrypted DEK if the client is authenticated and authorized \n\n The client uses the DEK locally to decrypt the artifact \n\n Vault never needs to receive or process the encrypted artifact itself — only the encrypted key. Vault continues to manage cryptographic keys and enforce access policies, while the client performs the encryption operation locally. This distributes cryptographic computation across many clients rather than centralizing it within Vault clusters.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "It also improves efficiency by allowing encryption to occur locally in the application, avoiding the need to transfer large payloads to Vault for processing.\n\nBecause encryption happens close to where the data is produced or consumed, applications can encrypt and decrypt data with lower latency and improved throughput.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The application requests a new data key from Vault Transit.\nThis model also enables strong support for large artifacts and streaming workloads. Since applications encrypt data locally, they can process large files or continuous data streams in real time without transferring entir\nIf the Transit key is removed, disabled, or destroyed, Vault can no longer decrypt the EDK. Without access to the DEK, the encrypted artifact becomes permanently unreadable.\nCrypto-shredding therefore provides a practical mechanism for secure data retirement, helping organizations reduce exposure to sensitive data while simplifying compliance with data retention and destruction requirements.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "HashiCorp  Vault’s Transit secrets engine  provides encryption-as-a-service, allowing applications to encrypt and decrypt sensitive data without managing cryptographic keys directly. In this model, applications send data to Vault Transit for encryption and make a similar API call to decrypt the ciphertext.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "5a714314a9228caf",
     "title": "Red Hat Enterprise Linux 10.2 and 9.8: Top features for developers",
     "source": "Red Hat Developer Blog",

@@ -28,14 +28,14 @@
       <h1 class="brief-title">20 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-20T13:26:29.179143-05:00">20 May 2026, 13:26</time>
+        <time data-iso="2026-05-20T16:04:08.252583-05:00">20 May 2026, 16:04</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
       <span class="stat stat-critical">1 critical</span>
       <span class="stat stat-high">1 high impact</span>
-      <span class="stat">4 items today</span>
+      <span class="stat">5 items today</span>
     </div>
   </div>
 
@@ -90,10 +90,10 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Datadog">Datadog</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
@@ -114,8 +114,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
@@ -130,10 +130,44 @@
   <div class="day-group">
     <h2 class="day-heading">
       20 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">5</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="latency,networking"
+       data-vendors="HashiCorp"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="encrypting large artifacts and streaming workloads with vault"
+       data-id="bad9f0b9379cc533"
+       data-published="2026-05-20T17:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-05-20T17:00:00+00:00" title="20 May 2026, 12:00">20 May 2026, 12:00</time>
+      </div>
+      <h3 class="card-title">Encrypting large artifacts and streaming workloads with Vault</h3>
+      <p class="card-summary">HashiCorp  Vault’s Transit secrets engine  provides encryption-as-a-service, allowing applications to encrypt and decrypt sensitive data without managing cryptographic keys directly. In this model, applications send data to Vault Transit for encryption and make a similar API call to decrypt the ciphertext.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">HashiCorp Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>HashiCorp  Vault’s Transit secrets engine  provides encryption-as-a-service, allowing applications to encrypt and decrypt sensitive data without managing cryptographic keys directly. In this model, applications send data to Vault Transit for encryption and make a similar API call to decrypt the ciphertext. Vault manages the underlying keys while enforcing authentication and authorization policies that determine which clients can encrypt and decrypt data.</p></div>
+      <div class="detail-links">
+        <a href="articles/bad9f0b9379cc533.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.hashicorp.com/blog/encrypting-large-artifacts-and-streaming-workloads-with-vault" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--critical"
        data-tags="capacity,database,deployment,kubernetes,latency,networking,outage"
        data-vendors="Kubernetes,Red Hat"
@@ -1061,7 +1095,7 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
   <div class="day-group">
     <h2 class="day-heading">
       13 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
@@ -1169,38 +1203,6 @@ cloud-load-balancer-like functionality for non-cloud clusters. Impact band: high
       <div class="detail-links">
         <a href="articles/c4f9a57efc050a8f.html" class="detail-read">Open structured brief →</a>
         <a href="https://blog.cloudflare.com/browser-run-containers/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="how braze’s cto is rethinking engineering for the agentic area"
-       data-id="293dc1f2085bcefa"
-       data-published="2026-05-13T07:40:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-05-13T07:40:00+00:00" title="13 May 2026, 02:40">13 May 2026, 02:40</time>
-      </div>
-      <h3 class="card-title">How Braze’s CTO is rethinking engineering for the agentic area</h3>
-      <p class="card-summary">Jon Hyman, co-founder and CTO of Braze, shares how he&#39;s led the company&#39;s engineering organization over nearly 15 years of growth — and how they transformed into an AI-first team in just a few months.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Jon Hyman, co-founder and CTO of Braze, shares how he&#39;s led the company&#39;s engineering organization over nearly 15 years of growth — and how they transformed into an AI-first team in just a few months.</p></div>
-      <div class="detail-links">
-        <a href="articles/293dc1f2085bcefa.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/05/13/rethinking-engineering-for-the-agentic-area/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
