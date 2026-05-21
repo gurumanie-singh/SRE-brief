@@ -38,6 +38,53 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately.",
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/20/etcd-370-beta/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "8086cbe9136c08e9",
+    "title": "Investigating unauthorized access to GitHub-owned repositories",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/",
+    "published": "2026-05-20T21:07:38+00:00",
+    "fetched_at": "2026-05-21T04:36:55.719890+00:00",
+    "summary": "On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately.",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-05-20",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only. The attacker’s current claims of ~3,800 repositories are directionally consistent with our investigation so far.",
+      "We have no evidence of impact to customer information stored outside of GitHub’s internal repositories, such as our customer’s own enterprises, organizations, and repositories. Some of GitHub’s internal repositories cont",
+      "We moved quickly to reduce risk. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.",
+      "We continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity. We will take additional action as the investigation warrants.",
+      "We will publish a fuller report once the investigation is complete.",
+      "The post Investigating unauthorized access to GitHub-owned repositories appeared first on The GitHub Blog ."
+    ],
+    "sections": {
+      "overview": "On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately. Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only.",
+      "technical_breakdown": "We continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity.\n\nThe post Investigating unauthorized access to GitHub-owned repositories appeared first on The GitHub Blog .",
+      "impact": "We have no evidence of impact to customer information stored outside of GitHub’s internal repositories, such as our customer’s own enterprises, organizations, and repositories. If any impact is discovered, we will notify customers via established incident response and notification channels. Some of GitHub’s internal repositories contain information from customers, for example, excerpts of support interactions. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "If any impact is discovered, we will notify customers via established incident response and notification channels.\n\nWe will take additional action as the investigation warrants.\n\nWe will publish a fuller report once the investigation is complete.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only. The attacker’s current claims of ~3,800 repositories are directionally consistent with our investigation so far.\nWe have no evidence of impact to customer information stored outside of GitHub’s internal repositories, such as our customer’s own enterprises, organizations, and repositories. Some of GitHub’s internal repositories cont\nWe moved quickly to reduce risk. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.\nWe continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity. We will take additional action as the investigation warrants.\nWe will publish a fuller report once the investigation is complete.\nThe post Investigating unauthorized access to GitHub-owned repositories appeared first on The GitHub Blog .",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately.",
     "related_sources": [],
     "highlighted": false
   },
@@ -130,12 +177,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Red Hat Enterprise Linux (RHEL) 10.2 and RHEL 9.8 are now available, providing an enterprise-ready foundation for recent upstream innovations. Impact band: critical.",
-    "related_sources": [
-      {
-        "source": "Kubernetes Blog",
-        "link": "https://kubernetes.io/blog/2026/05/20/etcd-370-beta/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

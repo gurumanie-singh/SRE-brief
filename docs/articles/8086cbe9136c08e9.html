@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Changes to GitHub Copilot Individual plans — SRE Brief</title>
+  <title>Investigating unauthorized access to GitHub-owned repositories — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,28 +23,28 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-04-20.html" class="back-link">← 20 April 2026 day sheet</a>
+    <a href="../daily/2026-05-20.html" class="back-link">← 20 May 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
         <span class="card-source">GitHub Blog</span>
-        <span class="card-date">20 April 2026, 13:15</span>
-        <span class="card-severity high" title="High Impact">High Impact</span>
+        <span class="card-date">20 May 2026, 16:07</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Changes to GitHub Copilot Individual plans</h1>
+      <h1 class="title">Investigating unauthorized access to GitHub-owned repositories</h1>
 
-      <p class="subtitle">Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. Impact band: high.</p>
+      <p class="subtitle">On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately.</p>
 
 
       <div class="article-tags">
         <span class="vendor-tag">GitHub</span>
-        <span class="tag">capacity</span>
+        <span class="tag">outage</span>
       </div>
 
       <dl class="article-facts">
         <div class="fact-row"><dt>Affected layer</dt><dd>general production</dd></div>
-        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
       </dl>
     </header>
 
@@ -53,30 +53,30 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. Impact band: high.</p>
+      <p class="quick-take-text">On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately.</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. We know these changes are disruptive, and we want to be clear about why we re making them and how they will affect you. Agentic workflows have fundamentally changed Copilot s compute demands.</p>
+          <p>On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party. We removed the malicious extension version, isolated the endpoint, and began incident response immediately. Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>As we announced in our changelog , Opus 4.5 and Opus 4.6 will be removed from Pro+.</p>
-<p>The post Changes to GitHub Copilot Individual plans appeared first on The GitHub Blog .</p>
+          <p>We continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity.</p>
+<p>The post Investigating unauthorized access to GitHub-owned repositories appeared first on The GitHub Blog .</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>Today we re making the following changes to GitHub Copilot s Individual plans to protect the experience for existing customers: pausing new sign-ups, tightening usage limits, and adjusting model availability. They re set so most users shouldn t be impacted. The weekly limits for each plan are also set so that most users will not be impacted. As Copilot s agentic capabilities have expanded rapidly, agents are doing more work, and more customers are hitting usage limits designed to maintain service reliability.</p>
-<p>Classified impact band: high. Affected layer signal: general production.</p>
+          <p>We have no evidence of impact to customer information stored outside of GitHub’s internal repositories, such as our customer’s own enterprises, organizations, and repositories. If any impact is discovered, we will notify customers via established incident response and notification channels. Some of GitHub’s internal repositories contain information from customers, for example, excerpts of support interactions. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.</p>
+<p>Classified impact band: medium. Affected layer signal: general production.</p>
         </div>
       </div>
 
@@ -90,9 +90,9 @@
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>We ve heard your frustrations about usage limits and model availability, and we need to do a better job communicating the guardrails we are adding here s what s changing and why.</p>
-<p>Use plan mode ( VS Code , Copilot CLI ) to improve task efficiency.</p>
-<p>Plan mode also improves task success.</p>
+          <p>If any impact is discovered, we will notify customers via established incident response and notification channels.</p>
+<p>We will take additional action as the investigation warrants.</p>
+<p>We will publish a fuller report once the investigation is complete.</p>
         </div>
       </div>
 
@@ -101,10 +101,12 @@
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
         <div class="article-section-content">
           <ul class="timeline-list">
-            <li>Weekly limits represent a cap on the total number of tokens a user can consume during the week. We introduced weekly limits recently to control for parallelized, long-trajectory requests that often run for extended perio</li>
-            <li>The weekly limits for each plan are also set so that most users will not be impacted. If you hit a weekly limit and have premium requests remaining, you can continue to use Copilot with Auto model selection. Model choice</li>
-            <li>Usage limits are separate from your premium request entitlements. Premium requests determine which models you can access and how many requests you can make. Usage limits, by contrast, are token-based guardrails that cap </li>
-            <li>We ve seen usage intensify for all users as they realize the value of agents and subagents in tackling complex coding problems. These long-running, parallelized workflows can yield great value, but they have also challen</li>
+            <li>Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only. The attacker’s current claims of ~3,800 repositories are directionally consistent with our investigation so far.</li>
+            <li>We have no evidence of impact to customer information stored outside of GitHub’s internal repositories, such as our customer’s own enterprises, organizations, and repositories. Some of GitHub’s internal repositories cont</li>
+            <li>We moved quickly to reduce risk. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.</li>
+            <li>We continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity. We will take additional action as the investigation warrants.</li>
+            <li>We will publish a fuller report once the investigation is complete.</li>
+            <li>The post Investigating unauthorized access to GitHub-owned repositories appeared first on The GitHub Blog .</li>
           </ul>
         </div>
       </div>
@@ -112,18 +114,12 @@
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
         <div class="article-section-content">
-          <p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
         </div>
       </div>
 
-      <div class="article-section">
-        <div class="article-section-label">Related coverage</div>
-        <div class="article-section-content">
-          <p><a href="https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/" target="_blank" rel="noopener">AWS News Blog</a></p>
-        </div>
-      </div>
 
-      <a href="https://github.blog/news-insights/company-news/changes-to-github-copilot-individual-plans/" class="source-card" target="_blank" rel="noopener">
+      <a href="https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
