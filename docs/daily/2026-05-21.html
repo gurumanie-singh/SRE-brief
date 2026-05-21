@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">21 May 2026</h1>
-      <span class="brief-sub">3 items</span>
+      <span class="brief-sub">6 items</span>
     </div>
   </div>
 
@@ -73,8 +73,10 @@
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
     <div class="adv-group">
@@ -87,10 +89,43 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors=""
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="coding agents are giving everyone decision fatigue"
+       data-id="6c5897b9ef26335c"
+       data-published="2026-05-21T14:19:27+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-05-21T14:19:27+00:00" title="21 May 2026, 09:19">21 May 2026, 09:19</time>
+      </div>
+      <h3 class="card-title">Coding agents are giving everyone decision fatigue</h3>
+      <p class="card-summary">With much of a software engineer’s time moving from writing code to structuring prompts and reviewing code, the workday is getting denser and more intense. Can AI solve the problems it&#39;s causing.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>With much of a software engineer’s time moving from writing code to structuring prompts and reviewing code, the workday is getting denser and more intense. Can AI solve the problems it&#39;s causing?</p></div>
+      <div class="detail-links">
+        <a href="../articles/6c5897b9ef26335c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/05/21/coding-agents-are-giving-everyone-decision-fatigue/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="capacity,deployment,kubernetes,latency,observability,outage"
        data-vendors="AWS,GitHub,HashiCorp,Kubernetes,Red Hat"
@@ -117,12 +152,49 @@
           <span class="ttag">latency</span>
         </div>
       </div>
+      <div class="card-related">Also: GitHub Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
       <div class="detail-text"><p>Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars. In our previous article , we explored this problem in depth and introduced just-in-time (JIT) checkpointing, a capability that saves the training state the moment a termination signal arrives rather than waiting for the next scheduled checkpoint interval.</p></div>
       <div class="detail-links">
         <a href="../articles/baf9e3e07b086cb5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/21/guide-jit-checkpointing-kubeflow-trainer-openshift-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="capacity,deployment,kubernetes,latency,observability,outage"
+       data-vendors="AWS,GitHub,HashiCorp,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="preventing gpu waste: a guide to jit checkpointing with kubeflow trainer on openshift ai"
+       data-id="39bf03fb17a44319"
+       data-published="2026-05-21T07:16:11+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span><span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-05-21T07:16:11+00:00" title="21 May 2026, 02:16">21 May 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Preventing GPU waste: A guide to JIT checkpointing with Kubeflow Trainer on OpenShift AI</h3>
+      <p class="card-summary">Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars. In our previous article , we explored this problem in depth and introduced just-in-time (JIT) checkpointing, a capability that saves the training state the moment a termination signal arrives rather than waiting for the next scheduled checkpoint interval.</p></div>
+      <div class="detail-links">
+        <a href="../articles/39bf03fb17a44319.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/05/21/guide-jit-checkpointing-kubeflow-trainer-openshift-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
@@ -195,6 +267,39 @@
       <div class="detail-links">
         <a href="../articles/c9897b3176265fec.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/05/21/configure-split-disk-openshift-container-platform" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="scaling"
+       data-vendors=""
+       data-impact="medium"
+       data-theme="capacity and scale"
+       data-title="the data platform bet: why financial ai initiatives stall and how the winners scale"
+       data-id="5fb15cf885aab0e9"
+       data-published="2026-05-21T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-05-21T00:00:00+00:00" title="20 May 2026, 19:00">20 May 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">The data platform bet: Why financial AI initiatives stall and how the winners scale</h3>
+      <p class="card-summary">Discover why 40% of financial AI initiatives fail, and learn how a unified data platform enables secure, real-time AI scaling in regulated environments.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">scaling</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Discover why 40% of financial AI initiatives fail, and learn how a unified data platform enables secure, real-time AI scaling in regulated environments.</p></div>
+      <div class="detail-links">
+        <a href="../articles/5fb15cf885aab0e9.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/financial-services-ai-data-platform-strategy" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

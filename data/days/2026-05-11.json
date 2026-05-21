@@ -224,12 +224,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Tekton has joined the Cloud Native Computing Foundation (CNCF) as an incubating project. For years, practitioners have used Tekton as the foundation for Kubernetes-native CI/CD.",
-    "related_sources": [
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-oss-contributions/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   }
 ]

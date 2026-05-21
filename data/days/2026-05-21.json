@@ -1,11 +1,97 @@
 [
   {
+    "id": "6c5897b9ef26335c",
+    "title": "Coding agents are giving everyone decision fatigue",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/21/coding-agents-are-giving-everyone-decision-fatigue/",
+    "published": "2026-05-21T14:19:27+00:00",
+    "fetched_at": "2026-05-21T16:21:26.678236+00:00",
+    "summary": "With much of a software engineer’s time moving from writing code to structuring prompts and reviewing code, the workday is getting denser and more intense. Can AI solve the problems it's causing?",
+    "tags": [],
+    "day": "2026-05-21",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "With much of a software engineer’s time moving from writing code to structuring prompts and reviewing code, the workday is getting denser and more intense. Can AI solve the problems it's causing?",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "With much of a software engineer’s time moving from writing code to structuring prompts and reviewing code, the workday is getting denser and more intense. Can AI solve the problems it's causing.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "baf9e3e07b086cb5",
     "title": "A guide to JIT checkpointing with Kubeflow Trainer on OpenShift AI",
     "source": "Red Hat Developer Blog",
     "link": "https://developers.redhat.com/articles/2026/05/21/guide-jit-checkpointing-kubeflow-trainer-openshift-ai",
     "published": "2026-05-21T07:16:11+00:00",
     "fetched_at": "2026-05-21T08:40:06.069026+00:00",
+    "summary": "Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars. In our previous article , we explored this problem in depth and introduced just-in-time (JIT) checkpointing, a capability that saves the training state the moment...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-21",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "GitHub",
+      "HashiCorp",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      ") Option 1: PVC storage PVC storage is the simplest option. Specify a pvc:// URI as the output_dir , and the SDK automatically mounts the PVC to all training pods.",
+      "Training start (resume): If a previous checkpoint exists in S3, each pod downloads the latest valid checkpoint to local storage and training resumes automatically.",
+      "When you resume the job, it automatically detects the latest valid checkpoint, downloads it (if using S3), and continues training from where it left off, requiring no manual intervention (Figure 6).",
+      "final/ Checkpointing best practices Checkpointing performance depends on GPU distribution, checkpoint intervals, and storage provisioning. For detailed storage sizing guidance, consolidation peak benchmarks, and node con",
+      "Following these best practices will significantly improve training efficiency and resource utilization:"
+    ],
+    "sections": {
+      "overview": "Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars. In our previous article , we explored this problem in depth and introduced just-in-time (JIT) checkpointing, a capability that saves the training state the moment a termination signal arrives rather than waiting for the next scheduled checkpoint interval.",
+      "technical_breakdown": "Prerequisites You will need the following prerequisites: \n\n An OpenShift AI cluster (version 3.4 EA2 or later) with the trainer and workbenches components enabled \n S3 storage: S3 compatible object storage (AWS S3, MinIO, Ceph RGW, or equivalent) with a bucket created and access credentials \n PVC storage: A PersistentVolumeClaim with ReadWriteMany (RWX) access mode in your project namespace \n This example fine-tunes Qwen 2.5 1.5B Instruct on the Stanford Alpaca dataset using two nodes with 1 GPU each, 4 CPU cores, and 16 GiB memory per pod.\n\nSpecify a pvc:// URI as the output_dir , and the SDK automatically mounts the PVC to all training pods. \n\n from kubeflow.trainer.rhai.transformers import TransformersTrainer\ntrainer = TransformersTrainer(\n func=train_func,\n num_nodes=2,\n resources_per_node={\"nvidia.com/gpu\": 1, \"cpu\": \"4\", \"memory\": \"16Gi\"},\n output_dir=\"pvc://my-checkpoints-pvc/llama3-fine-tune\",\n enable_jit_checkpoint=True,\n periodic_checkpoint_config=checkpoint_config,\n) All pods read and write checkpoints directly to the shared PVC.\n\nThe SDK uses a local first architecture: checkpoints saved to fast local emptyDir storage on each pod, then uploaded to S3 in the background without blocking GPU training. \n\n from kubeflow.trainer.rhai.transformers import TransformersTrainer\ntrainer = TransformersTrainer(\n func=train_func,\n num_nodes=2,\n resources_per_node={\"nvidia.com/gpu\": 1, \"cpu\": \"4\", \"memory\": \"16Gi\"},\n output_dir=\"s3://kubeflow-checkpoints/qwen-alpaca-finetune\",\n data_connection_name=\"s3-storage-connection\",\n enable_jit_checkpoint=True,\n verify_cloud_storage_ssl=False,\n verify_cloud_storage_access=True,\n periodic_checkpoint_config=checkpoint_config,\n) The S3 specific parameters perform the following: \n\n output_dir : An S3 URI in the format s3://<bucket>/<prefix> .\n\nA single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars.\n\nFigure 1: The OpenShift AI dashboard shows the Create Data Science Project dialog box.",
+      "impact": "A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars. If you plan to use S3 storage, navigate to the Connections tab and create an S3 compatible object storage connection with your credentials (access key, secret key, endpoint, region, and bucket name), as shown in Figure 2.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "The SDK uses a local first architecture: checkpoints saved to fast local emptyDir storage on each pod, then uploaded to S3 in the background without blocking GPU training. \n\n from kubeflow.trainer.rhai.transformers import TransformersTrainer\ntrainer = TransformersTrainer(\n func=train_func,\n num_nodes=2,\n resources_per_node={\"nvidia.com/gpu\": 1, \"cpu\": \"4\", \"memory\": \"16Gi\"},\n output_dir=\"s3://kubeflow-checkpoints/qwen-alpaca-finetune\",\n data_connection_name=\"s3-storage-connection\",\n enable_jit_checkpoint=True,\n verify_cloud_storage_ssl=False,\n verify_cloud_storage_access=True,\n periodic_checkpoint_config=checkpoint_config,\n) The S3 specific parameters perform the following: \n\n output_dir : An S3 URI in the format s3://<bucket>/<prefix> .\n\nIt creates the prefix automatically. \n data_connection_name : The resource name of the S3 data connection you created in the dashboard.",
+      "lessons_learned": "In this hands-on guide, we will walk through the SDK APIs for configuring periodic checkpointing, JIT checkpointing, and automatic training resume.\n\nWe will cover both storage options, explain when to choose them, and demonstrate a complete distributed training job with full checkpoint resilience.\n\nFor detailed storage sizing guidance, consolidation peak benchmarks, and node configuration recommendations, refer to the RedHat OpenShift AI 3.4 EA2 release docs .\n\nFollowing these best practices will significantly improve training efficiency and resource utilization: \n\n Maximize GPUs per node.",
+      "root_cause_highlight": "",
+      "incident_timeline": ") Option 1: PVC storage PVC storage is the simplest option. Specify a pvc:// URI as the output_dir , and the SDK automatically mounts the PVC to all training pods.\nTraining start (resume): If a previous checkpoint exists in S3, each pod downloads the latest valid checkpoint to local storage and training resumes automatically.\nWhen you resume the job, it automatically detects the latest valid checkpoint, downloads it (if using S3), and continues training from where it left off, requiring no manual intervention (Figure 6).\nfinal/ Checkpointing best practices Checkpointing performance depends on GPU distribution, checkpoint intervals, and storage provisioning. For detailed storage sizing guidance, consolidation peak benchmarks, and node con\nFollowing these best practices will significantly improve training efficiency and resource utilization:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars.",
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/open-source/building-githubs-next-chapter-in-accessibility/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "39bf03fb17a44319",
+    "title": "Preventing GPU waste: A guide to JIT checkpointing with Kubeflow Trainer on OpenShift AI",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/21/guide-jit-checkpointing-kubeflow-trainer-openshift-ai",
+    "published": "2026-05-21T07:16:11+00:00",
+    "fetched_at": "2026-05-21T16:21:27.765022+00:00",
     "summary": "Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars. In our previous article , we explored this problem in depth and introduced just-in-time (JIT) checkpointing, a capability that saves the training state the moment...",
     "tags": [
       "capacity",
@@ -144,6 +230,39 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "The first time I watched a node run out of disk space while pulling a 6 GB GPU PyTorch image, I knew we needed a better way to handle container image storage. In my work with AI/ML teams running workloads on Red Hat OpenShift Container Platform , disk space management has become one of the most common pain points, especially as model sizes continue to grow.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "5fb15cf885aab0e9",
+    "title": "The data platform bet: Why financial AI initiatives stall and how the winners scale",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/financial-services-ai-data-platform-strategy",
+    "published": "2026-05-21T00:00:00+00:00",
+    "fetched_at": "2026-05-21T16:21:27.430434+00:00",
+    "summary": "Discover why 40% of financial AI initiatives fail, and learn how a unified data platform enables secure, real-time AI scaling in regulated environments.",
+    "tags": [
+      "scaling"
+    ],
+    "day": "2026-05-21",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Discover why 40% of financial AI initiatives fail, and learn how a unified data platform enables secure, real-time AI scaling in regulated environments.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Discover why 40% of financial AI initiatives fail, and learn how a unified data platform enables secure, real-time AI scaling in regulated environments.",
     "related_sources": [],
     "highlighted": false
   }
