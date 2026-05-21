@@ -344,10 +344,6 @@
         "link": "https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/"
       },
       {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/ai-and-ml/github-copilot/dungeons-desktops-building-a-procedurally-generated-roguelike-with-github-copilot-cli/"
-      },
-      {
         "source": "Kubernetes Blog",
         "link": "https://kubernetes.io/blog/2026/05/12/kubernetes-v1-36-psi-metrics-ga/"
       }

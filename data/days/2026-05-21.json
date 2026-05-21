@@ -1,5 +1,52 @@
 [
   {
+    "id": "fa2499cea13add09",
+    "title": "Announcing Claude Compliance API support with Cloudflare CASB",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/casb-anthropic-integration/",
+    "published": "2026-05-21T17:00:00+00:00",
+    "fetched_at": "2026-05-21T19:05:23.342771+00:00",
+    "summary": "Today, we are extending Cloudflare’s cloud access security broker (CASB) to support the Claude Compliance API . Security and compliance teams can now monitor Claude usage directly in the Cloudflare dashboard. No endpoint agents required.",
+    "tags": [
+      "deployment",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-21",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": true,
+    "root_cause": "misconfiguration",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Organizations are moving fast to adopt AI, but these tools require a different security model. They do not just read data; they generate it, act on it, and connect to multiple systems of record in a single workflow. Secu",
+      "Cloudflare AI Gateway sits between your applications and AI providers like Anthropic, giving you observability into requests, token spend, and model performance. This allows administrators to enforce rate limits, cache r",
+      "Cloudflare Access with MCP server portals centralizes agent connections to corporate tools behind a single protected endpoint. Administrators control which users and agents can reach which systems, and every request is l",
+      "Cloudflare CASB now extends this same unified approach to data at rest inside Claude, scanning for misconfigurations and sensitive data without endpoint agents.",
+      "Cloudflare CASB helps organizations connect to, scan, and monitor third-party SaaS applications for misconfigurations, improper data sharing, and other security risks through lightweight API integrations. Organizations c",
+      "CASB turns findings into action. A detected security finding in Claude, such as a user uploading files containing sensitive data, can become a Gateway policy in minutes. You can use Gateway to block uploads to Claude for",
+      "Request Compliance API access from Claude for your organization.",
+      "The shift to agentic AI is here, and we believe the best way to help organizations safely adopt it is by providing a unified platform to build, deploy, and govern agents. To stay up to date, check our developer documenta"
+    ],
+    "sections": {
+      "overview": "Today, we are extending Cloudflare’s cloud access security broker (CASB) to support the Claude Compliance API . Security and compliance teams can now monitor Claude usage directly in the Cloudflare dashboard. No endpoint agents required.",
+      "technical_breakdown": "Security and compliance teams can now monitor Claude usage directly in the Cloudflare dashboard.\n\nMost organizations today operate with partial visibility: they may block unauthorized AI tools at the network layer, but they cannot see what happens inside sanctioned ones.\n\nCloudflare gives organizations the tools to do this at every point of the workflow:\n\n Cloudflare AI Gateway sits between your applications and AI providers like Anthropic, giving you observability into requests, token spend, and model performance.\n\nThis allows administrators to enforce rate limits, cache responses, and make fine-grained routing decisions.\n\nAdministrators control which users and agents can reach which systems, and every request is logged for audit.",
+      "impact": "A detected security finding in Claude, such as a user uploading files containing sensitive data, can become a Gateway policy in minutes. Enterprise security teams have long struggled to see how users interact with sanctioned and unsanctioned applications. Employees spend significant time in these new surface areas, and their interactions differ from traditional SaaS: users upload files, share freeform prompts, and providers generate content that may contain sensitive data. An employee might paste customer data into a prompt.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "You can use Gateway to block uploads to Claude for specific users, restrict access to the application entirely, or limit functionality until the issue is resolved.",
+      "lessons_learned": "Cloudflare Gateway and Data Loss Prevention inspect AI traffic for sensitive data, blocking prompts that contain customer personally identifiable information or confidential material before they reach the model.\n\nBetter insight and control with Cloudflare CASB \n \n \n \n \n Cloudflare CASB helps organizations connect to, scan, and monitor third-party SaaS applications for misconfigurations, improper data sharing, and other security risks through lightweight API integrations.\n\nIt also retrieves conversation content, including messages and uploaded files through dedicated read-only endpoints to prevent data loss.\n\nIn the near future, we will add support for the Activity Feed.",
+      "root_cause_highlight": "Likely root-cause theme: misconfiguration. This matters because AI tools are not like traditional SaaS applications. Cloudflare CASB now extends this same unified approach to data at rest inside Claude, scanning for misconfigurations and sensitive data without endpoint agents. Better insight and control with Cloudflare CASB \n \n \n \n \n Cloudflare CASB helps organizations connect to, scan, and monitor third-party SaaS applications for misconfigurations, improper data sharing, and other security risks through lightweight API integrations.",
+      "incident_timeline": "Organizations are moving fast to adopt AI, but these tools require a different security model. They do not just read data; they generate it, act on it, and connect to multiple systems of record in a single workflow. Secu\nCloudflare AI Gateway sits between your applications and AI providers like Anthropic, giving you observability into requests, token spend, and model performance. This allows administrators to enforce rate limits, cache r\nCloudflare Access with MCP server portals centralizes agent connections to corporate tools behind a single protected endpoint. Administrators control which users and agents can reach which systems, and every request is l\nCloudflare CASB now extends this same unified approach to data at rest inside Claude, scanning for misconfigurations and sensitive data without endpoint agents.\nCloudflare CASB helps organizations connect to, scan, and monitor third-party SaaS applications for misconfigurations, improper data sharing, and other security risks through lightweight API integrations. Organizations c\nCASB turns findings into action. A detected security finding in Claude, such as a user uploading files containing sensitive data, can become a Gateway policy in minutes. You can use Gateway to block uploads to Claude for\nRequest Compliance API access from Claude for your organization.\nThe shift to agentic AI is here, and we believe the best way to help organizations safely adopt it is by providing a unified platform to build, deploy, and govern agents. To stay up to date, check our developer documenta",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Today, we are extending Cloudflare’s cloud access security broker (CASB) to support the Claude Compliance API . Security and compliance teams can now monitor Claude usage directly in the Cloudflare dashboard.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "6c5897b9ef26335c",
     "title": "Coding agents are giving everyone decision fatigue",
     "source": "Stack Overflow Blog",
@@ -78,6 +125,10 @@
     },
     "email_summary": "Training a large language model across multiple GPUs for days or weeks is an expensive undertaking. A single interruption from node maintenance, pod preemption, or a hardware failure can erase hours of progress and hundreds of dollars.",
     "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/open-source/gaming/beyond-the-engine-10-open-source-projects-shaping-how-games-actually-get-made/"
+      },
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/open-source/building-githubs-next-chapter-in-accessibility/"
