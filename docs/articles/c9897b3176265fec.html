@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configure a split disk on OpenShift Container Platform — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-21.html" class="back-link">← 21 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">21 May 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Configure a split disk on OpenShift Container Platform</h1>
+
+      <p class="subtitle">The first time I watched a node run out of disk space while pulling a 6 GB GPU PyTorch image, I knew we needed a better way to handle container image storage. In my work with AI/ML teams running workloads on Red Hat OpenShift Container Platform , disk space management has become one of the most common pain points, especially as model sizes continue to grow.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">AWS</span>
+        <span class="vendor-tag">Google Cloud</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">The first time I watched a node run out of disk space while pulling a 6 GB GPU PyTorch image, I knew we needed a better way to handle container image storage. In my work with AI/ML teams running workloads on Red Hat OpenShift Container Platform , disk space management has become one of the most common pain points, especially as model sizes continue to grow.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>The first time I watched a node run out of disk space while pulling a 6 GB GPU PyTorch image, I knew we needed a better way to handle container image storage. In my work with AI/ML teams running workloads on Red Hat OpenShift Container Platform , disk space management has become one of the most common pain points, especially as model sizes continue to grow. Split disk configuration solves this problem by directing newly pulled container images to a dedicated filesystem while keeping container runtime data on the boot disk.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>It&#39;s ordered before local-fs-pre.target , ensuring the device is ready before the system attempts to mount filesystems.</p>
+<p>#!/bin/bash</p>
+<p># Detect cloud platform - check sys_vendor first (more reliable than product_name) PLATFORM=&#34;&#34; if [ -f /sys/class/dmi/id/sys_vendor ]; then  VENDOR=$(cat /sys/class/dmi/id/sys_vendor 2&gt;/dev/null || echo &#34;&#34;)  if [[ &#34;$VENDOR&#34; == *&#34;Google&#34;* ]]; then  PLATFORM=&#34;gcp&#34;  elif [[ &#34;$VENDOR&#34; == *&#34;Amazon&#34;* ]] || [[ &#34;$VENDOR&#34; == *&#34;EC2&#34;* ]]; then  PLATFORM=&#34;aws&#34;  fi fi</p>
+<p># Fallback to product_name if sys_vendor didn&#39;t work if [ -z &#34;$PLATFORM&#34; ] &amp;&amp; [ -f /sys/class/dmi/id/product_name ]; then  PRODUCT=$(cat /sys/class/dmi/id/product_name 2&gt;/dev/null || echo &#34;&#34;)  if [[ &#34;$PRODUCT&#34; == *&#34;Google&#34;* ]]; then  PLATFORM=&#34;gcp&#34;  elif [[ &#34;$PRODUCT&#34; == *&#34;Amazon&#34;* ]]; then  PLATFORM=&#34;aws&#34;  fi fi</p>
+<p># If platform detection failed, try metadata services if [ -z &#34;$PLATFORM&#34; ]; then  if curl -s -f -m 1 http://169.254.169.254/computeMetadata/v1/ -H &#34;Metadata-Flavor: Google&#34; &amp;&gt;/dev/null; then  PLATFORM=&#34;gcp&#34;  elif curl -s -f -m 1 http://169.254.169.254/latest/meta-data/ &amp;&gt;/dev/null; then  PLATFORM=&#34;aws&#34;  fi fi</p>
+<p>echo &#34;Detected platform: ${PLATFORM}&#34;</p>
+<p># Retry up to 30 times with 2 second delay (60 seconds total) MAX_RETRIES=30 RETRY_DELAY=2</p>
+<p>for attempt in $(seq 1 $MAX_RETRIES); do  echo &#34;Attempt $attempt of $MAX_RETRIES to find secondary device&#34;    # Search for secondary device based on platform  if [ &#34;$PLATFORM&#34; == &#34;aws&#34; ]; then  # AWS uses NVMe devices  for device in /dev/nvme*[0-9]*n*; do  /usr/sbin/blkid &#34;${device}&#34; &amp;&gt; /dev/null  if [ $? == 2 ]; then  echo &#34;secondary device found ${device}&#34;  echo &#34;creating filesystem for containers mount&#34;  if ! mkfs.xfs -L splitdisk -f &#34;${device}&#34; &amp;&gt; /dev/null; then  echo &#34;Failed to create filesystem on ${device}&#34; &gt;&amp;2  exit 1  fi  udevadm settle  touch /etc/var-lib-split-disk-mount  exit 0  fi  done  elif [ &#34;$PLATFORM&#34; == &#34;gcp&#34; ]; then  # GCP uses SCSI devices (skip sda which is boot disk)  for device in /dev/sd[b-z]; do  if [ -b &#34;${device}&#34; ]; then  /usr/sbin/blkid &#34;${device}&#34; &amp;&gt; /dev/null  if [ $? == 2 ]; then  echo &#34;secondary device found ${device}&#34;  echo &#34;creating filesystem for containers mount&#34;  if ! mkfs.xfs -L splitdisk -f &#34;${device}&#34; &amp;&gt; /dev/null; then  echo &#34;Failed to create filesystem on ${device}&#34; &gt;&amp;2  exit 1  fi  udevadm settle  touch /etc/var-lib-split-disk-mount  exit 0  fi  fi  done  fi    # Device not found yet, wait before retry  if [ $attempt -lt $MAX_RETRIES ]; then  echo &#34;Device not found, waiting ${RETRY_DELAY}s before retry...&#34;  sleep $RETRY_DELAY  fi done</p>
+<p>echo &#34;Couldn&#39;t find secondary block device after ${MAX_RETRIES} attempts!&#34; &gt;&amp;2 exit 77 var-lib-images.mount :</p>
+<p>Mounts /dev/disk/by-label/splitdisk to /var/lib/images   Uses XFS filesystem   Waits for device detection to complete   selinux-splitdisk-policy.service :</p>
+<p>Sets SELinux file context equivalence to /var/lib/containers   Command: semanage fcontext -a -e /var/lib/containers /var/lib/images   ```bash /usr/sbin/semanage fcontext -a -e /var/lib/containers /var/lib/images ``` restorecon-var-lib-splitdisk.service :</p>
+<p>Restores SELinux contexts recursively   Command: restorecon -R /var/lib/images   Runs before CRI-O starts   ```bash /sbin/restorecon -R /var/lib/images ``` CRI-O service dependency:</p>
+<p>CRI-O waits for split disk mount and SELinux configuration   Ensures split disk is ready before container operations begin   ```ini [Unit] After=restorecon-var-lib-splitdisk.service Requires=restorecon-var-lib-splitdisk.service var-lib-images.mount ```  Complete MachineConfig YAML:</p>
+<p>apiVersion: machineconfiguration.openshift.io/v1 kind: MachineConfig metadata:  labels:  machineconfiguration.openshift.io/role: worker  name: 98-config-split-disk spec:  config:  ignition:  version: 3.2.0  storage:  files:  - contents:  source: data:text/plain;charset=utf-8;base64,IyEvYmluL2Jhc2gKCiMgRGV0ZWN0IGNsb3VkIHBsYXRmb3JtIC0gY2hlY2sgc3lzX3ZlbmRvciBmaXJzdCAobW9yZSByZWxpYWJsZSB0aGFuIHByb2R1Y3RfbmFtZSkKUExBVEZPUk09IiIKaWYgWyAtZiAvc3lzL2NsYXNzL2RtaS9pZC9zeXNfdmVuZG9yIF07IHRoZW4KICBWRU5ET1I9JChjYXQgL3N5cy9jbGFzcy9kbWkvaWQvc3lzX3ZlbmRvciAyPi9kZXYvbnVsbCB8fCBlY2hvICIiKQogIGlmIFtbICIkVkVORE9SIiA9PSAqIkdvb2dsZSIqIF1dOyB0aGVuCiAgICBQTEFURk9STT0iZ2NwIgogIGVsaWYgW1sgIiRWRU5ET1IiID09ICoiQW1hem9uIiogXV0gfHwgW1sgIiRWRU5ET1IiID09ICoiRUMyIiogXV07IHRoZW4KICAgIFBMQVRGT1JNPSJhd3MiCiAgZmkKZmkKCiMgRmFsbGJhY2sgdG8gcHJvZHVjdF9uYW1lIGlmIHN5c192ZW5kb3IgZGlkbid0IHdvcmsKaWYgWyAteiAiJFBMQVRGT1JNIiBdICYmIFsgLWYgL3N5cy9jbGFzcy9kbWkvaWQvcHJvZHVjdF9uYW1lIF07IHRoZW4KICBQUk9EVUNUPSQoY2F0IC9zeXMvY2xhc3MvZG1pL2lkL3Byb2R1Y3RfbmFtZSAyPi9kZXYvbnVsbCB8fCBlY2hvICIiKQogIGlmIFtbICIkUFJPRFVDVCIgPT0gKiJHb29nbGUiKiBdXTsgdGhlbgogICAgUExBVEZPUk09ImdjcCIKICBlbGlmIFtbICIkUFJPRFVDVCIgPT0gKiJBbWF6b24iKiBdXTsgdGhlbgogICAgUExBVEZPUk09ImF3cyIKICBmaQpmaQoKIyBJZiBwbGF0Zm9ybSBkZXRlY3Rpb24gZmFpbGVkLCB0cnkgbWV0YWRhdGEgc2VydmljZXMKaWYgWyAteiAiJFBMQVRGT1JNIiBdOyB0aGVuCiAgaWYgY3VybCAtcyAtZiAtbSAxIGh0dHA6Ly8xNjkuMjU0LjE2OS4yNTQvY29tcHV0ZU1ldGFkYXRhL3YxLyAtSCAiTWV0YWRhdGEtRmxhdm9yOiBHb29nbGUiICY+L2Rldi9udWxsOyB0aGVuCiAgICBQTEFURk9STT0iZ2NwIgogIGVsaWYgY3VybCAtcyAtZiAtbSAxIGh0dHA6Ly8xNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS8gJj4vZGV2L251bGw7IHRoZW4KICAgIFBMQVRGT1JNPSJhd3MiCiAgZmkKZmkKCmVjaG8gIkRldGVjdGVkIHBsYXRmb3JtOiAke1BMQVRGT1JNfSIKCiMgUmV0cnkgdXAgdG8gMzAgdGltZXMgd2l0aCAyIHNlY29uZCBkZWxheSAoNjAgc2Vjb25kcyB0b3RhbCkKTUFYX1JFVFJJRVM9MzAKUkVUUllfREVMQVk9MgoKZm9yIGF0dGVtcHQgaW4gJChzZXEgMSAkTUFYX1JFVFJJRVMpOyBkbwogIGVjaG8gIkF0dGVtcHQgJGF0dGVtcHQgb2YgJE1BWF9SRVRSSUVTIHRvIGZpbmQgc2Vjb25kYXJ5IGRldmljZSIKICAKICAjIFNlYXJjaCBmb3Igc2Vjb25kYXJ5IGRldmljZSBiYXNlZCBvbiBwbGF0Zm9ybQogIGlmIFsgIiRQTEFURk9STSIgPT0gImF3cyIgXTsgdGhlbgogICAgIyBBV1MgdXNlcyBOVk1lIGRldmljZXMKICAgIGZvciBkZXZpY2UgaW4gL2Rldi9udm1lKlswLTldKm4qOyBkbwogICAgICAvdXNyL3NiaW4vYmxraWQgIiR7ZGV2aWNlfSIgJj4gL2Rldi9udWxsCiAgICAgIGlmIFsgJD8gPT0gMiBdOyB0aGVuCiAgICAgICAgZWNobyAic2Vjb25kYXJ5IGRldmljZSBmb3VuZCAke2RldmljZX0iCiAgICAgICAgZWNobyAiY3JlYXRpbmcgZmlsZXN5c3RlbSBmb3IgY29udGFpbmVycyBtb3VudCIKICAgICAgICBpZiAhIG1rZnMueGZzIC1MIHNwbGl0ZGlzayAtZiAiJHtkZXZpY2V9IiAmPiAvZGV2L251bGw7IHRoZW4KICAgICAgICAgIGVjaG8gIkZhaWxlZCB0byBjcmVhdGUgZmlsZXN5c3RlbSBvbiAke2RldmljZX0iID4mMgogICAgICAgICAgZXhpdCAxCiAgICAgICAgZmkKICAgICAgICB1ZGV2YWRtIHNldHRsZQogICAgICAgIHRvdWNoIC9ldGMvdmFyLWxpYi1zcGxpdC1kaXNrLW1vdW50CiAgICAgICAgZXhpdCAwCiAgICAgIGZpCiAgICBkb25lCiAgZWxpZiBbICIkUExBVEZPUk0iID09ICJnY3AiIF07IHRoZW4KICAgICMgR0NQIHVzZXMgU0NTSSBkZXZpY2VzIChza2lwIHNkYSB3aGljaCBpcyBib290IGRpc2spCiAgICBmb3IgZGV2aWNlIGluIC9kZXYvc2RbYi16XTsgZG8KICAgICAgaWYgWyAtYiAiJHtkZXZpY2V9IiBdOyB0aGVuCiAgICAgICAgL3Vzci9zYmluL2Jsa2lkICIke2RldmljZX0iICY+IC9kZXYvbnVsbAogICAgICAgIGlmIFsgJD8gPT0gMiBdOyB0aGVuCiAgICAgICAgICBlY2hvICJzZWNvbmRhcnkgZGV2aWNlIGZvdW5kICR7ZGV2aWNlfSIKICAgICAgICAgIGVjaG8gImNyZWF0aW5nIGZpbGVzeXN0ZW0gZm9yIGNvbnRhaW5lcnMgbW91bnQiCiAgICAgICAgICBpZiAhIG1rZnMueGZzIC1MIHNwbGl0ZGlzayAtZiAiJHtkZXZpY2V9IiAmPiAvZGV2L251bGw7IHRoZW4KICAgICAgICAgICAgZWNobyAiRmFpbGVkIHRvIGNyZWF0ZSBmaWxlc3lzdGVtIG9uICR7ZGV2aWNlfSIgPiYyCiAgICAgICAgICAgIGV4aXQgMQogICAgICAgICAgZmkKICAgICAgICAgIHVkZXZhZG0gc2V0dGxlCiAgICAgICAgICB0b3VjaCAvZXRjL3Zhci1saWItc3BsaXQtZGlzay1tb3VudAogICAgICAgICAgZXhpdCAwCiAgICAgICAgZmkKICAgICAgZmkKICAgIGRvbmUKICBmaQogIAogICMgRGV2aWNlIG5vdCBmb3VuZCB5ZXQsIHdhaXQgYmVmb3JlIHJldHJ5CiAgaWYgWyAkYXR0ZW1wdCAtbHQgJE1BWF9SRVRSSUVTIF07IHRoZW4KICAgIGVjaG8gIkRldmljZSBub3QgZm91bmQsIHdhaXRpbmcgJHtSRVRSWV9ERUxBWX1zIGJlZm9yZSByZXRyeS4uLiIKICAgIHNsZWVwICRSRVRSWV9ERUxBWQogIGZpCmRvbmUKCmVjaG8gIkNvdWxkbid0IGZpbmQgc2Vjb25kYXJ5IGJsb2NrIGRldmljZSBhZnRlciAke01BWF9SRVRSSUVTfSBhdHRlbXB0cyEiID4mMgpleGl0IDc3Cg==  mode: 0755  path: /etc/find-secondary-device  overwrite: true  - contents:  source: data:text/plain;charset=utf-8;base64,W2NyaW9dCmltYWdlc3RvcmUgPSAiL3Zhci9saWIvaW1hZ2VzIg==  mode: 0644  path: /etc/crio/crio.conf.d/99-imagestore.conf  overwrite: true  - contents:  source: data:text/plain;charset=utf-8;base64,W1VuaXRdCkFmdGVyPXJlc3RvcmVjb24tdmFyLWxpYi1zcGxpdGRpc2suc2VydmljZQpSZXF1aXJlcz1yZXN0b3JlY29uLXZhci1saWItc3BsaXRkaXNrLnNlcnZpY2UgdmFyLWxpYi1pbWFnZXMubW91bnQK  mode: 0644  path: /etc/systemd/system/crio.service.d/99-wait-for-splitdisk.conf  overwrite: true  systemd:  units:  - name: find-secondary-device.service  enabled: true  contents: |  [Unit]  Description=Find secondary device  DefaultDependencies=false  After=systemd-udev-settle.service  Before=local-fs-pre.target  ConditionPathExists=!/etc/var-lib-split-disk-mount</p>
+<p>[Service]  Type=oneshot  RemainAfterExit=yes  ExecStart=/etc/find-secondary-device</p>
+<p>[Install]  WantedBy=multi-user.target  - name: var-lib-images.mount  enabled: true  contents: |  [Unit]  Description=Mount /var/lib/images  Requires=find-secondary-device.service  After=find-secondary-device.service  Before=local-fs.target</p>
+<p>[Mount]  What=/dev/disk/by-label/splitdisk  Where=/var/lib/images  Type=xfs  Options=defaults  TimeoutSec=120s</p>
+<p>[Install]  WantedBy=local-fs.target  - name: selinux-splitdisk-policy.service  enabled: true  contents: |  [Unit]  Description=Set SELinux file context rules for splitdisk  DefaultDependencies=no  After=var-lib-images.mount  Before=restorecon-var-lib-splitdisk.service  ConditionPathExists=!/var/lib/splitdisk-selinux-configured</p>
+<p>[Service]  Type=oneshot  RemainAfterExit=yes  ExecStart=/bin/bash -c &#39;/usr/sbin/semanage fcontext -a -e /var/lib/containers /var/lib/images &amp;&amp; touch /var/lib/splitdisk-selinux-configured&#39;  TimeoutSec=0</p>
+<p>[Install]  WantedBy=multi-user.target  - name: restorecon-var-lib-splitdisk.service  enabled: true  contents: |  [Unit]  Description=Restore recursive SELinux security contexts  DefaultDependencies=no  After=selinux-splitdisk-policy.service var-lib-images.mount  Requires=selinux-splitdisk-policy.service  Before=crio.service</p>
+<p>[Service]  Type=oneshot  RemainAfterExit=yes  ExecStart=/sbin/restorecon -R /var/lib/images  TimeoutSec=0</p>
+<p>[Install]  WantedBy=multi-user.target graphical.target Verifying split disk configuration After cluster creation completes, verify that the split disk is configured correctly.</p>
+<p>Deploy a pod with a large image to confirm split disk is working:</p>
+<p>cat &lt;&lt;EOF | oc apply -f - apiVersion: v1 kind: Pod metadata:  name: pytorch-interactive  labels:  app: pytorch spec:  containers:  - name: pytorch-container  image: pytorch/pytorch:2.2.0-cuda12.1-cudnn8-runtime  command: [&#34;sleep&#34;, &#34;infinity&#34;]  resources:  requests:  cpu: &#34;2&#34;  memory: &#34;4Gi&#34;  limits:  cpu: &#34;4&#34;  memory: &#34;8Gi&#34; EOF</p>
+<p># Wait for the image to pull (may take several minutes) oc get pod pytorch-interactive -w When the pod status shows Running , verify the image location:</p>
+<p># Get the worker node where the pod is running NODE=$(oc get pod pytorch-interactive -o jsonpath=&#39;{.spec.nodeName}&#39;)</p>
+<p># Start a debug session on the node oc debug node/${NODE}</p>
+<p># Inside the debug shell, switch to the host filesystem chroot /host</p>
+<p># Verify split disk directories exist ls -la /var/lib/images/ # Expected: overlay/, overlay-images/, overlay-layers/</p>
+<p># Check for the PyTorch image on the split disk ls -lh /var/lib/images/overlay-images/</p>
+<p># Check disk for the image crictl ps  # record the pytorch-container image id you can verify if its present in images folder ls /var/lib/images/overlay-images # Expected: Several GB (e.g., 5.2G)</p>
+<p>du -sh /var/lib/containers/storage/ # Expected: Smaller size, unchanged (e.g., 1.1G)</p>
+<p># View filesystem mount df -h | grep splitdisk # Expected: Shows split disk mounted at /var/lib/images</p>
+<p># Exit the debug shell exit exit</p>
+<p># Clean up the test pod oc delete pod pytorch-interactive PyTorch image (several GB) appears in /var/lib/images/overlay-images/ .</p>
+<p>It reads all your manifests, including the split disk MachineConfig, creates the cloud infrastructure (VPC, subnets, load balancers, and DNS), provisions bootstrap, control plane, and worker nodes, attaches the secondary volumes you defined, and applies the MachineConfig to all workers.</p>
+<p>The following remain in /var/lib/containers/storage/ on the boot disk:</p>
+<p>Pre-baked images included in the Red Hat Enterprise Linux CoreOS AMI   System and base images   Container runtime state   Container writable layers   The following are stored (e.g., /var/lib/images/ ) on the secondary disk:</p>
+<p>New images pulled for workloads running as pods   Images pulled after the node boots   Image overlay directories: overlay/ , overlay-images/ , overlay-layers/   Split disk does not migrate or move existing images.</p>
+<p>The first time I watched a node run out of disk space while pulling a 6 GB GPU PyTorch image, I knew we needed a better way to handle container image storage.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Prerequisites Before you begin, make sure you have the OpenShift installer binary ( openshift-install ) for version 4.22 or later, your pull secret from the Red Hat Customer Portal , and cloud provider credentials configured. Step 1: Create the install configuration The installer will prompt you for your platform (choose AWS or GCP), cluster name, pull secret, region, base domain, and other parameters. Step 4: Edit worker machinesets The installer creates multiple worker machineset files, typically one per availability zone.</p>
+<p>ls 99_openshift-cluster-api_worker-machineset-* Expected output: 99_openshift-cluster-api_worker-machineset-0.yaml 99_openshift-cluster-api_worker-machineset-1.yaml 99_openshift-cluster-api_worker-machineset-2.yaml 99_openshift-cluster-api_worker-machineset-3.yaml 99_openshift-cluster-api_worker-machineset-4.yaml You must edit each file individually to ensure consistent configuration across all zones. Missing even one means nodes in that availability zone won&#39;t have secondary disks, and the split disk configuration will fail on those nodes.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>The first time I watched a node run out of disk space while pulling a 6 GB GPU PyTorch image, I knew we needed a better way to handle container image storage.</p>
+<p>This approach gives you better control over disk space allocation and separates the concerns of image storage from container operations.</p>
+<p>This distinction is important because it means you&#39;re not disrupting the foundational system images; you&#39;re simply redirecting where workload images land going forward.</p>
+<p>It only directs where CRI-O stores newly pulled images going forward.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. This approach gives you better control over disk space allocation and separates the concerns of image storage from container operations. This distinction is important because it means you&#39;re not disrupting the foundational system images; you&#39;re simply redirecting where workload images land going forward. It&#39;s an elegant solution because it doesn&#39;t require migrating existing data—you simply point future image pulls to the new location, and everything continues to work.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>CRI-O achieves this through its imagestore configuration option, which tells the runtime to use an alternate location for image storage. It&#39;s an elegant solution because it doesn&#39;t require migrating existing data—you sim</li>
+            <li>Step 2: Generate manifests This is where things get interesting. The installer takes your install-config.yaml and generates a full set of manifests, not just generic Kubernetes resources, but also OpenShift-specific conf</li>
+            <li>./openshift-install create manifests --dir ./ocp-split-disk-cluster Step 3: Add split disk MachineConfig Navigate to the OpenShift directory and copy the MachineConfig. The complete MachineConfig YAML is provided in the </li>
+            <li>Step 5: Create the cluster With manifests prepared and machinesets edited, you&#39;re ready to create the cluster.</li>
+            <li>./openshift-install create cluster --dir ./ocp-split-disk-cluster The installer now orchestrates the entire deployment. It reads all your manifests, including the split disk MachineConfig, creates the cloud infrastructur</li>
+            <li>On each worker node, the split disk setup runs automatically through a carefully orchestrated sequence. The find-secondary-device.service systemd unit executes first, running a script that detects your cloud platform, lo</li>
+            <li>CRI-O configuration The MachineConfig creates /etc/crio/crio.conf.d/99-imagestore.conf drop-in as follows:</li>
+            <li>imagestore = &#34;/var/lib/images&#34; This tells CRI-O to store newly pulled images on the split disk instead of the default location.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/21/configure-split-disk-openshift-container-platform" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
