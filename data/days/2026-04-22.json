@@ -130,10 +130,6 @@
         "link": "https://www.hashicorp.com/blog/faster-threat-detection-with-boundary-session-recording-auditbeat"
       },
       {
-        "source": "Cloudflare Blog",
-        "link": "https://blog.cloudflare.com/making-rust-workers-reliable/"
-      },
-      {
         "source": "Kubernetes Blog",
         "link": "https://kubernetes.io/blog/2026/04/22/breaking-changes-in-selinux-volume-labeling/"
       }
