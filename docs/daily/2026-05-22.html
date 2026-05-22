@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">22 May 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">2 items</span>
     </div>
   </div>
 
@@ -51,15 +51,25 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
       </div>
     </div>
   </div>
@@ -94,6 +104,46 @@
       <div class="detail-links">
         <a href="../articles/bef1bc147908f432.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/22/breaking-your-ai-storage-bottlenecks/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,observability"
+       data-vendors="AWS,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="how to prevent ai inference stack silent failures"
+       data-id="2e3acdd5b19d29eb"
+       data-published="2026-05-22T07:01:11+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-22T07:01:11+00:00" title="22 May 2026, 02:01">22 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">How to prevent AI inference stack silent failures</h3>
+      <p class="card-summary">If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows: 
+
+ Client -&gt; API layer -&gt; inference server -&gt; API layer -&gt; client 
+
+ You would expect this layer to pass everything through faithfully.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows:</p>
+<p>Client -&gt; API layer -&gt; inference server -&gt; API layer -&gt; client</p>
+<p>You would expect this layer to pass everything through faithfully. But it can pass tool schemas incorrectly , handle fields differently across versions, or drop state that carries conversation context.</p></div>
+      <div class="detail-links">
+        <a href="../articles/2e3acdd5b19d29eb.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/22/how-prevent-ai-inference-stack-silent-failures" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

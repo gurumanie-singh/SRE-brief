@@ -25,37 +25,28 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">21 May 2026</h1>
+      <h1 class="brief-title">22 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-21T23:22:04.049346-05:00">21 May 2026, 23:22</time>
+        <time data-iso="2026-05-22T03:27:32.049699-05:00">22 May 2026, 03:27</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-action">1 ops priority</span>
-      <span class="stat">7 items today</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
-    <div class="strip-section">
-      <span class="strip-label">Operations picture</span>
-      <ul class="strip-bullets">
-        <li>1 story flagged for operational follow-up</li>
-        <li>Repeated coverage across Kubernetes, Red Hat</li>
-        <li>Multiple outage or availability narratives detected</li>
-      </ul>
-    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
         <span class="trend-pill">openshift<span class="trend-count">5</span></span>
         <span class="trend-pill">platform<span class="trend-count">4</span></span>
+        <span class="trend-pill">stack<span class="trend-count">3</span></span>
         <span class="trend-pill">claude<span class="trend-count">3</span></span>
         <span class="trend-pill">guide<span class="trend-count">3</span></span>
-        <span class="trend-pill">announcing<span class="trend-count">2</span></span>
-        <span class="trend-pill">agents<span class="trend-count">2</span></span>
+        <span class="trend-pill">inference<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -85,8 +76,8 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
@@ -103,8 +94,8 @@
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
@@ -113,9 +104,9 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
@@ -129,7 +120,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       22 May 2026
-      <span class="day-count">1</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -163,6 +154,46 @@
       <div class="detail-links">
         <a href="articles/bef1bc147908f432.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/05/22/breaking-your-ai-storage-bottlenecks/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,observability"
+       data-vendors="AWS,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="how to prevent ai inference stack silent failures"
+       data-id="2e3acdd5b19d29eb"
+       data-published="2026-05-22T07:01:11+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-22T07:01:11+00:00" title="22 May 2026, 02:01">22 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">How to prevent AI inference stack silent failures</h3>
+      <p class="card-summary">If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows: 
+
+ Client -&gt; API layer -&gt; inference server -&gt; API layer -&gt; client 
+
+ You would expect this layer to pass everything through faithfully.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows:</p>
+<p>Client -&gt; API layer -&gt; inference server -&gt; API layer -&gt; client</p>
+<p>You would expect this layer to pass everything through faithfully. But it can pass tool schemas incorrectly , handle fields differently across versions, or drop state that carries conversation context.</p></div>
+      <div class="detail-links">
+        <a href="articles/2e3acdd5b19d29eb.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/22/how-prevent-ai-inference-stack-silent-failures" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1057,7 +1088,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       15 May 2026
-      <span class="day-count">4</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
@@ -1162,41 +1193,6 @@
       <div class="detail-links">
         <a href="articles/d4be6777f7df7662.html" class="detail-read">Open structured brief →</a>
         <a href="https://github.blog/security/raising-the-bar-quality-shared-responsibility-and-the-future-of-githubs-bug-bounty-program/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,kubernetes,networking"
-       data-vendors="Kubernetes,Slack"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="kubernetes v1.36: mixed version proxy graduates to beta"
-       data-id="48d26f667364aab0"
-       data-published="2026-05-15T10:00:00-08:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Kubernetes</span><span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-05-15T10:00:00-08:00" title="15 May 2026, 13:00">15 May 2026, 13:00</time>
-      </div>
-      <h3 class="card-title">Kubernetes v1.36: Mixed Version Proxy Graduates to Beta</h3>
-      <p class="card-summary">Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect 404 Not Found .</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">networking</span>
-        </div>
-      </div>
-      <span class="card-source">Kubernetes Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Back in Kubernetes 1.28, we introduced the Mixed Version Proxy (MVP) as an Alpha feature (under the feature gate UnknownVersionInteroperabilityProxy ) in a previous blog post . The goal was simple but critical: make cluster upgrades safer by ensuring that requests for resources not yet known to an older API server are correctly routed to a newer peer API server, instead of returning an incorrect 404 Not Found . We are excited to announce that the Mixed Version Proxy is moving to Beta in Kubernetes 1.36 and will be enabled by default!</p></div>
-      <div class="detail-links">
-        <a href="articles/48d26f667364aab0.html" class="detail-read">Open structured brief →</a>
-        <a href="https://kubernetes.io/blog/2026/05/15/kubernetes-1-36-feature-mixed-version-proxy-beta/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

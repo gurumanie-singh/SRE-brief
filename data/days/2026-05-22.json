@@ -31,5 +31,49 @@
     "email_summary": "Recorded at HumanX, Ryan sits down with Garima Kapoor and Anand Babu Periasamy, co-founders and co-CEOs of MinIO, to chat about eliminating the storage bottlenecks that leave GPUs underutilized, their partnership with NVIDIA on the new STX reference architecture, and why modern AI infrastructure is converging on S3-compatible object storage.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "2e3acdd5b19d29eb",
+    "title": "How to prevent AI inference stack silent failures",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/22/how-prevent-ai-inference-stack-silent-failures",
+    "published": "2026-05-22T07:01:11+00:00",
+    "fetched_at": "2026-05-22T08:27:31.813267+00:00",
+    "summary": "If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows: ",
+    "tags": [
+      "deployment",
+      "observability"
+    ],
+    "day": "2026-05-22",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and obser",
+      "You would expect this layer to pass everything through faithfully. But it can pass tool schemas incorrectly , handle fields differently across versions, or drop state that carries conversation context. When that happens,",
+      "OpenShift AI tests OGX and vLLM together before shipping, so a version bump in one does not silently break the other. That means your team can focus on building applications instead of debugging invisible regressions bet",
+      "The source of the gain Among many changes in OpenShift AI 3.4, the two driving accuracy gains in these experiments are vLLM ( v0.13.0 to v0.18.0 ) and OGX ( v0.4.2 to v0.7.1 ). The BFCL tests run through OGX's responses ",
+      "We tested every combination of old and new as shown in the following table:",
+      "Reproduce the results The benchmark report has step-by-step instructions to replicate the results, including OGX and vLLM versions, BFCL test setup, and evaluation commands. The gpt-oss-120b uses MXFP4 quantization and f"
+    ],
+    "sections": {
+      "overview": "If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows: \n\n Client -> API layer -> inference server -> API layer -> client \n\n You would expect this layer to pass everything through faithfully. But it can pass tool schemas incorrectly , handle fields differently across versions, or drop state that carries conversation context.",
+      "technical_breakdown": "If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability.\n\nThis is one reason performance reports for the same agentic model vary so widely across different deployments.",
+      "impact": "Every request passes through it as follows: \n\n Client -> API layer -> inference server -> API layer -> client \n\n You would expect this layer to pass everything through faithfully. In multi-turn tool calling, the client takes the response, updates conversation history, and sends it back through the API layer for the next turn. The BFCL tests run through OGX's responses API , with the BFCL harness managing the multi-turn tool-calling loop client-side.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "The surprise was not that 3.4 scored better, but where the gain came from.\n\nWhen the next round of model and infrastructure improvements ships, you get those gains without requalifying each piece.\n\nIf you run your own stack with different layers in between, the same lesson applies: test end-to-end.\n\nThe post How to prevent AI inference stack silent failures appeared first on Red Hat Developer .",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Corroborate against the vendor or team narrative in the original article.",
+      "incident_timeline": "If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and obser\nYou would expect this layer to pass everything through faithfully. But it can pass tool schemas incorrectly , handle fields differently across versions, or drop state that carries conversation context. When that happens,\nOpenShift AI tests OGX and vLLM together before shipping, so a version bump in one does not silently break the other. That means your team can focus on building applications instead of debugging invisible regressions bet\nThe source of the gain Among many changes in OpenShift AI 3.4, the two driving accuracy gains in these experiments are vLLM ( v0.13.0 to v0.18.0 ) and OGX ( v0.4.2 to v0.7.1 ). The BFCL tests run through OGX's responses \nWe tested every combination of old and new as shown in the following table:\nReproduce the results The benchmark report has step-by-step instructions to replicate the results, including OGX and vLLM versions, BFCL test setup, and evaluation commands. The gpt-oss-120b uses MXFP4 quantization and f",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "If you are running agentic workloads in production, you want an API layer between your application and the inference engine for swapping providers without rewriting code, managing multi-turn conversation state, and observability. Every request passes through it as follows: \n\n Client -> API layer -> inference server -> API layer -> client \n\n You would expect this layer to pass everything through faithfully.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
