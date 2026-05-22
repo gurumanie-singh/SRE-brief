@@ -1,0 +1,35 @@
+[
+  {
+    "id": "bef1bc147908f432",
+    "title": "Breaking your AI storage bottlenecks",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/22/breaking-your-ai-storage-bottlenecks/",
+    "published": "2026-05-22T07:40:00+00:00",
+    "fetched_at": "2026-05-22T04:22:02.742462+00:00",
+    "summary": "Recorded at HumanX, Ryan sits down with Garima Kapoor and Anand Babu Periasamy, co-founders and co-CEOs of MinIO, to chat about eliminating the storage bottlenecks that leave GPUs underutilized, their partnership with NVIDIA on the new STX reference architecture, and why modern AI infrastructure is converging on S3-compatible object storage.",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-05-22",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Recorded at HumanX, Ryan sits down with Garima Kapoor and Anand Babu Periasamy, co-founders and co-CEOs of MinIO, to chat about eliminating the storage bottlenecks that leave GPUs underutilized, their partnership with NVIDIA on the new STX reference architecture, and why modern AI infrastructure is converging on S3-compatible object storage.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Recorded at HumanX, Ryan sits down with Garima Kapoor and Anand Babu Periasamy, co-founders and co-CEOs of MinIO, to chat about eliminating the storage bottlenecks that leave GPUs underutilized, their partnership with NVIDIA on the new STX reference architecture, and why modern AI infrastructure is converging on S3-compatible object storage.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
