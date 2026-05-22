@@ -108,7 +108,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "The rapid growth of AI has transformed the security landscape for enterprise and cloud infrastructure. As organizations increasingly use GPU-accelerated environments for sensitive computations such as model training and data analytics, protecting the integrity and confidentiality of data and code in-use has become a crucial concern, often addressed through confidential computing technologies.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/github-recognized-as-a-leader-in-the-gartner-magic-quadrant-for-enterprise-ai-coding-agents-for-the-third-year-in-a-row/"
+      }
+    ],
     "highlighted": false
   },
   {

@@ -340,10 +340,6 @@
     "email_summary": "Running AI evaluations in production is not a one-time script. Impact band: high.",
     "related_sources": [
       {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/"
-      },
-      {
         "source": "Kubernetes Blog",
         "link": "https://kubernetes.io/blog/2026/05/12/kubernetes-v1-36-psi-metrics-ga/"
       }
