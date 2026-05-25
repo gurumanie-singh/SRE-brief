@@ -28,12 +28,13 @@
       <h1 class="brief-title">25 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-25T00:26:30.657753-05:00">25 May 2026, 00:26</time>
+        <time data-iso="2026-05-25T05:25:59.697894-05:00">25 May 2026, 05:25</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">5 items today</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -41,6 +42,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
         <li>Repeated coverage across Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
@@ -87,10 +89,10 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Datadog">Datadog</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
@@ -99,9 +101,9 @@
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
@@ -111,11 +113,11 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
       </div>
@@ -123,6 +125,85 @@
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      25 May 2026
+      <span class="day-count">2</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--high"
+       data-tags="database,deployment,kubernetes,observability,outage"
+       data-vendors="Kubernetes,Red Hat,Slack"
+       data-impact="high"
+       data-theme="observability"
+       data-title="mcp servers vs. skills: choosing the right context for your ai"
+       data-id="2d2178dbe35ca4b9"
+       data-published="2026-05-25T07:01:32+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-25T07:01:32+00:00" title="25 May 2026, 02:01">25 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">MCP servers vs. skills: Choosing the right context for your AI</h3>
+      <p class="card-summary">Large language models (LLMs) are efficient general-purpose tools, but they work much better when you give them the right context. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Large language models (LLMs) are efficient general-purpose tools, but they work much better when you give them the right context. Whether you&#39;re using a coding assistant (yes, you can run your own private coding assistant ), building an agentic application, or trying to get more accurate answers from your favorite model, there are two main ways to extend what an LLM can do: Model Context Protocol (MCP ) servers and skills. Both expand the context window of your model, but they solve fundamentally different problems.</p></div>
+      <div class="detail-links">
+        <a href="articles/2d2178dbe35ca4b9.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/25/mcp-servers-vs-skills-choosing-right-context-your-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,networking,observability,outage,scaling"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="how to route external and local llms with models-as-a-service"
+       data-id="9cedcd9c4d57cb1b"
+       data-published="2026-05-25T07:01:29+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-25T07:01:29+00:00" title="25 May 2026, 02:01">25 May 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">How to route external and local LLMs with Models-as-a-Service</h3>
+      <p class="card-summary">AI applications often call model provider APIs such as OpenAI, Anthropic, or Google directly from the application code. In many cases, the application contains the logic for calling the provider endpoint, handling authentication, and formatting requests.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>AI applications often call model provider APIs such as OpenAI, Anthropic, or Google directly from the application code. In many cases, the application contains the logic for calling the provider endpoint, handling authentication, and formatting requests. This works well when an application relies on a single provider.</p></div>
+      <div class="detail-links">
+        <a href="articles/9cedcd9c4d57cb1b.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/25/route-external-and-local-llms-models-as-a-service" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       22 May 2026
@@ -997,7 +1078,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       18 May 2026
-      <span class="day-count">6</span>
+      <span class="day-count">4</span>
     </h2>
   </div>
 
@@ -1129,78 +1210,6 @@
       <div class="detail-links">
         <a href="articles/203009ecd6b5c2ec.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/05/18/sql-server-ha-rhel-meet-pacemaker-ha-agent-v2-tech-preview" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,kubernetes,observability,outage"
-       data-vendors="GitHub,Kubernetes,Red Hat,Slack"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="deploy with confidence: continuous integration and continuous delivery for agentic ai"
-       data-id="4688da9a9cb673ac"
-       data-published="2026-05-18T07:01:14+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-05-18T07:01:14+00:00" title="18 May 2026, 02:01">18 May 2026, 02:01</time>
-      </div>
-      <h3 class="card-title">Deploy with confidence: Continuous integration and continuous delivery for agentic AI</h3>
-      <p class="card-summary">In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <div class="card-related">Also: GitHub Blog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>In this post, we cover the implementation of the CI/CD pipelines our team used to develop the it-self-service-agent AI quickstart and what we learned along the way. Continuous integration and continuous delivery (CI/CD) are vital to building applications. For agentic systems, this process is even more important because agents are inherently variable.</p></div>
-      <div class="detail-links">
-        <a href="articles/4688da9a9cb673ac.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/05/18/ci-cd-delivery-agentic-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,outage,postmortem"
-       data-vendors="Cloudflare"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="project glasswing: what mythos showed us"
-       data-id="a6afea8b4602c43f"
-       data-published="2026-05-18T06:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-18T06:00:00+00:00" title="18 May 2026, 01:00">18 May 2026, 01:00</time>
-      </div>
-      <h3 class="card-title">Project Glasswing: what Mythos showed us</h3>
-      <p class="card-summary">For the last few months, we&#39;ve been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us what attackers are going to be able to do with the latest models.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">outage</span>
-          <span class="ttag">postmortem</span>
-        </div>
-      </div>
-      <span class="card-source">Cloudflare Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>For the last few months, we&#39;ve been testing a range of security-focused LLMs on our own infrastructure. These LLMs help identify potential vulnerabilities in our own systems, so we can fix them – and they also show us what attackers are going to be able to do with the latest models. None of these LLMs has captured more attention than Mythos Preview, from Anthropic.</p></div>
-      <div class="detail-links">
-        <a href="articles/a6afea8b4602c43f.html" class="detail-read">Open structured brief →</a>
-        <a href="https://blog.cloudflare.com/cyber-frontier-models/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
