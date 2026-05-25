@@ -1,5 +1,51 @@
 [
   {
+    "id": "a1ffb75347189b48",
+    "title": "AWS Weekly Roundup: AWS Local Zones in Istanbul, open-source ExtendDB, Kiro Web, and more (May 25, 2026)",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-local-zones-in-istanbul-open-source-extenddb-kiro-web-and-more-may-25-2026/",
+    "published": "2026-05-25T20:11:10+00:00",
+    "fetched_at": "2026-05-25T21:18:30.914242+00:00",
+    "summary": "There’s something genuinely energizing about working with startups — something I’ve been doing intensely for more than two years now. Startups operate at a different frequency: the urgency is real, the constraints are tight, and the stakes are personal. Helping them navigate the challenge of proving their business model requires not just technical depth but a willingness to move fast, challenge...",
+    "tags": [
+      "database",
+      "latency",
+      "networking"
+    ],
+    "day": "2026-05-25",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "What I love most is that the work is never abstract: every decision I help a startup make has a direct impact on whether they ship on time, stay within budget, and earn the next round of confidence from their investors.",
+      "Now Open — AWS Local Zones in Istanbul, Türkiye — AWS has opened a new Local Zone in Istanbul, Türkiye, bringing AWS compute, storage, and networking services to one of Europe’s largest metropolitan areas. AWS Local Zone",
+      "A Local Zone is a significant infrastructure investment: it requires the same level of operational excellence as a Region, with consistent hardware, power, and networking infrastructure, and reflects AWS’s continued expa",
+      "AWS announces ExtendDB, an open-source DynamoDB-compatible adapter — AWS has open-sourced ExtendDB, a DynamoDB-compatible adapter that allows you to use the DynamoDB API and data model on top of alternative backend stora",
+      "AWS SAM CLI adds AWS CloudFormation Language Extensions support to accelerate local serverless development — The AWS SAM CLI now supports AWS CloudFormation Language Extensions locally, meaning you can use transforms, dy",
+      "Here are some additional posts and resources that you might find interesting:",
+      "AWS Summit Bangkok — AWS Summit Bangkok takes place on May 28. It’s a fantastic opportunity for builders and customers across Southeast Asia to connect and explore the latest in cloud innovation.",
+      "AWS Summit Los Angeles — Mark your calendar for June 10 in Los Angeles. The AWS Summit LA is coming up and it’s a great opportunity to connect with the West Coast builder community."
+    ],
+    "sections": {
+      "overview": "There’s something genuinely energizing about working with startups — something I’ve been doing intensely for more than two years now. Startups operate at a different frequency: the urgency is real, the constraints are tight, and the stakes are personal. Helping them navigate the challenge of proving their business model requires not just technical depth but a willingness to move fast, challenge assumptions, and make bets on the right architecture before the perfect data exists.",
+      "technical_breakdown": "A Local Zone is a significant infrastructure investment: it requires the same level of operational excellence as a Region, with consistent hardware, power, and networking infrastructure, and reflects AWS’s continued expansion into underserved markets.\n\nYou can now store and back up data within Turkish borders to help meet data residency requirements, and run latency-sensitive workloads in the Istanbul Local Zone while connecting seamlessly to the AWS Region—giving you the flexibility to architect hybrid applications without managing your own data center infrastructure.\n\nHeadlines \n Now Open — AWS Local Zones in Istanbul, Türkiye — AWS has opened a new Local Zone in Istanbul, Türkiye, bringing AWS compute, storage, and networking services to one of Europe’s largest metropolitan areas.\n\nAWS Local Zones place AWS infrastructure much closer to large population and industry, enabling organizations to store and process data within specific jurisdictions to meet data residency requirements, while delivering single-digit millisecond latency for applications that need to run closer to end users.\n\nTo learn more about our decade-long commitment, available services, customers and partners in Türkiye, visit the launch blog post .",
+      "impact": "What I love most is that the work is never abstract: every decision I help a startup make has a direct impact on whether they ship on time, stay within budget, and earn the next round of confidence from their investors. AWS Local Zones place AWS infrastructure much closer to large population and industry, enabling organizations to store and process data within specific jurisdictions to meet data residency requirements, while delivering single-digit millisecond latency for applications that need to run closer to end users. A Local Zone is a significant infrastructure investment: it requires the same level of operational excellence as a Region, with consistent hardware, power, and networking infrastructure, and reflects AWS’s continued expansion into underserved markets. You can now store and back up data within Turkish borders to help meet data residency requirements, and run latency-sensitive workloads in the Istanbul Local Zone while connecting seamlessly to the AWS Region—giving you the flexibility to architect hybrid applications without managing your own data center infrastructure.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "If you build serverless applications with SAM and encounter edge cases in local testing, this update will meaningfully improve your experience.\n\nOther AWS news \n Here are some additional posts and resources that you might find interesting:\n\n \n \n Amazon Bedrock introduces new advanced prompt optimization and migration tool — This post covers the newly launched Advanced Prompt Optimization and Migration Tool in Amazon Bedrock, which helps you automatically tune your prompts for better model performance and assists you in migrating prompts across different foundation models.\n\nThe updated behavior includes smarter backoff strategies and better handling of throttling responses.\n\nIf you’re running production workloads that occasionally hit API rate limits or transient failures, this update improves reliability out of the box.",
+      "root_cause_highlight": "",
+      "incident_timeline": "What I love most is that the work is never abstract: every decision I help a startup make has a direct impact on whether they ship on time, stay within budget, and earn the next round of confidence from their investors.\nNow Open — AWS Local Zones in Istanbul, Türkiye — AWS has opened a new Local Zone in Istanbul, Türkiye, bringing AWS compute, storage, and networking services to one of Europe’s largest metropolitan areas. AWS Local Zone\nA Local Zone is a significant infrastructure investment: it requires the same level of operational excellence as a Region, with consistent hardware, power, and networking infrastructure, and reflects AWS’s continued expa\nAWS announces ExtendDB, an open-source DynamoDB-compatible adapter — AWS has open-sourced ExtendDB, a DynamoDB-compatible adapter that allows you to use the DynamoDB API and data model on top of alternative backend stora\nAWS SAM CLI adds AWS CloudFormation Language Extensions support to accelerate local serverless development — The AWS SAM CLI now supports AWS CloudFormation Language Extensions locally, meaning you can use transforms, dy\nHere are some additional posts and resources that you might find interesting:\nAWS Summit Bangkok — AWS Summit Bangkok takes place on May 28. It’s a fantastic opportunity for builders and customers across Southeast Asia to connect and explore the latest in cloud innovation.\nAWS Summit Los Angeles — Mark your calendar for June 10 in Los Angeles. The AWS Summit LA is coming up and it’s a great opportunity to connect with the West Coast builder community.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "There’s something genuinely energizing about working with startups — something I’ve been doing intensely for more than two years now. Startups operate at a different frequency: the urgency is real, the constraints are tight, and the stakes are personal.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "58e4bbbb6f0214e0",
     "title": "GitHub for Beginners: Getting started with Git and GitHub in VS Code",
     "source": "GitHub Blog",
