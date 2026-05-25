@@ -1,5 +1,44 @@
 [
   {
+    "id": "58e4bbbb6f0214e0",
+    "title": "GitHub for Beginners: Getting started with Git and GitHub in VS Code",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/",
+    "published": "2026-05-25T16:00:00+00:00",
+    "fetched_at": "2026-05-25T17:11:36.272580+00:00",
+    "summary": "Welcome back to GitHub for Beginners. We ve covered a lot this season, so make sure to check out our other episodes. Our most recent one was all about open source, what it is and how to contribute to the community.",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-05-25",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "This time, we re going to take a look at VS Code, a free popular source code editor provided by Microsoft. It has a fair amount of functionality built in that integrates with GitHub, which is what we ll be taking a look ",
+      "Let s say you want to take your project and publish it up to GitHub. To do so, click the Publish Branch button in the Source Control window. VS Code will prompt you with whether you want to publish it as a private or as ",
+      "Click the Select as Repository Destination button."
+    ],
+    "sections": {
+      "overview": "Welcome back to GitHub for Beginners. We ve covered a lot this season, so make sure to check out our other episodes. Our most recent one was all about open source, what it is and how to contribute to the community.",
+      "technical_breakdown": "Note that if you want to follow along with this blog post (or the video), you will need to install both Git and VS Code .\n\nThe post GitHub for Beginners: Getting started with Git and GitHub in VS Code appeared first on The GitHub Blog .",
+      "impact": "Select your GitHub username from the list.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "For an example of how this works, check out the video version of this episode which walks through asking Copilot to create several issues to improve a flash card application.",
+      "root_cause_highlight": "",
+      "incident_timeline": "This time, we re going to take a look at VS Code, a free popular source code editor provided by Microsoft. It has a fair amount of functionality built in that integrates with GitHub, which is what we ll be taking a look \nLet s say you want to take your project and publish it up to GitHub. To do so, click the Publish Branch button in the Source Control window. VS Code will prompt you with whether you want to publish it as a private or as \nClick the Select as Repository Destination button.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Welcome back to GitHub for Beginners. We ve covered a lot this season, so make sure to check out our other episodes.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "2d2178dbe35ca4b9",
     "title": "MCP servers vs. skills: Choosing the right context for your AI",
     "source": "Red Hat Developer Blog",
