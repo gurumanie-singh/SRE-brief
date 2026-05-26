@@ -79,7 +79,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "A previous post in this series described six defense layers for agent workloads on Red Hat OpenShift Container Platform. That post was theory.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/05/26/reconciling-unfixed-kubernetes-cves/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -177,6 +182,37 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse."
     },
     "email_summary": "SELinux Multi-Category Security (MCS) breaks GitLab runner's multi-container job architecture by assigning different labels to containers that need to share volumes. This article describes this problem, as well as GNOME's current workaround with fixed MCS labels, and the path toward ephemeral microVM isolation using Cloud Hypervisor, Firecracker, and libkrun.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "588fdcc28e43d111",
+    "title": "5 data foundation and technology stack gaps stalling your AI agents",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/5-data-tech-stack-gaps-stalling-ai-agents",
+    "published": "2026-05-26T00:00:00+00:00",
+    "fetched_at": "2026-05-26T19:24:17.521941+00:00",
+    "summary": "Discover the five critical infrastructure gaps stalling your enterprise AI initiatives, and learn how CIOs are addressing data, integration, and governance to scale agentic AI.",
+    "tags": [],
+    "day": "2026-05-26",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Discover the five critical infrastructure gaps stalling your enterprise AI initiatives, and learn how CIOs are addressing data, integration, and governance to scale agentic AI.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Discover the five critical infrastructure gaps stalling your enterprise AI initiatives, and learn how CIOs are addressing data, integration, and governance to scale agentic AI.",
     "related_sources": [],
     "highlighted": false
   }
