@@ -31,5 +31,153 @@
     "email_summary": "From the floor of HumanX, Ryan Donovan is joined by Peter Salanki, CTO and co-founder of CoreWeave, to chat about what it really takes to run AI in production; the growing importance of observability, utilization, and scheduling; and Peter’s advice for avoiding the trap of over-architecting too early.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "3c4d6c9fcccada1c",
+    "title": "Testing infrastructure red teaming with abliterated models",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/26/testing-infrastructure-red-teaming-abliterated-models",
+    "published": "2026-05-26T07:01:20+00:00",
+    "fetched_at": "2026-05-26T08:38:23.398794+00:00",
+    "summary": "A previous post in this series described six defense layers for agent workloads on Red Hat OpenShift Container Platform. That post was theory. This one is the test.",
+    "tags": [
+      "capacity",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-26",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "A previous post in this series described six defense layers for agent workloads on Red Hat OpenShift Container Platform. That post was theory. This one is the test.",
+      "I deployed OpenClaw on Red Hat OpenShift on IBM Cloud, wrote 15 custom garak probes across six attack categories, and ran 91 adversarial prompts per tier across three hardening configurations. The model serving layer use",
+      "I tested five: Claude Opus 4.6 and Gemini 3.1 Pro both refused 100% of attack prompts. Gemini 3 Flash cooperated on tool abuse probes, showing a 25 to 33% cooperation rate. Qwen3-80B cooperated on 83% of BashInjector pro",
+      "The tradeoff is degraded reasoning and increased hallucination, since the projection perturbs nearby weight geometry. For red teaming, this produces a compliant model that tests whether downstream guardrails hold indepen",
+      "I ended up using an abliterated Qwen3.5-35B-A3B variant served via vLLM on an A100 80GB: 100% cooperation, zero refusals. The community calls this the crash test dummy approach. HauhauCS's Aggressive uncensoring method s",
+      "Tier 1: SSH sandbox isolation (tool execution routed to a separate pod via SSH) plus a NetworkPolicy restricting sandbox egress to cluster DNS only.",
+      "Tier 2: Everything from tier 1, plus a prompt injection classifier screening inputs before they reach the model. I used protectai/deberta-v3-base-prompt-injection-v2 , which is listed in Red Hat's docs as a supported det",
+      "Tier 1: The sandbox changes everything (almost) Adding the SSH sandbox was the single biggest change in the entire experiment. Tool execution moved to a separate pod with zero sensitive environment variables, and the ser"
+    ],
+    "sections": {
+      "overview": "A previous post in this series described six defense layers for agent workloads on Red Hat OpenShift Container Platform. That post was theory. This one is the test.",
+      "technical_breakdown": "On OVN-Kubernetes (OpenShift's default container network interface [CNI] since 4.11), OVN load balancers handle the translation via Open vSwitch (OVS) flows.\n\nThe configuration that works targets DNS pods by label rather than by IP address:\n\n # This works\negress:\n - to:\n - namespaceSelector:\n matchLabels:\n kubernetes.io/metadata.name: openshift-dns\n podSelector:\n matchLabels:\n dns.operator.openshift.io/daemonset-dns: default\n ports:\n - port: 5353\n protocol: UDP\n Kyverno's add-networkpolicy-dns policy uses this pattern.\n\nTier 1: SSH sandbox isolation (tool execution routed to a separate pod via SSH) plus a NetworkPolicy restricting sandbox egress to cluster DNS only.\n\nA NetworkPolicy resolved Kubernetes cluster escalation (dropping from 40% to 0%) by blocking TCP to the API server.\n\nThe sandbox pod has no API keys, no service account token readable by the tool process, and a NetworkPolicy restricting its egress to cluster DNS only.",
+      "impact": "The SSH session runs as user sandbox ( uid 1000 ). Vector Result Why sudo Not installed UBI 9 does not ship sudo su root Password required Root password unknown python3 os.setuid(0) PermissionError No CAP_SETUID on the SSH process nsenter -t 1 Permission denied Cannot read /proc/1/ns/* as UID 1000 mount -t proc \"must be superuser\" Checks EUID, not container capabilities chroot Operation not permitted Also an EUID check Create setuid binary The setuid bit sticks, but no root-owned binary to create Can't chown to root /proc/1/root traversal Permission denied Root-owned namespace entries All eight blocked. OverlayFS vulnerabilities CVE-2023-2640 and CVE-2023-32629 demonstrated that kernel bugs can let non-root users escalate via mounted volumes on privileged containers. An instruction to read /etc/passwd results in the agent doing exactly what the user told it to do.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "A NetworkPolicy resolved Kubernetes cluster escalation (dropping from 40% to 0%) by blocking TCP to the API server.\n\nThe obvious fix, restricting DNS egress to the cluster DNS service IP, doesn't work:\n\n # This does NOT work\negress:\n - to:\n - ipBlock:\n cidr: 172.21.0.10/32 # cluster DNS service ClusterIP\n ports:\n - port: 53\n protocol: UDP\n ClusterIP addresses are virtual.",
+      "lessons_learned": "Not incrementally better.\n\nIn February 2026, Microsoft's security team confirmed real-world exploitation of AI memory poisoning, with attackers planting persistent recommendations via crafted URLs.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. But for infrastructure red teaming, I needed to eliminate these refusals so the platform controls would be the only backstop. Three tiers, each adding controls:\n\n Tier 0: No controls. Tier 0 exists to create a baseline for measuring what each added control actually does.",
+      "incident_timeline": "A previous post in this series described six defense layers for agent workloads on Red Hat OpenShift Container Platform. That post was theory. This one is the test.\nI deployed OpenClaw on Red Hat OpenShift on IBM Cloud, wrote 15 custom garak probes across six attack categories, and ran 91 adversarial prompts per tier across three hardening configurations. The model serving layer use\nI tested five: Claude Opus 4.6 and Gemini 3.1 Pro both refused 100% of attack prompts. Gemini 3 Flash cooperated on tool abuse probes, showing a 25 to 33% cooperation rate. Qwen3-80B cooperated on 83% of BashInjector pro\nThe tradeoff is degraded reasoning and increased hallucination, since the projection perturbs nearby weight geometry. For red teaming, this produces a compliant model that tests whether downstream guardrails hold indepen\nI ended up using an abliterated Qwen3.5-35B-A3B variant served via vLLM on an A100 80GB: 100% cooperation, zero refusals. The community calls this the crash test dummy approach. HauhauCS's Aggressive uncensoring method s\nTier 1: SSH sandbox isolation (tool execution routed to a separate pod via SSH) plus a NetworkPolicy restricting sandbox egress to cluster DNS only.\nTier 2: Everything from tier 1, plus a prompt injection classifier screening inputs before they reach the model. I used protectai/deberta-v3-base-prompt-injection-v2 , which is listed in Red Hat's docs as a supported det\nTier 1: The sandbox changes everything (almost) Adding the SSH sandbox was the single biggest change in the entire experiment. Tool execution moved to a separate pod with zero sensitive environment variables, and the ser",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "A previous post in this series described six defense layers for agent workloads on Red Hat OpenShift Container Platform. That post was theory.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "e9d2df2008488036",
+    "title": "Build an enterprise RAG system with OGX",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/26/build-enterprise-rag-system-ogx",
+    "published": "2026-05-26T07:01:18+00:00",
+    "fetched_at": "2026-05-26T08:38:23.400472+00:00",
+    "summary": "Anyone who has deployed a naive retrieval-augmented generation (RAG) system has likely run into the same frustrating outcome: a retrieved chunk that appears relevant at first glance, yet fails to answer the question. It might be mathematically similar to the user's query, but contextually, it misses the point entirely.",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-26",
+    "impact": "high",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Anyone who has deployed a naive retrieval-augmented generation (RAG) system has likely run into the same frustrating outcome: a retrieved chunk that appears relevant at first glance, yet fails to answer the question. It ",
+      "Increases recency-based retrieval by filtering documents using timestamps, publication dates, or version metadata.",
+      "Vector-store metadata is useful for describing and organizing the vector store itself, such as the domain, tenant, version, environment, or ingestion pipeline that created it. This helps when you manage multiple knowledg",
+      "By merging both signals, a RAG pipeline can retrieve context that is both meaningfully related and lexically precise. This is especially valuable in enterprise use cases where users might ask natural-language questions b",
+      "This design is highly scalable because document embeddings can be precomputed and stored in a vector database during ingestion time, allowing fast similarity search at query time. However, the approach has an important l",
+      "This allows significantly more accurate relevance ranking, especially when semantic similarity alone cannot determine whether a document truly answers the user's question. However, this accuracy comes at the cost of perf",
+      "Ingestion pipeline The Ingestion_pipeline_ag_news notebook uses a file-based ingestion pattern with OGX vector stores (illustrated in Figure 4):",
+      "Figure 4: RAG ingestion pipeline."
+    ],
+    "sections": {
+      "overview": "Anyone who has deployed a naive retrieval-augmented generation (RAG) system has likely run into the same frustrating outcome: a retrieved chunk that appears relevant at first glance, yet fails to answer the question. It might be mathematically similar to the user's query, but contextually, it misses the point entirely. The problem is that vanilla semantic search optimizes for vector similarity and quietly ignores everything else that matters in the enterprise: user intent, recency, access boundaries, and domain context.",
+      "technical_breakdown": "In your terminal, log in to your OpenShift cluster:\n\n oc login --token=<token> --server=<server> \n Create a new OpenShift project:\n\n PROJECT=\"agnews-rag-demo\" \noc new-project ${PROJECT}\noc label namespace ${PROJECT} opendatahub.io/dashboard=true --overwrite \n Install the Helm chart into the project.\n\n helm install agnews-rag-demo ./chart --set namespace=${PROJECT} \n Log in to the OpenShift AI dashboard and create a workbench of type Jupyter minimal CPU inside the agnews-rag-demo project.\n\nFor RAG specifically, OGX supports vector store workflows that associate files and documents with vector databases such as Milvus, making it easier to build retrieval pipelines, apply metadata-aware search, and evolve from a simple chatbot into a portable enterprise RAG architecture.\n\nAllows domain-specific filtering such as filtering by case type, document category, product, region, language, or source system.\n\nThis helps when you manage multiple knowledge bases across teams, customers, or applications.\n\nThis level is critical when the answer depends on precise context, traceability, and citation back to the exact part of the document.",
+      "impact": "Supports multi-tenancy by ensuring users or customers only retrieve data that belongs to their own tenant or workspace. Instead of retrieving chunks only because they are mathematically close to the user's query, metadata filters allow the system to narrow the search space using structured attributes such as document type, category, customer, department, date, language, source system, security level, or topic. It might be mathematically similar to the user's query, but contextually, it misses the point entirely. The problem is that vanilla semantic search optimizes for vector similarity and quietly ignores everything else that matters in the enterprise: user intent, recency, access boundaries, and domain context.\n\nClassified impact band: high. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "In this article, we will explore how to evolve a naive RAG chatbot to enterprise RAG by applying metadata filtering, hybrid search, and neural reranking using the OGX framework in Red Hat OpenShift AI.\n\nWhy using metadata matters Using metadata filters provides practical benefits that help your retrieval pipeline move beyond basic semantic search:\n\n Increases application accuracy by retrieving context that better matches the user's intent and business context.\n\nVector metadata helps organize knowledge bases, file metadata narrows the search scope, and chunk metadata improves answer relevance, filtering precision, and explainability.\n\nVector search is effective at finding semantically related content, even when the user uses different wording from the source documents, while keyword-based search, such as BM25, is better at matching exact terms, names, IDs, product codes, or domain-specific phrases.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. OGX , or Open GenAI Stack, ( formerly Llama Stack ) is an open source framework for building production-ready RAG applications because it provides a standardized API layer across inference, vector stores, agents, tools, safety, evaluation, and telemetry. Instead of retrieving chunks only because they are mathematically close to the user's query, metadata filters allow the system to narrow the search space using structured attributes such as document type, category, customer, department, date, language, source system, security level, or topic. This makes retrieval more precise because the vector search runs only over content that matches the user's real context and business constraints.",
+      "incident_timeline": "Anyone who has deployed a naive retrieval-augmented generation (RAG) system has likely run into the same frustrating outcome: a retrieved chunk that appears relevant at first glance, yet fails to answer the question. It \nIncreases recency-based retrieval by filtering documents using timestamps, publication dates, or version metadata.\nVector-store metadata is useful for describing and organizing the vector store itself, such as the domain, tenant, version, environment, or ingestion pipeline that created it. This helps when you manage multiple knowledg\nBy merging both signals, a RAG pipeline can retrieve context that is both meaningfully related and lexically precise. This is especially valuable in enterprise use cases where users might ask natural-language questions b\nThis design is highly scalable because document embeddings can be precomputed and stored in a vector database during ingestion time, allowing fast similarity search at query time. However, the approach has an important l\nThis allows significantly more accurate relevance ranking, especially when semantic similarity alone cannot determine whether a document truly answers the user's question. However, this accuracy comes at the cost of perf\nIngestion pipeline The Ingestion_pipeline_ag_news notebook uses a file-based ingestion pattern with OGX vector stores (illustrated in Figure 4):\nFigure 4: RAG ingestion pipeline.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Anyone who has deployed a naive retrieval-augmented generation (RAG) system has likely run into the same frustrating outcome: a retrieved chunk that appears relevant at first glance, yet fails to answer the question. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "55bbe9bad4af5696",
+    "title": "Solutions for SELinux MCS challenges with GitLab runners",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/26/solutions-selinux-mcs-challenges-gitlab-runners",
+    "published": "2026-05-26T07:01:15+00:00",
+    "fetched_at": "2026-05-26T08:38:23.403777+00:00",
+    "summary": "SELinux Multi-Category Security (MCS) breaks GitLab runner's multi-container job architecture by assigning different labels to containers that need to share volumes. This article describes this problem, as well as GNOME's current workaround with fixed MCS labels, and the path toward ephemeral microVM isolation using Cloud Hypervisor, Firecracker, and libkrun.",
+    "tags": [
+      "deployment",
+      "networking",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-05-26",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Fly.io",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "The MCS problem An SELinux label has four fields: user:role:type:level . For containers, the interesting part is the level, also called the MCS field. A level looks like s0:c123,c456 , and s0 is the sensitivity (always s",
+      "The test script I wrote the following script that demonstrates the problem with standard containers (crun) and microVMs (libkrun). This script creates two containers per test: a helper that writes a file to a shared /bui",
+      "echo \"WARNING: SELinux is not in Enforcing mode. This test requires Enforcing mode.\"",
+      "TEST_BASE=\"/tmp/gitlab-runner-mcs-test\"",
+      "CRUN_DIR=\"$TEST_BASE/crun-builds\"",
+      "KRUN_DIR=\"$TEST_BASE/krun-builds\"",
+      "rm -rf \"$TEST_BASE\"",
+      "echo \" TEST 1: Standard Container Isolation (crun)\""
+    ],
+    "sections": {
+      "overview": "SELinux Multi-Category Security (MCS) breaks GitLab runner's multi-container job architecture by assigning different labels to containers that need to share volumes. This article describes this problem, as well as GNOME's current workaround with fixed MCS labels, and the path toward ephemeral microVM isolation using Cloud Hypervisor, Firecracker, and libkrun. GNOME's (a well-known Red Hat community project) GitLab runners use Podman as the container runtime with SELinux in enforcing mode on Fedora.",
+      "technical_breakdown": "CREATE Build Container (The Victim)\npodman create --name crun-build -v \"$CRUN_DIR:/builds\" fedora bash -c \"\n echo ' [Build-Internal] Process Context:'\n cat /proc/self/attr/current 2>/dev/null\n echo ' [Build-Internal] Executing ls -laZ /builds :'\n ls -laZ /builds 2>&1 | sed 's/^/ /'\n echo ' [Build-Internal] Executing cat /builds/artifact.txt :'\n cat /builds/artifact.txt 2>&1 | sed 's/^/ /'\n\" > /dev/null\n\necho \"\"\necho \"[crun] Starting Build Container to inspect shared volume...\"\nBUILD_HOST_LABEL_CRUN=$(podman inspect -f '{{.ProcessLabel}}' crun-build)\necho \"[crun] -> HOST METADATA: Podman assigned process label: $BUILD_HOST_LABEL_CRUN\"\npodman start -a crun-build\n\npodman rm -f crun-helper crun-build > /dev/null\n\necho \"\"\necho \"=======================================================\"\necho \" TEST 2: MicroVM Isolation (libkrun / virtio-fs)\"\necho \"=======================================================\"\n\n# --- Write the execution scripts to the host to avoid parsing errors ---\ncat << 'EOF' > \"$TEST_BASE/krun_helper.sh\"\n#!/bin/bash\necho '[krun] -> Helper Process Context (Inside VM):'\ncat /proc/self/attr/current 2>/dev/null || echo ' (SELinux disabled/unavailable in guest kernel)'\necho 'krun-data' > /builds/artifact.txt\necho '[krun] -> File Label INSIDE Helper VM (Blindspot):'\nls -laZ /builds/artifact.txt 2>&1 | sed 's/^/ /'\nEOF\n\ncat << 'EOF' > \"$TEST_BASE/krun_build.sh\"\n#!/bin/bash\necho ' [Build-Internal] Process Context (Inside VM):'\ncat /proc/self/attr/current 2>/dev/null || echo ' (SELinux disabled/unavailable in guest kernel)'\necho ' [Build-Internal] Executing ls -laZ /builds :'\nls -laZ /builds 2>&1 | sed 's/^/ /'\necho ' [Build-Internal] Executing cat /builds/artifact.txt :'\ncat /builds/artifact.txt 2>&1 | sed 's/^/ /'\nEOF\n\nchmod +x \"$TEST_BASE/krun_helper.sh\" \"$TEST_BASE/krun_build.sh\"\n# ---------------------------------------------------------------------\n\n# 1.\n\nCREATE Build MicroVM (The Victim)\npodman create --name krun-build --runtime krun --memory=1024m \\\n -v \"$KRUN_DIR:/builds\" \\\n -v \"$TEST_BASE/krun_build.sh:/script.sh:ro,Z\" \\\n fedora /script.sh > /dev/null\n\necho \"\"\necho \"[krun] Starting Build MicroVM to inspect shared volume...\"\nBUILD_HOST_LABEL_KRUN=$(podman inspect -f '{{.ProcessLabel}}' krun-build)\necho \"[krun] -> HOST METADATA: Podman assigned process label: $BUILD_HOST_LABEL_KRUN\"\necho \" *** THE virtiofsd DAEMON ON THE HOST IS TRAPPED IN THIS CONTEXT ***\"\npodman start -a krun-build\n\n# Cleanup\npodman rm -f krun-helper krun-build > /dev/null\n\necho \"\"\necho \"=======================================================\"\necho \" Test Complete.\"\n Test 1 (crun) creates a helper container that mounts the builds directory with :Z (exclusive relabel) and writes artifact.txt .\n\nTHIS MISMATCH CAUSES THE DENIAL ***\n [Build-Internal] Process Context:\nsystem_u:system_r:container_t:s0:c46,c331 [Build-Internal] Executing ls -laZ /builds :\n ls: cannot open directory '/builds': Permission denied\n [Build-Internal] Executing cat /builds/artifact.txt :\n cat: /builds/artifact.txt: Permission denied\n\n=======================================================\n TEST 2: MicroVM Isolation (libkrun / virtio-fs) FIXED\n=======================================================\n[krun] Starting Helper MicroVM (applying :Z relabel)...\n[krun] -> HOST METADATA: Podman assigned process label: system_u:system_r:container_kvm_t:s0:c823,c999\n[krun] -> Helper Process Context (Inside VM):\nkernel [krun] -> File Label INSIDE Helper VM (Blindspot):\n -rw-r--r--. 1 root root system_u:object_r:container_file_t:s0:c823,c999 10 May 2 2026 /builds/artifact.txt\n\n[krun] -> File Label ON HOST (Podman applied the helper's MCS category via :Z):\nsystem_u:object_r:container_file_t:s0:c823,c999 /tmp/gitlab-runner-mcs-test/krun-builds/artifact.txt\n\n[krun] Starting Build MicroVM to inspect shared volume...\n[krun] -> HOST METADATA: Podman assigned process label: system_u:system_r:container_kvm_t:s0:c309,c405\n *** THE virtiofsd DAEMON ON THE HOST IS TRAPPED IN THIS CONTEXT ***\n [Build-Internal] Process Context (Inside VM):\nkernel [Build-Internal] Executing ls -laZ /builds :\n ls: /builds: Permission denied\n ls: cannot open directory '/builds': Permission denied\n [Build-Internal] Executing cat /builds/artifact.txt :\n cat: /builds/artifact.txt: Permission denied\n\n=======================================================\n Test Complete.\n\nExplore libkrun The libkrun is a lightweight virtual machine monitor (VMM) that integrates with Podman via --runtime krun , running each container inside a microVM with a lightweight kernel.\n\nBut everything else is on the operator, pulling the OCI image, extracting a rootfs, booting a Firecracker VM with the right kernel and network configuration, injecting the build script, mounting or copying the cloned repository into the VM, collecting artifacts and cache after the job finishes, and tearing the VM down.",
+      "impact": "The MCS problem An SELinux label has four fields: user:role:type:level . On a shared or multi-tenant runner, this is a security regression, trading MCS isolation for functionality. For runners with concurrent = 1 or dedicated single-tenant runners, this is an acceptable tradeoff. It enforces SELinux in enforcing mode, installs rootless Podman running as a dedicated podman system user with linger enabled, and deploys custom SELinux policy modules.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "This article describes this problem, as well as GNOME's current workaround with fixed MCS labels, and the path toward ephemeral microVM isolation using Cloud Hypervisor, Firecracker, and libkrun.\n\nThe workarounds we deploy today, including the fixed MCS labels on GNOME's runners, trade that inter-container isolation for functionality.\n\nWhile pragmatic workarounds, such as GNOME's use of fixed MCS labels, allow jobs to complete, they compromise the necessary isolation between concurrent builds on shared infrastructure.\n\nThis is the isolation mechanism and the root cause of the problem with GitLab runner's multi-container, per-job architecture.",
+      "lessons_learned": "This reads as a retrospective or postmortem-style narrative; extract concrete action items from the source.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The MCS problem An SELinux label has four fields: user:role:type:level . For containers, the interesting part is the level, also called the MCS field. A level looks like s0:c123,c456 , and s0 is the sensitivity (always s\nThe test script I wrote the following script that demonstrates the problem with standard containers (crun) and microVMs (libkrun). This script creates two containers per test: a helper that writes a file to a shared /bui\necho \"WARNING: SELinux is not in Enforcing mode. This test requires Enforcing mode.\"\nTEST_BASE=\"/tmp/gitlab-runner-mcs-test\"\nCRUN_DIR=\"$TEST_BASE/crun-builds\"\nKRUN_DIR=\"$TEST_BASE/krun-builds\"\nrm -rf \"$TEST_BASE\"\necho \" TEST 1: Standard Container Isolation (crun)\"",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse."
+    },
+    "email_summary": "SELinux Multi-Category Security (MCS) breaks GitLab runner's multi-container job architecture by assigning different labels to containers that need to share volumes. This article describes this problem, as well as GNOME's current workaround with fixed MCS labels, and the path toward ephemeral microVM isolation using Cloud Hypervisor, Firecracker, and libkrun.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
