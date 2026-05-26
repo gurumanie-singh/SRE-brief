@@ -1,0 +1,35 @@
+[
+  {
+    "id": "637d73b35d4606d3",
+    "title": "Do you have what it takes to run AI in production?",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/26/do-you-have-what-it-takes-to-run-ai-in-production/",
+    "published": "2026-05-26T07:40:00+00:00",
+    "fetched_at": "2026-05-26T04:18:54.029873+00:00",
+    "summary": "From the floor of HumanX, Ryan Donovan is joined by Peter Salanki, CTO and co-founder of CoreWeave, to chat about what it really takes to run AI in production; the growing importance of observability, utilization, and scheduling; and Peter’s advice for avoiding the trap of over-architecting too early.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-05-26",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "From the floor of HumanX, Ryan Donovan is joined by Peter Salanki, CTO and co-founder of CoreWeave, to chat about what it really takes to run AI in production; the growing importance of observability, utilization, and scheduling; and Peter’s advice for avoiding the trap of over-architecting too early.",
+      "technical_breakdown": "From the floor of HumanX, Ryan Donovan is joined by Peter Salanki, CTO and co-founder of CoreWeave, to chat about what it really takes to run AI in production; the growing importance of observability, utilization, and scheduling; and Peter’s advice for avoiding the trap of over-architecting too early.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "From the floor of HumanX, Ryan Donovan is joined by Peter Salanki, CTO and co-founder of CoreWeave, to chat about what it really takes to run AI in production; the growing importance of observability, utilization, and scheduling; and Peter’s advice for avoiding the trap of over-architecting too early.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
