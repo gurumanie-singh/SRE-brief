@@ -89,6 +89,50 @@
     "highlighted": false
   },
   {
+    "id": "c79051a02ddca1c1",
+    "title": "Investigation update: GitHub Enterprise Server signing key rotation",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/",
+    "published": "2026-05-20T21:07:38+00:00",
+    "fetched_at": "2026-05-26T16:49:56.771265+00:00",
+    "summary": "May 26, 2026 : GitHub recently detected a cyber-attack and immediately activated our response process to investigate, disrupt malicious activity, mitigate the attack, and deny the threat actor further access. It s important to note that this investigation is still ongoing, and we will continue to provide details as appropriate.",
+    "tags": [
+      "deployment",
+      "outage"
+    ],
+    "day": "2026-05-20",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": true,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "May 26, 2026 : GitHub recently detected a cyber-attack and immediately activated our response process to investigate, disrupt malicious activity, mitigate the attack, and deny the threat actor further access. It s import",
+      "Our current assessment is that the activity involved exfiltration of GitHub-internal repositories only. The attacker s current claims of ~3,800 repositories are directionally consistent with our investigation so far.",
+      "We have no evidence of impact to customer information stored outside of GitHub s internal repositories, such as our customer s own enterprises, organizations, and repositories. Some of GitHub s internal repositories cont",
+      "We moved quickly to reduce risk. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.",
+      "We continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity. We will take additional action as the investigation warrants.",
+      "We will publish a fuller report once the investigation is complete.",
+      "The post Investigation update: GitHub Enterprise Server signing key rotation appeared first on The GitHub Blog ."
+    ],
+    "sections": {
+      "overview": "May 26, 2026 : GitHub recently detected a cyber-attack and immediately activated our response process to investigate, disrupt malicious activity, mitigate the attack, and deny the threat actor further access. It s important to note that this investigation is still ongoing, and we will continue to provide details as appropriate. Given the reality of threat actors and the advent of AI technologies, we need to do all we can to protect our customers.",
+      "technical_breakdown": "Admins can follow these instructions to do so using a GitHub developed script to streamline the process:\n\n For single node topology , run these commands:\n\n \n $ curl -fsSL https://enterprise.github.com/security/2026-05-24/rotate-gpg.sh -o rotate-gpg.sh \n$ chmod ug+x ./rotate-gpg.sh \n$ ./rotate-gpg.sh \n$ sudo ./rotate-gpg.sh \n \n\n For HA or cluster topology :\n\n \n Log on to any node in your HA or cluster installation and run the following commands, they will download the script, copy it to all nodes and run it on all nodes:\n\n \n\n \n $ ghe-cluster-each -- curl -fsSL https://enterprise.github.com/security/2026-05-24/rotate-gpg.sh -o rotate-gpg.sh \n$ ghe-cluster-each -- chmod ug+x ./rotate-gpg.sh \n$ ghe-cluster-each -- ./rotate-gpg.sh \n$ ghe-cluster-each -- sudo ./rotate-gpg.sh \n \n\n \n Note that the key is stored in both the admin and root accounts, so running a second time with sudo ensures that it is updated in both.\n\nGiven the reality of threat actors and the advent of AI technologies, we need to do all we can to protect our customers.\n\nOriginal blog post, published May 20, 2026 : On Monday May 18, we detected and contained a compromise of an employee device involving a poisoned VS Code extension published by a third party.\n\nWe continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity.\n\nThe post Investigation update: GitHub Enterprise Server signing key rotation appeared first on The GitHub Blog .",
+      "impact": "We have no evidence of impact to customer information stored outside of GitHub s internal repositories, such as our customer s own enterprises, organizations, and repositories. If any impact is discovered, we will notify customers via established incident response and notification channels. Given the reality of threat actors and the advent of AI technologies, we need to do all we can to protect our customers. GitHub Enterprise Server customers need to take immediate action as described below.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "It s important to note that this investigation is still ongoing, and we will continue to provide details as appropriate.\n\nIf any impact is discovered, we will notify customers via established incident response and notification channels.\n\nWe will take additional action as the investigation warrants.\n\nWe will publish a fuller report once the investigation is complete.",
+      "root_cause_highlight": "",
+      "incident_timeline": "May 26, 2026 : GitHub recently detected a cyber-attack and immediately activated our response process to investigate, disrupt malicious activity, mitigate the attack, and deny the threat actor further access. It s import\nOur current assessment is that the activity involved exfiltration of GitHub-internal repositories only. The attacker s current claims of ~3,800 repositories are directionally consistent with our investigation so far.\nWe have no evidence of impact to customer information stored outside of GitHub s internal repositories, such as our customer s own enterprises, organizations, and repositories. Some of GitHub s internal repositories cont\nWe moved quickly to reduce risk. We rotated critical secrets Monday and into Tuesday with the highest-impact credentials prioritized first.\nWe continue to analyze logs, validate secret rotation, and monitor our infrastructure for any follow-on activity. We will take additional action as the investigation warrants.\nWe will publish a fuller report once the investigation is complete.\nThe post Investigation update: GitHub Enterprise Server signing key rotation appeared first on The GitHub Blog .",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "May 26, 2026 : GitHub recently detected a cyber-attack and immediately activated our response process to investigate, disrupt malicious activity, mitigate the attack, and deny the threat actor further access. It s important to note that this investigation is still ongoing, and we will continue to provide details as appropriate.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "bad9f0b9379cc533",
     "title": "Encrypting large artifacts and streaming workloads with Vault",
     "source": "HashiCorp Blog",
