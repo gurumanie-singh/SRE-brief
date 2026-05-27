@@ -1,5 +1,75 @@
 [
   {
+    "id": "4240d282d6e32373",
+    "title": "Meet Our Newest AWS Heroes – May 2026",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/meet-our-newest-aws-heroes-may-2026/",
+    "published": "2026-05-27T16:15:05+00:00",
+    "fetched_at": "2026-05-27T16:42:19.902470+00:00",
+    "summary": "We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive. From building AI-powered tools that help fellow builders navigate AWS re:Invent, to leading some of the largest AWS communities in Latin America, to sharing deep cloud architecture expertise across...",
+    "tags": [],
+    "day": "2026-05-27",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive. From building AI-power",
+      "Artificial Intelligence Hero Damiano Giorgi is a Cloud Solutions Architect focused on AI and its evolution, who transitioned from on-premises (on-prem) systems engineering to AWS and never looked back. He helps organize ",
+      "Artificial Intelligence Hero Ricardo Daniel Ceci leads the AWS User Group Buenos Aires, which is the largest AWS community in Argentina with nearly 2,400 members. He is also the principal organizer of the AWS Community D"
+    ],
+    "sections": {
+      "overview": "We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive. From building AI-powered tools that help fellow builders navigate AWS re:Invent, to leading some of the largest AWS communities in Latin America, to sharing deep cloud architecture expertise across blogs and events.",
+      "technical_breakdown": "He shares knowledge across serverless, containers, AI/ML, and FinOps through his blog, LinkedIn, and published projects.\n\nThese individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive.\n\nFrom building AI-powered tools that help fellow builders navigate AWS re:Invent, to leading some of the largest AWS communities in Latin America, to sharing deep cloud architecture expertise across blogs and events.\n\nHe helps organize AWS User Group Pavia and AWS User Group Milan, and shares content on his personal blog, “Bass and Bytes.” Damiano developed the “Unofficial post:Invent Session Suggester,” powered by Amazon Bedrock and Amazon Nova, to help builders find AWS re:Invent sessions matching their interests.\n\nRicardo hosts a podcast featuring conversations with cloud experts, AWS Heroes, and developer advocates across Latin America.",
+      "impact": "He helps organize AWS User Group Pavia and AWS User Group Milan, and shares content on his personal blog, “Bass and Bytes.” Damiano developed the “Unofficial post:Invent Session Suggester,” powered by Amazon Bedrock and Amazon Nova, to help builders find AWS re:Invent sessions matching their interests. Ricardo Daniel Ceci – Buenos Aires, Argentina \n Artificial Intelligence Hero Ricardo Daniel Ceci leads the AWS User Group Buenos Aires, which is the largest AWS community in Argentina with nearly 2,400 members. His journey began with AWS DeepRacer where he qualified three times as a finalist, which sparked his community work organizing racing events and ML talks across the region. As an AWS User Group Leader for Buenos Aires, he organized the AWS Community Day Argentina 2025 and speaks at community events throughout LATAM.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive. From building AI-power\nArtificial Intelligence Hero Damiano Giorgi is a Cloud Solutions Architect focused on AI and its evolution, who transitioned from on-premises (on-prem) systems engineering to AWS and never looked back. He helps organize \nArtificial Intelligence Hero Ricardo Daniel Ceci leads the AWS User Group Buenos Aires, which is the largest AWS community in Argentina with nearly 2,400 members. He is also the principal organizer of the AWS Community D",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "f69d988031d5dbf2",
+    "title": "Agents on a leash: Agentic AI remains mostly single-agent and monitored at work",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/27/agents-on-a-leash-agentic-ai-remains-mostly-monitored-at-work/",
+    "published": "2026-05-27T14:00:00+00:00",
+    "fetched_at": "2026-05-27T16:42:22.873853+00:00",
+    "summary": "AI’s impact on software engineering continues, and more and more of that AI is packaged as agents as results from our newest pulse survey show agentic usage has almost doubled (59%) since we last asked about it in our annual Developer Survey",
+    "tags": [],
+    "day": "2026-05-27",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "AI’s impact on software engineering continues, and more and more of that AI is packaged as agents as results from our newest pulse survey show agentic usage has almost doubled (59%) since we last asked about it in our an"
+    ],
+    "sections": {
+      "overview": "AI’s impact on software engineering continues, and more and more of that AI is packaged as agents as results from our newest pulse survey show agentic usage has almost doubled (59%) since we last asked about it in our annual Developer Survey",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "AI’s impact on software engineering continues, and more and more of that AI is packaged as agents as results from our newest pulse survey show agentic usage has almost doubled (59%) since we last asked about it in our annual Developer Survey\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "AI’s impact on software engineering continues, and more and more of that AI is packaged as agents as results from our newest pulse survey show agentic usage has almost doubled (59%) since we last asked about it in our an",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "AI’s impact on software engineering continues, and more and more of that AI is packaged as agents as results from our newest pulse survey show agentic usage has almost doubled (59%) since we last asked about it in our annual Developer Survey.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "851581193af499aa",
     "title": "Running AI inference on Rebellions ATOM NPU with Red Hat AI",
     "source": "Red Hat Developer Blog",
