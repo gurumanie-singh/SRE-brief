@@ -1,5 +1,50 @@
 [
   {
+    "id": "06b304e0088b808a",
+    "title": "Iran's Internet is partially restored, Cloudflare Radar data shows",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/iran-internet-partially-restored-may-2026/",
+    "published": "2026-05-27T17:25:00+00:00",
+    "fetched_at": "2026-05-27T19:30:31.652240+00:00",
+    "summary": "On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February 28.",
+    "tags": [
+      "networking",
+      "outage"
+    ],
+    "day": "2026-05-27",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "dns issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February",
+      "Cloudflare Radar data confirms increased activity and indicates a partial restoration of the Internet in Iran. In this blog post, we’ll examine a range of data points that provide a lens into this prolonged shutdown – an",
+      "Iranian citizens have experienced two national Internet shutdowns this year. The first began on January 8 around 16:30 UTC (20:00 local time), and we explored the impact seen over the first few days in a blog post . Traf",
+      "The shutdown began on February 28. On that date, Cloudflare Radar observed a sharp drop in traffic from Iran beginning around 10:30 local time (07:00 UTC). Traffic levels fell to well under 1% of previous levels, with on",
+      "Our observations indicate that more traffic is now finally able to get through. Starting at around 11:00 UTC on May 26, 87 days after the second shutdown started, Cloudflare Radar observed a marked increase in both traff",
+      "Data for bytes transferred across Cloudflare’s network shows a brief spike at 11:45 UTC, followed by a steady increase starting at 12:00 UTC. This surge in activity is roughly 15x than the levels observed during the prio",
+      "An increase in bytes transferred shows that a higher volume of data is successfully moving across Cloudflare’s network, which is a hopeful signal that a partial restoration is underway.",
+      "Cloudflare Radar’s regional breakdowns, shown below, indicate that the vast majority of this new traffic is localized to Tehran, with 91.6% of HTTP requests originating from the capital city. While other regions show min"
+    ],
+    "sections": {
+      "overview": "On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February 28. Cloudflare Radar data confirms increased activity and indicates a partial restoration of the Internet in Iran. In this blog post, we’ll examine a range of data points that provide a lens into this prolonged shutdown – and the signs that Iran’s citizens are increasingly able to connect once again.",
+      "technical_breakdown": "Traffic volume by region \n \n \n \n \n Cloudflare Radar’s regional breakdowns, shown below, indicate that the vast majority of this new traffic is localized to Tehran, with 91.6% of HTTP requests originating from the capital city.\n\nIn this blog post, we’ll examine a range of data points that provide a lens into this prolonged shutdown – and the signs that Iran’s citizens are increasingly able to connect once again.\n\nThe first began on January 8 around 16:30 UTC (20:00 local time), and we explored the impact seen over the first few days in a blog post .\n\nTraffic levels fell to well under 1% of previous levels, with only small amounts of Web and DNS traffic leaving the country.\n\nStarting at around 11:00 UTC on May 26, 87 days after the second shutdown started, Cloudflare Radar observed a marked increase in both traffic and DNS queries.",
+      "impact": "IPv6 remains impacted \n \n \n \n \n In January, we reported a near-complete loss of announced IPv6 address space that began several hours before the January 8 traffic drop. The first began on January 8 around 16:30 UTC (20:00 local time), and we explored the impact seen over the first few days in a blog post . Traffic from Iran remained near zero until January 21, when a small amount of traffic returned, only to disappear a little over 24 hours later. Traffic volume by region \n \n \n \n \n Cloudflare Radar’s regional breakdowns, shown below, indicate that the vast majority of this new traffic is localized to Tehran, with 91.6% of HTTP requests originating from the capital city.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February 28.\n\nA similar brief restoration also occurred on January 25, before traffic recovered more fully beginning on January 27.",
+      "lessons_learned": "We will continue to closely monitor Internet connectivity in Iran and share our findings as the situation evolves.",
+      "root_cause_highlight": "Likely root-cause theme: dns issue. Because an increase in DNS traffic indicates that more users are requesting websites and services, this upward trend serves as a strong indicator that online access is returning. Traffic levels fell to well under 1% of previous levels, with only small amounts of Web and DNS traffic leaving the country. Starting at around 11:00 UTC on May 26, 87 days after the second shutdown started, Cloudflare Radar observed a marked increase in both traffic and DNS queries.",
+      "incident_timeline": "On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February\nCloudflare Radar data confirms increased activity and indicates a partial restoration of the Internet in Iran. In this blog post, we’ll examine a range of data points that provide a lens into this prolonged shutdown – an\nIranian citizens have experienced two national Internet shutdowns this year. The first began on January 8 around 16:30 UTC (20:00 local time), and we explored the impact seen over the first few days in a blog post . Traf\nThe shutdown began on February 28. On that date, Cloudflare Radar observed a sharp drop in traffic from Iran beginning around 10:30 local time (07:00 UTC). Traffic levels fell to well under 1% of previous levels, with on\nOur observations indicate that more traffic is now finally able to get through. Starting at around 11:00 UTC on May 26, 87 days after the second shutdown started, Cloudflare Radar observed a marked increase in both traff\nData for bytes transferred across Cloudflare’s network shows a brief spike at 11:45 UTC, followed by a steady increase starting at 12:00 UTC. This surge in activity is roughly 15x than the levels observed during the prio\nAn increase in bytes transferred shows that a higher volume of data is successfully moving across Cloudflare’s network, which is a hopeful signal that a partial restoration is underway.\nCloudflare Radar’s regional breakdowns, shown below, indicate that the vast majority of this new traffic is localized to Tehran, with 91.6% of HTTP requests originating from the capital city. While other regions show min",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February 28. Cloudflare Radar data confirms increased activity and indicates a partial restoration of the Internet in Iran.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "4240d282d6e32373",
     "title": "Meet Our Newest AWS Heroes – May 2026",
     "source": "AWS News Blog",
