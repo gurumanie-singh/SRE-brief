@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCIM in HashiCorp Vault standardizes provisioning in platforms — SRE Brief</title>
+  <title>Elastic Stack 9.3.5 released — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,18 +27,18 @@
 
     <header class="article-header">
       <div class="meta-row">
-        <span class="card-source">HashiCorp Blog</span>
-        <span class="card-date">28 May 2026, 12:00</span>
+        <span class="card-source">Elastic Blog</span>
+        <span class="card-date">27 May 2026, 19:00</span>
         <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">SCIM in HashiCorp Vault standardizes provisioning in platforms</h1>
+      <h1 class="title">Elastic Stack 9.3.5 released</h1>
 
-      <p class="subtitle">As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management.</p>
+      <p class="subtitle">Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version .</p>
 
 
       <div class="article-tags">
-        <span class="vendor-tag">HashiCorp</span>
+        <span class="vendor-tag">Elastic</span>
         <span class="tag">deployment</span>
       </div>
 
@@ -53,14 +53,15 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management.</p>
+      <p class="quick-take-text">Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version .</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management. This ensures that user and group provisioning into Vault aligns with authoritative identity providers and governance systems.</p>
+          <p>Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.5 over the previous versions 9.3.4</p>
+<p>The 9.3.5 release contains fixes for potential security vulnerabilities.</p>
         </div>
       </div>
 
@@ -74,32 +75,35 @@
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>What SCIM beta supports The SCIM beta is available for Vault Enterprise (self-managed) and Vault Dedicated (Cloud/SaaS) customers and includes support for:</p>
-<p>SCIM client configuration through /identity/scim/client</p>
-<p>User create, read, list, replace, patch, and delete</p>
-<p>Group create, read, list, replace, patch, and delete</p>
-<p>Discovery endpoints for Schemas, ResourceTypes, and ServiceProviderConfig</p>
-<p>Vault returns SCIM responses as application/scim+json, making it easier to integrate with standards-based SCIM clients. Each SCIM client can only view and manage the users and groups it created. Built for secure, scoped provisioning Each Vault SCIM client represents one external provisioning system. External provisioning systems only manage the resources associated with their own SCIM client, which helps reduce risk and keeps provisioning scoped by design.</p>
-<p>Classified impact band: medium. Affected layer signal: general production.</p>
+          <p>Classified impact band: medium. Affected layer signal: general production.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+          <p>We recommend 9.3.5 over the previous versions 9.3.4</p>
+<p>The 9.3.5 release contains fixes for potential security vulnerabilities.</p>
+<p>For details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>By  preventing over-authorization, teams can reduce the risk ofbreach .</p>
-<p>Modern platforms rely on standardized identity provisioning to reduce platform friction, improve efficiency, and minimize operational overhead.</p>
+          <p>Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.</p>
         </div>
       </div>
 
 
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.5 over the previous versions 9.3.4</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
@@ -108,20 +112,14 @@
         </div>
       </div>
 
-      <div class="article-section">
-        <div class="article-section-label">Related coverage</div>
-        <div class="article-section-content">
-          <p><a href="https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-aws-resilience-hub-for-generative-ai-based-sre-resilience-journey/" target="_blank" rel="noopener">AWS News Blog</a></p>
-        </div>
-      </div>
 
-      <a href="https://www.hashicorp.com/blog/scim-in-vault-standardizes-provisioning-in-platforms" class="source-card" target="_blank" rel="noopener">
+      <a href="https://www.elastic.co/blog/elastic-stack-9-3-5-released" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="source-card-text">
           <div class="source-card-label">External source</div>
-          <div class="source-card-name">Read the original write-up at HashiCorp Blog</div>
+          <div class="source-card-name">Read the original write-up at Elastic Blog</div>
         </div>
         <span class="source-card-arrow">→</span>
       </a>

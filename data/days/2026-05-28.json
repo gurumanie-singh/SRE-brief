@@ -31,7 +31,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-aws-resilience-hub-for-generative-ai-based-sre-resilience-journey/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -117,6 +122,10 @@
     "email_summary": "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Impact band: critical.",
     "related_sources": [
       {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-amazon-opensearch-serverless-for-building-your-agentic-ai-applications/"
+      },
+      {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/our-unified-data-platform/"
       }
@@ -168,7 +177,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Where Large Language Models (LLMs) meet logs, things can break down. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/company-news/still-a-developer-just-outside-our-latest-github-shop-collection-is-here/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -211,6 +225,117 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "For years, stalld has been a critical tool for maintaining stability in real-time and CPU-isolated Linux environments. Its core function is to detect and mitigate task starvation, particularly for kernel threads that get stuck waiting for a chance to run on a CPU core dominated by a high-priority, user-space application.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c9c792906fa350de",
+    "title": "Elastic Stack 8.19.16 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-8-19-16-released",
+    "published": "2026-05-28T00:00:00+00:00",
+    "fetched_at": "2026-05-28T21:13:07.415324+00:00",
+    "summary": "Version 8.19.16 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.16 over the previous versions 8.19.15",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-05-28",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 8.19.16 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.16 over the previous versions 8.19.15"
+    ],
+    "sections": {
+      "overview": "Version 8.19.16 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.16 over the previous versions 8.19.15\n\n The 8.19.16 release contains fixes for potential security vulnerabilities.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 8.19.16 over the previous versions 8.19.15\n\n The 8.19.16 release contains fixes for potential security vulnerabilities.\n\nFor details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 8.19.16 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 8.19.16 over the previous versions 8.19.15",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 8.19.16 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c5dcf207563cf09d",
+    "title": "Elastic Stack 9.4.2 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-9-4-2-released",
+    "published": "2026-05-28T00:00:00+00:00",
+    "fetched_at": "2026-05-28T21:13:07.415562+00:00",
+    "summary": "Version 9.4.2 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.2 over the previous versions 9.4.1",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-05-28",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 9.4.2 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.2 over the previous versions 9.4.1"
+    ],
+    "sections": {
+      "overview": "Version 9.4.2 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.2 over the previous versions 9.4.1\n\n The 9.4.2 release contains fixes for potential security vulnerabilities.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 9.4.2 over the previous versions 9.4.1\n\n The 9.4.2 release contains fixes for potential security vulnerabilities.\n\nFor details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 9.4.2 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.4.2 over the previous versions 9.4.1",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 9.4.2 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1ee826a1919f8468",
+    "title": "Elastic Stack 9.3.5 released",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-stack-9-3-5-released",
+    "published": "2026-05-28T00:00:00+00:00",
+    "fetched_at": "2026-05-28T21:13:07.415755+00:00",
+    "summary": "Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.5 over the previous versions 9.3.4",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-05-28",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.5 over the previous versions 9.3.4"
+    ],
+    "sections": {
+      "overview": "Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.5 over the previous versions 9.3.4\n\n The 9.3.5 release contains fixes for potential security vulnerabilities.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "We recommend 9.3.5 over the previous versions 9.3.4\n\n The 9.3.5 release contains fixes for potential security vulnerabilities.\n\nFor details of the issues that have been fixed and a full list of changes for each product in this version, please refer to the release notes .",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version . We recommend 9.3.5 over the previous versions 9.3.4",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Version 9.3.5 of the Elastic Stack was released today. We recommend you upgrade to this latest version .",
     "related_sources": [],
     "highlighted": false
   }
