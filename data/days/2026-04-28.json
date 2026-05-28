@@ -121,12 +121,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In the first quarter of 2026, government-directed shutdowns figured prominently, with prolonged Internet blackouts in both Uganda and Iran, a stark contrast to the lack of observed government-directed shutdowns in the same quarter a year prior. Impact band: critical.",
-    "related_sources": [
-      {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/top-announcements-of-the-whats-next-with-aws-2026/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

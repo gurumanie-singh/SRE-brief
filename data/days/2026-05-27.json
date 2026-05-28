@@ -164,7 +164,12 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "As enterprises scale AI from proof of concept to production, there's a need for flexible and cost-effective inference infrastructure. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/consul-20-improves-flexibility-control-and-scalability"
+      }
+    ],
     "highlighted": false
   },
   {

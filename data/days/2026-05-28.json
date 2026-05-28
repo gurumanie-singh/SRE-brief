@@ -1,5 +1,40 @@
 [
   {
+    "id": "5da10253236a0ea8",
+    "title": "SCIM in HashiCorp Vault standardizes provisioning in platforms",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/scim-in-vault-standardizes-provisioning-in-platforms",
+    "published": "2026-05-28T17:00:00+00:00",
+    "fetched_at": "2026-05-28T18:18:13.225067+00:00",
+    "summary": "As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management. This ensures that user and group provisioning into Vault aligns with authoritative identity providers and...",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-05-28",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management. This ensures that user and group provisioning into Vault aligns with authoritative identity providers and governance systems.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "What SCIM beta supports The SCIM beta is available for Vault Enterprise (self-managed) and Vault Dedicated (Cloud/SaaS) customers and includes support for: \n\n SCIM client configuration through /identity/scim/client \n\n User create, read, list, replace, patch, and delete \n\n Group create, read, list, replace, patch, and delete \n\n Discovery endpoints for Schemas, ResourceTypes, and ServiceProviderConfig \n\n Vault returns SCIM responses as application/scim+json, making it easier to integrate with standards-based SCIM clients. Each SCIM client can only view and manage the users and groups it created. Built for secure, scoped provisioning Each Vault SCIM client represents one external provisioning system. External provisioning systems only manage the resources associated with their own SCIM client, which helps reduce risk and keeps provisioning scoped by design.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "By  preventing over-authorization, teams can reduce the risk ofbreach .\n\nModern platforms rely on standardized identity provisioning to reduce platform friction, improve efficiency, and minimize operational overhead.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "e0992a6f9e4b097a",
     "title": "In an AI world, the most valuable developers will be both artisans and builders",
     "source": "Stack Overflow Blog",
