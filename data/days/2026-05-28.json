@@ -1,5 +1,53 @@
 [
   {
+    "id": "930b990bfb8141e3",
+    "title": "LogAn: Large-scale log analysis with small language models",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/28/logan-large-scale-log-analysis-small-language-models",
+    "published": "2026-05-28T07:16:07+00:00",
+    "fetched_at": "2026-05-28T10:20:58.720144+00:00",
+    "summary": "Where Large Language Models (LLMs) meet logs, things can break down. Language models are remarkably good at understanding text. So the natural instinct when debugging a production outage is to dump the logs into an LLM and ask, \"what went wrong?\" It doesn't scale. This article explains why. ",
+    "tags": [
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-05-28",
+    "impact": "critical",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The limits of LLMs in log analysis A single support case can easily produce over 500 MB of log data, or millions of lines. Even with the largest context windows available today, you can't fit a real-world log dump into a",
+      "2026-02-04T14:18:03Z Starting batch file processor version 2.7.4",
+      "2026-02-04T14:18:04Z Initializing local workspace at /var/lib/processor/tmp",
+      "2026-02-04T14:18:07Z java.io.IOException: No space left on device",
+      "2026-02-04T14:18:09Z Uploading results to http://archive-service:8080/api/v1/archive",
+      "2026-02-04T14:18:12Z Request to archive-service exceeded configured timeout (3000ms)",
+      "2026-02-04T14:18:13Z Processing completed for batchId=run-88421 A regex search for error or exception catches the IOException on line 3. But it completely misses line 5, a timeout that could be the more important signal.",
+      "The key insight: Logs are massively redundant Here's a fact that changes the equation: production logs are highly repetitive. Thousands of lines often share the same structure with only variable parts changing (e.g., IPs"
+    ],
+    "sections": {
+      "overview": "Where Large Language Models (LLMs) meet logs, things can break down. Language models are remarkably good at understanding text. So the natural instinct when debugging a production outage is to dump the logs into an LLM and ask, \"what went wrong?\" It doesn't scale.",
+      "technical_breakdown": "Signal \n\n Meaning \n\n Example Log \n\n Availability \n\n Service unreachable \n\n NoRouteToHostException: No route to host \n\n Error \n\n A fault occurred \n\n Got an XPC error: Connection invalid \n\n Latency \n\n Delays/timeouts \n\n Notification time out 60000 \n\n Saturation \n\n Resource limits hit \n\n IOException: No space on disk \n\n Traffic \n\n Volume/demand related \n\n 673 bytes sent, 384 bytes received \n\n Information \n\n Routine, non-critical \n\n application connected ok \n\n A second pass predicts fault categories for non-informational logs, giving engineers immediate diagnostic context.\n\nFault Category \n\n Description \n\n Example Log \n\n I/O \n\n Input/output operations, file system interactions, or data transfer \n\n java.io.IOException: No space left on device \n\n Authentication \n\n User authentication, authorization, or security protocols \n\n Failed to authenticate user: invalid credentials \n\n Network \n\n Network connectivity, routing, or protocol interactions \n\n Request to archive-service exceeded configured timeout (3000ms) \n\n Application \n\n Application-level events, process interactions, or service calls \n\n NullPointerException in com.example.service.OrderProcessor \n\n Device \n\n Hardware device status, driver activity, or peripheral operations \n\n USB device disconnected: kernel driver unloaded \n\n Internally, we use a fine-tuned encoder model specifically trained for log label classification, delivering higher accuracy on domain-specific log data.\n\nRun LogAn locally as a standalone CLI or as a Podman container. \n\n # Container Usage\npodman run --rm \\\n -v ./logs/:/data/input/:z \\\n -v ./output/:/data/output/:z \\\n -e LOGAN_INPUT_FILES=\"/data/input/app.log\" \\\n ghcr.io/log-analyzer/logan:latest\n\n# CLI Usage\nuv pip install git+https://github.com/Log-Analyzer/LogAn\nuv run logan analyze -f \"examples/Linux_2k.log\" -o \"tmp/output\"\nuv run logan view -d \"tmp/output\" # Start localhost server for log report The analyze command produces two interactive HTML reports.\n\nConsider this snippet: \n\n 2026-02-04T14:18:03Z Starting batch file processor version 2.7.4\n2026-02-04T14:18:04Z Initializing local workspace at /var/lib/processor/tmp\n2026-02-04T14:18:07Z java.io.IOException: No space left on device\n2026-02-04T14:18:09Z Uploading results to http://archive-service:8080/api/v1/archive\n2026-02-04T14:18:12Z Request to archive-service exceeded configured timeout (3000ms)\n2026-02-04T14:18:13Z Processing completed for batchId=run-88421 A regex search for error or exception catches the IOException on line 3.\n\nWhether you want to try it on your logs, integrate it into your observability pipeline, or contribute upstream, here's how to get involved.",
+      "impact": "So the natural instinct when debugging a production outage is to dump the logs into an LLM and ask, \"what went wrong?\" It doesn't scale. Signal \n\n Meaning \n\n Example Log \n\n Availability \n\n Service unreachable \n\n NoRouteToHostException: No route to host \n\n Error \n\n A fault occurred \n\n Got an XPC error: Connection invalid \n\n Latency \n\n Delays/timeouts \n\n Notification time out 60000 \n\n Saturation \n\n Resource limits hit \n\n IOException: No space on disk \n\n Traffic \n\n Volume/demand related \n\n 673 bytes sent, 384 bytes received \n\n Information \n\n Routine, non-critical \n\n application connected ok \n\n A second pass predicts fault categories for non-informational logs, giving engineers immediate diagnostic context. Fault Category \n\n Description \n\n Example Log \n\n I/O \n\n Input/output operations, file system interactions, or data transfer \n\n java.io.IOException: No space left on device \n\n Authentication \n\n User authentication, authorization, or security protocols \n\n Failed to authenticate user: invalid credentials \n\n Network \n\n Network connectivity, routing, or protocol interactions \n\n Request to archive-service exceeded configured timeout (3000ms) \n\n Application \n\n Application-level events, process interactions, or service calls \n\n NullPointerException in com.example.service.OrderProcessor \n\n Device \n\n Hardware device status, driver activity, or peripheral operations \n\n USB device disconnected: kernel driver unloaded \n\n Internally, we use a fine-tuned encoder model specifically trained for log label classification, delivering higher accuracy on domain-specific log data.\n\nClassified impact band: critical. Affected layer signal: networking.",
+      "resolution": "Drain: Compressing logs into templates The Drain algorithm builds a fixed-depth parse tree to group structurally similar log messages: \n\n Tokenizes each log line.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "The limits of LLMs in log analysis A single support case can easily produce over 500 MB of log data, or millions of lines. Even with the largest context windows available today, you can't fit a real-world log dump into a\n2026-02-04T14:18:03Z Starting batch file processor version 2.7.4\n2026-02-04T14:18:04Z Initializing local workspace at /var/lib/processor/tmp\n2026-02-04T14:18:07Z java.io.IOException: No space left on device\n2026-02-04T14:18:09Z Uploading results to http://archive-service:8080/api/v1/archive\n2026-02-04T14:18:12Z Request to archive-service exceeded configured timeout (3000ms)\n2026-02-04T14:18:13Z Processing completed for batchId=run-88421 A regex search for error or exception catches the IOException on line 3. But it completely misses line 5, a timeout that could be the more important signal.\nThe key insight: Logs are massively redundant Here's a fact that changes the equation: production logs are highly repetitive. Thousands of lines often share the same structure with only variable parts changing (e.g., IPs",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Where Large Language Models (LLMs) meet logs, things can break down. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "2a61a15e4d5d4c77",
     "title": "stalld’s BPF Backend: Breaking Free from debugfs",
     "source": "Red Hat Developer Blog",

@@ -28,25 +28,34 @@
       <h1 class="brief-title">28 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-28T00:15:28.933294-05:00">28 May 2026, 00:15</time>
+        <time data-iso="2026-05-28T05:20:58.929999-05:00">28 May 2026, 05:20</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">1 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>Repeated coverage across Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
         <span class="trend-pill">openshift<span class="trend-count">5</span></span>
         <span class="trend-pill">agents<span class="trend-count">3</span></span>
         <span class="trend-pill">platform<span class="trend-count">3</span></span>
+        <span class="trend-pill">models<span class="trend-count">2</span></span>
         <span class="trend-pill">backend<span class="trend-count">2</span></span>
         <span class="trend-pill">breaking<span class="trend-count">2</span></span>
-        <span class="trend-pill">cloudflare<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -77,9 +86,9 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
@@ -103,8 +112,8 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
@@ -117,10 +126,46 @@
   <div class="day-group">
     <h2 class="day-heading">
       28 May 2026
-      <span class="day-count">1</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
+  <div class="article-card card--critical"
+       data-tags="latency,networking,observability,outage"
+       data-vendors="GitHub,Red Hat"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="logan: large-scale log analysis with small language models"
+       data-id="930b990bfb8141e3"
+       data-published="2026-05-28T07:16:07+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">GitHub</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-28T07:16:07+00:00" title="28 May 2026, 02:16">28 May 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">LogAn: Large-scale log analysis with small language models</h3>
+      <p class="card-summary">Where Large Language Models (LLMs) meet logs, things can break down. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Where Large Language Models (LLMs) meet logs, things can break down. Language models are remarkably good at understanding text. So the natural instinct when debugging a production outage is to dump the logs into an LLM and ask, &#34;what went wrong?&#34; It doesn&#39;t scale.</p></div>
+      <div class="detail-links">
+        <a href="articles/930b990bfb8141e3.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/28/logan-large-scale-log-analysis-small-language-models" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="networking,outage"
        data-vendors="Red Hat"
