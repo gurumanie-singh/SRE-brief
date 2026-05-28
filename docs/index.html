@@ -25,38 +25,28 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">27 May 2026</h1>
+      <h1 class="brief-title">28 May 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-05-27T19:06:23.157990-05:00">27 May 2026, 19:06</time>
+        <time data-iso="2026-05-28T00:15:28.933294-05:00">28 May 2026, 00:15</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-critical">1 critical</span>
-      <span class="stat stat-high">1 high impact</span>
-      <span class="stat">5 items today</span>
+      <span class="stat">1 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
-    <div class="strip-section">
-      <span class="strip-label">Operations picture</span>
-      <ul class="strip-bullets">
-        <li>1 critical incident signal in the feed window</li>
-        <li>Repeated coverage across Red Hat</li>
-        <li>Multiple outage or availability narratives detected</li>
-      </ul>
-    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
         <span class="trend-pill">openshift<span class="trend-count">5</span></span>
         <span class="trend-pill">agents<span class="trend-count">3</span></span>
         <span class="trend-pill">platform<span class="trend-count">3</span></span>
+        <span class="trend-pill">backend<span class="trend-count">2</span></span>
+        <span class="trend-pill">breaking<span class="trend-count">2</span></span>
         <span class="trend-pill">cloudflare<span class="trend-count">2</span></span>
-        <span class="trend-pill">inference<span class="trend-count">2</span></span>
-        <span class="trend-pill">testing<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -111,8 +101,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
@@ -124,6 +114,47 @@
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      28 May 2026
+      <span class="day-count">1</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="networking,outage"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="stalld’s bpf backend: breaking free from debugfs"
+       data-id="2a61a15e4d5d4c77"
+       data-published="2026-05-28T03:01:06+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-05-28T03:01:06+00:00" title="27 May 2026, 22:01">27 May 2026, 22:01</time>
+      </div>
+      <h3 class="card-title">stalld’s BPF Backend: Breaking Free from debugfs</h3>
+      <p class="card-summary">For years, stalld has been a critical tool for maintaining stability in real-time and CPU-isolated Linux environments. Its core function is to detect and mitigate task starvation, particularly for kernel threads that get stuck waiting for a chance to run on a CPU core dominated by a high-priority, user-space application.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>For years, stalld has been a critical tool for maintaining stability in real-time and CPU-isolated Linux environments. Its core function is to detect and mitigate task starvation, particularly for kernel threads that get stuck waiting for a chance to run on a CPU core dominated by a high-priority, user-space application. The original mechanism for this detection was straightforward but crude: stalld would periodically read and parse the text output of /sys/kernel/debug/sched/debug .</p></div>
+      <div class="detail-links">
+        <a href="articles/2a61a15e4d5d4c77.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/05/28/stallds-bpf-backend-breaking-free-debugfs" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       27 May 2026
