@@ -1,5 +1,94 @@
 [
   {
+    "id": "e0992a6f9e4b097a",
+    "title": "In an AI world, the most valuable developers will be both artisans and builders",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/28/artisans-and-builders/",
+    "published": "2026-05-28T16:00:00+00:00",
+    "fetched_at": "2026-05-28T14:42:47.180111+00:00",
+    "summary": "If AI is the new power tool for developers, is there still value in artisanal craft when anyone can be a builder?",
+    "tags": [],
+    "day": "2026-05-28",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "If AI is the new power tool for developers, is there still value in artisanal craft when anyone can be a builder?",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "If AI is the new power tool for developers, is there still value in artisanal craft when anyone can be a builder.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "70491e6b541cb5ba",
+    "title": "Slack AI: The Path to Multi-Cloud",
+    "source": "Slack Engineering",
+    "link": "https://slack.engineering/slack-ai-the-path-to-multi-cloud/",
+    "published": "2026-05-28T14:15:20+00:00",
+    "fetched_at": "2026-05-28T14:42:47.053043+00:00",
+    "summary": "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Over three years, we evolved from basic infrastructure to orchestrating a sophisticated multi-cloud architecture. We didn’t just want shiny new models; we needed a system resilient to regional outages and GPU scarcity...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-05-28",
+    "impact": "critical",
+    "vendors": [
+      "AWS",
+      "Google Cloud",
+      "Slack"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Over three years, we evolved from basic ",
+      "When we built the initial stages of Slack AI , AWS SageMaker was the natural starting point. It was a managed ML Serving platform that offered the key things that we were looking for: Security, FedRamp compliance, model ",
+      "Immediate Model Access: We eliminated any LLM model feature lag by gaining access to the latest models very quickly after LLM Providers made them publicly available.",
+      "Capacity: Conducted extensive load tests to map the exact number of Model Units (MUs) required to match our SageMaker baseline across diverse traffic profiles.",
+      "Quality: Used A/B testing and evaluation frameworks to compare environment outputs side-by-side, verifying both quality and latency parity.",
+      "Architectural Simplicity: We successfully moved away from the infrastructure plumbing of endpoint management, GPU instance lifecycle, and complex capacity reservation coordination. In this new model, we simply requested ",
+      "The Zero-Incident Standard: Switching an entire backend while serving live traffic can sometimes be a recipe for disaster. We avoided that by being borderline obsessed with parity, and achieved zero customer-facing incid",
+      "The Over-Provisioning Cycle: Our infrastructure needs are very closely aligned by the global workday traffic patterns. To ensure a snappy experience during the massive US East and West Coast morning surges when users lea"
+    ],
+    "sections": {
+      "overview": "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Over three years, we evolved from basic infrastructure to orchestrating a sophisticated multi-cloud architecture. We didn’t just want shiny new models; we needed a system resilient to regional outages and GPU scarcity.",
+      "technical_breakdown": "This required our teams to manage the operational lifecycle, including cross-region IAM roles, balanced routing across model endpoints, proactive capacity planning, and auto-scaling logic.\n\nWe used feature flags to slowly bleed traffic over, so if anything looked even slightly off, we could yank it back in seconds.\n\nWe kept high-volume, latency-sensitive features on dedicated capacity (Provisioned Throughput) to ensure a consistent “snappy” feel.\n\nTo maximize uptime for a global user base, we deployed these containers across multiple AWS regions.\n\nUnderstanding Provisioned Throughput \n In the Bedrock ecosystem, capacity is measured in Model Units (MUs) .",
+      "impact": "We didn’t just want shiny new models; we needed a system resilient to regional outages and GPU scarcity. To maximize uptime for a global user base, we deployed these containers across multiple AWS regions. By utilizing Bedrock s ability to route across different US regions based on real-time availability, we were able to find capacity dynamically while adhering to our regional data boundaries. Regional Capacity Orchestration: Success with OD relies on the cloud provider’s ability to manage demand across their entire customer base in specific regions, rather than having specific hardware units explicitly reserved for Slack.\n\nClassified impact band: critical. Affected layer signal: cloud — aws.",
+      "resolution": "Rollout: Implemented gradual traffic shifts via feature flags and instant rollback capabilities, ensuring 100% availability during the switch.\n\nFrom the customer’s perspective, the experience remained seamless; they continued to receive high-quality results without ever knowing a complex failover had occurred behind the scenes.\n\nFirst, no matter how many failovers we engineered within a single cloud, we remained susceptible to any potential provider-wide outage.\n\nAs Slack AI scaled to millions of users, we realized that true enterprise-grade reliability and a best-of-breed model strategy required looking beyond any single provider.",
+      "lessons_learned": "We faced three primary taxes:\n\n \n Scaling Latency: Initialization times prevented instantaneous scaling.\n\nBecause Bedrock serves as the primary launchpad for new LLMs, we were able to deliver model upgrades and quality improvements to users weeks or months earlier than was possible on SageMaker, directly enhancing the user experience across the entire Slack AI suite.\n\nThis granular optimization led to immediate performance gains:\n \n ~10% improvement in quality metrics for complex reasoning tasks.\n\n ~67% reduction in latency for high-velocity, low-token workloads.\n\nIf one model or provider slows down, the system instantly reroutes the request to a better-performing alternative, making the underlying complexity completely invisible to the user while maintaining a seamless experience.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Because Bedrock serves as the primary launchpad for new LLMs, we were able to deliver model upgrades and quality improvements to users weeks or months earlier than was possible on SageMaker, directly enhancing the user experience across the entire Slack AI suite. More importantly, it removed the technical bottleneck we faced in Phase 2: because we were no longer locked into multi-month commitments, we regained the freedom to migrate features to different models. To bridge the gap, we engineered a Spillover Pattern: if a sudden surge pushed us beyond our reserved limits, excess requests automatically “spilled over” to on-demand endpoints, ensuring we never dropped a request due to capacity ceilings.",
+      "incident_timeline": "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Over three years, we evolved from basic \nWhen we built the initial stages of Slack AI , AWS SageMaker was the natural starting point. It was a managed ML Serving platform that offered the key things that we were looking for: Security, FedRamp compliance, model \nImmediate Model Access: We eliminated any LLM model feature lag by gaining access to the latest models very quickly after LLM Providers made them publicly available.\nCapacity: Conducted extensive load tests to map the exact number of Model Units (MUs) required to match our SageMaker baseline across diverse traffic profiles.\nQuality: Used A/B testing and evaluation frameworks to compare environment outputs side-by-side, verifying both quality and latency parity.\nArchitectural Simplicity: We successfully moved away from the infrastructure plumbing of endpoint management, GPU instance lifecycle, and complex capacity reservation coordination. In this new model, we simply requested \nThe Zero-Incident Standard: Switching an entire backend while serving live traffic can sometimes be a recipe for disaster. We avoided that by being borderline obsessed with parity, and achieved zero customer-facing incid\nThe Over-Provisioning Cycle: Our infrastructure needs are very closely aligned by the global workday traffic patterns. To ensure a snappy experience during the massive US East and West Coast morning surges when users lea",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Impact band: critical.",
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/our-unified-data-platform/"
+      }
+    ],
+    "highlighted": false
+  },
+  {
     "id": "930b990bfb8141e3",
     "title": "LogAn: Large-scale log analysis with small language models",
     "source": "Red Hat Developer Blog",
