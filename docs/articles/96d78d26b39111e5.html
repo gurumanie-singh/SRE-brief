@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What&#39;s new in OpenShift Container Platform system management — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-05-29.html" class="back-link">← 29 May 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">29 May 2026, 02:01</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">What&#39;s new in OpenShift Container Platform system management</h1>
+
+      <p class="subtitle">I&#39;ve spent years helping teams troubleshoot node stability issues in production Red Hat OpenShift clusters, and one pattern keeps appearing: nodes with insufficient system reserves running out of memory or experiencing CPU starvation for critical system daemons. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Azure</span>
+        <span class="vendor-tag">Elastic</span>
+        <span class="vendor-tag">Google Cloud</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>cascading failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">I&#39;ve spent years helping teams troubleshoot node stability issues in production Red Hat OpenShift clusters, and one pattern keeps appearing: nodes with insufficient system reserves running out of memory or experiencing CPU starvation for critical system daemons. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>I&#39;ve spent years helping teams troubleshoot node stability issues in production Red Hat OpenShift clusters, and one pattern keeps appearing: nodes with insufficient system reserves running out of memory or experiencing CPU starvation for critical system daemons. The problem has become more pronounced as nodes have grown larger. I&#39;ve seen clusters running 256 GB worker nodes where system daemons were competing with hundreds of pods for just 1 GB of reserved memory.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Verify AutoSizingReserved :</p>
+<p># SSH into a node and check allocatable resources oc debug node/&lt;node-name&gt; chroot /host cat /etc/node-sizing-enabled.env Verify System-Reserved-Compressible :</p>
+<p># Check kubelet configuration for system-reserved-compressible oc debug node/&lt;node-name&gt; chroot /host cat /etc/kubernetes/kubelet.conf | grep -A2 systemReservedCgroup cat /etc/kubernetes/kubelet.conf | grep -A3 enforceNodeAllocatable Expected output:</p>
+<p>systemReservedCgroup: /system.slice enforceNodeAllocatable:  - pods  - system-reserved-compressible If you have performance profiles with reservedSystemCPUs configured, this is for nodes with performance profiles:</p>
+<p># Verify systemReservedCgroup is NOT present cat /etc/kubernetes/kubelet.conf | grep systemReservedCgroup # Verify enforceNodeAllocatable only contains pods cat /etc/kubernetes/kubelet.conf | grep enforceNodeAllocatable Final thoughts These changes represent an important maturation of OpenShift Container Platform node management capabilities.</p>
+<p>This means the kubelet will automatically calculate how much CPU, memory, and ephemeral storage to reserve for system daemons based on the node&#39;s total capacity.</p>
+<p>Amazon Elastic Kubernetes Service (EKS) calculates reserved resources based on instance size and maximum pod count per node, accounting for both system processes and networking overhead.</p>
+<p>If it reserves 0.5 CPU for system daemons on a 4-core node, system.slice will receive approximately that much CPU during contention, and workload pods will receive their expected share of the remaining 3.5 CPUs.</p>
+<p>By automatically scaling system reserves based on node capacity and enforcing CPU limits on system daemons, OpenShift Container Platform 4.21 and 4.22 provide better out-of-the-box stability while still giving administrators the flexibility to customize when needed.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Your existing nodes will continue operating exactly as they did before, and you can enable auto-sizing on your own timeline after verifying the capacity impact. Control plane nodes continue to use their existing resource management approach to ensure cluster management operations aren&#39;t impacted. This meant that on nodes with high CPU counts, system daemons could consume more CPU than intended, potentially impacting workload performance. Note: The control plane nodes are not impacted.</p>
+<p>Classified impact band: critical. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>They get throttled.</p>
+<p>These changes address the root cause of many of those issues, and I expect they&#39;ll meaningfully improve cluster stability across the Red Hat OpenShift ecosystem.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Designed to improve node stability across the board, these changes have important implications for capacity planning that every OpenShift administrator needs to understand.</p>
+<p>But nothing prevented system processes from using more CPU if it was available.</p>
+<p>This improves CPU allocation predictability, especially on nodes with high CPU counts.</p>
+<p>By automatically scaling system reserves based on node capacity and enforcing CPU limits on system daemons, OpenShift Container Platform 4.21 and 4.22 provide better out-of-the-box stability while still giving administrators the flexibility to customize when needed.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: cascading failure. I&#39;ve seen too many production incidents caused by insufficient system reserves—nodes crashing under memory pressure, system daemons competing with workloads for CPU, or kubelet becoming unresponsive due to resource starvation. I&#39;ve debugged incidents where massive nodes with hundreds of pods experienced memory pressure, not because workloads exceeded their limits but because system daemons were fighting for scraps. Under memory pressure, the kernel&#39;s out-of-memory killer would sometimes terminate system processes instead of workload containers, causing cascading failures.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Amazon Elastic Kubernetes Service (EKS) calculates reserved resources based on instance size and maximum pod count per node, accounting for both system processes and networking overhead. Refer to the EKS best practices g</li>
+            <li>The upstream Kubernetes documentation provides the foundational concepts for system resource reservations that these implementations build upon.</li>
+            <li>OpenShift Container Platform&#39;s AutoSizingReserved feature follows similar principles, specifically tuned for OpenShift Container Platform architecture and operational requirements. The following formulas reflect extensiv</li>
+            <li>How enforcement behaves in practice The enforcement becomes meaningful when CPU contention occurs. Imagine your node is running at high utilization: workload pods are consuming their CPU requests, system daemons want CPU</li>
+            <li>Enable the feature in 4.21: Once you have successfully upgraded to OpenShift Container Platform 4.21, the 50-worker-auto-sizing-disabled config persists, keeping the feature off. To enable auto-sizing and allow OpenShift</li>
+            <li>If you&#39;re planning an upgrade to 4.21, take time to understand how these changes will affect your specific clusters. Test them in non-production environments first, verify the capacity impact, and plan your rollout accor</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/05/29/whats-new-openshift-container-platform-system-management" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

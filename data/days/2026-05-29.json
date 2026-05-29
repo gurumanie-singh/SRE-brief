@@ -1,5 +1,91 @@
 [
   {
+    "id": "ecf08911262d3da2",
+    "title": "The find out stage of AI is just supply chain and password protection​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌‌‌‌​‌​﻿‌​﻿​‌‌‌​﻿‌‌​‌​﻿​​﻿‌​﻿‌​‌​‌‌​﻿​​​﻿‌​﻿‌​‌​‌​﻿‌​‌​‌​﻿‌‌​‌‌​﻿​﻿​​​﻿‌﻿​﻿‌​﻿​‌‌‌​﻿‌﻿‌‌‌‌‌‌‌​‌‌‌​﻿‌﻿​﻿​​﻿​﻿​﻿‌‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌‌‌‌​‌​﻿‌​﻿​‌‌‌​﻿‌‌​‌​﻿​​﻿‌​﻿‌​‌​‌‌​﻿​​​﻿‌​﻿‌​‌​‌​﻿‌​‌​‌​﻿‌‌​‌‌​﻿​﻿​​​﻿‌﻿​﻿‌​﻿​‌‌‌​﻿‌﻿‌‌‌‌‌‌‌​‌‌‌​﻿‌﻿​﻿​​﻿​﻿​﻿‌‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/05/29/find-out-stage-ai-supply-chain-password-protection/",
+    "published": "2026-05-29T07:40:00+00:00",
+    "fetched_at": "2026-05-29T08:48:29.869397+00:00",
+    "summary": "In this two-for-one special recorded at HumanX, Ryan is joined by Dataiku’s Florian Douetteau to chat about the governance, orchestration, and data requirements for serious agentic systems and 1Password’s Nancy Wang for a conversation on making agent swarms...",
+    "tags": [],
+    "day": "2026-05-29",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "In this two-for-one special recorded at HumanX, Ryan is joined by Dataiku’s Florian Douetteau to chat about the governance, orchestration, and data requirements for serious agentic systems and 1Password’s Nancy Wang for "
+    ],
+    "sections": {
+      "overview": "In this two-for-one special recorded at HumanX, Ryan is joined by Dataiku’s Florian Douetteau to chat about the governance, orchestration, and data requirements for serious agentic systems and 1Password’s Nancy Wang for a conversation on making agent swarms...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "In this two-for-one special recorded at HumanX, Ryan is joined by Dataiku’s Florian Douetteau to chat about the governance, orchestration, and data requirements for serious agentic systems and 1Password’s Nancy Wang for ",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "In this two-for-one special recorded at HumanX, Ryan is joined by Dataiku’s Florian Douetteau to chat about the governance, orchestration, and data requirements for serious agentic systems and 1Password’s Nancy Wang for a conversation on making agent swarms…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "96d78d26b39111e5",
+    "title": "What's new in OpenShift Container Platform system management",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/05/29/whats-new-openshift-container-platform-system-management",
+    "published": "2026-05-29T07:01:04+00:00",
+    "fetched_at": "2026-05-29T08:48:30.980928+00:00",
+    "summary": "I've spent years helping teams troubleshoot node stability issues in production Red Hat OpenShift clusters, and one pattern keeps appearing: nodes with insufficient system reserves running out of memory or experiencing CPU starvation for critical system daemons. The problem has become more pronounced as nodes have grown larger. I've seen clusters running 256 GB worker nodes where system daemons...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage",
+      "postmortem",
+      "scaling"
+    ],
+    "day": "2026-05-29",
+    "impact": "critical",
+    "vendors": [
+      "Azure",
+      "Elastic",
+      "Google Cloud",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "cascading failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Amazon Elastic Kubernetes Service (EKS) calculates reserved resources based on instance size and maximum pod count per node, accounting for both system processes and networking overhead. Refer to the EKS best practices g",
+      "The upstream Kubernetes documentation provides the foundational concepts for system resource reservations that these implementations build upon.",
+      "OpenShift Container Platform's AutoSizingReserved feature follows similar principles, specifically tuned for OpenShift Container Platform architecture and operational requirements. The following formulas reflect extensiv",
+      "How enforcement behaves in practice The enforcement becomes meaningful when CPU contention occurs. Imagine your node is running at high utilization: workload pods are consuming their CPU requests, system daemons want CPU",
+      "Enable the feature in 4.21: Once you have successfully upgraded to OpenShift Container Platform 4.21, the 50-worker-auto-sizing-disabled config persists, keeping the feature off. To enable auto-sizing and allow OpenShift",
+      "If you're planning an upgrade to 4.21, take time to understand how these changes will affect your specific clusters. Test them in non-production environments first, verify the capacity impact, and plan your rollout accor"
+    ],
+    "sections": {
+      "overview": "I've spent years helping teams troubleshoot node stability issues in production Red Hat OpenShift clusters, and one pattern keeps appearing: nodes with insufficient system reserves running out of memory or experiencing CPU starvation for critical system daemons. The problem has become more pronounced as nodes have grown larger. I've seen clusters running 256 GB worker nodes where system daemons were competing with hundreds of pods for just 1 GB of reserved memory.",
+      "technical_breakdown": "Verify AutoSizingReserved : \n\n # SSH into a node and check allocatable resources\noc debug node/<node-name>\nchroot /host\ncat /etc/node-sizing-enabled.env Verify System-Reserved-Compressible :\n\n # Check kubelet configuration for system-reserved-compressible\noc debug node/<node-name>\nchroot /host\ncat /etc/kubernetes/kubelet.conf | grep -A2 systemReservedCgroup\ncat /etc/kubernetes/kubelet.conf | grep -A3 enforceNodeAllocatable Expected output: \n\n systemReservedCgroup: /system.slice\nenforceNodeAllocatable:\n - pods\n - system-reserved-compressible If you have performance profiles with reservedSystemCPUs configured, this is for nodes with performance profiles: \n\n # Verify systemReservedCgroup is NOT present\ncat /etc/kubernetes/kubelet.conf | grep systemReservedCgroup\n# Verify enforceNodeAllocatable only contains pods\ncat /etc/kubernetes/kubelet.conf | grep enforceNodeAllocatable Final thoughts These changes represent an important maturation of OpenShift Container Platform node management capabilities.\n\nThis means the kubelet will automatically calculate how much CPU, memory, and ephemeral storage to reserve for system daemons based on the node's total capacity.\n\nAmazon Elastic Kubernetes Service (EKS) calculates reserved resources based on instance size and maximum pod count per node, accounting for both system processes and networking overhead.\n\nIf it reserves 0.5 CPU for system daemons on a 4-core node, system.slice will receive approximately that much CPU during contention, and workload pods will receive their expected share of the remaining 3.5 CPUs.\n\nBy automatically scaling system reserves based on node capacity and enforcing CPU limits on system daemons, OpenShift Container Platform 4.21 and 4.22 provide better out-of-the-box stability while still giving administrators the flexibility to customize when needed.",
+      "impact": "Your existing nodes will continue operating exactly as they did before, and you can enable auto-sizing on your own timeline after verifying the capacity impact. Control plane nodes continue to use their existing resource management approach to ensure cluster management operations aren't impacted. This meant that on nodes with high CPU counts, system daemons could consume more CPU than intended, potentially impacting workload performance. Note: The control plane nodes are not impacted.\n\nClassified impact band: critical. Affected layer signal: platform — kubernetes.",
+      "resolution": "They get throttled.\n\nThese changes address the root cause of many of those issues, and I expect they'll meaningfully improve cluster stability across the Red Hat OpenShift ecosystem.",
+      "lessons_learned": "Designed to improve node stability across the board, these changes have important implications for capacity planning that every OpenShift administrator needs to understand.\n\nBut nothing prevented system processes from using more CPU if it was available.\n\nThis improves CPU allocation predictability, especially on nodes with high CPU counts.\n\nBy automatically scaling system reserves based on node capacity and enforcing CPU limits on system daemons, OpenShift Container Platform 4.21 and 4.22 provide better out-of-the-box stability while still giving administrators the flexibility to customize when needed.",
+      "root_cause_highlight": "Likely root-cause theme: cascading failure. I've seen too many production incidents caused by insufficient system reserves—nodes crashing under memory pressure, system daemons competing with workloads for CPU, or kubelet becoming unresponsive due to resource starvation. I've debugged incidents where massive nodes with hundreds of pods experienced memory pressure, not because workloads exceeded their limits but because system daemons were fighting for scraps. Under memory pressure, the kernel's out-of-memory killer would sometimes terminate system processes instead of workload containers, causing cascading failures.",
+      "incident_timeline": "Amazon Elastic Kubernetes Service (EKS) calculates reserved resources based on instance size and maximum pod count per node, accounting for both system processes and networking overhead. Refer to the EKS best practices g\nThe upstream Kubernetes documentation provides the foundational concepts for system resource reservations that these implementations build upon.\nOpenShift Container Platform's AutoSizingReserved feature follows similar principles, specifically tuned for OpenShift Container Platform architecture and operational requirements. The following formulas reflect extensiv\nHow enforcement behaves in practice The enforcement becomes meaningful when CPU contention occurs. Imagine your node is running at high utilization: workload pods are consuming their CPU requests, system daemons want CPU\nEnable the feature in 4.21: Once you have successfully upgraded to OpenShift Container Platform 4.21, the 50-worker-auto-sizing-disabled config persists, keeping the feature off. To enable auto-sizing and allow OpenShift\nIf you're planning an upgrade to 4.21, take time to understand how these changes will affect your specific clusters. Test them in non-production environments first, verify the capacity impact, and plan your rollout accor",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "I've spent years helping teams troubleshoot node stability issues in production Red Hat OpenShift clusters, and one pattern keeps appearing: nodes with insufficient system reserves running out of memory or experiencing CPU starvation for critical system daemons. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "815363814a0f73e9",
     "title": "Claude as your performance analysis partner",
     "source": "Red Hat Developer Blog",
