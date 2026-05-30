@@ -34,12 +34,7 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Welcome to GitHub Copilot CLI for Beginners. In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI , from your first prompt to tips for navigating the command line like a pro.",
-    "related_sources": [
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/announcing-the-new-partner-premier-tier-for-the-terraform-registry"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
@@ -254,12 +249,7 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Running Red Hat OpenShift Pipelines at scale usually means watching execution times slowly degrade as concurrency increases. Impact band: high.",
-    "related_sources": [
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/securing-the-last-mile-with-local-account-password-rotation"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
