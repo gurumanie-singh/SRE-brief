@@ -1,5 +1,52 @@
 [
   {
+    "id": "c84422537fbdcc4d",
+    "title": "Get started with OpenAI GPT-5.5, GPT-5.4 models, and Codex on Amazon Bedrock",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/get-started-with-openai-gpt-5-5-gpt-5-4-models-and-codex-on-amazon-bedrock/",
+    "published": "2026-06-01T21:33:28+00:00",
+    "fetched_at": "2026-06-01T22:13:48.471705+00:00",
+    "summary": "As we previewed in What’s Next with AWS 2026 , we’re announcing the general availability of OpenAI GPT-5.5, GPT-5.4 models, and Codex on Amazon Bedrock , giving you access to frontier models and a coding agent for software development.",
+    "tags": [
+      "capacity",
+      "latency",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-01",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "According to OpenAI, GPT-5.5 and GPT-5.4 models are excellent for coding, reasoning, agentic workflows, and complex professional work. You can use GPT-5.5 for the hardest customer workloads and GPT-5.4 for the best price",
+      "Codex is the OpenAI coding agent for AI-powered software development. According to OpenAI, more than 4 million developers use Codex every week to write, refactor, debug, test, and validate code across large codebases. Wi",
+      "\"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\",",
+      "\"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"",
+      "You can use the Responses API when you want to use model-managed multi-turn state, need hosted tools, function tools, or richer tool orchestration, and run background or long-running work. To learn more, visit the OpenAI",
+      "Restart the desktop app or VS Code extension after changing ~/.codex/config.toml or ~/.codex/.env . In Codex CLI, you should see a /status tab that looks like this:",
+      "Scaling and capacity : Bedrock’s new inference engine is designed to rapidly provision and serve capacity across many different models. When accepting requests, we prioritize keeping steady state workloads running, and r",
+      "OpenAI GPT models and Codex on Amazon Bedrock are available today: GPT-5.5 model in the US East (Ohio) Region, GPT-5.4 model in the US East (Ohio) and US West (Oregon) Regions. Check the full list of Regions for future u"
+    ],
+    "sections": {
+      "overview": "As we previewed in What’s Next with AWS 2026 , we’re announcing the general availability of OpenAI GPT-5.5, GPT-5.4 models, and Codex on Amazon Bedrock , giving you access to frontier models and a coding agent for software development. According to OpenAI, GPT-5.5 and GPT-5.4 models are excellent for coding, reasoning, agentic workflows, and complex professional work. You can use GPT-5.5 for the hardest customer workloads and GPT-5.4 for the best price-performance.",
+      "technical_breakdown": "Model latency : OpenAI model information positions GPT-5.5 as fast and GPT-5.4 as medium speed, but customer-perceived latency depends on reasoning effort, output length, tool calls, background mode, Region, quotas, throttling, prompt size, and cache hits.\n\nInstall OpenAI SDK.\n\n \n pip install -U openai \n Set the environment variables for authentication.\n\n \n export OPENAI_BASE_URL=\"https://bedrock-mantle.us-east-2.api.aws/openai/v1\"\nexport OPENAI_API_KEY=\"<BEDROCK_API_KEY>\"\nexport BEDROCK_OPENAI_MODEL_ID=\"openai.gpt-5.5\"\n \n Here is a sample Python code to call GPT-5.5 model on Bedrock:\n\n \n import os\nfrom openai import OpenAI\n \nclient = OpenAI(\n base_url=os.environ[\"OPENAI_BASE_URL\"],\n api_key=os.environ[\"OPENAI_API_KEY\"],\n)\n \nresponse = client.responses.create(\n model=os.environ[\"BEDROCK_OPENAI_MODEL_ID\"],\n input=[\n {\n \"role\": \"developer\",\n \"content\": \"You are a software engineer with excellent AWS cloud knowledge.\n\nBe concise and practical.\",\n },\n {\n \"role\": \"user\",\n \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\",\n },\n ],\n reasoning={\"effort\": \"medium\"},\n text={\"verbosity\": \"low\"},\n)\n \nprint(response.output_text) \n You can call directly the model endpoint using curl .\n\n \n curl \"$OPENAI_BASE_URL/responses\" \\\n -H \"Content-Type: application/json\" \\\n -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n -d '{\n \"model\": \"openai.gpt-5.5\",\n \"input\": [\n {\n \"role\": \"developer\",\n \"content\": \"You are a software engineer with excellent AWS cloud knowledge.\"\n },\n {\n \"role\": \"user\",\n \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"\n }\n ],\n \"reasoning\": {\"effort\": \"medium\"},\n \"text\": {\"verbosity\": \"low\"}\n }' \n You can use the Responses API when you want to use model-managed multi-turn state, need hosted tools, function tools, or richer tool orchestration, and run background or long-running work.\n\nFor customers with data residency requirements, all processing stays within the Bedrock Region you select.\n\nSet AWS_BEARER_TOKEN_BEDROCK in the environment that Codex will read:\n\n \n export AWS_BEARER_TOKEN_BEDROCK=<your-bedrock-api-key> \n Then, configure your preferred Region and set the model ID to openai.gpt-5.5 in ~/.codex/config.toml , which is required for Bedrock API-key authentication.",
+      "impact": "For customers with data residency requirements, all processing stays within the Bedrock Region you select. Be concise and practical.\",\n },\n {\n \"role\": \"user\",\n \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\",\n },\n ],\n reasoning={\"effort\": \"medium\"},\n text={\"verbosity\": \"low\"},\n)\n \nprint(response.output_text) \n You can call directly the model endpoint using curl .\n\n \n curl \"$OPENAI_BASE_URL/responses\" \\\n -H \"Content-Type: application/json\" \\\n -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n -d '{\n \"model\": \"openai.gpt-5.5\",\n \"input\": [\n {\n \"role\": \"developer\",\n \"content\": \"You are a software engineer with excellent AWS cloud knowledge.\"\n },\n {\n \"role\": \"user\",\n \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"\n }\n ],\n \"reasoning\": {\"effort\": \"medium\"},\n \"text\": {\"verbosity\": \"low\"}\n }' \n You can use the Responses API when you want to use model-managed multi-turn state, need hosted tools, function tools, or richer tool orchestration, and run background or long-running work. Model latency : OpenAI model information positions GPT-5.5 as fast and GPT-5.4 as medium speed, but customer-perceived latency depends on reasoning effort, output length, tool calls, background mode, Region, quotas, throttling, prompt size, and cache hits. As we previewed in What’s Next with AWS 2026 , we’re announcing the general availability of OpenAI GPT-5.5, GPT-5.4 models, and Codex on Amazon Bedrock , giving you access to frontier models and a coding agent for software development.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "According to OpenAI, GPT-5.5 and GPT-5.4 models are excellent for coding, reasoning, agentic workflows, and complex professional work. You can use GPT-5.5 for the hardest customer workloads and GPT-5.4 for the best price\nCodex is the OpenAI coding agent for AI-powered software development. According to OpenAI, more than 4 million developers use Codex every week to write, refactor, debug, test, and validate code across large codebases. Wi\n\"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\",\n\"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"\nYou can use the Responses API when you want to use model-managed multi-turn state, need hosted tools, function tools, or richer tool orchestration, and run background or long-running work. To learn more, visit the OpenAI\nRestart the desktop app or VS Code extension after changing ~/.codex/config.toml or ~/.codex/.env . In Codex CLI, you should see a /status tab that looks like this:\nScaling and capacity : Bedrock’s new inference engine is designed to rapidly provision and serve capacity across many different models. When accepting requests, we prioritize keeping steady state workloads running, and r\nOpenAI GPT models and Codex on Amazon Bedrock are available today: GPT-5.5 model in the US East (Ohio) Region, GPT-5.4 model in the US East (Ohio) and US West (Oregon) Regions. Check the full list of Regions for future u",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "As we previewed in What’s Next with AWS 2026 , we’re announcing the general availability of OpenAI GPT-5.5, GPT-5.4 models, and Codex on Amazon Bedrock , giving you access to frontier models and a coding agent for software development. According to OpenAI, GPT-5.5 and GPT-5.4 models are excellent for coding, reasoning, agentic workflows, and complex professional work.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "01a7bc028f7d06b9",
     "title": "How we reduced core unit boot time from hours to minutes",
     "source": "Cloudflare Blog",
@@ -99,6 +146,10 @@
       {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-8-on-aws-aurora-mysql-with-kiro-powers-and-more-june-1-2026/"
+      },
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/06/01/dashboard-to-headlamp/"
       }
     ],
     "highlighted": false
