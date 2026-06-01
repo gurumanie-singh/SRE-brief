@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How we reduced core unit boot time from hours to minutes — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-01.html" class="back-link">← 1 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">1 June 2026, 11:53</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">How we reduced core unit boot time from hours to minutes</h1>
+
+      <p class="subtitle">Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast. Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic.</p>
+<p>What should have been a one-day fleet-wide rollout was stretching into multi-day slogs.</p>
+<p>New nodes faced the full timeout gauntlet on their very first boot.</p>
+<p>Every unexpected failure mid-upgrade meant restarting the entire cycle, and new capacity sat idle waiting for the timeout gauntlet to clear.</p>
+<p>At Cloudflare, we use the open-source iPXE , an open-source network boot firmware that supports modern protocols like HTTP and HTTPS.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>After a routine firmware update, some of our core servers were taking four hours to come back online, rather than just minutes as they did before. This is the story of how we tracked the cause to a firmware quirk and an over-eager linear search through every available network boot interface, and how we cut total boot and upgrade time from hours back down to minutes. Metric</p>
+<p>Before ordering change</p>
+<p>After ordering change</p>
+<p>Firmware Upgrade Automation</p>
+<p>Nearly 4 hours</p>
+<p>3 minutes</p>
+<p>Subsequent Single Boot</p>
+<p>About 20 minutes</p>
+<p>Less than a minute</p>
+<p>None of this would have been possible without digging deep into UEFI internals, collaborating closely with our OEM vendors to unlock capabilities like programmatic boot order control, and leveraging open-source tools like iPXE to build scalable automation. Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>No searching games: Declare my boot interface           After tracing the boot sequence and isolating the timeout pattern, the root cause became clear: the servers were blindly searching through every available network boot interface, one by one, waiting for each to fail before moving on.</p>
+<p>The fix was to eliminate the guesswork entirely — declare the correct boot interface upfront so the system never wastes time on interfaces that will never respond.</p>
+<p>We worked with our vendors to enable specific tokens within the fixed &#34;Boot Order Module.&#34; This forces the discovery of the Network Boot Interface during the boot sequence without requiring manual GUI interaction.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Along the way, we&#39;ll share what we learned about UEFI internals, vendor-specific quirks, and the automation strategies that ultimately solved the problem.</p>
+<p>The UEFI from our equipment manufacturers had an immutable setting, Force Priority Httpv4 Httpv6 Pxev4 Pxev6 , that was preventing us from changing the boot order.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system. This is critical for centralized, automated, and scalable control over how machines start up,  especially across a globally distributed fleet serving different workloads.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system. Small quirks in that handoff can have outsized consequences.</li>
+            <li>This issue affected the entire Gen12 fleet -- nearly 2,000 units. Every unexpected failure mid-upgrade meant restarting the entire cycle, and new capacity sat idle waiting for the timeout gauntlet to clear.</li>
+            <li>To rule that out, we pulled up the serial console on an affected machine and watched a boot cycle in real time. The firmware Power On Self Test (POST) completed normally and hardware initialization looked healthy. But th</li>
+            <li>By restructuring the automation sequence to declare the network boot interface order early on in the pre-boot PXE stage for each hardware/use-case, we were able to cut the total time by about an hour, since the boot proc</li>
+            <li>EFI_IFR_QUESTION_HEADER Question;</li>
+            <li>EFI_QUESTION_ID QuestionId;</li>
+            <li>UEFI: HTTPS IPv4 Network Adapter - 50:00:E6:8F:4F:32 P1</li>
+            <li>With each passing day, Cloudflare&#39;s OpenBMC team continues to learn about, experiment with, and optimize the boot process across our core fleet. If you are managing bare-metal infrastructure and struggling with slow serv</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/optimizing-core-unit-boot-time/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

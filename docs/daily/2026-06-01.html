@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">1 June 2026</h1>
-      <span class="brief-sub">2 items</span>
+      <span class="brief-sub">4 items</span>
     </div>
   </div>
 
@@ -37,6 +37,7 @@
       <ul class="strip-bullets">
         <li>1 high-impact reliability event surfaced</li>
         <li>Repeated coverage across Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
   </div>
@@ -64,30 +65,71 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="capacity,deployment,latency,networking,observability,outage,postmortem"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="how we reduced core unit boot time from hours to minutes"
+       data-id="01a7bc028f7d06b9"
+       data-published="2026-06-01T16:53:39+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-01T16:53:39+00:00" title="1 June 2026, 11:53">1 June 2026, 11:53</time>
+      </div>
+      <h3 class="card-title">How we reduced core unit boot time from hours to minutes</h3>
+      <p class="card-summary">Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Cloudflare&#39;s core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast. Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system.</p></div>
+      <div class="detail-links">
+        <a href="../articles/01a7bc028f7d06b9.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/optimizing-core-unit-boot-time/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="deployment,kubernetes,latency,outage"
        data-vendors="GitHub,Kubernetes,Red Hat"
@@ -114,6 +156,7 @@
           <span class="ttag">outage</span>
         </div>
       </div>
+      <div class="card-related">Also: AWS News Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -155,6 +198,40 @@
       <div class="detail-links">
         <a href="../articles/4c3ce92ca85dfc3b.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/01/owning-system-clock-good-enough" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="observability,scaling"
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="scaling ai in financial services starts with governance and architecture"
+       data-id="56964d28e515c22e"
+       data-published="2026-06-01T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-06-01T00:00:00+00:00" title="31 May 2026, 19:00">31 May 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">Scaling AI in financial services starts with governance and architecture</h3>
+      <p class="card-summary">Discover how financial services companies scale AI initiatives by prioritizing data governance, unified search, and observability architecture. Insights from IDC, Microsoft, Kyndryl, and Elastic.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">observability</span>
+          <span class="ttag">scaling</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Discover how financial services companies scale AI initiatives by prioritizing data governance, unified search, and observability architecture. Insights from IDC, Microsoft, Kyndryl, and Elastic.</p></div>
+      <div class="detail-links">
+        <a href="../articles/56964d28e515c22e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/scaling-ai-financial-services-governance-architecture" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

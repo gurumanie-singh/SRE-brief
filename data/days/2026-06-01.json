@@ -1,5 +1,55 @@
 [
   {
+    "id": "01a7bc028f7d06b9",
+    "title": "How we reduced core unit boot time from hours to minutes",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/optimizing-core-unit-boot-time/",
+    "published": "2026-06-01T16:53:39+00:00",
+    "fetched_at": "2026-06-01T18:44:14.358470+00:00",
+    "summary": "Cloudflare's core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast. ",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-06-01",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system. Small quirks in that handoff can have outsized consequences.",
+      "This issue affected the entire Gen12 fleet -- nearly 2,000 units. Every unexpected failure mid-upgrade meant restarting the entire cycle, and new capacity sat idle waiting for the timeout gauntlet to clear.",
+      "To rule that out, we pulled up the serial console on an affected machine and watched a boot cycle in real time. The firmware Power On Self Test (POST) completed normally and hardware initialization looked healthy. But th",
+      "By restructuring the automation sequence to declare the network boot interface order early on in the pre-boot PXE stage for each hardware/use-case, we were able to cut the total time by about an hour, since the boot proc",
+      "EFI_IFR_QUESTION_HEADER Question;",
+      "EFI_QUESTION_ID QuestionId;",
+      "UEFI: HTTPS IPv4 Network Adapter - 50:00:E6:8F:4F:32 P1",
+      "With each passing day, Cloudflare's OpenBMC team continues to learn about, experiment with, and optimize the boot process across our core fleet. If you are managing bare-metal infrastructure and struggling with slow serv"
+    ],
+    "sections": {
+      "overview": "Cloudflare's core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast. Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system.",
+      "technical_breakdown": "Cloudflare's core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic.\n\nWhat should have been a one-day fleet-wide rollout was stretching into multi-day slogs.\n\nNew nodes faced the full timeout gauntlet on their very first boot.\n\nEvery unexpected failure mid-upgrade meant restarting the entire cycle, and new capacity sat idle waiting for the timeout gauntlet to clear.\n\nAt Cloudflare, we use the open-source iPXE , an open-source network boot firmware that supports modern protocols like HTTP and HTTPS.",
+      "impact": "After a routine firmware update, some of our core servers were taking four hours to come back online, rather than just minutes as they did before. This is the story of how we tracked the cause to a firmware quirk and an over-eager linear search through every available network boot interface, and how we cut total boot and upgrade time from hours back down to minutes. Metric \n\n Before ordering change \n\n After ordering change \n\n Firmware Upgrade Automation \n\n Nearly 4 hours\n\n 3 minutes\n\n Subsequent Single Boot \n\n About 20 minutes\n\n Less than a minute\n\n None of this would have been possible without digging deep into UEFI internals, collaborating closely with our OEM vendors to unlock capabilities like programmatic boot order control, and leveraging open-source tools like iPXE to build scalable automation. Cloudflare's core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "No searching games: Declare my boot interface \n \n \n \n \n After tracing the boot sequence and isolating the timeout pattern, the root cause became clear: the servers were blindly searching through every available network boot interface, one by one, waiting for each to fail before moving on.\n\nThe fix was to eliminate the guesswork entirely — declare the correct boot interface upfront so the system never wastes time on interfaces that will never respond.\n\nWe worked with our vendors to enable specific tokens within the fixed \"Boot Order Module.\" This forces the discovery of the Network Boot Interface during the boot sequence without requiring manual GUI interaction.",
+      "lessons_learned": "Along the way, we'll share what we learned about UEFI internals, vendor-specific quirks, and the automation strategies that ultimately solved the problem.\n\nThe UEFI from our equipment manufacturers had an immutable setting, Force Priority Httpv4 Httpv6 Pxev4 Pxev6 , that was preventing us from changing the boot order.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Cloudflare's core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system. This is critical for centralized, automated, and scalable control over how machines start up,  especially across a globally distributed fleet serving different workloads.",
+      "incident_timeline": "Their boot sequence is orchestrated by UEFI , the modern firmware standard that initializes hardware and hands off control to the operating system. Small quirks in that handoff can have outsized consequences.\nThis issue affected the entire Gen12 fleet -- nearly 2,000 units. Every unexpected failure mid-upgrade meant restarting the entire cycle, and new capacity sat idle waiting for the timeout gauntlet to clear.\nTo rule that out, we pulled up the serial console on an affected machine and watched a boot cycle in real time. The firmware Power On Self Test (POST) completed normally and hardware initialization looked healthy. But th\nBy restructuring the automation sequence to declare the network boot interface order early on in the pre-boot PXE stage for each hardware/use-case, we were able to cut the total time by about an hour, since the boot proc\nEFI_IFR_QUESTION_HEADER Question;\nEFI_QUESTION_ID QuestionId;\nUEFI: HTTPS IPv4 Network Adapter - 50:00:E6:8F:4F:32 P1\nWith each passing day, Cloudflare's OpenBMC team continues to learn about, experiment with, and optimize the boot process across our core fleet. If you are managing bare-metal infrastructure and struggling with slow serv",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Cloudflare's core is the centralized data centers that run our control plane, billing, and analytics -- distinct from the globally distributed edge that handles user traffic. Core servers are bare metal, and when issues happen during reboot, the consequences can cascade fast.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "ea9e0e08d3533620",
     "title": "Protect your Kubernetes Operator from OOMKill",
     "source": "Red Hat Developer Blog",
@@ -45,7 +95,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-8-on-aws-aurora-mysql-with-kiro-powers-and-more-june-1-2026/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -84,6 +139,42 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Across numerous industries, accurate timing is a common requirement. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "56964d28e515c22e",
+    "title": "Scaling AI in financial services starts with governance and architecture",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/scaling-ai-financial-services-governance-architecture",
+    "published": "2026-06-01T00:00:00+00:00",
+    "fetched_at": "2026-06-01T18:44:18.196341+00:00",
+    "summary": "Discover how financial services companies scale AI initiatives by prioritizing data governance, unified search, and observability architecture. Insights from IDC, Microsoft, Kyndryl, and Elastic.",
+    "tags": [
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-06-01",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Discover how financial services companies scale AI initiatives by prioritizing data governance, unified search, and observability architecture. Insights from IDC, Microsoft, Kyndryl, and Elastic.",
+      "technical_breakdown": "Discover how financial services companies scale AI initiatives by prioritizing data governance, unified search, and observability architecture.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Discover how financial services companies scale AI initiatives by prioritizing data governance, unified search, and observability architecture. Insights from IDC, Microsoft, Kyndryl, and Elastic.",
     "related_sources": [],
     "highlighted": false
   }
