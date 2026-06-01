@@ -1,5 +1,54 @@
 [
   {
+    "id": "ea9e0e08d3533620",
+    "title": "Protect your Kubernetes Operator from OOMKill",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/01/protect-your-kubernetes-operator-oomkill",
+    "published": "2026-06-01T07:01:06+00:00",
+    "fetched_at": "2026-06-01T12:44:55.957886+00:00",
+    "summary": "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a quiet vulnerability that's easy to miss during code review, and it can let any regular user crash your operator completely. While investigating the Spark Operator, we identified the...",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "latency",
+      "outage"
+    ],
+    "day": "2026-06-01",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a qui",
+      "The math is simple: 700 ConfigMaps at 900 KB each equals approximately 630 MB of raw data. However, the informer does not store raw YAML. Instead, it deserializes each object into a typed Go struct ( corev1.ConfigMap ) w",
+      "return c.Update(ctx, cm) Proving it on a real cluster While unit tests are great, observing system behavior directly on a live cluster provides definitive validation. Here's the full walkthrough.",
+      "The test consists of two phases: first, you confirm the vulnerability with the unpatched operator, and then you confirm the fix with the patched operator. The 700 flooded ConfigMaps remain in the cluster between phases, ",
+      "Step 2: Deploy the unpatched operator Deploy the stock operator image (quay.io/opendatahub/spark-operator:v2.4.0) using Kustomize manifests. This is the vulnerable version with no label filter on the ConfigMap cache.",
+      "Step 3: Record the operator's baseline memory usage Before flooding the cluster, capture the operator's normal memory usage to establish a healthy baseline.",
+      "Step 4: Create 10 test namespaces for i in $(seq 1 10); do oc create ns oom-test-$i; done Spreading ConfigMaps across multiple namespaces simulates a real multi-tenant cluster where different teams create their own resou",
+      "This loop executes the oc create ns oom-test-1 through oc create ns oom-test-10 commands."
+    ],
+    "sections": {
+      "overview": "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a quiet vulnerability that's easy to miss during code review, and it can let any regular user crash your operator completely.",
+      "technical_breakdown": "Step 3: Record the operator's baseline memory usage Before flooding the cluster, capture the operator's normal memory usage to establish a healthy baseline.\n\n oc adm top pod -n spark-operator NAME CPU(cores) MEMORY(bytes)\nspark-operator-controller-bb745cb-qj6vj 1m 36Mi Note the approximately 36 MiB value.\n\nThe unfiltered informer cached 630 MB of data and exceeded the 512 MiB memory limit, which caused Kubernetes to terminate the process.\n\nStep 9: Verify the fix holds oc get pods -n spark-operator NAME READY STATUS RESTARTS AGE\nspark-operator-controller-cdb487b68-sdfnn 1/1 Running 0 71s oc adm top pod -n spark-operator NAME CPU(cores) MEMORY(bytes)\nspark-operator-controller-cdb487b68-sdfnn 1m 14Mi A memory usage of 14 MiB matches the baseline, resulting in zero restarts.\n\nMetric Unpatched Patched Status OOMKilled → CrashLoopBackOff Running , 0 restarts Memory Exceeded 512 MiB (exit code 137) 14 MiB, flat 700 flooded ConfigMaps All cached Ignored Step 10: Cleanup for i in $(seq 1 10); do oc delete ns oom-test-$i --wait=false; done\noc delete -k config/default/\nrm -f /tmp/payload.txt The --wait=false flag kicks off namespace deletion in the background without blocking your terminal.\n\nWhen your operator needs to know about resources in the cluster (like Pods or ConfigMaps), it doesn't query the Kubernetes API every single time.",
+      "impact": "Any user with the edit ClusterRole —the standard role granted to developers and data scientists in multi-tenant clusters—can create a ConfigMap. But they have a quiet vulnerability that's easy to miss during code review, and it can let any regular user crash your operator completely. The vulnerability: An unfiltered cache In the Kubeflow Spark Operator , the cache was configured like this:\n\n ByObject: map[client.Object]cache.ByObject{\n &corev1.Pod{}: {\n Label: labels.SelectorFromSet(labels.Set{\n \"sparkoperator.k8s.io/launched-by-spark-operator\": \"true\",\n }),\n },\n &corev1.ConfigMap{}: {}, // ← only caches Pods with a specific label\n // ← but caches ALL ConfigMaps, everywhere\n} The operator protected pods with a label filter, but ConfigMaps were left unfiltered. The updated configuration instructs the informer to cache only the objects that contain a specific label.\n\n // Before (vulnerable) — caches EVERY ConfigMap in the cluster:\n&corev1.ConfigMap{}: {},\n// After (fixed) — only caches ConfigMaps your operator created:\n&corev1.ConfigMap{}: {\n Label: labels.SelectorFromSet(labels.Set{\n \"sparkoperator.k8s.io/created-by-spark-operator\": \"true\",\n }),\n}, By refining the cache scope, the informer selectively isolates objects in memory, as diagrammed in Figure 4.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "The test consists of two phases: first, you confirm the vulnerability with the unpatched operator, and then you confirm the fix with the patched operator.\n\nStep 8: Build and deploy the patched operator image Clone the upstream fix branch, build your own image, and deploy it.\n\nThe patched operator must withstand this traffic.\n\n # Build from the upstream fix branch (kubeflow/spark-operator#2878)\ngit clone https://github.com/kubeflow/spark-operator.git\ncd spark-operator && git checkout <fix-branch>\ndocker buildx build --platform linux/amd64 -t <your-registry>/spark-operator-controller:oom-fix --push .\n\nWhile investigating the Spark Operator, we identified the same pattern in several other controller-runtime operators and worked with upstream maintainers to fix them.",
+      "lessons_learned": "The & operator runs each creation command in the background to increase execution speed, and the wait command every five iterations prevents the process from overwhelming the API server.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. If pods fail to start due to an SCC validation error, grant the privileged SCC to the operator's service accounts:\n\n oc adm policy add-scc-to-user privileged -z spark-operator-controller -n spark-operator\noc adm policy add-scc-to-user privileged -z spark-operator-webhook -n spark-operator Architecture mismatch (Apple Silicon) If you build the image on an M1 or M2 Mac and the target cluster utilizes an x86 architecture, the deployment returns a no image found for architecture \"amd64\" error. This configuration pattern is systemic across the controller-runtime ecosystem because ByObject defaults to caching all objects when no selector is specified. While investigating the Spark Operator, we identified the same pattern in several other controller-runtime operators and worked with upstream maintainers to fix them.",
+      "incident_timeline": "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a qui\nThe math is simple: 700 ConfigMaps at 900 KB each equals approximately 630 MB of raw data. However, the informer does not store raw YAML. Instead, it deserializes each object into a typed Go struct ( corev1.ConfigMap ) w\nreturn c.Update(ctx, cm) Proving it on a real cluster While unit tests are great, observing system behavior directly on a live cluster provides definitive validation. Here's the full walkthrough.\nThe test consists of two phases: first, you confirm the vulnerability with the unpatched operator, and then you confirm the fix with the patched operator. The 700 flooded ConfigMaps remain in the cluster between phases, \nStep 2: Deploy the unpatched operator Deploy the stock operator image (quay.io/opendatahub/spark-operator:v2.4.0) using Kustomize manifests. This is the vulnerable version with no label filter on the ConfigMap cache.\nStep 3: Record the operator's baseline memory usage Before flooding the cluster, capture the operator's normal memory usage to establish a healthy baseline.\nStep 4: Create 10 test namespaces for i in $(seq 1 10); do oc create ns oom-test-$i; done Spreading ConfigMaps across multiple namespaces simulates a real multi-tenant cluster where different teams create their own resou\nThis loop executes the oc create ns oom-test-1 through oc create ns oom-test-10 commands.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "4c3ce92ca85dfc3b",
     "title": "Owning the system clock: Good enough?",
     "source": "Red Hat Developer Blog",

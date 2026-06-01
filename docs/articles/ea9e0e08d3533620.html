@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protect your Kubernetes Operator from OOMKill — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-01.html" class="back-link">← 1 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">1 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Protect your Kubernetes Operator from OOMKill</h1>
+
+      <p class="subtitle">If you&#39;ve ever worked with Kubernetes, you&#39;ve probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">If you&#39;ve ever worked with Kubernetes, you&#39;ve probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>If you&#39;ve ever worked with Kubernetes, you&#39;ve probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a quiet vulnerability that&#39;s easy to miss during code review, and it can let any regular user crash your operator completely.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Step 3: Record the operator&#39;s baseline memory usage Before flooding the cluster, capture the operator&#39;s normal memory usage to establish a healthy baseline.</p>
+<p>oc adm top pod -n spark-operator NAME CPU(cores) MEMORY(bytes) spark-operator-controller-bb745cb-qj6vj 1m 36Mi Note the approximately 36 MiB value.</p>
+<p>The unfiltered informer cached 630 MB of data and exceeded the 512 MiB memory limit, which caused Kubernetes to terminate the process.</p>
+<p>Step 9: Verify the fix holds oc get pods -n spark-operator NAME READY STATUS RESTARTS AGE spark-operator-controller-cdb487b68-sdfnn 1/1 Running 0 71s oc adm top pod -n spark-operator NAME CPU(cores) MEMORY(bytes) spark-operator-controller-cdb487b68-sdfnn 1m 14Mi A memory usage of 14 MiB matches the baseline, resulting in zero restarts.</p>
+<p>Metric Unpatched Patched Status OOMKilled → CrashLoopBackOff Running , 0 restarts Memory Exceeded 512 MiB (exit code 137) 14 MiB, flat 700 flooded ConfigMaps All cached Ignored Step 10: Cleanup for i in $(seq 1 10); do oc delete ns oom-test-$i --wait=false; done oc delete -k config/default/ rm -f /tmp/payload.txt The --wait=false flag kicks off namespace deletion in the background without blocking your terminal.</p>
+<p>When your operator needs to know about resources in the cluster (like Pods or ConfigMaps), it doesn&#39;t query the Kubernetes API every single time.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Any user with the edit ClusterRole —the standard role granted to developers and data scientists in multi-tenant clusters—can create a ConfigMap. But they have a quiet vulnerability that&#39;s easy to miss during code review, and it can let any regular user crash your operator completely. The vulnerability: An unfiltered cache In the Kubeflow Spark Operator , the cache was configured like this:</p>
+<p>ByObject: map[client.Object]cache.ByObject{  &amp;corev1.Pod{}: {  Label: labels.SelectorFromSet(labels.Set{  &#34;sparkoperator.k8s.io/launched-by-spark-operator&#34;: &#34;true&#34;,  }),  },  &amp;corev1.ConfigMap{}: {}, // ← only caches Pods with a specific label  // ← but caches ALL ConfigMaps, everywhere } The operator protected pods with a label filter, but ConfigMaps were left unfiltered. The updated configuration instructs the informer to cache only the objects that contain a specific label.</p>
+<p>// Before (vulnerable) — caches EVERY ConfigMap in the cluster: &amp;corev1.ConfigMap{}: {}, // After (fixed) — only caches ConfigMaps your operator created: &amp;corev1.ConfigMap{}: {  Label: labels.SelectorFromSet(labels.Set{  &#34;sparkoperator.k8s.io/created-by-spark-operator&#34;: &#34;true&#34;,  }), }, By refining the cache scope, the informer selectively isolates objects in memory, as diagrammed in Figure 4.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>The test consists of two phases: first, you confirm the vulnerability with the unpatched operator, and then you confirm the fix with the patched operator.</p>
+<p>Step 8: Build and deploy the patched operator image Clone the upstream fix branch, build your own image, and deploy it.</p>
+<p>The patched operator must withstand this traffic.</p>
+<p># Build from the upstream fix branch (kubeflow/spark-operator#2878) git clone https://github.com/kubeflow/spark-operator.git cd spark-operator &amp;&amp; git checkout &lt;fix-branch&gt; docker buildx build --platform linux/amd64 -t &lt;your-registry&gt;/spark-operator-controller:oom-fix --push .</p>
+<p>While investigating the Spark Operator, we identified the same pattern in several other controller-runtime operators and worked with upstream maintainers to fix them.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>The &amp; operator runs each creation command in the background to increase execution speed, and the wait command every five iterations prevents the process from overwhelming the API server.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. If pods fail to start due to an SCC validation error, grant the privileged SCC to the operator&#39;s service accounts:</p>
+<p>oc adm policy add-scc-to-user privileged -z spark-operator-controller -n spark-operator oc adm policy add-scc-to-user privileged -z spark-operator-webhook -n spark-operator Architecture mismatch (Apple Silicon) If you build the image on an M1 or M2 Mac and the target cluster utilizes an x86 architecture, the deployment returns a no image found for architecture &#34;amd64&#34; error. This configuration pattern is systemic across the controller-runtime ecosystem because ByObject defaults to caching all objects when no selector is specified. While investigating the Spark Operator, we identified the same pattern in several other controller-runtime operators and worked with upstream maintainers to fix them.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>If you&#39;ve ever worked with Kubernetes, you&#39;ve probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a qui</li>
+            <li>The math is simple: 700 ConfigMaps at 900 KB each equals approximately 630 MB of raw data. However, the informer does not store raw YAML. Instead, it deserializes each object into a typed Go struct ( corev1.ConfigMap ) w</li>
+            <li>return c.Update(ctx, cm) Proving it on a real cluster While unit tests are great, observing system behavior directly on a live cluster provides definitive validation. Here&#39;s the full walkthrough.</li>
+            <li>The test consists of two phases: first, you confirm the vulnerability with the unpatched operator, and then you confirm the fix with the patched operator. The 700 flooded ConfigMaps remain in the cluster between phases, </li>
+            <li>Step 2: Deploy the unpatched operator Deploy the stock operator image (quay.io/opendatahub/spark-operator:v2.4.0) using Kustomize manifests. This is the vulnerable version with no label filter on the ConfigMap cache.</li>
+            <li>Step 3: Record the operator&#39;s baseline memory usage Before flooding the cluster, capture the operator&#39;s normal memory usage to establish a healthy baseline.</li>
+            <li>Step 4: Create 10 test namespaces for i in $(seq 1 10); do oc create ns oom-test-$i; done Spreading ConfigMaps across multiple namespaces simulates a real multi-tenant cluster where different teams create their own resou</li>
+            <li>This loop executes the oc create ns oom-test-1 through oc create ns oom-test-10 commands.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/01/protect-your-kubernetes-operator-oomkill" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
