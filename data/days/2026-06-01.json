@@ -1,0 +1,41 @@
+[
+  {
+    "id": "4c3ce92ca85dfc3b",
+    "title": "Owning the system clock: Good enough?",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/01/owning-system-clock-good-enough",
+    "published": "2026-06-01T03:01:32+00:00",
+    "fetched_at": "2026-06-01T06:10:47.420333+00:00",
+    "summary": "Across numerous industries, accurate timing is a common requirement. Applications will read the system clock and expect this to be the actual real-world time. But how accurate is it actually necessary? And is knowing the approximate time better than not having any idea what time it is?",
+    "tags": [
+      "networking",
+      "observability"
+    ],
+    "day": "2026-06-01",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "When NTP isn't good enough, you can use precision time protocol (PTP), which can achieve accuracy to within 100 nanoseconds. This works similar to NTP, setting the client time based on the server time, but estimates the ",
+      "Next thing was adding precise process controls internally within the PTP-operator, essentially allowing it to enable or disable individual processes without reconfiguring and restarting everything. This was necessary for"
+    ],
+    "sections": {
+      "overview": "Across numerous industries, accurate timing is a common requirement. Applications will read the system clock and expect this to be the actual real-world time. But how accurate is it actually necessary?",
+      "technical_breakdown": "Looking at our PTP operator more specifically, its responsibilities are threefold: managing receiving and transmitting time, controlling the system clock, and keeping metrics and raising events based on the clocks.\n\nMost commonly, it's set through the network time protocol (NTP), using either chronyd or ntpd, which provide millisecond-level accuracy.\n\nIn keeping with the self-contained design of the PTP operator, we chose to add support for running a containerized chronyd to the PTP operator, allowing it to be configured through a ptpconfig custom resource definition (CRD).\n\nIn addition, we improved the processing of ts2phc logs, to allow us to determine when ts2phc was going to SERVO_UNLOCKED (PHC in freerun) , which was our failover criteria, or SERVO_LOCKED_STABLE (PHC locked to time source or in holdover) , which was our recovery criteria.\n\nThis used the ts2phc log processing work we did to trigger either failover or recovery, and then to enable or disable each of phc2sys and chronyd, with exactly one of them enabled at any time, based on whether GNSS (using phc2sys) or NTP (using chronyd) was the time source.",
+      "impact": "This works by a client querying the time on a remote server, and then setting the system time to match. Obviously the speed of light is finite, so by the time the packets have travelled from the server to the client, the time has changed on the server, which can lead to differences in the level of milliseconds. This works similar to NTP, setting the client time based on the server time, but estimates the packet delay end to end, and then factors that in when setting the time locally. Most clients using PTP as the source of time are connected (directly or through one or more PTP boundary clocks) to a local grandmaster that uses GNSS as the source of time.\n\nClassified impact band: high. Affected layer signal: networking.",
+      "resolution": "The solution we developed was to use GNSS as the primary source of time, but in the event that GNSS is lost and the hardware exits holdover, then failover to using a configured NTP server or pool as the time source.\n\nThis was necessary for phc2sys, which we would disable by terminating without restarting, and chronyd, which we would disable by setting it to offline, but keep running in the background to allow faster failover.\n\nIn addition, we improved the processing of ts2phc logs, to allow us to determine when ts2phc was going to SERVO_UNLOCKED (PHC in freerun) , which was our failover criteria, or SERVO_LOCKED_STABLE (PHC locked to time source or in holdover) , which was our recovery criteria.\n\nThis used the ts2phc log processing work we did to trigger either failover or recovery, and then to enable or disable each of phc2sys and chronyd, with exactly one of them enabled at any time, based on whether GNSS (using phc2sys) or NTP (using chronyd) was the time source.",
+      "lessons_learned": "And is knowing the approximate time better than not having any idea what time it is?\n\nAgain, an approximate time is often better than not having any idea what time it is.\n\nIn addition, we improved the processing of ts2phc logs, to allow us to determine when ts2phc was going to SERVO_UNLOCKED (PHC in freerun) , which was our failover criteria, or SERVO_LOCKED_STABLE (PHC locked to time source or in holdover) , which was our recovery criteria.\n\nGoing forward Now that we've integrated NTP with our PTP operator, the next step is likely working with the Open Radio Access Network (O-RAN) community to add event types for NTP.",
+      "root_cause_highlight": "",
+      "incident_timeline": "When NTP isn't good enough, you can use precision time protocol (PTP), which can achieve accuracy to within 100 nanoseconds. This works similar to NTP, setting the client time based on the server time, but estimates the \nNext thing was adding precise process controls internally within the PTP-operator, essentially allowing it to enable or disable individual processes without reconfiguring and restarting everything. This was necessary for",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Across numerous industries, accurate timing is a common requirement. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
