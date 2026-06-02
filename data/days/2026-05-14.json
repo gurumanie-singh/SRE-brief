@@ -226,10 +226,6 @@
       {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/amazon-bedrock-introduces-new-advanced-prompt-optimization-and-migration-tool/"
-      },
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/news-insights/company-news/github-availability-report-april-2026/"
       }
     ],
     "highlighted": false

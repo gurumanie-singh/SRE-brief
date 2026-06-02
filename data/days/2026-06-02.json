@@ -67,7 +67,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Over the past year, one of the major things that has happened with Paketo Buildpacks is the addition of Red Hat Universal Base Image (UBI) 9 and UBI 10 builders and the support of multiple architecture builds. Paketo Buildpacks now publishes builders based on UBI 9 and UBI 10 with multi-arch output builds.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -295,6 +300,70 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Elastic's 2026 releases included multimodal search via Elastic Inference Service, OpenTelemetry metrics at 3.75 bytes per data point, agent context memory at scale, and open source CI/CD pipeline security. It’s the catch-up your stack needs.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "91697475f362909e",
+    "title": "How LivePerson optimized Logstash and Kafka performance on GCP through benchmarking",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/liveperson-observability",
+    "published": "2026-06-02T00:00:00+00:00",
+    "fetched_at": "2026-06-02T19:49:41.690372+00:00",
+    "summary": "LivePerson reduced Logstash processing cost by over 50% by benchmarking GCP machine types and switching to AMD Milan-based instances while finding that Kafka compression codec selection independently drives meaningful throughput gains.",
+    "tags": [],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [
+      "Google Cloud"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — gcp",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "LivePerson reduced Logstash processing cost by over 50% by benchmarking GCP machine types and switching to AMD Milan-based instances while finding that Kafka compression codec selection independently drives meaningful throughput gains.",
+      "technical_breakdown": "LivePerson reduced Logstash processing cost by over 50% by benchmarking GCP machine types and switching to AMD Milan-based instances while finding that Kafka compression codec selection independently drives meaningful throughput gains.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — gcp.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "LivePerson reduced Logstash processing cost by over 50% by benchmarking GCP machine types and switching to AMD Milan-based instances while finding that Kafka compression codec selection independently drives meaningful throughput gains.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "f32272059bde59ba",
+    "title": "Protecting critical infrastructure in the AI era: It starts with data",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/critical-infrastructure-protection-ai-era",
+    "published": "2026-06-02T00:00:00+00:00",
+    "fetched_at": "2026-06-02T19:49:41.690584+00:00",
+    "summary": "Learn how AI-driven security, Zero Trust, and a unified data foundation help critical infrastructure organizations improve resilience, detect threats faster, and protect essential services.",
+    "tags": [],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Learn how AI-driven security, Zero Trust, and a unified data foundation help critical infrastructure organizations improve resilience, detect threats faster, and protect essential services.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Learn how AI-driven security, Zero Trust, and a unified data foundation help critical infrastructure organizations improve resilience, detect threats faster, and protect essential services.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Learn how AI-driven security, Zero Trust, and a unified data foundation help critical infrastructure organizations improve resilience, detect threats faster, and protect essential services.",
     "related_sources": [],
     "highlighted": false
   }
