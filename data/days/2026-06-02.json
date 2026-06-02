@@ -29,5 +29,236 @@
     "email_summary": "From the floor of HumanX, Ryan welcomes Songyee Yoon, managing partner at Principal Venture Partners (PVP), to chat about AI development outside the US, from the need to adapt models to local languages and culture to the challenges of the global supply-chain for things like semiconductors to how venture capital is looking at international AI companies.…",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "82a8243c00b44871",
+    "title": "UBI 9 and 10 builders on Paketo Buildpacks with multi-arch support",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/02/ubi-9-and-10-builders-paketo-buildpacks-multi-arch-support",
+    "published": "2026-06-02T07:01:21+00:00",
+    "fetched_at": "2026-06-02T10:51:50.226660+00:00",
+    "summary": "Over the past year, one of the major things that has happened with Paketo Buildpacks is the addition of Red Hat Universal Base Image (UBI) 9 and UBI 10 builders and the support of multiple architecture builds. Paketo Buildpacks now publishes builders based on UBI 9 and UBI 10 with multi-arch output builds. ",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "pack builder suggest The output should include the UBI builders with the others.",
+      "In our example, we will use the latest major version of Red Hat Enterprise Linux (RHEL): ubi-10-builder .",
+      "We welcome feedback This article explained where UBI 9 and UBI 10 builder and base images live and how to request arm64 or amd64 output with pack build . If the community is interested in seeing Paketo Buildpacks support"
+    ],
+    "sections": {
+      "overview": "Over the past year, one of the major things that has happened with Paketo Buildpacks is the addition of Red Hat Universal Base Image (UBI) 9 and UBI 10 builders and the support of multiple architecture builds. Paketo Buildpacks now publishes builders based on UBI 9 and UBI 10 with multi-arch output builds. First, we will discuss where the repositories and images live.",
+      "technical_breakdown": "Today, those base images cover Node.js and Java stacks.\n\nThe available builder images: \n\n paketobuildpacks/ubi-9-builder \n paketobuildpacks/ubi-9-builder-buildpackless \n UBI 10: Base images & builders UBI 10 base images follow the same layout with the source repository and the available container images listed in the releases notes .\n\nUBI 10 builders published from the repository to Dockerhub with the following available builder images: \n\n paketobuildpacks/ubi-10-builder \n paketobuildpacks/ubi-10-builder-buildpackless \n UBI 9 and 10 builders currently support Node.js builds.\n\nYou also need a sample Node.js application.\n\nIn case you do not have one, clone the Paketo samples repository as follows: \n\n git clone https://github.com/paketo-buildpacks/samples The next step is to select a builder.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "First, we will discuss where the repositories and images live.\n\nEach of the UBI builders in the following list can build images for linux/amd64 and linux/arm64 : \n\n docker.io/paketobuildpacks/ubi-9-builder \n docker.io/paketobuildpacks/ubi-10-builder \n In our example, we will use the latest major version of Red Hat Enterprise Linux (RHEL): ubi-10-builder .",
+      "root_cause_highlight": "",
+      "incident_timeline": "pack builder suggest The output should include the UBI builders with the others.\nIn our example, we will use the latest major version of Red Hat Enterprise Linux (RHEL): ubi-10-builder .\nWe welcome feedback This article explained where UBI 9 and UBI 10 builder and base images live and how to request arm64 or amd64 output with pack build . If the community is interested in seeing Paketo Buildpacks support",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Over the past year, one of the major things that has happened with Paketo Buildpacks is the addition of Red Hat Universal Base Image (UBI) 9 and UBI 10 builders and the support of multiple architecture builds. Paketo Buildpacks now publishes builders based on UBI 9 and UBI 10 with multi-arch output builds.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "5e7d3d09599a2adb",
+    "title": "Deploy Hermes Agent on OpenShift AI with vLLM model serving",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/02/deploy-hermes-agent-openshift-ai-vllm-model-serving",
+    "published": "2026-06-02T07:01:20+00:00",
+    "fetched_at": "2026-06-02T10:51:50.229124+00:00",
+    "summary": "Most AI agents forget everything between conversations. They can't learn from past interactions or remember your preferences, requiring you to explain context every single time. This makes them useful for one-off queries but impractical for ongoing work. Hermes Agent, built by Nous Research, solves this with a closed learning loop. This article demonstrates how to deploy Hermes Agent on Red Hat...",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "What you'll learn The Hermes agent creates skills from multi-step tasks, persists user context across sessions, and searches its full conversation history to provide continuity. Unlike frameworks that treat agents as sta",
+      "FROM registry.access.redhat.com/ubi9/ubi:latest",
+      "podman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 .",
+      "podman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving. We will use the vLLM runtime template (provided by OpenShift AI) for GPU",
+      "oc apply -f manifests/03-vllm-servingruntime.yaml",
+      "oc apply -f manifests/04-vllm-inferenceservice.yaml Verify:",
+      "GATEWAY_PORT: \"8080\" Deploy the Hermes Agent (refer to the full manifest on GitHub ).",
+      "image: quay.io/aicatalyst/hermes-agent:latest"
+    ],
+    "sections": {
+      "overview": "Most AI agents forget everything between conversations. They can't learn from past interactions or remember your preferences, requiring you to explain context every single time. This makes them useful for one-off queries but impractical for ongoing work.",
+      "technical_breakdown": "Create ServingRuntime and InferenceService : \n\n apiVersion: serving.kserve.io/v1alpha1\nkind: ServingRuntime\nmetadata:\n name: vllm-cuda-runtime\nspec:\n containers:\n - name: kserve-container\n image: quay.io/modh/vllm@sha256:3ea9df1a9c8e...\n args:\n - --port=8080\n - --model=/mnt/models\n - --served-model-name={{.Name}}\n - --tensor-parallel-size=1\n resources:\n requests:\n nvidia.com/gpu: \"1\"\n limits:\n nvidia.com/gpu: \"1\"\n supportedModelFormats:\n - name: vLLM\n autoSelect: true Deploy InferenceService : \n\n apiVersion: serving.kserve.io/v1beta1\nkind: InferenceService\nmetadata:\n name: hermes-llm\nspec:\n predictor:\n model:\n modelFormat:\n name: vLLM\n runtime: vllm-cuda-runtime\n storageUri: \"hf://Qwen/Qwen2.5-7B-Instruct\"\n resources:\n requests:\n nvidia.com/gpu: \"1\" Deploy: \n\n oc apply -f manifests/03-vllm-servingruntime.yaml\noc apply -f manifests/04-vllm-inferenceservice.yaml Verify: \n\n $ oc get inferenceservice\nNAME URL READY\nhermes-llm http://hermes-llm-predictor.hermes.svc:8080 True\n\n$ curl -X POST http://hermes-llm-predictor.hermes.svc:8080/v1/chat/completions \\\n -H \"Content-Type: application/json\" \\\n -d '{\"model\":\"hermes-llm\",\"messages\":[{\"role\":\"user\",\"content\":\"Hello\"}]}' Deploy Hermes Agent Create the ConfigMap with vLLM endpoint: \n\n apiVersion: v1\nkind: ConfigMap\nmetadata:\n name: hermes-config\ndata:\n OPENAI_BASE_URL: \"http://hermes-llm-predictor.hermes.svc.cluster.local:8080/v1\"\n LLM_MODEL: \"hermes-llm\"\n HERMES_HOME: \"/opt/data\"\n GATEWAY_ALLOW_ALL_USERS: \"true\"\n GATEWAY_PORT: \"8080\" Deploy the Hermes Agent (refer to the full manifest on GitHub ). \n\n apiVersion: apps/v1\nkind: Deployment\nmetadata:\n name: hermes-agent\nspec:\n replicas: 1\n template:\n spec:\n securityContext:\n runAsNonRoot: true\n seccompProfile:\n type: RuntimeDefault\n containers:\n - name: hermes\n image: quay.io/aicatalyst/hermes-agent:latest\n command: [\"/opt/hermes/venv/bin/python\", \"-m\", \"hermes_cli.main\"]\n args: [\"gateway\"]\n envFrom:\n - configMapRef:\n name: hermes-config\n ports:\n - containerPort: 8080\n volumeMounts:\n - name: data\n mountPath: /opt/data\n resources:\n requests:\n memory: \"2Gi\"\n cpu: \"500m\"\n limits:\n memory: \"4Gi\"\n cpu: \"2000m\"\n livenessProbe:\n httpGet:\n path: /health\n port: 8080\n readinessProbe:\n httpGet:\n path: /health\n port: 8080\n volumes:\n - name: data\n persistentVolumeClaim:\n claimName: hermes-data Deploy: \n\n oc apply -k manifests/ Verify: \n\n $ oc get pods -n hermes\nNAME READY STATUS RESTARTS AGE\nhermes-agent-7d9f8b5c6d-xk2p9 1/1 Running 0 2m\n\n$ oc run test --rm -i --image=curlimages/curl -- \\\n curl -s http://hermes-agent.hermes.svc.cluster.local:8080/health\n{\"status\":\"healthy\",\"gateway\":\"running\"} Why this architecture matters for OpenShift AI teams Deploying Hermes Agent on OpenShift AI with vLLM isn't just about running an agent in Kubernetes.\n\nThe deployment consists of two main components: \n\n vLLM InferenceService : KServe-managed model serving with GPU acceleration Runs Qwen/Qwen2.5-7B-Instruct (or any vLLM-compatible model) \n Exposes OpenAI-compatible API at /v1/chat/completions \n Autoscales based on load (min 1, max N replicas) \n GPU scheduling handled by OpenShift AI \n \n Hermes Agent deployment : UBI 9-based container with full agent stack Gateway HTTP server for messaging platforms and API \n Agent core with skills, memory, tools, and cron \n Persistent storage for all agent state \n Health probes for Kubernetes lifecycle management \n \n The agent connects to vLLM via OPENAI_BASE_URL , making it provider-agnostic.\n\nDockerfile.ubi:\n\n FROM registry.access.redhat.com/ubi9/ubi:latest\n\nENV PYTHONUNBUFFERED=1\nENV PLAYWRIGHT_BROWSERS_PATH=/opt/hermes/.playwright\n\n# Install system dependencies\nRUN dnf install -y \\\n python3.11 python3.11-devel python3.11-pip \\\n gcc gcc-c++ make git grep procps-ng openssh-clients \\\n libffi-devel ca-certificates && \\\n dnf clean all\n\n# Install Node.js 20.x from NodeSource\nRUN curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - && \\\n dnf install -y nodejs && \\\n dnf clean all\n\n# Create non-root user (OpenShift overrides UID at runtime)\nRUN useradd -u 1001 -m -d /opt/data hermes\n\nWORKDIR /opt/hermes\n\n# Layer-cached dependency install\nCOPY package.json package-lock.json ./\nCOPY web/package.json web/package-lock.json web/\nCOPY ui-tui/package.json ui-tui/package-lock.json ui-tui/\n\nRUN npm install --prefer-offline --no-audit && \\\n npx playwright install chromium && \\\n (cd web && npm install) && \\\n (cd ui-tui && npm install)\n\n# Source code\nCOPY . .\n\n# Build web UI and TUI assets\nRUN cd web && npm run build && \\\n cd ../ui-tui && npm run build\n\n# OpenShift permissions (arbitrary UID, always GID 0)\nRUN chown -R 1001:0 /opt/hermes && \\\n chmod -R a+rX /opt/hermes && \\\n chmod -R g=u /opt/hermes\n\n# Python virtualenv with all dependencies\nRUN python3.11 -m venv /opt/hermes/venv && \\\n . /opt/hermes/venv/bin/activate && \\\n pip install --upgrade pip && \\\n pip install -e \".[all,messaging]\"\n\nENV HERMES_HOME=/opt/data\nENV PATH=\"/opt/hermes/venv/bin:${PATH}\"\n\n# Ensure data volume writable by group 0\nRUN mkdir -p /opt/data && \\\n chgrp -R 0 /opt/data && \\\n chmod -R g=u /opt/data\n\nVOLUME [\"/opt/data\"]\n\nENTRYPOINT [\"/opt/hermes/venv/bin/python\", \"-m\", \"hermes_cli.main\"]\nCMD [\"--help\"]\n Build and push the following: \n\n cd /path/to/hermes-agent\npodman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 .\npodman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving.\n\nHTTP API (programmatic access):\n\nimport requests\n\nurl = \"http://hermes-agent.hermes.svc.cluster.local:8080/api\"\nresponse = requests.post(url, json={\n \"message\": \"What Kubernetes resources are available in this cluster?\",\n \"user_id\": \"test-user\",\n \"platform\": \"api\"\n})\n\nprint(response.json()[\"response\"])\n\nTelegram integration:\n\n# Create secret with bot token\noc create secret generic telegram-token \\\n --from-literal=TELEGRAM_BOT_TOKEN=your-bot-token \\\n -n hermes\n\n# Update deployment\noc set env deployment/hermes-agent \\\n --from=secret/telegram-token \\\n -n hermes\n\n# Set webhook (if Route is deployed)\nWEBHOOK_URL=$(oc get route hermes-agent -n hermes -o jsonpath='{.spec.host}')\ncurl -X POST \"https://api.telegram.org/bot${BOT_TOKEN}/setWebhook\" \\\n -d \"url=https://${WEBHOOK_URL}/telegram\" Now send a message to your Telegram bot.\n\nThe integration of vLLM and OpenShift AI brings enterprise deployment patterns to open source agents: GPU multi-tenancy, autoscaling, audit logs, RBAC, and lifecycle management.",
+      "impact": "Dockerfile.ubi:\n\n FROM registry.access.redhat.com/ubi9/ubi:latest\n\nENV PYTHONUNBUFFERED=1\nENV PLAYWRIGHT_BROWSERS_PATH=/opt/hermes/.playwright\n\n# Install system dependencies\nRUN dnf install -y \\\n python3.11 python3.11-devel python3.11-pip \\\n gcc gcc-c++ make git grep procps-ng openssh-clients \\\n libffi-devel ca-certificates && \\\n dnf clean all\n\n# Install Node.js 20.x from NodeSource\nRUN curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - && \\\n dnf install -y nodejs && \\\n dnf clean all\n\n# Create non-root user (OpenShift overrides UID at runtime)\nRUN useradd -u 1001 -m -d /opt/data hermes\n\nWORKDIR /opt/hermes\n\n# Layer-cached dependency install\nCOPY package.json package-lock.json ./\nCOPY web/package.json web/package-lock.json web/\nCOPY ui-tui/package.json ui-tui/package-lock.json ui-tui/\n\nRUN npm install --prefer-offline --no-audit && \\\n npx playwright install chromium && \\\n (cd web && npm install) && \\\n (cd ui-tui && npm install)\n\n# Source code\nCOPY . .\n\n# Build web UI and TUI assets\nRUN cd web && npm run build && \\\n cd ../ui-tui && npm run build\n\n# OpenShift permissions (arbitrary UID, always GID 0)\nRUN chown -R 1001:0 /opt/hermes && \\\n chmod -R a+rX /opt/hermes && \\\n chmod -R g=u /opt/hermes\n\n# Python virtualenv with all dependencies\nRUN python3.11 -m venv /opt/hermes/venv && \\\n . /opt/hermes/venv/bin/activate && \\\n pip install --upgrade pip && \\\n pip install -e \".[all,messaging]\"\n\nENV HERMES_HOME=/opt/data\nENV PATH=\"/opt/hermes/venv/bin:${PATH}\"\n\n# Ensure data volume writable by group 0\nRUN mkdir -p /opt/data && \\\n chgrp -R 0 /opt/data && \\\n chmod -R g=u /opt/data\n\nVOLUME [\"/opt/data\"]\n\nENTRYPOINT [\"/opt/hermes/venv/bin/python\", \"-m\", \"hermes_cli.main\"]\nCMD [\"--help\"]\n Build and push the following: \n\n cd /path/to/hermes-agent\npodman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 .\npodman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving. POST /api\n{\n \"message\": \"...\",\n \"user_id\": \"...\",\n \"platform\": \"api\"\n} Messaging platforms such as Telegram, Discord, Slack, WhatsApp, and Signal accessed via webhook endpoints: \n\n POST /telegram # Telegram webhooks\nPOST /discord # Discord webhooks\nPOST /slack # Slack events API Health endpoint: Kubernetes probes: \n\n GET /health\n{\"status\":\"healthy\",\"gateway\":\"running\"} This allows your OpenShift cluster to act as a multi-tenant AI agent backend for your team's workflows across all platforms. This is for platform engineers, OpenShift AI users, and SREs looking to deploy stateful AI agents with GPU acceleration and enterprise-grade persistence. What you'll learn The Hermes agent creates skills from multi-step tasks, persists user context across sessions, and searches its full conversation history to provide continuity.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "It's the only open source agent with a built-in learning loop that makes it continuously improve rather than just execute tasks.\n\nThe next time you ask for something similar, it invokes the skill instead of reasoning from scratch.\n\nSkills self-improve during use based on failures and feedback.\n\nOver time, it gets better at what you ask it to do.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The deployment uses replicas: 1 because Hermes Agent state is local to the pod. If you're evaluating AI agent frameworks for production use on OpenShift, this deployment pattern demonstrates how to move beyond stateless chatbots to agents that actually learn. You'll see the complete deployment pattern: UBI 9 container images, KServe InferenceService configuration, and persistent storage for skills and session data.",
+      "incident_timeline": "What you'll learn The Hermes agent creates skills from multi-step tasks, persists user context across sessions, and searches its full conversation history to provide continuity. Unlike frameworks that treat agents as sta\nFROM registry.access.redhat.com/ubi9/ubi:latest\npodman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 .\npodman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving. We will use the vLLM runtime template (provided by OpenShift AI) for GPU\noc apply -f manifests/03-vllm-servingruntime.yaml\noc apply -f manifests/04-vllm-inferenceservice.yaml Verify:\nGATEWAY_PORT: \"8080\" Deploy the Hermes Agent (refer to the full manifest on GitHub ).\nimage: quay.io/aicatalyst/hermes-agent:latest",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Most AI agents forget everything between conversations. They can't learn from past interactions or remember your preferences, requiring you to explain context every single time.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "972d34ea15e843c7",
+    "title": "Evaluation-driven development with EvalHub",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/02/evaluation-driven-development-evalhub",
+    "published": "2026-06-02T07:01:17+00:00",
+    "fetched_at": "2026-06-02T10:51:50.231012+00:00",
+    "summary": "If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass. Refactor. Ship with confidence. The red-green-refactor cycle is elegant because it is prominently deterministic in nature: the test either passes or it doesn't. Every state is unambiguous.",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-02",
+    "impact": "high",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass. Refactor. Ship with confidence. The red-green-refactor cycle is elegant because it is p",
+      "A language model answering a customer support question might give ten different responses to the same query across ten runs—all of them arguably correct, none of them identical. \"Does it work?\" is the wrong question. The",
+      "Step 1: Define evaluation criteria: Before you write a prompt In TDD, you write tests before you write code. In EDD, you define evaluation criteria before you write prompts, choose a model, or design a pipeline.",
+      "EDD forces the question upfront: what does good look like? Not in the abstract, but specifically and measurably. For a customer support agent, that might mean:",
+      "Step 3: Iterate on prompts and configurations based on data With scores in hand, you run experiments. You A/B test prompt variations. You swap retrieval strategies. You try different models. You compare results not again",
+      "Each iteration either closes the gap, moves you progressively toward your final objective, or it doesn't. The evaluation tells you which. This transforms prompt engineering from an art into a systematic discipline: contr",
+      "Measuring at scale with automatic experiment tracking In Step 2, measuring quality scores is where EDD's operational overhead typically kills the practice. Running five frameworks against three model variants, capturing ",
+      "The MLflow integration means every evaluation run is automatically tracked with the configuration that produced it: model version, collection version, hardware tags, and environment. Reproducing a result from three month"
+    ],
+    "sections": {
+      "overview": "If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass.",
+      "technical_breakdown": "Every provider in EvalHub's default set covers a different evaluation dimension:\n\n The lm-evaluation-harness (150+ benchmarks): Reasoning, knowledge, coding, commonsense\n Ragas: Retrieval quality, answer relevance, and faithfulness for RAG pipelines\n Garak: Red-teaming, toxicity, bias, safety adversarial probes\n GuideLLM: Latency, throughput, memory usage, hardware efficiency\n LightEval: Fast capability checks\n MTEB: Text embedding quality across retrieval tasks\n The sliced evaluation that EDD requires (per-category, per-language, per-specialty, and so on) is achieved by running collections against different filtered dataset subsets and tagging the results accordingly in MLflow.\n\nThe exact same call, pointed at a production EvalHub deployment on OpenShift, runs as a Kubernetes-native job with Kueue-managed scheduling, resource quotas, structured logging, and Prometheus metrics.\n\nPer-specialty slicing tracks cardiology, dermatology, and neurology separately.\n\nThe EDD cycle EDD has three steps, each with an analog in traditional software engineering, and each qualitatively different for AI.\n\nResponse latency: Under 2 seconds at the 95th percentile.",
+      "impact": "A language model answering a customer support question might give ten different responses to the same query across ten runs—all of them arguably correct, none of them identical. \"Does it work?\" is the wrong question. For a customer support agent, that might mean:\n\n Factual accuracy: 90% of claims match source documentation. Sliced evaluation breaks aggregate scores into the constituent dimensions that actually matter for the specific use case: by product category, by query language, by user segment, by medical specialty, by regulatory domain, and so on. A developer running a quick prompt-variation test uses evalhub.client (the SDK's typed Python REST client) to submit an evaluation request against an EvalHub instance.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Instead of a black box that you poke until it seems better, you now have an optimization problem with a measurable current state and a defined target state.\n\nFor example, consider an e-commerce recommendation system with an aggregate accuracy of 79%.\n\nYou are closing the specific gap in Home Goods recommendations, which might mean a different retrieval strategy for product catalog data, additional fine-tuning on product descriptions, or a different prompt template for that category.\n\nThe pull request review will then includeboth the code review and an evaluation report showing the baseline score, the updated score, and a breakdown of which slices improved or regressed.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The red-green-refactor cycle is elegant because it is prominently deterministic in nature: the test either passes or it doesn't. For a healthcare LLM deployment, the collection might look like:\n\n {\n \"id\": \"healthcare_safety_v1\",\n \"benchmarks\": [\n { \"id\": \"medqa\", \"provider_id\": \"lm_evaluation_harness\", \"weight\": 2.0, \"pass_criteria\":{\"threshold\": 80.0} },\n { \"id\": \"pubmedqa\", \"provider_id\": \"lm_evaluation_harness\", \"weight\": 1.5, \"pass_criteria\":{\"threshold\": 75.0} },\n { \"id\": \"toxicity\", \"provider_id\": \"garak\", \"weight\": 2.5, \"pass_criteria\":{\"threshold\": 70.0} },\n { \"id\": \"faithfulness\", \"provider_id\": \"ragas\", \"weight\": 1.5, \"pass_criteria\":{\"threshold\": 80.0} }\n ]\n} The collection is defined before a single evaluation is run. When the criteria change (because the use case evolves or a new regulatory requirement emerges), the collection can be updated and versioned, not rewritten in someone's script.",
+      "incident_timeline": "If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass. Refactor. Ship with confidence. The red-green-refactor cycle is elegant because it is p\nA language model answering a customer support question might give ten different responses to the same query across ten runs—all of them arguably correct, none of them identical. \"Does it work?\" is the wrong question. The\nStep 1: Define evaluation criteria: Before you write a prompt In TDD, you write tests before you write code. In EDD, you define evaluation criteria before you write prompts, choose a model, or design a pipeline.\nEDD forces the question upfront: what does good look like? Not in the abstract, but specifically and measurably. For a customer support agent, that might mean:\nStep 3: Iterate on prompts and configurations based on data With scores in hand, you run experiments. You A/B test prompt variations. You swap retrieval strategies. You try different models. You compare results not again\nEach iteration either closes the gap, moves you progressively toward your final objective, or it doesn't. The evaluation tells you which. This transforms prompt engineering from an art into a systematic discipline: contr\nMeasuring at scale with automatic experiment tracking In Step 2, measuring quality scores is where EDD's operational overhead typically kills the practice. Running five frameworks against three model variants, capturing \nThe MLflow integration means every evaluation run is automatically tracked with the configuration that produced it: model version, collection version, hardware tags, and environment. Reproducing a result from three month",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "If you have shipped software, you probably know test-driven development (TDD). Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "12d7896b178a5434",
+    "title": "Improve vLLM Semantic Router accuracy with fine-tuning",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/02/improve-vllm-semantic-router-accuracy-fine-tuning",
+    "published": "2026-06-02T07:01:16+00:00",
+    "fetched_at": "2026-06-02T10:51:50.232646+00:00",
+    "summary": "The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic. Others require multi-step reasoning, tool use, or long context windows. If everything is sent to your largest model, you burn compute, increase latency, and lose efficiency across the entire system.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-02",
+    "impact": "critical",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic. Others require multi-step reasoning, tool use, or long context windows. If everything is sent to ",
+      "So we introduce a routing layer. As detailed in our guide on getting started with the vLLM Semantic Router Athena release , the router classifies incoming requests and sends them to the appropriate model. Simple queries ",
+      "In enterprise deployments, however, a performance gap emerges. The router is typically built on a pretrained embedding model, something like all-MiniLM-L6-v2. It compares incoming prompts to anchor examples and selects t",
+      "In our testing, the pretrained model achieved 80% accuracy on a four-tier classification task. That translates to a 20% misrouting rate. One in five requests is sent to the wrong model. That is not a tuning issue. That i",
+      "As a result, the router frequently misclassifies MEDIUM queries into the COMPLEX tier because they contain more detail or context, not because they require advanced reasoning. This misrouting increases operation costs by",
+      "Setting up the fine-tuning pipeline on OpenShift AI To run this experiment, we built a simple but repeatable pipeline on Red Hat OpenShift AI that combined synthetic data generation, model training, and evaluation into a",
+      "The resulting dataset was fed into a sentence-transformers training job using contrastive learning, running entirely on a CPU to keep it lightweight and accessible. From there, we evaluated the fine-tuned model against a",
+      "What was tested This experiment evaluates whether an embedding model can learn specific routing decisions instead of general semantic similarity. We did not change the router. We did not introduce a new architecture or a"
+    ],
+    "sections": {
+      "overview": "The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic.",
+      "technical_breakdown": "Additional material You can access the complete SDG pipeline, training code, evaluation framework, and experiment data through these repositories:\n\n Fine-tuning pipeline and experiment details \n vLLM Semantic Router \n This experiment relies on the open source projects listed in the following table:\n\n Project Version Role sentence-transformers 5.4.1 Embedding model training and inference PyTorch 2.11.0 Deep learning framework (CPU build) transformers 5.6.2 Model architecture and tokenizers datasets 4.8.4 Dataset loading and processing scikit-learn 1.8.0 Evaluation metrics vLLM LLM serving (KServe backend) all-MiniLM-L6-v2 Base embedding model (23M params) \nThe post Improve vLLM Semantic Router accuracy with fine-tuning appeared first on Red Hat Developer .\n\nIf everything is sent to your largest model, you burn compute, increase latency, and lose efficiency across the entire system.\n\nIn small deployments or within your own home environment, it often will be a clear win.\n\nIn enterprise deployments, however, a performance gap emerges.\n\nIt can be deployed as a stateless service, replicated, and scaled like any other control plane component.",
+      "impact": "Why high availability does not guarantee routing correctness We spend a lot of time talking about reliability in distributed systems. We design for high availability. With 805 training examples and under two hours of compute time, the pipeline lowers the barrier significantly.\n\nClassified impact band: critical. Affected layer signal: general production.",
+      "resolution": "It can be deployed as a stateless service, replicated, and scaled like any other control plane component.\n\nThis experiment shows that the accuracy ceiling is not fixed.",
+      "lessons_learned": "The change was in how the model learned.\n\nThis change significantly improved the routing layer's accuracy, as shown in the following table.\n\nAs routing improves, that dynamic changes.\n\nWhat this tells us The key takeaway is not just that fine-tuning improves accuracy.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. It can be deployed as a stateless service, replicated, and scaled like any other control plane component. As a result, the router frequently misclassifies MEDIUM queries into the COMPLEX tier because they contain more detail or context, not because they require advanced reasoning. However, controlling costs is only one aspect of routing.",
+      "incident_timeline": "The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic. Others require multi-step reasoning, tool use, or long context windows. If everything is sent to \nSo we introduce a routing layer. As detailed in our guide on getting started with the vLLM Semantic Router Athena release , the router classifies incoming requests and sends them to the appropriate model. Simple queries \nIn enterprise deployments, however, a performance gap emerges. The router is typically built on a pretrained embedding model, something like all-MiniLM-L6-v2. It compares incoming prompts to anchor examples and selects t\nIn our testing, the pretrained model achieved 80% accuracy on a four-tier classification task. That translates to a 20% misrouting rate. One in five requests is sent to the wrong model. That is not a tuning issue. That i\nAs a result, the router frequently misclassifies MEDIUM queries into the COMPLEX tier because they contain more detail or context, not because they require advanced reasoning. This misrouting increases operation costs by\nSetting up the fine-tuning pipeline on OpenShift AI To run this experiment, we built a simple but repeatable pipeline on Red Hat OpenShift AI that combined synthetic data generation, model training, and evaluation into a\nThe resulting dataset was fed into a sentence-transformers training job using contrastive learning, running entirely on a CPU to keep it lightweight and accessible. From there, we evaluated the fine-tuned model against a\nWhat was tested This experiment evaluates whether an embedding model can learn specific routing decisions instead of general semantic similarity. We did not change the router. We did not introduce a new architecture or a",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "The vLLM Semantic Router solves a real problem. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "bc0cebc93148ea22",
+    "title": "Red Hat build of Cryostat 4.2: Enhanced Java monitoring for OpenShift",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/02/red-hat-build-cryostat-42-enhanced-java-monitoring-openshift",
+    "published": "2026-06-02T07:01:13+00:00",
+    "fetched_at": "2026-06-02T10:51:50.233459+00:00",
+    "summary": "Red Hat build of Cryostat 4.2 is now generally available (GA) and brings new tools to the Java monitoring ecosystem. This update focuses on data insights, profiling, and more granular automation for JDK Flight Recorder (JFR).",
+    "tags": [
+      "deployment",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "If you are troubleshooting a memory leak in a production pod or automating performance regression tests, Red Hat build of Cryostat 4.2 provides the specialized tooling needed to manage Java Virtual Machine (JVM) performa",
+      "Remote management for smart triggers Smart triggers allow Red Hat build of Cryostat to start recordings dynamically based on MBean conditions (for example, \"Start recording if CPU usage > 80%\"). In version 4.2, these are"
+    ],
+    "sections": {
+      "overview": "Red Hat build of Cryostat 4.2 is now generally available (GA) and brings new tools to the Java monitoring ecosystem. This update focuses on data insights, profiling, and more granular automation for JDK Flight Recorder (JFR). If you are troubleshooting a memory leak in a production pod or automating performance regression tests, Red Hat build of Cryostat 4.2 provides the specialized tooling needed to manage Java Virtual Machine (JVM) performance.",
+      "technical_breakdown": "If you are troubleshooting a memory leak in a production pod or automating performance regression tests, Red Hat build of Cryostat 4.2 provides the specialized tooling needed to manage Java Virtual Machine (JVM) performance.\n\nExport results in JSON format to integrate with external alerting or dashboarding systems.\n\nAll Archives view Now supports filtering by time range and lineage labels ( Namespace , Deployment ), making it easier to find data from a specific pod.\n\nBy integrating async-profiler, developers can capture stack traces without hitting JVM safepoints, avoiding the safepoint bias that can skew performance data.\n\nCreate profiling sessions, download JFR-formatted profiles, and identify CPU bottlenecks or lock contentions remotely.",
+      "impact": "This feature tracks interactions, whether from a human user or a programmatic API client. Improved developer experience on OpenShift Red Hat build of Cryostat 4.2 is now built using PatternFly 6 , ensuring a modern, accessible, and consistent user interface (UI). For a full list of bug fixes, including resolved race conditions and increased JVM hash ID uniqueness, check out the official Red Hat Customer Portal .\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "For a full list of bug fixes, including resolved race conditions and increased JVM hash ID uniqueness, check out the official Red Hat Customer Portal .",
+      "lessons_learned": "Improved developer experience on OpenShift Red Hat build of Cryostat 4.2 is now built using PatternFly 6 , ensuring a modern, accessible, and consistent user interface (UI).",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Because it deploys on OpenShift, it can scale to Java projects running in OpenShift environments. Declarative configuration: Using the Cryostat operator, you can now use the cryostat.io/smart-triggers label in your application deployment to point to a ConfigMap containing trigger definitions. All Archives view Now supports filtering by time range and lineage labels ( Namespace , Deployment ), making it easier to find data from a specific pod.",
+      "incident_timeline": "If you are troubleshooting a memory leak in a production pod or automating performance regression tests, Red Hat build of Cryostat 4.2 provides the specialized tooling needed to manage Java Virtual Machine (JVM) performa\nRemote management for smart triggers Smart triggers allow Red Hat build of Cryostat to start recordings dynamically based on MBean conditions (for example, \"Start recording if CPU usage > 80%\"). In version 4.2, these are",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Red Hat build of Cryostat 4.2 is now generally available (GA) and brings new tools to the Java monitoring ecosystem. This update focuses on data insights, profiling, and more granular automation for JDK Flight Recorder (JFR).",
+    "related_sources": [],
+    "highlighted": false
   }
 ]

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deploy Hermes Agent on OpenShift AI with vLLM model serving — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-02.html" class="back-link">← 2 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">2 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Deploy Hermes Agent on OpenShift AI with vLLM model serving</h1>
+
+      <p class="subtitle">Most AI agents forget everything between conversations. They can&#39;t learn from past interactions or remember your preferences, requiring you to explain context every single time.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="vendor-tag">Slack</span>
+        <span class="tag">capacity</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Most AI agents forget everything between conversations. They can&#39;t learn from past interactions or remember your preferences, requiring you to explain context every single time.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Most AI agents forget everything between conversations. They can&#39;t learn from past interactions or remember your preferences, requiring you to explain context every single time. This makes them useful for one-off queries but impractical for ongoing work.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Create ServingRuntime and InferenceService :</p>
+<p>apiVersion: serving.kserve.io/v1alpha1 kind: ServingRuntime metadata:  name: vllm-cuda-runtime spec:  containers:  - name: kserve-container  image: quay.io/modh/vllm@sha256:3ea9df1a9c8e...  args:  - --port=8080  - --model=/mnt/models  - --served-model-name={{.Name}}  - --tensor-parallel-size=1  resources:  requests:  nvidia.com/gpu: &#34;1&#34;  limits:  nvidia.com/gpu: &#34;1&#34;  supportedModelFormats:  - name: vLLM  autoSelect: true Deploy InferenceService :</p>
+<p>apiVersion: serving.kserve.io/v1beta1 kind: InferenceService metadata:  name: hermes-llm spec:  predictor:  model:  modelFormat:  name: vLLM  runtime: vllm-cuda-runtime  storageUri: &#34;hf://Qwen/Qwen2.5-7B-Instruct&#34;  resources:  requests:  nvidia.com/gpu: &#34;1&#34; Deploy:</p>
+<p>oc apply -f manifests/03-vllm-servingruntime.yaml oc apply -f manifests/04-vllm-inferenceservice.yaml Verify:</p>
+<p>$ oc get inferenceservice NAME URL READY hermes-llm http://hermes-llm-predictor.hermes.svc:8080 True</p>
+<p>$ curl -X POST http://hermes-llm-predictor.hermes.svc:8080/v1/chat/completions \  -H &#34;Content-Type: application/json&#34; \  -d &#39;{&#34;model&#34;:&#34;hermes-llm&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;Hello&#34;}]}&#39; Deploy Hermes Agent Create the ConfigMap with vLLM endpoint:</p>
+<p>apiVersion: v1 kind: ConfigMap metadata:  name: hermes-config data:  OPENAI_BASE_URL: &#34;http://hermes-llm-predictor.hermes.svc.cluster.local:8080/v1&#34;  LLM_MODEL: &#34;hermes-llm&#34;  HERMES_HOME: &#34;/opt/data&#34;  GATEWAY_ALLOW_ALL_USERS: &#34;true&#34;  GATEWAY_PORT: &#34;8080&#34; Deploy the Hermes Agent (refer to the full manifest on GitHub ).</p>
+<p>apiVersion: apps/v1 kind: Deployment metadata:  name: hermes-agent spec:  replicas: 1  template:  spec:  securityContext:  runAsNonRoot: true  seccompProfile:  type: RuntimeDefault  containers:  - name: hermes  image: quay.io/aicatalyst/hermes-agent:latest  command: [&#34;/opt/hermes/venv/bin/python&#34;, &#34;-m&#34;, &#34;hermes_cli.main&#34;]  args: [&#34;gateway&#34;]  envFrom:  - configMapRef:  name: hermes-config  ports:  - containerPort: 8080  volumeMounts:  - name: data  mountPath: /opt/data  resources:  requests:  memory: &#34;2Gi&#34;  cpu: &#34;500m&#34;  limits:  memory: &#34;4Gi&#34;  cpu: &#34;2000m&#34;  livenessProbe:  httpGet:  path: /health  port: 8080  readinessProbe:  httpGet:  path: /health  port: 8080  volumes:  - name: data  persistentVolumeClaim:  claimName: hermes-data Deploy:</p>
+<p>oc apply -k manifests/ Verify:</p>
+<p>$ oc get pods -n hermes NAME READY STATUS RESTARTS AGE hermes-agent-7d9f8b5c6d-xk2p9 1/1 Running 0 2m</p>
+<p>$ oc run test --rm -i --image=curlimages/curl -- \  curl -s http://hermes-agent.hermes.svc.cluster.local:8080/health {&#34;status&#34;:&#34;healthy&#34;,&#34;gateway&#34;:&#34;running&#34;} Why this architecture matters for OpenShift AI teams Deploying Hermes Agent on OpenShift AI with vLLM isn&#39;t just about running an agent in Kubernetes.</p>
+<p>The deployment consists of two main components:</p>
+<p>vLLM InferenceService : KServe-managed model serving with GPU acceleration Runs Qwen/Qwen2.5-7B-Instruct (or any vLLM-compatible model)   Exposes OpenAI-compatible API at /v1/chat/completions   Autoscales based on load (min 1, max N replicas)   GPU scheduling handled by OpenShift AI     Hermes Agent deployment : UBI 9-based container with full agent stack Gateway HTTP server for messaging platforms and API   Agent core with skills, memory, tools, and cron   Persistent storage for all agent state   Health probes for Kubernetes lifecycle management     The agent connects to vLLM via OPENAI_BASE_URL , making it provider-agnostic.</p>
+<p>Dockerfile.ubi:</p>
+<p>FROM registry.access.redhat.com/ubi9/ubi:latest</p>
+<p>ENV PYTHONUNBUFFERED=1 ENV PLAYWRIGHT_BROWSERS_PATH=/opt/hermes/.playwright</p>
+<p># Install system dependencies RUN dnf install -y \  python3.11 python3.11-devel python3.11-pip \  gcc gcc-c++ make git grep procps-ng openssh-clients \  libffi-devel ca-certificates &amp;&amp; \  dnf clean all</p>
+<p># Install Node.js 20.x from NodeSource RUN curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - &amp;&amp; \  dnf install -y nodejs &amp;&amp; \  dnf clean all</p>
+<p># Create non-root user (OpenShift overrides UID at runtime) RUN useradd -u 1001 -m -d /opt/data hermes</p>
+<p>WORKDIR /opt/hermes</p>
+<p># Layer-cached dependency install COPY package.json package-lock.json ./ COPY web/package.json web/package-lock.json web/ COPY ui-tui/package.json ui-tui/package-lock.json ui-tui/</p>
+<p>RUN npm install --prefer-offline --no-audit &amp;&amp; \  npx playwright install chromium &amp;&amp; \  (cd web &amp;&amp; npm install) &amp;&amp; \  (cd ui-tui &amp;&amp; npm install)</p>
+<p># Source code COPY . .</p>
+<p># Build web UI and TUI assets RUN cd web &amp;&amp; npm run build &amp;&amp; \  cd ../ui-tui &amp;&amp; npm run build</p>
+<p># OpenShift permissions (arbitrary UID, always GID 0) RUN chown -R 1001:0 /opt/hermes &amp;&amp; \  chmod -R a+rX /opt/hermes &amp;&amp; \  chmod -R g=u /opt/hermes</p>
+<p># Python virtualenv with all dependencies RUN python3.11 -m venv /opt/hermes/venv &amp;&amp; \  . /opt/hermes/venv/bin/activate &amp;&amp; \  pip install --upgrade pip &amp;&amp; \  pip install -e &#34;.[all,messaging]&#34;</p>
+<p>ENV HERMES_HOME=/opt/data ENV PATH=&#34;/opt/hermes/venv/bin:${PATH}&#34;</p>
+<p># Ensure data volume writable by group 0 RUN mkdir -p /opt/data &amp;&amp; \  chgrp -R 0 /opt/data &amp;&amp; \  chmod -R g=u /opt/data</p>
+<p>VOLUME [&#34;/opt/data&#34;]</p>
+<p>ENTRYPOINT [&#34;/opt/hermes/venv/bin/python&#34;, &#34;-m&#34;, &#34;hermes_cli.main&#34;] CMD [&#34;--help&#34;]  Build and push the following:</p>
+<p>cd /path/to/hermes-agent podman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 . podman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving.</p>
+<p>HTTP API (programmatic access):</p>
+<p>import requests</p>
+<p>url = &#34;http://hermes-agent.hermes.svc.cluster.local:8080/api&#34; response = requests.post(url, json={  &#34;message&#34;: &#34;What Kubernetes resources are available in this cluster?&#34;,  &#34;user_id&#34;: &#34;test-user&#34;,  &#34;platform&#34;: &#34;api&#34; })</p>
+<p>print(response.json()[&#34;response&#34;])</p>
+<p>Telegram integration:</p>
+<p># Create secret with bot token oc create secret generic telegram-token \  --from-literal=TELEGRAM_BOT_TOKEN=your-bot-token \  -n hermes</p>
+<p># Update deployment oc set env deployment/hermes-agent \  --from=secret/telegram-token \  -n hermes</p>
+<p># Set webhook (if Route is deployed) WEBHOOK_URL=$(oc get route hermes-agent -n hermes -o jsonpath=&#39;{.spec.host}&#39;) curl -X POST &#34;https://api.telegram.org/bot${BOT_TOKEN}/setWebhook&#34; \  -d &#34;url=https://${WEBHOOK_URL}/telegram&#34; Now send a message to your Telegram bot.</p>
+<p>The integration of vLLM and OpenShift AI brings enterprise deployment patterns to open source agents: GPU multi-tenancy, autoscaling, audit logs, RBAC, and lifecycle management.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Dockerfile.ubi:</p>
+<p>FROM registry.access.redhat.com/ubi9/ubi:latest</p>
+<p>ENV PYTHONUNBUFFERED=1 ENV PLAYWRIGHT_BROWSERS_PATH=/opt/hermes/.playwright</p>
+<p># Install system dependencies RUN dnf install -y \  python3.11 python3.11-devel python3.11-pip \  gcc gcc-c++ make git grep procps-ng openssh-clients \  libffi-devel ca-certificates &amp;&amp; \  dnf clean all</p>
+<p># Install Node.js 20.x from NodeSource RUN curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - &amp;&amp; \  dnf install -y nodejs &amp;&amp; \  dnf clean all</p>
+<p># Create non-root user (OpenShift overrides UID at runtime) RUN useradd -u 1001 -m -d /opt/data hermes</p>
+<p>WORKDIR /opt/hermes</p>
+<p># Layer-cached dependency install COPY package.json package-lock.json ./ COPY web/package.json web/package-lock.json web/ COPY ui-tui/package.json ui-tui/package-lock.json ui-tui/</p>
+<p>RUN npm install --prefer-offline --no-audit &amp;&amp; \  npx playwright install chromium &amp;&amp; \  (cd web &amp;&amp; npm install) &amp;&amp; \  (cd ui-tui &amp;&amp; npm install)</p>
+<p># Source code COPY . .</p>
+<p># Build web UI and TUI assets RUN cd web &amp;&amp; npm run build &amp;&amp; \  cd ../ui-tui &amp;&amp; npm run build</p>
+<p># OpenShift permissions (arbitrary UID, always GID 0) RUN chown -R 1001:0 /opt/hermes &amp;&amp; \  chmod -R a+rX /opt/hermes &amp;&amp; \  chmod -R g=u /opt/hermes</p>
+<p># Python virtualenv with all dependencies RUN python3.11 -m venv /opt/hermes/venv &amp;&amp; \  . /opt/hermes/venv/bin/activate &amp;&amp; \  pip install --upgrade pip &amp;&amp; \  pip install -e &#34;.[all,messaging]&#34;</p>
+<p>ENV HERMES_HOME=/opt/data ENV PATH=&#34;/opt/hermes/venv/bin:${PATH}&#34;</p>
+<p># Ensure data volume writable by group 0 RUN mkdir -p /opt/data &amp;&amp; \  chgrp -R 0 /opt/data &amp;&amp; \  chmod -R g=u /opt/data</p>
+<p>VOLUME [&#34;/opt/data&#34;]</p>
+<p>ENTRYPOINT [&#34;/opt/hermes/venv/bin/python&#34;, &#34;-m&#34;, &#34;hermes_cli.main&#34;] CMD [&#34;--help&#34;]  Build and push the following:</p>
+<p>cd /path/to/hermes-agent podman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 . podman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving. POST /api {  &#34;message&#34;: &#34;...&#34;,  &#34;user_id&#34;: &#34;...&#34;,  &#34;platform&#34;: &#34;api&#34; } Messaging platforms such as Telegram, Discord, Slack, WhatsApp, and Signal accessed via webhook endpoints:</p>
+<p>POST /telegram # Telegram webhooks POST /discord # Discord webhooks POST /slack # Slack events API Health endpoint: Kubernetes probes:</p>
+<p>GET /health {&#34;status&#34;:&#34;healthy&#34;,&#34;gateway&#34;:&#34;running&#34;} This allows your OpenShift cluster to act as a multi-tenant AI agent backend for your team&#39;s workflows across all platforms. This is for platform engineers, OpenShift AI users, and SREs looking to deploy stateful AI agents with GPU acceleration and enterprise-grade persistence. What you&#39;ll learn The Hermes agent creates skills from multi-step tasks, persists user context across sessions, and searches its full conversation history to provide continuity.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>It&#39;s the only open source agent with a built-in learning loop that makes it continuously improve rather than just execute tasks.</p>
+<p>The next time you ask for something similar, it invokes the skill instead of reasoning from scratch.</p>
+<p>Skills self-improve during use based on failures and feedback.</p>
+<p>Over time, it gets better at what you ask it to do.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. The deployment uses replicas: 1 because Hermes Agent state is local to the pod. If you&#39;re evaluating AI agent frameworks for production use on OpenShift, this deployment pattern demonstrates how to move beyond stateless chatbots to agents that actually learn. You&#39;ll see the complete deployment pattern: UBI 9 container images, KServe InferenceService configuration, and persistent storage for skills and session data.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>What you&#39;ll learn The Hermes agent creates skills from multi-step tasks, persists user context across sessions, and searches its full conversation history to provide continuity. Unlike frameworks that treat agents as sta</li>
+            <li>FROM registry.access.redhat.com/ubi9/ubi:latest</li>
+            <li>podman build -f Dockerfile.ubi -t quay.io/aicatalyst/hermes-agent:latest --platform linux/amd64 .</li>
+            <li>podman push quay.io/aicatalyst/hermes-agent:latest Deploy vLLM model serving with KServe OpenShift AI includes KServe for unified ML model serving. We will use the vLLM runtime template (provided by OpenShift AI) for GPU</li>
+            <li>oc apply -f manifests/03-vllm-servingruntime.yaml</li>
+            <li>oc apply -f manifests/04-vllm-inferenceservice.yaml Verify:</li>
+            <li>GATEWAY_PORT: &#34;8080&#34; Deploy the Hermes Agent (refer to the full manifest on GitHub ).</li>
+            <li>image: quay.io/aicatalyst/hermes-agent:latest</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/02/deploy-hermes-agent-openshift-ai-vllm-model-serving" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

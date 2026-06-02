@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation-driven development with EvalHub — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-02.html" class="back-link">← 2 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">2 June 2026, 02:01</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+        <span class="card-action-badge">Ops priority</span>
+      </div>
+
+      <h1 class="title">Evaluation-driven development with EvalHub</h1>
+
+      <p class="subtitle">If you have shipped software, you probably know test-driven development (TDD). Impact band: high.</p>
+
+      <div class="article-action-banner">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        This item is flagged for operational follow-up — see resolution and lessons sections.
+      </div>
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">If you have shipped software, you probably know test-driven development (TDD). Impact band: high.</p>
+      <p class="quick-take-action">Review mitigation and verification steps in the resolution section.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Every provider in EvalHub&#39;s default set covers a different evaluation dimension:</p>
+<p>The lm-evaluation-harness (150+ benchmarks): Reasoning, knowledge, coding, commonsense  Ragas: Retrieval quality, answer relevance, and faithfulness for RAG pipelines  Garak: Red-teaming, toxicity, bias, safety adversarial probes  GuideLLM: Latency, throughput, memory usage, hardware efficiency  LightEval: Fast capability checks  MTEB: Text embedding quality across retrieval tasks  The sliced evaluation that EDD requires (per-category, per-language, per-specialty, and so on) is achieved by running collections against different filtered dataset subsets and tagging the results accordingly in MLflow.</p>
+<p>The exact same call, pointed at a production EvalHub deployment on OpenShift, runs as a Kubernetes-native job with Kueue-managed scheduling, resource quotas, structured logging, and Prometheus metrics.</p>
+<p>Per-specialty slicing tracks cardiology, dermatology, and neurology separately.</p>
+<p>The EDD cycle EDD has three steps, each with an analog in traditional software engineering, and each qualitatively different for AI.</p>
+<p>Response latency: Under 2 seconds at the 95th percentile.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>A language model answering a customer support question might give ten different responses to the same query across ten runs—all of them arguably correct, none of them identical. &#34;Does it work?&#34; is the wrong question. For a customer support agent, that might mean:</p>
+<p>Factual accuracy: 90% of claims match source documentation. Sliced evaluation breaks aggregate scores into the constituent dimensions that actually matter for the specific use case: by product category, by query language, by user segment, by medical specialty, by regulatory domain, and so on. A developer running a quick prompt-variation test uses evalhub.client (the SDK&#39;s typed Python REST client) to submit an evaluation request against an EvalHub instance.</p>
+<p>Classified impact band: high. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Instead of a black box that you poke until it seems better, you now have an optimization problem with a measurable current state and a defined target state.</p>
+<p>For example, consider an e-commerce recommendation system with an aggregate accuracy of 79%.</p>
+<p>You are closing the specific gap in Home Goods recommendations, which might mean a different retrieval strategy for product catalog data, additional fine-tuning on product descriptions, or a different prompt template for that category.</p>
+<p>The pull request review will then includeboth the code review and an evaluation report showing the baseline score, the updated score, and a breakdown of which slices improved or regressed.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. The red-green-refactor cycle is elegant because it is prominently deterministic in nature: the test either passes or it doesn&#39;t. For a healthcare LLM deployment, the collection might look like:</p>
+<p>{  &#34;id&#34;: &#34;healthcare_safety_v1&#34;,  &#34;benchmarks&#34;: [  { &#34;id&#34;: &#34;medqa&#34;, &#34;provider_id&#34;: &#34;lm_evaluation_harness&#34;, &#34;weight&#34;: 2.0, &#34;pass_criteria&#34;:{&#34;threshold&#34;: 80.0} },  { &#34;id&#34;: &#34;pubmedqa&#34;, &#34;provider_id&#34;: &#34;lm_evaluation_harness&#34;, &#34;weight&#34;: 1.5, &#34;pass_criteria&#34;:{&#34;threshold&#34;: 75.0} },  { &#34;id&#34;: &#34;toxicity&#34;, &#34;provider_id&#34;: &#34;garak&#34;, &#34;weight&#34;: 2.5, &#34;pass_criteria&#34;:{&#34;threshold&#34;: 70.0} },  { &#34;id&#34;: &#34;faithfulness&#34;, &#34;provider_id&#34;: &#34;ragas&#34;, &#34;weight&#34;: 1.5, &#34;pass_criteria&#34;:{&#34;threshold&#34;: 80.0} }  ] } The collection is defined before a single evaluation is run. When the criteria change (because the use case evolves or a new regulatory requirement emerges), the collection can be updated and versioned, not rewritten in someone&#39;s script.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass. Refactor. Ship with confidence. The red-green-refactor cycle is elegant because it is p</li>
+            <li>A language model answering a customer support question might give ten different responses to the same query across ten runs—all of them arguably correct, none of them identical. &#34;Does it work?&#34; is the wrong question. The</li>
+            <li>Step 1: Define evaluation criteria: Before you write a prompt In TDD, you write tests before you write code. In EDD, you define evaluation criteria before you write prompts, choose a model, or design a pipeline.</li>
+            <li>EDD forces the question upfront: what does good look like? Not in the abstract, but specifically and measurably. For a customer support agent, that might mean:</li>
+            <li>Step 3: Iterate on prompts and configurations based on data With scores in hand, you run experiments. You A/B test prompt variations. You swap retrieval strategies. You try different models. You compare results not again</li>
+            <li>Each iteration either closes the gap, moves you progressively toward your final objective, or it doesn&#39;t. The evaluation tells you which. This transforms prompt engineering from an art into a systematic discipline: contr</li>
+            <li>Measuring at scale with automatic experiment tracking In Step 2, measuring quality scores is where EDD&#39;s operational overhead typically kills the practice. Running five frameworks against three model variants, capturing </li>
+            <li>The MLflow integration means every evaluation run is automatically tracked with the configuration that produced it: model version, collection version, hardware tags, and environment. Reproducing a result from three month</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/02/evaluation-driven-development-evalhub" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

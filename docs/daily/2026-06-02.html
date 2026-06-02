@@ -27,10 +27,21 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">2 June 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">6 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat, GitHub</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -39,6 +50,8 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -51,9 +64,34 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
@@ -87,6 +125,183 @@
       <div class="detail-links">
         <a href="../articles/f9ca644d24a5639a.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/06/02/be-a-player-in-the-international-ai-game/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment"
+       data-vendors="GitHub,Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="ubi 9 and 10 builders on paketo buildpacks with multi-arch support"
+       data-id="82a8243c00b44871"
+       data-published="2026-06-02T07:01:21+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-02T07:01:21+00:00" title="2 June 2026, 02:01">2 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">UBI 9 and 10 builders on Paketo Buildpacks with multi-arch support</h3>
+      <p class="card-summary">Over the past year, one of the major things that has happened with Paketo Buildpacks is the addition of Red Hat Universal Base Image (UBI) 9 and UBI 10 builders and the support of multiple architecture builds. Paketo Buildpacks now publishes builders based on UBI 9 and UBI 10 with multi-arch output builds.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Over the past year, one of the major things that has happened with Paketo Buildpacks is the addition of Red Hat Universal Base Image (UBI) 9 and UBI 10 builders and the support of multiple architecture builds. Paketo Buildpacks now publishes builders based on UBI 9 and UBI 10 with multi-arch output builds. First, we will discuss where the repositories and images live.</p></div>
+      <div class="detail-links">
+        <a href="../articles/82a8243c00b44871.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/02/ubi-9-and-10-builders-paketo-buildpacks-multi-arch-support" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="capacity,database,deployment,kubernetes,latency,networking,outage,scaling"
+       data-vendors="GitHub,Kubernetes,Red Hat,Slack"
+       data-impact="medium"
+       data-theme="capacity and scale"
+       data-title="deploy hermes agent on openshift ai with vllm model serving"
+       data-id="5e7d3d09599a2adb"
+       data-published="2026-06-02T07:01:20+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-02T07:01:20+00:00" title="2 June 2026, 02:01">2 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Deploy Hermes Agent on OpenShift AI with vLLM model serving</h3>
+      <p class="card-summary">Most AI agents forget everything between conversations. They can&#39;t learn from past interactions or remember your preferences, requiring you to explain context every single time.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Most AI agents forget everything between conversations. They can&#39;t learn from past interactions or remember your preferences, requiring you to explain context every single time. This makes them useful for one-off queries but impractical for ongoing work.</p></div>
+      <div class="detail-links">
+        <a href="../articles/5e7d3d09599a2adb.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/02/deploy-hermes-agent-openshift-ai-vllm-model-serving" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--action card--high"
+       data-tags="deployment,kubernetes,latency,observability,outage"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="evaluation-driven development with evalhub"
+       data-id="972d34ea15e843c7"
+       data-published="2026-06-02T07:01:17+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-02T07:01:17+00:00" title="2 June 2026, 02:01">2 June 2026, 02:01</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Evaluation-driven development with EvalHub</h3>
+      <p class="card-summary">If you have shipped software, you probably know test-driven development (TDD). Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you have shipped software, you probably know test-driven development (TDD). Write a failing test. Write the code to make it pass.</p></div>
+      <div class="detail-links">
+        <a href="../articles/972d34ea15e843c7.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/02/evaluation-driven-development-evalhub" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="capacity,deployment,latency,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="improve vllm semantic router accuracy with fine-tuning"
+       data-id="12d7896b178a5434"
+       data-published="2026-06-02T07:01:16+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-02T07:01:16+00:00" title="2 June 2026, 02:01">2 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Improve vLLM Semantic Router accuracy with fine-tuning</h3>
+      <p class="card-summary">The vLLM Semantic Router solves a real problem. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic.</p></div>
+      <div class="detail-links">
+        <a href="../articles/12d7896b178a5434.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/02/improve-vllm-semantic-router-accuracy-fine-tuning" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="red hat build of cryostat 4.2: enhanced java monitoring for openshift"
+       data-id="bc0cebc93148ea22"
+       data-published="2026-06-02T07:01:13+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-02T07:01:13+00:00" title="2 June 2026, 02:01">2 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Red Hat build of Cryostat 4.2: Enhanced Java monitoring for OpenShift</h3>
+      <p class="card-summary">Red Hat build of Cryostat 4.2 is now generally available (GA) and brings new tools to the Java monitoring ecosystem. This update focuses on data insights, profiling, and more granular automation for JDK Flight Recorder (JFR).</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Red Hat build of Cryostat 4.2 is now generally available (GA) and brings new tools to the Java monitoring ecosystem. This update focuses on data insights, profiling, and more granular automation for JDK Flight Recorder (JFR). If you are troubleshooting a memory leak in a production pod or automating performance regression tests, Red Hat build of Cryostat 4.2 provides the specialized tooling needed to manage Java Virtual Machine (JVM) performance.</p></div>
+      <div class="detail-links">
+        <a href="../articles/bc0cebc93148ea22.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/02/red-hat-build-cryostat-42-enhanced-java-monitoring-openshift" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

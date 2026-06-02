@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Improve vLLM Semantic Router accuracy with fine-tuning — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-02.html" class="back-link">← 2 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">2 June 2026, 02:01</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Improve vLLM Semantic Router accuracy with fine-tuning</h1>
+
+      <p class="subtitle">The vLLM Semantic Router solves a real problem. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>general production</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">The vLLM Semantic Router solves a real problem. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Additional material You can access the complete SDG pipeline, training code, evaluation framework, and experiment data through these repositories:</p>
+<p>Fine-tuning pipeline and experiment details   vLLM Semantic Router   This experiment relies on the open source projects listed in the following table:</p>
+<p>Project Version Role sentence-transformers 5.4.1 Embedding model training and inference PyTorch 2.11.0 Deep learning framework (CPU build) transformers 5.6.2 Model architecture and tokenizers datasets 4.8.4 Dataset loading and processing scikit-learn 1.8.0 Evaluation metrics vLLM LLM serving (KServe backend) all-MiniLM-L6-v2 Base embedding model (23M params)  The post Improve vLLM Semantic Router accuracy with fine-tuning appeared first on Red Hat Developer .</p>
+<p>If everything is sent to your largest model, you burn compute, increase latency, and lose efficiency across the entire system.</p>
+<p>In small deployments or within your own home environment, it often will be a clear win.</p>
+<p>In enterprise deployments, however, a performance gap emerges.</p>
+<p>It can be deployed as a stateless service, replicated, and scaled like any other control plane component.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Why high availability does not guarantee routing correctness We spend a lot of time talking about reliability in distributed systems. We design for high availability. With 805 training examples and under two hours of compute time, the pipeline lowers the barrier significantly.</p>
+<p>Classified impact band: critical. Affected layer signal: general production.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>It can be deployed as a stateless service, replicated, and scaled like any other control plane component.</p>
+<p>This experiment shows that the accuracy ceiling is not fixed.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>The change was in how the model learned.</p>
+<p>This change significantly improved the routing layer&#39;s accuracy, as shown in the following table.</p>
+<p>As routing improves, that dynamic changes.</p>
+<p>What this tells us The key takeaway is not just that fine-tuning improves accuracy.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. It can be deployed as a stateless service, replicated, and scaled like any other control plane component. As a result, the router frequently misclassifies MEDIUM queries into the COMPLEX tier because they contain more detail or context, not because they require advanced reasoning. However, controlling costs is only one aspect of routing.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The vLLM Semantic Router solves a real problem. Not every request needs the same model. Some are simple and deterministic. Others require multi-step reasoning, tool use, or long context windows. If everything is sent to </li>
+            <li>So we introduce a routing layer. As detailed in our guide on getting started with the vLLM Semantic Router Athena release , the router classifies incoming requests and sends them to the appropriate model. Simple queries </li>
+            <li>In enterprise deployments, however, a performance gap emerges. The router is typically built on a pretrained embedding model, something like all-MiniLM-L6-v2. It compares incoming prompts to anchor examples and selects t</li>
+            <li>In our testing, the pretrained model achieved 80% accuracy on a four-tier classification task. That translates to a 20% misrouting rate. One in five requests is sent to the wrong model. That is not a tuning issue. That i</li>
+            <li>As a result, the router frequently misclassifies MEDIUM queries into the COMPLEX tier because they contain more detail or context, not because they require advanced reasoning. This misrouting increases operation costs by</li>
+            <li>Setting up the fine-tuning pipeline on OpenShift AI To run this experiment, we built a simple but repeatable pipeline on Red Hat OpenShift AI that combined synthetic data generation, model training, and evaluation into a</li>
+            <li>The resulting dataset was fed into a sentence-transformers training job using contrastive learning, running entirely on a CPU to keep it lightweight and accessible. From there, we evaluated the fine-tuned model against a</li>
+            <li>What was tested This experiment evaluates whether an embedding model can learn specific routing decisions instead of general semantic similarity. We did not change the router. We did not introduce a new architecture or a</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/02/improve-vllm-semantic-router-accuracy-fine-tuning" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
