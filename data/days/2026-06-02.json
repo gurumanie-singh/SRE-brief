@@ -260,5 +260,42 @@
     "email_summary": "Red Hat build of Cryostat 4.2 is now generally available (GA) and brings new tools to the Java monitoring ecosystem. This update focuses on data insights, profiling, and more granular automation for JDK Flight Recorder (JFR).",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "5d227f58457c474a",
+    "title": "The essential Elastic 2026 wrap-up for Microsoft Build attendees and Azure developers",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/microsoft-build-2026-wrap-up",
+    "published": "2026-06-02T00:00:00+00:00",
+    "fetched_at": "2026-06-02T15:00:31.495089+00:00",
+    "summary": "Elastic's 2026 releases included multimodal search via Elastic Inference Service, OpenTelemetry metrics at 3.75 bytes per data point, agent context memory at scale, and open source CI/CD pipeline security. It’s the catch-up your stack needs.",
+    "tags": [
+      "deployment",
+      "observability"
+    ],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [
+      "Azure",
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — azure",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Elastic's 2026 releases included multimodal search via Elastic Inference Service, OpenTelemetry metrics at 3.75 bytes per data point, agent context memory at scale, and open source CI/CD pipeline security. It’s the catch-up your stack needs.",
+      "technical_breakdown": "Elastic's 2026 releases included multimodal search via Elastic Inference Service, OpenTelemetry metrics at 3.75 bytes per data point, agent context memory at scale, and open source CI/CD pipeline security.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — azure.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Elastic's 2026 releases included multimodal search via Elastic Inference Service, OpenTelemetry metrics at 3.75 bytes per data point, agent context memory at scale, and open source CI/CD pipeline security. It’s the catch-up your stack needs.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
