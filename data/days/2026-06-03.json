@@ -1,5 +1,53 @@
 [
   {
+    "id": "48aeccc33b3601c9",
+    "title": "Improve your application resilience with Amazon Cognito multi-Region replication",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/improve-your-application-resilience-with-amazon-cognito-multi-region-replication/",
+    "published": "2026-06-03T22:37:29+00:00",
+    "fetched_at": "2026-06-03T23:52:42.618494+00:00",
+    "summary": "As a developer advocate working with web and mobile application developers, I’ve often heard about the need to maintain consistent user authentication in the unlikely event of a regional service interruption. The increasing use of agentic AI, microservices, automation, and service accounts has sparked a similar need for machine-to-machine authentication. Today, I’m excited to share two important...",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-03",
+    "impact": "critical",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Before configuring multi-Region replication, you must configure a multi-Region customer managed key stored in AWS Key Management Service (AWS KMS) to encrypt your user data at rest. These keys provide consistent encrypti",
+      "I start this demo with an existing Cognito user pool in the us-west-2 (Oregon) Region. I want to configure replication to us-east-1 (Northern Virginia). I also have a customer managed key replicated in these two Regions.",
+      "First, I set up a custom AWS KMS key to encrypt the data at rest.",
+      "I make sure to update my client applications with these new endpoints. This is a required change that will need a redeployment of server-side applications and an update submission for mobile apps on the App Store and Goo",
+      "When your monitoring system detects issues meeting your failover criteria, you can redirect traffic to the secondary Region through DNS updates. This approach gives you control over the failover process while maintaining",
+      "Multi-Region replication is available in the following Regions: US East (Ohio, N. Virginia), US West (N. California, Oregon), Asia Pacific (Mumbai, Seoul, Singapore, Sydney, Tokyo), Canada (Central), Europe (Frankfurt, I",
+      "Any of these Regions can be used as the source or the destination for the replication.",
+      "Support for customer managed keys is available for the Essentials and Plus tiers. It is available in the following Regions: US East (Ohio, N. Virginia), US West (N. California, Oregon), Africa (Cape Town), Asia Pacific ("
+    ],
+    "sections": {
+      "overview": "As a developer advocate working with web and mobile application developers, I’ve often heard about the need to maintain consistent user authentication in the unlikely event of a regional service interruption. The increasing use of agentic AI, microservices, automation, and service accounts has sparked a similar need for machine-to-machine authentication. Today, I’m excited to share two important updates to Amazon Cognito: multi-Region replication for improved resilience, and support for customer managed keys for more control encryption control.",
+      "technical_breakdown": "Multi-Region replication provides the capability to build more resilient applications without managing complex replication logic yourself.\n\nToday, I’m excited to share two important updates to Amazon Cognito: multi-Region replication for improved resilience, and support for customer managed keys for more control encryption control.\n\nEngineering teams spent significant time building and maintaining custom replication solutions to synchronize configurations across Regions.\n\nWith multi-Region replication, Amazon Cognito automatically maintains a synchronized copy of your user data and machine secrets in a secondary AWS Region of your choice.\n\nThe replication flows in one direction, from your primary Region to the secondary Region.",
+      "impact": "Before configuring multi-Region replication, you must configure a multi-Region customer managed key stored in AWS Key Management Service (AWS KMS) to encrypt your user data at rest. Pricing and availability\n Multi-Region replication is available today as an add-on feature for Amazon Cognito customers using Essentials and Plus tier. For user authentication, the add-on costs $0.0045 per monthly active user per replica Region for Essentials tier customers and $0.006 per monthly active user per replica region for Plus tier customers. As a developer advocate working with web and mobile application developers, I’ve often heard about the need to maintain consistent user authentication in the unlikely event of a regional service interruption.\n\nClassified impact band: critical. Affected layer signal: cloud — aws.",
+      "resolution": "While authentication continues without interruption, operations like new user registration or profile updates are not available during failover.\n\nHealth checks and failover\n Both primary and secondary regional endpoints remain active and ready to serve your traffic at all times.\n\nTo monitor system health and manage failovers, you design a strategy that aligns with your application’s specific requirements and security posture.\n\nYou can implement health checks to monitor the status of authentication services in your primary Region and define criteria for when to initiate failover.",
+      "lessons_learned": "Today, I’m excited to share two important updates to Amazon Cognito: multi-Region replication for improved resilience, and support for customer managed keys for more control encryption control.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. When you need to direct traffic to the secondary Region, your existing users can continue signing in with their existing credentials without disruption, and currently signed-in users remain authenticated because both regions recognize access tokens issued by either region. This is a required change that will need a redeployment of server-side applications and an update submission for mobile apps on the App Store and Google Play. If I don’t update the endpoints, my users will experience disruptions because requests to the old endpoints will no longer be routed correctly.",
+      "incident_timeline": "Before configuring multi-Region replication, you must configure a multi-Region customer managed key stored in AWS Key Management Service (AWS KMS) to encrypt your user data at rest. These keys provide consistent encrypti\nI start this demo with an existing Cognito user pool in the us-west-2 (Oregon) Region. I want to configure replication to us-east-1 (Northern Virginia). I also have a customer managed key replicated in these two Regions.\nFirst, I set up a custom AWS KMS key to encrypt the data at rest.\nI make sure to update my client applications with these new endpoints. This is a required change that will need a redeployment of server-side applications and an update submission for mobile apps on the App Store and Goo\nWhen your monitoring system detects issues meeting your failover criteria, you can redirect traffic to the secondary Region through DNS updates. This approach gives you control over the failover process while maintaining\nMulti-Region replication is available in the following Regions: US East (Ohio, N. Virginia), US West (N. California, Oregon), Asia Pacific (Mumbai, Seoul, Singapore, Sydney, Tokyo), Canada (Central), Europe (Frankfurt, I\nAny of these Regions can be used as the source or the destination for the replication.\nSupport for customer managed keys is available for the Essentials and Plus tiers. It is available in the following Regions: US East (Ohio, N. Virginia), US West (N. California, Oregon), Africa (Cape Town), Asia Pacific (",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "As a developer advocate working with web and mobile application developers, I’ve often heard about the need to maintain consistent user authentication in the unlikely event of a regional service interruption. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "f2b4de35f575923c",
     "title": "Enforcing the First AS in BGP AS_PATHs",
     "source": "Cloudflare Blog",
