@@ -1,5 +1,50 @@
 [
   {
+    "id": "f2b4de35f575923c",
+    "title": "Enforcing the First AS in BGP AS_PATHs",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/enforce-first-as-bgp/",
+    "published": "2026-06-03T17:00:00+00:00",
+    "fetched_at": "2026-06-03T21:55:31.212652+00:00",
+    "summary": "Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the actor appears to be creating fake AS_PATHs toward destinations, misdirecting traffic down an unexpected path. ",
+    "tags": [
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-03",
+    "impact": "critical",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the a",
+      "There is a simple solution for these cases: basic verification that a BGP peer autonomous system (AS) always includes their network as the “First AS” in an advertised route. To get a sense of how well these safeguards ar",
+      "~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json",
+      "\"timestamp\": 1776039612.0,",
+      "We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship. This implies that AS17072 is a transit provider for AS41",
+      "The order of the ASes in the message above would suggest that an unused Orange France AS is buying transit from Mexican ISPs, which is then upstreamed to Gcore and Tier 1 providers – which would be quite odd.",
+      "We can authoritatively confirm that we (Cloudflare, AS13335) have no adjacency with the now-unused AS36429 owned by Charter. This means this was a forged path by the hijacker that included Cloudflare’s ASN as one of the ",
+      "Because of this, we can reasonably conclude these paths are forged up until the leftmost common AS, which in this case is AS199524, as the rest of the path seems implausible. We believe what is happening here is the resu"
+    ],
+    "sections": {
+      "overview": "Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the actor appears to be creating fake AS_PATHs toward destinations, misdirecting traffic down an unexpected path.",
+      "technical_breakdown": "Our local AS is AS13335, but we include AS402542 clearly as the First AS in the AS_PATH.\n\n bryton@edge01.gva01> show configuration policy-options policy-statement 4-TELIA-ACCEPT-EXPORT term ADV-FIRST-AS-PROBE-CR-1695522\nfrom {\n community ANYCAST-ROUTE;\n prefix-list fl_first_as_prober;\n route-type internal;\n}\nthen {\n origin igp;\n as-path-prepend 402542;\n next-hop self;\n accept;\n}\n\nbryton@edge01.gva01> show route advertising-protocol bgp <redacted_1299_ip> 162.159.82.0/24 detail | grep \"AS path: \"\n AS path: 402542 [13335] I \n With this configuration, our expectation is that: \n\n Networks that do enforce-first-as will quietly drop the route via RFC 7606 withdrawal method \n\n Networks that do not enforce-first-as will accept the route and install it for forwarding toward our test prefixes\n\n Either result will be visible in BGP public route views.\n\nA hijacker could strip enough information away from a network path that they could pretend to be the origin of a Border Gateway Protocol (BGP) prefix themselves.\n\nThere is a simple solution for these cases: basic verification that a BGP peer autonomous system (AS) always includes their network as the “First AS” in an advertised route.\n\nTo get a sense of how well these safeguards are implemented, we stress-tested several major networks and researched their BGP implementations.\n\nUsing the monocle tool, we can easily find a BGP UPDATE message related to the hijack:\n\n  ~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json\n{\n \"aggr_asn\": null,\n \"aggr_ip\": null,\n \"as_path\": \"48237 1299 199524 270118 17072 41128\",\n \"atomic\": false,\n \"collector\": \"rrc26\",\n \"communities\": null,\n \"local_pref\": 0,\n \"med\": 0,\n \"next_hop\": \"185.1.8.3\",\n \"origin\": \"IGP\",\n \"peer_asn\": 48237,\n \"peer_ip\": \"185.1.8.3\",\n \"prefix\": \"90.98.0.0/15\",\n \"timestamp\": 1776039612.0,\n \"type\": \"ANNOUNCE\"\n} \n We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship.",
+      "impact": "Using the monocle tool, we can easily find a BGP UPDATE message related to the hijack:\n\n  ~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json\n{\n \"aggr_asn\": null,\n \"aggr_ip\": null,\n \"as_path\": \"48237 1299 199524 270118 17072 41128\",\n \"atomic\": false,\n \"collector\": \"rrc26\",\n \"communities\": null,\n \"local_pref\": 0,\n \"med\": 0,\n \"next_hop\": \"185.1.8.3\",\n \"origin\": \"IGP\",\n \"peer_asn\": 48237,\n \"peer_ip\": \"185.1.8.3\",\n \"prefix\": \"90.98.0.0/15\",\n \"timestamp\": 1776039612.0,\n \"type\": \"ANNOUNCE\"\n} \n We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship. We believe what is happening here is the result of a specific strategy by the hijacker, involving the following steps:\n\n Originate BGP announcements for “parked” prefixes\n\n Forge the AS_PATH completely, without including the hijacker’s own local ASN \n\n Advertise these routes to Gcore, AS199524\n\n In these hijacks it appears Gcore (AS199524) skips the verification and enforcement of the First AS matching the expected customer’s ASN. (We’ll look at why it might skip those steps later in this post.) As a result, the forged path is accepted and the hijacked prefixes are propagated to upstream providers and peers. Aside from keeping a record of the networks a BGP UPDATE, and therefore route, will traverse, the AS_PATH can also be examined by operator-configured routing policies to route around or purposely through a given AS – for example to avoid BGP anomalies having unexpected impact. Even if AS64501, the customer, and AS64502, their provider, run ASPA validation , they will not find an invalid path, because there is no valley in the path “64502 64506”.\n\nClassified impact band: critical. Affected layer signal: edge — cdn.",
+      "resolution": "A hijacker could strip enough information away from a network path that they could pretend to be the origin of a Border Gateway Protocol (BGP) prefix themselves.\n\nFor example, let’s examine one of the hijacks reported by Spamhaus, involving a prefix belonging to Orange S.A., the French telecom company.\n\nUsing the monocle tool, we can easily find a BGP UPDATE message related to the hijack:\n\n  ~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json\n{\n \"aggr_asn\": null,\n \"aggr_ip\": null,\n \"as_path\": \"48237 1299 199524 270118 17072 41128\",\n \"atomic\": false,\n \"collector\": \"rrc26\",\n \"communities\": null,\n \"local_pref\": 0,\n \"med\": 0,\n \"next_hop\": \"185.1.8.3\",\n \"origin\": \"IGP\",\n \"peer_asn\": 48237,\n \"peer_ip\": \"185.1.8.3\",\n \"prefix\": \"90.98.0.0/15\",\n \"timestamp\": 1776039612.0,\n \"type\": \"ANNOUNCE\"\n} \n We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship.\n\nIn another instance, a reported hijack for prefixes 47.1.0.0/16 and 47.2.0.0/16 from origin AS36429 even included Cloudflare’s main ASN, 13335, in the AS_PATH, “199524 270118 17072 13335 36429”.",
+      "lessons_learned": "Read on to see what we learned.\n\nIt is also used for loop prevention, where networks can decide not to accept paths that have already traversed their own network.\n\nExample 1: Forged origin attacks \n \n \n \n \n AS64506 cryptographically signs their routes with an RPKI ROA (Route Origin Authorization) record, to prevent route origin hijacks.\n\nThe correct way of preventing this hijack with existing tools is to enforce the First AS in the AS_PATH.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the a\nThere is a simple solution for these cases: basic verification that a BGP peer autonomous system (AS) always includes their network as the “First AS” in an advertised route. To get a sense of how well these safeguards ar\n~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json\n\"timestamp\": 1776039612.0,\nWe know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship. This implies that AS17072 is a transit provider for AS41\nThe order of the ASes in the message above would suggest that an unused Orange France AS is buying transit from Mexican ISPs, which is then upstreamed to Gcore and Tier 1 providers – which would be quite odd.\nWe can authoritatively confirm that we (Cloudflare, AS13335) have no adjacency with the now-unused AS36429 owned by Charter. This means this was a forged path by the hijacker that included Cloudflare’s ASN as one of the \nBecause of this, we can reasonably conclude these paths are forged up until the leftmost common AS, which in this case is AS199524, as the rest of the path seems implausible. We believe what is happening here is the resu",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Some recent route hijacks reported by Spamhaus captured our attention. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "aa1e1db6edb2f381",
     "title": "Build modular AI pipelines with OpenShift AI and reusable components",
     "source": "Red Hat Developer Blog",
@@ -81,6 +126,40 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "AI is changing how people buy, driving them to single platforms. As the unified platform for search, security, and observability, Elastic offers partners major growth.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "df7dc0251811845f",
+    "title": "How to overcome data gravity and accelerate AI security in the SOC",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/data-gravity-in-cybersecurity",
+    "published": "2026-06-03T00:00:00+00:00",
+    "fetched_at": "2026-06-03T21:55:34.459601+00:00",
+    "summary": "Does heavy security data slow your threat detection? You're not alone. Learn four principles to unify your architecture and speed up incident response.",
+    "tags": [
+      "latency",
+      "outage"
+    ],
+    "day": "2026-06-03",
+    "impact": "high",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Does heavy security data slow your threat detection? You're not alone. Learn four principles to unify your architecture and speed up incident response.",
+      "technical_breakdown": "Does heavy security data slow your threat detection?",
+      "impact": "Classified impact band: high. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Does heavy security data slow your threat detection. Impact band: high.",
     "related_sources": [],
     "highlighted": false
   }

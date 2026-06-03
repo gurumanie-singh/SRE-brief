@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enforcing the First AS in BGP AS_PATHs — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-03.html" class="back-link">← 3 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">3 June 2026, 12:00</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Enforcing the First AS in BGP AS_PATHs</h1>
+
+      <p class="subtitle">Some recent route hijacks reported by Spamhaus captured our attention. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Some recent route hijacks reported by Spamhaus captured our attention. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the actor appears to be creating fake AS_PATHs toward destinations, misdirecting traffic down an unexpected path.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Our local AS is AS13335, but we include AS402542 clearly as the First AS in the AS_PATH.</p>
+<p>bryton@edge01.gva01&gt; show configuration policy-options policy-statement 4-TELIA-ACCEPT-EXPORT term ADV-FIRST-AS-PROBE-CR-1695522 from {  community ANYCAST-ROUTE;  prefix-list fl_first_as_prober;  route-type internal; } then {  origin igp;  as-path-prepend 402542;  next-hop self;  accept; }</p>
+<p>bryton@edge01.gva01&gt; show route advertising-protocol bgp &lt;redacted_1299_ip&gt; 162.159.82.0/24 detail | grep &#34;AS path: &#34;  AS path: 402542 [13335] I   With this configuration, our expectation is that:</p>
+<p>Networks that do enforce-first-as will quietly drop the route via RFC 7606 withdrawal method</p>
+<p>Networks that do not enforce-first-as will accept the route and install it for forwarding toward our test prefixes</p>
+<p>Either result will be visible in BGP public route views.</p>
+<p>A hijacker could strip enough information away from a network path that they could pretend to be the origin of a Border Gateway Protocol (BGP) prefix themselves.</p>
+<p>There is a simple solution for these cases: basic verification that a BGP peer autonomous system (AS) always includes their network as the “First AS” in an advertised route.</p>
+<p>To get a sense of how well these safeguards are implemented, we stress-tested several major networks and researched their BGP implementations.</p>
+<p>Using the monocle tool, we can easily find a BGP UPDATE message related to the hijack:</p>
+<p>~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json {  &#34;aggr_asn&#34;: null,  &#34;aggr_ip&#34;: null,  &#34;as_path&#34;: &#34;48237 1299 199524 270118 17072 41128&#34;,  &#34;atomic&#34;: false,  &#34;collector&#34;: &#34;rrc26&#34;,  &#34;communities&#34;: null,  &#34;local_pref&#34;: 0,  &#34;med&#34;: 0,  &#34;next_hop&#34;: &#34;185.1.8.3&#34;,  &#34;origin&#34;: &#34;IGP&#34;,  &#34;peer_asn&#34;: 48237,  &#34;peer_ip&#34;: &#34;185.1.8.3&#34;,  &#34;prefix&#34;: &#34;90.98.0.0/15&#34;,  &#34;timestamp&#34;: 1776039612.0,  &#34;type&#34;: &#34;ANNOUNCE&#34; }   We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Using the monocle tool, we can easily find a BGP UPDATE message related to the hijack:</p>
+<p>~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json {  &#34;aggr_asn&#34;: null,  &#34;aggr_ip&#34;: null,  &#34;as_path&#34;: &#34;48237 1299 199524 270118 17072 41128&#34;,  &#34;atomic&#34;: false,  &#34;collector&#34;: &#34;rrc26&#34;,  &#34;communities&#34;: null,  &#34;local_pref&#34;: 0,  &#34;med&#34;: 0,  &#34;next_hop&#34;: &#34;185.1.8.3&#34;,  &#34;origin&#34;: &#34;IGP&#34;,  &#34;peer_asn&#34;: 48237,  &#34;peer_ip&#34;: &#34;185.1.8.3&#34;,  &#34;prefix&#34;: &#34;90.98.0.0/15&#34;,  &#34;timestamp&#34;: 1776039612.0,  &#34;type&#34;: &#34;ANNOUNCE&#34; }   We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship. We believe what is happening here is the result of a specific strategy by the hijacker, involving the following steps:</p>
+<p>Originate BGP announcements for “parked” prefixes</p>
+<p>Forge the AS_PATH completely, without including the hijacker’s own local ASN</p>
+<p>Advertise these routes to Gcore, AS199524</p>
+<p>In these hijacks it appears Gcore (AS199524) skips the verification and enforcement of the First AS matching the expected customer’s ASN. (We’ll look at why it might skip those steps later in this post.) As a result, the forged path is accepted and the hijacked prefixes are propagated to upstream providers and peers. Aside from keeping a record of the networks a BGP UPDATE, and therefore route, will traverse, the AS_PATH can also be examined by operator-configured routing policies to route around or purposely through a given AS – for example to avoid BGP anomalies having unexpected impact. Even if AS64501, the customer, and AS64502, their provider, run ASPA validation , they will not find an invalid path, because there is no valley in the path “64502 64506”.</p>
+<p>Classified impact band: critical. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>A hijacker could strip enough information away from a network path that they could pretend to be the origin of a Border Gateway Protocol (BGP) prefix themselves.</p>
+<p>For example, let’s examine one of the hijacks reported by Spamhaus, involving a prefix belonging to Orange S.A., the French telecom company.</p>
+<p>Using the monocle tool, we can easily find a BGP UPDATE message related to the hijack:</p>
+<p>~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json {  &#34;aggr_asn&#34;: null,  &#34;aggr_ip&#34;: null,  &#34;as_path&#34;: &#34;48237 1299 199524 270118 17072 41128&#34;,  &#34;atomic&#34;: false,  &#34;collector&#34;: &#34;rrc26&#34;,  &#34;communities&#34;: null,  &#34;local_pref&#34;: 0,  &#34;med&#34;: 0,  &#34;next_hop&#34;: &#34;185.1.8.3&#34;,  &#34;origin&#34;: &#34;IGP&#34;,  &#34;peer_asn&#34;: 48237,  &#34;peer_ip&#34;: &#34;185.1.8.3&#34;,  &#34;prefix&#34;: &#34;90.98.0.0/15&#34;,  &#34;timestamp&#34;: 1776039612.0,  &#34;type&#34;: &#34;ANNOUNCE&#34; }   We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship.</p>
+<p>In another instance, a reported hijack for prefixes 47.1.0.0/16 and 47.2.0.0/16 from origin AS36429 even included Cloudflare’s main ASN, 13335, in the AS_PATH, “199524 270118 17072 13335 36429”.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Read on to see what we learned.</p>
+<p>It is also used for loop prevention, where networks can decide not to accept paths that have already traversed their own network.</p>
+<p>Example 1: Forged origin attacks           AS64506 cryptographically signs their routes with an RPKI ROA (Route Origin Authorization) record, to prevent route origin hijacks.</p>
+<p>The correct way of preventing this hijack with existing tools is to enforce the First AS in the AS_PATH.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the a</li>
+            <li>There is a simple solution for these cases: basic verification that a BGP peer autonomous system (AS) always includes their network as the “First AS” in an advertised route. To get a sense of how well these safeguards ar</li>
+            <li>~ monocle search --start-ts 2026-04-13T00:20:00Z --end-ts 2026-04-13T00:23:59Z --prefix 90.98.0.0/15 --collector rrc26 --json</li>
+            <li>&#34;timestamp&#34;: 1776039612.0,</li>
+            <li>We know AS1299 ( Arelion ) is a Tier 1 network , meaning every AS on the right-hand side in the path is describing an upstream (customer-to-provider) relationship. This implies that AS17072 is a transit provider for AS41</li>
+            <li>The order of the ASes in the message above would suggest that an unused Orange France AS is buying transit from Mexican ISPs, which is then upstreamed to Gcore and Tier 1 providers – which would be quite odd.</li>
+            <li>We can authoritatively confirm that we (Cloudflare, AS13335) have no adjacency with the now-unused AS36429 owned by Charter. This means this was a forged path by the hijacker that included Cloudflare’s ASN as one of the </li>
+            <li>Because of this, we can reasonably conclude these paths are forged up until the leftmost common AS, which in this case is AS199524, as the rest of the path seems implausible. We believe what is happening here is the resu</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/enforce-first-as-bgp/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

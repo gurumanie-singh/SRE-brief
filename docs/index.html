@@ -28,16 +28,25 @@
       <h1 class="brief-title">3 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-03T13:02:17.293394-05:00">3 June 2026, 13:02</time>
+        <time data-iso="2026-06-03T16:55:35.070432-05:00">3 June 2026, 16:55</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">2 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">4 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
@@ -45,8 +54,8 @@
         <span class="trend-pill">elastic<span class="trend-count">4</span></span>
         <span class="trend-pill">build<span class="trend-count">3</span></span>
         <span class="trend-pill">elastic stack<span class="trend-count">3</span></span>
+        <span class="trend-pill">first<span class="trend-count">2</span></span>
         <span class="trend-pill">platform<span class="trend-count">2</span></span>
-        <span class="trend-pill">builders<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -80,11 +89,11 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
       </div>
     </div>
@@ -93,15 +102,15 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
@@ -118,10 +127,44 @@
   <div class="day-group">
     <h2 class="day-heading">
       3 June 2026
-      <span class="day-count">2</span>
+      <span class="day-count">4</span>
     </h2>
   </div>
 
+  <div class="article-card card--critical"
+       data-tags="networking,outage"
+       data-vendors="Cloudflare"
+       data-impact="critical"
+       data-theme="incident response"
+       data-title="enforcing the first as in bgp as_paths"
+       data-id="f2b4de35f575923c"
+       data-published="2026-06-03T17:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-03T17:00:00+00:00" title="3 June 2026, 12:00">3 June 2026, 12:00</time>
+      </div>
+      <h3 class="card-title">Enforcing the First AS in BGP AS_PATHs</h3>
+      <p class="card-summary">Some recent route hijacks reported by Spamhaus captured our attention. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Some recent route hijacks reported by Spamhaus captured our attention. In many of these hijack attempts, an apparent bad actor took advantage of unused autonomous system numbers , or ASNs. Notably in these hijacks, the actor appears to be creating fake AS_PATHs toward destinations, misdirecting traffic down an unexpected path.</p></div>
+      <div class="detail-links">
+        <a href="articles/f2b4de35f575923c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/enforce-first-as-bgp/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="deployment,kubernetes,observability,outage,postmortem"
        data-vendors="GitHub,Kubernetes,Red Hat"
@@ -188,6 +231,40 @@
       <div class="detail-links">
         <a href="articles/d321d81c42e8f282.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/jesse-sladek-partnerships" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="latency,outage"
+       data-vendors=""
+       data-impact="high"
+       data-theme="incident response"
+       data-title="how to overcome data gravity and accelerate ai security in the soc"
+       data-id="df7dc0251811845f"
+       data-published="2026-06-03T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+        <time class="meta-time" data-iso="2026-06-03T00:00:00+00:00" title="2 June 2026, 19:00">2 June 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">How to overcome data gravity and accelerate AI security in the SOC</h3>
+      <p class="card-summary">Does heavy security data slow your threat detection. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Does heavy security data slow your threat detection? You&#39;re not alone. Learn four principles to unify your architecture and speed up incident response.</p></div>
+      <div class="detail-links">
+        <a href="articles/df7dc0251811845f.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/data-gravity-in-cybersecurity" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1114,79 +1191,6 @@
       <div class="detail-links">
         <a href="articles/1ee826a1919f8468.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/elastic-stack-9-3-5-released" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      27 May 2026
-      <span class="day-count">2</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--medium"
-       data-tags="networking,outage"
-       data-vendors="Cloudflare"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="iran&#39;s internet is partially restored, cloudflare radar data shows"
-       data-id="06b304e0088b808a"
-       data-published="2026-05-27T17:25:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-05-27T17:25:00+00:00" title="27 May 2026, 12:25">27 May 2026, 12:25</time>
-      </div>
-      <h3 class="card-title">Iran&#39;s Internet is partially restored, Cloudflare Radar data shows</h3>
-      <p class="card-summary">On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February 28. Cloudflare Radar data confirms increased activity and indicates a partial restoration of the Internet in Iran.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">networking</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Cloudflare Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>On Tuesday, May 26, Iran’s vice president announced that Internet access had started to be restored in the country after being cut off almost three months ago, following the launch of U.S. and Israeli attacks on February 28. Cloudflare Radar data confirms increased activity and indicates a partial restoration of the Internet in Iran. In this blog post, we’ll examine a range of data points that provide a lens into this prolonged shutdown – and the signs that Iran’s citizens are increasingly able to connect once again.</p></div>
-      <div class="detail-links">
-        <a href="articles/06b304e0088b808a.html" class="detail-read">Open structured brief →</a>
-        <a href="https://blog.cloudflare.com/iran-internet-partially-restored-may-2026/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors="AWS"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="meet our newest aws heroes – may 2026"
-       data-id="4240d282d6e32373"
-       data-published="2026-05-27T16:15:05+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">AWS</span>        <time class="meta-time" data-iso="2026-05-27T16:15:05+00:00" title="27 May 2026, 11:15">27 May 2026, 11:15</time>
-      </div>
-      <h3 class="card-title">Meet Our Newest AWS Heroes – May 2026</h3>
-      <p class="card-summary">We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">AWS News Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>We’re excited to welcome four outstanding community leaders as our newest AWS Heroes. These individuals embody the spirit of collaboration and knowledge sharing that makes the AWS community thrive. From building AI-powered tools that help fellow builders navigate AWS re:Invent, to leading some of the largest AWS communities in Latin America, to sharing deep cloud architecture expertise across blogs and events.</p></div>
-      <div class="detail-links">
-        <a href="articles/4240d282d6e32373.html" class="detail-read">Open structured brief →</a>
-        <a href="https://aws.amazon.com/blogs/aws/meet-our-newest-aws-heroes-may-2026/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
