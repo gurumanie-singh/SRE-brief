@@ -80,10 +80,6 @@
       {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-whats-next-with-aws-2026-amazon-quick-openai-partnership-and-more-may-4-2026/"
-      },
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/mitigate-credential-exposure-in-windows-environments-with-boundary-and-vault"
       }
     ],
     "highlighted": false

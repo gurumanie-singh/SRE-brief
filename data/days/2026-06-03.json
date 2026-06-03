@@ -1,0 +1,52 @@
+[
+  {
+    "id": "aa1e1db6edb2f381",
+    "title": "Build modular AI pipelines with OpenShift AI and reusable components",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/03/build-modular-ai-pipelines-openshift-ai-and-reusable-components",
+    "published": "2026-06-03T07:31:00+00:00",
+    "fetched_at": "2026-06-03T12:48:00.205122+00:00",
+    "summary": "Stop reinventing the wheel each time you build a gen AI workflow. You might be manually coding data prep workflows, fine-tuning infrastructure, or evaluation frameworks from scratch. If so, you are spending time on solved problems instead of differentiating your AI applications. Teams often repeat the same work because they don't have a shared component library.",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-06-03",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Distributed training orchestration",
+      "Without reusable components, teams face painful challenges. They deal with duplicated code across projects. They see inconsistent implementations because different AI engineers make different choices. Teams also test in ",
+      "The value proposition differs by audience. AI engineers get tested building blocks that integrate with OpenShift AI infrastructure. They spend less time on plumbing and more on model performance. Data scientists who cont",
+      "The composable approach means you write less code and maintain less infrastructure. You chain together focused components that each do one thing well. You no longer need to build monolithic training scripts. This modular",
+      "The primary upstream repository contains standard, generic components for the Kubeflow community. These items should be generic components that can be used across many platforms and environments.",
+      "└── tests/ The component.py file contains the Python-based KFP component definition. This is where you define inputs, outputs, and the actual logic. You use the KFP SDK decorators to specify component metadata. One impor",
+      "Testing and quality (import guard, unit tests, LocalRunner tests)",
+      "\"\"\"Receive upstream output, print own message, return combined result.\"\"\""
+    ],
+    "sections": {
+      "overview": "Stop reinventing the wheel each time you build a gen AI workflow. You might be manually coding data prep workflows, fine-tuning infrastructure, or evaluation frameworks from scratch. If so, you are spending time on solved problems instead of differentiating your AI applications.",
+      "technical_breakdown": "A typical fine-tuning pipeline involves many steps:\n\n Data collection and cleaning\n Format conversion for training frameworks\n Distributed training orchestration\n Checkpoint management\n Evaluation across multiple metrics\n Deployment with inference optimization\n Without reusable components, teams face painful challenges.\n\nDrill into container logs to see where a failure occurred.\n\nThis post covers how to use our existing component catalog as a baseline and extend it to support your organization's custom pipelines.\n\nThese tasks can include:\n\n Data preprocessing\n Model training\n Evaluation\n Model optimization\n Deployment\n You might need to load data from Amazon S3 or preprocess text for a large language model (LLM).\n\nBy selecting from the existing catalog, you can build a flexible pipeline tailored to your use case.",
+      "impact": "Your team needs to fine-tune a language model for customer support. The platform provides a rich user interface (UI) to:\n\n Visualize your pipeline structure. Nothing is more frustrating than a pipeline that runs for hours before failing. This naming convention improves UI readability for the user.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Parameter naming Use common prefixes for related parameters.\n\nIf so, prefix them all with model_ .\n\nThis common prefix groups them visually in the pipeline UI.",
+      "lessons_learned": "Your lessons learned will help others build more efficient workflows.\n\nThis validation check prevents long-running failures.\n\nThis naming convention improves UI readability for the user.\n\nThis validation prevents component rot as dependencies or SDKs evolve.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Teams often repeat the same work because they don't have a shared component library. These tasks can include:\n\n Data preprocessing\n Model training\n Evaluation\n Model optimization\n Deployment\n You might need to load data from Amazon S3 or preprocess text for a large language model (LLM). They also include model fine-tuning runners, evaluation calculators, and deployment helpers.",
+      "incident_timeline": "Distributed training orchestration\nWithout reusable components, teams face painful challenges. They deal with duplicated code across projects. They see inconsistent implementations because different AI engineers make different choices. Teams also test in \nThe value proposition differs by audience. AI engineers get tested building blocks that integrate with OpenShift AI infrastructure. They spend less time on plumbing and more on model performance. Data scientists who cont\nThe composable approach means you write less code and maintain less infrastructure. You chain together focused components that each do one thing well. You no longer need to build monolithic training scripts. This modular\nThe primary upstream repository contains standard, generic components for the Kubeflow community. These items should be generic components that can be used across many platforms and environments.\n└── tests/ The component.py file contains the Python-based KFP component definition. This is where you define inputs, outputs, and the actual logic. You use the KFP SDK decorators to specify component metadata. One impor\nTesting and quality (import guard, unit tests, LocalRunner tests)\n\"\"\"Receive upstream output, print own message, return combined result.\"\"\"",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Stop reinventing the wheel each time you build a gen AI workflow. You might be manually coding data prep workflows, fine-tuning infrastructure, or evaluation frameworks from scratch.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
