@@ -48,5 +48,40 @@
     "email_summary": "Stop reinventing the wheel each time you build a gen AI workflow. You might be manually coding data prep workflows, fine-tuning infrastructure, or evaluation frameworks from scratch.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "d321d81c42e8f282",
+    "title": "The platform cycle has turned. Here’s how partners win it.",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/jesse-sladek-partnerships",
+    "published": "2026-06-03T00:00:00+00:00",
+    "fetched_at": "2026-06-03T18:02:16.940623+00:00",
+    "summary": "AI is changing how people buy, driving them to single platforms. As the unified platform for search, security, and observability, Elastic offers partners major growth. Build your practice today and reap the rewards.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-06-03",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "AI is changing how people buy, driving them to single platforms. As the unified platform for search, security, and observability, Elastic offers partners major growth. Build your practice today and reap the rewards.",
+      "technical_breakdown": "As the unified platform for search, security, and observability, Elastic offers partners major growth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "AI is changing how people buy, driving them to single platforms. As the unified platform for search, security, and observability, Elastic offers partners major growth.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
