@@ -27,10 +27,20 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">4 June 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">6 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>2 critical incident signals in the feed window</li>
+        <li>Repeated coverage across Red Hat, Kubernetes</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -39,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -54,16 +65,214 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--critical"
+       data-tags="kubernetes,latency,networking,outage"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="critical"
+       data-theme="incident response"
+       data-title="type what you want to break: ai-assisted chaos engineering with krkn"
+       data-id="39e9e1cd101c8bff"
+       data-published="2026-06-04T07:16:59+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-04T07:16:59+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Type what you want to break: AI-assisted chaos engineering with Krkn</h3>
+      <p class="card-summary">Chaos engineering on Kubernetes has never been more powerful. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Chaos engineering on Kubernetes has never been more powerful. Tools like Krkn now support over twenty scenario types, such as pod disruptions, node failures, network chaos, CPU and memory stress, zone outages, and more. Krkn&#39;s documentation is thorough, consisting of well-defined scenario types with clear parameters and defaults.</p></div>
+      <div class="detail-links">
+        <a href="../articles/39e9e1cd101c8bff.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/04/type-what-you-want-break-ai-assisted-chaos-engineering-krkn" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,outage"
+       data-vendors="Kubernetes,Red Hat,Slack"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="understanding evaluation collections in evalhub"
+       data-id="51b29923e6924703"
+       data-published="2026-06-04T07:16:58+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-04T07:16:58+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Understanding evaluation collections in EvalHub</h3>
+      <p class="card-summary">In Because &#34;looks good to me&#34; isn&#39;t a benchmark , we identified five structural failures in enterprise AI evaluation. The second problem, the what should I measure? problem, is the one that bites teams earliest and quietly.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In Because &#34;looks good to me&#34; isn&#39;t a benchmark , we identified five structural failures in enterprise AI evaluation. The second problem, the what should I measure? problem, is the one that bites teams earliest and quietly. You have a model.</p></div>
+      <div class="detail-links">
+        <a href="../articles/51b29923e6924703.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/04/understanding-evaluation-collections-evalhub" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,networking,observability,outage"
+       data-vendors="HashiCorp,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="an overview of confidential containers on openshift bare metal"
+       data-id="90d363c7d36312ea"
+       data-published="2026-06-04T07:16:56+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">HashiCorp</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-04T07:16:56+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">An overview of confidential containers on OpenShift bare metal</h3>
+      <p class="card-summary">Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor. At the heart of Confidential Containers is the confidential virtual machine (CVM), a hardware-isolated virtual machine created within the TEE.</p></div>
+      <div class="detail-links">
+        <a href="../articles/90d363c7d36312ea.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/04/overview-confidential-containers-openshift-bare-metal" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="database,deployment,latency,networking,outage,scaling"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="critical"
+       data-theme="capacity and scale"
+       data-title="iscsi vs. nvme/tcp: the ultimate storage showdown for red hat openshift virtualization"
+       data-id="3f43cf82a19cd8c5"
+       data-published="2026-06-04T07:16:55+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-04T07:16:55+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">iSCSI vs. NVMe/TCP: The ultimate storage showdown for Red Hat OpenShift Virtualization</h3>
+      <p class="card-summary">As virtualization density continues to grow in modern data centers, selecting the right storage protocol has become increasingly important, and directly impacts CPU efficiency, I/O overhead, and overall application responsiveness. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>As virtualization density continues to grow in modern data centers, selecting the right storage protocol has become increasingly important, and directly impacts CPU efficiency, I/O overhead, and overall application responsiveness. In this article, we take a closer look at how two IP-based storage protocols—iSCSI and NVMe/TCP—compare within a Red Hat OpenShift Virtualization environment to help you determine whether a transition makes sense for your infrastructure. For many years, the go-to solution for accessing block-level storage over standard ethernet networks has been iSCSI.</p></div>
+      <div class="detail-links">
+        <a href="../articles/3f43cf82a19cd8c5.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/04/iscsi-vs-nvmetcp-ultimate-storage-showdown-red-hat-openshift-virtualization" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="speculators v0.5.0: dflash support and online training"
+       data-id="7dd8dfd8b1d01e17"
+       data-published="2026-06-04T07:16:53+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-04T07:16:53+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Speculators v0.5.0: DFlash support and online training</h3>
+      <p class="card-summary">The v0.5.0 release brings significant architectural improvements to speculative decoding model training, introducing DFlash algorithm support, fully unified online training capabilities, and a migration to vLLM&#39;s native hidden states extraction system. This release represents a major step forward in both training flexibility and production readiness for speculative decoding workflows.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The v0.5.0 release brings significant architectural improvements to speculative decoding model training, introducing DFlash algorithm support, fully unified online training capabilities, and a migration to vLLM&#39;s native hidden states extraction system. This release represents a major step forward in both training flexibility and production readiness for speculative decoding workflows. Key features include:</p>
+<p>DFlash algorithm support for single-pass draft token generation with block diffusion  Gemma 4 DFlash results  vLLM-native online and offline training with unified hidden states extraction  Updated documentation and examples outlining key workflows  DFlash algorithm support v0.5.0 introduces training support for the DFlash speculative decoding algorithm, a fundamentally different approach to draft token generation compared to the autoregressive Eagle 3 models.</p></div>
+      <div class="detail-links">
+        <a href="../articles/7dd8dfd8b1d01e17.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/04/speculators-v050-dflash-support-and-online-training" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors="Red Hat"

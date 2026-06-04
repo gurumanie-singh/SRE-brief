@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Type what you want to break: AI-assisted chaos engineering with Krkn — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-04.html" class="back-link">← 4 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">4 June 2026, 02:16</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Type what you want to break: AI-assisted chaos engineering with Krkn</h1>
+
+      <p class="subtitle">Chaos engineering on Kubernetes has never been more powerful. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Chaos engineering on Kubernetes has never been more powerful. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Chaos engineering on Kubernetes has never been more powerful. Tools like Krkn now support over twenty scenario types, such as pod disruptions, node failures, network chaos, CPU and memory stress, zone outages, and more. Krkn&#39;s documentation is thorough, consisting of well-defined scenario types with clear parameters and defaults.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Every Krkn scenario covered The skill supports all Krkn scenario types available today:</p>
+<p>Pod-level: pod-scenarios, container-scenarios   Node-level: node-scenarios, node-scenarios-bm, node-cpu-hog, node-memory hog, node-io-hog   Network: network-chaos, pod-network-chaos, node-network-filter, pod network-filter, syn-flood   Time: time-scenarios   Application: application-outages   Service: service-disruption-scenarios, service-hijacking   Storage: pvc-scenarios   Cluster-wide: power-outages, zone-outages   Virtualization: kubevirt-outage   It fetches the knowledge base fresh on every invocation, so your scenario definitions stay up to date as Krkn evolves.</p>
+<p>Type a natural language description of the failure you want to simulate as follows:</p>
+<p>/krkn-scenario kill etcd pods in openshift-etcd namespace You’ll get:</p>
+<p>A validated krknctl CLI command, ready to copy and run   A validated krkn-hub Docker command as an alternative   A parameter table with descriptions and justifications for each value   Relevant edge cases and warnings from the scenario definition   Here are a few more examples:</p>
+<p>/krkn-scenario add 200ms network latency to worker nodes for 5 minutes  /krkn-scenario hog 4 CPU cores at 80% on nodes labeled stress-test=true  /krkn-scenario fill PVCs to 90% in namespace my-app  /krkn-scenario simulate zone outage in us-east-1a Each of these produces a complete, validated command, not a template with placeholders to fill in.</p>
+<p>The skill handles the translation as follows:</p>
+<p>You say : Kill etcd pods The skill generates : krknctl run pod-scenarios --namespace openshift-etcd …     You say : Stress CPU on 2 worker nodes The skill generates : krknctl run node-cpu-hog --node-selector node role.kubernetes.io/worker= …     You say : Add network latency to pods in my-app The skill generates : krknctl run pod-network-chaos --namespace my-app -- latency 200 …     This opens up chaos engineering to anyone on your team, not just the person who memorized the Krkn docs.</p>
+<p>Tools like Krkn now support over twenty scenario types, such as pod disruptions, node failures, network chaos, CPU and memory stress, zone outages, and more.</p>
+<p>Find the right scenario: Is it pod-scenarios, container-scenarios, or application-outages?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Type a natural language description of the failure you want to simulate as follows:</p>
+<p>/krkn-scenario kill etcd pods in openshift-etcd namespace You’ll get:</p>
+<p>A validated krknctl CLI command, ready to copy and run   A validated krkn-hub Docker command as an alternative   A parameter table with descriptions and justifications for each value   Relevant edge cases and warnings from the scenario definition   Here are a few more examples:</p>
+<p>/krkn-scenario add 200ms network latency to worker nodes for 5 minutes  /krkn-scenario hog 4 CPU cores at 80% on nodes labeled stress-test=true  /krkn-scenario fill PVCs to 90% in namespace my-app  /krkn-scenario simulate zone outage in us-east-1a Each of these produces a complete, validated command, not a template with placeholders to fill in. Tools like Krkn now support over twenty scenario types, such as pod disruptions, node failures, network chaos, CPU and memory stress, zone outages, and more. Find the right scenario: Is it pod-scenarios, container-scenarios, or application-outages? Is it --chaos-duration or -- duration ?</p>
+<p>Classified impact band: critical. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Result analysis: Interpret chaos test results and suggest follow-up scenarios.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>You&#39;ll get guided recommendations from someone (well, something) that has read all the docs.</p>
+<p>Result analysis: Interpret chaos test results and suggest follow-up scenarios.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Chaos engineering on Kubernetes has never been more powerful. Tools like Krkn now support over twenty scenario types, such as pod disruptions, node failures, network chaos, CPU and memory stress, zone outages, and more. </li>
+            <li>The gap between intent and syntax While chaos testing a Red Hat OpenShift cluster, I kept running into the following loop every time I needed to execute a new scenario.</li>
+            <li>A single typo in a flag name meant a failed run with a cryptic error, and I’d be right back in the documentation. I was spending more time reading about chaos tests than actually running them. If you’ve run Krkn scenario</li>
+            <li>What if you could just say what you want? This question led me to build a Claude Code skill, a natural language interface for Krkn that already knows every krknctl and krkn-hub parameter, its default, type, and allowed v</li>
+            <li>/krkn-scenario hog 4 CPU cores at 80% on nodes labeled stress-test=true</li>
+            <li>Describe what you want—no syntax required The most important design goal is to not need to know anything about Krkn’s CLI syntax. No flag names, no environment variable mappings, no digging through scenario JSON files. J</li>
+            <li>This opens up chaos engineering to anyone on your team, not just the person who memorized the Krkn docs. An SRE investigating a production incident can quickly set up the right failure scenario. A developer can test how </li>
+            <li>The skill asks before it assumes Unlike a static template generator, the skill understands what information is missing and asks targeted questions before generating commands. It classifies every parameter into three buck</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/04/type-what-you-want-break-ai-assisted-chaos-engineering-krkn" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An overview of confidential containers on OpenShift bare metal — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-04.html" class="back-link">← 4 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">4 June 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">An overview of confidential containers on OpenShift bare metal</h1>
+
+      <p class="subtitle">Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor. At the heart of Confidential Containers is the confidential virtual machine (CVM), a hardware-isolated virtual machine created within the TEE.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>This ensures Kubernetes scheduler accounting for the used memory.</p>
+<p>apiVersion: v1 kind: Pod metadata:  name: sample-cc-pod  annotations:   #default Confidential Containers VM is 2048M, 49152M = 48G  io.katacontainers.config.hypervisor.default_memory: &#34;49152&#34; spec:  runtimeClassName: kata-cc  restartPolicy: OnFailure  containers:  - name: cc-pod  image: quay.io/fedora/fedora:43  imagePullPolicy: IfNotPresent  command: [&#34;/bin/bash&#34;]  args:  - -c  - |  sleep 36000  resources:  limits:  # This ensures correct accounting by the Kubernetes scheduler  memory: &#34;49152M&#34;  requests:  memory: &#34;49152M&#34;  securityContext:  privileged: false In-guest image pull from authenticated registries A user might want to use container images from private OCI registries, hence requiring authentication.</p>
+<p>Implementing in-TEE TLS termination has several architectural implications:</p>
+<p>Networking stack: The TEE must host a fully functional and secure networking stack (e.g., a protected kernel or user-space network library) capable of handling the TCP/IP connection and the TLS protocol.</p>
+<p>This approach preserves the standard Kubernetes pod abstraction while enhancing isolation by transitioning from OS-level containers to hardware-enforced boundaries, effectively creating confidential containers.</p>
+<p>The plaintext secret (i.e., key.pem ) is only available inside the TEE.</p>
+<p>apiVersion: v1 kind: Pod metadata:  name: ocp-cc-pod  labels:  app: ocp-cc-pod  annotations:  io.katacontainers.config.hypervisor.cc_init_data: &lt;b64(gzip_initdata)&gt; spec:  runtimeClassName: kata-cc  containers:  - name: skr-openshift  image: registry.access.redhat.com/ubi9/ubi:latest  volumeMounts:  - name: secret-volume  mountPath: &#34;myvalue&#34;  env:  - name: PROTECTED_SECRET  valueFrom:  secretKeyRef:  name: mysecret  key: mysecret  command:  - sleep  - &#34;36000&#34;  securityContext:  privileged: false  seccompProfile:  type: RuntimeDefault  volumes:  - name: secret-volume  secret:  secretName: mysecret In-guest image pull and CVM root disk size requirements Unlike standard containers, confidential containers workloads require container images to be pulled inside the CVM.</p>
+<p>You must explicitly increase pod memory requests/limits to accommodate: Image layers   Runtime overhead   Application memory     Failure to size memory appropriately will result in container creation failure.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>For detailed configuration steps refer to the user guide . Please refer to the user guide for configuration instructions. Please refer to the user guide to configure container image signature policy for confidential containers. This ensures Kubernetes scheduler accounting for the used memory.</p>
+<p>apiVersion: v1 kind: Pod metadata:  name: sample-cc-pod  annotations:   #default Confidential Containers VM is 2048M, 49152M = 48G  io.katacontainers.config.hypervisor.default_memory: &#34;49152&#34; spec:  runtimeClassName: kata-cc  restartPolicy: OnFailure  containers:  - name: cc-pod  image: quay.io/fedora/fedora:43  imagePullPolicy: IfNotPresent  command: [&#34;/bin/bash&#34;]  args:  - -c  - |  sleep 36000  resources:  limits:  # This ensures correct accounting by the Kubernetes scheduler  memory: &#34;49152M&#34;  requests:  memory: &#34;49152M&#34;  securityContext:  privileged: false In-guest image pull from authenticated registries A user might want to use container images from private OCI registries, hence requiring authentication.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>SEALED_SECRET=&#34;sealed.fakejwsheader.$(cat secret.json | basenc --base64url -w0).fakesignature&#34; The key is the base64url encoding of the secret.json file and adding the required prefix and the suffix.</p>
+<p>Also it’s not supported glob URLs nor prefix-matched paths as in Kubernetes interpretation of config.json.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Remote attestation improvements The confidential containers solution introduces remote attestation-related improvements.</p>
+<p>If the signature is invalid or missing, the launch is aborted, preventing the execution of potentially malicious or compromised code.</p>
+<p>Preventing supply chain attacks: Container image registries are a potential vector for supply chain attacks.</p>
+<p>Client verification: The necessity of in-TEE TLS termination is particularly relevant for services that require mutual TLS (mTLS) or robust client authentication because the verification of client certificates must also occur within the trusted environment to prevent spoofing.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Because initdata is part of the attestation context, any modification changes the measurement and can invalidate policy checks, providing strong binding between workload intent and secret provisioning. TrusteeConfig is a Kubernetes custom resource that simplifies Red Hat build of Trustee deployment by automating resource creation. It includes the secrets, config maps, and lower-level resources required for deployment.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The second critical component of Confidential Containers is remote attestation. Attestation verifies that a given CVM is operating on genuine TEE hardware in an expected, untampered state. This includes conditions like m</li>
+            <li>Kata-based VM isolation, TEE enforcement, and policy-driven attestation create a zero-trust execution model where:</li>
+            <li>Red Hat build of Trustee operator : This operator provides the remote attestation services required for confidential containers.</li>
+            <li>Pod bootstrap configuration Confidential containers provide you with the option to add bootstrap configurations through measured initdata . The initdata specification defines a structured, cryptographically verifiable pa</li>
+            <li>Trust and connectivity: TLS certificates and endpoints for secure communication with the Red Hat build of Trustee remote attestation service</li>
+            <li>Secrets and identity material: Secrets provisioned post-attestation</li>
+            <li>Registry authentication credentials and certificates: Registry secrets provisioned post-attestation when using authenticated container registries</li>
+            <li>Runtime enforcement: Kata Containers agent policy for agent RPC restriction (i.e., allowing &#34;exec&#34; for specific commands, disabling specific volume mounts, etc.).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/04/overview-confidential-containers-openshift-bare-metal" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
