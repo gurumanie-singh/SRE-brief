@@ -45,7 +45,16 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "Chaos engineering on Kubernetes has never been more powerful. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/company-news/github-universe-is-back-all-together-now-in-the-agentic-era/"
+      },
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/voidzero-joins-cloudflare/"
+      }
+    ],
     "highlighted": false
   },
   {

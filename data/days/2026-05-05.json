@@ -233,12 +233,7 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "When we introduced Red Hat OpenStack Services on OpenShift in early 2025, our consultants and solutions architects noticed a recurring theme: organizations wanted to do more with less. This led to releasing support for multiple OpenStack services on a single Red Hat OpenShift cluster, a project we internally called MultiRHOSO phase 1.",
-    "related_sources": [
-      {
-        "source": "Slack Engineering",
-        "link": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
