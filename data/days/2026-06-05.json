@@ -1,5 +1,40 @@
 [
   {
+    "id": "cdd9b22bae052258",
+    "title": "Making the OWASP top ten in the vibe code era​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​‌​‌​﻿​﻿​﻿‌​﻿‌​﻿‌‌​​﻿‌​​﻿‌​﻿​​﻿​‌‌‌​﻿​﻿​﻿‌​﻿‌​‌‌‌​﻿‌‌‌‌‌​﻿‌‌​‌​﻿​​‌​﻿‌​​﻿‌‌​﻿​﻿‌‌‌‌‌‌​‌​﻿​​﻿​‌​﻿‌﻿‌‌​​﻿​​﻿​​﻿​​​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​‌​‌​﻿​﻿​﻿‌​﻿‌​﻿‌‌​​﻿‌​​﻿‌​﻿​​﻿​‌‌‌​﻿​﻿​﻿‌​﻿‌​‌‌‌​﻿‌‌‌‌‌​﻿‌‌​‌​﻿​​‌​﻿‌​​﻿‌‌​﻿​﻿‌‌‌‌‌‌​‌​﻿​​﻿​‌​﻿‌﻿‌‌​​﻿​​﻿​​﻿​​​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/05/making-the-owasp-top-ten-in-the-vibe-code-era/",
+    "published": "2026-06-05T07:40:00+00:00",
+    "fetched_at": "2026-06-05T08:49:34.798942+00:00",
+    "summary": "Ryan welcomes back Tanya Janca, now part of the OWASP Top 10 team, to discuss what changed in the latest OWASP Top 10 release, how the list shifted from “outdated components” to a broader software supply chain focus, and why they added memory safety and vibe-coding as awareness...",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-06-05",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Ryan welcomes back Tanya Janca, now part of the OWASP Top 10 team, to discuss what changed in the latest OWASP Top 10 release, how the list shifted from “outdated components” to a broader software supply chain focus, and"
+    ],
+    "sections": {
+      "overview": "Ryan welcomes back Tanya Janca, now part of the OWASP Top 10 team, to discuss what changed in the latest OWASP Top 10 release, how the list shifted from “outdated components” to a broader software supply chain focus, and why they added memory safety and vibe-coding as awareness...",
+      "technical_breakdown": "Ryan welcomes back Tanya Janca, now part of the OWASP Top 10 team, to discuss what changed in the latest OWASP Top 10 release, how the list shifted from “outdated components” to a broader software supply chain focus, and why they added memory safety and vibe-coding as awareness items.​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​‌​‌​﻿​﻿​﻿‌​﻿‌​﻿‌‌​​﻿‌​​﻿‌​﻿​​﻿​‌‌‌​﻿​﻿​﻿‌​﻿‌​‌‌‌​﻿‌‌‌‌‌​﻿‌‌​‌​﻿​​‌​﻿‌​​﻿‌‌​﻿​﻿‌‌‌‌‌‌​‌​﻿​​﻿​‌​﻿‌﻿‌‌​​﻿​​﻿​​﻿​​​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​‌​‌​﻿​﻿​﻿‌​﻿‌​﻿‌‌​​﻿‌​​﻿‌​﻿​​﻿​‌‌‌​﻿​﻿​﻿‌​﻿‌​‌‌‌​﻿‌‌‌‌‌​﻿‌‌​‌​﻿​​‌​﻿‌​​﻿‌‌​﻿​﻿‌‌‌‌‌‌​‌​﻿​​﻿​‌​﻿‌﻿‌‌​​﻿​​﻿​​﻿​​​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Ryan welcomes back Tanya Janca, now part of the OWASP Top 10 team, to discuss what changed in the latest OWASP Top 10 release, how the list shifted from “outdated components” to a broader software supply chain focus, and",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes back Tanya Janca, now part of the OWASP Top 10 team, to discuss what changed in the latest OWASP Top 10 release, how the list shifted from “outdated components” to a broader software supply chain focus, and why they added memory safety and vibe-coding as awareness…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "671c226860618f75",
     "title": "Installing Red Hat Enterprise Linux 10 from a bootc image with bootc",
     "source": "Red Hat Developer Blog",
