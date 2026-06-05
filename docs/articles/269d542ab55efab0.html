@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elastic 9.4: Workflows GA, Agent Builder updates, and Prometheus/PromQL support — SRE Brief</title>
+  <title>HCP Terraform adds project-level run tasks — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,28 +23,29 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-05-05.html" class="back-link">← 5 May 2026 day sheet</a>
+    <a href="../daily/2026-06-02.html" class="back-link">← 2 June 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
-        <span class="card-source">Elastic Blog</span>
-        <span class="card-date">4 May 2026, 19:00</span>
+        <span class="card-source">HashiCorp Blog</span>
+        <span class="card-date">2 June 2026, 11:00</span>
         <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Elastic 9.4: Workflows GA, Agent Builder updates, and Prometheus/PromQL support</h1>
+      <h1 class="title">HCP Terraform adds project-level run tasks</h1>
 
-      <p class="subtitle">Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.</p>
+      <p class="subtitle">HCP Terraform adds project-level run tasks Summary: HCP Terraform now supports project-level run tasks, enabling organizations to apply security, compliance, and operational guardrails consistently across groups of workspaces while reducing manual overhead. Organizations increasingly rely on HCP Terraform Projects to organize infrastructure by application, business unit, or environment.</p>
 
 
       <div class="article-tags">
-        <span class="vendor-tag">Elastic</span>
-        <span class="tag">observability</span>
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="tag">deployment</span>
       </div>
 
       <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
         <div class="fact-row"><dt>Affected layer</dt><dd>general production</dd></div>
-        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>general reliability</dd></div>
       </dl>
     </header>
 
@@ -53,70 +54,73 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.</p>
+      <p class="quick-take-text">HCP Terraform adds project-level run tasks Summary: HCP Terraform now supports project-level run tasks, enabling organizations to apply security, compliance, and operational guardrails consistently across groups of workspaces while reducing manual overhead. Organizations increasingly rely on HCP Terraform Projects to organize infrastructure by application, business unit, or environment.</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.</p>
+          <p>HCP Terraform adds project-level run tasks Summary: HCP Terraform now supports project-level run tasks, enabling organizations to apply security, compliance, and operational guardrails consistently across groups of workspaces while reducing manual overhead. Organizations increasingly rely on HCP Terraform Projects to organize infrastructure by application, business unit, or environment. As infrastructure adoption scales across teams, platform administrators need governance controls that align naturally with how infrastructure is organized — without introducing operational complexity.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.</p>
+          <p>While these controls worked well for smaller deployments, they did not align with how most organizations naturally structure infrastructure at scale.</p>
+<p>As environments scaled over time, this increased operational overhead and made it harder to maintain consistent governance across infrastructure deployments.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>Classified impact band: medium. Affected layer signal: general production.</p>
+          <p>This new capability enables organizations to configure and enforce run tasks at the project scope, helping teams standardize security, compliance, and operational workflows across collections of workspaces. By extending run task enforcement to the project scope, organizations can scale governance more consistently across infrastructure environments while reducing manual overhead for platform teams:</p>
+<p>Improve speed and scalability: Platform teams can reduce manual workspace-by-workspace configuration and simplify governance enforcement as new workspaces are created or moved between projects.</p>
+<p>Classified impact band: medium. Affected layer signal: general production.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+          <p>As environments scaled over time, this increased operational overhead and made it harder to maintain consistent governance across infrastructure deployments.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for logs, metrics, and traces.</p>
+          <p>By extending run task enforcement to the project scope, organizations can scale governance more consistently across infrastructure environments while reducing manual overhead for platform teams:</p>
+<p>Improve speed and scalability: Platform teams can reduce manual workspace-by-workspace configuration and simplify governance enforcement as new workspaces are created or moved between projects.</p>
+<p>Reduce risk and improve consistency: Automatically inheriting run task controls at the project level helps minimize configuration drift and ensures security, compliance, and operational standards are applied consistently across environments.</p>
         </div>
       </div>
-
 
       <div class="article-section">
-        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
         <div class="article-section-content">
-          <ul class="timeline-list">
-            <li>Elastic 9.4 makes Elastic the context and retrieval layer of choice with Agent Builder enhancements and Workflows GA while native Prometheus support and TSDB improvements make Elastic Observability the best platform for </li>
-          </ul>
+          <p>Likely root-cause theme: deployment failure. While these controls worked well for smaller deployments, they did not align with how most organizations naturally structure infrastructure at scale. As environments scaled over time, this increased operational overhead and made it harder to maintain consistent governance across infrastructure deployments.</p>
         </div>
       </div>
+
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
         <div class="article-section-content">
-          <p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+          <p>This item contributes to the broader reliability narrative for production engineering teams.</p>
         </div>
       </div>
 
 
-      <a href="https://www.elastic.co/blog/whats-new-elastic-9-4-0" class="source-card" target="_blank" rel="noopener">
+      <a href="https://www.hashicorp.com/blog/hcp-terraform-adds-project-level-run-tasks" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="source-card-text">
           <div class="source-card-label">External source</div>
-          <div class="source-card-name">Read the original write-up at Elastic Blog</div>
+          <div class="source-card-name">Read the original write-up at HashiCorp Blog</div>
         </div>
         <span class="source-card-arrow">→</span>
       </a>

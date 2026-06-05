@@ -152,7 +152,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/rethinking-infrastructure-access-in-the-age-of-agentic-ai"
+      }
+    ],
     "highlighted": false
   },
   {

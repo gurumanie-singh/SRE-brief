@@ -99,15 +99,15 @@
   },
   "process": {
     "retention_max_days": 30,
-    "retention_cutoff_day": "2026-05-05",
+    "retention_cutoff_day": "2026-05-06",
     "incoming_total": 258,
-    "incoming_after_retention": 119,
-    "dropped_by_retention": 139,
-    "new_articles_this_run": 25,
-    "day_files_touched": 18,
-    "total_articles_on_disk": 147,
+    "incoming_after_retention": 118,
+    "dropped_by_retention": 140,
+    "new_articles_this_run": 29,
+    "day_files_touched": 19,
+    "total_articles_on_disk": 144,
     "day_json_file_count": 23,
     "warnings": []
   },
-  "written_at": "2026-06-04T23:15:59.212875+00:00"
+  "written_at": "2026-06-05T04:39:43.997294+00:00"
 }

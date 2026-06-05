@@ -1,5 +1,40 @@
 [
   {
+    "id": "269d542ab55efab0",
+    "title": "HCP Terraform adds project-level run tasks",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/hcp-terraform-adds-project-level-run-tasks",
+    "published": "2026-06-02T16:00:00+00:00",
+    "fetched_at": "2026-06-05T04:39:41.936433+00:00",
+    "summary": "HCP Terraform adds project-level run tasks Summary: HCP Terraform now supports project-level run tasks, enabling organizations to apply security, compliance, and operational guardrails consistently across groups of workspaces while reducing manual overhead.",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-06-02",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "HCP Terraform adds project-level run tasks Summary: HCP Terraform now supports project-level run tasks, enabling organizations to apply security, compliance, and operational guardrails consistently across groups of workspaces while reducing manual overhead. Organizations increasingly rely on HCP Terraform Projects to organize infrastructure by application, business unit, or environment. As infrastructure adoption scales across teams, platform administrators need governance controls that align naturally with how infrastructure is organized — without introducing operational complexity.",
+      "technical_breakdown": "While these controls worked well for smaller deployments, they did not align with how most organizations naturally structure infrastructure at scale.\n\nAs environments scaled over time, this increased operational overhead and made it harder to maintain consistent governance across infrastructure deployments.",
+      "impact": "This new capability enables organizations to configure and enforce run tasks at the project scope, helping teams standardize security, compliance, and operational workflows across collections of workspaces. By extending run task enforcement to the project scope, organizations can scale governance more consistently across infrastructure environments while reducing manual overhead for platform teams:\n\n Improve speed and scalability: Platform teams can reduce manual workspace-by-workspace configuration and simplify governance enforcement as new workspaces are created or moved between projects.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "As environments scaled over time, this increased operational overhead and made it harder to maintain consistent governance across infrastructure deployments.",
+      "lessons_learned": "By extending run task enforcement to the project scope, organizations can scale governance more consistently across infrastructure environments while reducing manual overhead for platform teams:\n\n Improve speed and scalability: Platform teams can reduce manual workspace-by-workspace configuration and simplify governance enforcement as new workspaces are created or moved between projects.\n\nReduce risk and improve consistency: Automatically inheriting run task controls at the project level helps minimize configuration drift and ensures security, compliance, and operational standards are applied consistently across environments.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. While these controls worked well for smaller deployments, they did not align with how most organizations naturally structure infrastructure at scale. As environments scaled over time, this increased operational overhead and made it harder to maintain consistent governance across infrastructure deployments.",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "HCP Terraform adds project-level run tasks Summary: HCP Terraform now supports project-level run tasks, enabling organizations to apply security, compliance, and operational guardrails consistently across groups of workspaces while reducing manual overhead. Organizations increasingly rely on HCP Terraform Projects to organize infrastructure by application, business unit, or environment.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "f9ca644d24a5639a",
     "title": "What it takes to be a player in the international AI game​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​​﻿​​​﻿​﻿‌​‌‌​‌​‌​﻿‌﻿​﻿‌‌​﻿‌‌‌​﻿​‌​﻿​﻿​‌​﻿‌​﻿‌​​﻿‌‌‌​​﻿‌​﻿‌​﻿​​﻿‌‌​﻿​﻿​﻿‌​​﻿‌​﻿‌​​﻿​﻿​﻿​​﻿​﻿​﻿‌​﻿​​‌‌‌​﻿​﻿​﻿‌‌​﻿‌​﻿​​﻿‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​​﻿​​​﻿​﻿‌​‌‌​‌​‌​﻿‌﻿​﻿‌‌​﻿‌‌‌​﻿​‌​﻿​﻿​‌​﻿‌​﻿‌​​﻿‌‌‌​​﻿‌​﻿‌​﻿​​﻿‌‌​﻿​﻿​﻿‌​​﻿‌​﻿‌​​﻿​﻿​﻿​​﻿​﻿​﻿‌​﻿​​‌‌‌​﻿​﻿​﻿‌‌​﻿‌​﻿​​﻿‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",

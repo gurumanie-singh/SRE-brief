@@ -1,0 +1,96 @@
+[
+  {
+    "id": "671c226860618f75",
+    "title": "Installing Red Hat Enterprise Linux 10 from a bootc image with bootc",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/05/installing-red-hat-enterprise-linux-10-bootc-image-bootc",
+    "published": "2026-06-05T03:01:07+00:00",
+    "fetched_at": "2026-06-05T04:39:43.856931+00:00",
+    "summary": "Interested in a modern way to manage Red Hat Enterprise Linux (RHEL)? Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image. A key reason to deploy from a bootc image is its enhanced consistency and reliable, atomic updates and rollbacks. With RHEL 10, you can install that image from the network using the same installer you...",
+    "tags": [
+      "deployment",
+      "networking",
+      "scaling"
+    ],
+    "day": "2026-06-05",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "networking",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Interested in a modern way to manage Red Hat Enterprise Linux (RHEL)? Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image. A key reason to deploy f",
+      "Anaconda first creates the storage layout you requested, then invokes the equivalent of bootc install to-filesystem command to populate the root filesystem from the container image and configure the bootloader. Once this",
+      "Example: Minimal kickstart file The following minimal kickstart file deploys the system from a base bootc image present in the Red Hat registry. In practice, you should build a custom image for your specific needs, becau",
+      "The following example requires a Red Hat account to access the container registry. To try this functionality without an account, you can achieve a similar outcome with a CentOS Stream 10 installation medium in conjunctio",
+      "# accessible to the machine. Use it only in test or isolated environments",
+      "timezone America/New_York --utc"
+    ],
+    "sections": {
+      "overview": "Interested in a modern way to manage Red Hat Enterprise Linux (RHEL)? Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image. A key reason to deploy from a bootc image is its enhanced consistency and reliable, atomic updates and rollbacks.",
+      "technical_breakdown": "Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image.\n\nWith RHEL 10, you can install that image from the network using the same installer you already use for traditional RHEL deployments: Anaconda.\n\nFor further reference about what kickstart commands are supported, see the Installing RHEL from a bootable container image by using the bootc Kickstart command knowledge base article.\n\nUse it only in test or isolated environments\n# or adjust the storage section accordingly.\n# Don't leave the resulting kickstart file unattended, as it contains\n# secrets in plaintext.\n\nzerombr\nclearpart --all --initlabel\nautopart\n\nlang en_US.UTF-8\nkeyboard us\ntimezone America/New_York --utc\nrootpw changeme\n\nbootc --source-imgref=registry:registry.redhat.io/rhel10/rhel-bootc:10.2 --target-imgref=registry.redhat.io/rhel10/rhel-bootc:10.2\n# The following %pre and %post script sections are necessary when\n# accessing authenticated registries - the %pre script handles\n# authentication during the installation, the %post script handles\n# authentication in the installed system.\n\n%pre\nmkdir -p /etc/ostree\ncat > /etc/ostree/auth.json << 'EOF'\n{\n \"auths\": {\n \"registry.redhat.io\": {\n \"auth\": \"<your-pull-secret>\"\n }\n }\n}\nEOF\n%end\n\n%post\nmkdir -p /etc/ostree\ncat > /etc/ostree/auth.json << 'EOF'\n{\n \"auths\": {\n \"registry.redhat.io\": {\n \"auth\": \"<your-pull-secret>\"\n }\n }\n}\nEOF\n%end To start the installation, make the kickstart file available over HTTP, use the RHEL-10.2 or newer boot ISO, point the installer at your kickstart file on the kernel command line:\n\n inst.ks=http://server.example.com/path/to/kickstart.ks Alternatively, you can use the mkksiso tool from the lorax package to embed the file into the installation ISO.\n\nFor more details about the bootc command, see the Installing RHEL from a bootable container image by using the bootc Kickstart command knowledge base article.",
+      "impact": "What the bootc command does From a user perspective, the bootc command achieves the same result as the older ostreecontainer command: Installing an immutable system from a container image. Once this step is complete, Anaconda continues with the final configuration steps — including user accounts, root password, SSH keys, and other kickstart options you specified — ensuring the installed system is fully set up before the first boot. You can combine bootc with typical kickstart commands, such as autopart , clearpart , reqpart , part , network , rootpw , user , timezone , %pre or %post . User account requirements: Either set a root password with the rootpw kickstart command or define an administrator user, so that the installation can proceed.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "A key reason to deploy from a bootc image is its enhanced consistency and reliable, atomic updates and rollbacks.\n\nThe source image reference must be specified with a registry: prefix, whereas that prefix must NOT be present in the target image reference.\n\nWhat to keep in mind A few limitations are worth noting before deployment:\n\n Image reference format: Both the --source-imgref and --target-imgref options are currently required, and their usage requires a specific format: the registry: prefix must be present for the source image reference but excluded from the target image reference.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image. With RHEL 10, you can install that image from the network using the same installer you already use for traditional RHEL deployments: Anaconda. The bootc tool handles the actual deployment of operating system content and the bootloader setup.",
+      "incident_timeline": "Interested in a modern way to manage Red Hat Enterprise Linux (RHEL)? Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image. A key reason to deploy f\nAnaconda first creates the storage layout you requested, then invokes the equivalent of bootc install to-filesystem command to populate the root filesystem from the container image and configure the bootloader. Once this\nExample: Minimal kickstart file The following minimal kickstart file deploys the system from a base bootc image present in the Red Hat registry. In practice, you should build a custom image for your specific needs, becau\nThe following example requires a Red Hat account to access the container registry. To try this functionality without an account, you can achieve a similar outcome with a CentOS Stream 10 installation medium in conjunctio\n# accessible to the machine. Use it only in test or isolated environments\ntimezone America/New_York --utc",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Interested in a modern way to manage Red Hat Enterprise Linux (RHEL). Image mode is a deployment option that allows the operating system to be built, deployed, and updated like a container image.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "3e552c112c304713",
+    "title": "Why your database benchmarking data is probably wrong (and how I fixed mine)",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/05/why-your-database-benchmarking-data-probably-wrong-and-how-i-fixed-mine",
+    "published": "2026-06-05T03:01:05+00:00",
+    "fetched_at": "2026-06-05T04:39:43.857851+00:00",
+    "summary": "We've all been there. You've spent hours architecting a performance test, convinced you're about to uncover groundbreaking insights. You spin up a big RDS instance, fire up HammerDB, and wait for those \"new orders per minute\" (NOPM) numbers to skyrocket. But instead, you get a flat line (or worse, a zig-zag). You double the number of virtual users, but the throughput doesn't budge. When I started...",
+    "tags": [
+      "capacity",
+      "database",
+      "latency",
+      "networking",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-06-05",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "We've all been there. You've spent hours architecting a performance test, convinced you're about to uncover groundbreaking insights. You spin up a big RDS instance, fire up HammerDB, and wait for those \"new orders per mi",
+      "1. The observer effect: When the benchmarker becomes the bottleneck In performance benchmarking, the load generator itself can become the limiting factor if it lacks sufficient resources to sustain the intended workload.",
+      "Reality check The real bottleneck was the HammerDB client itself. My driver instance (initially an m7i.4xlarge) was consistently reaching 85%+ CPU utilization. In this state, the client struggled to efficiently manage wo",
+      "2. I/O illusion: CPU-bound vs disk-bound If you are trying to test a CPU's compute power, you must ensure it isn't waiting on the storage layer. This is a common trap in HammerDB due to the use_all_warehouses parameter.",
+      "3. Silencing the background noise: The WAL strategy PostgreSQL is designed for data integrity, which means it does a lot of work behind the scenes to ensure your data survives a crash. In a benchmark, this work manifests",
+      "The fix I increased max_wal_size to 200GB. This essentially gave the database a long enough of a \"runway\" to store every single transaction log for the duration of the test without needing to pause for cleanup.",
+      "The pre-flight routine To ensure every test run started on a level playing field, I used Red Hat Ansible Automation Platform to automate a rigorous cleanup:",
+      "By integrating loadscript and vudestroy into my automation, the results finally became predictable. These commands ensured the script is fully parsed in memory and that zombie connections from previous runs are wiped cle"
+    ],
+    "sections": {
+      "overview": "We've all been there. You've spent hours architecting a performance test, convinced you're about to uncover groundbreaking insights. You spin up a big RDS instance, fire up HammerDB, and wait for those \"new orders per minute\" (NOPM) numbers to skyrocket.",
+      "technical_breakdown": "By eliminating disk latency, I forced the database into a CPU-bound state.\n\nHowever, the database CPU utilization remained relatively low, indicating the database was not actually under heavy stress.\n\nIn this state, the client struggled to efficiently manage worker threads, scheduling, and network operations.\n\nThe apparent throughput plateau was therefore caused by client-side saturation rather than a database limitation.\n\nI/O illusion: CPU-bound vs disk-bound If you are trying to test a CPU's compute power, you must ensure it isn't waiting on the storage layer.",
+      "impact": "You've spent hours architecting a performance test, convinced you're about to uncover groundbreaking insights. You double the number of virtual users, but the throughput doesn't budge. When this happens, the benchmark no longer reflects the true capacity of the system under test, but instead the limits of the client generating requests. The problem: As I increased concurrent users, the performance metrics (NOPM/TPM) stopped scaling and remained mostly flat.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "The fix To eliminate the load generator as a bottleneck, I upgraded the client instance to an m7i.12xlarge.\n\nThe fix I set use_all_warehouses=false .\n\nThe fix I increased max_wal_size to 200GB.\n\nThe post Why your database benchmarking data is probably wrong (and how I fixed mine) appeared first on Red Hat Developer .",
+      "lessons_learned": "Expand the WAL: Prevent mid-test checkpoints, but remember the trade-off with recovery time in real-world scenarios.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. The apparent throughput plateau was therefore caused by client-side saturation rather than a database limitation. Instead, I found that without rigorous optimization, you aren't measuring your database's power—you're measuring the limitations of your testing environment. At first glance, it appeared that the database had stalled or reached saturation.",
+      "incident_timeline": "We've all been there. You've spent hours architecting a performance test, convinced you're about to uncover groundbreaking insights. You spin up a big RDS instance, fire up HammerDB, and wait for those \"new orders per mi\n1. The observer effect: When the benchmarker becomes the bottleneck In performance benchmarking, the load generator itself can become the limiting factor if it lacks sufficient resources to sustain the intended workload.\nReality check The real bottleneck was the HammerDB client itself. My driver instance (initially an m7i.4xlarge) was consistently reaching 85%+ CPU utilization. In this state, the client struggled to efficiently manage wo\n2. I/O illusion: CPU-bound vs disk-bound If you are trying to test a CPU's compute power, you must ensure it isn't waiting on the storage layer. This is a common trap in HammerDB due to the use_all_warehouses parameter.\n3. Silencing the background noise: The WAL strategy PostgreSQL is designed for data integrity, which means it does a lot of work behind the scenes to ensure your data survives a crash. In a benchmark, this work manifests\nThe fix I increased max_wal_size to 200GB. This essentially gave the database a long enough of a \"runway\" to store every single transaction log for the duration of the test without needing to pause for cleanup.\nThe pre-flight routine To ensure every test run started on a level playing field, I used Red Hat Ansible Automation Platform to automate a rigorous cleanup:\nBy integrating loadscript and vudestroy into my automation, the results finally became predictable. These commands ensured the script is fully parsed in memory and that zombie connections from previous runs are wiped cle",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "We've all been there. You've spent hours architecting a performance test, convinced you're about to uncover groundbreaking insights.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
