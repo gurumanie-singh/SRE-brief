@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build a local voice agent with Red Hat OpenShift AI — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-08.html" class="back-link">← 8 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">8 June 2026, 02:01</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+      </div>
+
+      <h1 class="title">Build a local voice agent with Red Hat OpenShift AI</h1>
+
+      <p class="subtitle">Writing a voice agent can be a daunting task. Impact band: high.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">AWS</span>
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Writing a voice agent can be a daunting task. Impact band: high.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent using Red Hat OpenShift AI, focusing on practical architecture choices and implementation lessons learned along the way.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>This deployment ran a single-node OpenShift cluster running in AWS with a hardware accelerator featuring 24 GB of memory (m6i.4xlarge).</p>
+<p>I started with four agents—the supervisor agent that holds the session state for the pizza order, and which then routes to one of the other agents depending on the structured output received.</p>
+<p>def build_graph():  &#34;&#34;&#34;Compile and return the LangGraph instance (with checkpointer for interrupts).&#34;&#34;&#34;  graph = StateGraph(SupervisorState)  graph.add_node(&#34;supervisor&#34;, supervisor_command_node)  graph.add_node(&#34;order_agent&#34;, order_agent_node)  graph.add_node(&#34;pizza_agent&#34;, pizza_agent_node)  graph.add_node(&#34;delivery_agent&#34;, delivery_agent_node)</p>
+<p># Interrupt nodes  graph.add_node(&#34;wait_for_user_after_pizza&#34;, wait_for_user_after_pizza)  graph.add_node(&#34;wait_for_user_after_order&#34;, wait_for_user_after_order)  graph.add_node(&#34;wait_for_user_after_delivery&#34;, wait_for_user_after_delivery)</p>
+<p>graph.add_edge(START, &#34;supervisor&#34;)  return graph.compile(checkpointer=MemorySaver()) In this case:</p>
+<p>I have a pizza agent that helps the user choose a pizza.</p>
+<p>The improvement stemmed from the hardware&#39;s increased allocation of CUDA and Tensor Cores rather than total memory capacity.</p>
+<p>In code, the interrupt nodes serve as simple placeholders for now.</p>
+<p>def wait_for_user_after_pizza(state: SupervisorState) -&gt; Command:  &#34;&#34;&#34;Interrupt after pizza agent, waiting for user&#39;s next input.&#34;&#34;&#34;  user_text = interrupt(_interrupt_payload(state, &#34;pizza_agent&#34;))  return Command(  goto=&#34;supervisor&#34;, update={&#34;messages&#34;: [HumanMessage(content=str(user_text))]}  ) Observability LLM systems generate a high volume of token interactions.</p>
+<p>Capture complex agent interactions and traces with MLflow observability tools.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>If gen x consistently remains greater than or equal to 1.0, any remaining playback degradation stems from client-side runtime issues. Figure 5: Client user metrics. After processing, a TTS model converts the generated response back into spoken audio, and a transport layer manages moving the audio data between the client and the server backend. Well, I initially overlooked this step and spent a lot of time writing client application code to patch choppy audio playback, when all I needed was better GPU hardware for my TTS model.</p>
+<p>(gen x) = (audio seconds produced) / (wall clock seconds elapsed) This measurement tells us the key truth:</p>
+<p>If the gen x ratio drops below 1.0 for significant periods, the TTS stream is generating slower than real time.</p>
+<p>Classified impact band: high. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Upgrading to a higher-capacity hardware accelerator resolved the choppy playback.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>In this post, I will explain how to to create a functional Red Hat pizza shop voice agent using Red Hat OpenShift AI, focusing on practical architecture choices and implementation lessons learned along the way.</p>
+<p>So my first lesson learned was about agent handoffs.</p>
+<p>Well, I initially overlooked this step and spent a lot of time writing client application code to patch choppy audio playback, when all I needed was better GPU hardware for my TTS model.</p>
+<p>(gen x) = (audio seconds produced) / (wall clock seconds elapsed) This measurement tells us the key truth:</p>
+<p>If the gen x ratio drops below 1.0 for significant periods, the TTS stream is generating slower than real time.</p>
+<p>The improvement stemmed from the hardware&#39;s increased allocation of CUDA and Tensor Cores rather than total memory capacity.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Because of vLLM and standard OpenAI endpoints, I can use Red Hat OpenShift AI to continue experimenting, measuring, and testing newer models in my voice agent system. This deployment ran a single-node OpenShift cluster running in AWS with a hardware accelerator featuring 24 GB of memory (m6i.4xlarge). To recap, this deployment demonstrates how to:</p>
+<p>Run a voice-sandwich pattern in a local environment without external Software-as-a-Service (SaaS) voice services.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent us</li>
+            <li>Whisper was an easy selection for speech-to-text processing—it is a widely known model from OpenAI with a quantized version available on Hugging Face from Red Hat AI and performed well on initial testing.</li>
+            <li>Text to speech was much harder to nail down. When I started, models like Qwen-3 TTS had not yet been released. I plan to test additional options now that more models are available. I found a well-performing model from Hi</li>
+            <li>Table 1: Model selection for the voice application. Model name License Description Notes Whisper apache-2.0 Speech-to-text Quantized version of openai/whisper-large-v3-turbo whisper-large-v3-turbo-quantized.w4a16 Higgs-A</li>
+            <li>Initial testing involved recording a WAV audio file and submitting a POST request to the /v1/audio/transcriptions API endpoint on the Whisper model.</li>
+            <li>Table 2: GPU STT generation speed comparison. Card details Cores AMI instance type gen x NVIDIA L4 (24 GB) 7,424 CUDA cores, 240 Tensor Cores (Gen 4), 60 RT Cores (Gen 3) g6-8xlarge 0.78 NVIDIA L40S (48 GB) 18,176 CUDA c</li>
+            <li>Calling the TTS model was initially as simple as using curl and piping the output into ffmpeg and ffplay to hear the output on my laptop. This was handy for quickly testing the Higgs Audio model.</li>
+            <li>Using the MLflow OpenTelemetry (OTEL) integration, you can examine each trace to inspect input and output responses from both the agent and the LLM (Figure 8). This framework helps you understand delays, timing, and the </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/08/build-local-voice-agent-red-hat-openshift-ai" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

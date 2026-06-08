@@ -1,0 +1,103 @@
+[
+  {
+    "id": "41b604111ba2187d",
+    "title": "Build a local voice agent with Red Hat OpenShift AI",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/08/build-local-voice-agent-red-hat-openshift-ai",
+    "published": "2026-06-08T07:01:37+00:00",
+    "fetched_at": "2026-06-08T11:18:22.666137+00:00",
+    "summary": "Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent using Red Hat OpenShift AI, focusing on practical architecture choices and implementation lessons learned along the way. Like a lot of journeys you might take, the fun is not only...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-06-08",
+    "impact": "high",
+    "vendors": [
+      "AWS",
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent us",
+      "Whisper was an easy selection for speech-to-text processing—it is a widely known model from OpenAI with a quantized version available on Hugging Face from Red Hat AI and performed well on initial testing.",
+      "Text to speech was much harder to nail down. When I started, models like Qwen-3 TTS had not yet been released. I plan to test additional options now that more models are available. I found a well-performing model from Hi",
+      "Table 1: Model selection for the voice application. Model name License Description Notes Whisper apache-2.0 Speech-to-text Quantized version of openai/whisper-large-v3-turbo whisper-large-v3-turbo-quantized.w4a16 Higgs-A",
+      "Initial testing involved recording a WAV audio file and submitting a POST request to the /v1/audio/transcriptions API endpoint on the Whisper model.",
+      "Table 2: GPU STT generation speed comparison. Card details Cores AMI instance type gen x NVIDIA L4 (24 GB) 7,424 CUDA cores, 240 Tensor Cores (Gen 4), 60 RT Cores (Gen 3) g6-8xlarge 0.78 NVIDIA L40S (48 GB) 18,176 CUDA c",
+      "Calling the TTS model was initially as simple as using curl and piping the output into ffmpeg and ffplay to hear the output on my laptop. This was handy for quickly testing the Higgs Audio model.",
+      "Using the MLflow OpenTelemetry (OTEL) integration, you can examine each trace to inspect input and output responses from both the agent and the LLM (Figure 8). This framework helps you understand delays, timing, and the "
+    ],
+    "sections": {
+      "overview": "Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent using Red Hat OpenShift AI, focusing on practical architecture choices and implementation lessons learned along the way.",
+      "technical_breakdown": "This deployment ran a single-node OpenShift cluster running in AWS with a hardware accelerator featuring 24 GB of memory (m6i.4xlarge).\n\nI started with four agents—the supervisor agent that holds the session state for the pizza order, and which then routes to one of the other agents depending on the structured output received.\n\n def build_graph():\n \"\"\"Compile and return the LangGraph instance (with checkpointer for interrupts).\"\"\"\n graph = StateGraph(SupervisorState)\n graph.add_node(\"supervisor\", supervisor_command_node)\n graph.add_node(\"order_agent\", order_agent_node)\n graph.add_node(\"pizza_agent\", pizza_agent_node)\n graph.add_node(\"delivery_agent\", delivery_agent_node)\n\n # Interrupt nodes\n graph.add_node(\"wait_for_user_after_pizza\", wait_for_user_after_pizza)\n graph.add_node(\"wait_for_user_after_order\", wait_for_user_after_order)\n graph.add_node(\"wait_for_user_after_delivery\", wait_for_user_after_delivery)\n\n graph.add_edge(START, \"supervisor\")\n return graph.compile(checkpointer=MemorySaver()) In this case:\n\n I have a pizza agent that helps the user choose a pizza.\n\nThe improvement stemmed from the hardware's increased allocation of CUDA and Tensor Cores rather than total memory capacity.\n\nIn code, the interrupt nodes serve as simple placeholders for now.\n\n def wait_for_user_after_pizza(state: SupervisorState) -> Command:\n \"\"\"Interrupt after pizza agent, waiting for user's next input.\"\"\"\n user_text = interrupt(_interrupt_payload(state, \"pizza_agent\"))\n return Command(\n goto=\"supervisor\", update={\"messages\": [HumanMessage(content=str(user_text))]}\n ) Observability LLM systems generate a high volume of token interactions.\n\nCapture complex agent interactions and traces with MLflow observability tools.",
+      "impact": "If gen x consistently remains greater than or equal to 1.0, any remaining playback degradation stems from client-side runtime issues. Figure 5: Client user metrics. After processing, a TTS model converts the generated response back into spoken audio, and a transport layer manages moving the audio data between the client and the server backend. Well, I initially overlooked this step and spent a lot of time writing client application code to patch choppy audio playback, when all I needed was better GPU hardware for my TTS model.\n\n (gen x) = (audio seconds produced) / (wall clock seconds elapsed) This measurement tells us the key truth:\n\n If the gen x ratio drops below 1.0 for significant periods, the TTS stream is generating slower than real time.\n\nClassified impact band: high. Affected layer signal: cloud — aws.",
+      "resolution": "Upgrading to a higher-capacity hardware accelerator resolved the choppy playback.",
+      "lessons_learned": "In this post, I will explain how to to create a functional Red Hat pizza shop voice agent using Red Hat OpenShift AI, focusing on practical architecture choices and implementation lessons learned along the way.\n\nSo my first lesson learned was about agent handoffs.\n\nWell, I initially overlooked this step and spent a lot of time writing client application code to patch choppy audio playback, when all I needed was better GPU hardware for my TTS model.\n\n (gen x) = (audio seconds produced) / (wall clock seconds elapsed) This measurement tells us the key truth:\n\n If the gen x ratio drops below 1.0 for significant periods, the TTS stream is generating slower than real time.\n\nThe improvement stemmed from the hardware's increased allocation of CUDA and Tensor Cores rather than total memory capacity.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Because of vLLM and standard OpenAI endpoints, I can use Red Hat OpenShift AI to continue experimenting, measuring, and testing newer models in my voice agent system. This deployment ran a single-node OpenShift cluster running in AWS with a hardware accelerator featuring 24 GB of memory (m6i.4xlarge). To recap, this deployment demonstrates how to:\n\n Run a voice-sandwich pattern in a local environment without external Software-as-a-Service (SaaS) voice services.",
+      "incident_timeline": "Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent us\nWhisper was an easy selection for speech-to-text processing—it is a widely known model from OpenAI with a quantized version available on Hugging Face from Red Hat AI and performed well on initial testing.\nText to speech was much harder to nail down. When I started, models like Qwen-3 TTS had not yet been released. I plan to test additional options now that more models are available. I found a well-performing model from Hi\nTable 1: Model selection for the voice application. Model name License Description Notes Whisper apache-2.0 Speech-to-text Quantized version of openai/whisper-large-v3-turbo whisper-large-v3-turbo-quantized.w4a16 Higgs-A\nInitial testing involved recording a WAV audio file and submitting a POST request to the /v1/audio/transcriptions API endpoint on the Whisper model.\nTable 2: GPU STT generation speed comparison. Card details Cores AMI instance type gen x NVIDIA L4 (24 GB) 7,424 CUDA cores, 240 Tensor Cores (Gen 4), 60 RT Cores (Gen 3) g6-8xlarge 0.78 NVIDIA L40S (48 GB) 18,176 CUDA c\nCalling the TTS model was initially as simple as using curl and piping the output into ffmpeg and ffplay to hear the output on my laptop. This was handy for quickly testing the Higgs Audio model.\nUsing the MLflow OpenTelemetry (OTEL) integration, you can examine each trace to inspect input and output responses from both the agent and the LLM (Figure 8). This framework helps you understand delays, timing, and the ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Writing a voice agent can be a daunting task. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a2ed80ab166c5b60",
+    "title": "Gang autoscaling on OpenShift with Kueue and ProvisionRequest",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/08/gang-autoscaling-openshift-kueue-and-provisionrequest",
+    "published": "2026-06-08T07:01:34+00:00",
+    "fetched_at": "2026-06-08T11:18:22.667330+00:00",
+    "summary": "Running high-performance workloads like AI/ML training, high-performance computing (HPC) simulations, or large data processing on Kubernetes introduces a critical challenge: gang scheduling and coordinated autoscaling.",
+    "tags": [
+      "capacity",
+      "kubernetes",
+      "latency",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-08",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "This post explores how combining Red Hat build of Kueue, a queueing and resource management tool, with the ProvisionRequest API brings true gang autoscaling capabilities to OpenShift, so your critical workloads start eff",
+      "Configuring OpenShift autoscaler to support ProvisionRequest Edit the feature gate for OpenShift clusters to be in DevPreviewNoUpgrade .",
+      "maxNodesTotal: 24",
+      "unneededTime: 5m",
+      "name: your_machine_set_you_want_to_scale Configuring Red Hat build of Kueue to work with autoscaling Red Hat build of Kueue acts as the intelligent arbiter for resource requests, managing job queues and making sure clust",
+      "To achieve this, Kueue must recognize when a job requires provisioning new capacity by setting the appropriate cluster queue and resource flavor configurations. The following breakdown represents the complete plumbing re",
+      "ResourceFlavor: Defining available resource types This resource is the simplest piece. It defines a type of resource. In a real-world scenario, you might have one for spot-instances and one for on-demand . Here, it’s jus",
+      "controllerName: kueue.x-k8s.io/provisioning-request"
+    ],
+    "sections": {
+      "overview": "Running high-performance workloads like AI/ML training, high-performance computing (HPC) simulations, or large data processing on Kubernetes introduces a critical challenge: gang scheduling and coordinated autoscaling. Imagine you have a distributed machine learning job that requires ten worker pods to start simultaneously. If the cluster only has capacity for eight, traditional Kubernetes scheduling might start those eight pods, leaving the remaining two unschedulable.",
+      "technical_breakdown": "Note The values in this example CR are for demonstration purposes and should only be used after consulting a cluster administrator.\n\n apiVersion: \"autoscaling.openshift.io/v1\"\nkind: \"ClusterAutoscaler\"\nmetadata:\n name: \"default\"\nspec:\n podPriorityThreshold: -10\n resourceLimits:\n maxNodesTotal: 24\n cores:\n min: 8\n max: 128\n memory:\n min: 4\n max: 256\n logVerbosity: 4\n scaleDown:\n cordonNodeBeforeTerminating: Enabled\n enabled: true\n delayAfterAdd: 10m\n delayAfterDelete: 5m\n delayAfterFailure: 30s\n unneededTime: 5m\n utilizationThreshold: \"0.4\"\n scaleUp:\n newPodScaleUpDelay: \"10s\"\n expanders: [\"Random\"] The next step is to configure the MachineAutoscaler to know which MachineSet resources you need to scale.\n\nFinally, retryStrategy defines that if the cloud provider lacks capacity, the system will attempt to provision the nodes up to two times before giving up.\n\n kind: ProvisioningRequestConfig\nmetadata:\n name: prov-test-config\nspec:\n provisioningClassName: best-effort-atomic-scale-up.autoscaling.x-k8s.io\n managedResources:\n - cpu\n retryStrategy:\n backoffLimitCount: 2 How the components flow together To understand how these individual configurations interact in a live cluster, you can track the end-to-end lifecycle of a job request as it passes through the provisioning pipeline.\n\nThe maxReplicas field in this CR controls the maximum number of nodes that this MachineAutoscaler will be able to create.\n\n apiVersion: \"autoscaling.openshift.io/v1beta1\"\nkind: \"MachineAutoscaler\"\nmetadata:\n name: \"worker-autoscaler\"\n namespace: \"openshift-machine-api\"\nspec:\n minReplicas: 1\n maxReplicas: 12\n scaleTargetRef:\n apiVersion: machine.openshift.io/v1beta1\n kind: MachineSet\n name: your_machine_set_you_want_to_scale Configuring Red Hat build of Kueue to work with autoscaling Red Hat build of Kueue acts as the intelligent arbiter for resource requests, managing job queues and making sure cluster capacity is reserved or provisioned before jobs are admitted.\n\nIf the cluster only has capacity for eight, traditional Kubernetes scheduling might start those eight pods, leaving the remaining two unschedulable.\n\nBy enabling true gang autoscaling, we eliminate resource waste, prevent scaling deadlocks, and make sure that complex, multi-pod jobs—like distributed AI/ML training—can start immediately and reliably once all required capacity is available.",
+      "impact": "The following breakdown represents the complete plumbing required to move from a job request to physical cloud infrastructure, connecting the user's queue to an automated provisioning system. It tells Kueue that even if the user has enough quota (fewer than 36 CPUs), do not admit the job until the check named sample-prov returns a Ready status. First, a user submits a job to the user-queue (the LocalQueue ). We are exploring how to use these same mechanisms to handle sudden, large spikes in demand for AI/ML model serving, allowing the system to scale rapidly to meet real-time user needs without maintaining expensive idle capacity.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Note The values in this example CR are for demonstration purposes and should only be used after consulting a cluster administrator.\n\n apiVersion: \"autoscaling.openshift.io/v1\"\nkind: \"ClusterAutoscaler\"\nmetadata:\n name: \"default\"\nspec:\n podPriorityThreshold: -10\n resourceLimits:\n maxNodesTotal: 24\n cores:\n min: 8\n max: 128\n memory:\n min: 4\n max: 256\n logVerbosity: 4\n scaleDown:\n cordonNodeBeforeTerminating: Enabled\n enabled: true\n delayAfterAdd: 10m\n delayAfterDelete: 5m\n delayAfterFailure: 30s\n unneededTime: 5m\n utilizationThreshold: \"0.4\"\n scaleUp:\n newPodScaleUpDelay: \"10s\"\n expanders: [\"Random\"] The next step is to configure the MachineAutoscaler to know which MachineSet resources you need to scale.",
+      "lessons_learned": "This coordinated approach prevents resource waste so your latency-sensitive, high-throughput workloads get exactly the resources they need right from the start.\n\nBy enabling true gang autoscaling, we eliminate resource waste, prevent scaling deadlocks, and make sure that complex, multi-pod jobs—like distributed AI/ML training—can start immediately and reliably once all required capacity is available.",
+      "root_cause_highlight": "",
+      "incident_timeline": "This post explores how combining Red Hat build of Kueue, a queueing and resource management tool, with the ProvisionRequest API brings true gang autoscaling capabilities to OpenShift, so your critical workloads start eff\nConfiguring OpenShift autoscaler to support ProvisionRequest Edit the feature gate for OpenShift clusters to be in DevPreviewNoUpgrade .\nmaxNodesTotal: 24\nunneededTime: 5m\nname: your_machine_set_you_want_to_scale Configuring Red Hat build of Kueue to work with autoscaling Red Hat build of Kueue acts as the intelligent arbiter for resource requests, managing job queues and making sure clust\nTo achieve this, Kueue must recognize when a job requires provisioning new capacity by setting the appropriate cluster queue and resource flavor configurations. The following breakdown represents the complete plumbing re\nResourceFlavor: Defining available resource types This resource is the simplest piece. It defines a type of resource. In a real-world scenario, you might have one for spot-instances and one for on-demand . Here, it’s jus\ncontrollerName: kueue.x-k8s.io/provisioning-request",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Running high-performance workloads like AI/ML training, high-performance computing (HPC) simulations, or large data processing on Kubernetes introduces a critical challenge: gang scheduling and coordinated autoscaling. Imagine you have a distributed machine learning job that requires ten worker pods to start simultaneously.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

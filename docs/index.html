@@ -28,13 +28,13 @@
       <h1 class="brief-title">8 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-08T01:00:03.214660-05:00">8 June 2026, 01:00</time>
+        <time data-iso="2026-06-08T06:18:22.876793-05:00">8 June 2026, 06:18</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-action">1 ops priority</span>
-      <span class="stat">5 items today</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -42,19 +42,20 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 story flagged for operational follow-up</li>
+        <li>1 high-impact reliability event surfaced</li>
         <li>Repeated coverage across Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">openshift<span class="trend-count">5</span></span>
-        <span class="trend-pill">build<span class="trend-count">3</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">7</span></span>
+        <span class="trend-pill">build<span class="trend-count">4</span></span>
+        <span class="trend-pill">agent<span class="trend-count">2</span></span>
         <span class="trend-pill">bootc<span class="trend-count">2</span></span>
         <span class="trend-pill">benchmarking<span class="trend-count">2</span></span>
         <span class="trend-pill">evalhub<span class="trend-count">2</span></span>
-        <span class="trend-pill">support<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -87,11 +88,11 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
       </div>
@@ -101,8 +102,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
       </div>
     </div>
     <div class="adv-group">
@@ -110,19 +111,98 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
       </div>
     </div>
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      8 June 2026
+      <span class="day-count">2</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--high"
+       data-tags="capacity,deployment,latency,observability,outage,postmortem"
+       data-vendors="AWS,GitHub,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="build a local voice agent with red hat openshift ai"
+       data-id="41b604111ba2187d"
+       data-published="2026-06-08T07:01:37+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">AWS</span><span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-06-08T07:01:37+00:00" title="8 June 2026, 02:01">8 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Build a local voice agent with Red Hat OpenShift AI</h3>
+      <p class="card-summary">Writing a voice agent can be a daunting task. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Writing a voice agent can be a daunting task. There are many moving parts to designing and developing a functional voice agent. In this post, I will explain how to to create a functional Red Hat pizza shop voice agent using Red Hat OpenShift AI, focusing on practical architecture choices and implementation lessons learned along the way.</p></div>
+      <div class="detail-links">
+        <a href="articles/41b604111ba2187d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/08/build-local-voice-agent-red-hat-openshift-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="capacity,kubernetes,latency,outage,scaling"
+       data-vendors="HashiCorp,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="capacity and scale"
+       data-title="gang autoscaling on openshift with kueue and provisionrequest"
+       data-id="a2ed80ab166c5b60"
+       data-published="2026-06-08T07:01:34+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">HashiCorp</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-08T07:01:34+00:00" title="8 June 2026, 02:01">8 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Gang autoscaling on OpenShift with Kueue and ProvisionRequest</h3>
+      <p class="card-summary">Running high-performance workloads like AI/ML training, high-performance computing (HPC) simulations, or large data processing on Kubernetes introduces a critical challenge: gang scheduling and coordinated autoscaling. Imagine you have a distributed machine learning job that requires ten worker pods to start simultaneously.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Running high-performance workloads like AI/ML training, high-performance computing (HPC) simulations, or large data processing on Kubernetes introduces a critical challenge: gang scheduling and coordinated autoscaling. Imagine you have a distributed machine learning job that requires ten worker pods to start simultaneously. If the cluster only has capacity for eight, traditional Kubernetes scheduling might start those eight pods, leaving the remaining two unschedulable.</p></div>
+      <div class="detail-links">
+        <a href="articles/a2ed80ab166c5b60.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/08/gang-autoscaling-openshift-kueue-and-provisionrequest" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       5 June 2026
@@ -1055,7 +1135,7 @@ The post Intelligent inference scheduling with llm-d on Red Hat AI appeared firs
   <div class="day-group">
     <h2 class="day-heading">
       1 June 2026
-      <span class="day-count">4</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -1128,77 +1208,6 @@ The post Intelligent inference scheduling with llm-d on Red Hat AI appeared firs
       <div class="detail-links">
         <a href="articles/01a7bc028f7d06b9.html" class="detail-read">Open structured brief →</a>
         <a href="https://blog.cloudflare.com/optimizing-core-unit-boot-time/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,kubernetes,latency,outage"
-       data-vendors="GitHub,Kubernetes,Red Hat"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="protect your kubernetes operator from oomkill"
-       data-id="ea9e0e08d3533620"
-       data-published="2026-06-01T07:01:06+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-01T07:01:06+00:00" title="1 June 2026, 02:01">1 June 2026, 02:01</time>
-      </div>
-      <h3 class="card-title">Protect your Kubernetes Operator from OOMKill</h3>
-      <p class="card-summary">If you&#39;ve ever worked with Kubernetes, you&#39;ve probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <div class="card-related">Also: AWS News Blog, Kubernetes Blog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>If you&#39;ve ever worked with Kubernetes, you&#39;ve probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective. But they have a quiet vulnerability that&#39;s easy to miss during code review, and it can let any regular user crash your operator completely.</p></div>
-      <div class="detail-links">
-        <a href="articles/ea9e0e08d3533620.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/01/protect-your-kubernetes-operator-oomkill" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--high"
-       data-tags="networking,observability"
-       data-vendors="Red Hat"
-       data-impact="high"
-       data-theme="observability"
-       data-title="owning the system clock: good enough?"
-       data-id="4c3ce92ca85dfc3b"
-       data-published="2026-06-01T03:01:32+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-01T03:01:32+00:00" title="31 May 2026, 22:01">31 May 2026, 22:01</time>
-      </div>
-      <h3 class="card-title">Owning the system clock: Good enough?</h3>
-      <p class="card-summary">Across numerous industries, accurate timing is a common requirement. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">networking</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Across numerous industries, accurate timing is a common requirement. Applications will read the system clock and expect this to be the actual real-world time. But how accurate is it actually necessary?</p></div>
-      <div class="detail-links">
-        <a href="articles/4c3ce92ca85dfc3b.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/01/owning-system-clock-good-enough" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
