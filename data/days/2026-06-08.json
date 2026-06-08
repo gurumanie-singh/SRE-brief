@@ -49,6 +49,10 @@
     "email_summary": "Writing a voice agent can be a daunting task. Impact band: high.",
     "related_sources": [
       {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-byom-for-amazon-rds-for-sql-server-aws-iot-device-sdk-for-swift-and-more-june-8-2026/"
+      },
+      {
         "source": "GitHub Blog",
         "link": "https://github.blog/developer-skills/github/github-for-beginners-answers-to-some-common-questions/"
       }
