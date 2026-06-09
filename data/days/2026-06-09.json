@@ -1,5 +1,44 @@
 [
   {
+    "id": "2e95259f49067ec9",
+    "title": "Anthropic Claude Fable 5 on AWS: Mythos-class capabilities with built-in safeguards now available",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/",
+    "published": "2026-06-09T17:40:31+00:00",
+    "fetched_at": "2026-06-09T19:23:37.552493+00:00",
+    "summary": "Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it safe for broader use. Fable 5 is state-of-the-art on nearly all tested benchmarks and delivers exceptional performance in software engineering, knowledge work tasks, and vision –...",
+    "tags": [],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it ",
+      "Advanced vision capabilities — Claude Fable 5 understands diagrams, charts, and tables nested in files and PDFs. This opens up research and document-heavy work in finance, legal, analytics, architecture, and gaming. In c",
+      "\"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\",",
+      "\"text\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"",
+      "Pricing — When a harmful prompt is routed to Opus 4.8 instead of Fable 5, you pay only Opus prices. If a request is blocked mid-conversation, initial tokens are charged at Fable rates and subsequent tokens at Opus rates."
+    ],
+    "sections": {
+      "overview": "Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it safe for broader use. Fable 5 is state-of-the-art on nearly all tested benchmarks and delivers exceptional performance in software engineering, knowledge work tasks, and vision – built for ambitious, long running work.",
+      "technical_breakdown": "Install Anthropic SDK.\n\n \n pip install anthropic \n Here is a sample Python code to call Claude Fable 5 model:\n\n \n import anthropic\n\nclient = anthropic.Anthropic(\n base_url=\"https://bedrock-mantle.us-east-1.api.aws/anthropic\",\n api_key= <your-bedrock-api-key>\n)\n\nmessage = client.messages.create( \n model=\"anthropic.claude-fable-5\", \n max_tokens=4096, \n messages=[ \n { \"role\": \"user\", \n \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\", \n }, \n ], \n)\n\nprint(message.content[0].text) \n To learn more, check out Anthropic Messages API code examples and notebook examples for multiple use cases and a variety of programming languages.\n\nFable 5 is state-of-the-art on nearly all tested benchmarks and delivers exceptional performance in software engineering, knowledge work tasks, and vision – built for ambitious, long running work.\n\nHere is what makes this model different:\n\n \n \n Long-running, asynchronous execution — Claude Fable 5 handles complex tasks that previous models could not sustain, executing coding and knowledge work tasks for extended periods without intervention.\n\nHarmful prompts related to cybersecurity, biology, chemistry, and health fall back to receive a response from Opus 4.8 instead.\n\nThere is no console user interface for this setting at launch.\n\n \n curl -X PUT https://bedrock-mantle.us-east-1.api.aws/v1/data_retention \\\n -H \"x-api-key: <your-bedrock-api-key>\" \\ \n -H \"Content-Type: application/json\" \\\n -d '{ \"mode\": \"provider_data_share\" }' \n This mode allows Amazon Bedrock to retain and share your inference data with model providers per their requirements.",
+      "impact": "Install Anthropic SDK.\n\n \n pip install anthropic \n Here is a sample Python code to call Claude Fable 5 model:\n\n \n import anthropic\n\nclient = anthropic.Anthropic(\n base_url=\"https://bedrock-mantle.us-east-1.api.aws/anthropic\",\n api_key= <your-bedrock-api-key>\n)\n\nmessage = client.messages.create( \n model=\"anthropic.claude-fable-5\", \n max_tokens=4096, \n messages=[ \n { \"role\": \"user\", \n \"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\", \n }, \n ], \n)\n\nprint(message.content[0].text) \n To learn more, check out Anthropic Messages API code examples and notebook examples for multiple use cases and a variety of programming languages. Here’s a example to call Converse API for a unified multi-model experience using the AWS SDK for Python (Boto3):\n\n \n import boto3 \nbedrock_runtime = boto3.client(\"bedrock-runtime\", region_name=\"us-east-1\") \nresponse = bedrock_runtime.converse( \n modelId=\"global.anthropic.claude-fable-5\", \n messages=[ \n { \n \"role\": \"user\", \n \"content\": [ \n { \n \"text\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\" \n } \n ] \n } \n ], \n inferenceConfig={ \n \"maxTokens\": 4096 \n } \n) \nprint(response[\"output\"][\"message\"][\"content\"][0][\"text\"]) \n To learn more, visit code examples that show how to use Amazon Bedrock Runtime with AWS SDKs. Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it safe for broader use.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Fixed the right model id in the sample code.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it \nAdvanced vision capabilities — Claude Fable 5 understands diagrams, charts, and tables nested in files and PDFs. This opens up research and document-heavy work in finance, legal, analytics, architecture, and gaming. In c\n\"content\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions\",\n\"text\": \"Design a distributed architecture on AWS in Python that should support 100k requests per second across multiple geographic regions.\"\nPricing — When a harmful prompt is routed to Opus 4.8 instead of Fable 5, you pay only Opus prices. If a request is blocked mid-conversation, initial tokens are charged at Fable rates and subsequent tokens at Opus rates.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it safe for broader use.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "296954538baabfbd",
     "title": "HCP Packer adds enforced provisioners",
     "source": "HashiCorp Blog",
@@ -252,6 +291,140 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "4a771a111ac6ed9c",
+    "title": "Meet Elastic's ERGs",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/culture-meet-our-7-ergs-who-are-building-communities-at-elastic",
+    "published": "2026-06-09T00:00:00+00:00",
+    "fetched_at": "2026-06-09T19:23:40.846673+00:00",
+    "summary": "Employee resource groups build a sense of community and belonging, provide an inclusive space for people with similar experiences, empower employees to share their voice, and amplify our DEI initiatives. Here’s a bit about each one.",
+    "tags": [],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Employee resource groups build a sense of community and belonging, provide an inclusive space for people with similar experiences, empower employees to share their voice, and amplify our DEI initiatives. Here’s a bit about each one.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Employee resource groups build a sense of community and belonging, provide an inclusive space for people with similar experiences, empower employees to share their voice, and amplify our DEI initiatives. Here’s a bit about each one.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "59f4e45026813160",
+    "title": "Onboarding at Elastic: What to expect",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/onboarding-at-elastic",
+    "published": "2026-06-09T00:00:00+00:00",
+    "fetched_at": "2026-06-09T19:23:40.846893+00:00",
+    "summary": "As a distributed company, we’re experts in remote onboarding. Learn how we onboard new hires at Elastic, and dive into X-School, our new hire orientation experience.",
+    "tags": [],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "As a distributed company, we’re experts in remote onboarding. Learn how we onboard new hires at Elastic, and dive into X-School, our new hire orientation experience.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "As a distributed company, we’re experts in remote onboarding. Learn how we onboard new hires at Elastic, and dive into X-School, our new hire orientation experience.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1be1f1748a6da4c8",
+    "title": "HNSW vs. LSH: How Elasticsearch hits 0.99 recall@10 at 15,000 QPS — and what it costs",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/understanding-approximate-nearest-neighbor-search",
+    "published": "2026-06-09T00:00:00+00:00",
+    "fetched_at": "2026-06-09T19:23:40.847096+00:00",
+    "summary": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+    "tags": [],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search."
+    ],
+    "sections": {
+      "overview": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+      "technical_breakdown": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a4d942f3b6a0ba35",
+    "title": "5 criteria for choosing a vector database that will survive production",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/how-to-choose-a-vector-database",
+    "published": "2026-06-09T00:00:00+00:00",
+    "fetched_at": "2026-06-09T19:23:40.847294+00:00",
+    "summary": "Pick a vector database on the wrong criteria and you'll spend six months rebuilding. Here are the five evaluation criteria that separate production systems from prototypes.",
+    "tags": [
+      "database"
+    ],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "data store",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Pick a vector database on the wrong criteria and you'll spend six months rebuilding. Here are the five evaluation criteria that separate production systems from prototypes.",
+      "technical_breakdown": "Pick a vector database on the wrong criteria and you'll spend six months rebuilding.",
+      "impact": "Classified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. Pick a vector database on the wrong criteria and you'll spend six months rebuilding.",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Pick a vector database on the wrong criteria and you'll spend six months rebuilding. Here are the five evaluation criteria that separate production systems from prototypes.",
     "related_sources": [],
     "highlighted": false
   }
