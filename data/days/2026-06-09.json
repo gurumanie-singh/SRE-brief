@@ -35,7 +35,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Today, we’re announcing the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS . Claude Fable 5 makes Mythos-level capabilities available to customers, with strong safeguards designed to make it safe for broader use.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/with-great-ai-power-comes-the-need-for-zero-trust-responsibility"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -157,10 +162,6 @@
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/"
-      },
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/with-great-ai-power-comes-the-need-for-zero-trust-responsibility"
       }
     ],
     "highlighted": false
@@ -256,6 +257,41 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "A few weeks ago, we wrote about Project Glasswing and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "62a1019f4acd7d39",
+    "title": "Decemberfest is here! How we celebrate the holidays at Elastic",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/culture-decemberfest-elastic-holiday-celebration",
+    "published": "2026-06-09T04:00:00+00:00",
+    "fetched_at": "2026-06-09T21:55:11.154549+00:00",
+    "summary": "Take a peek at how Elasticians around the world are celebrating the holiday season during Decemberfest.",
+    "tags": [],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Take a peek at how Elasticians around the world are celebrating the holiday season during Decemberfest."
+    ],
+    "sections": {
+      "overview": "Take a peek at how Elasticians around the world are celebrating the holiday season during Decemberfest.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Take a peek at how Elasticians around the world are celebrating the holiday season during Decemberfest.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Take a peek at how Elasticians around the world are celebrating the holiday season during Decemberfest.",
     "related_sources": [],
     "highlighted": false
   },
