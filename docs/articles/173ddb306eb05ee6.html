@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bring your own evaluation framework to EvalHub — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-09.html" class="back-link">← 9 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">9 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Bring your own evaluation framework to EvalHub</h1>
+
+      <p class="subtitle">EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough. For many others, it is not.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Replace the _run_my_framework call with your actual evaluation logic:</p>
+<p>import time from datetime import UTC, datetime from pathlib import Path from evalhub.adapter import (  FrameworkAdapter,  JobCallbacks,  JobPhase,  JobResults,  JobSpec,  JobStatusUpdate,  MessageInfo,  OCIArtifactSpec,  OCICoordinates ) from evalhub.adapter.callbacks import DefaultCallbacks from evalhub.models import EvaluationResult, JobStatus class MyEvalAdapter(FrameworkAdapter):  def run_benchmark_job(self, config: JobSpec, callbacks: JobCallbacks) -&gt; JobResults:  start = time.monotonic()  # --- Phase 1: Initialize ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.INITIALIZING,  progress=0.0,  message=MessageInfo(message=&#34;Initializing&#34;, message_code=&#34;init&#34;),  ))  # --- Phase 2: Load data ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.LOADING_DATA,  progress=0.2,  message=MessageInfo(message=&#34;Loading dataset&#34;, message_code=&#34;loading&#34;),  ))  # config.parameters holds your benchmark-specific config  num_examples = config.num_examples or 500  dataset = load_my_dataset(config.benchmark_id, num_examples)  # --- Phase 3: Run evaluation ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.RUNNING_EVALUATION,  progress=0.4,  message=MessageInfo(message=&#34;Running evaluation&#34;, message_code=&#34;running&#34;),  ))  raw_results = _run_my_framework(  model_url=config.model.url,  model_name=config.model.name,  dataset=dataset,  params=config.parameters,  )  # --- Phase 4: Post-process ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.POST_PROCESSING,  progress=0.8,  message=MessageInfo(message=&#34;Computing metrics&#34;, message_code=&#34;postproc&#34;),  ))  metrics = [  EvaluationResult(metric_name=&#34;accuracy&#34;, metric_value=raw_results[&#34;acc&#34;]),  EvaluationResult(metric_name=&#34;f1&#34;, metric_value=raw_results[&#34;f1&#34;]),  ]  overall = raw_results[&#34;acc&#34;] * 100  # --- Phase 5: Persist artifacts ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.PERSISTING_ARTIFACTS,  progress=0.9,  message=MessageInfo(message=&#34;Persisting artifacts&#34;, message_code=&#34;oci&#34;),  ))  artifacts_dir = self.local_jobs_base_path or Path(&#34;/tmp/results&#34;)  artifacts_dir.mkdir(parents=True, exist_ok=True)  (artifacts_dir / &#34;results.json&#34;).write_text(str(raw_results))  oci_result = callbacks.create_oci_artifact(OCIArtifactSpec(  files_path=artifacts_dir,  coordinates=OCICoordinates(  oci_host=&#34; quay.io &#34;, oci_repository=&#34;my-org/my-framework-results&#34;,  ),  ))  return JobResults(  id=config.id,  benchmark_id=config.benchmark_id,  benchmark_index=config.benchmark_index,  model_name=config.model.name,  results=metrics,  overall_score=overall,  num_examples_evaluated=len(dataset),  duration_seconds=time.monotonic() - start,  completed_at=datetime.now(UTC),  evaluation_metadata={&#34;framework&#34;: &#34;my-framework&#34;, &#34;version&#34;: &#34;1.0&#34;},  oci_artifact=oci_result,  ) def main():  adapter = MyEvalAdapter()  callbacks = DefaultCallbacks.from_adapter(adapter)  results = adapter.run_benchmark_job(adapter.job_spec, callbacks)  callbacks.report_results(results) if __name__ == &#34;__main__&#34;:  main() self.local_jobs_base_path returns a run-scoped directory in local mode (preventing result collisions across concurrent local runs) and None in Kubernetes mode in which case your adapter should write to a stable path like /tmp/results that the sidecar can access.</p>
+<p>When EvalHub dispatches a job to your provider, it creates a Kubernetes Job with a two-container pod, as illustrated in Figure 1.</p>
+<p>To test locally before building a container:</p>
+<p># Create the job spec in the expected location mkdir -p meta cat &gt; meta/job.json &lt;&lt; &#39;EOF&#39; {  &#34;id&#34;: &#34;local-test-001&#34;,  &#34;provider_id&#34;: &#34;my-framework&#34;,  &#34;benchmark_id&#34;: &#34;my-benchmark&#34;,  &#34;benchmark_index&#34;: 0,  &#34;model&#34;: {  &#34;url&#34;: &#34;http://localhost:8000/v1&#34;,  &#34;name&#34;: &#34;my-model&#34;  },  &#34;parameters&#34;: {&#34;batch_size&#34;: 4},  &#34;callback_url&#34;: &#34;http://localhost:8080&#34;,  &#34;timeout_seconds&#34;: 3600 } EOF EVALHUB_MODE=local python main.py Register your provider Once you build and push your container image, register the provider with EvalHub using a ConfigMap entry in the server configuration.</p>
+<p>Catch up on the other parts in the series:</p>
+<p>Part 1: How EvalHub manages two-layer Kubernetes control planes   Part 2: EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark   Part 3: Evaluation-driven development with EvalHub   Part 4: Understanding evaluation collections in EvalHub   The contract: Build an adapter with one method The entire BYOF adapter surface is one abstract method in one base class:</p>
+<p>from evalhub.adapter import FrameworkAdapter, JobCallbacks, JobResults, JobSpec class MyEvalAdapter(FrameworkAdapter):  def run_benchmark_job(  self,  config: JobSpec,  callbacks: JobCallbacks,  ) -&gt; JobResults:  ...</p>
+<p>It is automatically loaded by the base class from /meta/job.json (Kubernetes mode) or from ./meta/job.json (local development mode).</p>
+<p>class JobSpec(BaseModel):  id: str # Unique job ID from the service  provider_id: str # Your registered provider identifier  benchmark_id: str # Which benchmark to run  benchmark_index: int # Index in provider&#39;s benchmark list  model: ModelConfig # model.url + model.name (+ optional auth)  parameters: dict # Benchmark-specific config (arbitrary)  callback_url: str # EvalHub endpoint for status/result callbacks  num_examples: int | None # Limit evaluation scope; None = run all  experiment_name: str | None # MLflow experiment name  tags: dict[str, str] | None # Labels propagated to MLflow  exports: dict | None # OCI export coordinates  timeout_seconds: int # Hard execution deadline The parameters dict is where benchmark-specific configuration lives, such as few-shot count, batch size, random seed, dataset split, and anything else your framework needs.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Replace the _run_my_framework call with your actual evaluation logic:</p>
+<p>import time from datetime import UTC, datetime from pathlib import Path from evalhub.adapter import (  FrameworkAdapter,  JobCallbacks,  JobPhase,  JobResults,  JobSpec,  JobStatusUpdate,  MessageInfo,  OCIArtifactSpec,  OCICoordinates ) from evalhub.adapter.callbacks import DefaultCallbacks from evalhub.models import EvaluationResult, JobStatus class MyEvalAdapter(FrameworkAdapter):  def run_benchmark_job(self, config: JobSpec, callbacks: JobCallbacks) -&gt; JobResults:  start = time.monotonic()  # --- Phase 1: Initialize ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.INITIALIZING,  progress=0.0,  message=MessageInfo(message=&#34;Initializing&#34;, message_code=&#34;init&#34;),  ))  # --- Phase 2: Load data ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.LOADING_DATA,  progress=0.2,  message=MessageInfo(message=&#34;Loading dataset&#34;, message_code=&#34;loading&#34;),  ))  # config.parameters holds your benchmark-specific config  num_examples = config.num_examples or 500  dataset = load_my_dataset(config.benchmark_id, num_examples)  # --- Phase 3: Run evaluation ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.RUNNING_EVALUATION,  progress=0.4,  message=MessageInfo(message=&#34;Running evaluation&#34;, message_code=&#34;running&#34;),  ))  raw_results = _run_my_framework(  model_url=config.model.url,  model_name=config.model.name,  dataset=dataset,  params=config.parameters,  )  # --- Phase 4: Post-process ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.POST_PROCESSING,  progress=0.8,  message=MessageInfo(message=&#34;Computing metrics&#34;, message_code=&#34;postproc&#34;),  ))  metrics = [  EvaluationResult(metric_name=&#34;accuracy&#34;, metric_value=raw_results[&#34;acc&#34;]),  EvaluationResult(metric_name=&#34;f1&#34;, metric_value=raw_results[&#34;f1&#34;]),  ]  overall = raw_results[&#34;acc&#34;] * 100  # --- Phase 5: Persist artifacts ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.PERSISTING_ARTIFACTS,  progress=0.9,  message=MessageInfo(message=&#34;Persisting artifacts&#34;, message_code=&#34;oci&#34;),  ))  artifacts_dir = self.local_jobs_base_path or Path(&#34;/tmp/results&#34;)  artifacts_dir.mkdir(parents=True, exist_ok=True)  (artifacts_dir / &#34;results.json&#34;).write_text(str(raw_results))  oci_result = callbacks.create_oci_artifact(OCIArtifactSpec(  files_path=artifacts_dir,  coordinates=OCICoordinates(  oci_host=&#34; quay.io &#34;, oci_repository=&#34;my-org/my-framework-results&#34;,  ),  ))  return JobResults(  id=config.id,  benchmark_id=config.benchmark_id,  benchmark_index=config.benchmark_index,  model_name=config.model.name,  results=metrics,  overall_score=overall,  num_examples_evaluated=len(dataset),  duration_seconds=time.monotonic() - start,  completed_at=datetime.now(UTC),  evaluation_metadata={&#34;framework&#34;: &#34;my-framework&#34;, &#34;version&#34;: &#34;1.0&#34;},  oci_artifact=oci_result,  ) def main():  adapter = MyEvalAdapter()  callbacks = DefaultCallbacks.from_adapter(adapter)  results = adapter.run_benchmark_job(adapter.job_spec, callbacks)  callbacks.report_results(results) if __name__ == &#34;__main__&#34;:  main() self.local_jobs_base_path returns a run-scoped directory in local mode (preventing result collisions across concurrent local runs) and None in Kubernetes mode in which case your adapter should write to a stable path like /tmp/results that the sidecar can access. It is automatically loaded by the base class from /meta/job.json (Kubernetes mode) or from ./meta/job.json (local development mode).</p>
+<p>class JobSpec(BaseModel):  id: str # Unique job ID from the service  provider_id: str # Your registered provider identifier  benchmark_id: str # Which benchmark to run  benchmark_index: int # Index in provider&#39;s benchmark list  model: ModelConfig # model.url + model.name (+ optional auth)  parameters: dict # Benchmark-specific config (arbitrary)  callback_url: str # EvalHub endpoint for status/result callbacks  num_examples: int | None # Limit evaluation scope; None = run all  experiment_name: str | None # MLflow experiment name  tags: dict[str, str] | None # Labels propagated to MLflow  exports: dict | None # OCI export coordinates  timeout_seconds: int # Hard execution deadline The parameters dict is where benchmark-specific configuration lives, such as few-shot count, batch size, random seed, dataset split, and anything else your framework needs. You must populate every field except oci_artifact and mlflow_run_id :</p>
+<p>class JobResults(BaseModel):  id: str # Echo config.id  benchmark_id: str # Echo config.benchmark_id  benchmark_index: int # Echo config.benchmark_index  model_name: str # Echo config.model.name  results: list[EvaluationResult] # One entry per metric  overall_score: float | None # Aggregate score (0 100)  num_examples_evaluated: int # Count of samples processed  duration_seconds: float # Wall-clock execution time  completed_at: datetime # UTC completion timestamp  evaluation_metadata: dict[str, Any] # Framework version, params, etc.  oci_artifact: OCIArtifactResult | None # Filled by callbacks.create_oci_artifact  mlflow_run_id: str | None # Filled by the SDK automatically Use EvaluationResult to define each individual metric:</p>
+<p>class EvaluationResult(BaseModel):  metric_name: str # e.g., &#34;accuracy&#34;, &#34;f1&#34;, &#34;bleu&#34;  metric_value: float | int | str | bool # The measured value  metric_type: str = &#34;float&#34; # Type classification  confidence_interval: tuple[float, float] | None = None  num_samples: int | None = None  metadata: dict[str, Any] = {} A complete minimal adapter This is the full pattern for a working adapter. RUN pip install --no-cache-dir -r requirements.txt COPY main.py . # Non-root user required for OpenShift RUN mkdir -p /tmp/.cache &amp;&amp; chmod -R 777 /tmp &amp;&amp; chmod -R g+w /app /opt/app-root USER 1001 ENV PYTHONUNBUFFERED=1 ENV EVALHUB_MODE=k8s ENV HOME=/tmp ENTRYPOINT [&#34;python&#34;, &#34;main.py&#34;] Two environment variables matter:</p>
+<p>EVALHUB_MODE=k8s : Tells the SDK to load JobSpec from /meta/job.json (mounted by EvalHub as a ConfigMap) and use the sidecar for callbacks  EVALHUB_MODE=local (default): Loads from ./meta/job.json and logs callbacks locally; used for development and testing.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Replace the _run_my_framework call with your actual evaluation logic:</p>
+<p>import time from datetime import UTC, datetime from pathlib import Path from evalhub.adapter import (  FrameworkAdapter,  JobCallbacks,  JobPhase,  JobResults,  JobSpec,  JobStatusUpdate,  MessageInfo,  OCIArtifactSpec,  OCICoordinates ) from evalhub.adapter.callbacks import DefaultCallbacks from evalhub.models import EvaluationResult, JobStatus class MyEvalAdapter(FrameworkAdapter):  def run_benchmark_job(self, config: JobSpec, callbacks: JobCallbacks) -&gt; JobResults:  start = time.monotonic()  # --- Phase 1: Initialize ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.INITIALIZING,  progress=0.0,  message=MessageInfo(message=&#34;Initializing&#34;, message_code=&#34;init&#34;),  ))  # --- Phase 2: Load data ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.LOADING_DATA,  progress=0.2,  message=MessageInfo(message=&#34;Loading dataset&#34;, message_code=&#34;loading&#34;),  ))  # config.parameters holds your benchmark-specific config  num_examples = config.num_examples or 500  dataset = load_my_dataset(config.benchmark_id, num_examples)  # --- Phase 3: Run evaluation ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.RUNNING_EVALUATION,  progress=0.4,  message=MessageInfo(message=&#34;Running evaluation&#34;, message_code=&#34;running&#34;),  ))  raw_results = _run_my_framework(  model_url=config.model.url,  model_name=config.model.name,  dataset=dataset,  params=config.parameters,  )  # --- Phase 4: Post-process ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.POST_PROCESSING,  progress=0.8,  message=MessageInfo(message=&#34;Computing metrics&#34;, message_code=&#34;postproc&#34;),  ))  metrics = [  EvaluationResult(metric_name=&#34;accuracy&#34;, metric_value=raw_results[&#34;acc&#34;]),  EvaluationResult(metric_name=&#34;f1&#34;, metric_value=raw_results[&#34;f1&#34;]),  ]  overall = raw_results[&#34;acc&#34;] * 100  # --- Phase 5: Persist artifacts ---  callbacks.report_status(JobStatusUpdate(  status=JobStatus.RUNNING,  phase=JobPhase.PERSISTING_ARTIFACTS,  progress=0.9,  message=MessageInfo(message=&#34;Persisting artifacts&#34;, message_code=&#34;oci&#34;),  ))  artifacts_dir = self.local_jobs_base_path or Path(&#34;/tmp/results&#34;)  artifacts_dir.mkdir(parents=True, exist_ok=True)  (artifacts_dir / &#34;results.json&#34;).write_text(str(raw_results))  oci_result = callbacks.create_oci_artifact(OCIArtifactSpec(  files_path=artifacts_dir,  coordinates=OCICoordinates(  oci_host=&#34; quay.io &#34;, oci_repository=&#34;my-org/my-framework-results&#34;,  ),  ))  return JobResults(  id=config.id,  benchmark_id=config.benchmark_id,  benchmark_index=config.benchmark_index,  model_name=config.model.name,  results=metrics,  overall_score=overall,  num_examples_evaluated=len(dataset),  duration_seconds=time.monotonic() - start,  completed_at=datetime.now(UTC),  evaluation_metadata={&#34;framework&#34;: &#34;my-framework&#34;, &#34;version&#34;: &#34;1.0&#34;},  oci_artifact=oci_result,  ) def main():  adapter = MyEvalAdapter()  callbacks = DefaultCallbacks.from_adapter(adapter)  results = adapter.run_benchmark_job(adapter.job_spec, callbacks)  callbacks.report_results(results) if __name__ == &#34;__main__&#34;:  main() self.local_jobs_base_path returns a run-scoped directory in local mode (preventing result collisions across concurrent local runs) and None in Kubernetes mode in which case your adapter should write to a stable path like /tmp/results that the sidecar can access.</p>
+<p>You can then include benchmark IDs from your adapter in evaluation collections exactly like any built-in benchmark.</p>
+<p># Collection referencing your custom provider name: &#34;My Domain Eval Suite v1&#34; category: &#34;domain-specific&#34; pass_criteria:  threshold: 70.0 benchmarks:  - id: my-benchmark  provider_id: my-framework # Your registered provider ID  metric: accuracy  threshold: 75.0  weight: 2.0  lower_is_better: false  - id: leaderboard_ifeval # Mix with built-in benchmarks  provider_id: lm_evaluation_harness  metric: inst_level_strict_acc  threshold: 65.0  weight: 1.0  lower_is_better: false Each benchmark entry specifies which metric to use for scoring, the pass/fail threshold, and a weight for the collection&#39;s aggregate score. lower_is_better: false means higher values are better (the default).</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. Catch up on the other parts in the series:</p>
+<p>Part 1: How EvalHub manages two-layer Kubernetes control planes   Part 2: EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark   Part 3: Evaluation-driven development with EvalHub   Part 4: Understanding evaluation collections in EvalHub   The contract: Build an adapter with one method The entire BYOF adapter surface is one abstract method in one base class:</p>
+<p>from evalhub.adapter import FrameworkAdapter, JobCallbacks, JobResults, JobSpec class MyEvalAdapter(FrameworkAdapter):  def run_benchmark_job(  self,  config: JobSpec,  callbacks: JobCallbacks,  ) -&gt; JobResults:  ...</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The problem with &#34;supported frameworks only&#34; Your organization might have a proprietary evaluation harness built on years of domain-specific test cases. You can use an academic framework not yet in the default set. You m</li>
+            <li>Returns the digest and full artifact reference URI.&#34;&#34;&#34;</li>
+            <li>completed_at: datetime # UTC completion timestamp</li>
+            <li>from datetime import UTC, datetime</li>
+            <li>completed_at=datetime.now(UTC),</li>
+            <li>FROM registry.access.redhat.com/ubi9/python-311:latest</li>
+            <li>EVALHUB_MODE=local (default): Loads from ./meta/job.json and logs callbacks locally; used for development and testing.</li>
+            <li>podman build -t quay.io/my-org/my-eval-framework:latest .</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/09/bring-your-own-evaluation-framework-evalhub" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

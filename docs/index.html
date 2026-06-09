@@ -25,16 +25,15 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">8 June 2026</h1>
+      <h1 class="brief-title">9 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-08T23:16:40.617160-05:00">8 June 2026, 23:16</time>
+        <time data-iso="2026-06-09T03:37:14.263355-05:00">9 June 2026, 03:37</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">1 high impact</span>
-      <span class="stat">2 items today</span>
+      <span class="stat">3 items today</span>
     </div>
   </div>
 
@@ -42,7 +41,6 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
         <li>Repeated coverage across Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
@@ -50,12 +48,12 @@
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">openshift<span class="trend-count">7</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">8</span></span>
         <span class="trend-pill">build<span class="trend-count">4</span></span>
+        <span class="trend-pill">evalhub<span class="trend-count">3</span></span>
+        <span class="trend-pill">database<span class="trend-count">2</span></span>
+        <span class="trend-pill">evaluation<span class="trend-count">2</span></span>
         <span class="trend-pill">agent<span class="trend-count">2</span></span>
-        <span class="trend-pill">bootc<span class="trend-count">2</span></span>
-        <span class="trend-pill">benchmarking<span class="trend-count">2</span></span>
-        <span class="trend-pill">evalhub<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -102,8 +100,9 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="reliability governance">reliability governance</button>
       </div>
     </div>
     <div class="adv-group">
@@ -115,15 +114,127 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      9 June 2026
+      <span class="day-count">3</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="database"
+       data-vendors=""
+       data-impact="medium"
+       data-theme="reliability governance"
+       data-title="creating checkpoints by gaslighting a postgres database​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿‌​​﻿​​‌​﻿‌​​﻿​﻿​﻿‌​﻿‌‌‌‌​﻿‌​﻿​﻿‌​﻿‌​﻿‌​‌​​﻿​​​﻿‌​﻿‌​﻿‌​﻿​‌‌‌​﻿‌​﻿‌​﻿‌‌​‌​﻿​‌​‌‌‌​‌‌‌‌‌​﻿​‌‌​‌​﻿​﻿​​​﻿​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿‌​​﻿​​‌​﻿‌​​﻿​﻿​﻿‌​﻿‌‌‌‌​﻿‌​﻿​﻿‌​﻿‌​﻿‌​‌​​﻿​​​﻿‌​﻿‌​﻿‌​﻿​‌‌‌​﻿‌​﻿‌​﻿‌‌​‌​﻿​‌​‌‌‌​‌‌‌‌‌​﻿​‌‌​‌​﻿​﻿​​​﻿​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌"
+       data-id="071eefba030e38c8"
+       data-published="2026-06-09T07:40:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-06-09T07:40:00+00:00" title="9 June 2026, 02:40">9 June 2026, 02:40</time>
+      </div>
+      <h3 class="card-title">Creating checkpoints by gaslighting a Postgres database​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿‌​​﻿​​‌​﻿‌​​﻿​﻿​﻿‌​﻿‌‌‌‌​﻿‌​﻿​﻿‌​﻿‌​﻿‌​‌​​﻿​​​﻿‌​﻿‌​﻿‌​﻿​‌‌‌​﻿‌​﻿‌​﻿‌‌​‌​﻿​‌​‌‌‌​‌‌‌‌‌​﻿​‌‌​‌​﻿​﻿​​​﻿​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿‌​​﻿​​‌​﻿‌​​﻿​﻿​﻿‌​﻿‌‌‌‌​﻿‌​﻿​﻿‌​﻿‌​﻿‌​‌​​﻿​​​﻿‌​﻿‌​﻿‌​﻿​‌‌‌​﻿‌​﻿‌​﻿‌‌​‌​﻿​‌​‌‌‌​‌‌‌‌‌​﻿​‌‌​‌​﻿​﻿​​​﻿​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</h3>
+      <p class="card-summary">Ryan welcomes Bryan Clark, director of product for Lakebase at Databricks, to discuss what happens when AI agents become the primary creators and users of databases; why agents are “sloppy” about cleaning up infrastructure; and how database branching, scale-to-zero, and centralized access control can help teams keep up with agent-driven…</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Ryan welcomes Bryan Clark, director of product for Lakebase at Databricks, to discuss what happens when AI agents become the primary creators and users of databases; why agents are “sloppy” about cleaning up infrastructure; and how database branching, scale-to-zero, and centralized access control can help teams keep up with agent-driven...</p></div>
+      <div class="detail-links">
+        <a href="articles/071eefba030e38c8.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/06/09/checkpoints-by-gaslighting-postgres-database/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,latency,networking,observability,outage"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="bring your own evaluation framework to evalhub"
+       data-id="173ddb306eb05ee6"
+       data-published="2026-06-09T07:01:10+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-09T07:01:10+00:00" title="9 June 2026, 02:01">9 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Bring your own evaluation framework to EvalHub</h3>
+      <p class="card-summary">EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough. For many others, it is not.</p></div>
+      <div class="detail-links">
+        <a href="articles/173ddb306eb05ee6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/09/bring-your-own-evaluation-framework-evalhub" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes,networking,outage"
+       data-vendors="GitHub,Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="integrate openshift ai and pg airman mcp server"
+       data-id="f93e2a00d28a1d67"
+       data-published="2026-06-09T07:01:08+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-09T07:01:08+00:00" title="9 June 2026, 02:01">9 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Integrate OpenShift AI and PG Airman MCP Server</h3>
+      <p class="card-summary">In 1991, Mark D. Weiser (CTO of Xerox PARC) wrote, The most profound technologies are those that disappear.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In 1991, Mark D. Weiser (CTO of Xerox PARC) wrote, The most profound technologies are those that disappear. Weiser was expressing his intuitive observation that the most reliable and successful technologies reach such a high degree of integration with our day-to-day lives that we cease to notice them.</p></div>
+      <div class="detail-links">
+        <a href="articles/f93e2a00d28a1d67.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/09/integrate-openshift-ai-and-pg-airman-mcp-server" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       8 June 2026
@@ -789,7 +900,7 @@ The post Intelligent inference scheduling with llm-d on Red Hat AI appeared firs
   <div class="day-group">
     <h2 class="day-heading">
       2 June 2026
-      <span class="day-count">10</span>
+      <span class="day-count">9</span>
     </h2>
   </div>
 
@@ -1099,38 +1210,6 @@ The post Intelligent inference scheduling with llm-d on Red Hat AI appeared firs
       <div class="detail-links">
         <a href="articles/91697475f362909e.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/liveperson-observability" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="protecting critical infrastructure in the ai era: it starts with data"
-       data-id="f32272059bde59ba"
-       data-published="2026-06-02T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-06-02T00:00:00+00:00" title="1 June 2026, 19:00">1 June 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Protecting critical infrastructure in the AI era: It starts with data</h3>
-      <p class="card-summary">Learn how AI-driven security, Zero Trust, and a unified data foundation help critical infrastructure organizations improve resilience, detect threats faster, and protect essential services.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Learn how AI-driven security, Zero Trust, and a unified data foundation help critical infrastructure organizations improve resilience, detect threats faster, and protect essential services.</p></div>
-      <div class="detail-links">
-        <a href="articles/f32272059bde59ba.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/critical-infrastructure-protection-ai-era" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrate OpenShift AI and PG Airman MCP Server — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-09.html" class="back-link">← 9 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">9 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Integrate OpenShift AI and PG Airman MCP Server</h1>
+
+      <p class="subtitle">In 1991, Mark D. Weiser (CTO of Xerox PARC) wrote, The most profound technologies are those that disappear.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">In 1991, Mark D. Weiser (CTO of Xerox PARC) wrote, The most profound technologies are those that disappear.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>In 1991, Mark D. Weiser (CTO of Xerox PARC) wrote, The most profound technologies are those that disappear. Weiser was expressing his intuitive observation that the most reliable and successful technologies reach such a high degree of integration with our day-to-day lives that we cease to notice them.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>In this regard, relational database technology stands in an elite league, quietly and reliably supporting nearly every function within the enterprise for over half a century.</p>
+<p>Despite the emergence of numerous non-relational database options, relational databases remain the core data workload technology used by most companies based on the projected market size of $140.36 billion by 2030 40% of the global database market .</p>
+<p>Red Hat OpenShift AI &amp; EnterpriseDB EnterpriseDB provides a suite of AI-enabled database technologies based on PostgreSQL.</p>
+<p>Deployment Make sure you are logged in to your OpenShift cluster.</p>
+<p>The quickstart and PG Airman MCP server (which we will review in detail in this article series) can be used with any Postgres database; however, combining PG Airman MCP with other EDB Postgres AI technologies may provide additional functionality.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>The problem Imagine you ve been asked as a sales analyst minutes before a meeting to determine customer lifetime value (LTV) for your product line. Figure 1 shows the copilot s main user interface with results for a sample query, visualizing the top three states with the highest customer count and listing any related data governance comments. You ve gained access to the massive EDB Postgres data warehouse, but when you list the tables, you see hundreds of objects with cryptic names (cust_pdata_b, sales_rpt_v2, v_cust_ltv_agg, customer_master_DEPRECATED). The solution Waiting for IT could take days or weeks; but with agentic AI, you can enter your query in natural language and get an answer in minutes, with visualizations and governance warnings if the data contains PII.</p>
+<p>Classified impact band: medium. Affected layer signal: data store.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>In this article, we will focus on PG Airman MCP, EDB s open-source library that uses the Model Control Protocol (MCP) to connect LLMs with PostgreSQL databases.</p>
+<p>System overview In this section, we will review the basics of deploying the copilot and present a summary of features.</p>
+<p>The quickstart and PG Airman MCP server (which we will review in detail in this article series) can be used with any Postgres database; however, combining PG Airman MCP with other EDB Postgres AI technologies may provide additional functionality.</p>
+<p>In part 2 of this series, we will unpack the evolution of agentic AI, compare it to standard Retrieval Augmented Generation (RAG) applications, and explore why this modern approach fundamentally changes the text-to-SQL landscape.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Deployment Make sure you are logged in to your OpenShift cluster. The make file includes several deployment options, including the choice to use your own LLM; however, except for the minimum hardware and software requirements documented in the README.md file, the command above will deploy everything you need to run the quickstart. Copilot features Once deployment is complete, the makefile will print the URL for the quickstart s user interface where you can submit your natural language queries or simply select from one of the sample queries provided on the screen.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The prestige act of AI and relational databases: Text-to-SQL If anything about modern AI feels like magic, it s the ability to generate code from natural language requirements, particularly SQL for its foundational role </li>
+            <li>You can see the copilot s response for the query, Visualize the top three states with the highest customer count and list any related data governance comments. Figure 1 shows the copilot s main user interface with result</li>
+            <li>Copilot features Once deployment is complete, the makefile will print the URL for the quickstart s user interface where you can submit your natural language queries or simply select from one of the sample queries provide</li>
+            <li>Data governance in a data sovereign platform The copilot supports safe data discovery by orchestrating the interaction between the PG Airman MCP server and the LLM to combine schema and other governance metadata embedded</li>
+            <li>Metadata and policy management EDB has enhanced the PG Airman MCP server to make it easy to read and update the metadata attached to database objects without deploying the MCP server in unrestricted mode, which would gra</li>
+            <li>Quickstart scope Quickstarts are sample AI applications meant to help organizations evaluate different ways AI can drive enterprise transformation. This copilot quickstart illustrates the use of OpenShift AI and EDB tech</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/09/integrate-openshift-ai-and-pg-airman-mcp-server" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
