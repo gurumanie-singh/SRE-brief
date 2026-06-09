@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">9 June 2026</h1>
-      <span class="brief-sub">3 items</span>
+      <span class="brief-sub">6 items</span>
     </div>
   </div>
 
@@ -65,30 +65,66 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="reliability governance">reliability governance</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors=""
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="hcp packer adds enforced provisioners"
+       data-id="296954538baabfbd"
+       data-published="2026-06-09T16:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-06-09T16:00:00+00:00" title="9 June 2026, 11:00">9 June 2026, 11:00</time>
+      </div>
+      <h3 class="card-title">HCP Packer adds enforced provisioners</h3>
+      <p class="card-summary">Organizations increasingly rely on golden images (such as AMIs, virtual machines, Docker containers, and more) to standardize infrastructure across hybrid-cloud environments. As image usage becomes more distributed across the enterprise, platform and security teams need mechanisms to ensure security requirements remain intact throughout the image lifecycle — without introducing additional complexity for downstream consumers.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">HashiCorp Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Organizations increasingly rely on golden images (such as AMIs, virtual machines, Docker containers, and more) to standardize infrastructure across hybrid-cloud environments. As image usage becomes more distributed across the enterprise, platform and security teams need mechanisms to ensure security requirements remain intact throughout the image lifecycle — without introducing additional complexity for downstream consumers. Today, we are excited to announce  enforced provisioners  for HCP Packer.</p></div>
+      <div class="detail-links">
+        <a href="../articles/296954538baabfbd.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.hashicorp.com/blog/hcp-packer-adds-enforced-provisioners" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="database"
        data-vendors=""
@@ -148,6 +184,7 @@
           <span class="ttag">networking</span>
         </div>
       </div>
+      <div class="card-related">Also: GitHub Blog, HashiCorp Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -191,6 +228,74 @@
       <div class="detail-links">
         <a href="../articles/f93e2a00d28a1d67.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/09/integrate-openshift-ai-and-pg-airman-mcp-server" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,networking,outage"
+       data-vendors="Cloudflare"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="defend against frontier cyber models: cloudflare&#39;s architecture as customer zero"
+       data-id="564e94c45d4bfe41"
+       data-published="2026-06-09T06:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-09T06:00:00+00:00" title="9 June 2026, 01:00">9 June 2026, 01:00</time>
+      </div>
+      <h3 class="card-title">Defend against frontier cyber models: Cloudflare&#39;s architecture as customer zero</h3>
+      <p class="card-summary">A few weeks ago, we wrote about Project Glasswing and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>A few weeks ago, we wrote about Project Glasswing and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch. In the conversations we&#39;ve had with CISOs and security teams since, the questions have been consistent: what does our architecture actually look like, what should we monitor for, where do we start, and how can Cloudflare help?</p></div>
+      <div class="detail-links">
+        <a href="../articles/564e94c45d4bfe41.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/frontier-model-defense/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="hnsw vs lsh: how elasticsearch hits 0.99 recall@10 at 15,000 qps — and what it costs"
+       data-id="83e64a21436cb76a"
+       data-published="2026-06-09T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-06-09T00:00:00+00:00" title="8 June 2026, 19:00">8 June 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">HNSW vs LSH: How Elasticsearch hits 0.99 recall@10 at 15,000 QPS — and what it costs</h3>
+      <p class="card-summary">Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.</p></div>
+      <div class="detail-links">
+        <a href="../articles/83e64a21436cb76a.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/understanding-ann" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

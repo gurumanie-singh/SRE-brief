@@ -1,5 +1,40 @@
 [
   {
+    "id": "296954538baabfbd",
+    "title": "HCP Packer adds enforced provisioners",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/hcp-packer-adds-enforced-provisioners",
+    "published": "2026-06-09T16:00:00+00:00",
+    "fetched_at": "2026-06-09T16:10:02.839226+00:00",
+    "summary": "Organizations increasingly rely on golden images (such as AMIs, virtual machines, Docker containers, and more) to standardize infrastructure across hybrid-cloud environments. As image usage becomes more distributed across the enterprise, platform and security teams need mechanisms to ensure security requirements remain intact throughout the image lifecycle — without...",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Increase visibility and auditability  - Tracking enforced provisioner versions alongside image versions provides a clear record of which controls were applied to the image, helping teams support compliance and operationa"
+    ],
+    "sections": {
+      "overview": "Organizations increasingly rely on golden images (such as AMIs, virtual machines, Docker containers, and more) to standardize infrastructure across hybrid-cloud environments. As image usage becomes more distributed across the enterprise, platform and security teams need mechanisms to ensure security requirements remain intact throughout the image lifecycle — without introducing additional complexity for downstream consumers. Today, we are excited to announce  enforced provisioners  for HCP Packer.",
+      "technical_breakdown": "Organizations increasingly rely on golden images (such as AMIs, virtual machines, Docker containers, and more) to standardize infrastructure across hybrid-cloud environments.\n\nThis new capability enables organizations to centrally define and apply mandatory provisioning logic across image builds, helping teams maintain security, compliance, and operational standards as images are consumed across the organization.\n\nEnforced provisioners allow platform and security teams to centrally define mandatory provisioning logic and apply it across image builds associated with a Packer bucket.\n\nReduce operational overhead  - Centralized management of provisioning logic eliminates the need for individual teams to manually replicate security and compliance configurations across image templates, helping organizations scale image governance more efficiently.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Benefits  By extending provisioning enforcement directly into the image build process, organizations can scale image standardization while reducing operational overhead: \n\n Improve security and compliance  - Platform and security teams can ensure critical compliance checks are automatically applied across image builds, reducing the risk of security standards being bypassed.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Increase visibility and auditability  - Tracking enforced provisioner versions alongside image versions provides a clear record of which controls were applied to the image, helping teams support compliance and operationa",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Organizations increasingly rely on golden images (such as AMIs, virtual machines, Docker containers, and more) to standardize infrastructure across hybrid-cloud environments. As image usage becomes more distributed across the enterprise, platform and security teams need mechanisms to ensure security requirements remain intact throughout the image lifecycle — without introducing additional complexity for downstream consumers.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "071eefba030e38c8",
     "title": "Creating checkpoints by gaslighting a Postgres database​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿‌​​﻿​​‌​﻿‌​​﻿​﻿​﻿‌​﻿‌‌‌‌​﻿‌​﻿​﻿‌​﻿‌​﻿‌​‌​​﻿​​​﻿‌​﻿‌​﻿‌​﻿​‌‌‌​﻿‌​﻿‌​﻿‌‌​‌​﻿​‌​‌‌‌​‌‌‌‌‌​﻿​‌‌​‌​﻿​﻿​​​﻿​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿‌​​﻿​​‌​﻿‌​​﻿​﻿​﻿‌​﻿‌‌‌‌​﻿‌​﻿​﻿‌​﻿‌​﻿‌​‌​​﻿​​​﻿‌​﻿‌​﻿‌​﻿​‌‌‌​﻿‌​﻿‌​﻿‌‌​‌​﻿​‌​‌‌‌​‌‌‌‌‌​﻿​‌‌​‌​﻿​﻿​​​﻿​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
@@ -79,7 +114,16 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/"
+      },
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/with-great-ai-power-comes-the-need-for-zero-trust-responsibility"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -126,6 +170,88 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "In 1991, Mark D. Weiser (CTO of Xerox PARC) wrote, The most profound technologies are those that disappear.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "564e94c45d4bfe41",
+    "title": "Defend against frontier cyber models: Cloudflare's architecture as customer zero",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/frontier-model-defense/",
+    "published": "2026-06-09T06:00:00+00:00",
+    "fetched_at": "2026-06-09T16:10:01.060626+00:00",
+    "summary": "A few weeks ago, we wrote about Project Glasswing and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch.",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "In the conversations we've had with CISOs and security teams since, the questions have been consistent: what does our architecture actually look like, what should we monitor for, where do we start, and how can Cloudflare",
+      "As these models become more competent and capable, our main focus from a threat standpoint comes down to three things. Each one shapes the architecture we walk through in the rest of this post.",
+      "The second is exploit volume and adaptation. A model can produce thousands of variations of a single exploit and run reconnaissance at the same scale. All that volume gives an attacker an advantage, but it won’t necessar",
+      "The third is the impact when a vulnerability is inevitably exploited. No architecture catches everything. After the vulnerability is exploited, the question we ask ourselves is: where can the attacker get to with one ide",
+      "First is Cloudforce One , our threat intelligence, research, and operations team, which sits within the Cloudflare security organization. They turn what we see across the network into insights the rest of the stack can a",
+      "The model is trained on a large body of past attack traffic, and it catches new variants of vulnerabilities before they're publicly known. A novel SQL injection or remote code execution chain is almost always a rearrange",
+      "On the API surface, we run a positive security model through API Shield . Instead of trying to anticipate every bad request, we describe what a valid request to each API looks like, either from the API's own definition o",
+      "Bot Management catches probing traffic on our network before frontier models can build a map. It scores every request on how likely it is to be automated, using the same signals across our whole network: how the client b"
+    ],
+    "sections": {
+      "overview": "A few weeks ago, we wrote about Project Glasswing and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch. In the conversations we've had with CISOs and security teams since, the questions have been consistent: what does our architecture actually look like, what should we monitor for, where do we start, and how can Cloudflare help?",
+      "technical_breakdown": "A flat network would have exposed everything on the same segment, but in our deployment, the exposure stopped at the tool itself.\n\nWork that used to be slow and methodical is now fast and indiscriminate.\n\nTell it there is a WAF in the way, and it will start probing, learning what gets blocked, and rewriting the payload until it can slip past the rule blocking it.\n\nThey turn what we see across the network into insights the rest of the stack can act on: tracked adversaries, emerging campaigns, and indicators of compromise (IOCs).\n\nKnowledge of a new threat normally has to travel from a threat report, into a feed, and then into a company’s defense before it can be used to block anything.",
+      "impact": "Before getting into the details: the architecture below is built almost entirely from Cloudflare's own products, because Cloudflare security is customer zero for the security products we build. The Cloudflare stack already exists in front of our code, employees, and customer-facing applications. If you're a Cloudflare customer, every layer below is available to you today. The third is the impact when a vulnerability is inevitably exploited.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Writing a fix, regressing it, and shipping it without breaking the code around it has constraints that AI doesn't remove.\n\nSome of those patches fixed the original bug while quietly breaking something else the code depended on.\n\nThe hard part of this work was never knowing what is malicious — it was the delay in mitigation.\n\nWhen something gets through, we identify the gap, use the right mix of tools to understand it, write the rule or mitigation, ship the update, and test again to make sure the gap is closed.",
+      "lessons_learned": "We learned this the hard way when we let an AI coding assistant write its own patches against our own bugs, as we described at the end of the previous post .\n\nAttackers have learned to move faster than that.\n\nInstead of trying to anticipate every bad request, we describe what a valid request to each API looks like, either from the API's own definition or learned from our real traffic, and anything that doesn't fit doesn't get through.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Before getting into the details: the architecture below is built almost entirely from Cloudflare's own products, because Cloudflare security is customer zero for the security products we build. This neutralizes the advantage of frontier AI models: because we only permit validated traffic, generating thousands of new attack variations fails to bypass the system. A flat network would have exposed everything on the same segment, but in our deployment, the exposure stopped at the tool itself.",
+      "incident_timeline": "In the conversations we've had with CISOs and security teams since, the questions have been consistent: what does our architecture actually look like, what should we monitor for, where do we start, and how can Cloudflare\nAs these models become more competent and capable, our main focus from a threat standpoint comes down to three things. Each one shapes the architecture we walk through in the rest of this post.\nThe second is exploit volume and adaptation. A model can produce thousands of variations of a single exploit and run reconnaissance at the same scale. All that volume gives an attacker an advantage, but it won’t necessar\nThe third is the impact when a vulnerability is inevitably exploited. No architecture catches everything. After the vulnerability is exploited, the question we ask ourselves is: where can the attacker get to with one ide\nFirst is Cloudforce One , our threat intelligence, research, and operations team, which sits within the Cloudflare security organization. They turn what we see across the network into insights the rest of the stack can a\nThe model is trained on a large body of past attack traffic, and it catches new variants of vulnerabilities before they're publicly known. A novel SQL injection or remote code execution chain is almost always a rearrange\nOn the API surface, we run a positive security model through API Shield . Instead of trying to anticipate every bad request, we describe what a valid request to each API looks like, either from the API's own definition o\nBot Management catches probing traffic on our network before frontier models can build a map. It scores every request on how likely it is to be automated, using the same signals across our whole network: how the client b",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "A few weeks ago, we wrote about Project Glasswing and what we observed when we pointed cyber frontier models at our own code. Since then, we’ve seen that the part of the post that has resonated most deeply is the argument that the architecture around the vulnerability matters more than the speed of the patch.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "83e64a21436cb76a",
+    "title": "HNSW vs LSH: How Elasticsearch hits 0.99 recall@10 at 15,000 QPS — and what it costs",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/understanding-ann",
+    "published": "2026-06-09T00:00:00+00:00",
+    "fetched_at": "2026-06-09T16:10:04.658785+00:00",
+    "summary": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+    "tags": [],
+    "day": "2026-06-09",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search."
+    ],
+    "sections": {
+      "overview": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+      "technical_breakdown": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Learn how approximate nearest neighbor search, HNSW, and DiskBBQ quantization work and why Elasticsearch HNSW delivers higher recall@10 than OpenSearch at equivalent QPS for production vector search.",
     "related_sources": [],
     "highlighted": false
   }
