@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Now available: Amazon EC2 M9g and M9gd instances powered by new AWS Graviton5 processors — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-10.html" class="back-link">← 10 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">AWS News Blog</span>
+        <span class="card-date">10 June 2026, 10:04</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Now available: Amazon EC2 M9g and M9gd instances powered by new AWS Graviton5 processors</h1>
+
+      <p class="subtitle">AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">AWS</span>
+        <span class="vendor-tag">Elastic</span>
+        <span class="tag">database</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>database issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview. Since then, customers have tested M9g across a wide range of workloads and shared their results.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>With 192 cores, a 5x larger L3 cache, up to 33% lower inter-core latency, and DDR5 memory delivering high bandwidth, Graviton5 helps agents spend less time waiting on CPU-bound steps, processing more instructions, handling large numbers of concurrent environments, and keeping accelerators moving.</p>
+<p>M9gd instances are well suited for general-purpose workloads that require a balance of compute and memory with high-speed, low-latency local storage, including application servers, microservices, gaming servers, midsize key-value data stores, caching fleets, data logging, media processing, batch and log processing, and applications that need temporary storage such as caches and scratch files.</p>
+<p>Agentic AI workloads, including real-time reasoning, code generation, and the orchestration of multi-step tasks, are CPU-intensive and benefit from the higher compute performance, larger caches, higher memory bandwidth, and core density in Graviton5.</p>
+<p>As the first CPU in the AWS fleet to support the latest generation of PCIe Gen6 and DDR5-8800 memory, AWS Graviton5 instances deliver the fastest memory of any processor instances in the cloud, and 5 times more L3 cache compared to the previous generation.</p>
+<p>M9g instances provide one vCPU for every four GiB of memory and are well suited for a broad range of general-purpose workloads, including application servers, microservices, midsize data stores, gaming servers, caching fleets, containerized applications, large-scale Java applications, code repositories, web applications, and agentic AI.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Since then, customers have tested M9g across a wide range of workloads and shared their results. HubSpot deployed M9g for MySQL databases and saw query duration drop by up to 60%. Today, M9g instances are generally available, alongside the new M9gd instances for customers who need high-speed, low-latency local NVMe SSD storage. After five generations of custom silicon and eight years of continuous investment, Graviton powers over 350 instance types serving more than 120,000 customers, from startups to large enterprises, a robust ISV partner ecosystem, and a broad set of managed services.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>These improvements also come with better energy efficiency, helping you meet sustainability targets without compromising capability.</p>
+<p>AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency.</p>
+<p>Honeycomb achieved 36% better throughput per core compared to Graviton4, across a 6-month A/B test of production observability workloads.</p>
+<p>What’s new in M9g and M9gd   Built on the sixth-generation AWS Nitro System , M9g instances are powered by AWS Graviton5 processors that deliver higher compute performance, larger caches, and improved memory and I/O scalability compared to Graviton4 processors.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: database issue. HubSpot deployed M9g for MySQL databases and saw query duration drop by up to 60%. You can use Graviton for a broad variety of workloads, including web applications, microservices, analytics, databases, machine learning (ML) inference, electronic design automation (EDA), gaming, and video encoding. Graviton5 offers up to 25% better compute performance compared to Graviton4-based instances, with up to 35% faster performance for web applications, up to 35% for machine learning inference, and up to 30% for databases.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g,</li>
+            <li>While many Arm-based instances have been introduced across the industry, no one comes close to the breadth and depth of the AWS Graviton footprint. After five generations of custom silicon and eight years of continuous i</li>
+            <li>As AI shifts from answering questions to taking actions, running code, using tools, evaluating results, and orchestrating multi-step tasks, the demand for CPU compute is growing rapidly. Graviton5 is built for this shift</li>
+            <li>Meta is deploying Graviton at scale starting with tens of millions of cores to support its agentic AI efforts, making Meta one of the largest Graviton customers in the world. Agentic AI workloads, including real-time rea</li>
+            <li>Built on the sixth-generation AWS Nitro System , M9g instances are powered by AWS Graviton5 processors that deliver higher compute performance, larger caches, and improved memory and I/O scalability compared to Graviton4</li>
+            <li>Networking and storage bandwidth have been expanded to keep pace with compute growth. M9g and M9gd instances offer up to 15% higher network bandwidth and 20% higher Amazon Elastic Block Store (Amazon EBS) bandwidth on av</li>
+            <li>Security and isolation are foundational requirements for running workloads in the cloud. Within the Nitro System, the AWS Nitro Hypervisor is designed to isolate instances from each other as well as AWS operators. With M</li>
+            <li>M9g and M9gd instances are available in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe (Frankfurt) Regions. M9g and M9gd instances are available for purchase through Savings Plans , On-Demand, Sp</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at AWS News Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

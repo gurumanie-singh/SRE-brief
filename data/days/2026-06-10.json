@@ -1,0 +1,224 @@
+[
+  {
+    "id": "8a080d9483a07c88",
+    "title": "Give GitHub Copilot CLI real code intelligence with language servers",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/",
+    "published": "2026-06-10T16:00:00+00:00",
+    "fetched_at": "2026-06-10T16:41:30.786036+00:00",
+    "summary": "Ever watched GitHub Copilot CLI extract a JAR file to a temporary directory, grep through .class files, and piece together an API signature from raw bytecode? The agent is resourceful, but without a language server, that s the best it can do.",
+    "tags": [
+      "capacity",
+      "outage"
+    ],
+    "day": "2026-06-10",
+    "impact": "high",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Ever watched GitHub Copilot CLI extract a JAR file to a temporary directory, grep through .class files, and piece together an API signature from raw bytecode? The agent is resourceful, but without a language server, that",
+      "An LSP server solves this structurally. When the agent sends a textDocument/definition request for a symbol, the language server returns the exact source location, fully resolved type, and signature.",
+      "This means the agent spends less time on tool calls and produces more accurate code on the first pass. For you, that s less time waiting while the agent decompiles a JAR file or greps through node_modules to answer a que",
+      "Restart GitHub Copilot CLI : if Copilot CLI is already running, type /exit first. Then relaunch copilot so it picks up the new skill.",
+      "Verify : after the skill installs and configures the LSP server, restart Copilot CLI one more time ( /exit , then relaunch), run /lsp to check the server status, and try go-to-definition on a symbol from one of your depe"
+    ],
+    "sections": {
+      "overview": "Ever watched GitHub Copilot CLI extract a JAR file to a temporary directory, grep through .class files, and piece together an API signature from raw bytecode? The agent is resourceful, but without a language server, that s the best it can do. The Language Server Protocol (LSP) is the standard that powers go to definition, find references, and type resolution in editors like VS Code.",
+      "technical_breakdown": "For a Java project, that might look like:\n\n \n # Find the dependency JAR \nfind ~/.m2/repository -name \"*httpclient*.jar\" \n \n# Extract it to a temp directory \nmkdir /tmp/httpclient && cd /tmp/httpclient \njar xf ~/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar \n \n# Search extracted class files for a method \ngrep -r \"execute\" --include=\"*.class\" .\n\nFor TypeScript, it walks node_modules .\n\nFor example, brew install jdtls on macOS versus downloading from eclipse.org on Linux.\n\n 3.\n\nFor example:\n\n \n # TypeScript on any OS \nnpm install -g typescript typescript-language-server \n \n# Java on macOS \nbrew install jdtls \n \n# Rust on any OS \nrustup component add rust-analyzer \n \n\n 6.\n\nThe format uses a lspServers object where each key is a server identifier:\n\n \n { \n \"lspServers\": { \n \"java\": { \n \"command\": \"jdtls\", \n \"args\": [], \n \"fileExtensions\": { \n \".java\": \"java\" \n } \n } \n } \n} \n \n\n Key rules the skill enforces:\n\n \n command must be on $PATH or an absolute path\n\n args typically includes \"--stdio\" for standard I/O transport (some servers like jdtls handle this internally)\n\n fileExtensions maps each extension (with leading dot) to a language identifier \n\n Existing entries in the config file are preserved the agent merges, never overwrites\n\n \n\n 7.",
+      "impact": "Configuration scope \n\n The agent asks whether the config should be:\n\n \n User-level : ~/.copilot/lsp-config.json applies to all repositories\n\n Repository-level : lsp.json at the repository root or .github/lsp.json scoped to a single project\n\n \n\n Repository-level configuration takes precedence when both exist.\n\n 5. For a Java project, that might look like:\n\n \n # Find the dependency JAR \nfind ~/.m2/repository -name \"*httpclient*.jar\" \n \n# Extract it to a temp directory \nmkdir /tmp/httpclient && cd /tmp/httpclient \njar xf ~/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar \n \n# Search extracted class files for a method \ngrep -r \"execute\" --include=\"*.class\" . Language selection \n\n The agent uses ask_user with a set of choices to determine which language the user needs LSP support for.\n\nClassified impact band: high. Affected layer signal: general production.",
+      "resolution": "When the agent sends a textDocument/definition request for a symbol, the language server returns the exact source location, fully resolved type, and signature.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Ever watched GitHub Copilot CLI extract a JAR file to a temporary directory, grep through .class files, and piece together an API signature from raw bytecode? The agent is resourceful, but without a language server, that\nAn LSP server solves this structurally. When the agent sends a textDocument/definition request for a symbol, the language server returns the exact source location, fully resolved type, and signature.\nThis means the agent spends less time on tool calls and produces more accurate code on the first pass. For you, that s less time waiting while the agent decompiles a JAR file or greps through node_modules to answer a que\nRestart GitHub Copilot CLI : if Copilot CLI is already running, type /exit first. Then relaunch copilot so it picks up the new skill.\nVerify : after the skill installs and configures the LSP server, restart Copilot CLI one more time ( /exit , then relaunch), run /lsp to check the server status, and try go-to-definition on a symbol from one of your depe",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Ever watched GitHub Copilot CLI extract a JAR file to a temporary directory, grep through .class files, and piece together an API signature from raw bytecode. Impact band: high.",
+    "related_sources": [
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/06/10/building-and-running-bazel-applications-autosd"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "2e665d4ecfe75ed3",
+    "title": "Now available: Amazon EC2 M9g and M9gd instances powered by new AWS Graviton5 processors",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/",
+    "published": "2026-06-10T15:04:30+00:00",
+    "fetched_at": "2026-06-10T16:41:29.087893+00:00",
+    "summary": "AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview. Since then, customers have tested M9g across a wide range of workloads and shared their results. ClickHouse saw a 36%...",
+    "tags": [
+      "database",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-10",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g,",
+      "While many Arm-based instances have been introduced across the industry, no one comes close to the breadth and depth of the AWS Graviton footprint. After five generations of custom silicon and eight years of continuous i",
+      "As AI shifts from answering questions to taking actions, running code, using tools, evaluating results, and orchestrating multi-step tasks, the demand for CPU compute is growing rapidly. Graviton5 is built for this shift",
+      "Meta is deploying Graviton at scale starting with tens of millions of cores to support its agentic AI efforts, making Meta one of the largest Graviton customers in the world. Agentic AI workloads, including real-time rea",
+      "Built on the sixth-generation AWS Nitro System , M9g instances are powered by AWS Graviton5 processors that deliver higher compute performance, larger caches, and improved memory and I/O scalability compared to Graviton4",
+      "Networking and storage bandwidth have been expanded to keep pace with compute growth. M9g and M9gd instances offer up to 15% higher network bandwidth and 20% higher Amazon Elastic Block Store (Amazon EBS) bandwidth on av",
+      "Security and isolation are foundational requirements for running workloads in the cloud. Within the Nitro System, the AWS Nitro Hypervisor is designed to isolate instances from each other as well as AWS operators. With M",
+      "M9g and M9gd instances are available in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe (Frankfurt) Regions. M9g and M9gd instances are available for purchase through Savings Plans , On-Demand, Sp"
+    ],
+    "sections": {
+      "overview": "AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview. Since then, customers have tested M9g across a wide range of workloads and shared their results.",
+      "technical_breakdown": "With 192 cores, a 5x larger L3 cache, up to 33% lower inter-core latency, and DDR5 memory delivering high bandwidth, Graviton5 helps agents spend less time waiting on CPU-bound steps, processing more instructions, handling large numbers of concurrent environments, and keeping accelerators moving.\n\nM9gd instances are well suited for general-purpose workloads that require a balance of compute and memory with high-speed, low-latency local storage, including application servers, microservices, gaming servers, midsize key-value data stores, caching fleets, data logging, media processing, batch and log processing, and applications that need temporary storage such as caches and scratch files.\n\nAgentic AI workloads, including real-time reasoning, code generation, and the orchestration of multi-step tasks, are CPU-intensive and benefit from the higher compute performance, larger caches, higher memory bandwidth, and core density in Graviton5.\n\nAs the first CPU in the AWS fleet to support the latest generation of PCIe Gen6 and DDR5-8800 memory, AWS Graviton5 instances deliver the fastest memory of any processor instances in the cloud, and 5 times more L3 cache compared to the previous generation.\n\nM9g instances provide one vCPU for every four GiB of memory and are well suited for a broad range of general-purpose workloads, including application servers, microservices, midsize data stores, gaming servers, caching fleets, containerized applications, large-scale Java applications, code repositories, web applications, and agentic AI.",
+      "impact": "Since then, customers have tested M9g across a wide range of workloads and shared their results. HubSpot deployed M9g for MySQL databases and saw query duration drop by up to 60%. Today, M9g instances are generally available, alongside the new M9gd instances for customers who need high-speed, low-latency local NVMe SSD storage. After five generations of custom silicon and eight years of continuous investment, Graviton powers over 350 instance types serving more than 120,000 customers, from startups to large enterprises, a robust ISV partner ecosystem, and a broad set of managed services.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "These improvements also come with better energy efficiency, helping you meet sustainability targets without compromising capability.\n\nAWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency.\n\nHoneycomb achieved 36% better throughput per core compared to Graviton4, across a 6-month A/B test of production observability workloads.\n\nWhat’s new in M9g and M9gd \n Built on the sixth-generation AWS Nitro System , M9g instances are powered by AWS Graviton5 processors that deliver higher compute performance, larger caches, and improved memory and I/O scalability compared to Graviton4 processors.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. HubSpot deployed M9g for MySQL databases and saw query duration drop by up to 60%. You can use Graviton for a broad variety of workloads, including web applications, microservices, analytics, databases, machine learning (ML) inference, electronic design automation (EDA), gaming, and video encoding. Graviton5 offers up to 25% better compute performance compared to Graviton4-based instances, with up to 35% faster performance for web applications, up to 35% for machine learning inference, and up to 30% for databases.",
+      "incident_timeline": "AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g,\nWhile many Arm-based instances have been introduced across the industry, no one comes close to the breadth and depth of the AWS Graviton footprint. After five generations of custom silicon and eight years of continuous i\nAs AI shifts from answering questions to taking actions, running code, using tools, evaluating results, and orchestrating multi-step tasks, the demand for CPU compute is growing rapidly. Graviton5 is built for this shift\nMeta is deploying Graviton at scale starting with tens of millions of cores to support its agentic AI efforts, making Meta one of the largest Graviton customers in the world. Agentic AI workloads, including real-time rea\nBuilt on the sixth-generation AWS Nitro System , M9g instances are powered by AWS Graviton5 processors that deliver higher compute performance, larger caches, and improved memory and I/O scalability compared to Graviton4\nNetworking and storage bandwidth have been expanded to keep pace with compute growth. M9g and M9gd instances offer up to 15% higher network bandwidth and 20% higher Amazon Elastic Block Store (Amazon EBS) bandwidth on av\nSecurity and isolation are foundational requirements for running workloads in the cloud. Within the Nitro System, the AWS Nitro Hypervisor is designed to isolate instances from each other as well as AWS operators. With M\nM9g and M9gd instances are available in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe (Frankfurt) Regions. M9g and M9gd instances are available for purchase through Savings Plans , On-Demand, Sp",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d40180be24f28b39",
+    "title": "What's new in Red Hat Ansible Automation Platform 2.7",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/10/whats-new-red-hat-ansible-automation-platform-27",
+    "published": "2026-06-10T14:05:43+00:00",
+    "fetched_at": "2026-06-10T16:41:32.410099+00:00",
+    "summary": "Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale. Ansible Automation Platform 2.7 introduces new features and enhancements designed to streamline platform engineering, eliminate friction across the automation lifecycle, and put AI to work...",
+    "tags": [
+      "deployment",
+      "latency",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-10",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The most significant new capability is bring your own knowledge (BYOK), a Technology Preview feature that lets administrators extend the assistant with their organization's internal documentation. After you generate your",
+      "MCP server for Ansible Automation Platform Managing an automation estate today often means navigating a UI or writing API calls to check on jobs, gather facts, or kick off workflows. The model context protocol (MCP) serv",
+      "Get started by reading the official release notes to see the full scope of what's new in 2.7, and then download the latest version of Ansible Automation Platform!"
+    ],
+    "sections": {
+      "overview": "Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale. Ansible Automation Platform 2.7 introduces new features and enhancements designed to streamline platform engineering, eliminate friction across the automation lifecycle, and put AI to work across IT operations.",
+      "technical_breakdown": "Key updates include an expanded automation portal with a new visual execution environment builder and centralized content catalog, along with the enhanced automation intelligent assistant that now supports bring-your-own-knowledge for enterprise-specific guidance.\n\nThe most significant new capability is bring your own knowledge (BYOK), a Technology Preview feature that lets administrators extend the assistant with their organization's internal documentation.\n\nAnsible Automation Platform 2.7 also introduces a Technology Preview of native MCP server integration, enabling AI agents to query jobs, gather facts, and launch automation workflows through natural language, as well as Ansible development workspaces for a secure, consistent browser-based development environment.\n\nThe self-service automation portal addresses both problems in Ansible Automation Platform 2.7 with two major additions: a visual execution environment builder and a centralized content catalog.\n\nA new centralized content catalog aggregates trusted collections from Git repositories and private automation hub sources, so developers can find and add exactly what they need directly within the builder.",
+      "impact": "Each token is automatically scoped to the specific job, user, and organization running the automation, and expires when the job ends (by default aligning with the job's configured timeout, or a platform fallback of five minutes). When a user requires a secret to run automation on a Vault-secured component of infrastructure, the OIDC provider issues a token. When users ask questions, the assistant draws from your organization's specific policies, workflows, and terminology, and supplements with standard Ansible documentation when necessary. Get started by reading the official release notes to see the full scope of what's new in 2.7, and then download the latest version of Ansible Automation Platform!\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The portal is also now available for RHEL based deployments.",
+      "incident_timeline": "The most significant new capability is bring your own knowledge (BYOK), a Technology Preview feature that lets administrators extend the assistant with their organization's internal documentation. After you generate your\nMCP server for Ansible Automation Platform Managing an automation estate today often means navigating a UI or writing API calls to check on jobs, gather facts, or kick off workflows. The model context protocol (MCP) serv\nGet started by reading the official release notes to see the full scope of what's new in 2.7, and then download the latest version of Ansible Automation Platform!",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "780b307d8db3403b",
+    "title": "Announcing Stack Overflow for Agents​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​​﻿​​﻿‌﻿​﻿​‌​﻿‌​﻿​﻿‌​‌‌​﻿‌‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌﻿‌​​﻿‌‌​‌‌​‌​﻿‌‌​​﻿‌‌​​﻿​‌‌​​﻿‌​﻿‌​﻿​​﻿​​﻿‌​﻿‌​‌​​﻿‌‌​﻿‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​​﻿​​﻿‌﻿​﻿​‌​﻿‌​﻿​﻿‌​‌‌​﻿‌‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌﻿‌​​﻿‌‌​‌‌​‌​﻿‌‌​​﻿‌‌​​﻿​‌‌​​﻿‌​﻿‌​﻿​​﻿​​﻿‌​﻿‌​‌​​﻿‌‌​﻿‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/10/announcing-stack-overflow-for-agents/",
+    "published": "2026-06-10T14:00:00+00:00",
+    "fetched_at": "2026-06-10T16:41:31.516733+00:00",
+    "summary": "If your coding agent has questions, Stack Overflow for Agents has answers, now in...",
+    "tags": [],
+    "day": "2026-06-10",
+    "impact": "medium",
+    "vendors": [
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "If your coding agent has questions, Stack Overflow for Agents has answers, now in beta.​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌"
+    ],
+    "sections": {
+      "overview": "If your coding agent has questions, Stack Overflow for Agents has answers, now in...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "If your coding agent has questions, Stack Overflow for Agents has answers, now in beta.​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "If your coding agent has questions, Stack Overflow for Agents has answers, now in…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "90b99ee5530e4b27",
+    "title": "Route public traffic to private applications with Cloudflare",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/private-origins-dns-routing/",
+    "published": "2026-06-10T13:00:00+00:00",
+    "fetched_at": "2026-06-10T16:41:29.593428+00:00",
+    "summary": "For most of the Internet’s history, public and private infrastructure operated as separate worlds. Public applications lived behind content delivery networks (CDNs) and web application firewalls (WAFs). Private applications lived behind virtual private networks (VPNs), firewalls, and separate operational stacks. We think that distinction is becoming obsolete.",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "observability"
+    ],
+    "day": "2026-06-10",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Much of that connectivity is orchestrated through Cloudflare’s private networking routing layer that determines how traffic reaches private destinations across Cloudflare Tunnels, Virtual Networks , Cloudflare Mesh, and ",
+      "Behind the scenes, Cloudflare's proxy platform determines where to send traffic for app.example.com by querying Cloudflare's Origin API. The response includes metadata indicating that the destination should be reached th",
+      "The use_private_routing flag is the key signal. When our proxy sees it, instead of attempting to connect directly to the private IP address over the public Internet, it hands the request to our private networking layer, ",
+      "The same routing model now extends beyond HTTP applications. The origin does not have to be a web server. It can be a TCP database, a UDP logging endpoint, or a private API that Workers call directly. The common thread i",
+      "\"origin_direct\": [\"tcp://10.0.0.50:22\"],",
+      "When you create or update a Spectrum application with a private origin and virtual network, Cloudflare verifies that the IP address matches a route in your Cloudflare Tunnel before the configuration is saved. If no match",
+      "Routing to private origins is available today in closed beta for eligible Enterprise customers. Reach out to your Cloudflare account team to request access. Once enabled, follow our developer documentation , which walks ",
+      "Questions or feedback? Join the conversation in our community forums or reach out to your account team."
+    ],
+    "sections": {
+      "overview": "For most of the Internet’s history, public and private infrastructure operated as separate worlds. Public applications lived behind content delivery networks (CDNs) and web application firewalls (WAFs). Private applications lived behind virtual private networks (VPNs), firewalls, and separate operational stacks.",
+      "technical_breakdown": "Public applications lived behind content delivery networks (CDNs) and web application firewalls (WAFs).\n\nIt can be a TCP database, a UDP logging endpoint, or a private API that Workers call directly.\n\nWhen you create a Spectrum application, you can include the virtual network ID alongside your private origin IP:\n\n {\n \"protocol\": \"tcp/22\",\n \"dns\": {\n \"type\": \"CNAME\",\n \"name\": \"ssh.example.com\"\n },\n \"origin_direct\": [\"tcp://10.0.0.50:22\"],\n \"virtual_network_id\": \"fab9ac85-491b-44c8-b7ae-dd44d4f4672e\"\n} \n When you create or update a Spectrum application with a private origin and virtual network, Cloudflare verifies that the IP address matches a route in your Cloudflare Tunnel before the configuration is saved.\n\nOnce saved, Spectrum hands the connection to your virtual network , which routes it through the associated tunnel, via the same path that HTTP traffic uses when you enable private network routing on a DNS record.\n\nCustomers can define their routing behavior through APIs and the dashboard instead of managing separate networking stacks for each product.",
+      "impact": "The end state is a world where an employee on Cloudflare One Client accessing wiki.company.internal gets the same WAF, rate limiting, and bot management protections as a customer accessing a public API. Today, we're launching Application Services for Private Origins in closed beta for eligible Enterprise customers. Customers can now securely route traffic to private origins without exposing those origins to the public Internet. Four use cases, one application layer \n \n \n \n \n This routing model builds on connectivity patterns Cloudflare already supports today through Cloudflare Tunnel , Cloudflare One Client , and private network integrations.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "Customers could use Cloudflare Tunnel , which runs cloudflared , our connector software, on or near the origin, or Cloudflare Load Balancing with private origin pools for health checks and failover.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. What the API looks like \n \n \n \n \n For customers automating deployments through the API, private routing is simply an additional attribute on a standard DNS record.",
+      "incident_timeline": "Much of that connectivity is orchestrated through Cloudflare’s private networking routing layer that determines how traffic reaches private destinations across Cloudflare Tunnels, Virtual Networks , Cloudflare Mesh, and \nBehind the scenes, Cloudflare's proxy platform determines where to send traffic for app.example.com by querying Cloudflare's Origin API. The response includes metadata indicating that the destination should be reached th\nThe use_private_routing flag is the key signal. When our proxy sees it, instead of attempting to connect directly to the private IP address over the public Internet, it hands the request to our private networking layer, \nThe same routing model now extends beyond HTTP applications. The origin does not have to be a web server. It can be a TCP database, a UDP logging endpoint, or a private API that Workers call directly. The common thread i\n\"origin_direct\": [\"tcp://10.0.0.50:22\"],\nWhen you create or update a Spectrum application with a private origin and virtual network, Cloudflare verifies that the IP address matches a route in your Cloudflare Tunnel before the configuration is saved. If no match\nRouting to private origins is available today in closed beta for eligible Enterprise customers. Reach out to your Cloudflare account team to request access. Once enabled, follow our developer documentation , which walks \nQuestions or feedback? Join the conversation in our community forums or reach out to your account team.",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "For most of the Internet’s history, public and private infrastructure operated as separate worlds. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
