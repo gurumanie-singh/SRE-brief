@@ -140,6 +140,50 @@
     "highlighted": false
   },
   {
+    "id": "2e053bbfb7c1464a",
+    "title": "What's new in Red Hat Ansible Automation Platform 2.7",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/10/whats-new-red-hat-ansible-automation-platform-2-7",
+    "published": "2026-06-10T14:05:43+00:00",
+    "fetched_at": "2026-06-10T19:42:01.135812+00:00",
+    "summary": "Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale. Ansible Automation Platform 2.7 introduces new features and enhancements designed to streamline platform engineering, eliminate friction across the automation lifecycle, and put AI to work...",
+    "tags": [
+      "deployment",
+      "latency",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-10",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "The most significant new capability is bring your own knowledge (BYOK), a Technology Preview feature that lets administrators extend the assistant with their organization's internal documentation. After you generate your",
+      "MCP server for Ansible Automation Platform Managing an automation estate today often means navigating a UI or writing API calls to check on jobs, gather facts, or kick off workflows. The model context protocol (MCP) serv",
+      "Get started by reading the official release notes to see the full scope of what's new in 2.7, and then download the latest version of Ansible Automation Platform!"
+    ],
+    "sections": {
+      "overview": "Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale. Ansible Automation Platform 2.7 introduces new features and enhancements designed to streamline platform engineering, eliminate friction across the automation lifecycle, and put AI to work across IT operations.",
+      "technical_breakdown": "Key updates include an expanded automation portal with a new visual execution environment builder and centralized content catalog, along with the enhanced automation intelligent assistant that now supports bring-your-own-knowledge for enterprise-specific guidance.\n\nThe most significant new capability is bring your own knowledge (BYOK), a Technology Preview feature that lets administrators extend the assistant with their organization's internal documentation.\n\nAnsible Automation Platform 2.7 also introduces a Technology Preview of native MCP server integration, enabling AI agents to query jobs, gather facts, and launch automation workflows through natural language, as well as Ansible development workspaces for a secure, consistent browser-based development environment.\n\nThe self-service automation portal addresses both problems in Ansible Automation Platform 2.7 with two major additions: a visual execution environment builder and a centralized content catalog.\n\nA new centralized content catalog aggregates trusted collections from Git repositories and private automation hub sources, so developers can find and add exactly what they need directly within the builder.",
+      "impact": "Each token is automatically scoped to the specific job, user, and organization running the automation, and expires when the job ends (by default aligning with the job's configured timeout, or a platform fallback of five minutes). When a user requires a secret to run automation on a Vault-secured component of infrastructure, the OIDC provider issues a token. When users ask questions, the assistant draws from your organization's specific policies, workflows, and terminology, and supplements with standard Ansible documentation when necessary. Get started by reading the official release notes to see the full scope of what's new in 2.7, and then download the latest version of Ansible Automation Platform!\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The portal is also now available for RHEL based deployments.",
+      "incident_timeline": "The most significant new capability is bring your own knowledge (BYOK), a Technology Preview feature that lets administrators extend the assistant with their organization's internal documentation. After you generate your\nMCP server for Ansible Automation Platform Managing an automation estate today often means navigating a UI or writing API calls to check on jobs, gather facts, or kick off workflows. The model context protocol (MCP) serv\nGet started by reading the official release notes to see the full scope of what's new in 2.7, and then download the latest version of Ansible Automation Platform!",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "780b307d8db3403b",
     "title": "Announcing Stack Overflow for Agents​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​​﻿​​﻿‌﻿​﻿​‌​﻿‌​﻿​﻿‌​‌‌​﻿‌‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌﻿‌​​﻿‌‌​‌‌​‌​﻿‌‌​​﻿‌‌​​﻿​‌‌​​﻿‌​﻿‌​﻿​​﻿​​﻿‌​﻿‌​‌​​﻿‌‌​﻿‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​​﻿​​﻿‌﻿​﻿​‌​﻿‌​﻿​﻿‌​‌‌​﻿‌‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌﻿‌​​﻿‌‌​‌‌​‌​﻿‌‌​​﻿‌‌​​﻿​‌‌​​﻿‌​﻿‌​﻿​​﻿​​﻿‌​﻿‌​‌​​﻿‌‌​﻿‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
