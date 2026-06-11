@@ -123,7 +123,16 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "EvalHub's API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/terraform-mcp-server-is-now-generally-available"
+      },
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/security/making-secret-scanning-more-trustworthy-reducing-false-positives-at-scale/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -260,6 +269,76 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "db4a8ea541d35594",
+    "title": "From M-21-31 to M-26-14: What US government agencies need to know now",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/m-26-14-memorandum",
+    "published": "2026-06-11T00:00:00+00:00",
+    "fetched_at": "2026-06-11T18:23:10.127083+00:00",
+    "summary": "M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned to meet the requirements.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-06-11",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned "
+    ],
+    "sections": {
+      "overview": "M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned to meet the requirements.",
+      "technical_breakdown": "M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned to meet the requirements.",
+      "root_cause_highlight": "",
+      "incident_timeline": "M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned ",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned to meet the requirements.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "6ae3e243551f649e",
+    "title": "Quantum computing, agentic AI, and the next infrastructure layer in financial services",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/quantum-computing-in-financial-services",
+    "published": "2026-06-11T00:00:00+00:00",
+    "fetched_at": "2026-06-11T18:23:10.127283+00:00",
+    "summary": "As financial services firms adopt AI and explore quantum computing, vector search, observability, and security platforms are emerging as the contextual intelligence foundation for autonomous enterprise systems.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-06-11",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "As financial services firms adopt AI and explore quantum computing, vector search, observability, and security platforms are emerging as the contextual intelligence foundation for autonomous enterprise systems.",
+      "technical_breakdown": "As financial services firms adopt AI and explore quantum computing, vector search, observability, and security platforms are emerging as the contextual intelligence foundation for autonomous enterprise systems.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "As financial services firms adopt AI and explore quantum computing, vector search, observability, and security platforms are emerging as the contextual intelligence foundation for autonomous enterprise systems.",
     "related_sources": [],
     "highlighted": false
   }
