@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">11 June 2026</h1>
-      <span class="brief-sub">4 items</span>
+      <span class="brief-sub">6 items</span>
     </div>
   </div>
 
@@ -68,8 +68,10 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
       </div>
     </div>
     <div class="adv-group">
@@ -82,16 +84,60 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="latency,observability,outage"
+       data-vendors="Slack"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="agentic testing: where agents fit in the e2e testing stack"
+       data-id="e033426aadf18b65"
+       data-published="2026-06-11T14:15:28+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-06-11T14:15:28+00:00" title="11 June 2026, 09:15">11 June 2026, 09:15</time>
+      </div>
+      <h3 class="card-title">Agentic Testing: Where Agents Fit in the E2E Testing Stack</h3>
+      <p class="card-summary">Abstract 
+ Agent-driven end-to-end (E2E) tests add a new exploratory layer to testing, but should they replace traditional deterministic tests. We ran more than 200 agentic E2E workflows using the Playwright MCP, Playwright CLI, and agent-generated Playwright tests in test workspaces using non-production data to find out how agentic testing could fit into both our and your testing stacks. 
+
+ 1.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Slack Engineering</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Abstract   Agent-driven end-to-end (E2E) tests add a new exploratory layer to testing, but should they replace traditional deterministic tests? We ran more than 200 agentic E2E workflows using the Playwright MCP, Playwright CLI, and agent-generated Playwright tests in test workspaces using non-production data to find out how agentic testing could fit into both our and your testing stacks.</p>
+<p>1. From Journeys to Goals   Traditional end-to-end tests validate a specific journey through the UI.</p>
+<p>click → click → type → assert</p>
+<p>Agent-driven tests instead validate whether a goal can be achieved, often expressed as an instruction (e.g. “send a thread message”):</p>
+<p>goal → agent adapts → verify result</p>
+<p>This difference can be summarized simply:</p>
+<p>Tests enforce journeys.</p></div>
+      <div class="detail-links">
+        <a href="../articles/e033426aadf18b65.html" class="detail-read">Open structured brief →</a>
+        <a href="https://slack.engineering/agentic-testing-where-agents-fit-in-the-e2e-testing-stack/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors="Stack Overflow"
@@ -229,6 +275,39 @@
       <div class="detail-links">
         <a href="../articles/a6fe350e888c8550.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/11/intelligent-inference-scheduling-llm-d-red-hat-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="observability"
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="compliance work is overdue for a new approach"
+       data-id="fefdeb83ae054fca"
+       data-published="2026-06-11T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-06-11T00:00:00+00:00" title="10 June 2026, 19:00">10 June 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">Compliance work is overdue for a new approach</h3>
+      <p class="card-summary">Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.</p></div>
+      <div class="detail-links">
+        <a href="../articles/fefdeb83ae054fca.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/agentic-compliance-skills" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

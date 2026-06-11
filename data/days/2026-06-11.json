@@ -1,5 +1,51 @@
 [
   {
+    "id": "e033426aadf18b65",
+    "title": "Agentic Testing: Where Agents Fit in the E2E Testing Stack",
+    "source": "Slack Engineering",
+    "link": "https://slack.engineering/agentic-testing-where-agents-fit-in-the-e2e-testing-stack/",
+    "published": "2026-06-11T14:15:28+00:00",
+    "fetched_at": "2026-06-11T14:48:44.524823+00:00",
+    "summary": "Abstract ",
+    "tags": [
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-11",
+    "impact": "medium",
+    "vendors": [
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Agent-driven end-to-end (E2E) tests add a new exploratory layer to testing, but should they replace traditional deterministic tests? We ran more than 200 agentic E2E workflows using the Playwright MCP, Playwright CLI, an",
+      "Traditional end-to-end tests validate a specific journey through the UI.",
+      "Agent-driven tests instead validate whether a goal can be achieved, often expressed as an instruction (e.g. “send a thread message”):",
+      "Tests enforce journeys. Agents verify goals.",
+      "Across our agentic test runs, the overall workflow remained consistent (e.g. login → search → result → clear), but the exact sequence of actions varied. In practice, agents took different paths to reach the same outcome:",
+      "Different input methods (clicking a search suggestion vs pressing Enter)",
+      "Agent-driven E2E testing looks promising, but it raises a real question: can something that costs $15–30 per run and takes over 10 minutes actually fit into modern testing workflows?",
+      "At first glance, the answer seems like no. But in 200+ runs, we found they are fundamentally different from traditional tests. They can be highly reliable and have a clear place in the testing stack."
+    ],
+    "sections": {
+      "overview": "Abstract \n Agent-driven end-to-end (E2E) tests add a new exploratory layer to testing, but should they replace traditional deterministic tests? We ran more than 200 agentic E2E workflows using the Playwright MCP, Playwright CLI, and agent-generated Playwright tests in test workspaces using non-production data to find out how agentic testing could fit into both our and your testing stacks. \n\n 1. From Journeys to Goals \n Traditional end-to-end tests validate a specific journey through the UI. \n\n click → click → type → assert \n\n Agent-driven tests instead validate whether a goal can be achieved, often expressed as an instruction (e.g. “send a thread message”): \n\n goal → agent adapts → verify result \n\n This difference can be summarized simply: \n\n Tests enforce journeys.",
+      "technical_breakdown": "Approach \n \n Failure rate  \n\n (thread reply) \n \n Failure rate  \n\n (search discovery) \n Avg runtime \n \n \n Agent (Playwright MCP) \n 0% \n ~12% \n ~5–8 min \n \n \n Agent (Playwright CLI) \n ~12% \n ~20% \n ~9–11 min \n \n \n Generated Playwright Tests \n ~8% \n ~48% \n ~3 min \n \n \n \n The following sections break down these results by individual metrics.\n\nFor Code Gen, the accumulated context comes from test runner output containing full error traces, assertion failures, and DOM state on each retry cycle.\n\nAcknowledgements \n Huge thanks to the DevXP AI team for building and supporting tools like Claude Code, as well as the metrics infrastructure that made these experiments possible.\n\nFrom Journeys to Goals \n Traditional end-to-end tests validate a specific journey through the UI. \n\n click → click → type → assert \n\n Agent-driven tests instead validate whether a goal can be achieved, often expressed as an instruction (e.g. “send a thread message”): \n\n goal → agent adapts → verify result \n\n This difference can be summarized simply: \n\n Tests enforce journeys.\n\nAcross our agentic test runs, the overall workflow remained consistent (e.g. login → search → result → clear), but the exact sequence of actions varied.",
+      "impact": "Approach \n Average Duration \n \n \n Generated Playwright Tests \n ~3 minutes \n \n \n Agent (Playwright MCP) \n ~5–8 minutes \n \n \n Agent (Playwright CLI) \n ~9–11 minutes \n \n \n \n For generated tests, the runtime includes both test generation and execution. The Problem \n Agent-driven E2E testing looks promising, but it raises a real question: can something that costs $15–30 per run and takes over 10 minutes actually fit into modern testing workflows? This is largely due to recent advances in large language models, which enable agents to write code, debug failures, and interact directly with user interfaces. Each test was generated once and executed five times, and the numbers above reflect the average duration per run.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Due to the cost, agent-driven testing may currently be better suited for targeted debugging or exploratory testing than for high-frequency CI execution, although cost may improve with future models and tooling.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Agent-driven end-to-end (E2E) tests add a new exploratory layer to testing, but should they replace traditional deterministic tests? We ran more than 200 agentic E2E workflows using the Playwright MCP, Playwright CLI, an\nTraditional end-to-end tests validate a specific journey through the UI.\nAgent-driven tests instead validate whether a goal can be achieved, often expressed as an instruction (e.g. “send a thread message”):\nTests enforce journeys. Agents verify goals.\nAcross our agentic test runs, the overall workflow remained consistent (e.g. login → search → result → clear), but the exact sequence of actions varied. In practice, agents took different paths to reach the same outcome:\nDifferent input methods (clicking a search suggestion vs pressing Enter)\nAgent-driven E2E testing looks promising, but it raises a real question: can something that costs $15–30 per run and takes over 10 minutes actually fit into modern testing workflows?\nAt first glance, the answer seems like no. But in 200+ runs, we found they are fundamentally different from traditional tests. They can be highly reliable and have a clear place in the testing stack.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Abstract \n Agent-driven end-to-end (E2E) tests add a new exploratory layer to testing, but should they replace traditional deterministic tests. We ran more than 200 agentic E2E workflows using the Playwright MCP, Playwright CLI, and agent-generated Playwright tests in test workspaces using non-production data to find out how agentic testing could fit into both our and your testing stacks. \n\n 1.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "11de7739d6e0f628",
     "title": "When the cost of code approaches zero, what does engineering leadership look like?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​‌​﻿‌‌​﻿‌﻿​﻿‌‌‌‌‌‌‌‌‌‌​﻿​​​﻿‌​﻿‌﻿‌‌​﻿​​﻿‌​﻿‌​﻿‌​​﻿​‌‌‌‌​‌​﻿‌​﻿​​﻿‌‌​﻿‌﻿​﻿​​﻿‌​﻿‌‌​﻿​﻿‌​‌​​﻿​​﻿​‌​﻿‌‌‌‌‌‌‌​﻿‌‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​‌​﻿‌‌​﻿‌﻿​﻿‌‌‌‌‌‌‌‌‌‌​﻿​​​﻿‌​﻿‌﻿‌‌​﻿​​﻿‌​﻿‌​﻿‌​​﻿​‌‌‌‌​‌​﻿‌​﻿​​﻿‌‌​﻿‌﻿​﻿​​﻿‌​﻿‌‌​﻿​﻿‌​‌​​﻿​​﻿​‌​﻿‌‌‌‌‌‌‌​﻿‌‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
@@ -177,6 +223,43 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "If a 100-token prompt and a 100,000-token prompt both count as one request to your load balancer, then your GPUs are already doing work they don't need to do. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "fefdeb83ae054fca",
+    "title": "Compliance work is overdue for a new approach",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/agentic-compliance-skills",
+    "published": "2026-06-11T00:00:00+00:00",
+    "fetched_at": "2026-06-11T14:48:45.295444+00:00",
+    "summary": "Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-06-11",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Wo"
+    ],
+    "sections": {
+      "overview": "Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.",
+      "technical_breakdown": "Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.",
+      "impact": "Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Wo",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Elastic Security introduces agentic compliance in Agent Builder, starting with PCI DSS v4.0.1. Ask questions over live telemetry, inspect ES|QL evidence and scope claims, spot data gaps, and automate daily checks with Workflows — beyond dashboards.",
     "related_sources": [],
     "highlighted": false
   }
