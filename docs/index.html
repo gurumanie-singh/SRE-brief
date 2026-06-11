@@ -28,25 +28,35 @@
       <h1 class="brief-title">11 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-11T00:59:08.614776-05:00">11 June 2026, 00:59</time>
+        <time data-iso="2026-06-11T05:56:16.408529-05:00">11 June 2026, 05:56</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat">1 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">4 items today</span>
     </div>
   </div>
 
   <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
+        <li>Repeated coverage across GitHub, Kubernetes</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">openshift<span class="trend-count">5</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">6</span></span>
         <span class="trend-pill">cloudflare<span class="trend-count">3</span></span>
         <span class="trend-pill">database<span class="trend-count">3</span></span>
         <span class="trend-pill">elastic<span class="trend-count">3</span></span>
         <span class="trend-pill">engineering<span class="trend-count">2</span></span>
-        <span class="trend-pill">available<span class="trend-count">2</span></span>
+        <span class="trend-pill">voice<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -77,13 +87,14 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
       </div>
     </div>
@@ -103,11 +114,11 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -118,7 +129,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       11 June 2026
-      <span class="day-count">1</span>
+      <span class="day-count">4</span>
     </h2>
   </div>
 
@@ -151,6 +162,114 @@
       <div class="detail-links">
         <a href="articles/11de7739d6e0f628.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/06/11/engineering-leadership-zero-cost-code/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,kubernetes,latency,observability"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="add automated ai evaluations to your ci/cd pipeline"
+       data-id="d847650e664f5aaa"
+       data-published="2026-06-11T07:16:12+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-11T07:16:12+00:00" title="11 June 2026, 02:16">11 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Add automated AI evaluations to your CI/CD pipeline</h3>
+      <p class="card-summary">EvalHub&#39;s API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>EvalHub&#39;s API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration. But for continuous integration and continuous delivery (CI/CD) pipelines, the CLI is the right surface: it installs in seconds, reads config from environment variables, returns machine-parseable output, and exits non-zero on failure.</p></div>
+      <div class="detail-links">
+        <a href="articles/d847650e664f5aaa.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/11/add-automated-ai-evaluations-your-cicd-pipeline" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="latency,observability,outage,postmortem"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="configure input guardrails for an openshift ai voice agent"
+       data-id="6aa7ba57d0c7b4ec"
+       data-published="2026-06-11T07:16:11+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-11T07:16:11+00:00" title="11 June 2026, 02:16">11 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Configure input guardrails for an OpenShift AI voice agent</h3>
+      <p class="card-summary">In Build a local voice agent with Red Hat OpenShift AI , we got the basics of our voice agent up and running on Red Hat OpenShift AI. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+          <span class="ttag">postmortem</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In Build a local voice agent with Red Hat OpenShift AI , we got the basics of our voice agent up and running on Red Hat OpenShift AI. We explored the architecture and found that we could easily order a pizza for one dollar by prompting the system to &#34;ignore all instructions&#34; a classic prompt injection attack (Figure 1). Figure 1: Jailbreak the pizza shop pizza is now $1.</p></div>
+      <div class="detail-links">
+        <a href="articles/6aa7ba57d0c7b4ec.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/11/configure-input-guardrails-openshift-ai-voice-agent" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="deployment,kubernetes,latency,observability,outage"
+       data-vendors="Azure,GitHub,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="intelligent inference scheduling with llm-d on red hat ai"
+       data-id="a6fe350e888c8550"
+       data-published="2026-06-11T07:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Azure</span><span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-06-11T07:00:00+00:00" title="11 June 2026, 02:00">11 June 2026, 02:00</time>
+      </div>
+      <h3 class="card-title">Intelligent inference scheduling with llm-d on Red Hat AI</h3>
+      <p class="card-summary">If a 100-token prompt and a 100,000-token prompt both count as one request to your load balancer, then your GPUs are already doing work they don&#39;t need to do. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If a 100-token prompt and a 100,000-token prompt both count as one request to your load balancer, then your GPUs are already doing work they don&#39;t need to do. Traditional round-robin balancing treats large language model (LLM) inference like stateless web traffic. But LLM requests are not stateless: They carry context, they benefit from cached computation, and they can vary in cost by orders of magnitude.</p></div>
+      <div class="detail-links">
+        <a href="articles/a6fe350e888c8550.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/11/intelligent-inference-scheduling-llm-d-red-hat-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -1044,7 +1163,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       4 June 2026
-      <span class="day-count">4</span>
+      <span class="day-count">1</span>
     </h2>
   </div>
 
@@ -1082,114 +1201,6 @@
       <div class="detail-links">
         <a href="articles/39e9e1cd101c8bff.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/04/type-what-you-want-break-ai-assisted-chaos-engineering-krkn" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,kubernetes,outage"
-       data-vendors="Kubernetes,Red Hat,Slack"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="understanding evaluation collections in evalhub"
-       data-id="51b29923e6924703"
-       data-published="2026-06-04T07:16:58+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-04T07:16:58+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
-      </div>
-      <h3 class="card-title">Understanding evaluation collections in EvalHub</h3>
-      <p class="card-summary">In Because &#34;looks good to me&#34; isn&#39;t a benchmark , we identified five structural failures in enterprise AI evaluation. The second problem, the what should I measure? problem, is the one that bites teams earliest and quietly.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>In Because &#34;looks good to me&#34; isn&#39;t a benchmark , we identified five structural failures in enterprise AI evaluation. The second problem, the what should I measure? problem, is the one that bites teams earliest and quietly. You have a model.</p></div>
-      <div class="detail-links">
-        <a href="articles/51b29923e6924703.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/04/understanding-evaluation-collections-evalhub" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,kubernetes,networking,observability,outage"
-       data-vendors="HashiCorp,Kubernetes,Red Hat"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="an overview of confidential containers on openshift bare metal"
-       data-id="90d363c7d36312ea"
-       data-published="2026-06-04T07:16:56+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">HashiCorp</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-04T07:16:56+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
-      </div>
-      <h3 class="card-title">An overview of confidential containers on OpenShift bare metal</h3>
-      <p class="card-summary">Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">networking</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <div class="card-related">Also: HashiCorp Blog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Confidential Containers integrate trusted execution environments (TEEs) into cloud-native platforms to provide hardware-backed workload isolation. A TEE is a secure execution context enforced by confidential computing-capable hardware, ensuring that code and data remain confidential and protected in terms of integrity—even from privileged system software like the host kernel or hypervisor. At the heart of Confidential Containers is the confidential virtual machine (CVM), a hardware-isolated virtual machine created within the TEE.</p></div>
-      <div class="detail-links">
-        <a href="articles/90d363c7d36312ea.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/04/overview-confidential-containers-openshift-bare-metal" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--critical"
-       data-tags="database,deployment,latency,networking,outage,scaling"
-       data-vendors="Kubernetes,Red Hat"
-       data-impact="critical"
-       data-theme="capacity and scale"
-       data-title="iscsi vs. nvme/tcp: the ultimate storage showdown for red hat openshift virtualization"
-       data-id="3f43cf82a19cd8c5"
-       data-published="2026-06-04T07:16:55+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
-<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-04T07:16:55+00:00" title="4 June 2026, 02:16">4 June 2026, 02:16</time>
-      </div>
-      <h3 class="card-title">iSCSI vs. NVMe/TCP: The ultimate storage showdown for Red Hat OpenShift Virtualization</h3>
-      <p class="card-summary">As virtualization density continues to grow in modern data centers, selecting the right storage protocol has become increasingly important, and directly impacts CPU efficiency, I/O overhead, and overall application responsiveness. Impact band: critical.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">networking</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>As virtualization density continues to grow in modern data centers, selecting the right storage protocol has become increasingly important, and directly impacts CPU efficiency, I/O overhead, and overall application responsiveness. In this article, we take a closer look at how two IP-based storage protocols—iSCSI and NVMe/TCP—compare within a Red Hat OpenShift Virtualization environment to help you determine whether a transition makes sense for your infrastructure. For many years, the go-to solution for accessing block-level storage over standard ethernet networks has been iSCSI.</p></div>
-      <div class="detail-links">
-        <a href="articles/3f43cf82a19cd8c5.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/04/iscsi-vs-nvmetcp-ultimate-storage-showdown-red-hat-openshift-virtualization" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

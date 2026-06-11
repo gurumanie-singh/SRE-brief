@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add automated AI evaluations to your CI/CD pipeline — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-11.html" class="back-link">← 11 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">11 June 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Add automated AI evaluations to your CI/CD pipeline</h1>
+
+      <p class="subtitle">EvalHub&#39;s API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">EvalHub&#39;s API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>EvalHub&#39;s API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration. But for continuous integration and continuous delivery (CI/CD) pipelines, the CLI is the right surface: it installs in seconds, reads config from environment variables, returns machine-parseable output, and exits non-zero on failure.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The eval.yaml config file For repeatable pipeline runs, define the evaluation in a YAML file committed to your repository:</p>
+<p># eval.yaml name: &#34;llama-3.2-staging-gate&#34; description: &#34;Pre-merge evaluation gate for staging deployments&#34;</p>
+<p>model:  url: &#34;http://vllm-service:8000/v1&#34;  name: &#34;meta-llama/Llama-3.2-3B-Instruct&#34;</p>
+<p>collection:  id: &#34;general-assistant-gate-v1&#34; # reference a registered collection</p>
+<p>experiment:  name: &#34;llama-3.2-staging-eval&#34;  tags: # MLflow tags  - key: &#34;environment&#34;  value: &#34;staging&#34;  - key: &#34;trigger&#34;  value: &#34;pre-merge&#34; To run against individual benchmarks instead of a collection:</p>
+<p>name: &#34;targeted-benchmark-run&#34; model:  url: &#34;http://vllm-service:8000/v1&#34;  name: &#34;meta-llama/Llama-3.2-3B-Instruct&#34;</p>
+<p>benchmarks:  - id: &#34;leaderboard_ifeval&#34;  provider_id: &#34;lm_evaluation_harness&#34;  parameters:  metrics:  - inst_level_strict_acc  - id: &#34;leaderboard_bbh&#34;  provider_id: &#34;lm_evaluation_harness&#34;</p>
+<p>exports:  oci:  coordinates:  oci_host: quay.io  oci_repository: my-org/eval-results benchmarks and collection are mutually exclusive.</p>
+<p>The command exits with a value of 1 if the job fails, making it a direct pipeline gate.</p>
+<p># Submit and return immediately (async) evalhub eval run --config eval.yaml</p>
+<p># Submit and block until completion (use this in pipelines) evalhub eval run --config eval.yaml --wait --timeout 3600 To capture the job ID for subsequent commands:</p>
+<p>JOB_ID=$(evalhub eval run --config eval.yaml --format json | jq -r &#39;.[0].id&#39;) echo &#34;Job submitted: $JOB_ID&#34;  Checking status Use the following commands to monitor active jobs or view past run histories:</p>
+<p># List all jobs evalhub eval status</p>
+<p># Filter by state evalhub eval status --status running evalhub eval status --status completed</p>
+<p># Filter by recency (client-side) evalhub eval status --since 24h evalhub eval status --provider lm_evaluation_harness --since 7d</p>
+<p># Single job detail evalhub eval status $JOB_ID</p>
+<p># Block until terminal state (for async submissions) evalhub eval status $JOB_ID --watch --poll-interval 10 Retrieving results Use the following commands to retrieve your evaluation results in different formats:</p>
+<p># Human-readable table (default) evalhub eval results $JOB_ID</p>
+<p># Machine-readable JSON evalhub eval results $JOB_ID --format json</p>
+<p># CSV for export evalhub eval results $JOB_ID --format csv &gt; results.csv Table output:</p>
+<p>benchmark provider metric value leaderboard_ifeval lm_evaluation_harness inst_level_strict_acc 0.712 leaderboard_bbh lm_evaluation_harness acc_norm 0.581</p>
+<p>MLflow experiment: https://mlflow.example.com/experiments/42 Managing collections from the CLI You can manage your metric collections directly from the terminal with the following commands:</p>
+<p># List all available collections (system + user) evalhub collections list evalhub collections list --tag leaderboard --format json</p>
+<p># Inspect a collection evalhub collections describe leaderboard-v2</p>
+<p># Create a user collection from a spec file evalhub collections create --file my-collection.yaml</p>
+<p># Run a collection directly (shorthand for eval run with collection reference) evalhub collections run general-assistant-gate-v1 \  --model-url http://vllm-service:8000/v1 \  --model-name meta-llama/Llama-3.2-3B-Instruct \  --wait \  --timeout 3600 Cancelling jobs If you need to stop an active evaluation, use the cancel command:</p>
+<p>evalhub eval cancel $JOB_ID # cancel with confirmation prompt evalhub eval cancel $JOB_ID --hard-delete # permanent deletion, no recovery CI/CD pipeline integration Automating your AI evaluations within a CI/CD workflow helps catch performance regressions early.</p>
+<p>Catch up on the other parts in the series:</p>
+<p>Part 1: How EvalHub manages two-layer Kubernetes control planes   Part 2: EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark   Part 3: Evaluation-driven development with EvalHub   Part 4: Understanding evaluation collections in EvalHub   Part 5: Bring your own evaluation framework to EvalHub   Installation The CLI ships as an optional dependency group of the EvalHub SDK:</p>
+<p>pip install &#34;eval-hub-sdk[cli]&#34; Verify the install and confirm connectivity to your EvalHub instance:</p>
+<p>evalhub version evalhub health The evalhub health command exits with a value of 0 if the service is reachable, and 1 if it is not.</p>
+<p>Configuration The CLI stores named profiles in ~/.config/evalhub/config.yaml :</p>
+<p>active_profile: default</p>
+<p>profiles:  default:  base_url: http://evalhub-service:8080  token: &#34;&#34;  tenant: &#34;&#34;</p>
+<p>staging:  base_url: https://evalhub.staging.example.com  token: &#34;staging-token&#34;  tenant: &#34;team-platform&#34;  timeout: 60</p>
+<p>prod:  base_url: https://evalhub.prod.example.com  token: &#34;prod-token&#34;  tenant: &#34;team-platform&#34;  insecure: false  timeout: 120 Each profile requires the base_url , token , and tenant variables.</p>
+<p>Set these values with the following commands:</p>
+<p>evalhub config set base_url http://evalhub-service:8080 evalhub config set token &lt;your-token&gt; evalhub config set tenant &#34;&#34;</p>
+<p># Add a second profile EVALHUB_PROFILE=prod evalhub config set base_url https://evalhub.prod.example.com evalhub config use prod # switch active profile Environment variables In CI/CD, prefer environment variables over config files because they integrate directly with secret management:</p>
+<p>Variable Purpose Overrides EVALHUB_BASE_URL Server URL profile base_url EVALHUB_TOKEN Auth token profile token EVALHUB_PROFILE Active profile name config active_profile EVALHUB_VERBOSE Enable debug logging — EVALHUB_CONFIG Custom config file path default path Priority order : CLI flag → environment variable → config file profile → default.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>The command exits with a value of 1 if the job fails, making it a direct pipeline gate.</p>
+<p># Submit and return immediately (async) evalhub eval run --config eval.yaml</p>
+<p># Submit and block until completion (use this in pipelines) evalhub eval run --config eval.yaml --wait --timeout 3600 To capture the job ID for subsequent commands:</p>
+<p>JOB_ID=$(evalhub eval run --config eval.yaml --format json | jq -r &#39;.[0].id&#39;) echo &#34;Job submitted: $JOB_ID&#34;  Checking status Use the following commands to monitor active jobs or view past run histories:</p>
+<p># List all jobs evalhub eval status</p>
+<p># Filter by state evalhub eval status --status running evalhub eval status --status completed</p>
+<p># Filter by recency (client-side) evalhub eval status --since 24h evalhub eval status --provider lm_evaluation_harness --since 7d</p>
+<p># Single job detail evalhub eval status $JOB_ID</p>
+<p># Block until terminal state (for async submissions) evalhub eval status $JOB_ID --watch --poll-interval 10 Retrieving results Use the following commands to retrieve your evaluation results in different formats:</p>
+<p># Human-readable table (default) evalhub eval results $JOB_ID</p>
+<p># Machine-readable JSON evalhub eval results $JOB_ID --format json</p>
+<p># CSV for export evalhub eval results $JOB_ID --format csv &gt; results.csv Table output:</p>
+<p>benchmark provider metric value leaderboard_ifeval lm_evaluation_harness inst_level_strict_acc 0.712 leaderboard_bbh lm_evaluation_harness acc_norm 0.581</p>
+<p>MLflow experiment: https://mlflow.example.com/experiments/42 Managing collections from the CLI You can manage your metric collections directly from the terminal with the following commands:</p>
+<p># List all available collections (system + user) evalhub collections list evalhub collections list --tag leaderboard --format json</p>
+<p># Inspect a collection evalhub collections describe leaderboard-v2</p>
+<p># Create a user collection from a spec file evalhub collections create --file my-collection.yaml</p>
+<p># Run a collection directly (shorthand for eval run with collection reference) evalhub collections run general-assistant-gate-v1 \  --model-url http://vllm-service:8000/v1 \  --model-name meta-llama/Llama-3.2-3B-Instruct \  --wait \  --timeout 3600 Cancelling jobs If you need to stop an active evaluation, use the cancel command:</p>
+<p>evalhub eval cancel $JOB_ID # cancel with confirmation prompt evalhub eval cancel $JOB_ID --hard-delete # permanent deletion, no recovery CI/CD pipeline integration Automating your AI evaluations within a CI/CD workflow helps catch performance regressions early. Configuration The CLI stores named profiles in ~/.config/evalhub/config.yaml :</p>
+<p>active_profile: default</p>
+<p>profiles:  default:  base_url: http://evalhub-service:8080  token: &#34;&#34;  tenant: &#34;&#34;</p>
+<p>staging:  base_url: https://evalhub.staging.example.com  token: &#34;staging-token&#34;  tenant: &#34;team-platform&#34;  timeout: 60</p>
+<p>prod:  base_url: https://evalhub.prod.example.com  token: &#34;prod-token&#34;  tenant: &#34;team-platform&#34;  insecure: false  timeout: 120 Each profile requires the base_url , token , and tenant variables. Set these values with the following commands:</p>
+<p>evalhub config set base_url http://evalhub-service:8080 evalhub config set token &lt;your-token&gt; evalhub config set tenant &#34;&#34;</p>
+<p># Add a second profile EVALHUB_PROFILE=prod evalhub config set base_url https://evalhub.prod.example.com evalhub config use prod # switch active profile Environment variables In CI/CD, prefer environment variables over config files because they integrate directly with secret management:</p>
+<p>Variable Purpose Overrides EVALHUB_BASE_URL Server URL profile base_url EVALHUB_TOKEN Auth token profile token EVALHUB_PROFILE Active profile name config active_profile EVALHUB_VERBOSE Enable debug logging — EVALHUB_CONFIG Custom config file path default path Priority order : CLI flag → environment variable → config file profile → default. Scope eval.yaml to your pipeline trigger.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. Catch up on the other parts in the series:</p>
+<p>Part 1: How EvalHub manages two-layer Kubernetes control planes   Part 2: EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark   Part 3: Evaluation-driven development with EvalHub   Part 4: Understanding evaluation collections in EvalHub   Part 5: Bring your own evaluation framework to EvalHub   Installation The CLI ships as an optional dependency group of the EvalHub SDK:</p>
+<p>pip install &#34;eval-hub-sdk[cli]&#34; Verify the install and confirm connectivity to your EvalHub instance:</p>
+<p>evalhub version evalhub health The evalhub health command exits with a value of 0 if the service is reachable, and 1 if it is not. Set these values with the following commands:</p>
+<p>evalhub config set base_url http://evalhub-service:8080 evalhub config set token &lt;your-token&gt; evalhub config set tenant &#34;&#34;</p>
+<p># Add a second profile EVALHUB_PROFILE=prod evalhub config set base_url https://evalhub.prod.example.com evalhub config use prod # switch active profile Environment variables In CI/CD, prefer environment variables over config files because they integrate directly with secret management:</p>
+<p>Variable Purpose Overrides EVALHUB_BASE_URL Server URL profile base_url EVALHUB_TOKEN Auth token profile token EVALHUB_PROFILE Active profile name config active_profile EVALHUB_VERBOSE Enable debug logging — EVALHUB_CONFIG Custom config file path default path Priority order : CLI flag → environment variable → config file profile → default. GitLab CI You can also run your evaluations using GitLab CI/CD pipelines:</p>
+<p># .gitlab-ci.yml model-evaluation:  stage: test  image: python:3.11-slim  variables:  EVALHUB_BASE_URL: $EVALHUB_BASE_URL # from GitLab CI/CD variables  EVALHUB_TOKEN: $EVALHUB_TOKEN  before_script:  - pip install &#34;eval-hub-sdk[cli]&#34;  - evalhub health  script:  - evalhub eval run --config eval.yaml --wait --timeout 3600  after_script:  - |  JOB_ID=$(evalhub eval status --status completed --since 1h --format json \  | jq -r &#39;.[0].id&#39;)  evalhub eval results &#34;$JOB_ID&#34; --format csv &gt; eval-results.csv  artifacts:  when: always  paths:  - eval-results.csv  expire_in: 30 days  rules:  - changes:  - model/**  - prompts/**  - eval.yaml Reusable shell script For pipelines that need more control, such as capturing the job ID, branching on per-benchmark results, posting summaries, use a script:</p>
+<p>#!/usr/bin/env bash # eval-gate.sh — Submit an EvalHub evaluation and gate on the result set -euo pipefail</p>
+<p>EVAL_CONFIG=&#34;${1:-eval.yaml}&#34; TIMEOUT=&#34;${2:-3600}&#34; RESULTS_FILE=&#34;eval-results-$(date +%Y%m%d-%H%M%S).json&#34;</p>
+<p># Requires: EVALHUB_BASE_URL and EVALHUB_TOKEN in environment</p>
+<p>echo &#34;==&gt; Checking EvalHub connectivity&#34; evalhub health</p>
+<p>echo &#34;==&gt; Submitting evaluation: $EVAL_CONFIG&#34; JOB_ID=$(evalhub eval run --config &#34;$EVAL_CONFIG&#34; --format json | jq -r &#39;.[0].id&#39;) echo &#34; Job ID: $JOB_ID&#34;</p>
+<p>echo &#34;==&gt; Waiting for completion (timeout: ${TIMEOUT}s)&#34; evalhub eval status &#34;$JOB_ID&#34; --watch --poll-interval 15</p>
+<p>echo &#34;==&gt; Fetching results&#34; evalhub eval results &#34;$JOB_ID&#34; --format json &gt; &#34;$RESULTS_FILE&#34; evalhub eval results &#34;$JOB_ID&#34; # human-readable summary to stdout</p>
+<p>echo &#34;==&gt; Results saved to $RESULTS_FILE&#34; The set -euo pipefail option combined with evalhub eval status --watch propagates the exit code correctly.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>EvalHub&#39;s API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration. But for continuous integration and continuous delivery (CI/CD) pipelines, the CLI is the rig</li>
+            <li>This post covers the full CLI workflow, from first-time setup through a production pipeline gate, without detours into platform architecture or evaluation methodology. Those are covered in the rest of the series. This is</li>
+            <li>GitHub Actions The following workflow file demonstrates how to execute an evaluation gate automatically on every pull request:</li>
+            <li>pull_request:</li>
+            <li>runs-on: ubuntu-latest</li>
+            <li>stage: test</li>
+            <li>Practical notes Use --wait for gates, --watch for monitoring. The evalhub eval run --wait command submits and blocks in a single command, which is the simplest option for pipelines. The evalhub eval status $JOB_ID --watc</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/11/add-automated-ai-evaluations-your-cicd-pipeline" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
