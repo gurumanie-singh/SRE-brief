@@ -1,0 +1,35 @@
+[
+  {
+    "id": "11de7739d6e0f628",
+    "title": "When the cost of code approaches zero, what does engineering leadership look like?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​‌​﻿‌‌​﻿‌﻿​﻿‌‌‌‌‌‌‌‌‌‌​﻿​​​﻿‌​﻿‌﻿‌‌​﻿​​﻿‌​﻿‌​﻿‌​​﻿​‌‌‌‌​‌​﻿‌​﻿​​﻿‌‌​﻿‌﻿​﻿​​﻿‌​﻿‌‌​﻿​﻿‌​‌​​﻿​​﻿​‌​﻿‌‌‌‌‌‌‌​﻿‌‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​‌​﻿‌‌​﻿‌﻿​﻿‌‌‌‌‌‌‌‌‌‌​﻿​​​﻿‌​﻿‌﻿‌‌​﻿​​﻿‌​﻿‌​﻿‌​​﻿​‌‌‌‌​‌​﻿‌​﻿​​﻿‌‌​﻿‌﻿​﻿​​﻿‌​﻿‌‌​﻿​﻿‌​‌​​﻿​​﻿​‌​﻿‌‌‌‌‌‌‌​﻿‌‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/11/engineering-leadership-zero-cost-code/",
+    "published": "2026-06-11T07:40:00+00:00",
+    "fetched_at": "2026-06-11T05:59:07.563158+00:00",
+    "summary": "On this episode of Leaders of Code, Eric Anderson, director of engineering at Intuit, joins Stack Overflow engineering director Ben Matthews to talk about what happens to software teams when AI makes code generation seemingly...",
+    "tags": [],
+    "day": "2026-06-11",
+    "impact": "medium",
+    "vendors": [
+      "Stack Overflow"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "On this episode of Leaders of Code, Eric Anderson, director of engineering at Intuit, joins Stack Overflow engineering director Ben Matthews to talk about what happens to software teams when AI makes code generation seemingly...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "On this episode of Leaders of Code, Eric Anderson, director of engineering at Intuit, joins Stack Overflow engineering director Ben Matthews to talk about what happens to software teams when AI makes code generation seemingly…",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
