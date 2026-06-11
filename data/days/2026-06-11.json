@@ -125,6 +125,10 @@
     "email_summary": "EvalHub's API server and Kubernetes Operator handle orchestration. The Python SDK handles notebook and application integration.",
     "related_sources": [
       {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/news-insights/company-news/github-availability-report-may-2026/"
+      },
+      {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/terraform-mcp-server-is-now-generally-available"
       },
