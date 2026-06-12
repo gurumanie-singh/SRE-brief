@@ -29,5 +29,101 @@
     "email_summary": "Ryan welcomes Trisha Gee, a Java champion and developer productivity advocate, to explore how AI is transforming the role of IDEs and the broader developer experience; the relevance of traditional tools, muscle memory, the risks of hype; and how to adapt workflows for AI-driven…",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "688144e051404972",
+    "title": "Model-as-a-Service: How to run your own private AI API",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/12/model-service-how-run-your-own-private-ai-api",
+    "published": "2026-06-12T07:00:59+00:00",
+    "fetched_at": "2026-06-12T09:07:10.428316+00:00",
+    "summary": "I've been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. But the question I keep getting from platform teams isn't which model to choose. It's a much harder one: How do we let every developer in the company use AI, without losing control of costs, security, and the models we're actually depending on?",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-12",
+    "impact": "high",
+    "vendors": [
+      "AWS",
+      "Azure",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "I've been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. But the question I keep getting from platform teams isn't which model to choose",
+      "What is Model-as-a-Service? Think about how you already use AI today. You're not renting GPUs from OpenAI or Anthropic; instead, you connect to their API endpoints. Their team handles the hardware, serving, autoscaling, ",
+      "Surviving model deprecations You've probably experienced this scenario. Every few months, a frontier model provider deprecates an older model , sometimes even without notice. If 30 of your internal applications are wired",
+      "Insight into your user community Every prompt flows through the gateway, which means you obtain audit logs at no cost to use for fine-tuning custom models. The code patterns are super interesting, for example, revealing ",
+      "Figure 4: From the developer's perspective, approved models are visible as ready-to-use endpoints, with the option to test them in a playground.",
+      "apiKey: \"YOUR_API_KEY\" Step 4: The platform team can monitor or observe AI usage Back on the admin side, every request the developer makes flows through the AI gateway and lands in observability. The Observe & monitor Da",
+      "Figure 6: Token and request metrics over the last 30 minutes, broken down by user, subscription, and model.",
+      "For example, the developer user pulled 14K tokens against gemma-4 and 8K against llama-4-scout . For deeper performance tracking such as P90 latency (the slowest 10% of requests), error rates, GPU utilization, and reques"
+    ],
+    "sections": {
+      "overview": "I've been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. But the question I keep getting from platform teams isn't which model to choose. It's a much harder one: How do we let every developer in the company use AI, without losing control of costs, security, and the models we're actually depending on?",
+      "technical_breakdown": "For deeper performance tracking such as P90 latency (the slowest 10% of requests), error rates, GPU utilization, and request queue length the Models tab surfaces the metrics site reliability engineers (SREs) care about (Figure 7).\n\nWhen you want to correlate model behavior with what's happening on the cluster, such as a spike in latency against a specific GPU node, you can navigate directly to the OpenShift console to inspect the underlying pods (Figure 9).\n\nObservability and governance for AI The architecture integrates with open source observability tools like Prometheus for metrics, Grafana for dashboards, and Jaeger for distributed tracing.\n\nInstead of filing a ticket and waiting for someone on the platform team to provision an endpoint for them, a developer logs in to the OpenShift AI dashboard, opens Gen AI studio AI asset endpoints , and sees the models their tenant has access to.\n\nThe entire integration requires six lines of YAML in the ~/.continue/config.yaml file:\n\n models:\n - name: Meta Llama 4 Scout\n provider: openai\n model: \"llama-4-scout\"\n apiBase: \"http://maas.apps.ocp.m6v79.sandbox2855.opentlc.com/llm/llama-4-scout/v1\"\n apiKey: \"YOUR_API_KEY\" Step 4: The platform team can monitor or observe AI usage Back on the admin side, every request the developer makes flows through the AI gateway and lands in observability.",
+      "impact": "Figure 6: Token and request metrics over the last 30 minutes, broken down by user, subscription, and model. The engine for model serving: vLLM Chances are, you don't have just one customer using your application, but dozens, thousands, or even millions of users. Insight into your user community Every prompt flows through the gateway, which means you obtain audit logs at no cost to use for fine-tuning custom models. Hint Notice the Model availability field on each deployment, as shown in Figure 2, which displays the AI asset endpoint, Model-as-a-Service (MaaS) .\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "If 30 of your internal applications are wired to a version that's about to disappear, you must perform 30 emergency migrations, test for regressions in behavior, fix prompts, and so on.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. It's a much harder one: How do we let every developer in the company use AI, without losing control of costs, security, and the models we're actually depending on? This architecture provides:\n\n A small number of curated, governed model endpoints\n API keys, rate limits, and usage tracking per team\n One observability stack for every AI workload in the company\n Full control over the underlying models, data paths, and infrastructure\n Why MaaS and why now? Because it's all built on Prometheus and Grafana under the hood, your existing Grafana dashboards work as well.",
+      "incident_timeline": "I've been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. But the question I keep getting from platform teams isn't which model to choose\nWhat is Model-as-a-Service? Think about how you already use AI today. You're not renting GPUs from OpenAI or Anthropic; instead, you connect to their API endpoints. Their team handles the hardware, serving, autoscaling, \nSurviving model deprecations You've probably experienced this scenario. Every few months, a frontier model provider deprecates an older model , sometimes even without notice. If 30 of your internal applications are wired\nInsight into your user community Every prompt flows through the gateway, which means you obtain audit logs at no cost to use for fine-tuning custom models. The code patterns are super interesting, for example, revealing \nFigure 4: From the developer's perspective, approved models are visible as ready-to-use endpoints, with the option to test them in a playground.\napiKey: \"YOUR_API_KEY\" Step 4: The platform team can monitor or observe AI usage Back on the admin side, every request the developer makes flows through the AI gateway and lands in observability. The Observe & monitor Da\nFigure 6: Token and request metrics over the last 30 minutes, broken down by user, subscription, and model.\nFor example, the developer user pulled 14K tokens against gemma-4 and 8K against llama-4-scout . For deeper performance tracking such as P90 latency (the slowest 10% of requests), error rates, GPU utilization, and reques",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "I've been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "04232cb10bbeefc0",
+    "title": "How to use Red Hat Satellite to deploy virtual machines in Microsoft Azure",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/12/how-use-red-hat-satellite-deploy-virtual-machines-microsoft-azure",
+    "published": "2026-06-12T07:00:57+00:00",
+    "fetched_at": "2026-06-12T09:07:10.429342+00:00",
+    "summary": "This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure. We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform.",
+    "tags": [
+      "deployment",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-12",
+    "impact": "medium",
+    "vendors": [
+      "Azure",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "cloud — azure",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "I created this demonstration in a basic test environment where Satellite connects to the internet, and the virtual machines created in Microsoft Azure also use a public IP address to keep the configuration simple.",
+      "Enter your Microsoft Azure subscription details, select a region, and test the connection to establish a direct connection from Satellite to Microsoft Azure.",
+      "Best practices for deleting virtual machines Delete machines through Satellite rather than directly in the Microsoft Azure resource group, which can be cumbersome. A virtual machine in Microsoft Azure includes multiple f"
+    ],
+    "sections": {
+      "overview": "This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure. We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform. Many organizations must adapt to running workloads both in their own data centers and in the cloud, using hyperscalers like Microsoft Azure and IBM Cloud.",
+      "technical_breakdown": "This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure.\n\nThis blog post shows how Red Hat Satellite eliminates the need to introduce unfamiliar tooling that might fragment management and responsibility.\n\nPrerequisites\n\n A Microsoft Azure resource group for deploying VMs must be in place\n Microsoft Azure credentials for the resource pool, including a service principal assigned to a role with the following details: cloud, client ID, client secret, subscription ID, tenant ID, and Azure region\n A Red Hat Satellite 6.x instance (the Azure connector was introduced in version 6.7)\n Access to console.redhat.com to build a custom image\n I created this demonstration in a basic test environment where Satellite connects to the internet, and the virtual machines created in Microsoft Azure also use a public IP address to keep the configuration simple.\n\nFor larger deployments of virtual machines in Microsoft Azure, consider extending the on-premises Satellite instance with a Satellite Capsule closer to the workloads.\n\nCreate a custom virtual machine image for Microsoft Azure To create a virtual machine disk image file for Microsoft Azure, you can either use the integrated image builder in Red Hat Enterprise Linux or our cloud-based image builder service.",
+      "impact": "Prerequisites\n\n A Microsoft Azure resource group for deploying VMs must be in place\n Microsoft Azure credentials for the resource pool, including a service principal assigned to a role with the following details: cloud, client ID, client secret, subscription ID, tenant ID, and Azure region\n A Red Hat Satellite 6.x instance (the Azure connector was introduced in version 6.7)\n Access to console.redhat.com to build a custom image\n I created this demonstration in a basic test environment where Satellite connects to the internet, and the virtual machines created in Microsoft Azure also use a public IP address to keep the configuration simple. Enter your Microsoft Azure subscription details, select a region, and test the connection to establish a direct connection from Satellite to Microsoft Azure.\n\nClassified impact band: medium. Affected layer signal: cloud — azure.",
+      "resolution": "The image file will have a prefix of composer-api-<guid> .\n\nRemember to add the custom:// prefix to specify that you are using a custom image rather than a marketplace image.\n\nFigure 7: Specifying the custom image path and custom:// prefix under the Satellite Images tab.",
+      "lessons_learned": "We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. For larger deployments of virtual machines in Microsoft Azure, consider extending the on-premises Satellite instance with a Satellite Capsule closer to the workloads.",
+      "incident_timeline": "I created this demonstration in a basic test environment where Satellite connects to the internet, and the virtual machines created in Microsoft Azure also use a public IP address to keep the configuration simple.\nEnter your Microsoft Azure subscription details, select a region, and test the connection to establish a direct connection from Satellite to Microsoft Azure.\nBest practices for deleting virtual machines Delete machines through Satellite rather than directly in the Microsoft Azure resource group, which can be cumbersome. A virtual machine in Microsoft Azure includes multiple f",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure. We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]

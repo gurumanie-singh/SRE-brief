@@ -27,10 +27,20 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">12 June 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">3 items</span>
     </div>
   </div>
 
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
+        <li>Repeated coverage across Azure, Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="controls-bar" id="controlsBar">
     <div class="search-wrap">
@@ -39,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -51,9 +62,32 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
@@ -87,6 +121,77 @@
       <div class="detail-links">
         <a href="../articles/c16eca96ebc8227b.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/06/12/developers-are-emotionally-attached-to-their-tools/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,kubernetes,latency,observability,outage,scaling"
+       data-vendors="AWS,Azure,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="model-as-a-service: how to run your own private ai api"
+       data-id="688144e051404972"
+       data-published="2026-06-12T07:00:59+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-06-12T07:00:59+00:00" title="12 June 2026, 02:00">12 June 2026, 02:00</time>
+      </div>
+      <h3 class="card-title">Model-as-a-Service: How to run your own private AI API</h3>
+      <p class="card-summary">I&#39;ve been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>I&#39;ve been building with generative AI for a while now, starting with the early coding-assistant autocomplete days, then GPT, and now agents. But the question I keep getting from platform teams isn&#39;t which model to choose. It&#39;s a much harder one: How do we let every developer in the company use AI, without losing control of costs, security, and the models we&#39;re actually depending on?</p></div>
+      <div class="detail-links">
+        <a href="../articles/688144e051404972.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/12/model-service-how-run-your-own-private-ai-api" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,observability,outage"
+       data-vendors="Azure,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="how to use red hat satellite to deploy virtual machines in microsoft azure"
+       data-id="04232cb10bbeefc0"
+       data-published="2026-06-12T07:00:57+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Azure</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-12T07:00:57+00:00" title="12 June 2026, 02:00">12 June 2026, 02:00</time>
+      </div>
+      <h3 class="card-title">How to use Red Hat Satellite to deploy virtual machines in Microsoft Azure</h3>
+      <p class="card-summary">This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure. We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure. We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform. Many organizations must adapt to running workloads both in their own data centers and in the cloud, using hyperscalers like Microsoft Azure and IBM Cloud.</p></div>
+      <div class="detail-links">
+        <a href="../articles/04232cb10bbeefc0.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/12/how-use-red-hat-satellite-deploy-virtual-machines-microsoft-azure" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
