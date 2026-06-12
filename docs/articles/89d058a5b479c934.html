@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scaling Security Insights: how we achieved a 10x increase in global scanning capacity — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-12.html" class="back-link">← 12 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">12 June 2026, 08:00</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">Scaling Security Insights: how we achieved a 10x increase in global scanning capacity</h1>
+
+      <p class="subtitle">Security Insights provides actionable security recommendations for every Cloudflare account. Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">capacity</span>
+        <span class="tag">database</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">postmortem</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>misconfiguration</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Security Insights provides actionable security recommendations for every Cloudflare account. Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Security Insights provides actionable security recommendations for every Cloudflare account. To find these insights, we perform regular scans for all accounts, zones, and DNS records, looking for potential security risks and misconfigurations. However, two key issues emerged.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>By looking closely at our code, SQL queries, logs, and metrics ( especially metrics!), we were able to increase our capacity without simply adding more pods or partitions.</p>
+<p>Investigating our API timeouts           We noticed several strange behaviours in our internal API as we tried to scale:</p>
+<p>A large number of requests were triggering client-side timeouts</p>
+<p>Many checkers were spending 20-90% of their processing time on a single API call</p>
+<p>When triggering a large volume of scans, our throughput would start high and deteriorate</p>
+<p>All of these problems had the same root cause: latency .</p>
+<p>As a result of this latency, database queries from the Amsterdam API instance took much longer, holding connections from our client-side connection pool open.</p>
+<p>The trade-offs are that we’d have more work to re-do if our process crashed midway through a batch, and our memory usage would be slightly increased.</p>
+<p>With the large volume of requests that we were making to the API, the connection pool was quickly becoming exhausted, leading to timeouts waiting for a free connection.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>In the worst case, these messages can take minutes or hours to process compared to the average case of seconds or milliseconds. Making sure that we’re finding these issues for all of our customers is crucial to our aim of building a better Internet for everyone. This is the story of how we increased scanning throughput for Security Insights by more than 10x, enabled security insights for millions of customers, and doubled our scanning frequency for all customers. Investigating our API timeouts           We noticed several strange behaviours in our internal API as we tried to scale:</p>
+<p>A large number of requests were triggering client-side timeouts</p>
+<p>Many checkers were spending 20-90% of their processing time on a single API call</p>
+<p>When triggering a large volume of scans, our throughput would start high and deteriorate</p>
+<p>All of these problems had the same root cause: latency .</p>
+<p>Classified impact band: critical. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>We needed to fix our system, and we needed to make it scale .</p>
+<p>Investigating our API timeouts           We noticed several strange behaviours in our internal API as we tried to scale:</p>
+<p>A large number of requests were triggering client-side timeouts</p>
+<p>Many checkers were spending 20-90% of their processing time on a single API call</p>
+<p>When triggering a large volume of scans, our throughput would start high and deteriorate</p>
+<p>All of these problems had the same root cause: latency .</p>
+<p>This was a simple fix: we switched our API to active-passive , ensuring the active API followed our primary database.</p>
+<p>Rethinking the scheduler           We’d scaled Kafka.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Starting a granular on-demand scan from the Security Overview page in the Cloudflare dashboard</p>
+<p>The lesson we learned is that it’s crucial to deeply understand the existing system before throwing anything away.</p>
+<p>Security Insights provides actionable security recommendations for every Cloudflare account.</p>
+<p>Making sure that we’re finding these issues for all of our customers is crucial to our aim of building a better Internet for everyone.</p>
+<p>Read on to find out how we achieved these improvements.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: misconfiguration. To find these insights, we perform regular scans for all accounts, zones, and DNS records, looking for potential security risks and misconfigurations. The risks of infrequent or nonexistent scans are rising: as automated attacks accelerate, the window for detecting security misconfigurations is shrinking. This is because the load balancer splits traffic evenly between our API endpoints.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Using UNNEST when the number of issues was below a threshold</li>
+            <li>This provided the best of both worlds: reasonably fast inserts for huge sets of insights (seconds), and even faster inserts (milliseconds) for small sets of insights.</li>
+            <li>Investigating our API timeouts</li>
+            <li>A large number of requests were triggering client-side timeouts</li>
+            <li>As a result of this latency, database queries from the Amsterdam API instance took much longer, holding connections from our client-side connection pool open. With the large volume of requests that we were making to the </li>
+            <li>Kafka lag (number of messages waiting to be processed within a single consumer group) by partition for one of our checkers. Note that we have 30 partitions in this case. Exactly 15 partitions can be seen lagging behind (</li>
+            <li>Adaptive rate limiting is slightly more interesting. Rate limiting would allow us to solve the problem of a spike in scans when we change scanning frequencies. For example, if we wanted to increase our scanning frequency</li>
+            <li>The lesson we learned is that it’s crucial to deeply understand the existing system before throwing anything away. By looking closely at our code, SQL queries, logs, and metrics ( especially metrics!), we were able to in</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Public postmortems compress organizational learning into patterns the broader industry can reuse.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/scaling-security-scans/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

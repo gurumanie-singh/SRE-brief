@@ -89,12 +89,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "In the modern healthcare enterprise, development agility often conflicts with strict security compliance. Organizations want to rapidly deploy modern AI models, but when processing protected health information (PHI), they must enforce zero trust policies to prevent data leakage.",
-    "related_sources": [
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/new-in-terraform-115-dynamic-sources-variable-deprecation-and-more"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

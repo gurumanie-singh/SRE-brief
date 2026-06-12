@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">12 June 2026</h1>
-      <span class="brief-sub">3 items</span>
+      <span class="brief-sub">5 items</span>
     </div>
   </div>
 
@@ -35,7 +35,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
+        <li>1 critical incident signal in the feed window</li>
         <li>Repeated coverage across Azure, Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
@@ -49,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
       <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
@@ -66,6 +67,7 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
       </div>
@@ -74,24 +76,96 @@
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="capacity"
+       data-vendors=""
+       data-impact="medium"
+       data-theme="capacity and scale"
+       data-title="what&#39;s the facts, charity? how do i get my leaders to stop running teams into the ground?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​​﻿​﻿‌‌‌​﻿​‌​﻿‌​﻿‌​​﻿​‌‌​﻿‌‌‌‌​﻿‌​‌​﻿​​​﻿‌​﻿‌​​﻿‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌​﻿​﻿‌﻿​﻿‌​﻿​​​﻿​﻿‌‌​​﻿‌‌​﻿​‌‌‌​﻿‌‌‌‌‌​﻿‌‌‌​​﻿‌‌‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​​﻿​﻿‌‌‌​﻿​‌​﻿‌​﻿‌​​﻿​‌‌​﻿‌‌‌‌​﻿‌​‌​﻿​​​﻿‌​﻿‌​​﻿‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌​﻿​﻿‌﻿​﻿‌​﻿​​​﻿​﻿‌‌​​﻿‌‌​﻿​‌‌‌​﻿‌‌‌‌‌​﻿‌‌‌​​﻿‌‌‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌"
+       data-id="56d77d7140e2f103"
+       data-published="2026-06-12T14:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-06-12T14:00:00+00:00" title="12 June 2026, 09:00">12 June 2026, 09:00</time>
+      </div>
+      <h3 class="card-title">What&#39;s the facts, Charity? How do I get my leaders to stop running teams Into the ground?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​​﻿​﻿‌‌‌​﻿​‌​﻿‌​﻿‌​​﻿​‌‌​﻿‌‌‌‌​﻿‌​‌​﻿​​​﻿‌​﻿‌​​﻿‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌​﻿​﻿‌﻿​﻿‌​﻿​​​﻿​﻿‌‌​​﻿‌‌​﻿​‌‌‌​﻿‌‌‌‌‌​﻿‌‌‌​​﻿‌‌‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​​﻿​﻿‌‌‌​﻿​‌​﻿‌​﻿‌​​﻿​‌‌​﻿‌‌‌‌​﻿‌​‌​﻿​​​﻿‌​﻿‌​​﻿‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌​﻿​﻿‌﻿​﻿‌​﻿​​​﻿​﻿‌‌​​﻿‌‌​﻿​‌‌‌​﻿‌‌‌‌‌​﻿‌‌‌​​﻿‌‌‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</h3>
+      <p class="card-summary">Capacity is one of the hardest problems because it sits at the knotty, gnarled-up intersection of so many other hard…</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Capacity is one of the hardest problems because it sits at the knotty, gnarled-up intersection of so many other hard...</p></div>
+      <div class="detail-links">
+        <a href="../articles/56d77d7140e2f103.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/06/12/what-s-the-facts-charity-how-do-i-get-my-leaders-to-stop-running-teams-into-the-ground/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="capacity,database,latency,networking,observability,outage,postmortem,scaling"
+       data-vendors="Cloudflare"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="scaling security insights: how we achieved a 10x increase in global scanning capacity"
+       data-id="89d058a5b479c934"
+       data-published="2026-06-12T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-12T13:00:00+00:00" title="12 June 2026, 08:00">12 June 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Scaling Security Insights: how we achieved a 10x increase in global scanning capacity</h3>
+      <p class="card-summary">Security Insights provides actionable security recommendations for every Cloudflare account. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Security Insights provides actionable security recommendations for every Cloudflare account. To find these insights, we perform regular scans for all accounts, zones, and DNS records, looking for potential security risks and misconfigurations. However, two key issues emerged.</p></div>
+      <div class="detail-links">
+        <a href="../articles/89d058a5b479c934.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/scaling-security-scans/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""
