@@ -48,6 +48,37 @@
     "highlighted": false
   },
   {
+    "id": "11c571cf4aa013a2",
+    "title": "Designing CherryScript: Optimizing Data-Driven Workflows via Custom Python-Based Interpreters​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌‌​‌‌‌​﻿​​﻿​​﻿‌​﻿​​​﻿​﻿​﻿‌​﻿​​﻿‌​​﻿‌​﻿‌​​﻿‌​﻿‌​‌‌‌​﻿​‌​﻿‌​​﻿‌‌​​﻿‌​​﻿‌‌​​﻿‌​﻿​​﻿‌‌‌​‌​​﻿‌‌​​﻿​﻿​﻿‌‌​﻿​​​﻿‌﻿‌​‌‌​‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌‌​‌‌‌​﻿​​﻿​​﻿‌​﻿​​​﻿​﻿​﻿‌​﻿​​﻿‌​​﻿‌​﻿‌​​﻿‌​﻿‌​‌‌‌​﻿​‌​﻿‌​​﻿‌‌​​﻿‌​​﻿‌‌​​﻿‌​﻿​​﻿‌‌‌​‌​​﻿‌‌​​﻿​﻿​﻿‌‌​﻿​​​﻿‌﻿‌​‌‌​‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/12/designing-cherryscript-optimizing-data-driven-workflows-via-custom-python-based-interpreters/",
+    "published": "2026-06-12T16:17:10+00:00",
+    "fetched_at": "2026-06-12T21:56:57.893764+00:00",
+    "summary": "Designing CherryScript: Optimizing Data-Driven Workflows via Custom Python-Based...",
+    "tags": [],
+    "day": "2026-06-12",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Designing CherryScript: Optimizing Data-Driven Workflows via Custom Python-Based...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Designing CherryScript: Optimizing Data-Driven Workflows via Custom Python-Based...",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "56d77d7140e2f103",
     "title": "What's the facts, Charity? How do I get my leaders to stop running teams Into the ground?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​​﻿​﻿‌‌‌​﻿​‌​﻿‌​﻿‌​​﻿​‌‌​﻿‌‌‌‌​﻿‌​‌​﻿​​​﻿‌​﻿‌​​﻿‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌​﻿​﻿‌﻿​﻿‌​﻿​​​﻿​﻿‌‌​​﻿‌‌​﻿​‌‌‌​﻿‌‌‌‌‌​﻿‌‌‌​​﻿‌‌‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​​﻿​﻿‌‌‌​﻿​‌​﻿‌​﻿‌​​﻿​‌‌​﻿‌‌‌‌​﻿‌​‌​﻿​​​﻿‌​﻿‌​​﻿‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌​﻿​﻿‌﻿​﻿‌​﻿​​​﻿​﻿‌‌​​﻿‌‌​﻿​‌‌‌​﻿‌‌‌‌‌​﻿‌‌‌​​﻿‌‌‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
@@ -257,6 +288,43 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "This blog post will guide you through how to configure Red Hat Satellite for deploying virtual machines (VMs) to Microsoft Azure. We will also use the image builder service for Red Hat Enterprise Linux to push a custom virtual machine image to the same platform.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "9ea0a84d813de5e1",
+    "title": "Monitor Claude activity in Elastic Security",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/monitor-claude-activity-in-elastic-security",
+    "published": "2026-06-12T00:00:00+00:00",
+    "fetched_at": "2026-06-12T21:56:58.577476+00:00",
+    "summary": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-06-12",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing"
+    ],
+    "sections": {
+      "overview": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+      "technical_breakdown": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
     "related_sources": [],
     "highlighted": false
   }
