@@ -1,0 +1,33 @@
+[
+  {
+    "id": "c16eca96ebc8227b",
+    "title": "Developers are emotionally attached to their tools​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌‌‌‌‌‌‌‌‌​​﻿​‌​​﻿‌​​﻿‌‌‌​﻿‌​﻿​﻿​﻿‌​‌​​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌​​﻿‌‌​​﻿‌‌​﻿‌‌​﻿​​﻿‌​﻿​‌​‌​﻿‌​﻿​﻿​​﻿‌‌‌​﻿​﻿​‌‌​﻿‌‌‌​﻿‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌‌‌‌‌‌‌‌‌​​﻿​‌​​﻿‌​​﻿‌‌‌​﻿‌​﻿​﻿​﻿‌​‌​​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌​​﻿‌‌​​﻿‌‌​﻿‌‌​﻿​​﻿‌​﻿​‌​‌​﻿‌​﻿​﻿​​﻿‌‌‌​﻿​﻿​‌‌​﻿‌‌‌​﻿‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/12/developers-are-emotionally-attached-to-their-tools/",
+    "published": "2026-06-12T07:40:00+00:00",
+    "fetched_at": "2026-06-12T04:53:25.467506+00:00",
+    "summary": "Ryan welcomes Trisha Gee, a Java champion and developer productivity advocate, to explore how AI is transforming the role of IDEs and the broader developer experience; the relevance of traditional tools, muscle memory, the risks of hype; and how to adapt workflows for AI-driven...",
+    "tags": [],
+    "day": "2026-06-12",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Ryan welcomes Trisha Gee, a Java champion and developer productivity advocate, to explore how AI is transforming the role of IDEs and the broader developer experience; the relevance of traditional tools, muscle memory, the risks of hype; and how to adapt workflows for AI-driven...",
+      "technical_breakdown": "Ryan welcomes Trisha Gee, a Java champion and developer productivity advocate, to explore how AI is transforming the role of IDEs and the broader developer experience; the relevance of traditional tools, muscle memory, the risks of hype; and how to adapt workflows for AI-driven development.​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌‌‌‌‌‌‌‌‌​​﻿​‌​​﻿‌​​﻿‌‌‌​﻿‌​﻿​﻿​﻿‌​‌​​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌​​﻿‌‌​​﻿‌‌​﻿‌‌​﻿​​﻿‌​﻿​‌​‌​﻿‌​﻿​﻿​​﻿‌‌‌​﻿​﻿​‌‌​﻿‌‌‌​﻿‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌‌‌‌‌‌‌‌‌​​﻿​‌​​﻿‌​​﻿‌‌‌​﻿‌​﻿​﻿​﻿‌​‌​​﻿​​﻿‌​﻿‌​‌‌‌​﻿‌​​﻿‌‌​​﻿‌‌​﻿‌‌​﻿​​﻿‌​﻿​‌​‌​﻿‌​﻿​﻿​​﻿‌‌‌​﻿​﻿​‌‌​﻿‌‌‌​﻿‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Ryan welcomes Trisha Gee, a Java champion and developer productivity advocate, to explore how AI is transforming the role of IDEs and the broader developer experience; the relevance of traditional tools, muscle memory, the risks of hype; and how to adapt workflows for AI-driven…",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
