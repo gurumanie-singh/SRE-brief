@@ -101,13 +101,13 @@
     "retention_max_days": 30,
     "retention_cutoff_day": "2026-05-14",
     "incoming_total": 258,
-    "incoming_after_retention": 105,
-    "dropped_by_retention": 153,
+    "incoming_after_retention": 104,
+    "dropped_by_retention": 154,
     "new_articles_this_run": 27,
     "day_files_touched": 16,
     "total_articles_on_disk": 136,
     "day_json_file_count": 22,
     "warnings": []
   },
-  "written_at": "2026-06-13T18:16:54.338833+00:00"
+  "written_at": "2026-06-13T20:22:09.648380+00:00"
 }
