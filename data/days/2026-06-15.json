@@ -42,7 +42,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge. The capability helps content owners and publishers set per-request pricing by content path, bot category, or verification tier without modifying their origin infrastructure or writing application code.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/implementing-workload-identity-with-hashicorp-vault-and-spiffe"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -274,10 +279,6 @@
     },
     "email_summary": "In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project\nmoving forward. Impact band: critical.",
     "related_sources": [
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/implementing-workload-identity-with-hashicorp-vault-and-spiffe"
-      },
       {
         "source": "Red Hat Developer Blog",
         "link": "https://developers.redhat.com/articles/2026/06/15/using-networkmanager-permanently-set-interface-administratively-down"
