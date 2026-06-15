@@ -1,5 +1,109 @@
 [
   {
+    "id": "a810f6fcecf06f42",
+    "title": "Selenium vs Cypress vs Playwright: Choosing Your Test Automation Framework​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/15/selenium-vs-cypress-vs-playwright-choosing-your-test-automation-framework/",
+    "published": "2026-06-15T15:22:54+00:00",
+    "fetched_at": "2026-06-15T17:58:54.486798+00:00",
+    "summary": "Selenium vs Cypress vs Playwright: Choosing Your Test Automation...",
+    "tags": [],
+    "day": "2026-06-15",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Selenium vs Cypress vs Playwright: Choosing Your Test Automation..."
+    ],
+    "sections": {
+      "overview": "Selenium vs Cypress vs Playwright: Choosing Your Test Automation Framework​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌. Selenium vs Cypress vs Playwright: Choosing Your Test Automation...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Selenium vs Cypress vs Playwright: Choosing Your Test Automation...",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Selenium vs Cypress vs Playwright: Choosing Your Test Automation...",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "9105b8435a7e0389",
+    "title": "AI agents expose the security checks you never actually wrote​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​﻿​‌​‌‌​‌‌​​﻿​‌​﻿‌‌‌​‌​﻿‌​﻿​​​﻿​‌​﻿‌‌‌​‌​﻿‌​﻿‌​‌​‌‌​﻿​​﻿‌​﻿​‌​​﻿​﻿‌‌‌​﻿‌‌​​﻿‌​﻿‌​‌​﻿‌​﻿​﻿​﻿​﻿‌‌​﻿‌​﻿‌​﻿‌﻿​﻿‌﻿​﻿​​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​﻿​‌​‌‌​‌‌​​﻿​‌​﻿‌‌‌​‌​﻿‌​﻿​​​﻿​‌​﻿‌‌‌​‌​﻿‌​﻿‌​‌​‌‌​﻿​​﻿‌​﻿​‌​​﻿​﻿‌‌‌​﻿‌‌​​﻿‌​﻿‌​‌​﻿‌​﻿​﻿​﻿​﻿‌‌​﻿‌​﻿‌​﻿‌﻿​﻿‌﻿​﻿​​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/15/ai-agents-expose-the-security-checks-you-never-actually-wrote/",
+    "published": "2026-06-15T14:58:54+00:00",
+    "fetched_at": "2026-06-15T17:58:54.487215+00:00",
+    "summary": "How attackers took twenty thousand Instagram accounts by asking Meta's AI politely, and why that failure is about to become...",
+    "tags": [],
+    "day": "2026-06-15",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "How attackers took twenty thousand Instagram accounts by asking Meta's AI politely, and why that failure is about to become...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "How attackers took twenty thousand Instagram accounts by asking Meta's AI politely, and why that failure is about to become…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "9bf37816fda7d8c7",
+    "title": "Growing the Cloudflare AI team with talent from Ensemble AI",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/ensemble-ai-talent-joins-cloudflare/",
+    "published": "2026-06-15T13:00:00+00:00",
+    "fetched_at": "2026-06-15T17:58:52.524841+00:00",
+    "summary": "Today, we’re excited to share that key members of the team at Ensemble AI are joining Cloudflare to help accelerate our work in AI infrastructure and make it easier for developers to run powerful AI models efficiently at scale.",
+    "tags": [
+      "deployment",
+      "networking",
+      "scaling"
+    ],
+    "day": "2026-06-15",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Inference cost is one of the biggest barriers to scaling AI applications. Every improvement in model size, memory footprint, throughput, and GPU utilization can make AI more accessible to developers and more economical f",
+      "We are deepening our investment in the core machine learning capabilities needed to make Workers AI faster, more flexible, and more cost-efficient. This builds on top of our existing work on improving model efficiency, i"
+    ],
+    "sections": {
+      "overview": "Today, we’re excited to share that key members of the team at Ensemble AI are joining Cloudflare to help accelerate our work in AI infrastructure and make it easier for developers to run powerful AI models efficiently at scale. Ensemble AI, founded in 2023 in San Francisco, has spent the last few years focused on one of the most important challenges in AI: making large models faster, smaller, and more cost-effective to serve, without sacrificing quality. The team has developed new approaches to model compression and efficient inference that are designed to reduce the memory, compute, and deployment overhead of large language models and multimodal architectures.",
+      "technical_breakdown": "The team has developed new approaches to model compression and efficient inference that are designed to reduce the memory, compute, and deployment overhead of large language models and multimodal architectures.\n\nEvery improvement in model size, memory footprint, throughput, and GPU utilization can make AI more accessible to developers and more economical for customers.\n\nInstead of treating model efficiency as only a quantization or hardware problem, Ensemble has explored new model building blocks that can make neural networks more compact and efficient at the architectural level.\n\nTogether, they point toward a future where developers can run capable AI models with substantially lower memory, compute, and cost requirements.\n\nMaking AI inference more efficient \n \n \n \n \n Cloudflare Workers AI gives developers access to serverless GPU-powered inference on Cloudflare’s global network.",
+      "impact": "And customers increasingly expect AI to be available everywhere: globally distributed, fast, reliable, and affordable. Every improvement in model size, memory footprint, throughput, and GPU utilization can make AI more accessible to developers and more economical for customers. Developers no longer need only access to models; they need infrastructure that can run models reliably, affordably, and close to users.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Every improvement in model size, memory footprint, throughput, and GPU utilization can make AI more accessible to developers and more economical for customers.\n\nThe Workers AI Machine Learning Engineering team will help us improve the efficiency layer underneath that experience.\n\nBy combining Cloudflare’s global infrastructure with Ensemble’s work in model compression and efficient architectures, we can continue building a platform where developers can deploy AI applications with lower cost, better performance, and less operational overhead.\n\nWhat’s next \n \n \n \n \n Together, we will continue building the infrastructure needed to make AI more efficient, accessible, and useful for developers everywhere.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The team has developed new approaches to model compression and efficient inference that are designed to reduce the memory, compute, and deployment overhead of large language models and multimodal architectures. The team will focus on improving the economics of serving large language models and other advanced AI architectures, with an emphasis on model efficiency, GPU utilization, and scalable deployment. They need the ability to experiment with different model sizes, fine-tuning approaches, and deployment patterns without being blocked by cost or operational complexity.",
+      "incident_timeline": "Inference cost is one of the biggest barriers to scaling AI applications. Every improvement in model size, memory footprint, throughput, and GPU utilization can make AI more accessible to developers and more economical f\nWe are deepening our investment in the core machine learning capabilities needed to make Workers AI faster, more flexible, and more cost-efficient. This builds on top of our existing work on improving model efficiency, i",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Today, we’re excited to share that key members of the team at Ensemble AI are joining Cloudflare to help accelerate our work in AI infrastructure and make it easier for developers to run powerful AI models efficiently at scale. Ensemble AI, founded in 2023 in San Francisco, has spent the last few years focused on one of the most important challenges in AI: making large models faster, smaller, and more cost-effective to serve, without sacrificing quality.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "b715eb9eaf379b85",
     "title": "Spotlight on SIG Storage",
     "source": "Kubernetes Blog",
@@ -48,6 +152,14 @@
     },
     "email_summary": "In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project\nmoving forward. Impact band: critical.",
     "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/implementing-workload-identity-with-hashicorp-vault-and-spiffe"
+      },
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/06/15/using-networkmanager-permanently-set-interface-administratively-down"
+      },
       {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-finops-agent-in-preview-gemma-4-on-bedrock-kiro-pro-max-and-more-june-15-2026/"
