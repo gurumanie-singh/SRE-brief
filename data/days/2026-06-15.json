@@ -1,5 +1,127 @@
 [
   {
+    "id": "45b9e4fc76e7b6f9",
+    "title": "AWS WAF adds AI traffic monetization capability to help content owners charge AI bots for content access",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/aws-waf-adds-ai-traffic-monetization-capability-to-help-content-owners-charge-ai-bots-for-content-access/",
+    "published": "2026-06-15T20:42:13+00:00",
+    "fetched_at": "2026-06-15T21:16:20.994588+00:00",
+    "summary": "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge. The capability helps content owners and publishers set per-request pricing by content path, bot category, or verification tier without modifying their origin infrastructure or writing...",
+    "tags": [
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-15",
+    "impact": "medium",
+    "vendors": [
+      "AWS",
+      "Stripe"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge. The capability",
+      "The AI traffic analysis dashboard breaks down traffic into four categories visible in the bot traffic overview panel: All bot requests , AI bot requests , Verified AI bot traffic , and Unverified AI bot traffic . The das",
+      "When a Monetize rule matches an incoming request, AWS WAF returns an HTTP 402 Payment Required response. The response body contains a machine-readable price manifest in JSON format using the x402 open protocol for machin",
+      "Since the Currency mode toggle is available directly in the monetization configuration page, you can switch between Real and Test mode at any time. Before going live, use test mode on non-production traffic to validate p",
+      "Once you have switched Currency mode to Real , navigate to AI access monetization in the left navigation pane to track monetization outcomes in real time. Note that the AI access monetization dashboard only reflects acti",
+      "The Revenue dashboard shows Total revenue , revenue broken down by Verified bots and Unverified bots , and Avg. per request. The Top revenue sources panel groups earnings by bot category, and the AI access patterns panel"
+    ],
+    "sections": {
+      "overview": "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge. The capability helps content owners and publishers set per-request pricing by content path, bot category, or verification tier without modifying their origin infrastructure or writing application code. Content owners can define granular access policies per agent type, collect payments in stablecoins to their preferred wallet, and monitor revenue and bot activity from a single dashboard.",
+      "technical_breakdown": "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge.\n\nThe dashboard surfaces infrastructure impact metrics including bandwidth consumed, estimated monthly cost, and peak request rates.\n\nThe manifest includes the content price in USDC, accepted blockchain networks such as Base and Solana, the destination wallet address, the maximum payment timeout, and the payment scheme.\n\nContent owners can define granular access policies per agent type, collect payments in stablecoins to their preferred wallet, and monitor revenue and bot activity from a single dashboard.\n\nIn Select resources to protect , choose Add resources to associate regional or global resources such as CloudFront distributions with this protection pack.",
+      "impact": "AWS WAF Bot Control already gives customers visibility into bot activity and the ability to block or rate-limit traffic, but setting pricing and collecting payment from AI agents has not been possible until now. In Select resources to protect , choose Add resources to associate regional or global resources such as CloudFront distributions with this protection pack. Optionally, expand Customize protection pack (web ACL) to configure additional settings including pricing tiers, payment methods, content scope, and license terms. Once your protection pack is in place, review the AI traffic analysis dashboard to understand the impact of AI bot traffic on your content before setting your pricing strategy.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge. The capability\nThe AI traffic analysis dashboard breaks down traffic into four categories visible in the bot traffic overview panel: All bot requests , AI bot requests , Verified AI bot traffic , and Unverified AI bot traffic . The das\nWhen a Monetize rule matches an incoming request, AWS WAF returns an HTTP 402 Payment Required response. The response body contains a machine-readable price manifest in JSON format using the x402 open protocol for machin\nSince the Currency mode toggle is available directly in the monetization configuration page, you can switch between Real and Test mode at any time. Before going live, use test mode on non-production traffic to validate p\nOnce you have switched Currency mode to Real , navigate to AI access monetization in the left navigation pane to track monetization outcomes in real time. Note that the AI access monetization dashboard only reflects acti\nThe Revenue dashboard shows Total revenue , revenue broken down by Verified bots and Unverified bots , and Avg. per request. The Top revenue sources panel groups earnings by bot category, and the AI access patterns panel",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "AWS WAF now includes AI traffic monetization capability that gives digital content owners and publishers a way to charge AI bots and agents for access to protected web content directly at the network edge. The capability helps content owners and publishers set per-request pricing by content path, bot category, or verification tier without modifying their origin infrastructure or writing application code.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "6cb3f40f04851add",
+    "title": "GitHub Copilot CLI for Beginners: Overview of common slash commands",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-overview-of-common-slash-commands/",
+    "published": "2026-06-15T20:15:31+00:00",
+    "fetched_at": "2026-06-15T21:16:22.867924+00:00",
+    "summary": "Welcome back to GitHub Copilot CLI for Beginners! In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI . So far in this series, we ve covered how to get started and when to use interactive and non-interactive modes . In this edition, we ll learn what slash commands are, why they matter, and how to use slash commands to...",
+    "tags": [],
+    "day": "2026-06-15",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Best practices for GitHub Copilot CLI"
+    ],
+    "sections": {
+      "overview": "Welcome back to GitHub Copilot CLI for Beginners! In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI . So far in this series, we ve covered how to get started and when to use interactive and non-interactive modes .",
+      "technical_breakdown": "In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI .\n\nMore resources to explore: \n\n \n GitHub Copilot CLI for Beginners video series \n\n GitHub Copilot CLI for Beginners: Getting started with GitHub Copilot CLI \n\n GitHub Copilot CLI for Beginners: Interactive v. non-interactive mode \n\n GitHub Copilot CLI 101: How to use GitHub Copilot from the command line \n\n Best practices for GitHub Copilot CLI \n\n \n\n The post GitHub Copilot CLI for Beginners: Overview of common slash commands appeared first on The GitHub Blog .",
+      "impact": "Availability : The list may vary depending on your plan or organization s settings. Choosing the right model can significantly impact both speed and results. This allows you to scope Copilot s work to a specific part of your project and helps you stay efficient while multitasking across codebases.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "This will display a list of available models, along with key details like:\n\n \n Capabilities : Some are better for quick, lightweight tasks like refactoring, while others more efficiently handle deeper reasoning such as feature planning.\n\nTake this with you \n\n Using these slash commands gives you even better control over Copilot CLI and the more familiar you become with them, the more deliberate your workflow becomes.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Best practices for GitHub Copilot CLI",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Welcome back to GitHub Copilot CLI for Beginners. In this series (available in video and blog format), we ll give you everything you need to get started using GitHub Copilot CLI .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1b870a720380846e",
+    "title": "Accelerating researchers and developers building multilingual AI with a new open dataset",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/ai-and-ml/llms/accelerating-researchers-and-developers-building-multilingual-ai-with-a-new-open-dataset/",
+    "published": "2026-06-15T19:17:30+00:00",
+    "fetched_at": "2026-06-15T21:16:22.868883+00:00",
+    "summary": "Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs. They ask for help in issues. They review, debate, and improve code in pull requests. That collaboration often happens in English but not always. As AI becomes a bigger part of how developers build software, multilingual developer content...",
+    "tags": [],
+    "day": "2026-06-15",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs. They ask for help in issues. They review, debate, and impr",
+      "Today, GitHub is publishing the GitHub Multilingual Repositories Dataset , a repository-level metadata dataset designed to help researchers and developers discover public GitHub repositories with evidence of non-English ",
+      "Language classifications of the README, the most-commented issue, and the most-commented pull request, with the first 150 characters of each used as the input sample. We exclude texts under 20 characters.",
+      "Repository metadata: creation timestamp, disk usage, stars, forks, primary programming language, SPDX license, issue and pull request counts, and the snapshot date.",
+      "Study how non-English developer communities use issues, pull requests, and READMEs.",
+      "Today, many European languages remain underrepresented in the online text used to build and evaluate AI systems. That creates a risk that AI tools work well for some developers, languages, and communities, while leaving ",
+      "If you do something interesting with it, we d love to hear about it ."
+    ],
+    "sections": {
+      "overview": "Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs. They ask for help in issues.",
+      "technical_breakdown": "Repository metadata: creation timestamp, disk usage, stars, forks, primary programming language, SPDX license, issue and pull request counts, and the snapshot date.\n\nWhat s next \n\n We ll be discussing the dataset, and the broader importance of open data for multilingual AI, at the Open Innovation Dialogue Hub in Strasbourg on June 16.\n\nThe post Accelerating researchers and developers building multilingual AI with a new open dataset appeared first on The GitHub Blog .",
+      "impact": "It may include badges, templates, installation commands, code snippets, usernames, or mixed-language content. Users can inspect classifications, confidence scores, and sources, then choose the precision and recall tradeoffs that fit their own research or development workflow.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "They review, debate, and improve code in pull requests.\n\nThat context can help build AI systems that better understand how developers actually work.\n\nIt can help identify gaps, support better evaluation, and inform more inclusive AI tools for developers across Europe and beyond.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs. They ask for help in issues. They review, debate, and impr\nToday, GitHub is publishing the GitHub Multilingual Repositories Dataset , a repository-level metadata dataset designed to help researchers and developers discover public GitHub repositories with evidence of non-English \nLanguage classifications of the README, the most-commented issue, and the most-commented pull request, with the first 150 characters of each used as the input sample. We exclude texts under 20 characters.\nRepository metadata: creation timestamp, disk usage, stars, forks, primary programming language, SPDX license, issue and pull request counts, and the snapshot date.\nStudy how non-English developer communities use issues, pull requests, and READMEs.\nToday, many European languages remain underrepresented in the online text used to build and evaluate AI systems. That creates a risk that AI tools work well for some developers, languages, and communities, while leaving \nIf you do something interesting with it, we d love to hear about it .",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "a810f6fcecf06f42",
     "title": "Selenium vs Cypress vs Playwright: Choosing Your Test Automation Framework​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",

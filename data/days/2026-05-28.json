@@ -177,12 +177,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Where Large Language Models (LLMs) meet logs, things can break down. Impact band: critical.",
-    "related_sources": [
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/news-insights/company-news/still-a-developer-just-outside-our-latest-github-shop-collection-is-here/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
