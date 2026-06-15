@@ -1,0 +1,53 @@
+[
+  {
+    "id": "b715eb9eaf379b85",
+    "title": "Spotlight on SIG Storage",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/06/15/sig-storage-spotlight-2026/",
+    "published": "2026-06-15T00:00:00+00:00",
+    "fetched_at": "2026-06-15T05:19:16.008505+00:00",
+    "summary": "In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-15",
+    "impact": "critical",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "SIG Storage is a Special Interest Group focused on how to provide storage to containers running in",
+      "investigating enhancements to this feature with the goal of supporting automated remediation",
+      "We always need help from the community to fix bugs, add tests, and help with reviews.",
+      "in the Data Protection WG. Community members interested in this topic are encouraged to join the DP",
+      "What are the biggest challenges users face today when running stateful workloads on Kubernetes?",
+      "I see several trends shaping storage in Kubernetes as it evolves from a container orchestrator into",
+      "SIG Storage continues to tackle some of the hardest problems in Kubernetes: keeping stateful"
+    ],
+    "sections": {
+      "overview": "In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project\nmoving forward. This time, we catch up with SIG\nStorage , the group responsible\nfor persistent data, volume management, and the interfaces that connect Kubernetes workloads to the\nstorage systems beneath them. We spoke with Xing Yang , Co-Chair of SIG Storage and Software\nEngineer at VMware by Broadcom, about the SIG's history, the features shipping in recent Kubernetes\nreleases, and where storage in Kubernetes is headed as AI workloads become the norm.",
+      "technical_breakdown": "This completes the picture by allowing users to tune both capacity and other storage\nproperties dynamically, just as they can now tune both CPU and memory for compute.\n\nWhile Kubernetes has moved stateful workloads — like databases and AI pipelines — into the\nmainstream, managing \"state\" in a system designed for ephemerality remains difficult:\n\n \n \n Data Gravity and Storage Locality : Pods move in seconds, but data has gravity.\n\nI see several trends shaping storage in Kubernetes as it evolves from a container orchestrator into\nthe \"Operating System\" for AI:\n\n \n \n More Intelligent Data Management : We'll see a shift toward smarter CSI drivers and data\nmanagement tools offering advanced features like automatic tiering, snapshots, migration, and\nreplication — optimized specifically for high-performance AI/ML workflows and large data\nplatforms.\n\nData-Aware Scheduling : Instead of just considering CPU and RAM, the Kubernetes scheduler will\nincreasingly prioritize placing Pods based on data locality — calculating the cost of moving data\nversus moving compute to keep massive data platforms performant.\n\nSIG Storage is a Special Interest Group focused on how to provide storage to containers running in\nyour Kubernetes cluster.",
+      "impact": "Now, users can dynamically tune storage properties such as IOPS or throughput directly\nthrough the Kubernetes API — scaling up for peak loads or down to optimize costs — without external\nprocesses or downtime. The SIG has also expanded its scope to support object\nstorage through the Container Object Storage Interface (COSI). What recent work from SIG Storage do you consider a \"win\" for users? The graduation of VolumeAttributesClass \nto GA in Kubernetes v1.34 is a major win for users managing stateful workloads.\n\nClassified impact band: critical. Affected layer signal: platform — kubernetes.",
+      "resolution": "We always need help from the community to fix bugs, add tests, and help with reviews.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. By enabling\nstorage drivers and the Kubernetes control plane to report issues, it allows for proactive\nmonitoring and identification of volume-related problems.",
+      "incident_timeline": "SIG Storage is a Special Interest Group focused on how to provide storage to containers running in\ninvestigating enhancements to this feature with the goal of supporting automated remediation\nWe always need help from the community to fix bugs, add tests, and help with reviews.\nin the Data Protection WG. Community members interested in this topic are encouraged to join the DP\nWhat are the biggest challenges users face today when running stateful workloads on Kubernetes?\nI see several trends shaping storage in Kubernetes as it evolves from a container orchestrator into\nSIG Storage continues to tackle some of the hardest problems in Kubernetes: keeping stateful",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project\nmoving forward. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
