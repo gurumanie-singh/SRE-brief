@@ -1,5 +1,115 @@
 [
   {
+    "id": "c627ddcc159d85f2",
+    "title": "Red Hat AI Inference on Amazon EKS: Exploring the Kubernetes resources",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/16/red-hat-ai-inference-amazon-eks-kubernetes-resources",
+    "published": "2026-06-16T15:34:44+00:00",
+    "fetched_at": "2026-06-16T17:14:38.034901+00:00",
+    "summary": "I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. In order to understand something well, I think you need to deploy it, especially when it comes to Kubernetes. And I find that digging into the custom resource definitions (CRDs) and each component in the control...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-16",
+    "impact": "high",
+    "vendors": [
+      "AWS",
+      "Azure",
+      "Elastic",
+      "Google Cloud",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "misconfiguration",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. In order to understand something ",
+      "Red Hat AI Inference operator: Platform lifecycle orchestration.",
+      "├── LeaderWorkerSet (Advanced workload orchestration)",
+      "│ └── Purpose: Orchestrates model deployments and intelligent routing",
+      "│ └── Purpose: Orchestrates installation and upgrades",
+      "The cert-manager-webhook deployment validates incoming certificate requests.",
+      "Sail operator and inference gateway (Istio Gateway API) The inference gateway provides a central entry point for all model requests using the Kubernetes Gateway API backed by the Istio service mesh. The platform orchestr",
+      "The problem it solves This architecture solves a common challenge in production AI deployments: routing traffic to multiple models from a single external endpoint. Traditional Kubernetes Ingress can handle basic path rou"
+    ],
+    "sections": {
+      "overview": "I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. In order to understand something well, I think you need to deploy it, especially when it comes to Kubernetes. And I find that digging into the custom resource definitions (CRDs) and each component in the control and data plane is extremely helpful for a beginner looking to understand Kubernetes services.",
+      "technical_breakdown": "Here's what got deployed, organized by component:\n\n RHAII Inference Platform\n├── cert-manager (TLS automation)\n│ ├── Namespaces: cert-manager, cert-manager-operator\n│ ├── Workloads (4 deployments):\n│ │ ├── cert-manager\n│ │ ├── cert-manager-cainjector\n│ │ ├── cert-manager-webhook\n│ │ └── cert-manager-operator-controller-manager\n│ ├── Services (4): Metrics and webhook endpoints\n│ └── Purpose: Issues and renews TLS certificates\n│\n├── Istio / Gateway API (Service mesh & ingress)\n│ ├── Namespace: istio-system\n│ ├── Workloads (2 deployments):\n│ │ ├── istiod (control plane)\n│ │ └── servicemesh-operator3\n│ ├── Services (2): Control plane and metrics\n│ ├── CRDs (7): gateways, httproutes, grpcroutes, backendtlspolicies, etc.\n│ └── Purpose: External LoadBalancer and intelligent routing\n│\n├── LeaderWorkerSet (Advanced workload orchestration)\n│ ├── Namespace: openshift-lws-operator\n│ ├── Workloads (2 deployments):\n│ │ ├── lws-controller-manager (2 replicas)\n│ │ └── openshift-lws-operator\n│ ├── Services (2): Metrics and webhook\n│ ├── CRDs (2): leaderworkersets, leaderworkersetoperators\n│ └── Purpose: Coordinated multi-pod patterns (prefill/decode disaggregation)\n│\n├── KServe & llm-d (Inference platform)\n│ ├── Namespace: redhat-ods-applications\n│ ├── Workloads (2 deployments):\n│ │ ├── llmisvc-controller-manager (KServe reconciler)\n│ │ └── inference-gateway-istio (Envoy proxy)\n│ ├── Services (3):\n│ │ ├── inference-gateway-istio (LoadBalancer - external entry point)\n│ │ ├── llmisvc-controller-manager (metrics)\n│ │ └── llmisvc-webhook-server\n│ ├── CRDs (8):\n│ │ ├── KServe: llminferenceservices, llminferenceserviceconfigs, kserves\n│ │ ├── llm-d: inferencepools (2 versions), inferenceobjectives,\n│ │ │ inferencemodelrewrites, inferencepoolimports\n│ ├── Custom Resources (1):\n│ │ └── Gateway/inference-gateway (actual LoadBalancer instance)\n│ └── Purpose: Orchestrates model deployments and intelligent routing\n│\n├── RHAII Operator (Platform lifecycle)\n│ ├── Namespace: redhat-ods-operator\n│ ├── Workloads (1 deployment):\n│ │ └── rhai-operator (3 replicas for HA)\n│ ├── Services (2): Metrics and webhook\n│ └── Purpose: Orchestrates installation and upgrades\n│\n└── Cloud Manager (Multi-cloud portability)\n├── Namespace: rhai-cloudmanager-system\n├── Workloads (1 deployment):\n│ └── azure-cloud-manager-operator\n└── Purpose: Cloud-specific integrations (Azure/AWS/GCP) The platform consists of:\n\n Seven namespaces.\n 12 deployments.\n 13 services (including external LoadBalancer ).\n 17 CRDs.\n\nGateway and HTTPRoute custom resources The platform installs a collection of CRDs to extend the standard Kubernetes networking capabilities:\n\n $ kubectl get crd | grep gateway \n backendtlspolicies.gateway.networking.k8s.io\n gatewayclasses.gateway.networking.k8s.io\n gateways.gateway.networking.k8s.io\n grpcroutes.gateway.networking.k8s.io\n httproutes.gateway.networking.k8s.io\n referencegrants.gateway.networking.k8s.io\n gateways.networking.istio.io These definitions split management responsibilities across distinct networking tasks:\n\n Core gateway resources: The gateways.gateway.networking.k8s.io CRD defines specific gateway instances, such as the inference-gateway , that trigger the creation of cloud load balancers.\n\nYou can visualize how the platform maps the root gateway configuration down to physical runtime pods by using the kubectl tree utility:\n\n $ kubectl tree gateway inference-gateway -n redhat-ods-applications\nGateway/inference-gateway\n├── Deployment/inference-gateway-istio (Istio Envoy proxy)\n│ └── ReplicaSet/inference-gateway-istio-xxx\n│ └── Pod/inference-gateway-istio-xxx\n├── Service/inference-gateway-istio (ClusterIP - internal)\n└── Service/inference-gateway-istio-lb (LoadBalancer - external) The cloud provider automatically provisions an external network load balancer to match this configuration:\n\n $ kubectl get svc inference-gateway-istio -n redhat-ods-applications\nNAME TYPE EXTERNAL-IP PORT(S)\ninference-gateway-istio LoadBalancer k8s-redhatod-inferenc-xxx.elb.us-east-1.amazonaws.com 80:32626/TCP This LoadBalancer is how external clients (including your application, curl commands, and GuideLLM testing utilities) reach the inference models.\n\nRunning kubectl get deployment reveals the active management controllers:\n\n $ kubectl get deployment -n openshift-lws-operator\n NAME READY UP-TO-DATE AVAILABLE \n lws-controller-manager 2/2 2 2 \n openshift-lws-operator 1/1 1 1 The corresponding cluster services expose metrics and webhook endpoints internally:\n\n $ kubectl get svc -n openshift-lws-operator\n NAME TYPE PORT(S)\n lws-controller-manager-metrics-service ClusterIP 8443/TCP\n lws-webhook-service ClusterIP 443/TCP The deployed management workloads share specific operational responsibilities:\n\n The lws-controller-manager deployment creates coordinated multi-pod groups where pods work together as one logical server.\n\nRunning kubectl get deployment displays the active orchestrator controller:\n\n $ kubectl get deployment -n redhat-ods-operator\n NAME READY UP-TO-DATE AVAILABLE \n rhai-operator 3/3 3 3 The accompanying network services expose metrics and manage validation endpoints internally:\n\n $ kubectl get svc -n redhat-ods-operator\n NAME TYPE PORT(S)\n rhai-operator-controller-manager-metrics-service ClusterIP 8443/TCP\n rhai-operator-webhook-service ClusterIP 443/TCP The deployed management workloads share structural and operational responsibilities across the platform:\n\n The rhai-operator deployment acts as the meta-controller, utilizing three replicas for high availability so that if a single pod crashes, the others keep running.",
+      "impact": "You can visualize how the platform maps the root gateway configuration down to physical runtime pods by using the kubectl tree utility:\n\n $ kubectl tree gateway inference-gateway -n redhat-ods-applications\nGateway/inference-gateway\n├── Deployment/inference-gateway-istio (Istio Envoy proxy)\n│ └── ReplicaSet/inference-gateway-istio-xxx\n│ └── Pod/inference-gateway-istio-xxx\n├── Service/inference-gateway-istio (ClusterIP - internal)\n└── Service/inference-gateway-istio-lb (LoadBalancer - external) The cloud provider automatically provisions an external network load balancer to match this configuration:\n\n $ kubectl get svc inference-gateway-istio -n redhat-ods-applications\nNAME TYPE EXTERNAL-IP PORT(S)\ninference-gateway-istio LoadBalancer k8s-redhatod-inferenc-xxx.elb.us-east-1.amazonaws.com 80:32626/TCP This LoadBalancer is how external clients (including your application, curl commands, and GuideLLM testing utilities) reach the inference models. Your client applications simply target different URL paths, allowing you to update or scale backend models without modifying client-side application code. Priority-based flow control: The system references client request parameters to let premium, high-priority queries bypass the standard queue ahead of long-running batch jobs. The inferenceobjectives.inference.networking.x-k8s.io CRD defines priority levels ( premium=100 , normal=0 , batch=-10 ) to be included in the request body from clients.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "The problem it solves This automation fixes a significant operational headache: because KServe and vLLM pods expose metrics over HTTPS, a standard Prometheus instance cannot safely scrape metrics without valid certificates.\n\nCache-friendly requests (same prompt prefix) don't land on the pod with that prefix already in memory.\n\nIt automatically directs traffic to pods that already have the prompt prefix cached, or to pods with available cache space to encourage an even distribution of prefix allocation across the system.\n\nHandles upgrades and rollbacks.",
+      "lessons_learned": "Without cert-manager stepping in to prevent validation errors, platform teams would have to manually create, mount, and rotate certificates for every single new model deployment.",
+      "root_cause_highlight": "Likely root-cause theme: misconfiguration. The problem it solves This automation fixes a significant operational headache: because KServe and vLLM pods expose metrics over HTTPS, a standard Prometheus instance cannot safely scrape metrics without valid certificates. Traditional Kubernetes Ingress can handle basic path routing, but Gateway API offers more flexibility because it provides advanced routing capabilities. This type of misconfiguration can expose fine-tuning adapters or other model internals you never intended to be reachable.",
+      "incident_timeline": "I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. In order to understand something \nRed Hat AI Inference operator: Platform lifecycle orchestration.\n├── LeaderWorkerSet (Advanced workload orchestration)\n│ └── Purpose: Orchestrates model deployments and intelligent routing\n│ └── Purpose: Orchestrates installation and upgrades\nThe cert-manager-webhook deployment validates incoming certificate requests.\nSail operator and inference gateway (Istio Gateway API) The inference gateway provides a central entry point for all model requests using the Kubernetes Gateway API backed by the Istio service mesh. The platform orchestr\nThe problem it solves This architecture solves a common challenge in production AI deployments: routing traffic to multiple models from a single external endpoint. Traditional Kubernetes Ingress can handle basic path rou",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. Impact band: high.",
+    "related_sources": [
+      {
+        "source": "Elastic Blog",
+        "link": "https://www.elastic.co/blog/forrester-wave-strong-performer-extended-detection-and-response-platforms-2026"
+      }
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "e24a1e3c704344c6",
+    "title": "Cloudflare DMARC Management is now generally available",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/dmarc-management-ga/",
+    "published": "2026-06-16T13:00:00+00:00",
+    "fetched_at": "2026-06-16T17:14:34.757703+00:00",
+    "summary": "When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn't happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. We wanted to give everyone the tools to understand and improve their...",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-16",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "dns issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Every time someone receives an email \"from\" your domain, their email provider asks a simple question: did the real owner of this domain actually send this? Without a way to answer that question, anyone can send an email ",
+      "Email authentication is the set of DNS records that answers that question. There are four protocols that protect your domain:",
+      "DMARC has always been important. But over the past two years, the stakes have gotten significantly higher. Google, Microsoft, and Yahoo have all announced or implemented stricter email authentication enforcement. Domains",
+      "Deeper report visibility with source investigation",
+      "Every report now surfaces the source IP address alongside the sending service, giving you the granularity to distinguish between legitimate infrastructure and unauthorized senders. You can now open any IP address directl",
+      "This turns your DMARC reports from a passive data feed into an active investigation tool.",
+      "Drilling into a sending source reveals IP-level detail and Cloudflare threat intelligence in the Investigate tab.",
+      "Investigate tab"
+    ],
+    "sections": {
+      "overview": "When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn't happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. We wanted to give everyone the tools to understand and improve their DMARC posture without needing to hire an email security consultant or parse XML report files by hand.",
+      "technical_breakdown": "The SPF lookup audit traces every DNS lookup in your SPF record, showing exactly where you are against the 10-lookup limit.\n\nThe DMARC Management dashboard offers a unified view of your email authentication posture.\n\nEmail authentication is the set of DNS records that answers that question.\n\nBIMI (Brand Indicators for Message Identification) lets you display your brand logo next to your emails in supported inboxes, but only if your DMARC policy is strong enough.\n\nMove too slowly, and you leave your domain exposed to spoofing, and now, to deliverability penalties from the very providers your customers use.",
+      "impact": "As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. Move too slowly, and you leave your domain exposed to spoofing, and now, to deliverability penalties from the very providers your customers use. We built Cloudflare DMARC Management so that any customer can navigate this journey on their own. What you see \n\n What it tells you \n\n Source IP address\n\n The specific infrastructure sending email on behalf of your domain\n\n Sending service name\n\n The organization or provider behind the IP\n\n DMARC / SPF / DKIM alignment\n\n Whether each authentication check passed or failed for that source\n\n Investigate tab\n\n Cloudflare threat intelligence: reputation, geolocation, ASN, and known threat associations\n\n \n \n Email authentication record status \n \n \n \n \n One of the most common questions customers ask is: \"Are my records set up correctly?\"\n\n Until now, answering that question required manually inspecting DNS TXT records and understanding what each tag and value means across multiple specifications.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "You can drill into any record to see specific findings about what we detected and recommendations for how to fix it.",
+      "lessons_learned": "As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.\n\nWe wanted to give everyone the tools to understand and improve their DMARC posture without needing to hire an email security consultant or parse XML report files by hand.\n\nYou can drill into any record to see specific findings about what we detected and recommendations for how to fix it.\n\nRecord analysis cards show pass, warning, or fail status for each email authentication record, with actionable recommendations.",
+      "root_cause_highlight": "Likely root-cause theme: dns issue. Email authentication is the set of DNS records that answers that question. What you see \n\n What it tells you \n\n Source IP address\n\n The specific infrastructure sending email on behalf of your domain\n\n Sending service name\n\n The organization or provider behind the IP\n\n DMARC / SPF / DKIM alignment\n\n Whether each authentication check passed or failed for that source\n\n Investigate tab\n\n Cloudflare threat intelligence: reputation, geolocation, ASN, and known threat associations\n\n \n \n Email authentication record status \n \n \n \n \n One of the most common questions customers ask is: \"Are my records set up correctly?\"\n\n Until now, answering that question required manually inspecting DNS TXT records and understanding what each tag and value means across multiple specifications. The SPF specification ( RFC 7208 ) imposes a hard limit of 10 DNS lookups per SPF evaluation.",
+      "incident_timeline": "Every time someone receives an email \"from\" your domain, their email provider asks a simple question: did the real owner of this domain actually send this? Without a way to answer that question, anyone can send an email \nEmail authentication is the set of DNS records that answers that question. There are four protocols that protect your domain:\nDMARC has always been important. But over the past two years, the stakes have gotten significantly higher. Google, Microsoft, and Yahoo have all announced or implemented stricter email authentication enforcement. Domains\nDeeper report visibility with source investigation\nEvery report now surfaces the source IP address alongside the sending service, giving you the granularity to distinguish between legitimate infrastructure and unauthorized senders. You can now open any IP address directl\nThis turns your DMARC reports from a passive data feed into an active investigation tool.\nDrilling into a sending source reveals IP-level detail and Cloudflare threat intelligence in the Investigate tab.\nInvestigate tab",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn't happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "91876d94147761f2",
     "title": "If context is king, architecture is the castle​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌‌​﻿​﻿​​﻿​﻿‌​﻿​﻿​​​﻿‌‌​​﻿​​﻿‌​﻿‌​​﻿​‌​﻿​﻿‌‌​​﻿‌​﻿‌​‌​‌​﻿‌﻿​﻿​​​﻿‌​﻿‌‌​‌‌​‌​﻿​﻿‌‌‌‌​﻿‌​​﻿​﻿‌‌​​﻿​‌‌​​﻿‌﻿​﻿​​​﻿‌‌‌​﻿‌​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌‌​﻿​﻿​​﻿​﻿‌​﻿​﻿​​​﻿‌‌​​﻿​​﻿‌​﻿‌​​﻿​‌​﻿​﻿‌‌​​﻿‌​﻿‌​‌​‌​﻿‌﻿​﻿​​​﻿‌​﻿‌‌​‌‌​‌​﻿​﻿‌‌‌‌​﻿‌​​﻿​﻿‌‌​​﻿​‌‌​​﻿‌﻿​﻿​​​﻿‌‌‌​﻿‌​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",

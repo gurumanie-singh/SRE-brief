@@ -28,13 +28,14 @@
       <h1 class="brief-title">16 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-16T06:28:32.452915-05:00">16 June 2026, 06:28</time>
+        <time data-iso="2026-06-16T12:14:38.237485-05:00">16 June 2026, 12:14</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">1 high impact</span>
-      <span class="stat">3 items today</span>
+      <span class="stat stat-high">2 high impact</span>
+      <span class="stat stat-action">1 ops priority</span>
+      <span class="stat">5 items today</span>
     </div>
   </div>
 
@@ -42,20 +43,21 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
-        <li>Repeated coverage across GitHub, Red Hat</li>
+        <li>2 high-impact reliability events surfaced</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat, Kubernetes</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
+        <span class="trend-pill">cloudflare<span class="trend-count">4</span></span>
         <span class="trend-pill">elastic<span class="trend-count">4</span></span>
+        <span class="trend-pill">inference<span class="trend-count">3</span></span>
+        <span class="trend-pill">available<span class="trend-count">3</span></span>
         <span class="trend-pill">agentic<span class="trend-count">3</span></span>
         <span class="trend-pill">automation<span class="trend-count">3</span></span>
-        <span class="trend-pill">agents<span class="trend-count">3</span></span>
-        <span class="trend-pill">security<span class="trend-count">3</span></span>
-        <span class="trend-pill">cloudflare<span class="trend-count">3</span></span>
       </div>
     </div>
   </div>
@@ -86,15 +88,16 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
       </div>
     </div>
@@ -111,14 +114,14 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -129,10 +132,84 @@
   <div class="day-group">
     <h2 class="day-heading">
       16 June 2026
-      <span class="day-count">3</span>
+      <span class="day-count">5</span>
     </h2>
   </div>
 
+  <div class="article-card card--action card--high"
+       data-tags="capacity,deployment,kubernetes,latency,networking,observability,outage,scaling"
+       data-vendors="AWS,Azure,Elastic,Google Cloud,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="red hat ai inference on amazon eks: exploring the kubernetes resources"
+       data-id="c627ddcc159d85f2"
+       data-published="2026-06-16T15:34:44+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-06-16T15:34:44+00:00" title="16 June 2026, 10:34">16 June 2026, 10:34</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Red Hat AI Inference on Amazon EKS: Exploring the Kubernetes resources</h3>
+      <p class="card-summary">I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <div class="card-related">Also: Elastic Blog</div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. In order to understand something well, I think you need to deploy it, especially when it comes to Kubernetes. And I find that digging into the custom resource definitions (CRDs) and each component in the control and data plane is extremely helpful for a beginner looking to understand Kubernetes services.</p></div>
+      <div class="detail-links">
+        <a href="articles/c627ddcc159d85f2.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/16/red-hat-ai-inference-amazon-eks-kubernetes-resources" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,networking,observability,outage"
+       data-vendors="Cloudflare,HashiCorp"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="cloudflare dmarc management is now generally available"
+       data-id="e24a1e3c704344c6"
+       data-published="2026-06-16T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span><span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-06-16T13:00:00+00:00" title="16 June 2026, 08:00">16 June 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Cloudflare DMARC Management is now generally available</h3>
+      <p class="card-summary">When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. We wanted to give everyone the tools to understand and improve their DMARC posture without needing to hire an email security consultant or parse XML report files by hand.</p></div>
+      <div class="detail-links">
+        <a href="articles/e24a1e3c704344c6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/dmarc-management-ga/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="outage"
        data-vendors=""
@@ -1091,7 +1168,7 @@ moving forward. Impact band: critical.</p>
   <div class="day-group">
     <h2 class="day-heading">
       10 June 2026
-      <span class="day-count">3</span>
+      <span class="day-count">1</span>
     </h2>
   </div>
 
@@ -1127,78 +1204,6 @@ moving forward. Impact band: critical.</p>
       <div class="detail-links">
         <a href="articles/8a080d9483a07c88.html" class="detail-read">Open structured brief →</a>
         <a href="https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="database,latency,networking,observability,outage"
-       data-vendors="AWS,Elastic"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="now available: amazon ec2 m9g and m9gd instances powered by new aws graviton5 processors"
-       data-id="2e665d4ecfe75ed3"
-       data-published="2026-06-10T15:04:30+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">AWS</span><span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-06-10T15:04:30+00:00" title="10 June 2026, 10:04">10 June 2026, 10:04</time>
-      </div>
-      <h3 class="card-title">Now available: Amazon EC2 M9g and M9gd instances powered by new AWS Graviton5 processors</h3>
-      <p class="card-summary">AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">database</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">networking</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">AWS News Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>AWS Graviton processors have improved steadily across generations, with each iteration delivering advances in compute performance, price-performance, and energy efficiency. At re:Invent 2025, we announced Amazon EC2 M9g, the first Graviton5-powered instances, in preview. Since then, customers have tested M9g across a wide range of workloads and shared their results.</p></div>
-      <div class="detail-links">
-        <a href="articles/2e665d4ecfe75ed3.html" class="detail-read">Open structured brief →</a>
-        <a href="https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,latency,observability,outage,scaling"
-       data-vendors="HashiCorp,Red Hat"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="what&#39;s new in red hat ansible automation platform 2.7"
-       data-id="d40180be24f28b39"
-       data-published="2026-06-10T14:05:43+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">HashiCorp</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-10T14:05:43+00:00" title="10 June 2026, 09:05">10 June 2026, 09:05</time>
-      </div>
-      <h3 class="card-title">What&#39;s new in Red Hat Ansible Automation Platform 2.7</h3>
-      <p class="card-summary">Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Red Hat Ansible Automation Platform 2.7 is now generally available. This release continues our focus on making automation more efficient, resilient, and intelligent for IT teams operating at enterprise scale. Ansible Automation Platform 2.7 introduces new features and enhancements designed to streamline platform engineering, eliminate friction across the automation lifecycle, and put AI to work across IT operations.</p></div>
-      <div class="detail-links">
-        <a href="articles/d40180be24f28b39.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/10/whats-new-red-hat-ansible-automation-platform-27" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

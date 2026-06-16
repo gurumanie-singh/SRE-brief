@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">16 June 2026</h1>
-      <span class="brief-sub">3 items</span>
+      <span class="brief-sub">5 items</span>
     </div>
   </div>
 
@@ -35,8 +35,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
-        <li>Repeated coverage across GitHub, Red Hat</li>
+        <li>2 high-impact reliability events surfaced</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat, Kubernetes</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -64,32 +65,114 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--action card--high"
+       data-tags="capacity,deployment,kubernetes,latency,networking,observability,outage,scaling"
+       data-vendors="AWS,Azure,Elastic,Google Cloud,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="red hat ai inference on amazon eks: exploring the kubernetes resources"
+       data-id="c627ddcc159d85f2"
+       data-published="2026-06-16T15:34:44+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-06-16T15:34:44+00:00" title="16 June 2026, 10:34">16 June 2026, 10:34</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Red Hat AI Inference on Amazon EKS: Exploring the Kubernetes resources</h3>
+      <p class="card-summary">I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <div class="card-related">Also: Elastic Blog</div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. In order to understand something well, I think you need to deploy it, especially when it comes to Kubernetes. And I find that digging into the custom resource definitions (CRDs) and each component in the control and data plane is extremely helpful for a beginner looking to understand Kubernetes services.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c627ddcc159d85f2.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/16/red-hat-ai-inference-amazon-eks-kubernetes-resources" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,networking,observability,outage"
+       data-vendors="Cloudflare,HashiCorp"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="cloudflare dmarc management is now generally available"
+       data-id="e24a1e3c704344c6"
+       data-published="2026-06-16T13:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span><span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-06-16T13:00:00+00:00" title="16 June 2026, 08:00">16 June 2026, 08:00</time>
+      </div>
+      <h3 class="card-title">Cloudflare DMARC Management is now generally available</h3>
+      <p class="card-summary">When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. We wanted to give everyone the tools to understand and improve their DMARC posture without needing to hire an email security consultant or parse XML report files by hand.</p></div>
+      <div class="detail-links">
+        <a href="../articles/e24a1e3c704344c6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/dmarc-management-ga/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="outage"
        data-vendors=""

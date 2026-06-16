@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflare DMARC Management is now generally available — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-16.html" class="back-link">← 16 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">16 June 2026, 08:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Cloudflare DMARC Management is now generally available</h1>
+
+      <p class="subtitle">When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>dns issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn&#39;t happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. We wanted to give everyone the tools to understand and improve their DMARC posture without needing to hire an email security consultant or parse XML report files by hand.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The SPF lookup audit traces every DNS lookup in your SPF record, showing exactly where you are against the 10-lookup limit.</p>
+<p>The DMARC Management dashboard offers a unified view of your email authentication posture.</p>
+<p>Email authentication is the set of DNS records that answers that question.</p>
+<p>BIMI (Brand Indicators for Message Identification) lets you display your brand logo next to your emails in supported inboxes, but only if your DMARC policy is strong enough.</p>
+<p>Move too slowly, and you leave your domain exposed to spoofing, and now, to deliverability penalties from the very providers your customers use.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer. Move too slowly, and you leave your domain exposed to spoofing, and now, to deliverability penalties from the very providers your customers use. We built Cloudflare DMARC Management so that any customer can navigate this journey on their own. What you see</p>
+<p>What it tells you</p>
+<p>Source IP address</p>
+<p>The specific infrastructure sending email on behalf of your domain</p>
+<p>Sending service name</p>
+<p>The organization or provider behind the IP</p>
+<p>DMARC / SPF / DKIM alignment</p>
+<p>Whether each authentication check passed or failed for that source</p>
+<p>Investigate tab</p>
+<p>Cloudflare threat intelligence: reputation, geolocation, ASN, and known threat associations</p>
+<p>Email authentication record status           One of the most common questions customers ask is: &#34;Are my records set up correctly?&#34;</p>
+<p>Until now, answering that question required manually inspecting DNS TXT records and understanding what each tag and value means across multiple specifications.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>You can drill into any record to see specific findings about what we detected and recommendations for how to fix it.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.</p>
+<p>We wanted to give everyone the tools to understand and improve their DMARC posture without needing to hire an email security consultant or parse XML report files by hand.</p>
+<p>You can drill into any record to see specific findings about what we detected and recommendations for how to fix it.</p>
+<p>Record analysis cards show pass, warning, or fail status for each email authentication record, with actionable recommendations.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: dns issue. Email authentication is the set of DNS records that answers that question. What you see</p>
+<p>What it tells you</p>
+<p>Source IP address</p>
+<p>The specific infrastructure sending email on behalf of your domain</p>
+<p>Sending service name</p>
+<p>The organization or provider behind the IP</p>
+<p>DMARC / SPF / DKIM alignment</p>
+<p>Whether each authentication check passed or failed for that source</p>
+<p>Investigate tab</p>
+<p>Cloudflare threat intelligence: reputation, geolocation, ASN, and known threat associations</p>
+<p>Email authentication record status           One of the most common questions customers ask is: &#34;Are my records set up correctly?&#34;</p>
+<p>Until now, answering that question required manually inspecting DNS TXT records and understanding what each tag and value means across multiple specifications. The SPF specification ( RFC 7208 ) imposes a hard limit of 10 DNS lookups per SPF evaluation.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Every time someone receives an email &#34;from&#34; your domain, their email provider asks a simple question: did the real owner of this domain actually send this? Without a way to answer that question, anyone can send an email </li>
+            <li>Email authentication is the set of DNS records that answers that question. There are four protocols that protect your domain:</li>
+            <li>DMARC has always been important. But over the past two years, the stakes have gotten significantly higher. Google, Microsoft, and Yahoo have all announced or implemented stricter email authentication enforcement. Domains</li>
+            <li>Deeper report visibility with source investigation</li>
+            <li>Every report now surfaces the source IP address alongside the sending service, giving you the granularity to distinguish between legitimate infrastructure and unauthorized senders. You can now open any IP address directl</li>
+            <li>This turns your DMARC reports from a passive data feed into an active investigation tool.</li>
+            <li>Drilling into a sending source reveals IP-level detail and Cloudflare threat intelligence in the Investigate tab.</li>
+            <li>Investigate tab</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/dmarc-management-ga/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
