@@ -54,6 +54,10 @@
     "email_summary": "I recently joined Red Hat and wanted to explore and test Red Hat AI Inference with llm-d on Amazon Elastic Kubernetes Service (EKS) to understand how all of the components work together. Impact band: high.",
     "related_sources": [
       {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/amazon-s3-annotations-attach-rich-queryable-context-directly-to-your-objects/"
+      },
+      {
         "source": "Elastic Blog",
         "link": "https://www.elastic.co/blog/liveperson-observability"
       },
@@ -111,6 +115,10 @@
     },
     "email_summary": "When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn't happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.",
     "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/introducing-tfctl-the-cli-for-hcp-terraform-and-tfe"
+      },
       {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/whats-new-with-terraform-ansible"
