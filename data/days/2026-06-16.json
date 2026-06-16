@@ -55,6 +55,10 @@
     "related_sources": [
       {
         "source": "Elastic Blog",
+        "link": "https://www.elastic.co/blog/liveperson-observability"
+      },
+      {
+        "source": "Elastic Blog",
         "link": "https://www.elastic.co/blog/forrester-wave-strong-performer-extended-detection-and-response-platforms-2026"
       }
     ],
@@ -106,7 +110,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "When we first launched DMARC Management , it was driven by a simple belief: every domain on the Internet deserves strong email authentication, and cost should never be the reason it doesn't happen. As part of our mission to help build a better Internet, we made DMARC Management available for free to every Cloudflare customer.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/whats-new-with-terraform-ansible"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -191,7 +200,12 @@
       "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "EvalHub: Because \"looks good to me\" isn't a benchmark identified the reproducibility crisis as a structural failure in enterprise AI evaluation: benchmark scores without the environment metadata that produced them are claims, not evidence. Evaluation-driven development with EvalHub showed how EvalHub's automatic MLflow integration closes that gap for experiment tracking, recording every evaluation run with its configuration, model version, collection version, and hardware tags.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/what-are-git-worktrees-and-why-should-i-use-them/"
+      }
+    ],
     "highlighted": false
   },
   {
