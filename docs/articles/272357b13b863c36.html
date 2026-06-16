@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The evolution of agentic AI and text-to-SQL — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-16.html" class="back-link">← 16 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">16 June 2026, 02:01</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+      </div>
+
+      <h1 class="title">The evolution of agentic AI and text-to-SQL</h1>
+
+      <p class="subtitle">Welcome back to our series on building a conversational analyst with Red Hat OpenShift AI and EnterpriseDB&#39;s (EDB&#39;s) PG Airman MCP server. Impact band: high.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">database</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>database issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>data store</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Welcome back to our series on building a conversational analyst with Red Hat OpenShift AI and EnterpriseDB&#39;s (EDB&#39;s) PG Airman MCP server. Impact band: high.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Welcome back to our series on building a conversational analyst with Red Hat OpenShift AI and EnterpriseDB&#39;s (EDB&#39;s) PG Airman MCP server. In Integrate OpenShift AI and PG Airman MCP Server , we discussed the need for making relational databases accessible to non-technical users and successfully deployed our Data Governance Copilot AI quickstart. In this installment, we will explore the exact meaning of agentic AI, how it differs from traditional retrieval-augmented generation (RAG), and how modern LLM-based agents address AI&#39;s decades-old text-to-SQL challenge.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Approach Year Example Characteristics Benefits and Drawbacks Grammar and logic based 1982 Chat-80 Used templates to map a subset of English (&lt;150 words) to prolog statements Limited expressivity and schema specific results Inductive logic 1996 CHILL Corpus driven technique that learns parser for natural language using positive/negative samples Requires schema-specific samples, computationally expensive, brittle, with poor expressivity Deep neural networks (LSTMs), graph neural networks (GNNs) and reinforcement learning 2017, 2019 Seq2SQL, Spider-schema-GNN Applied natural language translation techniques to the small output space of SQL and database schema terms Schema-specific learning, brittle with limited expressivity Many hybrid neural network techniques that combined earlier seq-2-seq models with transformer encoders (pre-trained language models or PLMs), GNNs and LSTMs 2019-2022 SQLova, RAT-SQL Used hybrid transformer-LSTM network to improve accuracy Improved schema linking (that is, mapping between English word variants and table/column names), but performance still brittle.</p>
+<p>Aside from its role in supporting schema linking, the background knowledge LLMs encode are essential to answering queries that require factual information outside the scope of the target database.</p>
+<p>LLM-based systems can either provide this knowledge using their built-in training (parametric knowledge) or obtain it from external systems using MCP.</p>
+<p>In Integrate OpenShift AI and PG Airman MCP Server , we discussed the need for making relational databases accessible to non-technical users and successfully deployed our Data Governance Copilot AI quickstart.</p>
+<p>In the context of LLMs, the key idea that separates an agentic conversational analyst from a human using an LLM-backed chat tool or a RAG application is the degree to which the LLM can autonomously interact with the target database to answer questions.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>In Integrate OpenShift AI and PG Airman MCP Server , we discussed the need for making relational databases accessible to non-technical users and successfully deployed our Data Governance Copilot AI quickstart. Direct chat with prompt engineering In a typical chat-based setting, the user submits the query and any relevant information to the LLM at once and waits for an answer. Though users can apply multiple prompt engineering techniques that provide examples to the LLM (few-shot prompting) or step-by-step reasoning (chain of thought prompting), the interaction is fundamentally unchanged. If the answer is incorrect (that is, if the LLM-generated SQL statement is invalid) or the LLM needs more information about the database, it&#39;s the user&#39;s responsibility to provide this information and resubmit the query.</p>
+<p>Classified impact band: high. Affected layer signal: data store.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>The core difference is that RAG follows a fixed retrieve-then-respond pipeline; whereas agentic systems let the LLM determine, execute, and evaluate a plan of approach autonomously.</p>
+<p>Next steps As we&#39;ve seen, shifting from a fixed RAG pipeline to an autonomous agentic loop significantly improves our ability to query and analyze relational data accurately.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>In this installment, we will explore the exact meaning of agentic AI, how it differs from traditional retrieval-augmented generation (RAG), and how modern LLM-based agents address AI&#39;s decades-old text-to-SQL challenge.</p>
+<p>The authors of Spider 2, the much more difficult successor to the Spider benchmark widely used for evaluating the text-to-SQL task, show that agentic-based LLM systems (like our AI quickstart) result in a four-fold improvement in accuracy over single-turn, one-shot approaches.</p>
+<p>This will help put things into context so we can better appreciate how LLMs alter the text-to-SQL landscape.</p>
+<p>Approach Year Example Characteristics Benefits and Drawbacks Grammar and logic based 1982 Chat-80 Used templates to map a subset of English (&lt;150 words) to prolog statements Limited expressivity and schema specific results Inductive logic 1996 CHILL Corpus driven technique that learns parser for natural language using positive/negative samples Requires schema-specific samples, computationally expensive, brittle, with poor expressivity Deep neural networks (LSTMs), graph neural networks (GNNs) and reinforcement learning 2017, 2019 Seq2SQL, Spider-schema-GNN Applied natural language translation techniques to the small output space of SQL and database schema terms Schema-specific learning, brittle with limited expressivity Many hybrid neural network techniques that combined earlier seq-2-seq models with transformer encoders (pre-trained language models or PLMs), GNNs and LSTMs 2019-2022 SQLova, RAT-SQL Used hybrid transformer-LSTM network to improve accuracy Improved schema linking (that is, mapping between English word variants and table/column names), but performance still brittle.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: database issue. In Integrate OpenShift AI and PG Airman MCP Server , we discussed the need for making relational databases accessible to non-technical users and successfully deployed our Data Governance Copilot AI quickstart. In the context of LLMs, the key idea that separates an agentic conversational analyst from a human using an LLM-backed chat tool or a RAG application is the degree to which the LLM can autonomously interact with the target database to answer questions. If the answer is incorrect (that is, if the LLM-generated SQL statement is invalid) or the LLM needs more information about the database, it&#39;s the user&#39;s responsibility to provide this information and resubmit the query.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>As far back as the origins of artificial intelligence, computer scientists sought to transition their programs from simple tools to assistants capable of agency or autonomy, endowing them with the ability to learn from p</li>
+            <li>Today, this distinction of agency is not considered monolithic or binary—systems achieve aspects of agency in varying degrees. In the context of LLMs, the key idea that separates an agentic conversational analyst from a </li>
+            <li>RAG applications RAG-based systems elevate this state of affairs slightly by anticipating and providing the additional information the LLM might need through an automated augmentation pipeline; but the orchestration is p</li>
+            <li>Agentic AI In the agentic setting, programmers abstract this orchestration much further by handing their toolbox to the LLM and letting it decide which tools to use, how to use them, and the sequence. In a conversational</li>
+            <li>Agentic systems are not a completely open act. An orchestrator and the MCP protocol mediate interaction between the LLM and backend tools to keep the LLM within its boundaries. The LLM is like a magician, talented and un</li>
+            <li>The modern agentic AI approach to text-to-SQL The modern agentic AI approach to text-to-SQL: Is it a new variation on an old magic trick? Researchers and engineers have presented agentic solutions to the text-to-SQL task</li>
+            <li>Hence, through this lens, modern LLM-based agentic systems are just another implementation variation on an old idea. For example, one or more LLMs orchestrated by a host application satisfies the reasoning component of a</li>
+            <li>For example, the models tested in the direct text-to-SQL task scored above 85% in SQL execution accuracy on the venerable Spider benchmark. To advance the field, however, they created the Spider 2 benchmark. Spider 2 eva</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/16/evolution-agentic-ai-and-text-sql" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
