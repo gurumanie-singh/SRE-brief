@@ -1,5 +1,47 @@
 [
   {
+    "id": "fba3b103023125b6",
+    "title": "Top announcements of the AWS Summit in New York, 2026",
+    "source": "AWS News Blog",
+    "link": "https://aws.amazon.com/blogs/aws/top-announcements-of-the-aws-summit-in-new-york-2026/",
+    "published": "2026-06-17T16:36:08+00:00",
+    "fetched_at": "2026-06-17T18:27:39.617548+00:00",
+    "summary": "Today at the AWS Summit in New York City , Swami Sivasubramanian, AWS VP of Agentic AI, provided the day’s keynote.",
+    "tags": [
+      "deployment"
+    ],
+    "day": "2026-06-17",
+    "impact": "medium",
+    "vendors": [
+      "AWS"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Here’s our roundup of the biggest announcements from the event:",
+      "Introducing Amazon Bedrock Managed Knowledge Base for faster, more accurate enterprise AI applications — You can build enterprise RAG pipelines with the managed Knowledge Base on Bedrock. It provides native data connecto",
+      "Amazon Bedrock AgentCore harness in now generally available — You can do building and running production-grade AI agents in minutes—without coding orchestration loops—by defining your agent’s model, tools, skills, and in",
+      "AWS Security Agent (now part of AWS Continuum) adds threat modeling, Kiro power and Claude Code plugin, and more — You can generate the new threat modeling (preview) to understand the full context of your application and",
+      "AWS DevOps Agent adds release management capabilities to assess code changes before production — You can use a new release readiness review of code changes and autonomous release testing. These new features verify every ",
+      "Proactively reduce tech debt autonomously with AWS Transform – continuous modernization — You can use continuous analysis (preview) to automatically scan your code repositories against configurable baselines and generate"
+    ],
+    "sections": {
+      "overview": "Today at the AWS Summit in New York City , Swami Sivasubramanian, AWS VP of Agentic AI, provided the day’s keynote. Here’s our roundup of the biggest announcements from the event:\n\n \n New in Amazon Bedrock AgentCore\n We’re introducing new capabilities on Amazon Bedrock AgentCore: connecting AI agents to organizational, web, and paid knowledge, helping teams find and fix what’s going wrong in production, and enforcing controls that scale as agents grow more capable. Together, these capabilities help you build more capable agents faster, govern those agents with controls that scale, and improve them continuously.",
+      "technical_breakdown": "Here’s our roundup of the biggest announcements from the event:\n\n \n New in Amazon Bedrock AgentCore\n We’re introducing new capabilities on Amazon Bedrock AgentCore: connecting AI agents to organizational, web, and paid knowledge, helping teams find and fix what’s going wrong in production, and enforcing controls that scale as agents grow more capable.\n\nTo learn more, read our blog post covering all the new features.\n\nIntroducing Amazon Bedrock Managed Knowledge Base for faster, more accurate enterprise AI applications — You can build enterprise RAG pipelines with the managed Knowledge Base on Bedrock.\n\nAnnouncing Web Search on Amazon Bedrock AgentCore: Ground your AI agents in current, accurate web knowledge — You can use a fully managed web search tool that enables agents to ground responses in current, cited web knowledge with zero data egress from customer’ secured AWS environment.\n\nAWS WAF now lets you set a price for that access, accept payment through third-party providers, and grant scoped access directly at the edge.",
+      "impact": "Announcing Web Search on Amazon Bedrock AgentCore: Ground your AI agents in current, accurate web knowledge — You can use a fully managed web search tool that enables agents to ground responses in current, cited web knowledge with zero data egress from customer’ secured AWS environment. AWS WAF now lets you set a price for that access, accept payment through third-party providers, and grant scoped access directly at the edge. Amazon Bedrock AgentCore harness in now generally available — You can do building and running production-grade AI agents in minutes—without coding orchestration loops—by defining your agent’s model, tools, skills, and instructions in configuration, with Bedrock AgentCore harness. New in AI-based security tools \n\n \n \n Introducing AWS Continuum: Security at machine speed — AWS Continuum for code vulnerabilities, available in a gated preview, takes findings from across your environment, prioritizes by business impact, proves which are exploitable, and drives a fix through your own process.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Here’s our roundup of the biggest announcements from the event:\n\n \n New in Amazon Bedrock AgentCore\n We’re introducing new capabilities on Amazon Bedrock AgentCore: connecting AI agents to organizational, web, and paid knowledge, helping teams find and fix what’s going wrong in production, and enforcing controls that scale as agents grow more capable.\n\nNew in AI-based security tools \n\n \n \n Introducing AWS Continuum: Security at machine speed — AWS Continuum for code vulnerabilities, available in a gated preview, takes findings from across your environment, prioritizes by business impact, proves which are exploitable, and drives a fix through your own process.\n\nAWS Security Agent (now part of AWS Continuum) adds threat modeling, Kiro power and Claude Code plugin, and more — You can generate the new threat modeling (preview) to understand the full context of your application and identify threats with recommended mitigations using the STRIDE framework.\n\nYou can also use pull request code scanning with remediation across major Git platforms, and IDE integrations via Kiro power, Claude Code plugin, and MCP — letting developers run security reviews and fix issues without context switching.",
+      "lessons_learned": "Together, these capabilities help you build more capable agents faster, govern those agents with controls that scale, and improve them continuously.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Here’s our roundup of the biggest announcements from the event:\nIntroducing Amazon Bedrock Managed Knowledge Base for faster, more accurate enterprise AI applications — You can build enterprise RAG pipelines with the managed Knowledge Base on Bedrock. It provides native data connecto\nAmazon Bedrock AgentCore harness in now generally available — You can do building and running production-grade AI agents in minutes—without coding orchestration loops—by defining your agent’s model, tools, skills, and in\nAWS Security Agent (now part of AWS Continuum) adds threat modeling, Kiro power and Claude Code plugin, and more — You can generate the new threat modeling (preview) to understand the full context of your application and\nAWS DevOps Agent adds release management capabilities to assess code changes before production — You can use a new release readiness review of code changes and autonomous release testing. These new features verify every \nProactively reduce tech debt autonomously with AWS Transform – continuous modernization — You can use continuous analysis (preview) to automatically scan your code repositories against configurable baselines and generate",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Today at the AWS Summit in New York City , Swami Sivasubramanian, AWS VP of Agentic AI, provided the day’s keynote. Here’s our roundup of the biggest announcements from the event:\n\n \n New in Amazon Bedrock AgentCore\n We’re introducing new capabilities on Amazon Bedrock AgentCore: connecting AI agents to organizational, web, and paid knowledge, helping teams find and fix what’s going wrong in production, and enforcing controls that scale as agents grow more capable.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "19438157a77e827a",
     "title": "Introducing Amazon Bedrock Managed Knowledge Base for faster, more accurate enterprise AI applications",
     "source": "AWS News Blog",
@@ -311,6 +353,39 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "We've all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d27c5b889ecf6c44",
+    "title": "Elastic named a Leader in the IDC MarketScape: Worldwide SIEM 2026 Vendor Assessment",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-leader-idc-marketscape-worldwide-siem-2026",
+    "published": "2026-06-17T00:00:00+00:00",
+    "fetched_at": "2026-06-17T18:27:43.149822+00:00",
+    "summary": "Elastic was named a 2026 IDC MarketScape Leader for SIEM. See why we were recognized.",
+    "tags": [],
+    "day": "2026-06-17",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Elastic was named a 2026 IDC MarketScape Leader for SIEM. See why we were recognized.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Elastic was named a 2026 IDC MarketScape Leader for SIEM. See why we were recognized.",
     "related_sources": [],
     "highlighted": false
   }
