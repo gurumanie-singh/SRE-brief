@@ -1,0 +1,98 @@
+[
+  {
+    "id": "7d3f272767ab660e",
+    "title": "Automate application migration with MigIQ: From Spring Boot to Quarkus",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/17/automate-application-migration-migiq-spring-boot-quarkus",
+    "published": "2026-06-17T07:01:12+00:00",
+    "fetched_at": "2026-06-17T11:11:45.514930+00:00",
+    "summary": "Application migration is a constrained graph traversal problem masquerading as a coding task. You're not just rewriting code you're translating dependencies, reshaping architectural patterns, and maintaining behavioral equivalence across fundamentally different runtimes. This is why migrations often fail: developers treat them as glorified find-and-replace operations instead of multi-constraint...",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "networking",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-06-17",
+    "impact": "medium",
+    "vendors": [
+      "Azure",
+      "GitHub",
+      "Google Cloud",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "This post walks through how I built a group of skills and agents that combine graph analysis, automated planning, and parallel execution. I migrated a Spring Boot REST API to Quarkus, deployed it to OpenShift, and got it",
+      "The blog post describes the demo project MigIQ , which supports more than 30 languages, uses Graphify for knowledge and semantic graphs. The following diagram shows the overall orchestration flow. For our example we prom",
+      "Figure 1: Orchestration flow between interactive mode and autonomous mode within the MigIQ platform/",
+      "This setup uses one agent and one orchestrator skill working together in a flow. Let's examine the problem space and how to solve it.",
+      "Finally, migrations suffer from a broken validation loop . Code generation itself is simple, but making that code work in a production environment requires continuous compile-test-fix cycles rather than one-shot transfor",
+      "Phase 1: Code analysis with knowledge graphs You might have heard this before, but it's important: knowledge is everything. To create meaningful outcomes, software teams must provide agents and large language models (LLM",
+      "ProductController - 6 edges (REST layer)",
+      "mig-test-gen/ : Generate Unit tests"
+    ],
+    "sections": {
+      "overview": "Application migration is a constrained graph traversal problem masquerading as a coding task. You're not just rewriting code you're translating dependencies, reshaping architectural patterns, and maintaining behavioral equivalence across fundamentally different runtimes. This is why migrations often fail: developers treat them as glorified find-and-replace operations instead of multi-constraint optimization problems.",
+      "technical_breakdown": "What actually works (and what doesn't) Works well:\n\n Annotation-driven migrations (90% of Spring to Quarkus)\n Dependency rewiring (once the graph is built)\n Build system transformations (Maven, Gradle)\n Containerization (Dockerfiles, Kubernetes YAML)\n Idiomatic code transformations, such as changing callbacks to async and await syntax\n Still needs human help:\n\n Custom business logic (the agent doesn't know your domain)\n Performance tuning (it can migrate, but won't optimize unless told)\n Security reviews (generated code should always be audited)\n Complex query rewrites (ORM subtleties require validation)\n Completely fails:\n\n Migrations where the target platform lacks equivalent features\n Code that relies on framework internals (reflection hacks, classloader tricks)\n Migrations without clear acceptance criteria, such as a vague request to \"make it faster\"\n How to build your own agent-based migrations You don't need MigIQ specifically.\n\nHub Nodes (most connected):\nProduct - 9 edges (domain model)\nProductController - 6 edges (REST layer)\nProductService - 6 edges (business logic)\nApplication - 2 edges (entry point) The hub nodes tell you what code is most coupled.\n\nIn autonomous mode, it automatically extracts the context to create a prompt for other skills to use:\n\n Source technology: Spring Boot 2.7.0\n Target technology: Quarkus 3.10.0\n Deployment target: Red Hat OpenShift\n Migration strategy: Big Bang (full rewrite) versus Strangler Fig (incremental)\n Constraints: Must use Panache for persistence, must containerize with UBI images, must include health checks\n This process produces a structured migration-prompt.md file that becomes the planning input.\n\nConfigure health probes at /q/health/live , /q/health/ready , set resource limits (256Mi-512Mi memory, 100m-500m CPU), and expose the application via an HTTPS route.\n\nThe blog post describes the demo project MigIQ , which supports more than 30 languages, uses Graphify for knowledge and semantic graphs.",
+      "impact": "Our migration's final statistics:\n\n Total User Stories: 6 Completed: 6 Failed: 0\nTotal Task Groups: 23 Completed: 23 Failed: 0\nTotal Subtasks: 115 Completed: 115 Failed: 0\nDuration: ~40 minutes (end-to-end) The migration produces a complete artifact tree (Figure 8). This is significantly faster than the conservative estimates in the user stories, which totaled approximately 135 minutes. I migrated a Spring Boot REST API to Quarkus, deployed it to OpenShift, and got it working in about 40 minutes fully automated. In interactive mode, MigIQ's prompt builder interviews the user.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Code generation itself is simple, but making that code work in a production environment requires continuous compile-test-fix cycles rather than one-shot transformations.",
+      "lessons_learned": "User story 6: Documentation and knowledge transfer Create migration documentation (README updates, DEPLOYMENT.md , MIGRATION-NOTES.md ), document all REST endpoints with curl examples, capture lessons learned and edge cases (like JAX-RS not needing @RequestBody ), and provide troubleshooting tips for future maintainers.\n\nThe specific skills listed below use the output of mig-graphify to improve overall migration quality.\n\nRed Hat's migration toolkit for applications :\n\n Analyzes Java EE, Spring Boot, and legacy applications\n Identifies migration issues, effort estimation, and transformation patterns\n Generates detailed reports with line-by-line code recommendations\n Supports Java EE to Jakarta EE, Spring Boot to Quarkus, and WebLogic or WebSphere to Red Hat JBoss Enterprise Application Platform (JBoss EAP).",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Accuracy increases because the tool maps dependencies, services, and endpoints. This architectural context helps the agent and the LLM complete precise transformations.\n\n mig-plan/ : Task decomposition and dependency planning\n mig-execute/ : Parallel execution engine\n mig-test-gen/ : Generate Unit tests\n mig-containerize/ : To containerize the application\n mig-deploy/ : Deployment to OpenShift\n migiq/ : Orchestration layer\n Phase 2: Requirements gathering The agent can't guess target platform constraints. In autonomous mode, it automatically extracts the context to create a prompt for other skills to use:\n\n Source technology: Spring Boot 2.7.0\n Target technology: Quarkus 3.10.0\n Deployment target: Red Hat OpenShift\n Migration strategy: Big Bang (full rewrite) versus Strangler Fig (incremental)\n Constraints: Must use Panache for persistence, must containerize with UBI images, must include health checks\n This process produces a structured migration-prompt.md file that becomes the planning input.",
+      "incident_timeline": "This post walks through how I built a group of skills and agents that combine graph analysis, automated planning, and parallel execution. I migrated a Spring Boot REST API to Quarkus, deployed it to OpenShift, and got it\nThe blog post describes the demo project MigIQ , which supports more than 30 languages, uses Graphify for knowledge and semantic graphs. The following diagram shows the overall orchestration flow. For our example we prom\nFigure 1: Orchestration flow between interactive mode and autonomous mode within the MigIQ platform/\nThis setup uses one agent and one orchestrator skill working together in a flow. Let's examine the problem space and how to solve it.\nFinally, migrations suffer from a broken validation loop . Code generation itself is simple, but making that code work in a production environment requires continuous compile-test-fix cycles rather than one-shot transfor\nPhase 1: Code analysis with knowledge graphs You might have heard this before, but it's important: knowledge is everything. To create meaningful outcomes, software teams must provide agents and large language models (LLM\nProductController - 6 edges (REST layer)\nmig-test-gen/ : Generate Unit tests",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse."
+    },
+    "email_summary": "Application migration is a constrained graph traversal problem masquerading as a coding task. You're not just rewriting code you're translating dependencies, reshaping architectural patterns, and maintaining behavioral equivalence across fundamentally different runtimes.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d07c9492d0ec1517",
+    "title": "Chat with your docs with Red Hat Developer Hub",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/17/chat-your-docs-red-hat-developer-hub",
+    "published": "2026-06-17T07:01:09+00:00",
+    "fetched_at": "2026-06-17T11:11:45.515649+00:00",
+    "summary": "We've all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files. You just want to find one specific detail, like why a deployment might be failing or where an obscure config setting lives. But you're stuck scrolling through thousands of lines of text, hoping the answer is in there somewhere. It is incredibly frustrating...",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-17",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "We've all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files. You just want to find one specific detail, like why a deployment might be faili",
+      "Retrieval-augmented generation (RAG) powers the personal AI notebooks. When you ask a question, the system looks through your uploaded files, finds the relevant passages, and connects the dots for you, giving an answer t",
+      "Notebooks in Developer Hub is built on top of Developer Lightspeed and uses its resources and configuration. The backend utilizes a vector database to store document embeddings, the same way Developer Lightspeed chatbot "
+    ],
+    "sections": {
+      "overview": "We've all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files. You just want to find one specific detail, like why a deployment might be failing or where an obscure config setting lives.",
+      "technical_breakdown": "You just want to find one specific detail, like why a deployment might be failing or where an obscure config setting lives.\n\nYou can think of this notebook as a dedicated knowledge base for a specific task.\n\nThe backend utilizes a vector database to store document embeddings, the same way Developer Lightspeed chatbot vectorizes its Developer Hub documentation.\n\nIf you make a typo in the model name during setup, Developer Lightspeed will surface a helpful error message in the logs and user interface to help you troubleshoot.\n\nThe new dashboard organizes your projects into simple cards, so you can see exactly what's inside and when you last touched a topic without digging through menus.",
+      "impact": "During this developer preview, we have also implemented resource guardrails to keep the experience snappy:\n\n Maximum file size: 25 MB per upload\n Privacy: Each notebook is private to the individual user\n Hallucinations: AI responses are based strictly on your documents\n Set it up for administrators If you are a platform engineer enabling this for your team, it is a simple configuration change in your Developer Lightspeed Helm values.yaml settings.\n\n lightspeed:\n notebooks:\n enabled: true\n queryDefaults:\n model: gpt-4.1\n provider_id: openai We designed the system to be resilient. If you make a typo in the model name during setup, Developer Lightspeed will surface a helpful error message in the logs and user interface to help you troubleshoot.\n\nClassified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "This prevents context bleeding and ensures your queries remain relevant to the task at hand.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. You just want to find one specific detail, like why a deployment might be failing or where an obscure config setting lives. This means you're not just taking its word for it because it provides the evidence instantly.",
+      "incident_timeline": "We've all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files. You just want to find one specific detail, like why a deployment might be faili\nRetrieval-augmented generation (RAG) powers the personal AI notebooks. When you ask a question, the system looks through your uploaded files, finds the relevant passages, and connects the dots for you, giving an answer t\nNotebooks in Developer Hub is built on top of Developer Lightspeed and uses its resources and configuration. The backend utilizes a vector database to store document embeddings, the same way Developer Lightspeed chatbot ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "We've all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

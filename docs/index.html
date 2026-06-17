@@ -28,14 +28,12 @@
       <h1 class="brief-title">17 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-17T00:02:09.714680-05:00">17 June 2026, 00:02</time>
+        <time data-iso="2026-06-17T06:11:45.723026-05:00">17 June 2026, 06:11</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">2 high impact</span>
-      <span class="stat stat-action">1 ops priority</span>
-      <span class="stat">5 items today</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -43,9 +41,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>2 high-impact reliability events surfaced</li>
-        <li>1 story flagged for operational follow-up</li>
-        <li>Repeated coverage across Red Hat, Kubernetes</li>
+        <li>Repeated coverage across Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -90,14 +86,14 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stack Overflow">Stack Overflow</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
       </div>
     </div>
@@ -117,17 +113,96 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      17 June 2026
+      <span class="day-count">2</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes,networking,outage,postmortem"
+       data-vendors="Azure,GitHub,Google Cloud,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="automate application migration with migiq: from spring boot to quarkus"
+       data-id="7d3f272767ab660e"
+       data-published="2026-06-17T07:01:12+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Azure</span><span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-06-17T07:01:12+00:00" title="17 June 2026, 02:01">17 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Automate application migration with MigIQ: From Spring Boot to Quarkus</h3>
+      <p class="card-summary">Application migration is a constrained graph traversal problem masquerading as a coding task. You&#39;re not just rewriting code you&#39;re translating dependencies, reshaping architectural patterns, and maintaining behavioral equivalence across fundamentally different runtimes.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Application migration is a constrained graph traversal problem masquerading as a coding task. You&#39;re not just rewriting code you&#39;re translating dependencies, reshaping architectural patterns, and maintaining behavioral equivalence across fundamentally different runtimes. This is why migrations often fail: developers treat them as glorified find-and-replace operations instead of multi-constraint optimization problems.</p></div>
+      <div class="detail-links">
+        <a href="articles/7d3f272767ab660e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/17/automate-application-migration-migiq-spring-boot-quarkus" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="chat with your docs with red hat developer hub"
+       data-id="d07c9492d0ec1517"
+       data-published="2026-06-17T07:01:09+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-17T07:01:09+00:00" title="17 June 2026, 02:01">17 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Chat with your docs with Red Hat Developer Hub</h3>
+      <p class="card-summary">We&#39;ve all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>We&#39;ve all been there. You start a new project and receive a folder filled with 50-page PDFs, complex diagrams, and scattered Markdown files. You just want to find one specific detail, like why a deployment might be failing or where an obscure config setting lives.</p></div>
+      <div class="detail-links">
+        <a href="articles/d07c9492d0ec1517.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/17/chat-your-docs-red-hat-developer-hub" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       16 June 2026
@@ -910,7 +985,7 @@ moving forward. Impact band: critical.</p>
   <div class="day-group">
     <h2 class="day-heading">
       11 June 2026
-      <span class="day-count">8</span>
+      <span class="day-count">6</span>
     </h2>
   </div>
 
@@ -1129,72 +1204,6 @@ moving forward. Impact band: critical.</p>
       <div class="detail-links">
         <a href="articles/fefdeb83ae054fca.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.elastic.co/blog/agentic-compliance-skills" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="observability"
-       data-vendors="Elastic"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="from m-21-31 to m-26-14: what us government agencies need to know now"
-       data-id="db4a8ea541d35594"
-       data-published="2026-06-11T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-06-11T00:00:00+00:00" title="10 June 2026, 19:00">10 June 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">From M-21-31 to M-26-14: What US government agencies need to know now</h3>
-      <p class="card-summary">M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned to meet the requirements.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>M-26-14 sets a new compliance baseline for cybersecurity logging, shifting to a risk-based, outcome-driven approach. Agencies operating with distributed, open, and AI-powered platforms like Elastic are better positioned to meet the requirements.</p></div>
-      <div class="detail-links">
-        <a href="articles/db4a8ea541d35594.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/m-26-14-memorandum" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="observability"
-       data-vendors=""
-       data-impact="medium"
-       data-theme="observability"
-       data-title="quantum computing, agentic ai, and the next infrastructure layer in financial services"
-       data-id="6ae3e243551f649e"
-       data-published="2026-06-11T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-06-11T00:00:00+00:00" title="10 June 2026, 19:00">10 June 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Quantum computing, agentic AI, and the next infrastructure layer in financial services</h3>
-      <p class="card-summary">As financial services firms adopt AI and explore quantum computing, vector search, observability, and security platforms are emerging as the contextual intelligence foundation for autonomous enterprise systems.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">Elastic Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>As financial services firms adopt AI and explore quantum computing, vector search, observability, and security platforms are emerging as the contextual intelligence foundation for autonomous enterprise systems.</p></div>
-      <div class="detail-links">
-        <a href="articles/6ae3e243551f649e.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.elastic.co/blog/quantum-computing-in-financial-services" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
