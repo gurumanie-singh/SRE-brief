@@ -299,6 +299,10 @@
     "email_summary": "Application migration is a constrained graph traversal problem masquerading as a coding task. You're not just rewriting code you're translating dependencies, reshaping architectural patterns, and maintaining behavioral equivalence across fundamentally different runtimes.",
     "related_sources": [
       {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/getting-more-from-each-token-how-copilot-improves-context-handling-and-model-routing/"
+      },
+      {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/proactively-reduce-tech-debt-autonomously-with-aws-transform-continuous-modernization-preview/"
       },
