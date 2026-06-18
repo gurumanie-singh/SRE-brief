@@ -40,7 +40,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "More people are contributing to open source than ever, most of them trying to help. The challenge is keeping up with the volume.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/build-your-own-vulnerability-harness/"
+      }
+    ],
     "highlighted": false
   },
   {
