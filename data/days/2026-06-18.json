@@ -93,7 +93,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/announcing-amazon-ec2-g7-instances-accelerated-by-nvidia-rtx-pro-4500-blackwell-server-edition-gpus/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -266,6 +271,10 @@
     },
     "email_summary": "If your team has fully embraced CI/CD on Red Hat OpenShift , you already know the capability of Red Hat OpenShift Pipelines . Built on the open source Tekton framework, it allows developers to create cloud-native, execution-ready pipelines that run in isolated, ephemeral containers.",
     "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/amazon-ecs-introduces-new-high-resolution-metrics-for-faster-service-auto-scaling/"
+      },
       {
         "source": "Elastic Blog",
         "link": "https://www.elastic.co/blog/elasticsearch-custom-integrations-automatic-import"
