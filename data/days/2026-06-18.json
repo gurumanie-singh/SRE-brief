@@ -1,5 +1,78 @@
 [
   {
+    "id": "9cf8fb00ee96ad3e",
+    "title": "Celebrating 12 years of Project Galileo",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/",
+    "published": "2026-06-18T13:00:00+00:00",
+    "fetched_at": "2026-06-18T13:40:12.533670+00:00",
+    "summary": "Twelve years ago this month, Cloudflare launched an ambitious project built on a simple idea: people shouldn’t be knocked offline just because someone more powerful disagrees with them. Today, Project Galileo provides free access to cybersecurity services to more than 3,400 websites belonging to journalists, human rights defenders, and other nonprofit organizations in 120 countries. We continue...",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-18",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "This year’s data demonstrates that civil society organizations were targeted more frequently, and often more intensely, than other Internet users. Cyberattacks often coincided with critical moments in civil society’s wor",
+      "Global investigative journalism network exposing organized crime and corruption.",
+      "Legal information resource for activists on their rights and legal risks during protest and campaigning."
+    ],
+    "sections": {
+      "overview": "Twelve years ago this month, Cloudflare launched an ambitious project built on a simple idea: people shouldn’t be knocked offline just because someone more powerful disagrees with them. Today, Project Galileo provides free access to cybersecurity services to more than 3,400 websites belonging to journalists, human rights defenders, and other nonprofit organizations in 120 countries. We continue to believe that a better Internet is one where anyone with an idea can reach a global audience.",
+      "technical_breakdown": "In addition, because the Cloudflare network spans more than 335 cities in 125 countries and more than 20% of the web sits behind it, we were also able to compare attacks targeting civil society with those targeting the Internet more broadly.\n\nOrganization\n\n Description\n\n Country/Region of Operation\n\n SHARE Foundation \n\n Nonprofit advocating for privacy, free expression, and other digital rights.\n\nSerbia \n\n Hledaczvirat \n\n Online platform/database for finding lost and found pets, connecting owners with animal shelters.\n\nUnited States\n\n The Royal Meteorological Society \n\n Society for weather and climate science, supporting meteorology research, education, and professional accreditation.\n\nAustralia \n\n Organized Crime and Corruption Reporting Project (OCCRP) \n\n Global investigative journalism network exposing organized crime and corruption.",
+      "impact": "This year’s data demonstrates that civil society organizations were targeted more frequently, and often more intensely, than other Internet users. Their defining feature was duration, with some spanning days and weeks. Civil society groups faced attempts to exploit website vulnerabilities at a rate more than seven times higher than other Cloudflare customers. Media organizations were disproportionately impacted.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We continue to believe that a better Internet is one where anyone with an idea can reach a global audience.",
+      "root_cause_highlight": "Likely root-cause theme: database issue. Twelve years ago this month, Cloudflare launched an ambitious project built on a simple idea: people shouldn’t be knocked offline just because someone more powerful disagrees with them. Introducing a new annual report on cyberattacks against global civil society \n \n \n \n \n Because Project Galileo now includes 3,400 domains belonging to organizations in over 120 countries, Cloudflare has access to unique data regarding the cyber threats, attacks, and trends targeting civil society — a critical pillar of global democracy. In addition, because the Cloudflare network spans more than 335 cities in 125 countries and more than 20% of the web sits behind it, we were also able to compare attacks targeting civil society with those targeting the Internet more broadly.",
+      "incident_timeline": "This year’s data demonstrates that civil society organizations were targeted more frequently, and often more intensely, than other Internet users. Cyberattacks often coincided with critical moments in civil society’s wor\nGlobal investigative journalism network exposing organized crime and corruption.\nLegal information resource for activists on their rights and legal risks during protest and campaigning.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "Twelve years ago this month, Cloudflare launched an ambitious project built on a simple idea: people shouldn’t be knocked offline just because someone more powerful disagrees with them. Today, Project Galileo provides free access to cybersecurity services to more than 3,400 websites belonging to journalists, human rights defenders, and other nonprofit organizations in 120 countries.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "931824a10b089ace",
+    "title": "The new bottleneck​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/18/the-new-bottleneck/",
+    "published": "2026-06-18T07:40:00+00:00",
+    "fetched_at": "2026-06-18T13:40:14.939167+00:00",
+    "summary": "Engineering teams have upgraded their tools. Have they upgraded how they...",
+    "tags": [],
+    "day": "2026-06-18",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Engineering teams have upgraded their tools. Have they upgraded how they work?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Engineering teams have upgraded their tools. Have they upgraded how they…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "728199f5e61e2592",
     "title": "Preserve OpenShift Pipelines logs with OpenTelemetry",
     "source": "Red Hat Developer Blog",
@@ -49,7 +122,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "If your team has fully embraced CI/CD on Red Hat OpenShift , you already know the capability of Red Hat OpenShift Pipelines . Built on the open source Tekton framework, it allows developers to create cloud-native, execution-ready pipelines that run in isolated, ephemeral containers.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Elastic Blog",
+        "link": "https://www.elastic.co/blog/elasticsearch-custom-integrations-automatic-import"
+      }
+    ],
     "highlighted": false
   }
 ]
