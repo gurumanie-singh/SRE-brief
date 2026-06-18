@@ -1,5 +1,143 @@
 [
   {
+    "id": "8111c148bf039968",
+    "title": "How pull request limits are cutting down the noise",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/open-source/maintainers/how-pull-request-limits-are-cutting-down-the-noise/",
+    "published": "2026-06-18T16:00:00+00:00",
+    "fetched_at": "2026-06-18T17:25:25.533301+00:00",
+    "summary": "More people are contributing to open source than ever, most of them trying to help. The challenge is keeping up with the volume. Creating a pull request has never been easier. Reviewing one still takes a human about as long as it ever did. When great contributions and low-quality noise land in the same queue, the ones that deserve attention are harder to find.",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-06-18",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "More people are contributing to open source than ever, most of them trying to help. The challenge is keeping up with the volume. Creating a pull request has never been easier. Reviewing one still takes a human about as l",
+      "That s why we ve introduced pull request limits. It takes on the problem we hear most: too many incoming pull requests, too much low-quality noise, and too few ways to manage the flow.",
+      "A pull request limit sets the maximum number of pull requests a user without write access can have open at once in your repository. Hit the limit, and you must close or merge one before opening another. Pull requests ope",
+      "GitHub already has interaction limits, but those are temporary cooldowns. These new pull request limits are persistent and configurable giving maintainers the control they told us they were missing.",
+      "A cap also changes how contributors behave. When anyone can open a pull request in seconds, a polished change and a rough draft look the same in the queue. But when only a few pull requests can be open at once, a contrib",
+      "It s helped us want to review pull requests again. Knowing that someone hasn t just opened 5 10 pull requests that are slop makes it much easier to want to look. Going forward we expect it to help us manage our backlog a",
+      "This feature is great. We ve had problems on Homebrew for a while with enthusiastic users submitting many pull requests that need near identical review. AI further accelerated it. This allows us to still have outside con",
+      "At OpenClaw we get a huge volume of pull requests from the community and had to build our own bots for fighting spam. We are super glad GitHub has been able to develop out-of-the-box solutions for maintainers now to mana"
+    ],
+    "sections": {
+      "overview": "More people are contributing to open source than ever, most of them trying to help. The challenge is keeping up with the volume. Creating a pull request has never been easier.",
+      "technical_breakdown": "When great contributions and low-quality noise land in the same queue, the ones that deserve attention are harder to find.\n\nWhen anyone can open a pull request in seconds, a polished change and a rough draft look the same in the queue.\n\nKnowing that someone hasn t just opened 5 10 pull requests that are slop makes it much easier to want to look.\n\nGoing forward we expect it to help us manage our backlog and ensure the things people are working on are the things we need.\n\nTo everyone who reviews pull requests late at night, mentors a first-time contributor, triages a backlog, files issues, or tells us where our tools fall short: thank you.",
+      "impact": "How it works \n\n A pull request limit sets the maximum number of pull requests a user without write access can have open at once in your repository. We ve had problems on Homebrew for a while with enthusiastic users submitting many pull requests that need near identical review. This allows us to still have outside contribution and maintainers contribute more while gating users to a level of pull requests we can cope with. Issue limits (in development) : The controls you now have on pull requests will be applied to issues: per-repository caps on how many open issues a user without write access can have at once, with a bypass list, plus an option to restrict issue creation to collaborators.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Going forward we expect it to help us manage our backlog and ensure the things people are working on are the things we need.",
+      "root_cause_highlight": "",
+      "incident_timeline": "More people are contributing to open source than ever, most of them trying to help. The challenge is keeping up with the volume. Creating a pull request has never been easier. Reviewing one still takes a human about as l\nThat s why we ve introduced pull request limits. It takes on the problem we hear most: too many incoming pull requests, too much low-quality noise, and too few ways to manage the flow.\nA pull request limit sets the maximum number of pull requests a user without write access can have open at once in your repository. Hit the limit, and you must close or merge one before opening another. Pull requests ope\nGitHub already has interaction limits, but those are temporary cooldowns. These new pull request limits are persistent and configurable giving maintainers the control they told us they were missing.\nA cap also changes how contributors behave. When anyone can open a pull request in seconds, a polished change and a rough draft look the same in the queue. But when only a few pull requests can be open at once, a contrib\nIt s helped us want to review pull requests again. Knowing that someone hasn t just opened 5 10 pull requests that are slop makes it much easier to want to look. Going forward we expect it to help us manage our backlog a\nThis feature is great. We ve had problems on Homebrew for a while with enthusiastic users submitting many pull requests that need near identical review. AI further accelerated it. This allows us to still have outside con\nAt OpenClaw we get a huge volume of pull requests from the community and had to build our own bots for fighting spam. We are super glad GitHub has been able to develop out-of-the-box solutions for maintainers now to mana",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "More people are contributing to open source than ever, most of them trying to help. The challenge is keeping up with the volume.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "cd17ebb0fd06efb7",
+    "title": "Manage LLM evaluation workloads at scale with EvalHub and Kueue",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/18/manage-llm-evaluation-workloads-scale-evalhub-and-kueue",
+    "published": "2026-06-18T14:00:58+00:00",
+    "fetched_at": "2026-06-18T17:25:28.430185+00:00",
+    "summary": "EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization. This is where Kueue comes in.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "outage"
+    ],
+    "day": "2026-06-18",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "curl --request POST \\",
+      "curl --request GET \\",
+      "\"created_at\": \"2026-04-13T10:30:00Z\"",
+      "kubectl get events -n <namespace> --sort-by='.lastTimestamp' | grep <job-name> This sequence illustrates a typical event log for a preempted workload:",
+      "jq '.[] | select(.type == \"Preempted\" or .type == \"Evicted\" or .type == \"Requeued\")' Impact on evaluation results When a job is preempted and resumed, it restarts from the beginning.",
+      "Figure 3: An indicative sequence of states when an evaluation job is preempted. Resumed is effectively the job being restarted.",
+      "Insufficient quota: You might need to wait for resources to free up or request a quota increase.",
+      "Scenario 3: Job running but progress unknown If a job has been running for an extended period, verify if the pod was restarted due to preemption:"
+    ],
+    "sections": {
+      "overview": "EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization. This is where Kueue comes in.",
+      "technical_breakdown": "Resource quota enforcement Prevents runaway jobs from consuming all cluster resources:\n\n # Quota limits per ClusterQueue\nresources:\n - name: cpu\n nominalQuota: 32\n - name: memory\n nominalQuota: 128Gi\n - name: nvidia.com/gpu\n nominalQuota: 4 Automatic queueing and admission When your cluster reaches quota, Kueue prevents job failures by automatically queueing workloads until resources become available:\n\n Without Kueue: The job fails with an Insufficient resources error, which requires a manual retry.\n\nScenario 1: Job stuck in pending If a job remains in the pending state, the Kubernetes job status will appear as follows:\n\n kubectl get job my-eval-job -n team-a-namespace\n# NAME STATUS COMPLETIONS AGE\n# my-eval-job Suspended 0/1 5m If a job is stuck in Suspended status, use this command to diagnose the cause\n\n # Check workload status\nWORKLOAD=$(kubectl get workloads -n team-a-namespace -o json | \\\n jq -r \".items[] | select(.metadata.ownerReferences[].name == \\\"my-eval-job\\\") | .metadata.name\")\n\nkubectl get workload \"$WORKLOAD\" -n team-a-namespace -o jsonpath='{.status.conditions}' | \\\n jq '.[] | select(.type == \"QuotaReserved\" or .type == \"Admitted\")' Common causes include:\n\n Insufficient quota: You might need to wait for resources to free up or request a quota increase.\n\n {\n \"type\": \"QuotaReserved\",\n \"status\": \"False\",\n \"reason\": \"Pending\",\n \"message\": \"couldn't assign flavors to pod set main: insufficient unused quota for cpu in flavor default-flavor, 8 more needed\"\n} \n Invalid queue name: Verify that the LocalQueue exists and the name is correct in your job specification.\n\n kubectl get workload \"$WORKLOAD\" -n team-a-namespace\n# NAME QUEUE RESERVED IN ADMITTED\n# job-my-eval-job-abc12 non-existent-queue False \n Waiting for higher-priority jobs: Increase job priority or wait for the queue to clear.\n\n kubectl get workloads -n team-a-namespace --sort-by=.spec.priority \n Scenario 2: Job was preempted If a job remains suspended after it has already begun execution, it may have been preempted.\n\nThe challenge: Resource contention in shared clusters In a typical AI/ML platform deployment without a centralized controller, several issues frequently arise:\n\n Unmanaged resource consumption: Multiple teams run evaluation jobs simultaneously, often exceeding available GPU and CPU capacity.\n\nFair resource sharing across tenants Kueue supports multitenancy with configured quotas:\n\n # Team A gets 50% of resources\nClusterQueue: team-a-cq\n CPU: 32 cores\n Memory: 128Gi\n GPU: 4\n\n# Team B gets 50% of resources \nClusterQueue: team-b-cq\n CPU: 32 cores\n Memory: 128Gi\n GPU: 4 Each team's evaluation jobs stay within their quota, preventing one team from monopolizing cluster resources.\n\nChecking job queue status You can check the job queue status through the EvalHub API with this command:\n\n curl --request GET \\\n --url https://evalhub-team-a.example.com/api/v1/evaluations/jobs/<resource-id> \\\n --header 'Authorization: Bearer <token>' The API returns a JSON response indicating the current high-level state:\n\n {\n \"resource\": {\n \"id\": \"abc123-def456-...\",\n \"created_at\": \"2026-04-13T10:30:00Z\"\n },\n \"status\": {\n \"state\": \"pending\",\n \"message\": {\n \"message\": \"Evaluation job created\",\n \"message_code\": \"evaluation_job_created\"\n }\n }\n} The EvalHub API currently shows high-level states only:\n\n pending : Job created but not yet admitted\n running : Job admitted and executing\n completed : Job finished\n To view detailed status conditions, query the cluster directly using the command-line interface:\n\n # Find the Kubernetes Job\nJOB_NAME=$(kubectl get jobs -n team-a-namespace | grep \"$RESOURCE_ID\" | awk '{print $1}')\n\n# Check job status\nkubectl get job \"$JOB_NAME\" -n team-a-namespace\n\n# Check workload status (shows queue position, preemption, etc.)\nWORKLOAD=$(kubectl get workloads -n team-a-namespace -o json | \\\n jq -r \".items[] | select(.metadata.ownerReferences[].name == \\\"$JOB_NAME\\\") | .metadata.name\")\n\nkubectl get workload \"$WORKLOAD\" -n team-a-namespace -o yaml Understanding preemption in evaluation jobs Preemption is a critical concept when using Kueue.",
+      "impact": "Step 1: Label the namespace Configure your namespace with the following labels:\n\n team=team-a : Matches the ClusterQueue namespaceSelector \n kueue.openshift.io/managed=true : Enables Kueue management\n evalhub.trustyai.opendatahub.io/tenant=true : EvalHub tenant marker\n Step 2: Create LocalQueue The LocalQueue connects your namespace to the ClusterQueue :\n\n apiVersion: kueue.x-k8s.io/v1beta2\nkind: LocalQueue\nmetadata:\n name: eval-queue\n namespace: team-a-namespace\nspec:\n clusterQueue: team-a-cq # References the ClusterQueue created by admin EvalHub user: Submitting jobs with Kueue Submit and monitor your evaluation workloads directly through the application interface or command-line tools. Fair resource sharing across tenants Kueue supports multitenancy with configured quotas:\n\n # Team A gets 50% of resources\nClusterQueue: team-a-cq\n CPU: 32 cores\n Memory: 128Gi\n GPU: 4\n\n# Team B gets 50% of resources \nClusterQueue: team-b-cq\n CPU: 32 cores\n Memory: 128Gi\n GPU: 4 Each team's evaluation jobs stay within their quota, preventing one team from monopolizing cluster resources. Persona Role Responsibilities Scope Cluster administrator Manages the Kubernetes cluster and Kueue installation. Namespace-specific EvalHub user or ML engineer Submits evaluation jobs via the EvalHub API.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Adopting this integrated approach allows you to:\n\n Prevent resource contention through quota enforcement\n Enable fair sharing across multiple teams\n Prioritize critical work with intelligent preemption\n Increase cluster utilization through cohort-based borrowing\n Improve visibility into job queueing and resource usage\n By aligning your infrastructure with these standard patterns, you ensure that your evaluation platform is ready to support the next generation of LLM development.\n\nFair resource sharing across tenants Kueue supports multitenancy with configured quotas:\n\n # Team A gets 50% of resources\nClusterQueue: team-a-cq\n CPU: 32 cores\n Memory: 128Gi\n GPU: 4\n\n# Team B gets 50% of resources \nClusterQueue: team-b-cq\n CPU: 32 cores\n Memory: 128Gi\n GPU: 4 Each team's evaluation jobs stay within their quota, preventing one team from monopolizing cluster resources.\n\nResource quota enforcement Prevents runaway jobs from consuming all cluster resources:\n\n # Quota limits per ClusterQueue\nresources:\n - name: cpu\n nominalQuota: 32\n - name: memory\n nominalQuota: 128Gi\n - name: nvidia.com/gpu\n nominalQuota: 4 Automatic queueing and admission When your cluster reaches quota, Kueue prevents job failures by automatically queueing workloads until resources become available:\n\n Without Kueue: The job fails with an Insufficient resources error, which requires a manual retry.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Catch up on the other parts in the series:\n\n Part 1: How EvalHub manages two-layer Kubernetes control planes \n Part 2: EvalHub: Because \"looks good to me\" isn't a benchmark \n Part 3: Evaluation-driven development with EvalHub \n Part 4: Understanding evaluation collections in EvalHub \n Part 5: Bring your own evaluation framework to EvalHub \n Part 6: Add automated AI evaluations to your CI/CD pipeline \n Part 7: Store immutable AI evaluation records with EvalHub and OCI \n Why EvalHub needs Kueue To resolve these operational bottlenecks, you must implement a management layer that governs how jobs access compute resources. The following section details the challenges caused by resource contention and how a native queueing system addresses them. The challenge: Resource contention in shared clusters In a typical AI/ML platform deployment without a centralized controller, several issues frequently arise:\n\n Unmanaged resource consumption: Multiple teams run evaluation jobs simultaneously, often exceeding available GPU and CPU capacity.",
+      "incident_timeline": "curl --request POST \\\ncurl --request GET \\\n\"created_at\": \"2026-04-13T10:30:00Z\"\nkubectl get events -n <namespace> --sort-by='.lastTimestamp' | grep <job-name> This sequence illustrates a typical event log for a preempted workload:\njq '.[] | select(.type == \"Preempted\" or .type == \"Evicted\" or .type == \"Requeued\")' Impact on evaluation results When a job is preempted and resumed, it restarts from the beginning.\nFigure 3: An indicative sequence of states when an evaluation job is preempted. Resumed is effectively the job being restarted.\nInsufficient quota: You might need to wait for resources to free up or request a quota increase.\nScenario 3: Job running but progress unknown If a job has been running for an extended period, verify if the pod was restarted due to preemption:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c1eb4ae12f8d4e76",
+    "title": "Troubleshoot application misbehavior after an OpenShift upgrade",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/18/troubleshoot-application-misbehavior-after-openshift-upgrade",
+    "published": "2026-06-18T14:00:31+00:00",
+    "fetched_at": "2026-06-18T17:25:28.431661+00:00",
+    "summary": "This article explains how to diagnose and address application misbehavior after a Red Hat OpenShift upgrade.",
+    "tags": [
+      "deployment",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-06-18",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "networking",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "I discuss several points regarding this matter in the sections that follow. The topic is extensive so I will be as concise as possible. This article assumes you are already investigating unexpected application behavior. ",
+      "However, some scenarios can lead to unexpected outcomes; these troublesome scenarios are discussed in the following sections.",
+      "When deployed in an OpenShift cluster with fewer resource restrictions on its nodes, the application scales based on the host resources instead of the container limits.",
+      "Java uses container limits rather than requests for resource calculations. For unbounded deployments, host-level specifications directly dictate runtime thread and memory footprint calculations.",
+      "FAQ The following frequently asked questions can help you verify and address this problem:"
+    ],
+    "sections": {
+      "overview": "This article explains how to diagnose and address application misbehavior after a Red Hat OpenShift upgrade. Container awareness is a primary focus, as it dictates how an application behaves within a container. I therefore consider this article a follow-up to How to use Java container awareness in OpenShift 4 , serving as a second expansion package after How does cgroups v2 impact Java, .NET, and Node.js in OpenShift 4? .",
+      "technical_breakdown": "This leads to CPU throttling as multiple threads compete for kernel time slices while garbage collection (GC) threads execute simultaneously.\n\nJVM container awareness When optimizing heap configurations, awareness metrics depend on deployment states.\n\nThis means off-heap resource use inside the container aligns directly with the host's CPU metrics.\n\nWhen an application is migrated to a different cgroups version, Java runtime environments might fail to detect container memory or CPU limits.\n\nFor unbounded deployments, host-level specifications directly dictate runtime thread and memory footprint calculations.",
+      "impact": "I therefore consider this article a follow-up to How to use Java container awareness in OpenShift 4 , serving as a second expansion package after How does cgroups v2 impact Java, .NET, and Node.js in OpenShift 4? . This is the core topic of the article How does cgroups v2 impact Java, .NET, and Node.js in OpenShift 4? Unbounded deployments Unbounded deployments also directly impact application migration. CPU impact Host CPU cores directly affect the application thread count and overall resource footprint, as many heap and off-heap components base their internal configurations on available CPU cores.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "I therefore consider this article a follow-up to How to use Java container awareness in OpenShift 4 , serving as a second expansion package after How does cgroups v2 impact Java, .NET, and Node.js in OpenShift 4? .\n\nHow to fix it: Upgrade to a cgroups v2-compatible version of your runtime environment.\n\nWorkaround: If an upgrade is not possible, limit CPU and memory allocations manually to mitigate broader cluster issues.\n\nVerifying whether your runtime components accurately detect container-level limits isolates the root cause of unexpected resource footprint spikes and streamlines your diagnostic path.",
+      "lessons_learned": "I therefore consider this article a follow-up to How to use Java container awareness in OpenShift 4 , serving as a second expansion package after How does cgroups v2 impact Java, .NET, and Node.js in OpenShift 4? .\n\nTo learn more about Java container awareness and how it prevents heap decoupling, see How to use Java container awareness in OpenShift 4 .",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Workload changes Workload patterns might change due to Ingress parameters or increased application access. Because these issues are case-specific, consult your tool vendor to evaluate how a cgroups version migration affects their software. JVM container awareness When optimizing heap configurations, awareness metrics depend on deployment states.",
+      "incident_timeline": "I discuss several points regarding this matter in the sections that follow. The topic is extensive so I will be as concise as possible. This article assumes you are already investigating unexpected application behavior. \nHowever, some scenarios can lead to unexpected outcomes; these troublesome scenarios are discussed in the following sections.\nWhen deployed in an OpenShift cluster with fewer resource restrictions on its nodes, the application scales based on the host resources instead of the container limits.\nJava uses container limits rather than requests for resource calculations. For unbounded deployments, host-level specifications directly dictate runtime thread and memory footprint calculations.\nFAQ The following frequently asked questions can help you verify and address this problem:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "This article explains how to diagnose and address application misbehavior after a Red Hat OpenShift upgrade. Container awareness is a primary focus, as it dictates how an application behaves within a container.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "9cf8fb00ee96ad3e",
     "title": "Celebrating 12 years of Project Galileo",
     "source": "Cloudflare Blog",
@@ -128,6 +266,37 @@
         "link": "https://www.elastic.co/blog/elasticsearch-custom-integrations-automatic-import"
       }
     ],
+    "highlighted": false
+  },
+  {
+    "id": "cd6e814f3f77d968",
+    "title": "Building the Agentic SOC: A new model for financial services",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/agentic-soc-for-financial-services",
+    "published": "2026-06-18T00:00:00+00:00",
+    "fetched_at": "2026-06-18T17:25:27.769004+00:00",
+    "summary": "As AI-powered threats accelerate, financial institutions are evolving toward agentic security operations. Unified data, contextual intelligence, and operational resilience are becoming foundational to the future SOC.",
+    "tags": [],
+    "day": "2026-06-18",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "As AI-powered threats accelerate, financial institutions are evolving toward agentic security operations. Unified data, contextual intelligence, and operational resilience are becoming foundational to the future SOC.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "As AI-powered threats accelerate, financial institutions are evolving toward agentic security operations. Unified data, contextual intelligence, and operational resilience are becoming foundational to the future SOC.",
+    "related_sources": [],
     "highlighted": false
   }
 ]

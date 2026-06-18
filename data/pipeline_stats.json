@@ -103,11 +103,11 @@
     "incoming_total": 258,
     "incoming_after_retention": 119,
     "dropped_by_retention": 139,
-    "new_articles_this_run": 41,
-    "day_files_touched": 16,
-    "total_articles_on_disk": 146,
+    "new_articles_this_run": 38,
+    "day_files_touched": 15,
+    "total_articles_on_disk": 150,
     "day_json_file_count": 23,
     "warnings": []
   },
-  "written_at": "2026-06-18T13:40:16.772931+00:00"
+  "written_at": "2026-06-18T17:25:28.625916+00:00"
 }

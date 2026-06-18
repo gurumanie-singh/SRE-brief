@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage LLM evaluation workloads at scale with EvalHub and Kueue — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-18.html" class="back-link">← 18 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">18 June 2026, 09:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+        <span class="card-action-badge">Ops priority</span>
+      </div>
+
+      <h1 class="title">Manage LLM evaluation workloads at scale with EvalHub and Kueue</h1>
+
+      <p class="subtitle">EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization.</p>
+
+      <div class="article-action-banner">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        This item is flagged for operational follow-up — see resolution and lessons sections.
+      </div>
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization.</p>
+      <p class="quick-take-action">Review mitigation and verification steps in the resolution section.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>EvalHub is a service for running large language model (LLM) evaluation benchmarks in Kubernetes environments. As organizations scale their AI/ML workloads, they face increasing challenges around resource management, fair sharing, and job prioritization. This is where Kueue comes in.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Resource quota enforcement Prevents runaway jobs from consuming all cluster resources:</p>
+<p># Quota limits per ClusterQueue resources:  - name: cpu  nominalQuota: 32  - name: memory  nominalQuota: 128Gi  - name: nvidia.com/gpu  nominalQuota: 4 Automatic queueing and admission When your cluster reaches quota, Kueue prevents job failures by automatically queueing workloads until resources become available:</p>
+<p>Without Kueue: The job fails with an Insufficient resources error, which requires a manual retry.</p>
+<p>Scenario 1: Job stuck in pending If a job remains in the pending state, the Kubernetes job status will appear as follows:</p>
+<p>kubectl get job my-eval-job -n team-a-namespace # NAME STATUS COMPLETIONS AGE # my-eval-job Suspended 0/1 5m If a job is stuck in Suspended status, use this command to diagnose the cause</p>
+<p># Check workload status WORKLOAD=$(kubectl get workloads -n team-a-namespace -o json | \  jq -r &#34;.items[] | select(.metadata.ownerReferences[].name == \&#34;my-eval-job\&#34;) | .metadata.name&#34;)</p>
+<p>kubectl get workload &#34;$WORKLOAD&#34; -n team-a-namespace -o jsonpath=&#39;{.status.conditions}&#39; | \  jq &#39;.[] | select(.type == &#34;QuotaReserved&#34; or .type == &#34;Admitted&#34;)&#39; Common causes include:</p>
+<p>Insufficient quota: You might need to wait for resources to free up or request a quota increase.</p>
+<p>{  &#34;type&#34;: &#34;QuotaReserved&#34;,  &#34;status&#34;: &#34;False&#34;,  &#34;reason&#34;: &#34;Pending&#34;,  &#34;message&#34;: &#34;couldn&#39;t assign flavors to pod set main: insufficient unused quota for cpu in flavor default-flavor, 8 more needed&#34; }   Invalid queue name: Verify that the LocalQueue exists and the name is correct in your job specification.</p>
+<p>kubectl get workload &#34;$WORKLOAD&#34; -n team-a-namespace # NAME QUEUE RESERVED IN ADMITTED # job-my-eval-job-abc12 non-existent-queue False   Waiting for higher-priority jobs: Increase job priority or wait for the queue to clear.</p>
+<p>kubectl get workloads -n team-a-namespace --sort-by=.spec.priority   Scenario 2: Job was preempted If a job remains suspended after it has already begun execution, it may have been preempted.</p>
+<p>The challenge: Resource contention in shared clusters In a typical AI/ML platform deployment without a centralized controller, several issues frequently arise:</p>
+<p>Unmanaged resource consumption: Multiple teams run evaluation jobs simultaneously, often exceeding available GPU and CPU capacity.</p>
+<p>Fair resource sharing across tenants Kueue supports multitenancy with configured quotas:</p>
+<p># Team A gets 50% of resources ClusterQueue: team-a-cq  CPU: 32 cores  Memory: 128Gi  GPU: 4</p>
+<p># Team B gets 50% of resources  ClusterQueue: team-b-cq  CPU: 32 cores  Memory: 128Gi  GPU: 4 Each team&#39;s evaluation jobs stay within their quota, preventing one team from monopolizing cluster resources.</p>
+<p>Checking job queue status You can check the job queue status through the EvalHub API with this command:</p>
+<p>curl --request GET \  --url https://evalhub-team-a.example.com/api/v1/evaluations/jobs/&lt;resource-id&gt; \  --header &#39;Authorization: Bearer &lt;token&gt;&#39; The API returns a JSON response indicating the current high-level state:</p>
+<p>{  &#34;resource&#34;: {  &#34;id&#34;: &#34;abc123-def456-...&#34;,  &#34;created_at&#34;: &#34;2026-04-13T10:30:00Z&#34;  },  &#34;status&#34;: {  &#34;state&#34;: &#34;pending&#34;,  &#34;message&#34;: {  &#34;message&#34;: &#34;Evaluation job created&#34;,  &#34;message_code&#34;: &#34;evaluation_job_created&#34;  }  } } The EvalHub API currently shows high-level states only:</p>
+<p>pending : Job created but not yet admitted  running : Job admitted and executing  completed : Job finished  To view detailed status conditions, query the cluster directly using the command-line interface:</p>
+<p># Find the Kubernetes Job JOB_NAME=$(kubectl get jobs -n team-a-namespace | grep &#34;$RESOURCE_ID&#34; | awk &#39;{print $1}&#39;)</p>
+<p># Check job status kubectl get job &#34;$JOB_NAME&#34; -n team-a-namespace</p>
+<p># Check workload status (shows queue position, preemption, etc.) WORKLOAD=$(kubectl get workloads -n team-a-namespace -o json | \  jq -r &#34;.items[] | select(.metadata.ownerReferences[].name == \&#34;$JOB_NAME\&#34;) | .metadata.name&#34;)</p>
+<p>kubectl get workload &#34;$WORKLOAD&#34; -n team-a-namespace -o yaml Understanding preemption in evaluation jobs Preemption is a critical concept when using Kueue.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Step 1: Label the namespace Configure your namespace with the following labels:</p>
+<p>team=team-a : Matches the ClusterQueue namespaceSelector   kueue.openshift.io/managed=true : Enables Kueue management  evalhub.trustyai.opendatahub.io/tenant=true : EvalHub tenant marker  Step 2: Create LocalQueue The LocalQueue connects your namespace to the ClusterQueue :</p>
+<p>apiVersion: kueue.x-k8s.io/v1beta2 kind: LocalQueue metadata:  name: eval-queue  namespace: team-a-namespace spec:  clusterQueue: team-a-cq # References the ClusterQueue created by admin EvalHub user: Submitting jobs with Kueue Submit and monitor your evaluation workloads directly through the application interface or command-line tools. Fair resource sharing across tenants Kueue supports multitenancy with configured quotas:</p>
+<p># Team A gets 50% of resources ClusterQueue: team-a-cq  CPU: 32 cores  Memory: 128Gi  GPU: 4</p>
+<p># Team B gets 50% of resources  ClusterQueue: team-b-cq  CPU: 32 cores  Memory: 128Gi  GPU: 4 Each team&#39;s evaluation jobs stay within their quota, preventing one team from monopolizing cluster resources. Persona Role Responsibilities Scope Cluster administrator Manages the Kubernetes cluster and Kueue installation. Namespace-specific EvalHub user or ML engineer Submits evaluation jobs via the EvalHub API.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Adopting this integrated approach allows you to:</p>
+<p>Prevent resource contention through quota enforcement  Enable fair sharing across multiple teams  Prioritize critical work with intelligent preemption  Increase cluster utilization through cohort-based borrowing  Improve visibility into job queueing and resource usage  By aligning your infrastructure with these standard patterns, you ensure that your evaluation platform is ready to support the next generation of LLM development.</p>
+<p>Fair resource sharing across tenants Kueue supports multitenancy with configured quotas:</p>
+<p># Team A gets 50% of resources ClusterQueue: team-a-cq  CPU: 32 cores  Memory: 128Gi  GPU: 4</p>
+<p># Team B gets 50% of resources  ClusterQueue: team-b-cq  CPU: 32 cores  Memory: 128Gi  GPU: 4 Each team&#39;s evaluation jobs stay within their quota, preventing one team from monopolizing cluster resources.</p>
+<p>Resource quota enforcement Prevents runaway jobs from consuming all cluster resources:</p>
+<p># Quota limits per ClusterQueue resources:  - name: cpu  nominalQuota: 32  - name: memory  nominalQuota: 128Gi  - name: nvidia.com/gpu  nominalQuota: 4 Automatic queueing and admission When your cluster reaches quota, Kueue prevents job failures by automatically queueing workloads until resources become available:</p>
+<p>Without Kueue: The job fails with an Insufficient resources error, which requires a manual retry.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: control plane issue. Catch up on the other parts in the series:</p>
+<p>Part 1: How EvalHub manages two-layer Kubernetes control planes   Part 2: EvalHub: Because &#34;looks good to me&#34; isn&#39;t a benchmark   Part 3: Evaluation-driven development with EvalHub   Part 4: Understanding evaluation collections in EvalHub   Part 5: Bring your own evaluation framework to EvalHub   Part 6: Add automated AI evaluations to your CI/CD pipeline   Part 7: Store immutable AI evaluation records with EvalHub and OCI   Why EvalHub needs Kueue To resolve these operational bottlenecks, you must implement a management layer that governs how jobs access compute resources. The following section details the challenges caused by resource contention and how a native queueing system addresses them. The challenge: Resource contention in shared clusters In a typical AI/ML platform deployment without a centralized controller, several issues frequently arise:</p>
+<p>Unmanaged resource consumption: Multiple teams run evaluation jobs simultaneously, often exceeding available GPU and CPU capacity.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>curl --request POST \</li>
+            <li>curl --request GET \</li>
+            <li>&#34;created_at&#34;: &#34;2026-04-13T10:30:00Z&#34;</li>
+            <li>kubectl get events -n &lt;namespace&gt; --sort-by=&#39;.lastTimestamp&#39; | grep &lt;job-name&gt; This sequence illustrates a typical event log for a preempted workload:</li>
+            <li>jq &#39;.[] | select(.type == &#34;Preempted&#34; or .type == &#34;Evicted&#34; or .type == &#34;Requeued&#34;)&#39; Impact on evaluation results When a job is preempted and resumed, it restarts from the beginning.</li>
+            <li>Figure 3: An indicative sequence of states when an evaluation job is preempted. Resumed is effectively the job being restarted.</li>
+            <li>Insufficient quota: You might need to wait for resources to free up or request a quota increase.</li>
+            <li>Scenario 3: Job running but progress unknown If a job has been running for an extended period, verify if the pod was restarted due to preemption:</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/18/manage-llm-evaluation-workloads-scale-evalhub-and-kueue" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
