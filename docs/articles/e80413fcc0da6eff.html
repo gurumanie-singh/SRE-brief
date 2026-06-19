@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotlight on SIG Storage — SRE Brief</title>
+  <title>Get ready for Ansible Automation Platform 2.7 — SRE Brief</title>
   <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,38 +23,32 @@
   <main>
 <div class="section-inner">
   <div class="article-page">
-    <a href="../daily/2026-06-15.html" class="back-link">← 15 June 2026 day sheet</a>
+    <a href="../daily/2026-06-19.html" class="back-link">← 19 June 2026 day sheet</a>
 
     <header class="article-header">
       <div class="meta-row">
-        <span class="card-source">Kubernetes Blog</span>
-        <span class="card-date">14 June 2026, 19:00</span>
-        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">19 June 2026, 02:16</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
       </div>
 
-      <h1 class="title">Spotlight on SIG Storage</h1>
+      <h1 class="title">Get ready for Ansible Automation Platform 2.7</h1>
 
-      <p class="subtitle">In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project
-moving forward. Impact band: critical.</p>
+      <p class="subtitle">Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started.</p>
 
 
       <div class="article-tags">
         <span class="vendor-tag">Kubernetes</span>
         <span class="vendor-tag">Red Hat</span>
-        <span class="vendor-tag">Slack</span>
-        <span class="tag">capacity</span>
         <span class="tag">database</span>
         <span class="tag">deployment</span>
         <span class="tag">kubernetes</span>
-        <span class="tag">latency</span>
-        <span class="tag">outage</span>
-        <span class="tag">scaling</span>
       </div>
 
       <dl class="article-facts">
-        <div class="fact-row"><dt>Root-cause signal</dt><dd>control plane issue</dd></div>
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
         <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
-        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>general reliability</dd></div>
       </dl>
     </header>
 
@@ -63,57 +57,57 @@ moving forward. Impact band: critical.</p>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Operator snapshot
       </div>
-      <p class="quick-take-text">In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project
-moving forward. Impact band: critical.</p>
+      <p class="quick-take-text">Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started.</p>
     </div>
 
     <div class="article-body">
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
         <div class="article-section-content">
-          <p>In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project moving forward. This time, we catch up with SIG Storage , the group responsible for persistent data, volume management, and the interfaces that connect Kubernetes workloads to the storage systems beneath them. We spoke with Xing Yang , Co-Chair of SIG Storage and Software Engineer at VMware by Broadcom, about the SIG&#39;s history, the features shipping in recent Kubernetes releases, and where storage in Kubernetes is headed as AI workloads become the norm.</p>
+          <p>Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
         <div class="article-section-content">
-          <p>This completes the picture by allowing users to tune both capacity and other storage properties dynamically, just as they can now tune both CPU and memory for compute.</p>
-<p>While Kubernetes has moved stateful workloads — like databases and AI pipelines — into the mainstream, managing &#34;state&#34; in a system designed for ephemerality remains difficult:</p>
-<p>Data Gravity and Storage Locality : Pods move in seconds, but data has gravity.</p>
-<p>I see several trends shaping storage in Kubernetes as it evolves from a container orchestrator into the &#34;Operating System&#34; for AI:</p>
-<p>More Intelligent Data Management : We&#39;ll see a shift toward smarter CSI drivers and data management tools offering advanced features like automatic tiering, snapshots, migration, and replication — optimized specifically for high-performance AI/ML workflows and large data platforms.</p>
-<p>Data-Aware Scheduling : Instead of just considering CPU and RAM, the Kubernetes scheduler will increasingly prioritize placing Pods based on data locality — calculating the cost of moving data versus moving compute to keep massive data platforms performant.</p>
-<p>SIG Storage is a Special Interest Group focused on how to provide storage to containers running in your Kubernetes cluster.</p>
+          <p>It runs all platform components as Podman-based rootless containers on top of RHEL 9 (requires RHEL 9.6 or later versions) or RHEL 10, giving you a secure, manageable deployment without requiring root access during operation.</p>
+<p>Two topology options are available for containerized deployments:</p>
+<p>Growth topology: A smaller footprint, all-in-one deployment without redundancy, suited for organizations getting started with Ansible Automation Platform.</p>
+<p>This requires separate VMs for platform gateway, automation controller, automation hub, event-driven, and execution nodes, with an external database and HAProxy load balancer.</p>
+<p>Two topology options are available for OpenShift deployments:</p>
+<p>Operator growth topology: A single-node OpenShift deployment for organizations getting started on OpenShift.</p>
+<p>Operator enterprise topology: A multi-node OpenShift cluster deployment for production workloads, using external Redis, PostgreSQL, and object storage for additional scalability and reliability.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
         <div class="article-section-content">
-          <p>Now, users can dynamically tune storage properties such as IOPS or throughput directly through the Kubernetes API — scaling up for peak loads or down to optimize costs — without external processes or downtime. The SIG has also expanded its scope to support object storage through the Container Object Storage Interface (COSI). What recent work from SIG Storage do you consider a &#34;win&#34; for users? The graduation of VolumeAttributesClass  to GA in Kubernetes v1.34 is a major win for users managing stateful workloads.</p>
-<p>Classified impact band: critical. Affected layer signal: platform — kubernetes.</p>
+          <p>External (customer-provided) databases must run PostgreSQL 15, 16, or 17 with ICU support enabled.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
         <div class="article-section-content">
-          <p>We always need help from the community to fix bugs, add tests, and help with reviews.</p>
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
         <div class="article-section-content">
-          <p>Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.</p>
+          <p>We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.</p>
+<p>Moving to the latest version ensures your organization benefits from the latest security patches, platform improvements, and new features.</p>
         </div>
       </div>
 
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
         <div class="article-section-content">
-          <p>Likely root-cause theme: control plane issue. By enabling storage drivers and the Kubernetes control plane to report issues, it allows for proactive monitoring and identification of volume-related problems.</p>
+          <p>Likely root-cause theme: deployment failure. Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. New installation of Ansible Automation Platform 2.7 Ansible Automation Platform 2.7 offers flexible installation methods to suit your infrastructure, with support for deployments on Red Hat Enterprise Linux (RHEL) and Red Hat OpenShift . It runs all platform components as Podman-based rootless containers on top of RHEL 9 (requires RHEL 9.6 or later versions) or RHEL 10, giving you a secure, manageable deployment without requiring root access during operation.</p>
         </div>
       </div>
 
@@ -121,13 +115,10 @@ moving forward. Impact band: critical.</p>
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
         <div class="article-section-content">
           <ul class="timeline-list">
-            <li>SIG Storage is a Special Interest Group focused on how to provide storage to containers running in</li>
-            <li>investigating enhancements to this feature with the goal of supporting automated remediation</li>
-            <li>We always need help from the community to fix bugs, add tests, and help with reviews.</li>
-            <li>in the Data Protection WG. Community members interested in this topic are encouraged to join the DP</li>
-            <li>What are the biggest challenges users face today when running stateful workloads on Kubernetes?</li>
-            <li>I see several trends shaping storage in Kubernetes as it evolves from a container orchestrator into</li>
-            <li>SIG Storage continues to tackle some of the hardest problems in Kubernetes: keeping stateful</li>
+            <li>Upgrade to Ansible Automation Platform 2.7 Ansible Automation Platform 2.7 supports upgrading from the latest version of 2.6 to containerized and OpenShift Container Platform deployments. If you are running an earlier ve</li>
+            <li>Upgrade vs. migration An upgrade changes the Ansible Automation Platform software version (for example, from 2.6 to 2.7) while keeping the same installation type and RHEL version. A migration involves changing the instal</li>
+            <li>Source Target Process Container 2.6 on RHEL 9 Container 2.7 on RHEL 9 Upgrade - direct in-place upgrade from 2.6 to 2.7 Container 2.6 on RHEL 9 Container 2.7 on RHEL 10 Migrate - upgrade to 2.7 on RHEL 9, then backup and</li>
+            <li>Learn more Upgrading to Ansible Automation Platform 2.7 delivers new tools for AI-driven automation, a streamlined developer experience, and expanded self-service capabilities. Moving to the latest version ensures your o</li>
           </ul>
         </div>
       </div>
@@ -135,25 +126,18 @@ moving forward. Impact band: critical.</p>
       <div class="article-section">
         <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
         <div class="article-section-content">
-          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
-<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+          <p>This item contributes to the broader reliability narrative for production engineering teams.</p>
         </div>
       </div>
 
-      <div class="article-section">
-        <div class="article-section-label">Related coverage</div>
-        <div class="article-section-content">
-          <p><a href="https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-finops-agent-in-preview-gemma-4-on-bedrock-kiro-pro-max-and-more-june-15-2026/" target="_blank" rel="noopener">AWS News Blog</a></p>
-        </div>
-      </div>
 
-      <a href="https://kubernetes.io/blog/2026/06/15/sig-storage-spotlight-2026/" class="source-card" target="_blank" rel="noopener">
+      <a href="https://developers.redhat.com/articles/2026/06/19/get-ready-ansible-automation-platform-2-7" class="source-card" target="_blank" rel="noopener">
         <div class="source-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="source-card-text">
           <div class="source-card-label">External source</div>
-          <div class="source-card-name">Read the original write-up at Kubernetes Blog</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
         </div>
         <span class="source-card-arrow">→</span>
       </a>

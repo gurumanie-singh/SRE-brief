@@ -28,13 +28,13 @@
       <h1 class="brief-title">19 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-19T02:26:36.438833-05:00">19 June 2026, 02:26</time>
+        <time data-iso="2026-06-19T07:21:07.203521-05:00">19 June 2026, 07:21</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">1 high impact</span>
-      <span class="stat">1 items today</span>
+      <span class="stat stat-high">2 high impact</span>
+      <span class="stat">3 items today</span>
     </div>
   </div>
 
@@ -42,18 +42,20 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
+        <li>2 high-impact reliability events surfaced</li>
+        <li>Repeated coverage across Kubernetes, Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
+        <span class="trend-pill">openshift<span class="trend-count">3</span></span>
+        <span class="trend-pill">automation<span class="trend-count">3</span></span>
         <span class="trend-pill">amazon<span class="trend-count">3</span></span>
         <span class="trend-pill">ground<span class="trend-count">3</span></span>
         <span class="trend-pill">agents<span class="trend-count">3</span></span>
         <span class="trend-pill">cloudflare<span class="trend-count">3</span></span>
-        <span class="trend-pill">security<span class="trend-count">3</span></span>
-        <span class="trend-pill">evaluation<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -84,8 +86,8 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
@@ -114,8 +116,8 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -126,7 +128,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       19 June 2026
-      <span class="day-count">1</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
@@ -161,6 +163,77 @@
       <div class="detail-links">
         <a href="articles/31b43f283a31f1c8.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/06/19/you-don-t-understand-dns-like-you-think-you-do/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,kubernetes,networking,outage,scaling"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="capacity and scale"
+       data-title="deploy mempalace mcp server on red hat openshift ai"
+       data-id="94e9dcc9f59f809c"
+       data-published="2026-06-19T07:16:07+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-19T07:16:07+00:00" title="19 June 2026, 02:16">19 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Deploy MemPalace MCP Server on Red Hat OpenShift AI</h3>
+      <p class="card-summary">Every AI agent shares a common problem: when the conversation ends, the context disappears. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Every AI agent shares a common problem: when the conversation ends, the context disappears. The agent forgets what it learned, what you prefer, and what you were working on. Traditional retrieval-augmented generation (RAG) systems try to patch this with vector databases, but they fragment context, pile up token costs, and behave like black boxes when retrievals go wrong.</p></div>
+      <div class="detail-links">
+        <a href="articles/94e9dcc9f59f809c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/19/deploy-mempalace-mcp-server-red-hat-openshift-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="get ready for ansible automation platform 2.7"
+       data-id="e80413fcc0da6eff"
+       data-published="2026-06-19T07:16:05+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-19T07:16:05+00:00" title="19 June 2026, 02:16">19 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Get ready for Ansible Automation Platform 2.7</h3>
+      <p class="card-summary">Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.</p></div>
+      <div class="detail-links">
+        <a href="articles/e80413fcc0da6eff.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/19/get-ready-ansible-automation-platform-2-7" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
@@ -929,7 +1002,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       15 June 2026
-      <span class="day-count">8</span>
+      <span class="day-count">6</span>
     </h2>
   </div>
 
@@ -1127,79 +1200,6 @@
       <div class="detail-links">
         <a href="articles/9105b8435a7e0389.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/06/15/ai-agents-expose-the-security-checks-you-never-actually-wrote/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,networking,scaling"
-       data-vendors="Cloudflare"
-       data-impact="medium"
-       data-theme="capacity and scale"
-       data-title="growing the cloudflare ai team with talent from ensemble ai"
-       data-id="9bf37816fda7d8c7"
-       data-published="2026-06-15T13:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-15T13:00:00+00:00" title="15 June 2026, 08:00">15 June 2026, 08:00</time>
-      </div>
-      <h3 class="card-title">Growing the Cloudflare AI team with talent from Ensemble AI</h3>
-      <p class="card-summary">Today, we’re excited to share that key members of the team at Ensemble AI are joining Cloudflare to help accelerate our work in AI infrastructure and make it easier for developers to run powerful AI models efficiently at scale. Ensemble AI, founded in 2023 in San Francisco, has spent the last few years focused on one of the most important challenges in AI: making large models faster, smaller, and more cost-effective to serve, without sacrificing quality.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">networking</span>
-          <span class="ttag">scaling</span>
-        </div>
-      </div>
-      <span class="card-source">Cloudflare Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Today, we’re excited to share that key members of the team at Ensemble AI are joining Cloudflare to help accelerate our work in AI infrastructure and make it easier for developers to run powerful AI models efficiently at scale. Ensemble AI, founded in 2023 in San Francisco, has spent the last few years focused on one of the most important challenges in AI: making large models faster, smaller, and more cost-effective to serve, without sacrificing quality. The team has developed new approaches to model compression and efficient inference that are designed to reduce the memory, compute, and deployment overhead of large language models and multimodal architectures.</p></div>
-      <div class="detail-links">
-        <a href="articles/9bf37816fda7d8c7.html" class="detail-read">Open structured brief →</a>
-        <a href="https://blog.cloudflare.com/ensemble-ai-talent-joins-cloudflare/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--critical"
-       data-tags="capacity,database,deployment,kubernetes,latency,outage,scaling"
-       data-vendors="Kubernetes,Red Hat,Slack"
-       data-impact="critical"
-       data-theme="capacity and scale"
-       data-title="spotlight on sig storage"
-       data-id="b715eb9eaf379b85"
-       data-published="2026-06-15T00:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
-<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-15T00:00:00+00:00" title="14 June 2026, 19:00">14 June 2026, 19:00</time>
-      </div>
-      <h3 class="card-title">Spotlight on SIG Storage</h3>
-      <p class="card-summary">In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project
-moving forward. Impact band: critical.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">capacity</span>
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-        </div>
-      </div>
-      <div class="card-related">Also: Red Hat Developer Blog, AWS News Blog</div>
-      <span class="card-source">Kubernetes Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project moving forward. This time, we catch up with SIG Storage , the group responsible for persistent data, volume management, and the interfaces that connect Kubernetes workloads to the storage systems beneath them. We spoke with Xing Yang , Co-Chair of SIG Storage and Software Engineer at VMware by Broadcom, about the SIG&#39;s history, the features shipping in recent Kubernetes releases, and where storage in Kubernetes is headed as AI workloads become the norm.</p></div>
-      <div class="detail-links">
-        <a href="articles/b715eb9eaf379b85.html" class="detail-read">Open structured brief →</a>
-        <a href="https://kubernetes.io/blog/2026/06/15/sig-storage-spotlight-2026/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deploy MemPalace MCP Server on Red Hat OpenShift AI — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-19.html" class="back-link">← 19 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">19 June 2026, 02:16</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+      </div>
+
+      <h1 class="title">Deploy MemPalace MCP Server on Red Hat OpenShift AI</h1>
+
+      <p class="subtitle">Every AI agent shares a common problem: when the conversation ends, the context disappears. Impact band: high.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Every AI agent shares a common problem: when the conversation ends, the context disappears. Impact band: high.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Every AI agent shares a common problem: when the conversation ends, the context disappears. The agent forgets what it learned, what you prefer, and what you were working on. Traditional retrieval-augmented generation (RAG) systems try to patch this with vector databases, but they fragment context, pile up token costs, and behave like black boxes when retrievals go wrong.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Dockerfile.ubi :</p>
+<p>FROM registry.access.redhat.com/ubi9/python-311:latest</p>
+<p>USER 0 RUN dnf install -y gcc gcc-c++ sqlite-devel &amp;&amp; \  dnf clean all &amp;&amp; rm -rf /var/cache/dnf</p>
+<p>USER 1001 WORKDIR /opt/app-root/src COPY --chown=1001:0 . .</p>
+<p># Install MemPalace with HTTP server dependencies RUN pip install --no-cache-dir pysqlite3-binary &amp;&amp; \  pip install --no-cache-dir -e &#34;.[dev,server]&#34;</p>
+<p># Force pysqlite3 usage via sitecustomize.py RUN echo -e &#39;__import__(&#34;pysqlite3&#34;)\nimport sys\nsys.modules[&#34;sqlite3&#34;] = sys.modules.pop(&#34;pysqlite3&#34;)&#39; \  &gt; /opt/app-root/lib64/python3.11/site-packages/sitecustomize.py</p>
+<p>ENV MEMPALACE_HOME=/opt/app-root/data ENV PYTHONUNBUFFERED=1</p>
+<p># OpenShift uses arbitrary UID but always GID 0 RUN mkdir -p /opt/app-root/data &amp;&amp; \  chgrp -R 0 /opt/app-root/data &amp;&amp; \  chmod -R g=u /opt/app-root/data</p>
+<p>VOLUME [&#34;/opt/app-root/data&#34;] EXPOSE 8000</p>
+<p>ENTRYPOINT [&#34;mempalace-mcp-http&#34;] CMD [&#34;--host&#34;, &#34;0.0.0.0&#34;, &#34;--port&#34;, &#34;8000&#34;] To build and push your container image, use the following commands:</p>
+<p>cd /path/to/mempalace podman build -f Dockerfile.ubi -t quay.io/aicatalyst/mempalace:latest --platform linux/amd64 . podman push quay.io/aicatalyst/mempalace:latest Deploying to OpenShift To deploy MemPalace to OpenShift, use the manifests located in openshift/mempalace-deployment.yaml .</p>
+<p>Specifically, you will learn how to:</p>
+<p>Build an HTTP/WebSocket wrapper for stdio-based MCP servers  Create UBI 9 containers with ChromaDB for OpenShift deployment  Implement Kubernetes health probes for stateful AI services  Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)  Connect clients via WebSocket, REST API, or Python SDK  Understand how the MCP server pattern fits into Red Hat AI&#39;s optimized enterprise inference platform, which uses runtimes like vLLM for compute efficiency  What does MemPalace do?</p>
+<p>The deployment architecture with Red Hat AI MemPalace&#39;s MCP server traditionally runs as a local CLI tool using stdin and stdout for JSON-RPC 2.0 messages:</p>
+<p>$ mempalace-mcp --palace ~/.mempalace {&#34;jsonrpc&#34;:&#34;2.0&#34;,&#34;method&#34;:&#34;tools/list&#34;,&#34;params&#34;:{},&#34;id&#34;:1} {&#34;jsonrpc&#34;:&#34;2.0&#34;,&#34;id&#34;:1,&#34;result&#34;:{&#34;tools&#34;:[...]}} This works for local development but breaks in Kubernetes, which needs HTTP endpoints for health probes, network-accessible services for concurrent clients, and proper lifecycle management.</p>
+<p>To deploy the application, clone the repository and apply the manifests:</p>
+<p>Dockerfile.ubie/memp git clone https://github.com/aicatalyst-team/mempalace-openshift cd mempalace-openshift oc apply -k manifests/ To verify your deployment, run the following commands:</p>
+<p>$ oc get pods -n hermes-mempalace -l app=mempalace NAME READY STATUS RESTARTS AGE mempalace-579b44f54b-jkkjk 1/1 Running 0 5m</p>
+<p>$ oc run test --rm -i --image=curlimages/curl -- \  curl -s http://mempalace.hermes-mempalace.svc.cluster.local:8000/health {&#34;status&#34;:&#34;healthy&#34;,&#34;protocol&#34;:&#34;mcp-over-websocket&#34;} Why this architecture matters for OpenShift AI teams The HTTP wrapper is more than just a MemPalace feature; it&#39;s a pattern that makes the entire MCP ecosystem production-ready on Kubernetes.</p>
+<p>Clone the repository and apply the manifests to your cluster:</p>
+<p>git clone https://github.com/aicatalyst-team/mempalace-openshift cd mempalace-openshift oc apply -k manifests/ Connect your AI agents and explore structured memory:</p>
+<p>python3 -c &#34; import asyncio, json, websockets</p>
+<p>async def test():  uri = &#39;ws://mempalace.mempalace.svc.cluster.local:8000/mcp&#39;  async with websockets.connect(uri) as ws:  await ws.send(json.dumps({  &#39;jsonrpc&#39;: &#39;2.0&#39;,  &#39;method&#39;: &#39;initialize&#39;,  &#39;params&#39;: {&#39;protocolVersion&#39;: &#39;2025-11-25&#39;},  &#39;id&#39;: 1  }))  response = json.loads(await ws.recv())  print(f&#34;Connected: {response[&#39;result&#39;][&#39;serverInfo&#39;][&#39;name&#39;]}&#34;)</p>
+<p>asyncio.run(test()) &#34; The deployment includes:</p>
+<p>A UBI 9-based container configured for ChromaDB compatibility.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Python SDK The native MemPalace client provides a high-level interface for developers to interact with the context layer, abstracting away the underlying WebSocket communication.</p>
+<p>from mempalace import Client</p>
+<p>client = Client(url=&#34;ws://mempalace:8000/mcp&#34;) client.search(&#34;how does caching work&#34;) client.create_session(&#34;user-123&#34;) client.add_memory(&#34;User prefers async/await over callbacks&#34;) Command-line interface For rapid debugging and interactive exploration of your context database, you can use the CLI directly against your deployed service.</p>
+<p>mempalace --url ws://mempalace:8000/mcp status mempalace --url ws://mempalace:8000/mcp search &#34;API authentication&#34; The bigger picture MemPalace&#39;s hierarchical filesystem approach is fundamentally different from flat vector RAG. Specifically, you will learn how to:</p>
+<p>Build an HTTP/WebSocket wrapper for stdio-based MCP servers  Create UBI 9 containers with ChromaDB for OpenShift deployment  Implement Kubernetes health probes for stateful AI services  Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)  Connect clients via WebSocket, REST API, or Python SDK  Understand how the MCP server pattern fits into Red Hat AI&#39;s optimized enterprise inference platform, which uses runtimes like vLLM for compute efficiency  What does MemPalace do? It first identifies the right directory ( /projects/api-service/docs/ ), then searches within that scope, recursively drilling down through subdirectories. The deployment architecture with Red Hat AI MemPalace&#39;s MCP server traditionally runs as a local CLI tool using stdin and stdout for JSON-RPC 2.0 messages:</p>
+<p>$ mempalace-mcp --palace ~/.mempalace {&#34;jsonrpc&#34;:&#34;2.0&#34;,&#34;method&#34;:&#34;tools/list&#34;,&#34;params&#34;:{},&#34;id&#34;:1} {&#34;jsonrpc&#34;:&#34;2.0&#34;,&#34;id&#34;:1,&#34;result&#34;:{&#34;tools&#34;:[...]}} This works for local development but breaks in Kubernetes, which needs HTTP endpoints for health probes, network-accessible services for concurrent clients, and proper lifecycle management.</p>
+<p>Classified impact band: high. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>The agent forgets what it learned, what you prefer, and what you were working on.</p>
+<p>Over time, agents build context that improves their responses, not just within a single chat, but across weeks of interactions.</p>
+<p>Kubernetes-native lifecycle management The use of health probes improves service resilience.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Scaling limitations: The current deployment uses replicas: 1 because ChromaDB stores data locally. You will find this content highly relevant if you work in one of the following roles:</p>
+<p>Platform engineers deploying AI infrastructure on Red Hat OpenShift  Site reliability engineers (SREs) managing stateful machine learning workloads with persistent memory requirements  Data scientists building agentic workflows that need context across sessions  Developers integrating Model Context Protocol servers into production systems  What you&#39;ll learn By walking through this deployment, you will explore how to integrate persistent context layers with enterprise inference engines. Specifically, you will learn how to:</p>
+<p>Build an HTTP/WebSocket wrapper for stdio-based MCP servers  Create UBI 9 containers with ChromaDB for OpenShift deployment  Implement Kubernetes health probes for stateful AI services  Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)  Connect clients via WebSocket, REST API, or Python SDK  Understand how the MCP server pattern fits into Red Hat AI&#39;s optimized enterprise inference platform, which uses runtimes like vLLM for compute efficiency  What does MemPalace do?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)</li>
+            <li>Connect clients via WebSocket, REST API, or Python SDK</li>
+            <li>The interesting part is semantic search combined with directory traversal. When your agent needs to remember &#34;how authentication works in the API,&#34; MemPalace doesn&#39;t just do a vector similarity lookup across everything. </li>
+            <li>The deployment runs from quay.io/aicatalyst/mempalace:latest , a UBI 9-based container image that solves ChromaDB&#39;s sqlite3 version incompatibility (more on that below). The HTTP wrapper exposes three endpoints:</li>
+            <li>Preserve synchronous execution : ChromaDB&#39;s client isn&#39;t async-safe, and the existing MCP implementation uses module-level state. We use asyncio.to_thread() to run handle_request() in a thread pool to avoid rewriting the</li>
+            <li>FROM registry.access.redhat.com/ubi9/python-311:latest</li>
+            <li>podman build -f Dockerfile.ubi -t quay.io/aicatalyst/mempalace:latest --platform linux/amd64 .</li>
+            <li>podman push quay.io/aicatalyst/mempalace:latest Deploying to OpenShift To deploy MemPalace to OpenShift, use the manifests located in openshift/mempalace-deployment.yaml . These manifests include:</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/19/deploy-mempalace-mcp-server-red-hat-openshift-ai" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -34,5 +34,100 @@
     "email_summary": "Ryan welcomes Cricket Liu, DNS expert and Chief Evangelist at Infoblox, to the show to talk all things DNS. Impact band: high.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "94e9dcc9f59f809c",
+    "title": "Deploy MemPalace MCP Server on Red Hat OpenShift AI",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/19/deploy-mempalace-mcp-server-red-hat-openshift-ai",
+    "published": "2026-06-19T07:16:07+00:00",
+    "fetched_at": "2026-06-19T12:21:06.960369+00:00",
+    "summary": "Every AI agent shares a common problem: when the conversation ends, the context disappears. The agent forgets what it learned, what you prefer, and what you were working on. Traditional retrieval-augmented generation (RAG) systems try to patch this with vector databases, but they fragment context, pile up token costs, and behave like black boxes when retrievals go wrong.",
+    "tags": [
+      "capacity",
+      "database",
+      "deployment",
+      "kubernetes",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-19",
+    "impact": "high",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)",
+      "Connect clients via WebSocket, REST API, or Python SDK",
+      "The interesting part is semantic search combined with directory traversal. When your agent needs to remember \"how authentication works in the API,\" MemPalace doesn't just do a vector similarity lookup across everything. ",
+      "The deployment runs from quay.io/aicatalyst/mempalace:latest , a UBI 9-based container image that solves ChromaDB's sqlite3 version incompatibility (more on that below). The HTTP wrapper exposes three endpoints:",
+      "Preserve synchronous execution : ChromaDB's client isn't async-safe, and the existing MCP implementation uses module-level state. We use asyncio.to_thread() to run handle_request() in a thread pool to avoid rewriting the",
+      "FROM registry.access.redhat.com/ubi9/python-311:latest",
+      "podman build -f Dockerfile.ubi -t quay.io/aicatalyst/mempalace:latest --platform linux/amd64 .",
+      "podman push quay.io/aicatalyst/mempalace:latest Deploying to OpenShift To deploy MemPalace to OpenShift, use the manifests located in openshift/mempalace-deployment.yaml . These manifests include:"
+    ],
+    "sections": {
+      "overview": "Every AI agent shares a common problem: when the conversation ends, the context disappears. The agent forgets what it learned, what you prefer, and what you were working on. Traditional retrieval-augmented generation (RAG) systems try to patch this with vector databases, but they fragment context, pile up token costs, and behave like black boxes when retrievals go wrong.",
+      "technical_breakdown": "Dockerfile.ubi :\n\n FROM registry.access.redhat.com/ubi9/python-311:latest\n\nUSER 0\nRUN dnf install -y gcc gcc-c++ sqlite-devel && \\\n dnf clean all && rm -rf /var/cache/dnf\n\nUSER 1001\nWORKDIR /opt/app-root/src\nCOPY --chown=1001:0 . .\n\n# Install MemPalace with HTTP server dependencies\nRUN pip install --no-cache-dir pysqlite3-binary && \\\n pip install --no-cache-dir -e \".[dev,server]\"\n\n# Force pysqlite3 usage via sitecustomize.py\nRUN echo -e '__import__(\"pysqlite3\")\\nimport sys\\nsys.modules[\"sqlite3\"] = sys.modules.pop(\"pysqlite3\")' \\\n > /opt/app-root/lib64/python3.11/site-packages/sitecustomize.py\n\nENV MEMPALACE_HOME=/opt/app-root/data\nENV PYTHONUNBUFFERED=1\n\n# OpenShift uses arbitrary UID but always GID 0\nRUN mkdir -p /opt/app-root/data && \\\n chgrp -R 0 /opt/app-root/data && \\\n chmod -R g=u /opt/app-root/data\n\nVOLUME [\"/opt/app-root/data\"]\nEXPOSE 8000\n\nENTRYPOINT [\"mempalace-mcp-http\"]\nCMD [\"--host\", \"0.0.0.0\", \"--port\", \"8000\"] To build and push your container image, use the following commands:\n\n cd /path/to/mempalace\npodman build -f Dockerfile.ubi -t quay.io/aicatalyst/mempalace:latest --platform linux/amd64 .\npodman push quay.io/aicatalyst/mempalace:latest Deploying to OpenShift To deploy MemPalace to OpenShift, use the manifests located in openshift/mempalace-deployment.yaml .\n\nSpecifically, you will learn how to:\n\n Build an HTTP/WebSocket wrapper for stdio-based MCP servers\n Create UBI 9 containers with ChromaDB for OpenShift deployment\n Implement Kubernetes health probes for stateful AI services\n Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)\n Connect clients via WebSocket, REST API, or Python SDK\n Understand how the MCP server pattern fits into Red Hat AI's optimized enterprise inference platform, which uses runtimes like vLLM for compute efficiency\n What does MemPalace do?\n\nThe deployment architecture with Red Hat AI MemPalace's MCP server traditionally runs as a local CLI tool using stdin and stdout for JSON-RPC 2.0 messages:\n\n $ mempalace-mcp --palace ~/.mempalace\n{\"jsonrpc\":\"2.0\",\"method\":\"tools/list\",\"params\":{},\"id\":1}\n{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"tools\":[...]}} This works for local development but breaks in Kubernetes, which needs HTTP endpoints for health probes, network-accessible services for concurrent clients, and proper lifecycle management.\n\nTo deploy the application, clone the repository and apply the manifests:\n\n Dockerfile.ubie/memp\ngit clone https://github.com/aicatalyst-team/mempalace-openshift\ncd mempalace-openshift\noc apply -k manifests/ To verify your deployment, run the following commands:\n\n $ oc get pods -n hermes-mempalace -l app=mempalace\nNAME READY STATUS RESTARTS AGE\nmempalace-579b44f54b-jkkjk 1/1 Running 0 5m\n\n$ oc run test --rm -i --image=curlimages/curl -- \\\n curl -s http://mempalace.hermes-mempalace.svc.cluster.local:8000/health\n{\"status\":\"healthy\",\"protocol\":\"mcp-over-websocket\"} Why this architecture matters for OpenShift AI teams The HTTP wrapper is more than just a MemPalace feature; it's a pattern that makes the entire MCP ecosystem production-ready on Kubernetes.\n\nClone the repository and apply the manifests to your cluster:\n\n git clone https://github.com/aicatalyst-team/mempalace-openshift\ncd mempalace-openshift\noc apply -k manifests/ Connect your AI agents and explore structured memory:\n\n python3 -c \"\nimport asyncio, json, websockets\n\nasync def test():\n uri = 'ws://mempalace.mempalace.svc.cluster.local:8000/mcp'\n async with websockets.connect(uri) as ws:\n await ws.send(json.dumps({\n 'jsonrpc': '2.0',\n 'method': 'initialize',\n 'params': {'protocolVersion': '2025-11-25'},\n 'id': 1\n }))\n response = json.loads(await ws.recv())\n print(f\"Connected: {response['result']['serverInfo']['name']}\")\n\nasyncio.run(test())\n\" The deployment includes:\n\n A UBI 9-based container configured for ChromaDB compatibility.",
+      "impact": "Python SDK The native MemPalace client provides a high-level interface for developers to interact with the context layer, abstracting away the underlying WebSocket communication.\n\n from mempalace import Client\n\nclient = Client(url=\"ws://mempalace:8000/mcp\")\nclient.search(\"how does caching work\")\nclient.create_session(\"user-123\")\nclient.add_memory(\"User prefers async/await over callbacks\") Command-line interface For rapid debugging and interactive exploration of your context database, you can use the CLI directly against your deployed service.\n\n mempalace --url ws://mempalace:8000/mcp status\nmempalace --url ws://mempalace:8000/mcp search \"API authentication\" The bigger picture MemPalace's hierarchical filesystem approach is fundamentally different from flat vector RAG. Specifically, you will learn how to:\n\n Build an HTTP/WebSocket wrapper for stdio-based MCP servers\n Create UBI 9 containers with ChromaDB for OpenShift deployment\n Implement Kubernetes health probes for stateful AI services\n Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)\n Connect clients via WebSocket, REST API, or Python SDK\n Understand how the MCP server pattern fits into Red Hat AI's optimized enterprise inference platform, which uses runtimes like vLLM for compute efficiency\n What does MemPalace do? It first identifies the right directory ( /projects/api-service/docs/ ), then searches within that scope, recursively drilling down through subdirectories. The deployment architecture with Red Hat AI MemPalace's MCP server traditionally runs as a local CLI tool using stdin and stdout for JSON-RPC 2.0 messages:\n\n $ mempalace-mcp --palace ~/.mempalace\n{\"jsonrpc\":\"2.0\",\"method\":\"tools/list\",\"params\":{},\"id\":1}\n{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"tools\":[...]}} This works for local development but breaks in Kubernetes, which needs HTTP endpoints for health probes, network-accessible services for concurrent clients, and proper lifecycle management.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "The agent forgets what it learned, what you prefer, and what you were working on.\n\nOver time, agents build context that improves their responses, not just within a single chat, but across weeks of interactions.\n\nKubernetes-native lifecycle management The use of health probes improves service resilience.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Scaling limitations: The current deployment uses replicas: 1 because ChromaDB stores data locally. You will find this content highly relevant if you work in one of the following roles:\n\n Platform engineers deploying AI infrastructure on Red Hat OpenShift\n Site reliability engineers (SREs) managing stateful machine learning workloads with persistent memory requirements\n Data scientists building agentic workflows that need context across sessions\n Developers integrating Model Context Protocol servers into production systems\n What you'll learn By walking through this deployment, you will explore how to integrate persistent context layers with enterprise inference engines. Specifically, you will learn how to:\n\n Build an HTTP/WebSocket wrapper for stdio-based MCP servers\n Create UBI 9 containers with ChromaDB for OpenShift deployment\n Implement Kubernetes health probes for stateful AI services\n Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)\n Connect clients via WebSocket, REST API, or Python SDK\n Understand how the MCP server pattern fits into Red Hat AI's optimized enterprise inference platform, which uses runtimes like vLLM for compute efficiency\n What does MemPalace do?",
+      "incident_timeline": "Deploy production-ready MCP servers that meet restricted-v2 Security Context Constraints (SCCs)\nConnect clients via WebSocket, REST API, or Python SDK\nThe interesting part is semantic search combined with directory traversal. When your agent needs to remember \"how authentication works in the API,\" MemPalace doesn't just do a vector similarity lookup across everything. \nThe deployment runs from quay.io/aicatalyst/mempalace:latest , a UBI 9-based container image that solves ChromaDB's sqlite3 version incompatibility (more on that below). The HTTP wrapper exposes three endpoints:\nPreserve synchronous execution : ChromaDB's client isn't async-safe, and the existing MCP implementation uses module-level state. We use asyncio.to_thread() to run handle_request() in a thread pool to avoid rewriting the\nFROM registry.access.redhat.com/ubi9/python-311:latest\npodman build -f Dockerfile.ubi -t quay.io/aicatalyst/mempalace:latest --platform linux/amd64 .\npodman push quay.io/aicatalyst/mempalace:latest Deploying to OpenShift To deploy MemPalace to OpenShift, use the manifests located in openshift/mempalace-deployment.yaml . These manifests include:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Every AI agent shares a common problem: when the conversation ends, the context disappears. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "e80413fcc0da6eff",
+    "title": "Get ready for Ansible Automation Platform 2.7",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/19/get-ready-ansible-automation-platform-2-7",
+    "published": "2026-06-19T07:16:05+00:00",
+    "fetched_at": "2026-06-19T12:21:06.961247+00:00",
+    "summary": "Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes"
+    ],
+    "day": "2026-06-19",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Upgrade to Ansible Automation Platform 2.7 Ansible Automation Platform 2.7 supports upgrading from the latest version of 2.6 to containerized and OpenShift Container Platform deployments. If you are running an earlier ve",
+      "Upgrade vs. migration An upgrade changes the Ansible Automation Platform software version (for example, from 2.6 to 2.7) while keeping the same installation type and RHEL version. A migration involves changing the instal",
+      "Source Target Process Container 2.6 on RHEL 9 Container 2.7 on RHEL 9 Upgrade - direct in-place upgrade from 2.6 to 2.7 Container 2.6 on RHEL 9 Container 2.7 on RHEL 10 Migrate - upgrade to 2.7 on RHEL 9, then backup and",
+      "Learn more Upgrading to Ansible Automation Platform 2.7 delivers new tools for AI-driven automation, a streamlined developer experience, and expanded self-service capabilities. Moving to the latest version ensures your o"
+    ],
+    "sections": {
+      "overview": "Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.",
+      "technical_breakdown": "It runs all platform components as Podman-based rootless containers on top of RHEL 9 (requires RHEL 9.6 or later versions) or RHEL 10, giving you a secure, manageable deployment without requiring root access during operation.\n\nTwo topology options are available for containerized deployments:\n\n Growth topology: A smaller footprint, all-in-one deployment without redundancy, suited for organizations getting started with Ansible Automation Platform.\n\nThis requires separate VMs for platform gateway, automation controller, automation hub, event-driven, and execution nodes, with an external database and HAProxy load balancer.\n\nTwo topology options are available for OpenShift deployments:\n\n Operator growth topology: A single-node OpenShift deployment for organizations getting started on OpenShift.\n\nOperator enterprise topology: A multi-node OpenShift cluster deployment for production workloads, using external Redis, PostgreSQL, and object storage for additional scalability and reliability.",
+      "impact": "External (customer-provided) databases must run PostgreSQL 15, 16, or 17 with ICU support enabled.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.\n\nMoving to the latest version ensures your organization benefits from the latest security patches, platform improvements, and new features.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. New installation of Ansible Automation Platform 2.7 Ansible Automation Platform 2.7 offers flexible installation methods to suit your infrastructure, with support for deployments on Red Hat Enterprise Linux (RHEL) and Red Hat OpenShift . It runs all platform components as Podman-based rootless containers on top of RHEL 9 (requires RHEL 9.6 or later versions) or RHEL 10, giving you a secure, manageable deployment without requiring root access during operation.",
+      "incident_timeline": "Upgrade to Ansible Automation Platform 2.7 Ansible Automation Platform 2.7 supports upgrading from the latest version of 2.6 to containerized and OpenShift Container Platform deployments. If you are running an earlier ve\nUpgrade vs. migration An upgrade changes the Ansible Automation Platform software version (for example, from 2.6 to 2.7) while keeping the same installation type and RHEL version. A migration involves changing the instal\nSource Target Process Container 2.6 on RHEL 9 Container 2.7 on RHEL 9 Upgrade - direct in-place upgrade from 2.6 to 2.7 Container 2.6 on RHEL 9 Container 2.7 on RHEL 10 Migrate - upgrade to 2.7 on RHEL 9, then backup and\nLearn more Upgrading to Ansible Automation Platform 2.7 delivers new tools for AI-driven automation, a streamlined developer experience, and expanded self-service capabilities. Moving to the latest version ensures your o",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]

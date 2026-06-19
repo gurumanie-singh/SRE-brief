@@ -313,10 +313,6 @@
     "email_summary": "In our ongoing SIG Spotlight series, we shine a light on the groups that keep the Kubernetes project\nmoving forward. Impact band: critical.",
     "related_sources": [
       {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/06/15/using-networkmanager-permanently-set-interface-administratively-down"
-      },
-      {
         "source": "AWS News Blog",
         "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-finops-agent-in-preview-gemma-4-on-bedrock-kiro-pro-max-and-more-june-15-2026/"
       }

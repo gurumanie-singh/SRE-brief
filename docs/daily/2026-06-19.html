@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">19 June 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">3 items</span>
     </div>
   </div>
 
@@ -35,7 +35,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 high-impact reliability event surfaced</li>
+        <li>2 high-impact reliability events surfaced</li>
+        <li>Repeated coverage across Kubernetes, Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
   </div>
@@ -48,6 +50,7 @@
     </div>
     <div class="quick-filters" id="quickFilters">
       <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
         More
@@ -59,9 +62,19 @@
 
   <div class="adv-filters" id="advFilters" hidden>
     <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+      </div>
+    </div>
+    <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
       </div>
     </div>
     <div class="adv-group">
@@ -69,6 +82,11 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
       </div>
     </div>
   </div>
@@ -104,6 +122,77 @@
       <div class="detail-links">
         <a href="../articles/31b43f283a31f1c8.html" class="detail-read">Open structured brief →</a>
         <a href="https://stackoverflow.blog/2026/06/19/you-don-t-understand-dns-like-you-think-you-do/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,deployment,kubernetes,networking,outage,scaling"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="capacity and scale"
+       data-title="deploy mempalace mcp server on red hat openshift ai"
+       data-id="94e9dcc9f59f809c"
+       data-published="2026-06-19T07:16:07+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-19T07:16:07+00:00" title="19 June 2026, 02:16">19 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Deploy MemPalace MCP Server on Red Hat OpenShift AI</h3>
+      <p class="card-summary">Every AI agent shares a common problem: when the conversation ends, the context disappears. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Every AI agent shares a common problem: when the conversation ends, the context disappears. The agent forgets what it learned, what you prefer, and what you were working on. Traditional retrieval-augmented generation (RAG) systems try to patch this with vector databases, but they fragment context, pile up token costs, and behave like black boxes when retrievals go wrong.</p></div>
+      <div class="detail-links">
+        <a href="../articles/94e9dcc9f59f809c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/19/deploy-mempalace-mcp-server-red-hat-openshift-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="get ready for ansible automation platform 2.7"
+       data-id="e80413fcc0da6eff"
+       data-published="2026-06-19T07:16:05+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-19T07:16:05+00:00" title="19 June 2026, 02:16">19 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Get ready for Ansible Automation Platform 2.7</h3>
+      <p class="card-summary">Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Red Hat Ansible Automation Platform 2.7 is now generally available . Whether you are planning a new deployment or upgrading from an existing installation, this guide covers what you need to know before you get started. We will include support installation methods, infrastructure requirements, and the upgrade paths available from version 2.6.</p></div>
+      <div class="detail-links">
+        <a href="../articles/e80413fcc0da6eff.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/19/get-ready-ansible-automation-platform-2-7" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
