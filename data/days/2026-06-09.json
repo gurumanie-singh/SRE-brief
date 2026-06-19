@@ -158,12 +158,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "EvalHub ships with a default provider set that covers most general-purpose evaluation needs: lm-evaluation-harness for capability benchmarks, Garak for safety probes, GuideLLM for infrastructure profiling, LightEval for fast capability checks, and MTEB for embedding quality. For many teams, that is enough.",
-    "related_sources": [
-      {
-        "source": "GitHub Blog",
-        "link": "https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

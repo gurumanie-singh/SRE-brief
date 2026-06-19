@@ -1,5 +1,78 @@
 [
   {
+    "id": "82276ed37b76990a",
+    "title": "Dispatches from O'Reilly: From capabilities to responsibilities​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/19/dispatches-from-o-reilly-from-capabilities-to-responsibilities/",
+    "published": "2026-06-19T14:00:00+00:00",
+    "fetched_at": "2026-06-19T16:17:01.870999+00:00",
+    "summary": "Designing contract-bound AI agents for high-stakes...",
+    "tags": [],
+    "day": "2026-06-19",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Dispatches from O'Reilly: From capabilities to responsibilities​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌. Designing contract-bound AI agents for high-stakes...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Designing contract-bound AI agents for high-stakes…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1e79ca1433c83b33",
+    "title": "Temporary Cloudflare Accounts for AI agents",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/temporary-accounts/",
+    "published": "2026-06-19T13:00:00+00:00",
+    "fetched_at": "2026-06-19T16:16:59.924581+00:00",
+    "summary": "Everyone's writing code with AI agents today. But the moment an agent needs to deploy something — and needs to sign up and create an account — it slams face-first into a wall built for humans: a browser-based OAuth flow, a dashboard to click through, an API token to copy-paste, a multi-factor authentication prompt to satisfy. For an interactive copilot sitting next to a developer, that's...",
+    "tags": [
+      "database",
+      "deployment",
+      "observability"
+    ],
+    "day": "2026-06-19",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare",
+      "Stripe"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Make sure you’re using the latest Wrangler release , fire up your favorite coding agent, and write a prompt to deploy a \"hello world\" app in build mode:",
+      "Make a very simple hello world Cloudflare Worker in TypeScript and deploy it using wrangler, don't ask me questions, do the best you can",
+      "This is just one way we’re eliminating the signup barrier for agents. We recently announced a partnership with Stripe and a new protocol we co-designed that lets agents provision Cloudflare on behalf of their users — cre"
+    ],
+    "sections": {
+      "overview": "Everyone's writing code with AI agents today. But the moment an agent needs to deploy something — and needs to sign up and create an account — it slams face-first into a wall built for humans: a browser-based OAuth flow, a dashboard to click through, an API token to copy-paste, a multi-factor authentication prompt to satisfy. For an interactive copilot sitting next to a developer, that's annoying.",
+      "technical_breakdown": "But the moment an agent needs to deploy something — and needs to sign up and create an account — it slams face-first into a wall built for humans: a browser-based OAuth flow, a dashboard to click through, an API token to copy-paste, a multi-factor authentication prompt to satisfy.\n\nThis temporary deployment stays live for 60 minutes, during which time you can claim the temporary account, making it permanently your own.\n\nWhy frictionless deployments matter for AI agents \n \n \n \n \n Frictionless temporary accounts matter more than it might first seem:\n\n Background AI sessions have no human in the loop, and are becoming the norm .\n\nThey need cheap, throwaway deployment targets, so they can curl their own output and decide whether they got it right.\n\nThis is great, but agentic coding is often not about one single deployment.",
+      "impact": "This temporary deployment stays live for 60 minutes, during which time you can claim the temporary account, making it permanently your own. If you do not claim these temporary accounts within 60 minutes, they will be automatically deleted. We recently announced a partnership with Stripe and a new protocol we co-designed that lets agents provision Cloudflare on behalf of their users — creating an account, starting a subscription, registering a domain, and getting an API token to deploy code, with no copy-pasting tokens or entering credit card details.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Point your agent at Cloudflare, see how far it gets, and tell us what we can improve or what delights you — share what you’ve built on X or hop into the Cloudflare Community .",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. This temporary deployment stays live for 60 minutes, during which time you can claim the temporary account, making it permanently your own. Why frictionless deployments matter for AI agents \n \n \n \n \n Frictionless temporary accounts matter more than it might first seem:\n\n Background AI sessions have no human in the loop, and are becoming the norm . They need cheap, throwaway deployment targets, so they can curl their own output and decide whether they got it right.",
+      "incident_timeline": "Make sure you’re using the latest Wrangler release , fire up your favorite coding agent, and write a prompt to deploy a \"hello world\" app in build mode:\nMake a very simple hello world Cloudflare Worker in TypeScript and deploy it using wrangler, don't ask me questions, do the best you can\nThis is just one way we’re eliminating the signup barrier for agents. We recently announced a partnership with Stripe and a new protocol we co-designed that lets agents provision Cloudflare on behalf of their users — cre",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Everyone's writing code with AI agents today. But the moment an agent needs to deploy something — and needs to sign up and create an account — it slams face-first into a wall built for humans: a browser-based OAuth flow, a dashboard to click through, an API token to copy-paste, a multi-factor authentication prompt to satisfy.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "31b43f283a31f1c8",
     "title": "You don’t understand DNS like you think you do​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌‌​﻿‌‌‌‌​﻿​﻿‌‌‌​‌​﻿​​﻿‌​﻿​​﻿‌​﻿​​﻿​​﻿​​​﻿​﻿​﻿‌​﻿‌​‌​​﻿​​​﻿‌﻿​﻿‌‌​​﻿​‌‌​‌​﻿​﻿‌​﻿‌​﻿‌‌‌​‌​‌​﻿‌‌​﻿​﻿​﻿​‌‌​‌‌‌​‌​﻿​﻿‌‌​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌‌​﻿‌‌‌‌​﻿​﻿‌‌‌​‌​﻿​​﻿‌​﻿​​﻿‌​﻿​​﻿​​﻿​​​﻿​﻿​﻿‌​﻿‌​‌​​﻿​​​﻿‌﻿​﻿‌‌​​﻿​‌‌​‌​﻿​﻿‌​﻿‌​﻿‌‌‌​‌​‌​﻿‌‌​﻿​﻿​﻿​‌‌​‌‌‌​‌​﻿​﻿‌‌​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
@@ -84,7 +157,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Every AI agent shares a common problem: when the conversation ends, the context disappears. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/how-we-built-an-internal-data-analytics-agent/"
+      }
+    ],
     "highlighted": false
   },
   {
