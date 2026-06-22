@@ -1,5 +1,54 @@
 [
   {
+    "id": "ab8a4fd5bc291341",
+    "title": "How we found a bug in the hyper HTTP library",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/hyper-bug/",
+    "published": "2026-06-22T18:00:00+00:00",
+    "fetched_at": "2026-06-22T21:09:28.886419+00:00",
+    "summary": "The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network. To handle client connections, we use hyper , an open-source HTTP library for Rust.",
+    "tags": [
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-22",
+    "impact": "high",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": true,
+    "root_cause": "dns issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Shortly after rollout, we received reports that transformation requests from the binding were failing — but only intermittently and only for larger images. Even stranger, the responses for these requests returned a 200 s",
+      "Hyper manages the connection on the Images service’s side, reading incoming requests from the socket and writing responses back to it.",
+      "When a request uses the Images binding, the Images service reads the input, performs the requested optimization operations, and encodes the result. It then passes the entire encoded image to hyper as a single in-memory b",
+      "All incoming traffic on Cloudflare's network passes through FL, an internal intermediary service that runs security and performance features and routes requests to the appropriate backend. When we first launched the bind",
+      "The internal binding replaced these with Unix sockets to directly connect the services on the same machine, bypassing FL and the overhead of the network stack. This made the request path to Images faster and gave the tea",
+      "The first sign of trouble came from a customer with a non-standard setup: two layers of image processing, where one pipeline was nested inside another.",
+      "The outer pipeline received HTTP 200 from the inner one, with a Content-Length header that promised several megabytes. The actual body was only a fraction of that: In one request, only ~200 KB arrived out of an expected ",
+      "From here, we worked inward through the request path, testing each layer to isolate where the truncation was happening. Some of these efforts hit dead ends; others left breadcrumbs that narrowed the search:"
+    ],
+    "sections": {
+      "overview": "The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network. To handle client connections, we use hyper , an open-source HTTP library for Rust. Last year, we introduced the Images binding to enable custom, programmatic workflows for processing remote images in Workers.",
+      "technical_breakdown": "The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network.\n\nIn the original architecture, data moved through FL over network sockets; this path carried the overhead of FL’s full processing pipeline, such as DNS lookups and routing.\n\nTo see what the system was actually doing, we attached strace to the Images service. strace records the syscalls that a process makes to the kernel, which could show us exactly which bytes were written, when a shutdown was called, and whether the client sent any termination signal.\n\nFor example, this may look like:\n\n sendto(42, \"HTTP/1.1 200 OK\\r\\nContent-Length: 14991808\\r\\n...\", ...) = 219264\nsendto(42, \"\\xff\\xd8\\xff\\xe0...\", 292352) = 292352\n// ... keeps writing until buffer drains ...\nsendto(42, \"...\", 292352) = 292352\nshutdown(42, SHUT_WR) = 0 \n When we reproduced the bug, a failing request looked like:\n\n sendto(42, \"HTTP/1.1 200 OK\\r\\nContent-Length: 14991808\\r\\n...\", ...) = 219264\nshutdown(42, SHUT_WR) = 0 \n Here, there is only one write — just enough for the headers and a sliver of the body — before the shutdown is immediately called.\n\nOur breakthrough came from using kernel-level tooling with strace , the one layer that records what actually happened on the socket.",
+      "impact": "We spent six weeks chasing a nearly invisible bug — a race condition that occurred only under specific conditions — in the hyper library that impacted how the Images binding returned processed image data back to the client. Neither issue affected our particular service (where keepalive is disabled), but both could affect other hyper users if the fix were contributed upstream. To handle client connections, we use hyper , an open-source HTTP library for Rust. Within days of the rollout, we received our first customer report.\n\n \n 200 OK (not OK) \n \n \n \n \n The first sign of trouble came from a customer with a non-standard setup: two layers of image processing, where one pipeline was nested inside another.\n\nClassified impact band: high. Affected layer signal: edge — cdn.",
+      "resolution": "In the end, it took four lines of code to fix it.\n\nIt also lets you apply optimization parameters in any order, rather than following the fixed sequence imposed by the URL interface .\n\nBut the bug appeared in each version, which meant that there wasn’t an upstream fix.\n\nDon’t forget to flush \n \n \n \n \n After weeks of investigation, the fix itself was conceptually simple.",
+      "lessons_learned": "These few milliseconds of backpressure, introduced by an improvement that made everything else faster, were all it took to surface a flaw that had been hiding in plain sight.",
+      "root_cause_highlight": "Likely root-cause theme: dns issue. If the reader on the other end is fast, then hyper can flush everything in one pass — the outbound buffer will have room because the reader is consuming data as quickly as it arrives. In the original architecture, data moved through FL over network sockets; this path carried the overhead of FL’s full processing pipeline, such as DNS lookups and routing.",
+      "incident_timeline": "Shortly after rollout, we received reports that transformation requests from the binding were failing — but only intermittently and only for larger images. Even stranger, the responses for these requests returned a 200 s\nHyper manages the connection on the Images service’s side, reading incoming requests from the socket and writing responses back to it.\nWhen a request uses the Images binding, the Images service reads the input, performs the requested optimization operations, and encodes the result. It then passes the entire encoded image to hyper as a single in-memory b\nAll incoming traffic on Cloudflare's network passes through FL, an internal intermediary service that runs security and performance features and routes requests to the appropriate backend. When we first launched the bind\nThe internal binding replaced these with Unix sockets to directly connect the services on the same machine, bypassing FL and the overhead of the network stack. This made the request path to Images faster and gave the tea\nThe first sign of trouble came from a customer with a non-standard setup: two layers of image processing, where one pipeline was nested inside another.\nThe outer pipeline received HTTP 200 from the inner one, with a Content-Length header that promised several megabytes. The actual body was only a fraction of that: In one request, only ~200 KB arrived out of an expected \nFrom here, we worked inward through the request path, testing each layer to isolate where the truncation was happening. Some of these efforts hit dead ends; others left breadcrumbs that narrowed the search:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "6c1a4488e1775765",
     "title": "From pledge to practice: Building a more inclusive open source ecosystem",
     "source": "GitHub Blog",
@@ -34,7 +83,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Last year, GitHub took a pledge to help improve the accessibility of open source , centered on three goals:\n\n \n Empower people with disabilities to contribute to open source. Increase the availability and adoption of open source assistive technologies.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-ny-summit-recap-local-zone-in-hanoi-grok-4-3-in-bedrock-price-reductions-and-more-june-22-2026/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -225,12 +279,7 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "With the release of Red Hat Enterprise Linux 10.2 (also available in RHEL 9.8), system accounts is an exciting new feature in Identity Management in Red Hat Enterprise Linux (IdM). This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our identity-centric system.",
-    "related_sources": [
-      {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-ny-summit-recap-local-zone-in-hanoi-grok-4-3-in-bedrock-price-reductions-and-more-june-22-2026/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   }
 ]

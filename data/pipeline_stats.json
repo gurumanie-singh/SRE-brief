@@ -13,7 +13,7 @@
         "ok": false,
         "entries_raw": 0,
         "entries_accepted": 0,
-        "error": "zero entries (bozo=True <urlopen error timed out>)"
+        "error": "zero entries (bozo=True <unknown>:139:4: mismatched tag)"
       },
       {
         "name": "AWS News Blog",
@@ -101,13 +101,13 @@
     "retention_max_days": 30,
     "retention_cutoff_day": "2026-05-23",
     "incoming_total": 258,
-    "incoming_after_retention": 114,
-    "dropped_by_retention": 144,
-    "new_articles_this_run": 38,
+    "incoming_after_retention": 115,
+    "dropped_by_retention": 143,
+    "new_articles_this_run": 36,
     "day_files_touched": 16,
-    "total_articles_on_disk": 135,
+    "total_articles_on_disk": 136,
     "day_json_file_count": 21,
     "warnings": []
   },
-  "written_at": "2026-06-22T17:51:07.849926+00:00"
+  "written_at": "2026-06-22T21:09:32.127614+00:00"
 }

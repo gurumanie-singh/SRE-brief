@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How we found a bug in the hyper HTTP library — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-22.html" class="back-link">← 22 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">22 June 2026, 13:00</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+        <span class="card-action-badge">Ops priority</span>
+      </div>
+
+      <h1 class="title">How we found a bug in the hyper HTTP library</h1>
+
+      <p class="subtitle">The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network. Impact band: high.</p>
+
+      <div class="article-action-banner">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        This item is flagged for operational follow-up — see resolution and lessons sections.
+      </div>
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>dns issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network. Impact band: high.</p>
+      <p class="quick-take-action">Review mitigation and verification steps in the resolution section.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network. To handle client connections, we use hyper , an open-source HTTP library for Rust. Last year, we introduced the Images binding to enable custom, programmatic workflows for processing remote images in Workers.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>The Images service, built in Rust on Workers , runs on every machine in Cloudflare’s edge network.</p>
+<p>In the original architecture, data moved through FL over network sockets; this path carried the overhead of FL’s full processing pipeline, such as DNS lookups and routing.</p>
+<p>To see what the system was actually doing, we attached strace to the Images service. strace records the syscalls that a process makes to the kernel, which could show us exactly which bytes were written, when a shutdown was called, and whether the client sent any termination signal.</p>
+<p>For example, this may look like:</p>
+<p>sendto(42, &#34;HTTP/1.1 200 OK\r\nContent-Length: 14991808\r\n...&#34;, ...) = 219264 sendto(42, &#34;\xff\xd8\xff\xe0...&#34;, 292352) = 292352 // ... keeps writing until buffer drains ... sendto(42, &#34;...&#34;, 292352) = 292352 shutdown(42, SHUT_WR) = 0   When we reproduced the bug, a failing request looked like:</p>
+<p>sendto(42, &#34;HTTP/1.1 200 OK\r\nContent-Length: 14991808\r\n...&#34;, ...) = 219264 shutdown(42, SHUT_WR) = 0   Here, there is only one write — just enough for the headers and a sliver of the body — before the shutdown is immediately called.</p>
+<p>Our breakthrough came from using kernel-level tooling with strace , the one layer that records what actually happened on the socket.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>We spent six weeks chasing a nearly invisible bug — a race condition that occurred only under specific conditions — in the hyper library that impacted how the Images binding returned processed image data back to the client. Neither issue affected our particular service (where keepalive is disabled), but both could affect other hyper users if the fix were contributed upstream. To handle client connections, we use hyper , an open-source HTTP library for Rust. Within days of the rollout, we received our first customer report.</p>
+<p>200 OK (not OK)           The first sign of trouble came from a customer with a non-standard setup: two layers of image processing, where one pipeline was nested inside another.</p>
+<p>Classified impact band: high. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>In the end, it took four lines of code to fix it.</p>
+<p>It also lets you apply optimization parameters in any order, rather than following the fixed sequence imposed by the URL interface .</p>
+<p>But the bug appeared in each version, which meant that there wasn’t an upstream fix.</p>
+<p>Don’t forget to flush           After weeks of investigation, the fix itself was conceptually simple.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>These few milliseconds of backpressure, introduced by an improvement that made everything else faster, were all it took to surface a flaw that had been hiding in plain sight.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: dns issue. If the reader on the other end is fast, then hyper can flush everything in one pass — the outbound buffer will have room because the reader is consuming data as quickly as it arrives. In the original architecture, data moved through FL over network sockets; this path carried the overhead of FL’s full processing pipeline, such as DNS lookups and routing.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Shortly after rollout, we received reports that transformation requests from the binding were failing — but only intermittently and only for larger images. Even stranger, the responses for these requests returned a 200 s</li>
+            <li>Hyper manages the connection on the Images service’s side, reading incoming requests from the socket and writing responses back to it.</li>
+            <li>When a request uses the Images binding, the Images service reads the input, performs the requested optimization operations, and encodes the result. It then passes the entire encoded image to hyper as a single in-memory b</li>
+            <li>All incoming traffic on Cloudflare&#39;s network passes through FL, an internal intermediary service that runs security and performance features and routes requests to the appropriate backend. When we first launched the bind</li>
+            <li>The internal binding replaced these with Unix sockets to directly connect the services on the same machine, bypassing FL and the overhead of the network stack. This made the request path to Images faster and gave the tea</li>
+            <li>The first sign of trouble came from a customer with a non-standard setup: two layers of image processing, where one pipeline was nested inside another.</li>
+            <li>The outer pipeline received HTTP 200 from the inner one, with a Content-Length header that promised several megabytes. The actual body was only a fraction of that: In one request, only ~200 KB arrived out of an expected </li>
+            <li>From here, we worked inward through the request path, testing each layer to isolate where the truncation was happening. Some of these efforts hit dead ends; others left breadcrumbs that narrowed the search:</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/hyper-bug/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
