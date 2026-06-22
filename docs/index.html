@@ -28,13 +28,13 @@
       <h1 class="brief-title">22 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-22T01:41:31.083990-05:00">22 June 2026, 01:41</time>
+        <time data-iso="2026-06-22T08:01:06.012699-05:00">22 June 2026, 08:01</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">2 high impact</span>
-      <span class="stat">5 items today</span>
+      <span class="stat stat-high">1 high impact</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -42,9 +42,8 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>2 high-impact reliability events surfaced</li>
-        <li>Repeated coverage across Kubernetes, Red Hat</li>
-        <li>Multiple outage or availability narratives detected</li>
+        <li>1 high-impact reliability event surfaced</li>
+        <li>Repeated coverage across Red Hat</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
@@ -55,7 +54,7 @@
         <span class="trend-pill">openshift<span class="trend-count">3</span></span>
         <span class="trend-pill">automation<span class="trend-count">3</span></span>
         <span class="trend-pill">amazon<span class="trend-count">3</span></span>
-        <span class="trend-pill">evaluation<span class="trend-count">2</span></span>
+        <span class="trend-pill">inference<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -90,10 +89,10 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
       </div>
@@ -114,9 +113,9 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
@@ -125,6 +124,83 @@
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      22 June 2026
+      <span class="day-count">2</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--high"
+       data-tags="capacity,deployment,latency,networking,observability,outage,scaling"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="designing distributed ai inference: core concepts and scaling dimensions"
+       data-id="2bedc2ec424f37a1"
+       data-published="2026-06-22T07:01:07+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-22T07:01:07+00:00" title="22 June 2026, 02:01">22 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Designing distributed AI inference: Core concepts and scaling dimensions</h3>
+      <p class="card-summary">Choosing a model-serving engine like vLLM is a crucial first step for enterprise AI inference, but it&#39;s only the foundation. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Choosing a model-serving engine like vLLM is a crucial first step for enterprise AI inference, but it&#39;s only the foundation. By itself, a runtime does not dictate how a service scales, operates, or balances cost against performance in production. Think of this blog post as the mental models you need before you touch a config file.</p></div>
+      <div class="detail-links">
+        <a href="articles/2bedc2ec424f37a1.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/22/designing-distributed-ai-inference-core-concepts-and-scaling-dimensions" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,networking"
+       data-vendors="HashiCorp,Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="how to integrate cyberark with identity management"
+       data-id="022b5b51eafadb4c"
+       data-published="2026-06-22T07:01:05+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">HashiCorp</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-22T07:01:05+00:00" title="22 June 2026, 02:01">22 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">How to integrate CyberArk with Identity Management</h3>
+      <p class="card-summary">With the release of Red Hat Enterprise Linux 10.2 (also available in RHEL 9.8), system accounts is an exciting new feature in Identity Management in Red Hat Enterprise Linux (IdM). This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our identity-centric system.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>With the release of Red Hat Enterprise Linux 10.2 (also available in RHEL 9.8), system accounts is an exciting new feature in Identity Management in Red Hat Enterprise Linux (IdM). This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our identity-centric system. Through extensive research into customer use cases, we identified one particular high-demand capability: enabling password rotation for regular users in IdM systems.</p></div>
+      <div class="detail-links">
+        <a href="articles/022b5b51eafadb4c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/22/how-integrate-cyberark-identity-management" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       19 June 2026
@@ -1070,7 +1146,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       15 June 2026
-      <span class="day-count">4</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -1140,70 +1216,6 @@
       <div class="detail-links">
         <a href="articles/6cb3f40f04851add.html" class="detail-read">Open structured brief →</a>
         <a href="https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-overview-of-common-slash-commands/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors="GitHub"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="accelerating researchers and developers building multilingual ai with a new open dataset"
-       data-id="1b870a720380846e"
-       data-published="2026-06-15T19:17:30+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-06-15T19:17:30+00:00" title="15 June 2026, 14:17">15 June 2026, 14:17</time>
-      </div>
-      <h3 class="card-title">Accelerating researchers and developers building multilingual AI with a new open dataset</h3>
-      <p class="card-summary">Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">GitHub Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Software may be written in programming languages, but human language is at the heart of developer collaboration. Developers explain how projects work in READMEs. They ask for help in issues.</p></div>
-      <div class="detail-links">
-        <a href="articles/1b870a720380846e.html" class="detail-read">Open structured brief →</a>
-        <a href="https://github.blog/ai-and-ml/llms/accelerating-researchers-and-developers-building-multilingual-ai-with-a-new-open-dataset/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="selenium vs cypress vs playwright: choosing your test automation framework​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌"
-       data-id="a810f6fcecf06f42"
-       data-published="2026-06-15T15:22:54+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-06-15T15:22:54+00:00" title="15 June 2026, 10:22">15 June 2026, 10:22</time>
-      </div>
-      <h3 class="card-title">Selenium vs Cypress vs Playwright: Choosing Your Test Automation Framework​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</h3>
-      <p class="card-summary">Selenium vs Cypress vs Playwright: Choosing Your Test Automation...</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Selenium vs Cypress vs Playwright: Choosing Your Test Automation Framework​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌﻿​﻿‌​​﻿‌﻿‌​‌‌‌‌‌‌​‌‌​‌​﻿‌​﻿‌​​﻿​‌​﻿​‌‌‌​﻿‌​﻿‌​​﻿​‌​﻿​‌​﻿​﻿​﻿‌​﻿‌​﻿‌​​﻿‌﻿​﻿‌‌​﻿‌​﻿‌‌​﻿‌‌​‌‌‌‌‌‌‌​​﻿​‌‌​​﻿‌﻿​﻿​‌‌​​﻿‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌. Selenium vs Cypress vs Playwright: Choosing Your Test Automation...</p></div>
-      <div class="detail-links">
-        <a href="articles/a810f6fcecf06f42.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/06/15/selenium-vs-cypress-vs-playwright-choosing-your-test-automation-framework/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

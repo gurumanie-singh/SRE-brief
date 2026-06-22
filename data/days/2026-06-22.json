@@ -1,0 +1,98 @@
+[
+  {
+    "id": "2bedc2ec424f37a1",
+    "title": "Designing distributed AI inference: Core concepts and scaling dimensions",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/22/designing-distributed-ai-inference-core-concepts-and-scaling-dimensions",
+    "published": "2026-06-22T07:01:07+00:00",
+    "fetched_at": "2026-06-22T13:01:05.795180+00:00",
+    "summary": "Choosing a model-serving engine like vLLM is a crucial first step for enterprise AI inference, but it's only the foundation. By itself, a runtime does not dictate how a service scales, operates, or balances cost against performance in production.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-22",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "network edge",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Think of this blog post as the mental models you need before you touch a config file. We will establish the core vocabulary of inference, break down the inherent structural tension between token generation phases (prefil",
+      "In this three-part series, we design the serving blueprint by mapping a model's needs, a hardware budget, and service-level objectives onto the deployment manifests that fit the actual workload. No single blueprint fits ",
+      "How many requests arrive at once",
+      "How much reasoning each request demands",
+      "We map business needs to a few short-listed major KPIs: time to first token (TTFT), time per output token (TPOT, or inter-token latency), throughput in requests per second and tokens per second, GPU utilization, and key-",
+      "Three key things have developed in the ecosystem since the blog post Why vLLM is the best choice for AI inference today was published:",
+      "Speculative decoding is moving from research technique to practical optimization path. EAGLE 3.1, a collaboration between the EAGLE team, the vLLM team, and TorchSpec, landed in late May 2026 with materially better long-",
+      "The second path is to split them across heterogeneous pools and route each request through both. The threshold for that split is not a model size or a token count, but a measurable imbalance between the two phases—one la"
+    ],
+    "sections": {
+      "overview": "Choosing a model-serving engine like vLLM is a crucial first step for enterprise AI inference, but it's only the foundation. By itself, a runtime does not dictate how a service scales, operates, or balances cost against performance in production. Think of this blog post as the mental models you need before you touch a config file.",
+      "technical_breakdown": "For platform teams, this means cache architecture is now a first-class design decision: it affects latency, network requirements, failure handling, observability, hardware affinity, and the sizing of prefill and decode pools.\n\nCommon pitfalls include:\n\n Stacking more DP replicas without checking for API-server bottlenecks\n Ignoring KV cache hit rate and MoE synchronization overhead\n Underestimating multi-node network costs\n Context parallelism Context parallelism (CP) shards the sequence (context) dimension across GPUs, so that a single request's context no longer has to fit, or be computed, on one device.\n\nNo single blueprint fits every case, because the workload is shaped by the business behind it:\n\n How many requests arrive at once\n How long the prompts and contexts run\n The subject-matter domain\n How much reasoning each request demands\n We map business needs to a few short-listed major KPIs: time to first token (TTFT), time per output token (TPOT, or inter-token latency), throughput in requests per second and tokens per second, GPU utilization, and key-value (KV) cache hit rate.\n\nThese models are useful anchors because they span a realistic enterprise serving spectrum: smaller dense models for general-purpose latency-sensitive workloads, mid-sized MoE models for cost-efficient throughput, and larger MoE models for high-capability workloads that stress routing, memory, and distributed execution.\n\nThis phase tends to be memory-bandwidth-bound: it stresses HBM capacity and bandwidth more than raw compute, and it is the primary driver of time per output token (TPOT), also called inter-token latency.",
+      "impact": "The business-level symptoms follow directly: a fleet tuned only for decode feels responsive in chat while burning capacity on prefill-heavy work, and a fleet tuned only for prefill posts healthy aggregate tokens per second while making interactive users wait too long for the first token. Now that you have the essential mental models down, it's time to pull the practical engineering levers that directly control your bottom line and user experience.\n\nClassified impact band: high. Affected layer signal: network edge.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "We will establish the core vocabulary of inference, break down the inherent structural tension between token generation phases (prefill versus decode), and map out the dimensions of parallelism required to control your infrastructure's baseline limits.\n\nEAGLE 3.1, a collaboration between the EAGLE team, the vLLM team, and TorchSpec, landed in late May 2026 with materially better long-context acceptance length than EAGLE-3.\n\nIn our upcoming articles, we will look at the deployment patterns and performance updates that help you achieve an efficient deployment.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. This is the default shape for single-GPU vLLM deployments, and it remains the right answer for many small and medium-sized fleets because it is simpler to operate and avoids KV cache transfer overhead. While the previous blog post introduced the first four dimensions, context parallelism has become a first-class fifth dimension because Qwen3.5's native 262,000-token context makes it unavoidable for any serious long-context deployment. Because DCP costs no additional GPUs and directly reduces KV duplication, it is the one most deployments should reach first.",
+      "incident_timeline": "Think of this blog post as the mental models you need before you touch a config file. We will establish the core vocabulary of inference, break down the inherent structural tension between token generation phases (prefil\nIn this three-part series, we design the serving blueprint by mapping a model's needs, a hardware budget, and service-level objectives onto the deployment manifests that fit the actual workload. No single blueprint fits \nHow many requests arrive at once\nHow much reasoning each request demands\nWe map business needs to a few short-listed major KPIs: time to first token (TTFT), time per output token (TPOT, or inter-token latency), throughput in requests per second and tokens per second, GPU utilization, and key-\nThree key things have developed in the ecosystem since the blog post Why vLLM is the best choice for AI inference today was published:\nSpeculative decoding is moving from research technique to practical optimization path. EAGLE 3.1, a collaboration between the EAGLE team, the vLLM team, and TorchSpec, landed in late May 2026 with materially better long-\nThe second path is to split them across heterogeneous pools and route each request through both. The threshold for that split is not a model size or a token count, but a measurable imbalance between the two phases—one la",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Choosing a model-serving engine like vLLM is a crucial first step for enterprise AI inference, but it's only the foundation. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "022b5b51eafadb4c",
+    "title": "How to integrate CyberArk with Identity Management",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/22/how-integrate-cyberark-identity-management",
+    "published": "2026-06-22T07:01:05+00:00",
+    "fetched_at": "2026-06-22T13:01:05.796474+00:00",
+    "summary": "With the release of Red Hat Enterprise Linux 10.2 (also available in RHEL 9.8), system accounts is an exciting new feature in Identity Management in Red Hat Enterprise Linux (IdM). This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our...",
+    "tags": [
+      "deployment",
+      "networking"
+    ],
+    "day": "2026-06-22",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "networking",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Strategic customers helped define, validate, and test the use case through their TAMs.",
+      "The sysaccounts feature addresses these challenges by providing dedicated accounts that can be granted fine-grained permissions while remaining exempt from user-oriented requirements, such as OTP enforcement and mandator",
+      "Password for admin@IPA.TEST: <some_admin_password>",
+      "ipa: WARNING: Password reset permission is local to server server.ipa.test.",
+      "Restart the Directory Server services on it. Run the command 'ipa sysaccount-policy' against each server you want to allow or disable to reset passwords on.",
+      "30/03/2026 05:14:36.950 | Info -> PluginsRunner :: RunPlugin -> --------------------------------- Plugin Section Start --------------------------------------",
+      "30/03/2026 05:14:36.950 | Info -> Change :: run -> START",
+      "30/03/2026 05:14:36.950 | Info -> BaseAction :: InitParameters -> START"
+    ],
+    "sections": {
+      "overview": "With the release of Red Hat Enterprise Linux 10.2 (also available in RHEL 9.8), system accounts is an exciting new feature in Identity Management in Red Hat Enterprise Linux (IdM). This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our identity-centric system. Through extensive research into customer use cases, we identified one particular high-demand capability: enabling password rotation for regular users in IdM systems.",
+      "technical_breakdown": "Special thanks to the Palo Alto Networks (CyberArk) team, especially Tologon Eshimkanov and Niels van Bennekom, for their close collaboration, technical expertise, and continued support throughout the development and validation of this integration.\n\nBenefits of sysaccounts The sysaccounts feature bypasses the reset on next login requirement as well as OTP constraints (when enforced in the environment), while still enforcing password complexity and length policies.\n\nThe reset on next login behavior is particularly important because it makes regular user accounts unsuitable for automated password management workflows.\n\nIf we use a standard user account to perform password rotations, every password change forces the user to reset the password again at the next login, effectively breaking the automation process.\n\nThis approach enables secure application integration without compromising the overall security posture of the deployment.",
+      "impact": "Through extensive research into customer use cases, we identified one particular high-demand capability: enabling password rotation for regular users in IdM systems. Traditionally, passwords set in IdM for user accounts are static, and customers often rely on complex external solutions to rotate them within their environments. This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our identity-centric system. CyberArk is the primary credential password management provider deployed across many customer environments.\n\nClassified impact band: medium. Affected layer signal: networking.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Next, we will walk through the setup of system accounts.\n\nNext, we will continue with the roles: \n\n [root@server /]# ipa role-add 'cyberark role'\n--------------------------\nAdded role \"cyberark role\"\n--------------------------\n Role name: cyberark role\n[root@server /]# ipa role-add-privilege 'cyberark role' --privilege 'cyberark change privilege'\n Role name: cyberark role\n Privileges: cyberark change privilege\n----------------------------\nNumber of privileges added 1\n----------------------------\n[root@server /]# ipa role-add-member 'cyberark role' --sysaccounts 'cyberark'\n Role name: cyberark role\n Privileges: cyberark change privilege\n Member system accounts: cyberark\n-------------------------\nNumber of members added 1\n------------------------- Lastly, you will run: \n\n [root@server /]# ipa sysaccount-policy cyberark --privileged=TRUE\nipa: WARNING: Password reset permission is local to server server.ipa.test.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. The reset on next login behavior is particularly important because it makes regular user accounts unsuitable for automated password management workflows. This approach enables secure application integration without compromising the overall security posture of the deployment. It is important to clearly distinguish between these two account types because each serves a different purpose within the system.",
+      "incident_timeline": "Strategic customers helped define, validate, and test the use case through their TAMs.\nThe sysaccounts feature addresses these challenges by providing dedicated accounts that can be granted fine-grained permissions while remaining exempt from user-oriented requirements, such as OTP enforcement and mandator\nPassword for admin@IPA.TEST: <some_admin_password>\nipa: WARNING: Password reset permission is local to server server.ipa.test.\nRestart the Directory Server services on it. Run the command 'ipa sysaccount-policy' against each server you want to allow or disable to reset passwords on.\n30/03/2026 05:14:36.950 | Info -> PluginsRunner :: RunPlugin -> --------------------------------- Plugin Section Start --------------------------------------\n30/03/2026 05:14:36.950 | Info -> Change :: run -> START\n30/03/2026 05:14:36.950 | Info -> BaseAction :: InitParameters -> START",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "With the release of Red Hat Enterprise Linux 10.2 (also available in RHEL 9.8), system accounts is an exciting new feature in Identity Management in Red Hat Enterprise Linux (IdM). This feature introduces a separate class of accounts within IdM designed to enable fine-grained access control for operations performed on regular user accounts without compromising the security properties of our identity-centric system.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
