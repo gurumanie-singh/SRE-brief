@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Human-Augmenting Agentic Workflow for Causal Inference — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-19.html" class="back-link">← 19 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Netflix TechBlog</span>
+        <span class="card-date">19 June 2026, 18:53</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">A Human-Augmenting Agentic Workflow for Causal Inference</h1>
+
+      <p class="subtitle">By Winston Chou, Adrien Alexandre, Lars Olds, Yi Zhang, Garrett Hagemann, and Nathan Kallus
+
+ Introduction Imagine asking a data agent to analyze the causal relationship between two variables, such as the effect of watching a popular Netflix show on long-term member retention. It queries your data, runs a regression, and confidently returns an answer.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Netflix</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">By Winston Chou, Adrien Alexandre, Lars Olds, Yi Zhang, Garrett Hagemann, and Nathan Kallus
+
+ Introduction Imagine asking a data agent to analyze the causal relationship between two variables, such as the effect of watching a popular Netflix show on long-term member retention. It queries your data, runs a regression, and confidently returns an answer.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>By Winston Chou, Adrien Alexandre, Lars Olds, Yi Zhang, Garrett Hagemann, and Nathan Kallus</p>
+<p>Introduction Imagine asking a data agent to analyze the causal relationship between two variables, such as the effect of watching a popular Netflix show on long-term member retention. It queries your data, runs a regression, and confidently returns an answer. How much should you trust it?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>In this blog post, we share an agentic workflow for performing OCI under unconfoundedness .</p>
+<p>This post describes the principles behind our workflow and gives a case study of its deployment at Netflix.</p>
+<p>We built this toolkit — largely in a pre-AI world — to answer “point-in-time” causal questions, such as “what is the effect of playing a Netflix game on member retention?” or “what is the effect of watching a highly popular show on subsequent engagement?” Questions of this kind inform business strategy, guide metric development, and contribute to a rich understanding of what drives member satisfaction.</p>
+<p>For any point-in-time OCI question, we ask “what is the ideal A/B test for addressing this question?” This A/B test may be expensive, slow, or even infeasible to run.</p>
+<p>To make the target trial analogy actionable, our toolkit embeds a series of design diagnostics .</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Principles Our workflow has three key personas:</p>
+<p>Principal  — the human user (e.g., data scientist) whose goal is to provide a thorough and correct analysis  Actor  — the software persona that performs the analysis, including diagnostics  Critic  — the software persona that synthesizes results, identifies gaps, and offers suggestions to improve the analysis  Our agent orchestrates the latter two personas in an actor-critic loop: specifying and triggering the analysis as the actor, then interpreting results and diagnosing flaws as the critic. We diagram this workflow below:</p>
+<p>Case Study — Estimating the Impact of New Entertainment Types In recent years, we have added a wide variety of entertainment types beyond streaming video to Netflix. To analyze the impact of one of these new entertainment types, which we will call Type X, we wrote a simple analysis plan specifying our</p>
+<p>Treatment : Days engaging with Type X (or “Type X days” for short)  Outcome : Two-month retention  Potential confounders , including pre-treatment Type X days  To establish a baseline, we fed this analysis plan without additional scaffolding to Claude Sonnet 4.6, a powerful yet accessible general-purpose model. The first users of any new offering are likely to be systematically different from the general population.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>To this end, we are open-sourcing a standalone version of our oci-agent so that OCI practitioners can model workflows on and suggest improvements to it.</p>
+<p>Principles Our workflow has three key personas:</p>
+<p>Principal  — the human user (e.g., data scientist) whose goal is to provide a thorough and correct analysis  Actor  — the software persona that performs the analysis, including diagnostics  Critic  — the software persona that synthesizes results, identifies gaps, and offers suggestions to improve the analysis  Our agent orchestrates the latter two personas in an actor-critic loop: specifying and triggering the analysis as the actor, then interpreting results and diagnosing flaws as the critic.</p>
+<p>To analyze the impact of one of these new entertainment types, which we will call Type X, we wrote a simple analysis plan specifying our</p>
+<p>Treatment : Days engaging with Type X (or “Type X days” for short)  Outcome : Two-month retention  Potential confounders , including pre-treatment Type X days  To establish a baseline, we fed this analysis plan without additional scaffolding to Claude Sonnet 4.6, a powerful yet accessible general-purpose model.</p>
+<p>Note that we separate out the RMSE and coverage of:</p>
+<p>All 231 estimates (purple dot)  The 192 satisfactory estimates (blue star)  The 39 unsatisfactory estimates (red dot)  As the plot shows, when aided by our diagnostic suite, the critic agent is able to separate good estimates from bad estimates: the satisfactory estimates have much lower RMSE and better calibrated confidence intervals than do the unsatisfactory estimates.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. This post describes the principles behind our workflow and gives a case study of its deployment at Netflix. Specify if and how the estimand differs from the Average Treatment Effect (ATE), for example due to propensity score trimming. A key limitation of our public repo is that, due to the synthetic nature of the underlying datasets, it doesn’t pressure-test our agent’s semantic understanding or performance on real-world OCI tasks.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>We designed this workflow with OCI practitioners in mind. Although OCI requires context and care to do well, aspects of it — e.g., checking and rechecking covariate balance, conducting sensitivity analyses, and keeping t</li>
+            <li>To this end, we are open-sourcing a standalone version of our oci-agent so that OCI practitioners can model workflows on and suggest improvements to it. We also share evaluations of our agent on the 2016 Atlantic Causal </li>
+            <li>Philosophy Our workflow is built on top of Netflix’s pre-existing OCI toolkit. We built this toolkit — largely in a pre-AI world — to answer “point-in-time” causal questions, such as “what is the effect of playing a Netf</li>
+            <li>Our toolkit is guided by a “ target trial emulation ” philosophy. For any point-in-time OCI question, we ask “what is the ideal A/B test for addressing this question?” This A/B test may be expensive, slow, or even infeas</li>
+            <li>Placebo outcome. The “treatment effect” on variables measured prior to the treatment should not be significantly different from zero.</li>
+            <li>Sensitivity to hidden confounders. Findings of treatment effects are contextualized by sensitivity to hypothetical omitted variables that explain both treatment and outcome.</li>
+            <li>Critic  — the software persona that synthesizes results, identifies gaps, and offers suggestions to improve the analysis</li>
+            <li>Our agent orchestrates the latter two personas in an actor-critic loop: specifying and triggering the analysis as the actor, then interpreting results and diagnosing flaws as the critic.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://netflixtechblog.com/a-human-augmenting-agentic-workflow-for-causal-inference-4623f0a9c5af?source=rss----2615bd06b42e---4" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Netflix TechBlog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

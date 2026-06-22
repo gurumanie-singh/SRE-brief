@@ -31,12 +31,7 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "As enterprises continue to converge around identity-centric security as the foundation of their platform strategy, the ability to consistently manage identities and access across systems has become critical. SCIM brings a standardized, interoperable approach to identity lifecycle management.",
-    "related_sources": [
-      {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-aws-resilience-hub-for-generative-ai-based-sre-resilience-journey/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

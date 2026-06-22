@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">19 June 2026</h1>
-      <span class="brief-sub">5 items</span>
+      <span class="brief-sub">11 items</span>
     </div>
   </div>
 
@@ -35,8 +35,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>2 high-impact reliability events surfaced</li>
-        <li>Repeated coverage across Kubernetes, Red Hat</li>
+        <li>2 critical incident signals in the feed window</li>
+        <li>2 stories flagged for operational follow-up</li>
+        <li>Repeated coverage across Netflix, Kubernetes</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -49,6 +50,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
       <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
@@ -64,8 +66,10 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
@@ -74,27 +78,261 @@
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--action card--critical"
+       data-tags="deployment,latency,observability,outage,postmortem"
+       data-vendors="Netflix"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="the data canary: how netflix validates catalog metadata"
+       data-id="8c0720eff501cf50"
+       data-published="2026-06-19T23:54:17+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:54:17+00:00" title="19 June 2026, 18:54">19 June 2026, 18:54</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">The Data Canary: How Netflix Validates Catalog Metadata</h3>
+      <p class="card-summary">By Celina Amados 
+
+ At Netflix, our catalog metadata is crucial to our member experience, and a single corrupted data state can impact millions of viewers immediately. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>By Celina Amados</p>
+<p>At Netflix, our catalog metadata is crucial to our member experience, and a single corrupted data state can impact millions of viewers immediately. To protect streaming reliability, we built an automated data canary system that validates data transformations using production traffic. This canary detects issues in under 10 minutes, and blocks bad data from reaching our members.</p></div>
+      <div class="detail-links">
+        <a href="../articles/8c0720eff501cf50.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/the-data-canary-how-netflix-validates-catalog-metadata-18b699d58e36?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="observability,outage,postmortem"
+       data-vendors="Netflix"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="predicting risk in content launches: how data-driven insights can transform launch planning"
+       data-id="953f54ae5c9bd3bc"
+       data-published="2026-06-19T23:53:47+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:53:47+00:00" title="19 June 2026, 18:53">19 June 2026, 18:53</time>
+      </div>
+      <h3 class="card-title">Predicting Risk in Content Launches: How Data-Driven Insights can Transform Launch Planning</h3>
+      <p class="card-summary">by Emily Gill 
+
+ Each year, we bring the Analytics Engineering community together for an Analytics Summit — a multi-day internal conference to share analytical deliverables across Netflix, discuss analytic practice, and build relationships within the community. This post is one of several topics presented at the Summit highlighting the breadth and impact of Analytics work across different areas of the business.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+          <span class="ttag">postmortem</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>by Emily Gill</p>
+<p>Each year, we bring the Analytics Engineering community together for an Analytics Summit — a multi-day internal conference to share analytical deliverables across Netflix, discuss analytic practice, and build relationships within the community. This post is one of several topics presented at the Summit highlighting the breadth and impact of Analytics work across different areas of the business. Understanding Risk in Content Launches Every title you see on Netflix goes through several key phases: Development, Pre-Production, Production/Principal Photography, Post-Production, and finally, Launch Preparation, all leading up to the Title Launch.</p></div>
+      <div class="detail-links">
+        <a href="../articles/953f54ae5c9bd3bc.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/predicting-risk-in-content-launches-how-data-driven-insights-can-transform-launch-planning-587b1f2de928?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--action card--medium"
+       data-tags="deployment,observability,outage,scaling"
+       data-vendors="Netflix"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="the evolution of cassandra data movement at netflix"
+       data-id="129e889b31d8be30"
+       data-published="2026-06-19T23:53:30+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:53:30+00:00" title="19 June 2026, 18:53">19 June 2026, 18:53</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">The Evolution of Cassandra Data Movement at Netflix</h3>
+      <p class="card-summary">By Guil Pires , Jennifer Prince , Jose Camacho , Ken Kurzweil , Phanindra Chunduru 
+
+ Background In a previous post, we introduced Data Bridge , a unified management plane for batch Data Movement at Netflix. Historically, several bespoke Data Movement connectors were developed across different engineering organizations to fulfill their specific requirements.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+          <span class="ttag">scaling</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>By Guil Pires , Jennifer Prince , Jose Camacho , Ken Kurzweil , Phanindra Chunduru</p>
+<p>Background In a previous post, we introduced Data Bridge , a unified management plane for batch Data Movement at Netflix. Historically, several bespoke Data Movement connectors were developed across different engineering organizations to fulfill their specific requirements. Over the last few years, the Data Movement team has started centralizing these offerings through an abstraction that provides a catalog of connectors, along with simple UI and APIs to initiate Data Movement jobs.</p></div>
+      <div class="detail-links">
+        <a href="../articles/129e889b31d8be30.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/the-evolution-of-cassandra-data-movement-at-netflix-6e13329c80a1?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="latency,observability,outage"
+       data-vendors="Netflix"
+       data-impact="high"
+       data-theme="observability"
+       data-title="thinking fast &amp; slow for a personalized notification system"
+       data-id="246310a556cceb4d"
+       data-published="2026-06-19T23:53:16+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:53:16+00:00" title="19 June 2026, 18:53">19 June 2026, 18:53</time>
+      </div>
+      <h3 class="card-title">Thinking Fast &amp; Slow for a Personalized Notification System</h3>
+      <p class="card-summary">by Matthew Wood , Ishan Gupta , Kevin Mercurio, Devon Bryant , and Claire Dorman 
+
+ In his seminal book “Thinking, Fast and Slow,” Daniel Kahneman describes two systems that drive human cognition: System 1, which operates automatically and quickly with little effort, and System 2, which allocates attention to more challenging mental activities requiring deliberate focus. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>by Matthew Wood , Ishan Gupta , Kevin Mercurio, Devon Bryant , and Claire Dorman</p>
+<p>In his seminal book “Thinking, Fast and Slow,” Daniel Kahneman describes two systems that drive human cognition: System 1, which operates automatically and quickly with little effort, and System 2, which allocates attention to more challenging mental activities requiring deliberate focus. This dual-process theory has profound implications not just for understanding human behavior, but for designing intelligent systems that must balance immediate responsiveness with strategic foresight. Similar “plan vs. act” decompositions show up in other domains too — for example, robotics and autonomous driving often separate a slower planning layer (setting goals and constraints over longer horizons) from faster control and execution loops, and modern LLM agents frequently pair deliberate planning with rapid, step-by-step tool use and reaction.</p></div>
+      <div class="detail-links">
+        <a href="../articles/246310a556cceb4d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/thinking-fast-slow-for-a-personalized-notification-system-4d89b26525cd?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,latency,outage,scaling"
+       data-vendors="Netflix"
+       data-impact="medium"
+       data-theme="capacity and scale"
+       data-title="a human-augmenting agentic workflow for causal inference"
+       data-id="b9f8bc6029ac8574"
+       data-published="2026-06-19T23:53:06+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:53:06+00:00" title="19 June 2026, 18:53">19 June 2026, 18:53</time>
+      </div>
+      <h3 class="card-title">A Human-Augmenting Agentic Workflow for Causal Inference</h3>
+      <p class="card-summary">By Winston Chou, Adrien Alexandre, Lars Olds, Yi Zhang, Garrett Hagemann, and Nathan Kallus
+
+ Introduction Imagine asking a data agent to analyze the causal relationship between two variables, such as the effect of watching a popular Netflix show on long-term member retention. It queries your data, runs a regression, and confidently returns an answer.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">outage</span>
+          <span class="ttag">scaling</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>By Winston Chou, Adrien Alexandre, Lars Olds, Yi Zhang, Garrett Hagemann, and Nathan Kallus</p>
+<p>Introduction Imagine asking a data agent to analyze the causal relationship between two variables, such as the effect of watching a popular Netflix show on long-term member retention. It queries your data, runs a regression, and confidently returns an answer. How much should you trust it?</p></div>
+      <div class="detail-links">
+        <a href="../articles/b9f8bc6029ac8574.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/a-human-augmenting-agentic-workflow-for-causal-inference-4623f0a9c5af?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--critical"
+       data-tags="database,deployment,latency,networking,observability,outage,postmortem,scaling"
+       data-vendors="AWS,Netflix"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="netflix built a real-time service dependency map"
+       data-id="fc1c813857287050"
+       data-published="2026-06-19T23:52:02+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">AWS</span><span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:52:02+00:00" title="19 June 2026, 18:52">19 June 2026, 18:52</time>
+      </div>
+      <h3 class="card-title">Netflix Built a Real-Time Service Dependency Map</h3>
+      <p class="card-summary">By Parth Jain , Rakesh Sukumar , Yingwu Zhao , Renzo Sanchez-Silva &amp; Nathan Fisher 
+How we built a living map of our distributed infrastructure to help engineers understand dependencies, troubleshoot faster, and keep Netflix running smoothly for our members around the world. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>By Parth Jain , Rakesh Sukumar , Yingwu Zhao , Renzo Sanchez-Silva &amp; Nathan Fisher  How we built a living map of our distributed infrastructure to help engineers understand dependencies, troubleshoot faster, and keep Netflix running smoothly for our members around the world. The Puzzle with a Thousand Pieces Picture this: It’s 3am, and an engineer gets paged. One of our critical services is showing elevated error rates.</p></div>
+      <div class="detail-links">
+        <a href="../articles/fc1c813857287050.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/from-silos-to-service-topology-why-netflix-built-a-real-time-service-map-0165ba13a7bc?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""
@@ -222,7 +460,7 @@
           <span class="ttag">kubernetes</span>
         </div>
       </div>
-      <div class="card-related">Also: GitHub Blog</div>
+      <div class="card-related">Also: Netflix TechBlog, Netflix TechBlog, GitHub Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">

@@ -44,7 +44,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "As a developer advocate working with web and mobile application developers, I’ve often heard about the need to maintain consistent user authentication in the unlikely event of a regional service interruption. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Netflix TechBlog",
+        "link": "https://netflixtechblog.com/dynamically-splitting-wide-partitions-in-cassandra-for-time-series-workloads-0eded064f456?source=rss----2615bd06b42e---4"
+      }
+    ],
     "highlighted": false
   },
   {
