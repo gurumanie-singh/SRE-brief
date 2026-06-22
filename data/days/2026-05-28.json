@@ -122,10 +122,6 @@
     "email_summary": "In early 2023, Slack faced a foundational challenge: serving Large Language Models (LLMs) at enterprise scale with the security, reliability, and performance our customers expect. Impact band: critical.",
     "related_sources": [
       {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-amazon-opensearch-serverless-for-building-your-agentic-ai-applications/"
-      },
-      {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/our-unified-data-platform/"
       }

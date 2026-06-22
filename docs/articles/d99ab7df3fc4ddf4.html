@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Right-sizing recommendations with MCOA and Perses dashboards — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-22.html" class="back-link">← 22 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">22 June 2026, 09:26</span>
+        <span class="card-severity high" title="High Impact">High Impact</span>
+        <span class="card-action-badge">Ops priority</span>
+      </div>
+
+      <h1 class="title">Right-sizing recommendations with MCOA and Perses dashboards</h1>
+
+      <p class="subtitle">Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments. Impact band: high.</p>
+
+      <div class="article-action-banner">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        This item is flagged for operational follow-up — see resolution and lessons sections.
+      </div>
+
+      <div class="article-tags">
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments. Impact band: high.</p>
+      <p class="quick-take-action">Review mitigation and verification steps in the resolution section.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments. This feature has matured through developer preview , technology preview for namespaces and Red Hat OpenShift Virtualization , and ultimately reached GA. Now, we are excited to announce the developer preview of right-sizing recommendations powered by Perses dashboards delivered through the m ulticluster observability add-on (MCOA) as part of the Red Hat Advanced Cluster Management for Kubernetes 2.17 release.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Now, we are excited to announce the developer preview of right-sizing recommendations powered by Perses dashboards delivered through the m ulticluster observability add-on (MCOA) as part of the Red Hat Advanced Cluster Management for Kubernetes 2.17 release.</p>
+<p>Each VM name is a clickable link that navigates to a dedicated detail dashboard showing (Figure 6-9):</p>
+<p>Stat panels for CPU/memory over-estimation or under-estimation, usage, request, and utilization   Time-series charts depicting CPU and memory utilization over time for the selected VM   We can filter the information by cluster, namespace, and preferred time aggregation (e.g., 5/10/30/60/90 days).</p>
+<p>Prerequisites:</p>
+<p>Red Hat Advanced Cluster Management for Kubernetes 2.17   Multicluster observability operator (MCO) installed on the hub   Multicluster observability add-on (MCOA) deployed   Observability components (Prometheus, Thanos, Perses) active   OpenShift Virtualization enabled on managed clusters for virtualization right-sizing   Enable right-sizing with Perses dashboards To try the enhanced delivery model and Perses dashboards, use a single command to activate the new experience:</p>
+<p>kubectl annotate mco observability \ observability.open-cluster-management.io/right-sizing-capable=v1 It switches right-sizing to the modern add-on framework.</p>
+<p>By default, the configuration to your MultiClusterObservability CR on the hub cluster will be enabled for both namespace and virtualization right-sizing, and it will automatically:</p>
+<p>Deploy Prometheus recording rules to managed clusters via ManifestWorks   Configure metric forwarding through the observability pipeline   Register Perses dashboards with the hub&#39;s Perses server   Once it is done, access the dashboards through the Red Hat Advanced Cluster Management console under Observability → Dashboards or navigate directly to Red Hat Advanced Cluster Management right-sizing namespace and Red Hat Advanced Cluster Management right-sizing OpenShift Virtualization .</p>
+<p>Enabling right-sizing automatically deploys three resources to each matching managed cluster:</p>
+<p>PrometheusRules in openshift-monitoring : Recording rules that aggregate raw platform metrics (CPU, memory, quotas, and for virtualization: KubeVirt vCPU and memory) into the acm_rs:* and acm_rs_vm:* metric families at 5-minute and 1-day granularity.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments. It cleans up legacy policy resources automatically, Perses dashboards appear in the OpenShift console, and preserves all existing customizations (filters, thresholds, cluster targeting): no downtime, no manual migration. Right-sizing metrics are pre-configured in the observability metrics allowlist ( observability-metrics-allowlist ), so the existing metrics collector on each managed cluster picks up the right-sizing metrics and forwards them to the hub without any additional user configuration. What&#39;s next This developer preview marks the beginning of the transition from Grafana to Perses for right-sizing visualization in Red Hat Advanced Cluster Management with general availability (GA) targeted for the next release.</p>
+<p>Classified impact band: high. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>To opt out with instant rollback:</p>
+<p>kubectl annotate mco observability \ observability.open-cluster-management.io/right-sizing-capable- This removes the annotation and reverts to the previous delivery model immediately: no data loss, no disruption.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments.</p>
+<p>Now, we are excited to announce the developer preview of right-sizing recommendations powered by Perses dashboards delivered through the m ulticluster observability add-on (MCOA) as part of the Red Hat Advanced Cluster Management for Kubernetes 2.17 release.</p>
+<p>Start by selecting the cluster you would like to explore, the recommendation profile, and preferred aggregation period from the dropdown at the top of the dashboard (Figure 1).</p>
+<p>Figure 1: This is the dropdown at the top of the dashboard for the cluster, recommendation profile, and preferred aggregation period.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. This represents a process of significant architectural evolution, migrating from Grafana to Perses as the visualization layer, while also moving the right-sizing logic into the MCOA for a cleaner, more modular deployment model.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Interactive data links: Tables support clickable links that drill down from namespace-level overview to workload-level and pod-level detail views, enabling a fluid top-down investigation flow.</li>
+            <li>Dashboards as code: Right-sizing dashboards defined in Go using the Perses SDK, making them testable, reviewable, and maintainable through standard software engineering practices.</li>
+            <li>Cluster-level summary: At the top, four stat panels show CPU recommendation, usage, request, and utilization for the selected cluster. It presents these four metrics for memory, giving administrators a complete picture o</li>
+            <li>Namespace quota tables: Detailed tables for both CPU and memory display per-namespace Utilization %, Usage, Request, Recommendation, and Request Hard (Figure 2-3).</li>
+            <li>Four stat panels summarize the current state across all VMs in the selected cluster and namespace: Total CPU Overestimation (cores that can be reclaimed, highlighted in red), Total CPU Underestimation (additional cores n</li>
+            <li>Four interactive tables provide granular per-VM analysis for CPU overestimation: CPU Underestimation, Memory Overestimation, and Memory Underestimation. Each table shows VM Name, Namespace, Utilization %, Usage, Request,</li>
+            <li>Stat panels for CPU/memory over-estimation or under-estimation, usage, request, and utilization</li>
+            <li>Figure 6: This displays the VM level CPU overestimation for virtualization right-sizing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/22/right-sizing-recommendations-mcoa-and-perses-dashboards" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
