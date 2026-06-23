@@ -1,0 +1,48 @@
+[
+  {
+    "id": "217e80dda8e8d35b",
+    "title": "Toward More Controllable AI Video Editing: An Early Research Exploration at Netflix",
+    "source": "Netflix TechBlog",
+    "link": "https://netflixtechblog.com/toward-more-controllable-ai-video-editing-an-early-research-exploration-at-netflix-eb8160ed60a2?source=rss----2615bd06b42e---4",
+    "published": "2026-06-23T00:31:01+00:00",
+    "fetched_at": "2026-06-23T04:13:42.019446+00:00",
+    "summary": "By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush ",
+    "tags": [
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-23",
+    "impact": "medium",
+    "vendors": [
+      "Netflix"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Vera : a layered video diffusion model. Vera generates only what needs to change as separate edit layers while leaving the rest of the video untouched, preserving the identities, performances, and other details from the ",
+      "Architecture of Vera compared to other methods. We train two Vera variants: 1.3B and 14B parameters. Evaluations and Results To evaluate Vera, we curated a benchmark of test video-prompt pairs: 72 for object addition and",
+      "In our results, both Vera-1.3B and Vera-14B significantly outperform existing baselines on content preservation, while maintaining similar video quality and instruction compliance performance compared to strongest baseli",
+      "User study on test set: Vera-1.3B vs. five strong baselines. VOID: Video Object and Interaction Deletion Existing video object removal methods excel at inpainting content “behind” the object and correcting appearance-lev",
+      "Overview of VOID’s two-pass inference pipeline. Training Data We built on top of the Kubric simulation engine and the HUMOTO human motion capture dataset to generate synthetic counterfactual video pairs along with their ",
+      "Comparison of VOID with other strong baselines (please see more examples on VOID’s project website ). To complement our quantitative evaluation, we conducted a user study with 25 creative reviewers to measure the percept",
+      "User study on real-world test examples: VOID vs. six baselines. Looking Ahead Applying AI in ways that serve both member and creator needs is core to our research philosophy, and these projects reflect that approach. Whi",
+      "These limitations motivate continued investment in this line of research. Vera and VOID are important early efforts toward making complex video editing more controllable and accessible for artists. For this work, we used"
+    ],
+    "sections": {
+      "overview": "By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush \n\n Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love. To connect stories with diverse audiences around the world, we produce promotional assets, including trailers, teasers, and social short‑form videos, that build on and elevate the original footage. Through close collaboration with the teams crafting these assets, we identified a recurring gap in current tools.",
+      "technical_breakdown": "By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush \n\n Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love.\n\nWe’re deliberate about where and how AI is applied, ensuring that the technology always serves the creative intent.\n\nAlong with this blog post, we’re also publicly releasing the research papers that detail the algorithmic innovations behind Vera and VOID .\n\nVera: A Layered Video Diffusion Model Existing video editing models regenerate the entire clip, coupling the intended edit with regions that should remain unchanged.\n\nBy design, Vera supports complex tasks such as object addition and background change, while ensuring that the pixels outside the edited regions from the source video remain perfectly intact.",
+      "impact": "A VLM-based reasoning pipeline then analyzes the scene to identify other regions that will be causally affected, e.g., objects that will fall, collide, or change trajectory. The quadmasks then capture the removed object (black), the affected regions (grey), their overlaps (dark grey), and the unchanged parts of the scene (white). These tasks typically demand hours of specialized manual editing work. Vera: A Layered Video Diffusion Model Existing video editing models regenerate the entire clip, coupling the intended edit with regions that should remain unchanged.\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "This subset improves compositing and editing in more complex, dynamic scenes.\n\nModel Training During model training for VOID, we introduce two improvements over prior work: (i) quadmask conditioning, which explicitly identifies regions in each frame that may change after the object is removed, and (ii) a second-pass video appearance refiner that reduces artifacts such as unwanted object morphing.\n\nEvaluations and Results Experiments across both synthetic and real data demonstrate that VOID preserves consistent scene dynamics far better than prior video object removal methods (please see the paper for full results).",
+      "root_cause_highlight": "",
+      "incident_timeline": "Vera : a layered video diffusion model. Vera generates only what needs to change as separate edit layers while leaving the rest of the video untouched, preserving the identities, performances, and other details from the \nArchitecture of Vera compared to other methods. We train two Vera variants: 1.3B and 14B parameters. Evaluations and Results To evaluate Vera, we curated a benchmark of test video-prompt pairs: 72 for object addition and\nIn our results, both Vera-1.3B and Vera-14B significantly outperform existing baselines on content preservation, while maintaining similar video quality and instruction compliance performance compared to strongest baseli\nUser study on test set: Vera-1.3B vs. five strong baselines. VOID: Video Object and Interaction Deletion Existing video object removal methods excel at inpainting content “behind” the object and correcting appearance-lev\nOverview of VOID’s two-pass inference pipeline. Training Data We built on top of the Kubric simulation engine and the HUMOTO human motion capture dataset to generate synthetic counterfactual video pairs along with their \nComparison of VOID with other strong baselines (please see more examples on VOID’s project website ). To complement our quantitative evaluation, we conducted a user study with 25 creative reviewers to measure the percept\nUser study on real-world test examples: VOID vs. six baselines. Looking Ahead Applying AI in ways that serve both member and creator needs is core to our research philosophy, and these projects reflect that approach. Whi\nThese limitations motivate continued investment in this line of research. Vera and VOID are important early efforts toward making complex video editing more controllable and accessible for artists. For this work, we used",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush \n\n Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love. To connect stories with diverse audiences around the world, we produce promotional assets, including trailers, teasers, and social short‑form videos, that build on and elevate the original footage.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

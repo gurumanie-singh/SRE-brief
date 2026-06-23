@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toward More Controllable AI Video Editing: An Early Research Exploration at Netflix — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-23.html" class="back-link">← 23 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Netflix TechBlog</span>
+        <span class="card-date">22 June 2026, 19:31</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Toward More Controllable AI Video Editing: An Early Research Exploration at Netflix</h1>
+
+      <p class="subtitle">By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush 
+
+ Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love. To connect stories with diverse audiences around the world, we produce promotional assets, including trailers, teasers, and social short‑form videos, that build on and elevate the original footage.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Netflix</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>cloud — aws</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush 
+
+ Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love. To connect stories with diverse audiences around the world, we produce promotional assets, including trailers, teasers, and social short‑form videos, that build on and elevate the original footage.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush</p>
+<p>Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love. To connect stories with diverse audiences around the world, we produce promotional assets, including trailers, teasers, and social short‑form videos, that build on and elevate the original footage. Through close collaboration with the teams crafting these assets, we identified a recurring gap in current tools.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>By Zhuoning Yuan , Ta-Ying Cheng , Benjamin Klein , Bahareh Azarnoush</p>
+<p>Introduction At Netflix, we build technology to help storytellers bring their creative visions to life and to help members discover the stories they love.</p>
+<p>We’re deliberate about where and how AI is applied, ensuring that the technology always serves the creative intent.</p>
+<p>Along with this blog post, we’re also publicly releasing the research papers that detail the algorithmic innovations behind Vera and VOID .</p>
+<p>Vera: A Layered Video Diffusion Model Existing video editing models regenerate the entire clip, coupling the intended edit with regions that should remain unchanged.</p>
+<p>By design, Vera supports complex tasks such as object addition and background change, while ensuring that the pixels outside the edited regions from the source video remain perfectly intact.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>A VLM-based reasoning pipeline then analyzes the scene to identify other regions that will be causally affected, e.g., objects that will fall, collide, or change trajectory. The quadmasks then capture the removed object (black), the affected regions (grey), their overlaps (dark grey), and the unchanged parts of the scene (white). These tasks typically demand hours of specialized manual editing work. Vera: A Layered Video Diffusion Model Existing video editing models regenerate the entire clip, coupling the intended edit with regions that should remain unchanged.</p>
+<p>Classified impact band: medium. Affected layer signal: cloud — aws.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>This subset improves compositing and editing in more complex, dynamic scenes.</p>
+<p>Model Training During model training for VOID, we introduce two improvements over prior work: (i) quadmask conditioning, which explicitly identifies regions in each frame that may change after the object is removed, and (ii) a second-pass video appearance refiner that reduces artifacts such as unwanted object morphing.</p>
+<p>Evaluations and Results Experiments across both synthetic and real data demonstrate that VOID preserves consistent scene dynamics far better than prior video object removal methods (please see the paper for full results).</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Vera : a layered video diffusion model. Vera generates only what needs to change as separate edit layers while leaving the rest of the video untouched, preserving the identities, performances, and other details from the </li>
+            <li>Architecture of Vera compared to other methods. We train two Vera variants: 1.3B and 14B parameters. Evaluations and Results To evaluate Vera, we curated a benchmark of test video-prompt pairs: 72 for object addition and</li>
+            <li>In our results, both Vera-1.3B and Vera-14B significantly outperform existing baselines on content preservation, while maintaining similar video quality and instruction compliance performance compared to strongest baseli</li>
+            <li>User study on test set: Vera-1.3B vs. five strong baselines. VOID: Video Object and Interaction Deletion Existing video object removal methods excel at inpainting content “behind” the object and correcting appearance-lev</li>
+            <li>Overview of VOID’s two-pass inference pipeline. Training Data We built on top of the Kubric simulation engine and the HUMOTO human motion capture dataset to generate synthetic counterfactual video pairs along with their </li>
+            <li>Comparison of VOID with other strong baselines (please see more examples on VOID’s project website ). To complement our quantitative evaluation, we conducted a user study with 25 creative reviewers to measure the percept</li>
+            <li>User study on real-world test examples: VOID vs. six baselines. Looking Ahead Applying AI in ways that serve both member and creator needs is core to our research philosophy, and these projects reflect that approach. Whi</li>
+            <li>These limitations motivate continued investment in this line of research. Vera and VOID are important early efforts toward making complex video editing more controllable and accessible for artists. For this work, we used</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://netflixtechblog.com/toward-more-controllable-ai-video-editing-an-early-research-exploration-at-netflix-eb8160ed60a2?source=rss----2615bd06b42e---4" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Netflix TechBlog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
