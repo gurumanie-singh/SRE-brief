@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a custom Red Hat Enterprise Linux kernel for NVIDIA DGX Spark — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-23.html" class="back-link">← 23 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">23 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Building a custom Red Hat Enterprise Linux kernel for NVIDIA DGX Spark</h1>
+
+      <p class="subtitle">The NVIDIA DGX Spark platform, powered by the NVIDIA GB10 Grace Blackwell Superchip, requires a custom kernel build to enable compatibility with Red Hat Enterprise Linux (RHEL) 10. This guide walks through building the latest RHEL 10 development kernel and the corresponding NVIDIA graphics processing unit (GPU) driver from source.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">deployment</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>general production</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">The NVIDIA DGX Spark platform, powered by the NVIDIA GB10 Grace Blackwell Superchip, requires a custom kernel build to enable compatibility with Red Hat Enterprise Linux (RHEL) 10. This guide walks through building the latest RHEL 10 development kernel and the corresponding NVIDIA graphics processing unit (GPU) driver from source.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>The NVIDIA DGX Spark platform, powered by the NVIDIA GB10 Grace Blackwell Superchip, requires a custom kernel build to enable compatibility with Red Hat Enterprise Linux (RHEL) 10. This guide walks through building the latest RHEL 10 development kernel and the corresponding NVIDIA graphics processing unit (GPU) driver from source. By the end, you&#39;ll have an NVIDIA DGX Spark Founder&#39;s Edition running CentOS Stream 10 with a custom RHEL kernel, NVIDIA drivers, and CUDA toolkit installed.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Baseline knowledge:</p>
+<p>Familiarity with RPM package builds and spec files  Working knowledge of kernel compilation workflows  Comfort with the command line and basic git operations  Tools and dependencies: The build system requires the following dependencies :</p>
+<p>If using RHEL 10 as the build system, enable the codeready-builder repository :</p>
+<p>sudo subscription-manager repos --enable codeready-builder-for-rhel-10-aarch64-rpms Install the base required packages for kernel building :</p>
+<p>sudo dnf -y install git make Obtain the kernel source Starting in your home directory, clone the RHEL 10 kernel repository customized for the GB10 platform:</p>
+<p>git clone https://gitlab.com/redhat/edge/kernel/nvidia-gb10.git cd nvidia-gb10 Create an empty localversion file to prevent the build system from appending unwanted version suffixes:</p>
+<p>touch localversion This step matters because the kernel build system typically appends git commit information to the kernel version string.</p>
+<p>Create the GPU driver spec file Create a file in your home directory named kmod-nvidia-open.spec with the following content:</p>
+<p>%define driver_version 595.58.03 %define kversion %(ls /usr/src/kernels/ | grep &#39;\.gb10&#39; | sort -V | tail -n 1) %define kversion_bare %(echo &#34;%{kversion}&#34; | sed -e &#39;s/+64k$//&#39; -e &#39;s/\\.el[0-9]*[^.]*\\.[^.]*$//&#39; -e &#39;s/-/./g&#39;) %global debug_package %{nil}</p>
+<p>Name: kmod-nvidia-open Version: %{kversion_bare} Release: 1%{?dist} Summary: NVIDIA open source GPU kernel modules License: MIT and GPLv2 URL: https://github.com/NVIDIA/open-gpu-kernel-modules Source0: https://github.com/NVIDIA/open-gpu-kernel-modules/archive/refs/tags/%{driver_version}.tar.gz#/open-gpu-kernel-modules-%{driver_version}.tar.gz</p>
+<p>BuildRequires: kernel-devel-uname-r = %{kversion} BuildRequires: make BuildRequires: gcc Requires: kernel-uname-r = %{kversion}</p>
+<p>Provides: kmod-nvidia-open = 3:%{driver_version} Provides: nvidia-kmod = 3:%{driver_version} Conflicts: kmod-nvidia-open-dkms Conflicts: kmod-nvidia-latest-dkms</p>
+<p>%description This package provides the NVIDIA open source GPU kernel modules built from the official NVIDIA open-gpu-kernel-modules repository.</p>
+<p>%prep %setup -q -n open-gpu-kernel-modules-%{driver_version}</p>
+<p>%build unset LDFLAGS make modules %{?_smp_mflags} SYSSRC=/usr/src/kernels/%{kversion}</p>
+<p>%install mkdir -p %{buildroot}/lib/modules/%{kversion}/extra/nvidia install -m 644 kernel-open/nvidia-peermem.ko %{buildroot}/lib/modules/%{kversion}/extra/nvidia/ install -m 644 kernel-open/nvidia-modeset.ko %{buildroot}/lib/modules/%{kversion}/extra/nvidia/ install -m 644 kernel-open/nvidia-drm.ko %{buildroot}/lib/modules/%{kversion}/extra/nvidia/ install -m 644 kernel-open/nvidia-uvm.ko %{buildroot}/lib/modules/%{kversion}/extra/nvidia/ install -m 644 kernel-open/nvidia.ko %{buildroot}/lib/modules/%{kversion}/extra/nvidia/</p>
+<p>%post /sbin/depmod -a %{kversion} || :</p>
+<p>%postun /sbin/depmod -a %{kversion} || :</p>
+<p>%files /lib/modules/%{kversion}/extra/nvidia/nvidia-peermem.ko /lib/modules/%{kversion}/extra/nvidia/nvidia-modeset.ko /lib/modules/%{kversion}/extra/nvidia/nvidia-drm.ko /lib/modules/%{kversion}/extra/nvidia/nvidia-uvm.ko /lib/modules/%{kversion}/extra/nvidia/nvidia.ko</p>
+<p>%changelog This spec file automates several critical steps:</p>
+<p>Driver version pinning: The driver_version macro locks the build to NVIDIA driver version 595.58.03, which is validated for the GB10 platform.</p>
+<p>When the build completes, the kernel RPMs are located in:</p>
+<p>~/nvidia-gb10/redhat/rpm/RPMS/aarch64/kernel-64k-* The kernel-64k variant provides better general performance on an ARM64 system in exchange for increased memory consumption.</p>
+<p>What&#39;s next With a custom kernel and GPU driver installed, you can:</p>
+<p>Test GPU workloads using CUDA or other NVIDIA frameworks  Integrate the custom kernel into automated image builds or deployment pipelines  Monitor kernel updates from the upstream repository and rebuild as needed to pick up fixes and new features  For production deployments, consider automating the kernel and driver builds using continuous integration/continuous delivery (CI/CD) pipelines to ensure consistent, reproducible artifacts across your fleet.</p>
+<p>The NVIDIA DGX Spark platform, powered by the NVIDIA GB10 Grace Blackwell Superchip, requires a custom kernel build to enable compatibility with Red Hat Enterprise Linux (RHEL) 10.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Depending on your hardware, this step can take considerable time—expect anywhere from 30 minutes to several hours. For full details on Developer Preview scope and limitations, see Red Hat Developer Preview . This process is faster than the kernel build, typically completing in 5-15 minutes depending on your hardware.</p>
+<p>Classified impact band: medium. Affected layer signal: general production.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Baseline knowledge:</p>
+<p>Familiarity with RPM package builds and spec files  Working knowledge of kernel compilation workflows  Comfort with the command line and basic git operations  Tools and dependencies: The build system requires the following dependencies :</p>
+<p>If using RHEL 10 as the build system, enable the codeready-builder repository :</p>
+<p>sudo subscription-manager repos --enable codeready-builder-for-rhel-10-aarch64-rpms Install the base required packages for kernel building :</p>
+<p>sudo dnf -y install git make Obtain the kernel source Starting in your home directory, clone the RHEL 10 kernel repository customized for the GB10 platform:</p>
+<p>git clone https://gitlab.com/redhat/edge/kernel/nvidia-gb10.git cd nvidia-gb10 Create an empty localversion file to prevent the build system from appending unwanted version suffixes:</p>
+<p>touch localversion This step matters because the kernel build system typically appends git commit information to the kernel version string.</p>
+<p>Version normalization: The kversion_bare macro strips suffixes and reformats the kernel version into a clean package version string.</p>
+<p>What&#39;s next With a custom kernel and GPU driver installed, you can:</p>
+<p>Test GPU workloads using CUDA or other NVIDIA frameworks  Integrate the custom kernel into automated image builds or deployment pipelines  Monitor kernel updates from the upstream repository and rebuild as needed to pick up fixes and new features  For production deployments, consider automating the kernel and driver builds using continuous integration/continuous delivery (CI/CD) pipelines to ensure consistent, reproducible artifacts across your fleet.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Baseline knowledge:</p>
+<p>Familiarity with RPM package builds and spec files  Working knowledge of kernel compilation workflows  Comfort with the command line and basic git operations  Tools and dependencies: The build system requires the following dependencies :</p>
+<p>If using RHEL 10 as the build system, enable the codeready-builder repository :</p>
+<p>sudo subscription-manager repos --enable codeready-builder-for-rhel-10-aarch64-rpms Install the base required packages for kernel building :</p>
+<p>sudo dnf -y install git make Obtain the kernel source Starting in your home directory, clone the RHEL 10 kernel repository customized for the GB10 platform:</p>
+<p>git clone https://gitlab.com/redhat/edge/kernel/nvidia-gb10.git cd nvidia-gb10 Create an empty localversion file to prevent the build system from appending unwanted version suffixes:</p>
+<p>touch localversion This step matters because the kernel build system typically appends git commit information to the kernel version string.</p>
+<p>When the build completes, the kernel RPMs are located in:</p>
+<p>~/nvidia-gb10/redhat/rpm/RPMS/aarch64/kernel-64k-* The kernel-64k variant provides better general performance on an ARM64 system in exchange for increased memory consumption.</p>
+<p>The unset LDFLAGS in the %build section prevents system linker flags from interfering with the NVIDIA driver&#39;s build process.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Any ARM64 system running RHEL 10 will work as a build host, but building on the GB10 itself can simplify testing and deployment. Baseline knowledge:</p>
+<p>Familiarity with RPM package builds and spec files  Working knowledge of kernel compilation workflows  Comfort with the command line and basic git operations  Tools and dependencies: The build system requires the following dependencies :</p>
+<p>If using RHEL 10 as the build system, enable the codeready-builder repository :</p>
+<p>sudo subscription-manager repos --enable codeready-builder-for-rhel-10-aarch64-rpms Install the base required packages for kernel building :</p>
+<p>sudo dnf -y install git make Obtain the kernel source Starting in your home directory, clone the RHEL 10 kernel repository customized for the GB10 platform:</p>
+<p>git clone https://gitlab.com/redhat/edge/kernel/nvidia-gb10.git cd nvidia-gb10 Create an empty localversion file to prevent the build system from appending unwanted version suffixes:</p>
+<p>touch localversion This step matters because the kernel build system typically appends git commit information to the kernel version string. Updating the kernel Because the kernel repository is regularly rebased, standard git pull operations will fail.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The NVIDIA DGX Spark platform, powered by the NVIDIA GB10 Grace Blackwell Superchip, requires a custom kernel build to enable compatibility with Red Hat Enterprise Linux (RHEL) 10. This guide walks through building the l</li>
+            <li>Developer Preview note NVIDIA DGX Spark support for Red Hat Enterprise Linux is currently available as a Developer Preview and is not intended for production use. Developer Preview software is not fully tested or support</li>
+            <li>Note that released RHEL 10.y versions do not currently install on the GB10 platform, which is why CentOS Stream 10 is an alternative for building directly on the target hardware. Any ARM64 system running RHEL 10 will wor</li>
+            <li>Conflicts: kmod-nvidia-latest-dkms</li>
+            <li>git reset --hard origin/main This discards any local changes and resets your working directory to match the upstream main branch. After resetting, repeat the kernel build and GPU driver build steps to produce updated RPM</li>
+            <li>Test GPU workloads using CUDA or other NVIDIA frameworks</li>
+            <li>Monitor kernel updates from the upstream repository and rebuild as needed to pick up fixes and new features</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/23/building-custom-red-hat-enterprise-linux-kernel-nvidia-dgx-spark" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
