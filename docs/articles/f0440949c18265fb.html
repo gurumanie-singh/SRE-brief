@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The post-quantum EO is an important milestone. Now it’s time to get to work — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-23.html" class="back-link">← 23 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">23 June 2026, 13:25</span>
+        <span class="card-severity critical" title="Critical Incident">Critical Incident</span>
+      </div>
+
+      <h1 class="title">The post-quantum EO is an important milestone. Now it’s time to get to work</h1>
+
+      <p class="subtitle">On June 22, 2026, President Trump signed Executive Order 14409 , &#34;Securing the Nation Against Advanced Cryptographic Attacks.&#34; The order sets a December 31, 2030, deadline for federal agencies to transition their most sensitive systems to post-quantum encryption , and a December 31, 2031, deadline for post-quantum authentication . Impact band: critical.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="vendor-tag">HashiCorp</span>
+        <span class="tag">capacity</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>capacity and scale</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">On June 22, 2026, President Trump signed Executive Order 14409 , &#34;Securing the Nation Against Advanced Cryptographic Attacks.&#34; The order sets a December 31, 2030, deadline for federal agencies to transition their most sensitive systems to post-quantum encryption , and a December 31, 2031, deadline for post-quantum authentication . Impact band: critical.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>On June 22, 2026, President Trump signed Executive Order 14409 , &#34;Securing the Nation Against Advanced Cryptographic Attacks.&#34; The order sets a December 31, 2030, deadline for federal agencies to transition their most sensitive systems to post-quantum encryption , and a December 31, 2031, deadline for post-quantum authentication . The EO also directs federal contractors to comply with post-quantum Federal Information Processing Standards ( FIPS ) by the end of 2030. We welcome this executive order.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>In addition to yesterday’s EO on post-quantum security, President Trump also signed an EO to accelerate deployment and commercialization of quantum computing, sensing, and networking.</p>
+<p>To put this into practice, CISA released its Product Categories for Technologies That Use Post-Quantum Cryptography Standards , drawing a clear line between technologies where PQC is already &#34;widely available&#34; versus those still &#34;transitioning.&#34; The &#34;widely available&#34; list includes cloud platforms (IaaS, PaaS), web browsers and servers, chat and messaging software, and endpoint security products like full disk encryption.</p>
+<p>The &#34;transitioning&#34; list, where PQC is not yet widely available, includes networking hardware (routers, firewalls, switches), identity and access management systems (HSMs, certificate authorities, identity providers), email servers and clients, and database systems.</p>
+<p>When we launched free universal SSL in 2014 , our CEO Matthew Prince wrote:</p>
+<p>Having cutting-edge encryption may not seem important to a small blog, but it is critical to advancing the encrypted-by-default future of the Internet.</p>
+<p>If different jurisdictions mandate different algorithms, the result is cipher bloat and increased attack surface: more code to write, test, and audit, more surface for downgrade attacks , and slower deployment for everyone.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Meanwhile, high impact systems are those where confidentiality, integrity, or availability is rated &#34;high&#34; under FIPS 199 , meaning a breach could cause severe harm including loss of life, major financial damage, or significant degradation of an agency&#39;s ability to carry out its mission. The EO’s requirements for federal systems           The bulk of the EO&#39;s binding requirements are aimed at two categories of federal systems: High Value Assets (HVAs) and high impact systems. September 2026</p>
+<p>OMB issues guidance requiring each agency to: (1) review their inventory of HVAs and high impact systems; (2) plan for PQC migration; and (3) submit that plan to OMB and the National Cyber Director. December 2030</p>
+<p>All HVAs and high impact systems must be transitioned to PQC for key establishment.</p>
+<p>Classified impact band: critical. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>By telling contractors their products must be PQC-compliant by 2030, and directing agencies to immediately favor PQC-capable vendors in mature markets, the federal framework forces the vendor ecosystem to ship PQC-capable products on a fixed timeline.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>The ecosystem needs to start working on both of these targets concurrently, or we will miss this 2031 deadline.</p>
+<p>Based on what we&#39;ve learned from our own PQC migration, here are a few elements that we suggest that guidance should include:</p>
+<p>Define what it means to “transition.” The EO requires agencies to &#34;transition&#34; their systems to PQC, but it never defines what &#34;transition&#34; means.</p>
+<p>The system would have &#34;transitioned&#34; to PQC in name, but still be vulnerable to the same quantum attacks the order is trying to prevent.</p>
+<p>To avoid repeating this pattern, we need a clear definition of “done” that includes disabling quantum-vulnerable cryptography to prevent downgrades.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. The EO is especially important at this moment because the timeline for Q-Day , the day that quantum computers can break the public-key cryptography used across the Internet, has been accelerated. We are also happy to see the EO focusing on NIST-standardized post-quantum cryptographic algorithms and not Quantum Key Distribution (QKD), since QKD does not operate at Internet scale due to its need for specialized hardware and dedicated physical links between sender and receiver. Post-quantum authentication is needed only after Q-Day risk materializes, because it stops attacks that are possible only once a cryptographically-relevant quantum computer (CRQC) exists.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>All HVAs and high impact systems must be transitioned to PQC for key establishment.</li>
+            <li>The EO splits the PQC migration into two phases: post-quantum key establishment (encryption) by 2030, and post-quantum digital signatures and certificates (authentication) by 2031. This accurately reflects the availabili</li>
+            <li>Post-quantum encryption is needed today to stop harvest-now-decrypt-later attacks , where an adversary collects encrypted traffic today and decrypts it later once quantum computers are powerful enough. Post-quantum encry</li>
+            <li>It’s important to put the migration timelines in context with advancements in quantum computing. In addition to yesterday’s EO on post-quantum security, President Trump also signed an EO to accelerate deployment and comm</li>
+            <li>Harvest-now-decrypt-later</li>
+            <li>Data harvested today is exposed forever. Transition must happen now, especially for orgs handling data that could be of value to adversaries in 3-10 years.</li>
+            <li>It is interesting that the EO sets a one-year gap between the encryption and authentication deadlines. One extra year of calendar time is tight, so this work cannot proceed sequentially. The ecosystem needs to start work</li>
+            <li>While the EO focuses mostly on federal agencies and critical infrastructure in the U.S., post-quantum cryptography is important to every Internet-connected individual and organization. Harvest-now-decrypt-later attacks a</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/post-quantum-eo-2026/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

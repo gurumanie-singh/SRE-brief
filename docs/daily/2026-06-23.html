@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">23 June 2026</h1>
-      <span class="brief-sub">6 items</span>
+      <span class="brief-sub">7 items</span>
     </div>
   </div>
 
@@ -35,6 +35,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
+        <li>1 critical incident signal in the feed window</li>
         <li>Repeated coverage across GitHub, Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
@@ -48,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -64,6 +66,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
@@ -74,6 +78,7 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
       </div>
     </div>
@@ -81,15 +86,53 @@
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--critical"
+       data-tags="capacity,database,deployment,latency,networking,outage"
+       data-vendors="Cloudflare,HashiCorp"
+       data-impact="critical"
+       data-theme="capacity and scale"
+       data-title="the post-quantum eo is an important milestone. now it’s time to get to work"
+       data-id="f0440949c18265fb"
+       data-published="2026-06-23T18:25:18+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Cloudflare</span><span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-06-23T18:25:18+00:00" title="23 June 2026, 13:25">23 June 2026, 13:25</time>
+      </div>
+      <h3 class="card-title">The post-quantum EO is an important milestone. Now it’s time to get to work</h3>
+      <p class="card-summary">On June 22, 2026, President Trump signed Executive Order 14409 , &#34;Securing the Nation Against Advanced Cryptographic Attacks.&#34; The order sets a December 31, 2030, deadline for federal agencies to transition their most sensitive systems to post-quantum encryption , and a December 31, 2031, deadline for post-quantum authentication . Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Cloudflare Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>On June 22, 2026, President Trump signed Executive Order 14409 , &#34;Securing the Nation Against Advanced Cryptographic Attacks.&#34; The order sets a December 31, 2030, deadline for federal agencies to transition their most sensitive systems to post-quantum encryption , and a December 31, 2031, deadline for post-quantum authentication . The EO also directs federal contractors to comply with post-quantum Federal Information Processing Standards ( FIPS ) by the end of 2030. We welcome this executive order.</p></div>
+      <div class="detail-links">
+        <a href="../articles/f0440949c18265fb.html" class="detail-read">Open structured brief →</a>
+        <a href="https://blog.cloudflare.com/post-quantum-eo-2026/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags=""
        data-vendors=""
@@ -212,7 +255,7 @@
           <span class="ttag">observability</span>
         </div>
       </div>
-      <div class="card-related">Also: GitHub Blog</div>
+      <div class="card-related">Also: GitHub Blog, GitHub Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
