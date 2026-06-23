@@ -1,5 +1,36 @@
 [
   {
+    "id": "37668fd7926dfac0",
+    "title": "The 2026 Developer Survey is now open (for human developers only)!​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌‌​﻿‌‌​﻿​﻿​﻿‌​﻿​‌‌‌​﻿​‌​﻿‌‌‌‌‌‌​﻿‌﻿‌​​﻿‌​﻿‌​​﻿‌‌‌​‌‌‌​﻿‌‌​​﻿‌​﻿‌‌​﻿​﻿‌​﻿‌​﻿​‌​﻿‌​​﻿‌﻿​﻿​﻿​﻿​‌‌​﻿​﻿‌‌​‌​﻿​​​﻿‌‌​﻿​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌‌​﻿‌‌​﻿​﻿​﻿‌​﻿​‌‌‌​﻿​‌​﻿‌‌‌‌‌‌​﻿‌﻿‌​​﻿‌​﻿‌​​﻿‌‌‌​‌‌‌​﻿‌‌​​﻿‌​﻿‌‌​﻿​﻿‌​﻿‌​﻿​‌​﻿‌​​﻿‌﻿​﻿​﻿​﻿​‌‌​﻿​﻿‌‌​‌​﻿​​​﻿‌‌​﻿​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
+    "source": "Stack Overflow Blog",
+    "link": "https://stackoverflow.blog/2026/06/23/the-2026-developer-survey-is-now-open-for-human-developers-only/",
+    "published": "2026-06-23T14:00:00+00:00",
+    "fetched_at": "2026-06-23T15:57:15.177625+00:00",
+    "summary": "Once again, we're asking for your help to take the temperature of software development...",
+    "tags": [],
+    "day": "2026-06-23",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "Once again, we're asking for your help to take the temperature of software development...",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Once again, we're asking for your help to take the temperature of software development.…",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "7113407bea0dc1ff",
     "title": "Oh the places you’ll go with spatial data​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌‌‌‌‌​﻿‌‌​﻿‌‌‌​﻿​​﻿​‌‌​﻿‌​﻿​‌​﻿​﻿‌​‌‌​​﻿‌​﻿‌​‌​‌​‌​﻿​‌​﻿‌​﻿​​﻿‌‌​​﻿​‌​﻿‌​﻿​‌​﻿​​​﻿​‌​​﻿‌​​﻿‌‌​﻿​﻿​‌​﻿‌​‌‌​​﻿‌​﻿‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌‌‌‌‌​﻿‌‌​﻿‌‌‌​﻿​​﻿​‌‌​﻿‌​﻿​‌​﻿​﻿‌​‌‌​​﻿‌​﻿‌​‌​‌​‌​﻿​‌​﻿‌​﻿​​﻿‌‌​​﻿​‌​﻿‌​﻿​‌​﻿​​​﻿​‌​​﻿‌​​﻿‌‌​﻿​﻿​‌​﻿‌​‌‌​​﻿‌​﻿‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
