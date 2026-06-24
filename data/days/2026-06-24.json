@@ -1,0 +1,142 @@
+[
+  {
+    "id": "a2e0653e39475e66",
+    "title": "Optimizing distributed AI inference: Advanced deployment patterns",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/24/optimizing-distributed-ai-inference-advanced-deployment-patterns",
+    "published": "2026-06-24T07:16:46+00:00",
+    "fetched_at": "2026-06-24T08:29:13.541175+00:00",
+    "summary": "In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-24",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "network edge",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensio",
+      "Sizing the two pools Prefill workers scale with the arrival rate of new prompts and with prompt-length distribution, while decode workers scale with concurrent active sessions, average token output sizing and target TPOT",
+      "Table 1: KV-cache connectors. Connector Recommended for Transport Notes NixlConnector Single-cluster, RDMA/NVLink available NVIDIA NIXL over UCX Default for high-performance PD; metadata server is a startup single point ",
+      "The disaggregated KV cache pool Instead of viewing the cluster's KV cache as per-worker memory plus a transfer protocol, treat it as a cluster-wide resource with its own scheduling concerns. LMCache implements this appro",
+      "The llm-d scheduler Cache-aware routing turns disaggregation from a feature into a functional deployment pattern, Instead of distributing requests via round-robin routing across decode workers, llm-d routes a request dir",
+      "Failure modes that bite in production The NIXL metadata server is a single point of failure on startup. Deploy two metadata servers behind a TCP load balancer and verify failover capabilities before initiating the first ",
+      "Prefix sharing allows two separate requests that begin with the same tokens to share a single cache. In contrast, KV cache reuse retains the data from a single request across multiple turns of a live session. Multi-tenan",
+      "Platform teams rarely tune these kernels directly. However, knowing which kernel your vLLM build uses helps you investigate unexpected decode regressions after a version upgrade. Managing multi-node fleets introduces cha"
+    ],
+    "sections": {
+      "overview": "In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. This blog covers the three optimization levers that push past that baseline: prefill/decode disaggregation, key-value (KV) cache strategy, and speculative decoding. Each one trades operational complexity for a measurable improvement in cost, latency, or throughput.",
+      "technical_breakdown": "Measure end-to-end latency, including queue time, alert on tail latency rather than the mean, and verify RDMA driver health on every node.\n\nConversely, disaggregation does not pay off for single-node deployments where the network hop between prefill and decode workers exceeds the savings.\n\nDeploy two metadata servers behind a TCP load balancer and verify failover capabilities before initiating the first canary rollout.\n\nThis blog covers the three optimization levers that push past that baseline: prefill/decode disaggregation, key-value (KV) cache strategy, and speculative decoding.\n\nEach one trades operational complexity for a measurable improvement in cost, latency, or throughput.",
+      "impact": "Multi-tenant chat platforms benefit from both capabilities.\n\nClassified impact band: high. Affected layer signal: network edge.",
+      "resolution": "Connector Recommended for Transport Notes NixlConnector Single-cluster, RDMA/NVLink available NVIDIA NIXL over UCX Default for high-performance PD; metadata server is a startup single point of failure (SPOF) LMCacheConnector Cross-instance cache sharing, HBM DRAM NVMe tiering NIXL under the hood, plus offload backends Adds tiered KV cache + shared prefix index ( LMCache, arXiv:2510.09665 ) MooncakeConnector Cluster-scale shared cache pools RDMA-native Recommended when you want a separate KV-cache cluster that many vLLM instances pull from MooncakeStoreConnector Tiered cache offloading through use of a distributed master store Cache offloading Offload tier behind MooncakeConnector ; KV lands in a distributed master store rather than peer HBM Treat the KV-transfer fabric like any other production data path.\n\nLMCache implements this approach by tiering data across HBM, DRAM, and NVMe storage tiers while exposing a global prefix index.\n\nWhen two requests share a prefix (such as a system prompt, a few-shot prefix, or the first thousand tokens of a contract), they share KV blocks regardless of which instance generated them.\n\nThe llm-d scheduler Cache-aware routing turns disaggregation from a feature into a functional deployment pattern, Instead of distributing requests via round-robin routing across decode workers, llm-d routes a request directly to the worker that contains the warmest KV state for the request's prefix.",
+      "lessons_learned": "Each one trades operational complexity for a measurable improvement in cost, latency, or throughput.\n\nWe observed a 25% improvement on default settings, a two- to three-fold increase in tokens per second per GPU when paired with prefix-cache-hit routing, and three- to five-fold cost-per-token reduction on chat-shaped workloads with high prefix reuse.\n\nWhile live production deployment numbers will vary from these lab-style figures, the overall performance improvements remain consistent across every workload we measured.\n\nThis architecture is not yet a primary recommendation for production environments.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. However, designing your deployment with a separately scheduled prefill pool is advantageous, because you can change the worker type as the hardware matures without refactoring the underlying system. In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. P/D disaggregation as a deployment pattern The previous article described disaggregation as a feature of llm-d, but in practice it is a deployment topology (the most consequential one we cover here), and we need to reason about it as such rather than check it off as a capability.",
+      "incident_timeline": "In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensio\nSizing the two pools Prefill workers scale with the arrival rate of new prompts and with prompt-length distribution, while decode workers scale with concurrent active sessions, average token output sizing and target TPOT\nTable 1: KV-cache connectors. Connector Recommended for Transport Notes NixlConnector Single-cluster, RDMA/NVLink available NVIDIA NIXL over UCX Default for high-performance PD; metadata server is a startup single point \nThe disaggregated KV cache pool Instead of viewing the cluster's KV cache as per-worker memory plus a transfer protocol, treat it as a cluster-wide resource with its own scheduling concerns. LMCache implements this appro\nThe llm-d scheduler Cache-aware routing turns disaggregation from a feature into a functional deployment pattern, Instead of distributing requests via round-robin routing across decode workers, llm-d routes a request dir\nFailure modes that bite in production The NIXL metadata server is a single point of failure on startup. Deploy two metadata servers behind a TCP load balancer and verify failover capabilities before initiating the first \nPrefix sharing allows two separate requests that begin with the same tokens to share a single cache. In contrast, KV cache reuse retains the data from a single request across multiple turns of a live session. Multi-tenan\nPlatform teams rarely tune these kernels directly. However, knowing which kernel your vLLM build uses helps you investigate unexpected decode regressions after a version upgrade. Managing multi-node fleets introduces cha",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "5ea4f4c0a79c8f6d",
+    "title": "Beyond regex: Harvesting security logic with LLMs",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/24/harvesting-security-logic-llm",
+    "published": "2026-06-24T07:16:45+00:00",
+    "fetched_at": "2026-06-24T08:29:13.541798+00:00",
+    "summary": "Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual triage is often too slow and inconsistent to keep up with development speed. To address this, the SastAI initiative was launched at Red Hat, in a collaboration with NVIDIA, to...",
+    "tags": [
+      "capacity",
+      "database",
+      "kubernetes",
+      "latency",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-24",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual t",
+      "Unlike traditional models, the SastAI solution employs an agentic, multi-stage research workflow to autonomously investigate SAST findings by analyzing source code, CWE data, and existing security reports in context. By ",
+      "This limitation is resolved by the specialized pattern harvesting mechanism, developed in strategic collaboration with IBM Research using a pattern mining approach. By extracting recurring logic and turning years of huma",
+      "The pattern harvesting methodology The backbone of this project is a sophisticated pattern mining workflow designed to ensure the AI learns the right lessons without taking \"shortcuts\". The process is detailed across the",
+      "To handle this, we implemented a three-way stratified sampling mechanism alongside traditional train-validation-tests split (60/20/20), a logic found in the process-mining-preprocessing branch (Figure 3).",
+      "Figure 3: A flowchart illustrating the dataset splitting strategy: 8,000 human-annotated findings are divided into a 60% training set, 20% validation set, and 20% test set using three-way stratified sampling.",
+      "Package granularity: Entire packages are assigned to a single set (train/validation/test) to prevent \"data leakage\" and model memorization.",
+      "Final test evaluation: The learned patterns are applied to a completely unseen 20% \"held-out\" set. This validates that the AI has truly learned generalizable patterns that work across different repositories, rather than "
+    ],
+    "sections": {
+      "overview": "Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual triage is often too slow and inconsistent to keep up with development speed. To address this, the SastAI initiative was launched at Red Hat, in a collaboration with NVIDIA, to automate false positive (FP) identification using generative AI.",
+      "technical_breakdown": "By extracting recurring logic and turning years of human expertise into automated, scalable intelligence, pattern harvesting greatly enhances the SastAI solution, now offering a tighter solution with better knowledge and reasoning.\n\nTo ensure efficiency, the process implements early stop logic based on the convergence of the F1 score (or other configurable metrics), halting the refinement loop once improvements plateau.\n\nMore than 80% of these results can be false positives, but manual triage is often too slow and inconsistent to keep up with development speed.\n\nTriage funnel Until recently, a major limitation persisted in the current SastAI methodology: The system often treats each new finding as a first-seen event.\n\nThe application of these learned patterns achieved success with approx +10% uplift average in common metrics over the baseline SastAI model (see figure 1).",
+      "impact": "You must inject the patterns without confusing the model or bloating its context window, which causes performance degradation or \"forgetting.\"\n\n Selective context injection: Just-in-time (JIT) enrichment To maintain scalability, SastAI avoids \"context bloat\" by not dumping all learned patterns into every prompt. Productization and the path forward This project isn't just a research exercise, we are already looking toward the next steps:\n\n Product implementation: The core logic is being incorporated into the SastAI workflow to provide immediate value to users.\n\nClassified impact band: high. Affected layer signal: data store.",
+      "resolution": "This limitation is resolved by the specialized pattern harvesting mechanism, developed in strategic collaboration with IBM Research using a pattern mining approach.",
+      "lessons_learned": "By leveraging RAG and semantic code search, SastAI reduces noise and improves triage efficiency.\n\nBy extracting recurring logic and turning years of human expertise into automated, scalable intelligence, pattern harvesting greatly enhances the SastAI solution, now offering a tighter solution with better knowledge and reasoning.\n\nThe application of these learned patterns achieved success with approx +10% uplift average in common metrics over the baseline SastAI model (see figure 1).\n\nThe pattern harvesting methodology The backbone of this project is a sophisticated pattern mining workflow designed to ensure the AI learns the right lessons without taking \"shortcuts\".",
+      "root_cause_highlight": "Likely root-cause theme: database issue. Figure 4: Diagram of the full inference pipeline where a SAST report triggers JIT retrieval of relevant patterns from a database to assemble a contextual prompt for an LLM agent, resulting in verified, actionable results.",
+      "incident_timeline": "Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual t\nUnlike traditional models, the SastAI solution employs an agentic, multi-stage research workflow to autonomously investigate SAST findings by analyzing source code, CWE data, and existing security reports in context. By \nThis limitation is resolved by the specialized pattern harvesting mechanism, developed in strategic collaboration with IBM Research using a pattern mining approach. By extracting recurring logic and turning years of huma\nThe pattern harvesting methodology The backbone of this project is a sophisticated pattern mining workflow designed to ensure the AI learns the right lessons without taking \"shortcuts\". The process is detailed across the\nTo handle this, we implemented a three-way stratified sampling mechanism alongside traditional train-validation-tests split (60/20/20), a logic found in the process-mining-preprocessing branch (Figure 3).\nFigure 3: A flowchart illustrating the dataset splitting strategy: 8,000 human-annotated findings are divided into a 60% training set, 20% validation set, and 20% test set using three-way stratified sampling.\nPackage granularity: Entire packages are assigned to a single set (train/validation/test) to prevent \"data leakage\" and model memorization.\nFinal test evaluation: The learned patterns are applied to a completely unseen 20% \"held-out\" set. This validates that the AI has truly learned generalizable patterns that work across different repositories, rather than ",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "58fac23c240ad39c",
+    "title": "Build a Red Hat Enterprise Linux EUS image with image-builder CLI",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/24/build-red-hat-enterprise-linux-eus-image-image-builder-cli",
+    "published": "2026-06-24T07:16:43+00:00",
+    "fetched_at": "2026-06-24T08:29:13.542225+00:00",
+    "summary": "The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6. ",
+    "tags": [
+      "deployment",
+      "networking"
+    ],
+    "day": "2026-06-24",
+    "impact": "medium",
+    "vendors": [
+      "Google Cloud",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "\"name\": \"appstream\",",
+      "\"baseurl\": \"https://cdn.redhat.com/content/eus/rhel9/9.6/x86_64/appstream/os/\",",
+      "ExecStart=subscription-manager repos --disable=* --enable=rhel-9-for-x86_64-appstream-eus-rpms --enable=rhel-9-for-x86_64-baseos-eus-rpms"
+    ],
+    "sections": {
+      "overview": "The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6. Build a Red Hat Enterprise Linux EUS image Prerequisites: \n\n A running instance of Red Hat Enterprise Linux 9.8 or 10.2 \n This system is registered via subscription-manager or rhc to receive updates \n Define a repository configuration ( rhel-9.6.json ).",
+      "technical_breakdown": "The resulting image file will be located at: \n\n ./rhel-9.6-qcow2-x86_64/rhel-9.6-qcow2-x86_64.qcow2 Ensure your user owns it: \n\n chown $USER ./rhel-9.6-qcow2-x86_64/rhel-9.6-qcow2-x86_64.qcow2 Launch it with the following: \n\n virt-install \\\n --name rhel-96-eus \\\n --ram 4096 \\\n --vcpus 2 \\\n --os-variant rhel9.6 \\\n --disk path=./rhel-9.6-qcow2-x86_64/rhel-9.6-qcow2-x86_64.qcow2,format=qcow2 \\\n --network default \\\n --import \\\n --graphics vnc,listen=0.0.0.0 \\\n --wait 0 Learn more Explore more image building further.\n\nCreate the file with this content: \n\n {\n \"x86_64\": [\n {\n \"name\": \"appstream\",\n \"metalink\": \"\",\n \"baseurl\": \"https://cdn.redhat.com/content/eus/rhel9/9.6/x86_64/appstream/os/\",\n \"mirrorlist\": \"\",\n \"gpgkey\": \"file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release\",\n \"check_gpg\": true,\n \"metadata_expire\": \"\",\n \"rhsm\": true\n },\n { \n \"name\": \"baseos\",\n \"metalink\": \"\",\n \"baseurl\": \"https://cdn.redhat.com/content/eus/rhel9/9.6/x86_64/baseos/os/\",\n \"mirrorlist\": \"\",\n \"gpgkey\": \"file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release\",\n \"check_gpg\": true,\n \"metadata_expire\": \"\",\n \"rhsm\": true\n }\n ]\n} The image blueprint file ( blueprint.toml ) defines the image customizations.",
+      "impact": "Create your blueprint.toml file with the following content: \n\n name = \"RHEL EUS 9.6\"\ndescription = \"Builds a RHEL 9.6 image with EUS enabled\"\nversion = \"0.0.1\"\n\n[[customizations.user]]\nname = \"admin\"\ndescription = \"Administrator account\"\npassword = \"$6$cCl5f5tctmPw0n3V$AGP3IuIcBCVzRKEgBuvgoT9kUSX34QRFGErt80GER/Ow3c3kA9MeegNZMGF2DBHRXBM/GpuQtXXfxCiVgwB4F.\"\ngroups = [\"wheel\"]\n\n[[customizations.files]]\npath = \"/etc/systemd/system/firstboot-single.service\"\ndata = \"\"\"\n\n[Service]\nType=oneshot\nExecStart=subscription-manager register --org=$ORG_ID --activationkey=$ACTIVATION_KEY\nExecStart=subscription-manager release --set=9.6\nExecStart=subscription-manager repos --disable=* --enable=rhel-9-for-x86_64-appstream-eus-rpms --enable=rhel-9-for-x86_64-baseos-eus-rpms\n\n[Install]\nWantedBy=default.target\n\"\"\"\n\n[customizations.services]\nenabled = [\"firstboot-single\"] This example creates an admin user and a service to manage the RHEL subscription manager and repository setup. For the admin user, you can generate a hashed password using this command: \n\n openssl passwd -6 Note that the password for the admin user in this example is set to password . The resulting image file will be located at: \n\n ./rhel-9.6-qcow2-x86_64/rhel-9.6-qcow2-x86_64.qcow2 Ensure your user owns it: \n\n chown $USER ./rhel-9.6-qcow2-x86_64/rhel-9.6-qcow2-x86_64.qcow2 Launch it with the following: \n\n virt-install \\\n --name rhel-96-eus \\\n --ram 4096 \\\n --vcpus 2 \\\n --os-variant rhel9.6 \\\n --disk path=./rhel-9.6-qcow2-x86_64/rhel-9.6-qcow2-x86_64.qcow2,format=qcow2 \\\n --network default \\\n --import \\\n --graphics vnc,listen=0.0.0.0 \\\n --wait 0 Learn more Explore more image building further.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "It also must live in a directory that we will point the CLI to (repos in this case).",
+      "root_cause_highlight": "",
+      "incident_timeline": "\"name\": \"appstream\",\n\"baseurl\": \"https://cdn.redhat.com/content/eus/rhel9/9.6/x86_64/appstream/os/\",\nExecStart=subscription-manager repos --disable=* --enable=rhel-9-for-x86_64-appstream-eus-rpms --enable=rhel-9-for-x86_64-baseos-eus-rpms",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

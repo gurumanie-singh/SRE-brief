@@ -25,16 +25,17 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">23 June 2026</h1>
+      <h1 class="brief-title">24 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-23T23:16:44.979289-05:00">23 June 2026, 23:16</time>
+        <time data-iso="2026-06-24T03:29:13.691437-05:00">24 June 2026, 03:29</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-critical">1 critical</span>
-      <span class="stat">7 items today</span>
+      <span class="stat stat-high">2 high impact</span>
+      <span class="stat stat-action">1 ops priority</span>
+      <span class="stat">3 items today</span>
     </div>
   </div>
 
@@ -42,8 +43,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 critical incident signal in the feed window</li>
-        <li>Repeated coverage across GitHub, Red Hat</li>
+        <li>2 high-impact reliability events surfaced</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -53,9 +55,9 @@
         <span class="trend-pill">building<span class="trend-count">4</span></span>
         <span class="trend-pill">netflix<span class="trend-count">4</span></span>
         <span class="trend-pill">openshift<span class="trend-count">4</span></span>
+        <span class="trend-pill">inference<span class="trend-count">3</span></span>
+        <span class="trend-pill">enterprise<span class="trend-count">3</span></span>
         <span class="trend-pill">agents<span class="trend-count">3</span></span>
-        <span class="trend-pill">developer<span class="trend-count">2</span></span>
-        <span class="trend-pill">evalhub<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -93,10 +95,10 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Stripe">Stripe</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
       </div>
     </div>
     <div class="adv-group">
@@ -119,13 +121,128 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      24 June 2026
+      <span class="day-count">3</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--action card--high"
+       data-tags="capacity,deployment,latency,networking,observability,outage,scaling"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="optimizing distributed ai inference: advanced deployment patterns"
+       data-id="a2e0653e39475e66"
+       data-published="2026-06-24T07:16:46+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:46+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Optimizing distributed AI inference: Advanced deployment patterns</h3>
+      <p class="card-summary">In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. This blog covers the three optimization levers that push past that baseline: prefill/decode disaggregation, key-value (KV) cache strategy, and speculative decoding. Each one trades operational complexity for a measurable improvement in cost, latency, or throughput.</p></div>
+      <div class="detail-links">
+        <a href="articles/a2e0653e39475e66.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/24/optimizing-distributed-ai-inference-advanced-deployment-patterns" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,kubernetes,latency,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="beyond regex: harvesting security logic with llms"
+       data-id="5ea4f4c0a79c8f6d"
+       data-published="2026-06-24T07:16:45+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:45+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Beyond regex: Harvesting security logic with LLMs</h3>
+      <p class="card-summary">Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual triage is often too slow and inconsistent to keep up with development speed. To address this, the SastAI initiative was launched at Red Hat, in a collaboration with NVIDIA, to automate false positive (FP) identification using generative AI.</p></div>
+      <div class="detail-links">
+        <a href="articles/5ea4f4c0a79c8f6d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/24/harvesting-security-logic-llm" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,networking"
+       data-vendors="Google Cloud,Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="build a red hat enterprise linux eus image with image-builder cli"
+       data-id="58fac23c240ad39c"
+       data-published="2026-06-24T07:16:43+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Google Cloud</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:43+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Build a Red Hat Enterprise Linux EUS image with image-builder CLI</h3>
+      <p class="card-summary">The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6. Build a Red Hat Enterprise Linux EUS image Prerequisites:</p>
+<p>A running instance of Red Hat Enterprise Linux 9.8 or 10.2   This system is registered via subscription-manager or rhc to receive updates   Define a repository configuration ( rhel-9.6.json ).</p></div>
+      <div class="detail-links">
+        <a href="articles/58fac23c240ad39c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/24/build-red-hat-enterprise-linux-eus-image-image-builder-cli" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       23 June 2026
@@ -1014,7 +1131,7 @@ How we built a living map of our distributed infrastructure to help engineers un
   <div class="day-group">
     <h2 class="day-heading">
       18 June 2026
-      <span class="day-count">6</span>
+      <span class="day-count">3</span>
     </h2>
   </div>
 
@@ -1123,111 +1240,6 @@ How we built a living map of our distributed infrastructure to help engineers un
       <div class="detail-links">
         <a href="articles/c1eb4ae12f8d4e76.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/18/troubleshoot-application-misbehavior-after-openshift-upgrade" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="database,deployment,networking,outage"
-       data-vendors="Cloudflare"
-       data-impact="medium"
-       data-theme="incident response"
-       data-title="celebrating 12 years of project galileo"
-       data-id="9cf8fb00ee96ad3e"
-       data-published="2026-06-18T13:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-18T13:00:00+00:00" title="18 June 2026, 08:00">18 June 2026, 08:00</time>
-      </div>
-      <h3 class="card-title">Celebrating 12 years of Project Galileo</h3>
-      <p class="card-summary">Twelve years ago this month, Cloudflare launched an ambitious project built on a simple idea: people shouldn’t be knocked offline just because someone more powerful disagrees with them. Today, Project Galileo provides free access to cybersecurity services to more than 3,400 websites belonging to journalists, human rights defenders, and other nonprofit organizations in 120 countries.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">networking</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Cloudflare Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Twelve years ago this month, Cloudflare launched an ambitious project built on a simple idea: people shouldn’t be knocked offline just because someone more powerful disagrees with them. Today, Project Galileo provides free access to cybersecurity services to more than 3,400 websites belonging to journalists, human rights defenders, and other nonprofit organizations in 120 countries. We continue to believe that a better Internet is one where anyone with an idea can reach a global audience.</p></div>
-      <div class="detail-links">
-        <a href="articles/9cf8fb00ee96ad3e.html" class="detail-read">Open structured brief →</a>
-        <a href="https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="the new bottleneck​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌"
-       data-id="931824a10b089ace"
-       data-published="2026-06-18T07:40:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-06-18T07:40:00+00:00" title="18 June 2026, 02:40">18 June 2026, 02:40</time>
-      </div>
-      <h3 class="card-title">The new bottleneck​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</h3>
-      <p class="card-summary">Engineering teams have upgraded their tools. Have they upgraded how they…</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Engineering teams have upgraded their tools. Have they upgraded how they work?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌​‌‌‌‌​‌​​﻿‌​‌​‌‌​‌‌​​﻿‌​﻿​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿‌﻿​﻿​‌​‌​﻿‌‌​​﻿‌‌​﻿‌​​﻿​﻿​﻿‌​﻿​​﻿‌‌​﻿​﻿‌​﻿‌​﻿‌‌​﻿​‌​﻿​‌​‌‌​‌​‌‌‌​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</p></div>
-      <div class="detail-links">
-        <a href="articles/931824a10b089ace.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/06/18/the-new-bottleneck/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,kubernetes,latency,networking,observability,outage"
-       data-vendors="AWS,Azure,Elastic,Kubernetes,Red Hat"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="preserve openshift pipelines logs with opentelemetry"
-       data-id="728199f5e61e2592"
-       data-published="2026-06-18T07:01:08+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">AWS</span><span class="vtag">Azure</span>        <time class="meta-time" data-iso="2026-06-18T07:01:08+00:00" title="18 June 2026, 02:01">18 June 2026, 02:01</time>
-      </div>
-      <h3 class="card-title">Preserve OpenShift Pipelines logs with OpenTelemetry</h3>
-      <p class="card-summary">If your team has fully embraced CI/CD on Red Hat OpenShift , you already know the capability of Red Hat OpenShift Pipelines . Built on the open source Tekton framework, it allows developers to create cloud-native, execution-ready pipelines that run in isolated, ephemeral containers.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">networking</span>
-        </div>
-      </div>
-      <div class="card-related">Also: AWS News Blog, Elastic Blog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>If your team has fully embraced CI/CD on Red Hat OpenShift , you already know the capability of Red Hat OpenShift Pipelines . Built on the open source Tekton framework, it allows developers to create cloud-native, execution-ready pipelines that run in isolated, ephemeral containers. But there s a catch.</p></div>
-      <div class="detail-links">
-        <a href="articles/728199f5e61e2592.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/18/preserve-openshift-pipelines-logs-opentelemetry" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRE Brief — 24 June 2026</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <a href="../index.html" class="back-link">← Back to latest</a>
+
+  <div class="brief-header">
+    <div class="brief-primary">
+      <h1 class="brief-title">24 June 2026</h1>
+      <span class="brief-sub">3 items</span>
+    </div>
+  </div>
+
+  <div class="summary-strip">
+    <div class="strip-section">
+      <span class="strip-label">Operations picture</span>
+      <ul class="strip-bullets">
+        <li>2 high-impact reliability events surfaced</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="controls-bar" id="controlsBar">
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search titles, vendors, themes…" autocomplete="off">
+      <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
+    </div>
+    <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
+      <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+        More
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-results-count" id="filterCount" style="display:none"></div>
+
+  <div class="adv-filters" id="advFilters" hidden>
+    <div class="adv-group">
+      <span class="adv-label">Vendor / platform</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Reliability theme</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
+      </div>
+    </div>
+    <div class="adv-group">
+      <span class="adv-label">Topic tags</span>
+      <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-card card--action card--high"
+       data-tags="capacity,deployment,latency,networking,observability,outage,scaling"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="optimizing distributed ai inference: advanced deployment patterns"
+       data-id="a2e0653e39475e66"
+       data-published="2026-06-24T07:16:46+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:46+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Optimizing distributed AI inference: Advanced deployment patterns</h3>
+      <p class="card-summary">In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In Designing distributed AI inference: Core concepts and scaling dimensions , we established the groundwork for distributed inference: the prefill/decode split that shapes every deployment decision, and the five dimensions of parallelism tensor, pipeline, expert, data, and context that determine how a model maps onto hardware. This blog covers the three optimization levers that push past that baseline: prefill/decode disaggregation, key-value (KV) cache strategy, and speculative decoding. Each one trades operational complexity for a measurable improvement in cost, latency, or throughput.</p></div>
+      <div class="detail-links">
+        <a href="../articles/a2e0653e39475e66.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/24/optimizing-distributed-ai-inference-advanced-deployment-patterns" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,database,kubernetes,latency,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="observability"
+       data-title="beyond regex: harvesting security logic with llms"
+       data-id="5ea4f4c0a79c8f6d"
+       data-published="2026-06-24T07:16:45+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:45+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Beyond regex: Harvesting security logic with LLMs</h3>
+      <p class="card-summary">Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">database</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual triage is often too slow and inconsistent to keep up with development speed. To address this, the SastAI initiative was launched at Red Hat, in a collaboration with NVIDIA, to automate false positive (FP) identification using generative AI.</p></div>
+      <div class="detail-links">
+        <a href="../articles/5ea4f4c0a79c8f6d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/24/harvesting-security-logic-llm" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="deployment,networking"
+       data-vendors="Google Cloud,Red Hat"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="build a red hat enterprise linux eus image with image-builder cli"
+       data-id="58fac23c240ad39c"
+       data-published="2026-06-24T07:16:43+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Google Cloud</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:43+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Build a Red Hat Enterprise Linux EUS image with image-builder CLI</h3>
+      <p class="card-summary">The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6. Build a Red Hat Enterprise Linux EUS image Prerequisites:</p>
+<p>A running instance of Red Hat Enterprise Linux 9.8 or 10.2   This system is registered via subscription-manager or rhc to receive updates   Define a repository configuration ( rhel-9.6.json ).</p></div>
+      <div class="detail-links">
+        <a href="../articles/58fac23c240ad39c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/24/build-red-hat-enterprise-linux-eus-image-image-builder-cli" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
