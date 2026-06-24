@@ -367,5 +367,42 @@
     "email_summary": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "507776c06ba52a60",
+    "title": "Monitor Claude activity in Elastic Security, the agentic security operations platform",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/monitor-claude-activity-in-elastic-security",
+    "published": "2026-06-12T00:00:00+00:00",
+    "fetched_at": "2026-06-24T23:14:10.165971+00:00",
+    "summary": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+    "tags": [
+      "observability"
+    ],
+    "day": "2026-06-12",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing"
+    ],
+    "sections": {
+      "overview": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+      "technical_breakdown": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Elastic’s Anthropic integration ingests Claude Compliance API events into Elastic Security, enabling teams to monitor activity via dashboards, detect risks with automated rules, and investigate threats alongside existing telemetry.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
