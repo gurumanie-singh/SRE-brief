@@ -138,5 +138,89 @@
     "email_summary": "The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "4f6afecf9a12c4f1",
+    "title": "Unlocking the Cloudflare app ecosystem with OAuth for all",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/oauth-for-all/",
+    "published": "2026-06-24T06:00:00+00:00",
+    "fetched_at": "2026-06-24T14:48:46.685821+00:00",
+    "summary": "Cloudflare provides services that help run 20% of the web, but we don’t do it alone. Developers on our platform use a myriad of tools and services from other companies too. Cloudflare provides a rich API for our platform that enables developers to create automations, CI/CD, and integrations that glue together the various parts of their infrastructure. Earlier this month, we announced self-managed...",
+    "tags": [
+      "database",
+      "deployment",
+      "latency",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-06-24",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": true,
+    "root_cause": "deployment failure",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Earlier this year we updated our consent experience to make it clearer which application is requesting access, and what permissions it will receive. We also added revocation to the dashboard so developers can easily cont",
+      "As we planned the upgrade, we decided to do two smaller sequential upgrades rather than doing one large upgrade.  First, we would move to the latest 1.X release, evaluate any behavior or performance changes, and then pro",
+      "With the latest 1.X upgrade planned out, we now needed to create a plan for the even larger 2.X upgrade. We identified three potential options, and weighed the benefits and drawbacks of each one. Doing an in-place upgrad",
+      "With reducing writes solved, we needed to come up with a way to not lose any revocations our users performed during the upgrade window. To do this, we created a queue system (using Cloudflare Queues !) which, after a rev",
+      "After the cutover, we saw an increase in refresh token errors that we had not seen before. This ended up being due to stricter refresh invalidation behaviors in the new version; if a refresh token was reused, Hydra would",
+      "We mitigated this by adding refresh token coalescing behavior to our Worker which routes OAuth traffic to the correct destination. This allowed us to briefly cache the refresh token request before it reached Hydra, so th",
+      "Copy and restore our database to the new target",
+      "We chose an upgrade window when Hydra had the lowest request volume per second to minimize lost token writes. Other than some timeout tuning, our production migrations ran well against the new database: the net runtime i"
+    ],
+    "sections": {
+      "overview": "Cloudflare provides services that help run 20% of the web, but we don’t do it alone. Developers on our platform use a myriad of tools and services from other companies too. Cloudflare provides a rich API for our platform that enables developers to create automations, CI/CD, and integrations that glue together the various parts of their infrastructure.",
+      "technical_breakdown": "Value \n \n \n \n Rows updated \n 132.5M \n \n \n Rows inserted \n 114.7M \n \n \n Temp bytes \n 136.97GB \n \n \n Transaction commits \n 22.2k \n \n \n \n Hydra performance \n \n \n \n \n \n \n \n \n \n \n \n \n \n Metric (avg) \n Before \n After \n Change \n \n \n \n API P95 \n 185ms \n 101ms \n -45% \n \n \n RSS memory \n 888MB \n 763MB \n -14% \n \n \n Go heap alloc \n 449MB \n 271MB \n -40% \n \n \n Goroutines \n 4015 \n 3076 \n -23% \n \n \n CPU \n 1.07 cores \n 0.67 cores \n -37% \n \n \n \n Self-managed OAuth for all \n \n \n \n \n Opening up OAuth to all customers is an important step toward a broader Cloudflare app ecosystem.\n\nThis would allow us to drain the queue with the database flipped to the green version, replaying all revocation events that took place in the time window in which they would have been lost.\n\nThis allowed us to briefly cache the refresh token request before it reached Hydra, so that if we detected a retry we could short-circuit the request and respond without invalidating the tokens.\n\nIn reality, there were a lot more moving parts:\n\n Enable revocation replay capture queue\n\n Copy and restore our database to the new target\n\n Targeted data cleanup — existing data violated some new constraints introduced in the newer versions, which could prevent migrations from succeeding\n\n Perform cutovers on the Hydra service along with two additional critical internal systems simultaneously to prevent any errors\n\n Post-cutover monitoring and validation\n\n \n \n \n We chose an upgrade window when Hydra had the lowest request volume per second to minimize lost token writes.\n\nOther than some timeout tuning, our production migrations ran well against the new database: the net runtime in production was approximately three hours.",
+      "impact": "With self-managed OAuth, developers can now offer a standard OAuth flow where customers grant scoped access directly, making it easier to build SaaS integrations, internal developer platforms, and agentic tools while giving users clearer consent, easier revocation, and more control over what an application can do. During our upgrade planning, it became clear that even the 1.X upgrade would still impact customers because the Hydra database required extensive schema migrations that:\n\n Created indexes in a manner that would claim an exclusive lock on critical tables, preventing active users from performing important OAuth operations \n\n Added columns to critical tables, and moved other columns to new tables\n\n There was also a quirk in the version of Hydra we were using in which the SDK would perform SELECT * operations, causing deserialization issues with the schema changes. Upgrading to 2.X \n \n \n \n \n Since multiple hours of high user-facing impact would not be acceptable, we had our blue-green upgrade strategy set. Earlier this month, we announced self-managed OAuth , making it easier for customers to create and manage their own OAuth clients for delegated access to the Cloudflare API.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "This was critical to get right, otherwise applications that users had revoked would inadvertently have their access restored.\n\nBeyond the data cleanup issue, there were some additional small fixes more driven by specific client behaviors which we landed quickly.",
+      "lessons_learned": "We also added revocation to the dashboard so developers can easily control which applications have access to their data, and made app ownership more visible to prevent OAuth phishing attacks.\n\nThat deployment served us well when usage was limited, but as the developer platform grew and agentic workflows became more common, it became clear that we needed a major upgrade to unlock new capabilities and improve performance.\n\nDuring our upgrade planning, it became clear that even the 1.X upgrade would still impact customers because the Hydra database required extensive schema migrations that:\n\n Created indexes in a manner that would claim an exclusive lock on critical tables, preventing active users from performing important OAuth operations \n\n Added columns to critical tables, and moved other columns to new tables\n\n There was also a quirk in the version of Hydra we were using in which the SDK would perform SELECT * operations, causing deserialization issues with the schema changes.\n\nTo prevent user impact, we rewrote the SQL migrations to use features such as CREATE INDEX CONCURRENTLY, and built a custom version of Hydra which selected explicit columns rather than SELECT *.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. That deployment served us well when usage was limited, but as the developer platform grew and agentic workflows became more common, it became clear that we needed a major upgrade to unlock new capabilities and improve performance. During our upgrade planning, it became clear that even the 1.X upgrade would still impact customers because the Hydra database required extensive schema migrations that:\n\n Created indexes in a manner that would claim an exclusive lock on critical tables, preventing active users from performing important OAuth operations \n\n Added columns to critical tables, and moved other columns to new tables\n\n There was also a quirk in the version of Hydra we were using in which the SDK would perform SELECT * operations, causing deserialization issues with the schema changes. Doing an in-place upgrade was not going to work for us, due to the sheer amount of schema changes the major version bump brought with it.",
+      "incident_timeline": "Earlier this year we updated our consent experience to make it clearer which application is requesting access, and what permissions it will receive. We also added revocation to the dashboard so developers can easily cont\nAs we planned the upgrade, we decided to do two smaller sequential upgrades rather than doing one large upgrade.  First, we would move to the latest 1.X release, evaluate any behavior or performance changes, and then pro\nWith the latest 1.X upgrade planned out, we now needed to create a plan for the even larger 2.X upgrade. We identified three potential options, and weighed the benefits and drawbacks of each one. Doing an in-place upgrad\nWith reducing writes solved, we needed to come up with a way to not lose any revocations our users performed during the upgrade window. To do this, we created a queue system (using Cloudflare Queues !) which, after a rev\nAfter the cutover, we saw an increase in refresh token errors that we had not seen before. This ended up being due to stricter refresh invalidation behaviors in the new version; if a refresh token was reused, Hydra would\nWe mitigated this by adding refresh token coalescing behavior to our Worker which routes OAuth traffic to the correct destination. This allowed us to briefly cache the refresh token request before it reached Hydra, so th\nCopy and restore our database to the new target\nWe chose an upgrade window when Hydra had the lowest request volume per second to minimize lost token writes. Other than some timeout tuning, our production migrations ran well against the new database: the net runtime i",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Cloudflare provides services that help run 20% of the web, but we don’t do it alone. Developers on our platform use a myriad of tools and services from other companies too.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "a43da1eacbc1cb41",
+    "title": "How migrating to Elastic Security helped a digital safety software company cut incidents by 85% with UnderDefense",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-security-migration-with-underdefense",
+    "published": "2026-06-24T00:00:00+00:00",
+    "fetched_at": "2026-06-24T14:48:50.402779+00:00",
+    "summary": "UnderDefense, an Elastic partner, migrated a two-person security team from a noisy legacy QRadar to Elastic Security on AWS, cutting incident volume 85%, reducing MTTR 61%, and delivering audit-ready retention with 25 purpose-built dashboards.",
+    "tags": [
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-24",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "observability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "UnderDefense, an Elastic partner, migrated a two-person security team from a noisy legacy QRadar to Elastic Security on AWS, cutting incident volume 85%, reducing MTTR 61%, and delivering audit-ready retention with 25 purpose-built dashboards.",
+      "technical_breakdown": "UnderDefense, an Elastic partner, migrated a two-person security team from a noisy legacy QRadar to Elastic Security on AWS, cutting incident volume 85%, reducing MTTR 61%, and delivering audit-ready retention with 25 purpose-built dashboards.",
+      "impact": "Classified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "UnderDefense, an Elastic partner, migrated a two-person security team from a noisy legacy QRadar to Elastic Security on AWS, cutting incident volume 85%, reducing MTTR 61%, and delivering audit-ready retention with 25 purpose-built dashboards.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]
