@@ -188,6 +188,48 @@
     "highlighted": false
   },
   {
+    "id": "3440ccbb4e53f36d",
+    "title": "Advancing AI agent security in Vault",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/advancing-ai-agent-security-in-vault",
+    "published": "2026-06-24T04:12:00+00:00",
+    "fetched_at": "2026-06-24T17:11:26.343614+00:00",
+    "summary": "A few weeks ago, we  announced  native support for AI agents in HashiCorp Vault through an early access program. We’re now making these capabilities available to all Vault Enterprise customers in  public preview .",
+    "tags": [],
+    "day": "2026-06-24",
+    "impact": "medium",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "As organizations deploy AI agents, one of the biggest challenges is controlling what those agents are authorized to do. Traditional identity-based permissions often grant broad access that persists beyond a single task, ",
+      "This public preview introduces a secure-by-default approach to agent authorization that evaluates access for each request, helping organizations enforce least privilege for AI agents at scale. It also makes these capabil",
+      "Enforcing authorization details by default: establishing a secure baseline  In earlier work, we introduced ephemeral, per-request authorization to tightly scope what agents can do.   This public preview builds on that fo",
+      "Rich Authorization Requests are a new standard for this kind of per-request permission constrained workflow. They are defined in  RFC 9396  and are part of the IETF's OAuth 2.0 specification. They enable authorization to",
+      "By requiring `authorization_details` by default, Vault establishes a secure baseline for agent-based workflows. Requests without these fine-grained authorization details are rejected unless configured otherwise. This ens",
+      "·      Enforce fine-grained, per-request authorization",
+      "·      Establish clear, auditable authorization scope for each agent action",
+      "Managing agent identity and OAuth resource server configuration with the Terraform Vault Provider Establishing a secure, request-scoped authorization model is only part of the challenge. Organizations also need a consist"
+    ],
+    "sections": {
+      "overview": "A few weeks ago, we  announced  native support for AI agents in HashiCorp Vault through an early access program. We’re now making these capabilities available to all Vault Enterprise customers in  public preview . As organizations deploy AI agents, one of the biggest challenges is controlling what those agents are authorized to do.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "As a result, customers can:\n\n ·      Enforce fine-grained, per-request authorization\n\n ·      Reduce reliance on broad, long-lived permissions\n\n ·      Establish clear, auditable authorization scope for each agent action\n\n Customers can configure behavior on a per–OAuth resource server or per–agent registration basis, balancing secure-by-default behavior with the flexibility needed to integrate with their current environments. We’re now making these capabilities available to all Vault Enterprise customers in  public preview . Enforcing authorization details by default: establishing a secure baseline  In earlier work, we introduced ephemeral, per-request authorization to tightly scope what agents can do. The `authorization_details` claim carries this information, allowing access to be scoped to specific actions or resources for each request rather than relying on broad, identity-based permissions.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "It also makes these capabilities easier to operationalize with improved configuration workflows and broader ecosystem support.",
+      "root_cause_highlight": "",
+      "incident_timeline": "As organizations deploy AI agents, one of the biggest challenges is controlling what those agents are authorized to do. Traditional identity-based permissions often grant broad access that persists beyond a single task, \nThis public preview introduces a secure-by-default approach to agent authorization that evaluates access for each request, helping organizations enforce least privilege for AI agents at scale. It also makes these capabil\nEnforcing authorization details by default: establishing a secure baseline  In earlier work, we introduced ephemeral, per-request authorization to tightly scope what agents can do.   This public preview builds on that fo\nRich Authorization Requests are a new standard for this kind of per-request permission constrained workflow. They are defined in  RFC 9396  and are part of the IETF's OAuth 2.0 specification. They enable authorization to\nBy requiring `authorization_details` by default, Vault establishes a secure baseline for agent-based workflows. Requests without these fine-grained authorization details are rejected unless configured otherwise. This ens\n·      Enforce fine-grained, per-request authorization\n·      Establish clear, auditable authorization scope for each agent action\nManaging agent identity and OAuth resource server configuration with the Terraform Vault Provider Establishing a secure, request-scoped authorization model is only part of the challenge. Organizations also need a consist",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "A few weeks ago, we  announced  native support for AI agents in HashiCorp Vault through an early access program. We’re now making these capabilities available to all Vault Enterprise customers in  public preview .",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "a43da1eacbc1cb41",
     "title": "How migrating to Elastic Security helped a digital safety software company cut incidents by 85% with UnderDefense",
     "source": "Elastic Blog",

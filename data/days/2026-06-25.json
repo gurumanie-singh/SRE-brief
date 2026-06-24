@@ -1,0 +1,46 @@
+[
+  {
+    "id": "0dfeb5fc896b6eff",
+    "title": "HCP Vault Dedicated introduces cluster disaster recovery (public preview)",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/hcp-vault-dedicated-introduces-cluster-disaster-recovery-public-preview",
+    "published": "2026-06-25T04:13:00+00:00",
+    "fetched_at": "2026-06-24T17:11:26.342602+00:00",
+    "summary": "HCP Vault Dedicated is a fully managed secrets management solution that organizations rely on for authentication, dynamic secrets, and encryption workflows. As a core piece of security infrastructure, the cost of downtime is too high to leave recovery to chance. HCP Vault Dedicated already supports regional disaster recovery (DR) to protect against large-scale infrastructure outages...",
+    "tags": [
+      "deployment",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-25",
+    "impact": "critical",
+    "vendors": [
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "networking",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "Today, we’re introducing cluster disaster recovery (cluster DR) in public preview, available as a support-enabled feature for HCP Vault Dedicated customers. This capability adds a critical new layer of resilience by enab",
+      "Extending recovery beyond regional failures Regional DR protects against failures like cloud provider outages, regional networking disruptions, and large-scale infrastructure incidents. However, it still assumes that the",
+      "Cluster DR enables operational resilience Cluster DR allows teams to fail over an individual Vault cluster even when the primary region remains available. During the public preview, the feature is available for productio",
+      "Support security response workflows When teams detect a potential compromise, recovery actions often need to happen quickly. Cluster DR enables them to isolate the affected cluster, promote the DR secondary cluster, and ",
+      "Combining cluster DR with regional DR Teams achieve the strongest resilience by combining both recovery strategies. Regional DR protects where Vault runs. Cluster DR protects how Vault operates.",
+      "To request a failover test, submit a support ticket with:"
+    ],
+    "sections": {
+      "overview": "HCP Vault Dedicated is a fully managed secrets management solution that organizations rely on for authentication, dynamic secrets, and encryption workflows. As a core piece of security infrastructure, the cost of downtime is too high to leave recovery to chance. HCP Vault Dedicated already supports regional disaster recovery (DR) to protect against large-scale infrastructure outages, but cluster-specific incidents require a different kind of readiness.",
+      "technical_breakdown": "Extending recovery beyond regional failures Regional DR protects against failures like cloud provider outages, regional networking disruptions, and large-scale infrastructure incidents.\n\nHCP Vault Dedicated already supports regional disaster recovery (DR) to protect against large-scale infrastructure outages, but cluster-specific incidents require a different kind of readiness.\n\nCluster DR enables operational resilience Cluster DR allows teams to fail over an individual Vault cluster even when the primary region remains available.\n\nThis provides a recovery option for cluster-level security events that regional DR alone was not designed to address.\n\nSupporting enterprise hybrid cloud operations Enterprises that operate across hybrid and multi-cloud environments depend on Vault as a critical control plane for security and application delivery.",
+      "impact": "HCP Vault Dedicated already supports regional disaster recovery (DR) to protect against large-scale infrastructure outages, but cluster-specific incidents require a different kind of readiness. Extending recovery beyond regional failures Regional DR protects against failures like cloud provider outages, regional networking disruptions, and large-scale infrastructure incidents. Together, these approaches ensure that teams can respond effectively to infrastructure outages and application-level failures without compromising availability. Prepare for a broader range of failure scenarios  As enterprises scale their use of Vault, they must address the reality that most disruptions originate from software, operational, or security issues, not full regional outages.\n\nClassified impact band: critical. Affected layer signal: networking.",
+      "resolution": "This capability adds a critical new layer of resilience by enabling cluster-level failover and DR testing, so teams can rehearse incident response before real outages occur.\n\nThis lets teams intentionally test failover behavior for Vault-cluster-specific scenarios and verify runbooks, recovery coordination, and service continuity under controlled conditions.\n\nCustomers can request failover and failback through HashiCorp support.\n\nTo request a failover test, submit a support ticket with:\n\n ·      Cluster details (name, organization ID)\n\n ·      Failover window (within 16 hours)\n\n The Vault team will support the failover and failback process.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. This lets teams intentionally test failover behavior for Vault-cluster-specific scenarios and verify runbooks, recovery coordination, and service continuity under controlled conditions. Cluster DR enables them to isolate the affected cluster, promote the DR secondary cluster, and restore service continuity in a controlled environment. Supporting enterprise hybrid cloud operations Enterprises that operate across hybrid and multi-cloud environments depend on Vault as a critical control plane for security and application delivery.",
+      "incident_timeline": "Today, we’re introducing cluster disaster recovery (cluster DR) in public preview, available as a support-enabled feature for HCP Vault Dedicated customers. This capability adds a critical new layer of resilience by enab\nExtending recovery beyond regional failures Regional DR protects against failures like cloud provider outages, regional networking disruptions, and large-scale infrastructure incidents. However, it still assumes that the\nCluster DR enables operational resilience Cluster DR allows teams to fail over an individual Vault cluster even when the primary region remains available. During the public preview, the feature is available for productio\nSupport security response workflows When teams detect a potential compromise, recovery actions often need to happen quickly. Cluster DR enables them to isolate the affected cluster, promote the DR secondary cluster, and \nCombining cluster DR with regional DR Teams achieve the strongest resilience by combining both recovery strategies. Regional DR protects where Vault runs. Cluster DR protects how Vault operates.\nTo request a failover test, submit a support ticket with:",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "HCP Vault Dedicated is a fully managed secrets management solution that organizations rely on for authentication, dynamic secrets, and encryption workflows. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
