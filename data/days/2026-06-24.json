@@ -1,5 +1,57 @@
 [
   {
+    "id": "a9eda9fe7bb9c1f8",
+    "title": "Spotlight on WG Device Management",
+    "source": "Kubernetes Blog",
+    "link": "https://kubernetes.io/blog/2026/06/24/wg-device-management-spotlight-2026/",
+    "published": "2026-06-24T10:00:00-08:00",
+    "fetched_at": "2026-06-24T21:40:48.734993+00:00",
+    "summary": "The rising popularity of AI, Edge, and Telecommunications workloads on Kubernetes has led to new requirements for hardware management. We now need hardware specification beyond CPU time and memory allocations. This includes allocating GPUs, TPUs, network interfaces, and other hardware, sometimes after pod start and occasionally through time-sharing.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-24",
+    "impact": "medium",
+    "vendors": [
+      "Kubernetes",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Patrick Ohly: I am a Principal Engineer at Intel. In Kubernetes, I am a Tech Lead for SIG Testing and SIG Instrumentation and co-chair of the Device Management WG. I was co-chair of the WG Structured Logging and a member",
+      "John Belamaric: I am a Senior Staff SWE at Google, and the third co-chair of WG Device Management, also since its inception. I am also a co-chair of SIG Architecture since 2019. As Patrick mentioned, in late 2023, intere",
+      "Requesting: Users define their specific hardware needs—such as GPU memory or interconnect requirements—through the ResourceClaim API .",
+      "The problem we set out to solve is that the legacy Device Plugin API (which has been the primary mechanism for exposing hardware accelerators in Kubernetes) is fundamentally limited. It treats devices as opaque integers:",
+      "JB: DRA is the first problem the WG has addressed. It is focused on selection, allocation, and configuration of the devices. We broke the problem down into four parts: how does the vendor model the device and advertise c",
+      "Why is this necessary? Consider a simple example: a user requests a set of GPUs that need to communicate via NVLink. That requirement involves the scheduler (place the pods on the right nodes), the kubelet (configure the",
+      "The cross-SIG model also means that design decisions are reviewed from multiple angles. Someone from sig-scheduling will catch scheduler complexity that a sig-node contributor might overlook, and vice versa. It slows dow",
+      "DRA: Extended Resource Requests via DRA"
+    ],
+    "sections": {
+      "overview": "The rising popularity of AI, Edge, and Telecommunications workloads on Kubernetes has led to new requirements for hardware management. We now need hardware specification beyond CPU time and memory allocations. This includes allocating GPUs, TPUs, network interfaces, and other hardware, sometimes after pod start and occasionally through time-sharing.",
+      "technical_breakdown": "A cross-SIG effort Because device management touches scheduling, node operations, autoscaling, networking, and API design, the work naturally spans multiple SIGs across the Kubernetes project.\n\nThat requirement involves the scheduler (place the pods on the right nodes), the kubelet (configure the devices and expose them to the container), and potentially autoscaling (provision the right node type if none exists).\n\nThe Kubernetes scheduler traditionally has not supported either of this well because it schedules one pod at a time and is unaware of the topology within a node.\n\nWith DRA, workloads can describe their hardware requirements (e.g., GPU type, memory capacity, interconnect topology, desired partitioning) and drivers can publish fine-grained device attributes that the scheduler can act on.\n\nWe have five stakeholder SIGs: sig-node, sig-scheduling, sig-autoscaling, sig-network, and sig-architecture.",
+      "impact": "Requesting: Users define their specific hardware needs—such as GPU memory or interconnect requirements—through the ResourceClaim API . But because it touches on so many different areas of Kubernetes, we also needed a place to discuss that and get the broader community of Kubernetes maintainers, device vendors, and, to a lesser extent, also end-users involved. We broke the problem down into four parts: how does the vendor model the device and advertise capacity, how does the user request it, how do we schedule that request on top of the advertised capacity, and how do we actuate that result (that is, how do we make the device ready and available to the Pod). We build a device modeling API (the ResourceSlice API) that vendors use to model the scheduling characteristics of their devices, and allow users to pass through arbitrary configurations to those devices.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "In particular, we are looking into device failure detection and mitigation, and whether there is some better support we can build into Kubernetes to help.",
+      "lessons_learned": "In particular, we are looking into device failure detection and mitigation, and whether there is some better support we can build into Kubernetes to help.\n\nImprove multi-node support, primarily by integrating with workload-aware scheduling.\n\nOr they can ask for a list of alternatives: \"I’d like one A100 (80GB) GPU, but if you don’t have it, I’ll take 2 A100 (40 GB) GPUs.\" This gives the scheduler some options to satisfy the request, which can lead to better obtainability and utilization of hardware that otherwise would not be selected.\n\nReal-world impact While much of the work is deeply technical, the underlying goal is practical: enabling Kubernetes to better support real-world AI/ML and hardware-intensive workloads at scale.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Patrick Ohly: I am a Principal Engineer at Intel. In Kubernetes, I am a Tech Lead for SIG Testing and SIG Instrumentation and co-chair of the Device Management WG. I was co-chair of the WG Structured Logging and a member\nJohn Belamaric: I am a Senior Staff SWE at Google, and the third co-chair of WG Device Management, also since its inception. I am also a co-chair of SIG Architecture since 2019. As Patrick mentioned, in late 2023, intere\nRequesting: Users define their specific hardware needs—such as GPU memory or interconnect requirements—through the ResourceClaim API .\nThe problem we set out to solve is that the legacy Device Plugin API (which has been the primary mechanism for exposing hardware accelerators in Kubernetes) is fundamentally limited. It treats devices as opaque integers:\nJB: DRA is the first problem the WG has addressed. It is focused on selection, allocation, and configuration of the devices. We broke the problem down into four parts: how does the vendor model the device and advertise c\nWhy is this necessary? Consider a simple example: a user requests a set of GPUs that need to communicate via NVLink. That requirement involves the scheduler (place the pods on the right nodes), the kubelet (configure the\nThe cross-SIG model also means that design decisions are reviewed from multiple angles. Someone from sig-scheduling will catch scheduler complexity that a sig-node contributor might overlook, and vice versa. It slows dow\nDRA: Extended Resource Requests via DRA",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "The rising popularity of AI, Edge, and Telecommunications workloads on Kubernetes has led to new requirements for hardware management. We now need hardware specification beyond CPU time and memory allocations.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "a2e0653e39475e66",
     "title": "Optimizing distributed AI inference: Advanced deployment patterns",
     "source": "Red Hat Developer Blog",
@@ -262,6 +314,39 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "UnderDefense, an Elastic partner, migrated a two-person security team from a noisy legacy QRadar to Elastic Security on AWS, cutting incident volume 85%, reducing MTTR 61%, and delivering audit-ready retention with 25 purpose-built dashboards.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d886643293b68a6b",
+    "title": "CEO Ash Kulkarni's organizational announcement to Elastic employees",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/ceo-ash-kulkarni-announcement-to-elastic-employees",
+    "published": "2026-06-24T00:00:00+00:00",
+    "fetched_at": "2026-06-24T21:40:50.151109+00:00",
+    "summary": "Today, we announced an organizational change at Elastic.",
+    "tags": [],
+    "day": "2026-06-24",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "CEO Ash Kulkarni's organizational announcement to Elastic employees. Today, we announced an organizational change at Elastic.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Today, we announced an organizational change at Elastic.",
     "related_sources": [],
     "highlighted": false
   }
