@@ -93,10 +93,57 @@
     "email_summary": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager.",
     "related_sources": [
       {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/deploy-boundary-on-kubernetes-with-official-helm-charts"
+      },
+      {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/rollbacks-for-workflows/"
+      },
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/boundary-1-releases-with-rdp-session-recording-and-improved-management"
       }
     ],
+    "highlighted": false
+  },
+  {
+    "id": "120264940654ca58",
+    "title": "Scaling without friction: Aliases at project scope in Boundary",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/scaling-without-friction-aliases-at-project-scope-in-boundary",
+    "published": "2026-06-25T07:00:00+00:00",
+    "fetched_at": "2026-06-25T22:26:15.705556+00:00",
+    "summary": "In Boundary, a target alias is a simple, powerful tool. It lets you connect to infrastructure using a memorable name instead of a random, generated ID. It gives developers something intuitive to work with. But those aliases lived exclusively at the global scope. They must be globally unique across your entire deployment. ",
+    "tags": [
+      "database",
+      "deployment",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-25",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "data store",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "Download the latest version of  Boundary installer  to try it out yourself."
+    ],
+    "sections": {
+      "overview": "In Boundary, a target alias is a simple, powerful tool. It lets you connect to infrastructure using a memorable name instead of a random, generated ID. It gives developers something intuitive to work with.",
+      "technical_breakdown": "Aliases are now automatically constructed as: <alias>.<project-suffix>.<org-suffix> \n\n By introducing structured suffixes with aliases at both the project and organization levels, we are bringing a natural, DNS-style hierarchy mimicking the Boundary deployment structure directly to your access paths.\n\nReal-world example: global enterprise deployment   Consider a large enterprise structuring Boundary across geographic regions and business departments.\n\nThey must be globally unique across your entire deployment.\n\nTeams can now independently create, manage, and use aliases within their own project boundaries, aligned with how they already map their deployment structures.\n\nEvery network project needs an ssh-jumper.",
+      "impact": "Configuring grants   To support this new workflow, two new actions are introduced that will enable users with project admin and org admin roles to create or remove suffixes at project scope and org scopes respectively. But those aliases lived exclusively at the global scope. With our 1.0 release , Boundary introduces target aliases at the project scope level. It's simple: \n\n Define an alias once \n\n Ensure it's unique \n\n Use it with any target under any scope in Boundary \n\n  \n\n But at enterprise scale, this model starts to break down.\n\nClassified impact band: medium. Affected layer signal: data store.",
+      "resolution": "Introducing structured suffixes   The answer is not more rules.\n\nAliases are now automatically constructed as: <alias>.<project-suffix>.<org-suffix> \n\n By introducing structured suffixes with aliases at both the project and organization levels, we are bringing a natural, DNS-style hierarchy mimicking the Boundary deployment structure directly to your access paths.\n\nThis suffix model mirrors that structure in names, making connections more intuitive.\n\nReduced namespace collisions : Org suffixes scope project suffix uniqueness within each org.",
+      "lessons_learned": "It's better structure.\n\nBetter deployment structure : The hierarchy aligns with enterprise org structures, creating clearer namespace ownership and governance boundaries.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. They must be globally unique across your entire deployment. Teams can now independently create, manage, and use aliases within their own project boundaries, aligned with how they already map their deployment structures. Aliases are now automatically constructed as: <alias>.<project-suffix>.<org-suffix> \n\n By introducing structured suffixes with aliases at both the project and organization levels, we are bringing a natural, DNS-style hierarchy mimicking the Boundary deployment structure directly to your access paths.",
+      "incident_timeline": "Download the latest version of  Boundary installer  to try it out yourself.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In Boundary, a target alias is a simple, powerful tool. It lets you connect to infrastructure using a memorable name instead of a random, generated ID.",
+    "related_sources": [],
     "highlighted": false
   },
   {
