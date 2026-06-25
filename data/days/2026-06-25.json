@@ -91,7 +91,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/rollbacks-for-workflows/"
+      }
+    ],
     "highlighted": false
   },
   {
