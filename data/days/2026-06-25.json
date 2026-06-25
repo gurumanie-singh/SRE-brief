@@ -1,5 +1,100 @@
 [
   {
+    "id": "dd19cee4a1055b3d",
+    "title": "Build a RHEL environment with image builder and content templates",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/25/build-rhel-environment-image-builder-and-content-templates",
+    "published": "2026-06-25T07:15:58+00:00",
+    "fetched_at": "2026-06-25T08:28:25.734248+00:00",
+    "summary": "Consistent image builds, or golden images are an important part of any standard operating environment (SOE). You need to guarantee that the software in the image remains consistent from build to build until you update your approved package set. Beyond the image, you need to be sure that your running systems are receiving the same updates as your image, so that you can maintain consistency...",
+    "tags": [
+      "deployment",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-06-25",
+    "impact": "medium",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "general production",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Step 1: Create a content template To create a content template, visit the Templates page in the Hybrid Cloud Console and click the Create template button. In the creation wizard, select your RHEL operating system version",
+      "For our example, choose RHEL 10, x86_64, and Virtualization - Guest image (.qcow2) . Then proceed through the configuration options, setting values that match your needs, such as automatically registering the system with",
+      "Proceed through the rest of the steps and choose the Create blueprint and build image(s) option .",
+      "Last metadata expiration check: 0:04:17 ago on Wed Apr 22 21:01:22 2026.",
+      "Last metadata expiration check: 0:01:43 ago on Wed Apr 22 21:17:18 2026."
+    ],
+    "sections": {
+      "overview": "Consistent image builds, or golden images are an important part of any standard operating environment (SOE). You need to guarantee that the software in the image remains consistent from build to build until you update your approved package set. Beyond the image, you need to be sure that your running systems are receiving the same updates as your image, so that you can maintain consistency throughout your environment.",
+      "technical_breakdown": "It enables you to standardize and streamline your deployments by applying customizations at build time.\n\nWe can see the impact of the content template on our running system by logging into the system console and running sudo dnf update , which shows that there are no updates to install. \n\n [rhel10-soe@rhel10-soe-vm ~]$ sudo dnf update\nUpdating Subscription Management repositories.\n\nWe can see the impact of the content template on our running system by logging into the system console.",
+      "impact": "The 17 applicable advisories are updates that impact this system, but published after March 31. We can see the impact of the content template on our running system by logging into the system console and running sudo dnf update , which shows that there are no updates to install. \n\n [rhel10-soe@rhel10-soe-vm ~]$ sudo dnf update\nUpdating Subscription Management repositories. We can see the impact of the content template on our running system by logging into the system console.\n\nClassified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Dependencies resolved.\n\nUpdates Information Summary: available\n 10 Security notice(s)\n 1 Critical Security notice(s)\n 6 Important Security notice(s)\n 3 Moderate Security notice(s)\n 3 Bugfix notice(s)\n[rhel10-soe@rhel10-soe-vm ~]$ Any new system you deploy for your rebuilt image and any existing system you patch will include the same package versions, resulting in consistent and predictable operations across your environment.",
+      "lessons_learned": "For this example, we will build and deploy a RHEL 10 for x86_64 system with the packages and updates published through March 31, 2026.\n\nThis time we will run sudo dnf updateinfo , which shows that there are 13 updates to install, including 10 security advisories. \n\n [rhel10-soe@rhel10-soe-vm ~]$ sudo dnf updateinfo\nUpdating Subscription Management repositories.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. It enables you to standardize and streamline your deployments by applying customizations at build time. Because we embedded an activation key in our image and built it from a content template, our system automatically registers to the Hybrid Cloud Console with the content template applied.",
+      "incident_timeline": "Step 1: Create a content template To create a content template, visit the Templates page in the Hybrid Cloud Console and click the Create template button. In the creation wizard, select your RHEL operating system version\nFor our example, choose RHEL 10, x86_64, and Virtualization - Guest image (.qcow2) . Then proceed through the configuration options, setting values that match your needs, such as automatically registering the system with\nProceed through the rest of the steps and choose the Create blueprint and build image(s) option .\nLast metadata expiration check: 0:04:17 ago on Wed Apr 22 21:01:22 2026.\nLast metadata expiration check: 0:01:43 ago on Wed Apr 22 21:17:18 2026.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Consistent image builds, or golden images are an important part of any standard operating environment (SOE). You need to guarantee that the software in the image remains consistent from build to build until you update your approved package set.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "e340e16a53b059c4",
+    "title": "Implement mTLS and zero trust with cert-manager and trust-manager",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/25/implement-mtls-and-zero-trust-cert-manager-and-trust-manager",
+    "published": "2026-06-25T07:15:56+00:00",
+    "fetched_at": "2026-06-25T08:28:25.735978+00:00",
+    "summary": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager. The trust-manager controller is an optional add-on feature, enabling administrators to customize and distribute bundles of trusted certificate authorities (CAs) to...",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-25",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare",
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "dns issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of tr",
+      "TLS vs mTLS To highlight the benefits of trust-manager, we will give a little background about transport layer security (TLS) and its more secure iteration, mutual transport layer security (mTLS). This section provides a",
+      "First, to facilitate a secure TLS handshake, we require two artifacts: the CA bundle and the TLS certificate. In an enterprise environment, the CA bundle serves as the trust anchor. It is a collection of public key certi",
+      "Success : The client confirms that the certificate is valid, and the encrypted session is established.",
+      "Success : The client and server confirm the other certificate is valid, and the encrypted session is established.",
+      "trust-manager To continue, let s use a simple example of a passport, where the certificate is the passport. In order to verify a passport, the customs agent will look for a few things: watermarks, holographic seals, etc.",
+      "The critical first step here is that trust-manager benefits from cert-manager s ability to connect to almost any external PKI. This means that an enterprise can wire up cert-manager to connect to their PKI of choice. Cer",
+      "Try trust-manager If you are interested in trying this out for yourself, head to the GitHub repository . It contains a simple demo of mTLS in action with trust-manager and cert-manager. Additionally, you can find documen"
+    ],
+    "sections": {
+      "overview": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager. The trust-manager controller is an optional add-on feature, enabling administrators to customize and distribute bundles of trusted certificate authorities (CAs) to workloads across Kubernetes clusters.",
+      "technical_breakdown": "The most common form of network communication is TLS, a methodology found in web browsers or in many protocols that use HTTPS, such as API calls.\n\nIf you would like to explore a deeper understanding of TLS or mTLS, this Cloudflare blog is a good start.\n\nIn the simple example above, the server pod in namespace A receives a TLS certificate minted by the intermediate CA in the cert-manager namespace, and the client pod in namespace B receives the Bundle from trust-manager including the public keys of the intermediate and root CAs so that when it communicates with the server pod, it can verify that the TLS certificate supplied was properly signed by both CAs.\n\nEach running workload (i.e., pod) gets a signed TLS certificate.\n\nPod A in namespace A get a TLS certificate signed by intermediate CA - A, and Pod B gets a TLS certificate signed by intermediate CA - B \n From here, the mTLS handshake proceeds as described in the previous introductory section.",
+      "impact": "The client terminates the connection; or in the case of some web browsers, warns the user that it does not trust the server s certificate, and the user should proceed with caution. This bundle provides the reference needed for a client (and server, in mTLS scenarios) to verify that a presented certificate is authentic. For TLS, the following occurs: \n\n The client (e.g., web browser) initiates communication. The server (e.g., backend web server) responds to the client with a TLS certificate.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "TLS vs mTLS To highlight the benefits of trust-manager, we will give a little background about transport layer security (TLS) and its more secure iteration, mutual transport layer security (mTLS).\n\nThis introduces a significant improvement to the security of an organization as a whole as a breach to the OpenShift cluster will never expose the Root certificate authority private key, which is used as the highest level of authority for minting TLS certificates.",
+      "root_cause_highlight": "Likely root-cause theme: dns issue. This requirement breaks down for any non-public DNS use case with internal domains such as cluster.internal.corp . Previously, it was much more difficult to rotate CA certificates at shorter intervals because this added additional manual tasks of reconstructing and distributing new trust bundles.",
+      "incident_timeline": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of tr\nTLS vs mTLS To highlight the benefits of trust-manager, we will give a little background about transport layer security (TLS) and its more secure iteration, mutual transport layer security (mTLS). This section provides a\nFirst, to facilitate a secure TLS handshake, we require two artifacts: the CA bundle and the TLS certificate. In an enterprise environment, the CA bundle serves as the trust anchor. It is a collection of public key certi\nSuccess : The client confirms that the certificate is valid, and the encrypted session is established.\nSuccess : The client and server confirm the other certificate is valid, and the encrypted session is established.\ntrust-manager To continue, let s use a simple example of a passport, where the certificate is the passport. In order to verify a passport, the customs agent will look for a few things: watermarks, holographic seals, etc.\nThe critical first step here is that trust-manager benefits from cert-manager s ability to connect to almost any external PKI. This means that an enterprise can wire up cert-manager to connect to their PKI of choice. Cer\nTry trust-manager If you are interested in trying this out for yourself, head to the GitHub repository . It contains a simple demo of mTLS in action with trust-manager and cert-manager. Additionally, you can find documen",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "0dfeb5fc896b6eff",
     "title": "HCP Vault Dedicated introduces cluster disaster recovery (public preview)",
     "source": "HashiCorp Blog",
@@ -40,7 +135,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "HCP Vault Dedicated is a fully managed secrets management solution that organizations rely on for authentication, dynamic secrets, and encryption workflows. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Red Hat Developer Blog",
+        "link": "https://developers.redhat.com/articles/2026/06/25/how-integrate-openshift-ai-and-pg-airman-mcp-server"
+      }
+    ],
     "highlighted": false
   },
   {

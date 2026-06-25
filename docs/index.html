@@ -25,17 +25,16 @@
 
   <div class="brief-header">
     <div class="brief-primary">
-      <h1 class="brief-title">24 June 2026</h1>
+      <h1 class="brief-title">25 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-24T23:16:55.483951-05:00">24 June 2026, 23:16</time>
+        <time data-iso="2026-06-25T03:28:25.993232-05:00">25 June 2026, 03:28</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">2 high impact</span>
-      <span class="stat stat-action">2 ops priority</span>
-      <span class="stat">8 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat">4 items today</span>
     </div>
   </div>
 
@@ -43,9 +42,8 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>2 high-impact reliability events surfaced</li>
-        <li>2 stories flagged for operational follow-up</li>
-        <li>Repeated coverage across Red Hat, Elastic</li>
+        <li>1 critical incident signal in the feed window</li>
+        <li>Repeated coverage across Red Hat, GitHub</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -55,9 +53,9 @@
         <span class="trend-pill">building<span class="trend-count">4</span></span>
         <span class="trend-pill">netflix<span class="trend-count">4</span></span>
         <span class="trend-pill">openshift<span class="trend-count">4</span></span>
+        <span class="trend-pill">build<span class="trend-count">3</span></span>
         <span class="trend-pill">inference<span class="trend-count">3</span></span>
         <span class="trend-pill">security<span class="trend-count">3</span></span>
-        <span class="trend-pill">vault<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -89,10 +87,10 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
@@ -119,8 +117,8 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
@@ -131,10 +129,81 @@
   <div class="day-group">
     <h2 class="day-heading">
       25 June 2026
-      <span class="day-count">2</span>
+      <span class="day-count">4</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="deployment,observability,outage"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="build a rhel environment with image builder and content templates"
+       data-id="dd19cee4a1055b3d"
+       data-published="2026-06-25T07:15:58+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-25T07:15:58+00:00" title="25 June 2026, 02:15">25 June 2026, 02:15</time>
+      </div>
+      <h3 class="card-title">Build a RHEL environment with image builder and content templates</h3>
+      <p class="card-summary">Consistent image builds, or golden images are an important part of any standard operating environment (SOE). You need to guarantee that the software in the image remains consistent from build to build until you update your approved package set.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Consistent image builds, or golden images are an important part of any standard operating environment (SOE). You need to guarantee that the software in the image remains consistent from build to build until you update your approved package set. Beyond the image, you need to be sure that your running systems are receiving the same updates as your image, so that you can maintain consistency throughout your environment.</p></div>
+      <div class="detail-links">
+        <a href="articles/dd19cee4a1055b3d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/25/build-rhel-environment-image-builder-and-content-templates" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes,networking,outage,scaling"
+       data-vendors="Cloudflare,GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="capacity and scale"
+       data-title="implement mtls and zero trust with cert-manager and trust-manager"
+       data-id="e340e16a53b059c4"
+       data-published="2026-06-25T07:15:56+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Cloudflare</span><span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-06-25T07:15:56+00:00" title="25 June 2026, 02:15">25 June 2026, 02:15</time>
+      </div>
+      <h3 class="card-title">Implement mTLS and zero trust with cert-manager and trust-manager</h3>
+      <p class="card-summary">We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager. The trust-manager controller is an optional add-on feature, enabling administrators to customize and distribute bundles of trusted certificate authorities (CAs) to workloads across Kubernetes clusters.</p></div>
+      <div class="detail-links">
+        <a href="articles/e340e16a53b059c4.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/25/implement-mtls-and-zero-trust-cert-manager-and-trust-manager" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--critical"
        data-tags="deployment,networking,outage"
        data-vendors="HashiCorp"
@@ -160,6 +229,7 @@
           <span class="ttag">outage</span>
         </div>
       </div>
+      <div class="card-related">Also: Red Hat Developer Blog</div>
       <span class="card-source">HashiCorp Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -967,7 +1037,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       19 June 2026
-      <span class="day-count">7</span>
+      <span class="day-count">5</span>
     </h2>
   </div>
 
@@ -1163,75 +1233,6 @@
       <div class="detail-links">
         <a href="articles/b9f8bc6029ac8574.html" class="detail-read">Open structured brief →</a>
         <a href="https://netflixtechblog.com/a-human-augmenting-agentic-workflow-for-causal-inference-4623f0a9c5af?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--critical"
-       data-tags="database,deployment,latency,networking,observability,outage,postmortem,scaling"
-       data-vendors="AWS,Netflix"
-       data-impact="critical"
-       data-theme="observability"
-       data-title="netflix built a real-time service dependency map"
-       data-id="fc1c813857287050"
-       data-published="2026-06-19T23:52:02+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
-<span class="vtag">AWS</span><span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:52:02+00:00" title="19 June 2026, 18:52">19 June 2026, 18:52</time>
-      </div>
-      <h3 class="card-title">Netflix Built a Real-Time Service Dependency Map</h3>
-      <p class="card-summary">By Parth Jain , Rakesh Sukumar , Yingwu Zhao , Renzo Sanchez-Silva &amp; Nathan Fisher 
-How we built a living map of our distributed infrastructure to help engineers understand dependencies, troubleshoot faster, and keep Netflix running smoothly for our members around the world. Impact band: critical.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">networking</span>
-        </div>
-      </div>
-      <span class="card-source">Netflix TechBlog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>By Parth Jain , Rakesh Sukumar , Yingwu Zhao , Renzo Sanchez-Silva &amp; Nathan Fisher  How we built a living map of our distributed infrastructure to help engineers understand dependencies, troubleshoot faster, and keep Netflix running smoothly for our members around the world. The Puzzle with a Thousand Pieces Picture this: It’s 3am, and an engineer gets paged. One of our critical services is showing elevated error rates.</p></div>
-      <div class="detail-links">
-        <a href="articles/fc1c813857287050.html" class="detail-read">Open structured brief →</a>
-        <a href="https://netflixtechblog.com/from-silos-to-service-topology-why-netflix-built-a-real-time-service-map-0165ba13a7bc?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors=""
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="dispatches from o&#39;reilly: from capabilities to responsibilities​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌"
-       data-id="82276ed37b76990a"
-       data-published="2026-06-19T14:00:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-        <time class="meta-time" data-iso="2026-06-19T14:00:00+00:00" title="19 June 2026, 09:00">19 June 2026, 09:00</time>
-      </div>
-      <h3 class="card-title">Dispatches from O&#39;Reilly: From capabilities to responsibilities​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</h3>
-      <p class="card-summary">Designing contract-bound AI agents for high-stakes…</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">Stack Overflow Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Dispatches from O&#39;Reilly: From capabilities to responsibilities​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​﻿​﻿​​‌​​﻿‌​﻿‌​﻿‌‌‌‌​﻿‌﻿​﻿‌​﻿‌﻿‌​﻿‌​​﻿‌​﻿‌​﻿‌​‌‌​‌‌​​﻿​​﻿‌‌​‌‌​﻿‌﻿​﻿​‌​﻿‌‌‌​​﻿​​​﻿‌​﻿​​﻿‌‌​﻿‌​﻿‌​​﻿​​‌​‌​﻿​﻿​﻿​‌​​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌. Designing contract-bound AI agents for high-stakes...</p></div>
-      <div class="detail-links">
-        <a href="articles/82276ed37b76990a.html" class="detail-read">Open structured brief →</a>
-        <a href="https://stackoverflow.blog/2026/06/19/dispatches-from-o-reilly-from-capabilities-to-responsibilities/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
