@@ -42,5 +42,52 @@
     "email_summary": "HCP Vault Dedicated is a fully managed secrets management solution that organizations rely on for authentication, dynamic secrets, and encryption workflows. Impact band: critical.",
     "related_sources": [],
     "highlighted": false
+  },
+  {
+    "id": "2df719548d5cc0dd",
+    "title": "Why you should use Fromager to build your Python dependency trees from source",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/25/build-your-python-dependency-trees-source-with-fromager",
+    "published": "2026-06-25T03:01:03+00:00",
+    "fetched_at": "2026-06-25T04:16:55.233181+00:00",
+    "summary": "If you've ever tried to rebuild an entire Python dependency tree from source, you know it's not a simple process. Packages depend on other packages, which have build-time dependencies, which also have their own dependencies, and so on. It's easy to get the order wrong, which eventually causes the build to fail. Fromager solves this problem with two key artifacts: build-order.json and graph.json ...",
+    "tags": [
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-25",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "networking",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "But there are already projects and tools that build Python wheels, so the obvious question is why we need Fromager. In this blog post, we delve into the motivations behind Fromager and explain its unique role in the ecos",
+      "Also there's no way to customize build flags per package. You can set global environment variables but you can't, for instance, specify to build numpy with CUDA support and scipy with OpenBLAS. There's no patching mechan",
+      "Common alternatives have similar issues. The uv tool has the same limitations as pip , and conda doesn't build from source at all. Bazel can auto-generate targets for PyPI dependencies, but primarily consumes pre-built w",
+      "fromager bootstrap stevedore This single command kicks off a multi-step orchestration: 1. Resolves stevedore to a specific version 2. Discovers that stevedore needs setuptools and pbr to build 3. Discovers that stevedore",
+      "The graph reveals several distinct edge types, such as top-level, install, and build-system. These categories are significant because they define the specific nature of each dependency relationship. The stevedore module ",
+      "Install dependencies: Packages needed to use the software at runtime ( numpy , requests ). These are discovered after the build phase completes, by reading metadata from the resulting wheel or sdist.",
+      "Fromager customizable without forking This is one of the biggest strengths of Fromager. When you are building hundreds of packages, you inevitably come across situations where the Python project doesn't follow the standa",
+      "Stage 1 (the discovery phase) resolves versions, queries package indexes, and runs PEP 517 hooks. Because those hooks are arbitrary Python code defined by each package's build backend, this stage executes untrusted upstr"
+    ],
+    "sections": {
+      "overview": "If you've ever tried to rebuild an entire Python dependency tree from source, you know it's not a simple process. Packages depend on other packages, which have build-time dependencies, which also have their own dependencies, and so on. It's easy to get the order wrong, which eventually causes the build to fail.",
+      "technical_breakdown": "It produces:\n\n graph.json : Every package, version, and typed dependency edge\n build-order.json : A topologically sorted build sequence\n Requirements: Cached requirement files for each package\n Source: Downloaded source archives\n Stage 2 (the build phase) compiles packages using only Stage 1 artifacts.\n\nIt captures every relationship between every package:\n\n {\n \"\": {\n \"download_url\": \"\",\n \"pre_built\": false,\n \"version\": \"0\",\n \"canonicalized_name\": \"\",\n \"edges\": [\n {\n \"key\": \"stevedore==5.4.1\",\n \"req_type\": \"toplevel\",\n \"req\": \"stevedore\"\n }\n ]\n },\n \"stevedore==5.4.1\": {\n \"download_url\": \"https://pypi.org/...\",\n \"pre_built\": false,\n \"version\": \"5.4.1\",\n \"canonicalized_name\": \"stevedore\",\n \"edges\": [\n {\n \"key\": \"pbr==6.1.1\",\n \"req_type\": \"install\",\n \"req\": \"pbr!=2.1.0,>=2.0.0\"\n },\n {\n \"key\": \"setuptools==75.8.2\",\n \"req_type\": \"build-system\",\n \"req\": \"setuptools>=40.8.0\"\n }\n ]\n },\n \"pbr==6.1.1\": {\n \"download_url\": \"https://pypi.org/...\",\n \"pre_built\": false,\n \"version\": \"6.1.1\",\n \"canonicalized_name\": \"pbr\",\n \"edges\": [\n {\n \"key\": \"setuptools==75.8.2\",\n \"req_type\": \"build-system\",\n \"req\": \"setuptools>=40.8.0\"\n }\n ]\n },\n \"setuptools==75.8.2\": {\n \"download_url\": \"https://pypi.org/...\",\n \"pre_built\": false,\n \"version\": \"75.8.2\",\n \"canonicalized_name\": \"setuptools\",\n \"edges\": []\n }\n}\n The graph reveals several distinct edge types, such as top-level, install, and build-system.\n\nIn this blog post, we delve into the motivations behind Fromager and explain its unique role in the ecosystem.\n\nReproducibility across platforms: When you manage multiple variants (x86_64, aarch64, CPU-only, CUDA), you need the same packages built consistently across all of them.\n\nAnd there's no way to manage multiple platform variants (CPU, CUDA, ROCm) from a single build pipeline.",
+      "impact": "Classified impact band: medium. Affected layer signal: networking.",
+      "resolution": "At the end, it produces a JSON report of every failure classified by type , giving you a clear map of what still needs fixing.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "But there are already projects and tools that build Python wheels, so the obvious question is why we need Fromager. In this blog post, we delve into the motivations behind Fromager and explain its unique role in the ecos\nAlso there's no way to customize build flags per package. You can set global environment variables but you can't, for instance, specify to build numpy with CUDA support and scipy with OpenBLAS. There's no patching mechan\nCommon alternatives have similar issues. The uv tool has the same limitations as pip , and conda doesn't build from source at all. Bazel can auto-generate targets for PyPI dependencies, but primarily consumes pre-built w\nfromager bootstrap stevedore This single command kicks off a multi-step orchestration: 1. Resolves stevedore to a specific version 2. Discovers that stevedore needs setuptools and pbr to build 3. Discovers that stevedore\nThe graph reveals several distinct edge types, such as top-level, install, and build-system. These categories are significant because they define the specific nature of each dependency relationship. The stevedore module \nInstall dependencies: Packages needed to use the software at runtime ( numpy , requests ). These are discovered after the build phase completes, by reading metadata from the resulting wheel or sdist.\nFromager customizable without forking This is one of the biggest strengths of Fromager. When you are building hundreds of packages, you inevitably come across situations where the Python project doesn't follow the standa\nStage 1 (the discovery phase) resolves versions, queries package indexes, and runs PEP 517 hooks. Because those hooks are arbitrary Python code defined by each package's build backend, this stage executes untrusted upstr",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "If you've ever tried to rebuild an entire Python dependency tree from source, you know it's not a simple process. Packages depend on other packages, which have build-time dependencies, which also have their own dependencies, and so on.",
+    "related_sources": [],
+    "highlighted": false
   }
 ]

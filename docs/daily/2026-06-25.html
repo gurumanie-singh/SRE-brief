@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">25 June 2026</h1>
-      <span class="brief-sub">1 item</span>
+      <span class="brief-sub">2 items</span>
     </div>
   </div>
 
@@ -36,6 +36,7 @@
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
         <li>1 critical incident signal in the feed window</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
   </div>
@@ -48,6 +49,7 @@
     </div>
     <div class="quick-filters" id="quickFilters">
       <button class="qf-btn qf-critical" data-filter-group="impact" data-filter-value="critical">Critical Incident</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
         More
@@ -62,6 +64,8 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
       </div>
     </div>
     <div class="adv-group">
@@ -73,9 +77,10 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
       </div>
     </div>
   </div>
@@ -112,6 +117,41 @@
       <div class="detail-links">
         <a href="../articles/0dfeb5fc896b6eff.html" class="detail-read">Open structured brief →</a>
         <a href="https://www.hashicorp.com/blog/hcp-vault-dedicated-introduces-cluster-disaster-recovery-public-preview" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="latency,networking,outage"
+       data-vendors="GitHub,Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="why you should use fromager to build your python dependency trees from source"
+       data-id="2df719548d5cc0dd"
+       data-published="2026-06-25T03:01:03+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-25T03:01:03+00:00" title="24 June 2026, 22:01">24 June 2026, 22:01</time>
+      </div>
+      <h3 class="card-title">Why you should use Fromager to build your Python dependency trees from source</h3>
+      <p class="card-summary">If you&#39;ve ever tried to rebuild an entire Python dependency tree from source, you know it&#39;s not a simple process. Packages depend on other packages, which have build-time dependencies, which also have their own dependencies, and so on.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you&#39;ve ever tried to rebuild an entire Python dependency tree from source, you know it&#39;s not a simple process. Packages depend on other packages, which have build-time dependencies, which also have their own dependencies, and so on. It&#39;s easy to get the order wrong, which eventually causes the build to fail.</p></div>
+      <div class="detail-links">
+        <a href="../articles/2df719548d5cc0dd.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/25/build-your-python-dependency-trees-source-with-fromager" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
