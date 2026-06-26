@@ -1,5 +1,44 @@
 [
   {
+    "id": "5cffa784837c1019",
+    "title": "Transitioning as a hubber",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/developer-skills/career-growth/transitioning-as-a-hubber/",
+    "published": "2026-06-26T12:00:00+00:00",
+    "fetched_at": "2026-06-26T12:19:10.361364+00:00",
+    "summary": "When I joined GitHub, my legal name was Ursula but my handle was gleeblezoid. Now, as Arthur, I m still gleeblezoid.",
+    "tags": [
+      "outage"
+    ],
+    "day": "2026-06-26",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Slack"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "I started my career doing IT support and operational work, but being interested in computers meant teaching myself how to code. A colleague from a previous role referred me to GitHub, and I started out five years ago on ",
+      "While here, I ve been proud to work with my team on migrating our main SaaS platform to infrastructure as code, and to be a guest speaker a handful of times at Oxford University on the subject of version control."
+    ],
+    "sections": {
+      "overview": "When I joined GitHub, my legal name was Ursula but my handle was gleeblezoid. Now, as Arthur, I m still gleeblezoid. Since our remote-first culture primarily uses handles, transitioning at GitHub was easier than it would have been earlier in my career.",
+      "technical_breakdown": "The post Transitioning as a hubber appeared first on The GitHub Blog .",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "I started my career doing IT support and operational work, but being interested in computers meant teaching myself how to code. A colleague from a previous role referred me to GitHub, and I started out five years ago on \nWhile here, I ve been proud to work with my team on migrating our main SaaS platform to infrastructure as code, and to be a guest speaker a handful of times at Oxford University on the subject of version control.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "When I joined GitHub, my legal name was Ursula but my handle was gleeblezoid. Now, as Arthur, I m still gleeblezoid.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "0651e81492df1ad3",
     "title": "Deploying distributed AI inference: Blueprints & troubleshooting",
     "source": "Red Hat Developer Blog",

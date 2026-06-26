@@ -28,13 +28,13 @@
       <h1 class="brief-title">26 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-26T04:44:11.485302-05:00">26 June 2026, 04:44</time>
+        <time data-iso="2026-06-26T07:19:12.719380-05:00">26 June 2026, 07:19</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
       <span class="stat stat-critical">1 critical</span>
-      <span class="stat">1 items today</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -43,6 +43,7 @@
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
         <li>1 critical incident signal in the feed window</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
@@ -85,9 +86,9 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
@@ -127,10 +128,43 @@
   <div class="day-group">
     <h2 class="day-heading">
       26 June 2026
-      <span class="day-count">1</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="outage"
+       data-vendors="GitHub,Slack"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="transitioning as a hubber"
+       data-id="5cffa784837c1019"
+       data-published="2026-06-26T12:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Slack</span>        <time class="meta-time" data-iso="2026-06-26T12:00:00+00:00" title="26 June 2026, 07:00">26 June 2026, 07:00</time>
+      </div>
+      <h3 class="card-title">Transitioning as a hubber</h3>
+      <p class="card-summary">When I joined GitHub, my legal name was Ursula but my handle was gleeblezoid. Now, as Arthur, I m still gleeblezoid.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">GitHub Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When I joined GitHub, my legal name was Ursula but my handle was gleeblezoid. Now, as Arthur, I m still gleeblezoid. Since our remote-first culture primarily uses handles, transitioning at GitHub was easier than it would have been earlier in my career.</p></div>
+      <div class="detail-links">
+        <a href="articles/5cffa784837c1019.html" class="detail-read">Open structured brief →</a>
+        <a href="https://github.blog/developer-skills/career-growth/transitioning-as-a-hubber/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--critical"
        data-tags="capacity,deployment,kubernetes,latency,networking,observability,outage,scaling"
        data-vendors="Kubernetes,Red Hat"
@@ -1179,53 +1213,6 @@
       <div class="detail-links">
         <a href="articles/022b5b51eafadb4c.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/22/how-integrate-cyberark-identity-management" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="day-group">
-    <h2 class="day-heading">
-      19 June 2026
-      <span class="day-count">1</span>
-    </h2>
-  </div>
-
-  <div class="article-card card--action card--critical"
-       data-tags="deployment,latency,observability,outage,postmortem"
-       data-vendors="Netflix"
-       data-impact="critical"
-       data-theme="observability"
-       data-title="the data canary: how netflix validates catalog metadata"
-       data-id="8c0720eff501cf50"
-       data-published="2026-06-19T23:54:17+00:00"
-       data-priority="true">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
-<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-19T23:54:17+00:00" title="19 June 2026, 18:54">19 June 2026, 18:54</time>
-        <span class="action-badge">Ops</span>
-      </div>
-      <h3 class="card-title">The Data Canary: How Netflix Validates Catalog Metadata</h3>
-      <p class="card-summary">By Celina Amados 
-
- At Netflix, our catalog metadata is crucial to our member experience, and a single corrupted data state can impact millions of viewers immediately. Impact band: critical.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Netflix TechBlog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>By Celina Amados</p>
-<p>At Netflix, our catalog metadata is crucial to our member experience, and a single corrupted data state can impact millions of viewers immediately. To protect streaming reliability, we built an automated data canary system that validates data transformations using production traffic. This canary detects issues in under 10 minutes, and blocks bad data from reaching our members.</p></div>
-      <div class="detail-links">
-        <a href="articles/8c0720eff501cf50.html" class="detail-read">Open structured brief →</a>
-        <a href="https://netflixtechblog.com/the-data-canary-how-netflix-validates-catalog-metadata-18b699d58e36?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

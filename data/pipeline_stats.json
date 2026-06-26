@@ -105,9 +105,9 @@
     "dropped_by_retention": 130,
     "new_articles_this_run": 44,
     "day_files_touched": 16,
-    "total_articles_on_disk": 157,
+    "total_articles_on_disk": 158,
     "day_json_file_count": 23,
     "warnings": []
   },
-  "written_at": "2026-06-26T09:44:11.442904+00:00"
+  "written_at": "2026-06-26T12:19:12.676571+00:00"
 }
