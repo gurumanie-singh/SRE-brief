@@ -93,6 +93,10 @@
     "email_summary": "We are excited to announce significant upgrades to the cert-manager operator for Red Hat OpenShift . We recently released version 1.19 of the operator, which contains an exciting new feature: the technology preview of trust-manager.",
     "related_sources": [
       {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/ai-and-ml/github-copilot/evaluating-performance-and-efficiency-of-the-github-copilot-agentic-harness-across-models-and-tasks/"
+      },
+      {
         "source": "HashiCorp Blog",
         "link": "https://www.hashicorp.com/blog/deploy-boundary-on-kubernetes-with-official-helm-charts"
       },
