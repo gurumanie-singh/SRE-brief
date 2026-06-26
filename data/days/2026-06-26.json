@@ -1,5 +1,44 @@
 [
   {
+    "id": "ebe31a3b5ba734cc",
+    "title": "GitHub and UNDP team up to advance development priorities in Ghana with open source",
+    "source": "GitHub Blog",
+    "link": "https://github.blog/open-source/social-impact/github-and-undp-team-up-to-advance-development-priorities-in-ghana-with-open-source/",
+    "published": "2026-06-26T16:53:57+00:00",
+    "fetched_at": "2026-06-26T17:58:12.136729+00:00",
+    "summary": "Open source software is commonplace. Many people use it without even knowing, whether for everyday web browsing or building tools to improve efficiency. At its core, open-source software is built on code that is publicly available for anyone to use, adapt, and improve. It s more complex, however, when a government sets out to adopt open source at scale to drive development impact.",
+    "tags": [
+      "capacity"
+    ],
+    "day": "2026-06-26",
+    "impact": "medium",
+    "vendors": [
+      "GitHub"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — aws",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "A ministry might deploy an open-source tool for a particular project, however systems-wide questions on managing licensing compliance, building internal maintenance capacity and coordinating across other ministries withi",
+      "The OSPORA methodology draws on Public Digital s framework on open source in government , which is a structured set of questions covering not just technical readiness but institutional structures and policies, procuremen",
+      "Ghana is home to one of West Africa s fastest-growing tech communities, as well as some of the region s first accredited Digital Public Goods . It also has the second highest number of GitHub developer accounts in West A"
+    ],
+    "sections": {
+      "overview": "Open source software is commonplace. Many people use it without even knowing, whether for everyday web browsing or building tools to improve efficiency. At its core, open-source software is built on code that is publicly available for anyone to use, adapt, and improve.",
+      "technical_breakdown": "This discussion is happening in Ghana, where the Ministry of Communications, Digital Technology, and Innovation (MoCDTI) is undertaking an ambitious and deliberate digital reset to create more jobs, grow enterprises, and empower youth.\n\nThis effort includes advancing more than a dozen legislative reforms at once, covering areas such as cybersecurity, data protection, electronic communications, data exchange and emerging technologies.\n\nA ministry might deploy an open-source tool for a particular project, however systems-wide questions on managing licensing compliance, building internal maintenance capacity and coordinating across other ministries within a government may be unanswered.\n\nWhat s the technical capacity?\n\nOver the course of a week, the team ran interviews and workshops with diverse stakeholders, including:\n\n \n Senior officials at MoCDTI, including the National IT Agency and the Kofi Annan-India Center of Excellence , who are leading the digital transformation and legislative reform process\n\n Heads of IT departments across government ministries\n\n Community tech groups building open source within Ghana s developer ecosystem\n\n The local Linux user group , which bridges global open source governance, community and local implementation\n\n \n\n \n\n \n\n The OSPORA methodology draws on Public Digital s framework on open source in government , which is a structured set of questions covering not just technical readiness but institutional structures and policies, procurement practices, legal frameworks, and political will.",
+      "impact": "A call to action for development impact \n\n Ghana is home to one of West Africa s fastest-growing tech communities, as well as some of the region s first accredited Digital Public Goods . It s more complex, however, when a government sets out to adopt open source at scale to drive development impact. Over the course of a week, the team ran interviews and workshops with diverse stakeholders, including:\n\n \n Senior officials at MoCDTI, including the National IT Agency and the Kofi Annan-India Center of Excellence , who are leading the digital transformation and legislative reform process\n\n Heads of IT departments across government ministries\n\n Community tech groups building open source within Ghana s developer ecosystem\n\n The local Linux user group , which bridges global open source governance, community and local implementation\n\n \n\n \n\n \n\n The OSPORA methodology draws on Public Digital s framework on open source in government , which is a structured set of questions covering not just technical readiness but institutional structures and policies, procurement practices, legal frameworks, and political will. Explore UNDP s open source projects , learn more about UNDP Ghana , or check out GitHub s Social Impact programs .\n\nClassified impact band: medium. Affected layer signal: cloud — aws.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "These findings are an opportunity to make meaningful improvements and expand the delivery of public services through open source to better serve the people who rely on them.\n\nMany people use it without even knowing, whether for everyday web browsing or building tools to improve efficiency.\n\nAt its core, open-source software is built on code that is publicly available for anyone to use, adapt, and improve.",
+      "root_cause_highlight": "",
+      "incident_timeline": "A ministry might deploy an open-source tool for a particular project, however systems-wide questions on managing licensing compliance, building internal maintenance capacity and coordinating across other ministries withi\nThe OSPORA methodology draws on Public Digital s framework on open source in government , which is a structured set of questions covering not just technical readiness but institutional structures and policies, procuremen\nGhana is home to one of West Africa s fastest-growing tech communities, as well as some of the region s first accredited Digital Public Goods . It also has the second highest number of GitHub developer accounts in West A",
+      "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Open source software is commonplace. Many people use it without even knowing, whether for everyday web browsing or building tools to improve efficiency.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "9c13533928080846",
     "title": "Paging Charity! How can engineering leaders avoid becoming Bond villains?​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿​​﻿​‌‌‌​﻿‌‌​﻿‌​﻿​​‌​‌‌‌​﻿‌‌‌​﻿​​‌​‌‌​‌​﻿‌​﻿‌​‌‌​​﻿‌​​﻿‌​﻿‌‌​‌‌​​﻿‌​﻿​​​﻿‌‌‌​﻿‌​​﻿​﻿​﻿‌‌‌​‌‌‌​​﻿‌​﻿​​​﻿‌​‌​‌‌​‌​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿​​﻿​‌‌‌​﻿‌‌​﻿‌​﻿​​‌​‌‌‌​﻿‌‌‌​﻿​​‌​‌‌​‌​﻿‌​﻿‌​‌‌​​﻿‌​​﻿‌​﻿‌‌​‌‌​​﻿‌​﻿​​​﻿‌‌‌​﻿‌​​﻿​﻿​﻿‌‌‌​‌‌‌​​﻿‌​﻿​​​﻿‌​‌​‌‌​‌​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
@@ -120,7 +159,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "In Designing distributed AI inference: Core concepts and scaling dimensions , we covered the foundational concepts: the prefill/decode split and the five dimensions of parallelism. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/terraform-mcp-server-four-real-world-ai-infrastructure-patterns"
+      }
+    ],
     "highlighted": false
   }
 ]
