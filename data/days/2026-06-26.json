@@ -1,0 +1,54 @@
+[
+  {
+    "id": "0651e81492df1ad3",
+    "title": "Deploying distributed AI inference: Blueprints & troubleshooting",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/26/deploying-distributed-ai-inference-blueprints-troubleshooting",
+    "published": "2026-06-26T07:01:08+00:00",
+    "fetched_at": "2026-06-26T09:44:11.228294+00:00",
+    "summary": "In Designing distributed AI inference: Core concepts and scaling dimensions , we covered the foundational concepts: the prefill/decode split and the five dimensions of parallelism. In Optimizing distributed AI inference: Advanced deployment patterns , we went deep on the three optimization levers: prefill/decode disaggregation, KV-cache tiering and sharing, and speculative decoding. The...",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-26",
+    "impact": "critical",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Topology The deployment uses a disaggregated prefill and decode topology. It pairs a small prefill pool on H100/H200-class hardware with a large decode pool on cost-optimized GPUs (such as the L40S, older H100s, or MI300",
+      "On the prefill side, chunked prefill (stall-free scheduling) prevents a long prompt from blocking the short ones queued behind it. At the front door, prompt compression on system prompts, debouncing and request coalescin",
+      "Cost shape Because the overall cost shape is decode-dominated, right-sizing the decode pool yields the greatest financial savings per million tokens ($/Mtoken).",
+      "Two main mechanisms reduce TTFT metrics in this scenario, and chunked prefill is not one of them. PCP execution distributes the prefill compute across multiple devices, while prefix caching skips the phase entirely if th",
+      "Topology The pattern relies heavily on data parallelism (DP), using as many model replicas as your budget allows, with each replica running continuous batching at maximum capacity. Prefill-decode (PD) disaggregation prov",
+      "Continuous scheduling is the best policy here; it differs from continuous batching by allowing the engine to reorder requests to keep batches full even when traffic arrives in bursts You can tune dynamic quantization mor",
+      "Topology Each model class resides behind its own llm-d InferencePool, with KServe LLMInferenceService resources tracked in GitOps. Additionally, AI gateway implementations such as Envoy AI Gateway manage tenant authentic",
+      "Model cascading Model cascading routes simple queries to the smallest model capable of answering them and escalates to a larger size only when needed. For example, a cascade matching Qwen3.6-27B to Qwen3.5-35B-A3B to Qwe"
+    ],
+    "sections": {
+      "overview": "In Designing distributed AI inference: Core concepts and scaling dimensions , we covered the foundational concepts: the prefill/decode split and the five dimensions of parallelism. In Optimizing distributed AI inference: Advanced deployment patterns , we went deep on the three optimization levers: prefill/decode disaggregation, KV-cache tiering and sharing, and speculative decoding. The techniques we discussed in parts 1 and 2 are the tools; this post shows how they assemble into deployments.",
+      "technical_breakdown": "Topology This layout uses tensor parallelism (TP) within the node and prefill context parallel (PCP) across GPUs for the prefill phase so the O(n ) attention work is split rather than exhausting high-bandwidth memory (HBM) on a single device.\n\nSignature These pipelines are latency-tolerant, bound by throughput and budget constraints, and typically run overnight on backlogs.\n\nSLO-aware admission control SLO-aware admission control is operationally healthier than queuing requests that will miss performance deadlines, because long queues create tail-latency anchor under load.\n\nEdge inference on a workstation-class GPU Running AI models directly on local workstation hardware allows you to process data immediately without relying on a continuous cloud connection\n\n Signature This deployment pattern applies to a single physical site, such as a factory floor, retail store, clinic, branch office, vehicle, or regional data closet.\n\nKServe manages the model serving lifecycle. the OpenShift deployment scales to match the physical site: you can use single-node OpenShift for single-node sites, or multi-node OpenShift for regional installations that use a handful of cards.",
+      "impact": "High-concurrency conversational chat and copilots Building conversational assistants and digital copilots to handle thousands of concurrent users creates a specific technical profile that directly influences your system layout. Signature This deployment blueprint handles thousands of concurrent users text-chatting with short prompts and outputs that average a few hundred tokens. Signature This workload features lower concurrency than typical chat applications, with prompts ranging from 32,000 to 256,000 tokens, outputs in the hundreds of tokens, and SLOs dominated by TTFT metrics because users are waiting for the first useful token of an answer over a long document. Distributed AI-grid: Model-as-a-Service Transitioning from single-purpose infrastructure pools to a distributed AI grid allows platform teams to serve multiple models and tenants dynamically from a shared environment.\n\nClassified impact band: critical. Affected layer signal: platform — kubernetes.",
+      "resolution": "PCP execution distributes the prefill compute across multiple devices, while prefix caching skips the phase entirely if the system has processed the document before.\n\nFor long prompts specifically, chunked prefill introduces a little overhead, making prefix caching the primary mechanism; because the warm prefix lives in a shared cache pool that any decode worker can reach, the second pass over a contract never requires a re-prefill.\n\nCost shape Because the overall cost shape is prefill-dominated, the prefix-cache hit rate is the primary factor influencing your cost per million tokens ($/Mtoken); avoiding the re-prefill of a long document results in direct financial savings.\n\nA shared LMCache fabric across pools lets you reuse system-prompt prefixes across instances of the same model.",
+      "lessons_learned": "On the prefill side, chunked prefill (stall-free scheduling) prevents a long prompt from blocking the short ones queued behind it.\n\nChunked prefill, which is enabled by default in vLLM v1, earns its keep elsewhere: it prevents a single long prefill from starving the decode steps of other requests sharing the GPU.\n\nRequests that are likely to exceed token output limits or hit timeouts are rejected at the gateway with a specific error code, preventing these requests from consuming valuable GPU cycles before timing out.\n\nAdaptive resource scheduling and hotspot prevention Adaptive resource scheduling and hotspot prevention balances tasks between the llm d scheduler's routing layer and cluster-level policy resource allocations.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. SLO-aware admission control SLO-aware admission control is operationally healthier than queuing requests that will miss performance deadlines, because long queues create tail-latency anchor under load. Because these workloads reuse system prompts and few-shot exemplars frequently, your key focus centers on keeping the TPOT within your service-level objectives (SLOs). Cost shape Because the overall cost shape is decode-dominated, right-sizing the decode pool yields the greatest financial savings per million tokens ($/Mtoken).",
+      "incident_timeline": "Topology The deployment uses a disaggregated prefill and decode topology. It pairs a small prefill pool on H100/H200-class hardware with a large decode pool on cost-optimized GPUs (such as the L40S, older H100s, or MI300\nOn the prefill side, chunked prefill (stall-free scheduling) prevents a long prompt from blocking the short ones queued behind it. At the front door, prompt compression on system prompts, debouncing and request coalescin\nCost shape Because the overall cost shape is decode-dominated, right-sizing the decode pool yields the greatest financial savings per million tokens ($/Mtoken).\nTwo main mechanisms reduce TTFT metrics in this scenario, and chunked prefill is not one of them. PCP execution distributes the prefill compute across multiple devices, while prefix caching skips the phase entirely if th\nTopology The pattern relies heavily on data parallelism (DP), using as many model replicas as your budget allows, with each replica running continuous batching at maximum capacity. Prefill-decode (PD) disaggregation prov\nContinuous scheduling is the best policy here; it differs from continuous batching by allowing the engine to reorder requests to keep batches full even when traffic arrives in bursts You can tune dynamic quantization mor\nTopology Each model class resides behind its own llm-d InferencePool, with KServe LLMInferenceService resources tracked in GitOps. Additionally, AI gateway implementations such as Envoy AI Gateway manage tenant authentic\nModel cascading Model cascading routes simple queries to the smallest model capable of answering them and escalates to a larger size only when needed. For example, a cascade matching Qwen3.6-27B to Qwen3.5-35B-A3B to Qwe",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "In Designing distributed AI inference: Core concepts and scaling dimensions , we covered the foundational concepts: the prefill/decode split and the five dimensions of parallelism. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]

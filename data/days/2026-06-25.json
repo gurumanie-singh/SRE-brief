@@ -135,8 +135,20 @@
         "link": "https://www.hashicorp.com/blog/deploy-boundary-on-kubernetes-with-official-helm-charts"
       },
       {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/06/25/headlamp-cluster-api-plugin/"
+      },
+      {
         "source": "Cloudflare Blog",
         "link": "https://blog.cloudflare.com/rollbacks-for-workflows/"
+      },
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/06/25/visual-context-volcano-headlamp-plugin/"
+      },
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/06/25/headlamp-knative-plugin/"
       },
       {
         "source": "HashiCorp Blog",
