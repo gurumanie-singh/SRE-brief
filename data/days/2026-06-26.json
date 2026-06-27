@@ -35,7 +35,12 @@
       "trends": "Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Open source software is commonplace. Many people use it without even knowing, whether for everyday web browsing or building tools to improve efficiency.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "Kubernetes Blog",
+        "link": "https://kubernetes.io/blog/2026/06/26/open-source-maintainership-in-the-age-of-ai/"
+      }
+    ],
     "highlighted": false
   },
   {
