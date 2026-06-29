@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build a dynamic E2E test quarantine system with Prometheus and Grafana — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-29.html" class="back-link">← 29 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">29 June 2026, 09:15</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Build a dynamic E2E test quarantine system with Prometheus and Grafana</h1>
+
+      <p class="subtitle">If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . Without historical data, you can&#39;t distinguish a flaky test from a regression.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Google Cloud</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">database</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>database issue</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . Without historical data, you can&#39;t distinguish a flaky test from a regression.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . Without historical data, you can&#39;t distinguish a flaky test from a regression. Without automation, the only remedy is a human noticing and filing a ticket.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>On OpenShift you might already have a cluster monitoring stack, but a separate instance keeps test data isolated and gives you control over retention.</p>
+<p>bash helm repo add prometheus-community https://prometheus-community.github.io/helm-charts helm repo update helm install prometheus prometheus-community/prometheus \  --namespace e2e-analytics --create-namespace \  --set server.retention=90d \  --set server.persistentVolume.size=20Gi \  --set server.resources.requests.memory=512Mi \  --set server.resources.requests.cpu=250m \  --set alertmanager.enabled=false \  --set prometheus-node-exporter.enabled=false \  --set kube-state-metrics.enabled=false \  --set prometheus-pushgateway.enabled=false \  --set &#39;server.extraFlags[0]=web.enable-remote-write-receiver&#39; \  --set &#39;serverFiles.prometheus\.yml.storage.tsdb.out_of_order_time_window=720h&#39; \  --set server.securityContext.runAsNonRoot=true \  --set server.securityContext.runAsUser=null \  --set server.securityContext.fsGroup=null \  --set server.containerSecurityContext.allowPrivilegeEscalation=false \  --set &#34;server.containerSecurityContext.capabilities.drop={ALL}&#34; \  --set server.containerSecurityContext.runAsNonRoot=true \  --set server.containerSecurityContext.seccompProfile.type=RuntimeDefault The --web.enable-remote-write-receiver flag enables the remote-write endpoint so our ingester can push data in.</p>
+<p>Panel 5: Test duration trends.</p>
+<p># Average duration per test over time avg by (test) (avg_over_time(e2e_test_duration_seconds{branch=&#34;main&#34;}[1d])) Alert rules Configure Grafana alerting to fire when a test crosses the quarantine threshold:</p>
+<p># Grafana alert rule (configured via UI or provisioning) name: Test Flake Rate Exceeded condition: flake_rate &gt; 0.2 expr: |  (  1 - (  sum by (test) (count_over_time(e2e_test_result{branch=&#34;main&#34;} == 1 [30d]))  /  sum by (test) (sum_over_time(e2e_test_result{branch=&#34;main&#34;}[30d]))  )  ) &gt; 0.2  and  sum by (test) (count_over_time(e2e_test_result{branch=&#34;main&#34;}[30d])) &gt;= 10 for: 0m labels:  severity: warning annotations:  summary: &#34;Test {{ $labels.test }} flake rate exceeded 20%&#34; Step 5: Build the quarantine controller (Go) The quarantine controller queries Prometheus via PromQL, identifies flaky tests, excludes regressions, and outputs a quarantine config.</p>
+<p>package main import (  &#34;context&#34;  &#34;encoding/json&#34;  &#34;fmt&#34;  &#34;net/http&#34;  &#34;net/url&#34;  &#34;os&#34;  &#34;time&#34; ) const (  flakeThreshold = 0.20  minRunsForDecision = 10  windowDays = 30  quarantineDurationDays = 30 ) type PromQueryResult struct {  Status string `json:&#34;status&#34;`  Data struct {  ResultType string `json:&#34;resultType&#34;`  Result []struct {  Metric map[string]string `json:&#34;metric&#34;`  Value [2]interface{} `json:&#34;value&#34;`  } `json:&#34;result&#34;`  } `json:&#34;data&#34;` } type QuarantineEntry struct {  Name string `json:&#34;name&#34;`  Reason string `json:&#34;reason&#34;`  FlakeRate float64 `json:&#34;flake_rate&#34;`  TotalRuns int `json:&#34;total_runs&#34;`  FailedRuns int `json:&#34;failed_runs&#34;`  Jira string `json:&#34;jira,omitempty&#34;`  QuarantinedAt string `json:&#34;quarantined_at&#34;`  ReEnableAfter string `json:&#34;re_enable_after&#34;` } type QuarantineConfig struct {  Version int `json:&#34;version&#34;`  Updated string `json:&#34;updated&#34;`  Tests map[string]QuarantineEntry `json:&#34;tests&#34;` } func queryFlakeRates(ctx context.Context, promURL string) (map[string]float64, error) {  query := fmt.Sprintf(`  1 - (  sum by (test) (sum_over_time(e2e_test_result{branch=&#34;main&#34;}[%dd]))  /  sum by (test) (count_over_time(e2e_test_result{branch=&#34;main&#34;}[%dd]))  )  `, windowDays, windowDays)  resp, err := http.Get(fmt.Sprintf(&#34;%s/api/v1/query?query=%s&#34;, promURL, url.QueryEscape(query)))  if err != nil {  return nil, fmt.Errorf(&#34;querying flake rates: %w&#34;, err)  }  defer resp.Body.Close()  var result PromQueryResult  if err := json.NewDecoder(resp.Body).Decode(&amp;result); err != nil {  return nil, fmt.Errorf(&#34;decoding response: %w&#34;, err)  }  rates := make(map[string]float64)  for _, r := range result.Data.Result {  testName := r.Metric[&#34;test&#34;]  // Value is [timestamp, &#34;value_string&#34;]  if valStr, ok := r.Value[1].(string); ok {  var val float64  fmt.Sscanf(valStr, &#34;%f&#34;, &amp;val)  rates[testName] = val  }  }  return rates, nil } func queryRunCounts(ctx context.Context, promURL string) (map[string]int, error) {  query := fmt.Sprintf(`sum by (test) (count_over_time(e2e_test_result{branch=&#34;main&#34;}[%dd]))`, windowDays)  resp, err := http.Get(fmt.Sprintf(&#34;%s/api/v1/query?query=%s&#34;, promURL, url.QueryEscape(query)))  if err != nil {  return nil, fmt.Errorf(&#34;querying run counts: %w&#34;, err)  }  defer resp.Body.Close()  var result PromQueryResult  if err := json.NewDecoder(resp.Body).Decode(&amp;result); err != nil {  return nil, fmt.Errorf(&#34;decoding response: %w&#34;, err)  }  counts := make(map[string]int)  for _, r := range result.Data.Result {  testName := r.Metric[&#34;test&#34;]  if valStr, ok := r.Value[1].(string); ok {  var val int  fmt.Sscanf(valStr, &#34;%d&#34;, &amp;val)  counts[testName] = val  }  }  return counts, nil } func isRegression(ctx context.Context, promURL, testName string) (bool, error) {  // A regression = 0% pass rate in recent window (all runs failed).  // Uses sum_over_time/count_over_time instead of last_over_time subquery,  // which is unreliable with high-cardinality build_id labels.  query := fmt.Sprintf(  `(sum(sum_over_time(e2e_test_result{test=&#34;%s&#34;, branch=&#34;main&#34;}[4d])) /  sum(count_over_time(e2e_test_result{test=&#34;%s&#34;, branch=&#34;main&#34;}[4d])))`,  testName, testName, )  resp, err := http.Get(fmt.Sprintf(&#34;%s/api/v1/query?query=%s&#34;, promURL, url.QueryEscape(query)))  if err != nil {  return false, err  }  defer resp.Body.Close()  var result PromQueryResult  if err := json.NewDecoder(resp.Body).Decode(&amp;result); err != nil {  return false, err  }  // If pass rate is 0, all recent runs failed its likely regression  for _, r := range result.Data.Result {  if valStr, ok := r.Value[1].(string); ok {  var val float64  fmt.Sscanf(valStr, &#34;%f&#34;, &amp;val)  if val == 0 {  return true, nil  }  }  }  return false, nil } func buildQuarantineConfig(ctx context.Context, promURL string) (*QuarantineConfig, error) {  flakeRates, err := queryFlakeRates(ctx, promURL)  if err != nil {  return nil, err  }  runCounts, err := queryRunCounts(ctx, promURL)  if err != nil {  return nil, err  }  now := time.Now().UTC()  cfg := &amp;QuarantineConfig{  Version: 1,  Updated: now.Format(time.RFC3339),  Tests: make(map[string]QuarantineEntry),  }  for testName, rate := range flakeRates {  runs := runCounts[testName]  if rate &lt; flakeThreshold || runs &lt; minRunsForDecision {  continue  }  regression, err := isRegression(ctx, promURL, testName)  if err != nil {  return nil, fmt.Errorf(&#34;checking regression for %s: %w&#34;, testName, err)  }  if regression {  continue // Don&#39;t quarantine regressions  }  failedRuns := int(rate * float64(runs))  cfg.Tests[testName] = QuarantineEntry{  Name: testName,  Reason: fmt.Sprintf(&#34;Flake rate %.0f%% over %dd (%d/%d failed)&#34;, rate*100, windowDays, failedRuns, runs),  FlakeRate: rate,  TotalRuns: runs,  FailedRuns: failedRuns,  QuarantinedAt: now.Format(time.RFC3339),  ReEnableAfter: now.AddDate(0, 0, quarantineDurationDays).Format(time.RFC3339),  }  }  return cfg, nil } func main() {  promURL := os.Getenv(&#34;PROMETHEUS_URL&#34;)  if promURL == &#34;&#34; {  promURL = &#34;http://prometheus-server.e2e-analytics.svc:80&#34;  }  ctx := context.Background()  cfg, err := buildQuarantineConfig(ctx, promURL)  if err != nil {  fmt.Fprintf(os.Stderr, &#34;error: %v\n&#34;, err)  os.Exit(1)  }  data, _ := json.MarshalIndent(cfg, &#34;&#34;, &#34; &#34;)  fmt.Println(string(data)) } Deploy as a daily CronJob (yaml):</p>
+<p>apiVersion: batch/v1 kind: CronJob metadata:  name: quarantine-controller  namespace: e2e-analytics spec:  schedule: &#34;0 6 * * *&#34;  jobTemplate:  spec:  template:  spec:  containers:  - name: controller  image: quay.io/your-org/quarantine-controller:latest  env:  - name: PROMETHEUS_URL  value: &#34;http://prometheus-server.e2e-analytics.svc:80&#34;  - name: JIRA_TOKEN  valueFrom:  secretKeyRef:  name: jira-credentials  key: token  - name: JIRA_SERVER  value: &#34;https://redhat.atlassian.net&#34;  - name: JIRA_PROJECT  value: &#34;PROJECT&#34;  - name: GIT_REPO  value: &#34;repository&#34;  - name: GITHUB_TOKEN  valueFrom:  secretKeyRef:  name: github-credentials  key: token  restartPolicy: OnFailure The controller:</p>
+<p>Queries Prometheus for flake rates via PromQL  Excludes regressions (consecutive trailing failures)  Outputs a quarantine JSON config  Creates Jira tickets for newly quarantined tests  Commits the config to Git (pull request or direct push)  Step 6: Wire the test runner Your E2E test runner loads the quarantine config and skips active entries.</p>
+<p>Verify it&#39;s running:</p>
+<p>kubectl -n e2e-analytics get pods -l app.kubernetes.io/name=prometheus kubectl -n e2e-analytics port-forward svc/prometheus-server 9090:80 &amp; Test the query endpoint:</p>
+<p>curl -s &#39;http://localhost:9090/api/v1/query?query=up&#39; The primary endpoints include:</p>
+<p>Remote-write ingest: http://prometheus-server.e2e-analytics.svc:80/api/v1/write   PromQL query: http://prometheus-server.e2e-analytics.svc:80/api/v1/query   Range query: http://prometheus-server.e2e-analytics.svc:80/api/v1/query_range   Alternative (OpenShift) If you&#39;re on OpenShift 4.x, you can use the built-in user workload monitoring instead.</p>
+<p>Step 3: Build the JUnit ingester Create a Go binary that parses JUnit XML, converts results to Prometheus metrics, and pushes them via remote-write to Prometheus.</p>
+<p>go package main import (  &#34;bytes&#34;  &#34;encoding/xml&#34;  &#34;fmt&#34;  &#34;net/http&#34;  &#34;os&#34;  &#34;time&#34;  &#34;github.com/golang/snappy&#34;  &#34;github.com/prometheus/prometheus/prompb&#34;  ) // Note: prompb types use gogoproto and have their own Marshal() method. // Do NOT use google.golang.org/protobuf/proto it requires ProtoReflect()  // which gogoproto types don&#39;t implement. type JUnitTestSuite struct {  XMLName xml.Name `xml:&#34;testsuite&#34;`  Name string `xml:&#34;name,attr&#34;`  Timestamp string `xml:&#34;timestamp,attr&#34;`  TestCases []JUnitTestCase `xml:&#34;testcase&#34;`  Properties []Property `xml:&#34;properties&gt;property&#34;` } type JUnitTestCase struct {  Name string `xml:&#34;name,attr&#34;`  Time float64 `xml:&#34;time,attr&#34;`  Failure *JUnitFailure `xml:&#34;failure&#34;`  Error *JUnitFailure `xml:&#34;error&#34;` } type JUnitFailure struct {  Message string `xml:&#34;message,attr&#34;`  Body string `xml:&#34;,chardata&#34;` } type Property struct {  Name string `xml:&#34;name,attr&#34;`  Value string `xml:&#34;value,attr&#34;` } func junitToTimeSeries(suite JUnitTestSuite, prowJob, buildID string) []prompb.TimeSeries {  commitSHA := extractProperty(suite.Properties, &#34;commit.sha&#34;)  branch := extractProperty(suite.Properties, &#34;branch&#34;)  if branch == &#34;&#34; {  branch = &#34;main&#34;  }  runTS := parseTimestamp(suite.Timestamp)  tsMs := runTS.UnixMilli()  var series []prompb.TimeSeries  for _, tc := range suite.TestCases {  passed := tc.Failure == nil &amp;&amp; tc.Error == nil  var resultValue float64  if passed {  resultValue = 1  }  // e2e_test_result metric  series = append(series, prompb.TimeSeries{  Labels: []prompb.Label{  {Name: &#34;__name__&#34;, Value: &#34;e2e_test_result&#34;},  {Name: &#34;test&#34;, Value: tc.Name},  {Name: &#34;suite&#34;, Value: suite.Name},  {Name: &#34;job&#34;, Value: prowJob},  {Name: &#34;build_id&#34;, Value: buildID},  {Name: &#34;commit_sha&#34;, Value: commitSHA},  {Name: &#34;branch&#34;, Value: branch},  },  Samples: []prompb.Sample{  {Value: resultValue, Timestamp: tsMs},  },  })  // e2e_test_duration_seconds metric  series = append(series, prompb.TimeSeries{  Labels: []prompb.Label{  {Name: &#34;__name__&#34;, Value: &#34;e2e_test_duration_seconds&#34;},  {Name: &#34;test&#34;, Value: tc.Name},  {Name: &#34;suite&#34;, Value: suite.Name},  {Name: &#34;job&#34;, Value: prowJob},  {Name: &#34;build_id&#34;, Value: buildID},  {Name: &#34;branch&#34;, Value: branch},  },  Samples: []prompb.Sample{  {Value: tc.Time, Timestamp: tsMs},  },  })  }  return series } func remoteWrite(endpoint string, series []prompb.TimeSeries) error {  req := &amp;prompb.WriteRequest{Timeseries: series}  data, err := req.Marshal()  if err != nil {  return fmt.Errorf(&#34;marshaling write request: %w&#34;, err)  }  compressed := snappy.Encode(nil, data)  httpReq, err := http.NewRequest(http.MethodPost, endpoint, bytes.NewReader(compressed))  if err != nil {  return fmt.Errorf(&#34;creating request: %w&#34;, err)  }  httpReq.Header.Set(&#34;Content-Type&#34;, &#34;application/x-protobuf&#34;)  httpReq.Header.Set(&#34;Content-Encoding&#34;, &#34;snappy&#34;)  httpReq.Header.Set(&#34;X-Prometheus-Remote-Write-Version&#34;, &#34;0.1.0&#34;)  resp, err := http.DefaultClient.Do(httpReq)  if err != nil {  return fmt.Errorf(&#34;sending remote write: %w&#34;, err)  }  defer resp.Body.Close()  if resp.StatusCode != http.StatusNoContent &amp;&amp; resp.StatusCode != http.StatusOK {  return fmt.Errorf(&#34;remote write returned %d&#34;, resp.StatusCode)  }  return nil } Deploy as a CronJob that fetches JUnit artifacts from your Google Cloud Storage (GCS) bucket:</p>
+<p>yaml apiVersion: batch/v1 kind: CronJob metadata:  name: junit-ingester  namespace: e2e-analytics spec:  schedule: &#34;0 */4 * * *&#34;  jobTemplate:  spec:  template:  spec:  containers:  - name: ingester  image: quay.io/your-org/junit-ingester:latest  env:  - name: REMOTE_WRITE_ENDPOINT  value: &#34;http://prometheus-server.e2e-analytics.svc:80/api/v1/write&#34;  - name: GCS_BUCKET  value: &#34;test-platform-results&#34;  - name: PROW_JOB  value: &#34;periodic-ci-operator-main-e2e&#34;  restartPolicy: OnFailure Quick validation After the first ingestion, verify data is flowing.</p>
+<p>Step 4: Set up Grafana Deploy Grafana and point it at Prometheus as the data source.</p>
+<p>helm repo add grafana https://grafana.github.io/helm-charts helm repo update helm install grafana grafana/grafana \  --namespace e2e-analytics \  --set persistence.enabled=true \  --set persistence.size=5Gi \  --set adminPassword=&#34;$(openssl rand -base64 16)&#34; \  --set &#34;datasources.datasources\\.yaml.apiVersion=1&#34; \  --set &#34;datasources.datasources\\.yaml.datasources[0].name=E2E Metrics&#34; \  --set &#34;datasources.datasources\\.yaml.datasources[0].type=prometheus&#34; \  --set &#34;datasources.datasources\\.yaml.datasources[0].url=http://prometheus-server.e2e-analytics.svc:80&#34; \  --set &#34;datasources.datasources\\.yaml.datasources[0].access=proxy&#34; \  --set &#34;datasources.datasources\\.yaml.datasources[0].isDefault=true&#34; \  --set securityContext.runAsNonRoot=true \  --set securityContext.runAsUser=null \  --set securityContext.fsGroup=null \  --set containerSecurityContext.allowPrivilegeEscalation=false \  --set &#34;containerSecurityContext.capabilities.drop={ALL}&#34; \  --set containerSecurityContext.runAsNonRoot=true \  --set containerSecurityContext.seccompProfile.type=RuntimeDefault \  --set initChownData.enabled=false OpenShift SCC note Same as Prometheus, clear default runAsUser / fsGroup and disable the init chown container (which tries to run as root).</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Step 3: Build the JUnit ingester Create a Go binary that parses JUnit XML, converts results to Prometheus metrics, and pushes them via remote-write to Prometheus.</p>
+<p>go package main import (  &#34;bytes&#34;  &#34;encoding/xml&#34;  &#34;fmt&#34;  &#34;net/http&#34;  &#34;os&#34;  &#34;time&#34;  &#34;github.com/golang/snappy&#34;  &#34;github.com/prometheus/prometheus/prompb&#34;  ) // Note: prompb types use gogoproto and have their own Marshal() method. // Do NOT use google.golang.org/protobuf/proto it requires ProtoReflect()  // which gogoproto types don&#39;t implement. type JUnitTestSuite struct {  XMLName xml.Name `xml:&#34;testsuite&#34;`  Name string `xml:&#34;name,attr&#34;`  Timestamp string `xml:&#34;timestamp,attr&#34;`  TestCases []JUnitTestCase `xml:&#34;testcase&#34;`  Properties []Property `xml:&#34;properties&gt;property&#34;` } type JUnitTestCase struct {  Name string `xml:&#34;name,attr&#34;`  Time float64 `xml:&#34;time,attr&#34;`  Failure *JUnitFailure `xml:&#34;failure&#34;`  Error *JUnitFailure `xml:&#34;error&#34;` } type JUnitFailure struct {  Message string `xml:&#34;message,attr&#34;`  Body string `xml:&#34;,chardata&#34;` } type Property struct {  Name string `xml:&#34;name,attr&#34;`  Value string `xml:&#34;value,attr&#34;` } func junitToTimeSeries(suite JUnitTestSuite, prowJob, buildID string) []prompb.TimeSeries {  commitSHA := extractProperty(suite.Properties, &#34;commit.sha&#34;)  branch := extractProperty(suite.Properties, &#34;branch&#34;)  if branch == &#34;&#34; {  branch = &#34;main&#34;  }  runTS := parseTimestamp(suite.Timestamp)  tsMs := runTS.UnixMilli()  var series []prompb.TimeSeries  for _, tc := range suite.TestCases {  passed := tc.Failure == nil &amp;&amp; tc.Error == nil  var resultValue float64  if passed {  resultValue = 1  }  // e2e_test_result metric  series = append(series, prompb.TimeSeries{  Labels: []prompb.Label{  {Name: &#34;__name__&#34;, Value: &#34;e2e_test_result&#34;},  {Name: &#34;test&#34;, Value: tc.Name},  {Name: &#34;suite&#34;, Value: suite.Name},  {Name: &#34;job&#34;, Value: prowJob},  {Name: &#34;build_id&#34;, Value: buildID},  {Name: &#34;commit_sha&#34;, Value: commitSHA},  {Name: &#34;branch&#34;, Value: branch},  },  Samples: []prompb.Sample{  {Value: resultValue, Timestamp: tsMs},  },  })  // e2e_test_duration_seconds metric  series = append(series, prompb.TimeSeries{  Labels: []prompb.Label{  {Name: &#34;__name__&#34;, Value: &#34;e2e_test_duration_seconds&#34;},  {Name: &#34;test&#34;, Value: tc.Name},  {Name: &#34;suite&#34;, Value: suite.Name},  {Name: &#34;job&#34;, Value: prowJob},  {Name: &#34;build_id&#34;, Value: buildID},  {Name: &#34;branch&#34;, Value: branch},  },  Samples: []prompb.Sample{  {Value: tc.Time, Timestamp: tsMs},  },  })  }  return series } func remoteWrite(endpoint string, series []prompb.TimeSeries) error {  req := &amp;prompb.WriteRequest{Timeseries: series}  data, err := req.Marshal()  if err != nil {  return fmt.Errorf(&#34;marshaling write request: %w&#34;, err)  }  compressed := snappy.Encode(nil, data)  httpReq, err := http.NewRequest(http.MethodPost, endpoint, bytes.NewReader(compressed))  if err != nil {  return fmt.Errorf(&#34;creating request: %w&#34;, err)  }  httpReq.Header.Set(&#34;Content-Type&#34;, &#34;application/x-protobuf&#34;)  httpReq.Header.Set(&#34;Content-Encoding&#34;, &#34;snappy&#34;)  httpReq.Header.Set(&#34;X-Prometheus-Remote-Write-Version&#34;, &#34;0.1.0&#34;)  resp, err := http.DefaultClient.Do(httpReq)  if err != nil {  return fmt.Errorf(&#34;sending remote write: %w&#34;, err)  }  defer resp.Body.Close()  if resp.StatusCode != http.StatusNoContent &amp;&amp; resp.StatusCode != http.StatusOK {  return fmt.Errorf(&#34;remote write returned %d&#34;, resp.StatusCode)  }  return nil } Deploy as a CronJob that fetches JUnit artifacts from your Google Cloud Storage (GCS) bucket:</p>
+<p>yaml apiVersion: batch/v1 kind: CronJob metadata:  name: junit-ingester  namespace: e2e-analytics spec:  schedule: &#34;0 */4 * * *&#34;  jobTemplate:  spec:  template:  spec:  containers:  - name: ingester  image: quay.io/your-org/junit-ingester:latest  env:  - name: REMOTE_WRITE_ENDPOINT  value: &#34;http://prometheus-server.e2e-analytics.svc:80/api/v1/write&#34;  - name: GCS_BUCKET  value: &#34;test-platform-results&#34;  - name: PROW_JOB  value: &#34;periodic-ci-operator-main-e2e&#34;  restartPolicy: OnFailure Quick validation After the first ingestion, verify data is flowing. If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . On OpenShift you might already have a cluster monitoring stack, but a separate instance keeps test data isolated and gives you control over retention.</p>
+<p>bash helm repo add prometheus-community https://prometheus-community.github.io/helm-charts helm repo update helm install prometheus prometheus-community/prometheus \  --namespace e2e-analytics --create-namespace \  --set server.retention=90d \  --set server.persistentVolume.size=20Gi \  --set server.resources.requests.memory=512Mi \  --set server.resources.requests.cpu=250m \  --set alertmanager.enabled=false \  --set prometheus-node-exporter.enabled=false \  --set kube-state-metrics.enabled=false \  --set prometheus-pushgateway.enabled=false \  --set &#39;server.extraFlags[0]=web.enable-remote-write-receiver&#39; \  --set &#39;serverFiles.prometheus\.yml.storage.tsdb.out_of_order_time_window=720h&#39; \  --set server.securityContext.runAsNonRoot=true \  --set server.securityContext.runAsUser=null \  --set server.securityContext.fsGroup=null \  --set server.containerSecurityContext.allowPrivilegeEscalation=false \  --set &#34;server.containerSecurityContext.capabilities.drop={ALL}&#34; \  --set server.containerSecurityContext.runAsNonRoot=true \  --set server.containerSecurityContext.seccompProfile.type=RuntimeDefault The --web.enable-remote-write-receiver flag enables the remote-write endpoint so our ingester can push data in. OpenShift SCC note The default Prometheus Helm chart sets runAsUser: 65534 and fsGroup: 65534 , which are rejected by OpenShift&#39;s restricted-v2 SCC.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>If someone fixes the test, it passes consistently and is never re-quarantined.</p>
+<p>Jira resolution check: The controller queries Jira for resolved tickets and proactively un-quarantines those tests early.</p>
+<p>If you use a Makefile, a common pattern is:</p>
+<p>makefile ifdef ARTIFACT_DIR export JUNIT_OUTPUT_PATH = ${ARTIFACT_DIR}/junit_report.xml endif The ingester CronJob (Step 3) scrapes this bucket using the GCS JSON API (no auth needed for public buckets):</p>
+<p># List recent builds for a job curl -s &#34;https://storage.googleapis.com/storage/v1/b/test-platform-results/o?\ prefix=logs/periodic-ci-my-org-my-operator-main-e2e/&amp;delimiter=/&#34; # Download JUnit from a specific build curl -s &#34;https://storage.googleapis.com/test-platform-results/\ logs/{job}/{build_id}/artifacts/{workflow}/e2e/artifacts/junit_report.xml&#34; # Get run metadata (timestamp, commit SHA) curl -s &#34;https://storage.googleapis.com/test-platform-results/\ logs/{job}/{build_id}/started.json&#34; # {&#34;timestamp&#34;:1765889560, &#34;repo-commit&#34;:&#34;abc123f&#34;, ...} The ingester maps GCS metadata to Prometheus labels:</p>
+<p>Prometheus label GCS source test &lt;testcase name=&#34;...&#34;&gt; in junit_report.xml suite &lt;testsuite name=&#34;...&#34;&gt; in junit_report.xml job Path segment (the Prow job name) build_id Path segment (numeric build ID) commit_sha started.json repo-commit branch main for periodics.</p>
+<p>The re_enable_after field forces accountability: either fix the test within the window, or it returns to CI and gets re-evaluated.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>This prevents the quarantine list from growing unbounded.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: database issue. This guide shows you how to build a complete quarantine system backed by a Prometheus-compatible time-series database and Grafana, running on a long-lived cluster that provides continuous observability into your test suite&#39;s health. This is invalid PromQL because the == 1 comparison produces an instant vector, and count_over_time requires a range vector selector. Because e2e_test_result uses 1/0 encoding, sum_over_time directly gives the pass count, making the query both correct and simpler.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your</li>
+            <li>This guide shows you how to build a complete quarantine system backed by a Prometheus-compatible time-series database and Grafana, running on a long-lived cluster that provides continuous observability into your test sui</li>
+            <li>What you&#39;ll build A Grafana dashboard showing per-test health with automated quarantine decisions, Jira ticket creation, and a self-healing feedback loop, all powered by industry-standard Prometheus metrics.</li>
+            <li>Periodic E2E test runs producing JUnit XML (Prow periodic jobs or scheduled GitHub Actions)</li>
+            <li>A Jira project for tracking quarantined tests (optional but recommended)</li>
+            <li>Step 1: Deploy Prometheus Deploy a dedicated Prometheus instance for test analytics. On OpenShift you might already have a cluster monitoring stack, but a separate instance keeps test data isolated and gives you control </li>
+            <li>--set server.resources.requests.memory=512Mi \</li>
+            <li>--set server.resources.requests.cpu=250m \</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/29/build-dynamic-e2e-test-quarantine-system-prometheus-grafana" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

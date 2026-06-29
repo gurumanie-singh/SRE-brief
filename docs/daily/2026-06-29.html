@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">29 June 2026</h1>
-      <span class="brief-sub">2 items</span>
+      <span class="brief-sub">4 items</span>
     </div>
   </div>
 
@@ -35,7 +35,9 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
+        <li>1 high-impact reliability event surfaced</li>
         <li>Repeated coverage across Kubernetes, Red Hat</li>
+        <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
   </div>
@@ -47,6 +49,7 @@
       <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
     </div>
     <div class="quick-filters" id="quickFilters">
+      <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
       <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
@@ -63,8 +66,10 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
       </div>
     </div>
     <div class="adv-group">
@@ -77,17 +82,93 @@
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="database,kubernetes,latency,observability,outage"
+       data-vendors="GitHub,Google Cloud,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="build a dynamic e2e test quarantine system with prometheus and grafana"
+       data-id="44898c471a464d27"
+       data-published="2026-06-29T14:15:59+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Google Cloud</span>        <time class="meta-time" data-iso="2026-06-29T14:15:59+00:00" title="29 June 2026, 09:15">29 June 2026, 09:15</time>
+      </div>
+      <h3 class="card-title">Build a dynamic E2E test quarantine system with Prometheus and Grafana</h3>
+      <p class="card-summary">If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . Without historical data, you can&#39;t distinguish a flaky test from a regression.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you run end-to-end (E2E) tests on a Kubernetes operator, you&#39;ve seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . Without historical data, you can&#39;t distinguish a flaky test from a regression. Without automation, the only remedy is a human noticing and filing a ticket.</p></div>
+      <div class="detail-links">
+        <a href="../articles/44898c471a464d27.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/29/build-dynamic-e2e-test-quarantine-system-prometheus-grafana" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,latency,observability,outage,scaling"
+       data-vendors="Netflix"
+       data-impact="high"
+       data-theme="observability"
+       data-title="genpage: towards end-to-end generative homepage construction at netflix"
+       data-id="b0c4a19f219d5742"
+       data-published="2026-06-29T13:01:02+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Netflix</span>        <time class="meta-time" data-iso="2026-06-29T13:01:02+00:00" title="29 June 2026, 08:01">29 June 2026, 08:01</time>
+      </div>
+      <h3 class="card-title">GenPage: Towards End-to-End Generative Homepage Construction at Netflix</h3>
+      <p class="card-summary">Authors: Lequn Wang , J iangwei Pan , and Linas Baltrunas 
+
+ Figure 1. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">observability</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Netflix TechBlog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Authors: Lequn Wang , J iangwei Pan , and Linas Baltrunas</p>
+<p>Figure 1. Autoregressive homepage generation. GenPage builds a Netflix homepage one row or entity at a time, each one conditioned on what’s already on the page and the user’s context.</p></div>
+      <div class="detail-links">
+        <a href="../articles/b0c4a19f219d5742.html" class="detail-read">Open structured brief →</a>
+        <a href="https://netflixtechblog.com/genpage-towards-end-to-end-generative-homepage-construction-at-netflix-77146fba8a08?source=rss----2615bd06b42e---4" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--medium"
        data-tags="capacity,deployment,kubernetes,observability,scaling"
        data-vendors="Elastic,Kubernetes,Red Hat"
@@ -114,6 +195,7 @@
           <span class="ttag">observability</span>
         </div>
       </div>
+      <div class="card-related">Also: Elastic Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
