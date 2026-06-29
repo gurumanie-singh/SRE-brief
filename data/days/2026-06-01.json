@@ -144,10 +144,6 @@
     "email_summary": "If you've ever worked with Kubernetes, you've probably heard of operators, those helpful programs that watch over your cluster and manage complex applications automatically. They are highly effective.",
     "related_sources": [
       {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-8-on-aws-aurora-mysql-with-kiro-powers-and-more-june-1-2026/"
-      },
-      {
         "source": "Kubernetes Blog",
         "link": "https://kubernetes.io/blog/2026/06/01/dashboard-to-headlamp/"
       }

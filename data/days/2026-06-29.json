@@ -47,7 +47,20 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "If you run end-to-end (E2E) tests on a Kubernetes operator, you've seen the pattern: a test that passes 80% of the time still fails often enough to block continuous integration (CI), waste developer hours, and train your team to reflexively /retest . Without historical data, you can't distinguish a flaky test from a regression.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/open-source/git/highlights-from-git-2-55/"
+      },
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-agentic-cx-designer-for-amazon-connect-customer-ec2-ami-watermarks-open-governance-for-mysql-and-more-june-29-2026/"
+      },
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/security/supply-chain-security/inside-the-advisory-database-and-what-happens-when-vulnerability-volume-breaks-records/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -197,6 +210,37 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "56b59774b772ab86",
+    "title": "Your AI isn’t underperforming. Your data foundation is.",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/ai-cost-research-tokenmaxxing",
+    "published": "2026-06-29T00:00:00+00:00",
+    "fetched_at": "2026-06-29T19:11:07.067743+00:00",
+    "summary": "New research shows Australian businesses are blowing AI budgets on tokenmaxxing instead of fixing their underlying data foundations. Discover why data quality, not the model, determines your true AI ROI for the new financial year.",
+    "tags": [],
+    "day": "2026-06-29",
+    "impact": "medium",
+    "vendors": [],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [],
+    "sections": {
+      "overview": "New research shows Australian businesses are blowing AI budgets on tokenmaxxing instead of fixing their underlying data foundations. Discover why data quality, not the model, determines your true AI ROI for the new financial year.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "New research shows Australian businesses are blowing AI budgets on tokenmaxxing instead of fixing their underlying data foundations.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "New research shows Australian businesses are blowing AI budgets on tokenmaxxing instead of fixing their underlying data foundations. Discover why data quality, not the model, determines your true AI ROI for the new financial year.",
     "related_sources": [],
     "highlighted": false
   }
