@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat UBI vs. Red Hat Hardened Images: How to choose — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-29.html" class="back-link">← 29 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">29 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Red Hat UBI vs. Red Hat Hardened Images: How to choose</h1>
+
+      <p class="subtitle">There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">database</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">outage</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>incident response</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support. To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>While you can build a bootc image that “just works” as a regular container in Docker, Podman, and Kubernetes, consider whether the larger image size and attack surface are worth the trade-off.</p>
+<p>What both container foundations have in common Despite serving distinct development workflows, both options share foundational traits that provide deployment flexibility for any container environment.</p>
+<p>Container images from the Red Hat Hardened Images catalog do not share these automatic benefits.</p>
+<p>The Hardened Images repository is growing and already includes container images that you can run as-is, such as MariaDB and Valkey databases or utilities like cosign and jq.</p>
+<p>The bootc technology is open source, and you can find bootc images for Fedora Linux and CentOS , among others.</p>
+<p>bootc images are complete operating system images that include a kernel, boot loader, device drivers, and many system services.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Your container images won&#39;t be constrained, and you won&#39;t violate an end-user agreement if you work for a Red Hat customer. This affects how frequently you have to change your application code to work with a new release of a dependency, and how frequently your users might have to change their operational processes and automation. If you need a more detailed introduction to Hardened Images and UBI, refer to my previous articles:</p>
+<p>Exploring distroless containers with Project Hummingbird   Build trusted Python containers with Project Hummingbird and Calunga   Red Hat Universal Base Images for Docker users   Similarities and differences between image types The Red Hat product documentation provides the following table comparing UBI with Hardened Images. You do not need to be a Red Hat customer, and you do not have to buy a Red Hat product.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>This approach reduces the time it takes to incorporate an upstream security fix into base container images and your final application images.</p>
+<p>That support doesn&#39;t cover your custom code and build tools, but it does include fixing bugs found within the images themselves.</p>
+<p>In any case, container images from the Red Hat Hardened Images collection do not receive backports; they only receive the fixes applied by upstream projects.</p>
+<p>Some open source projects have large enough communities that they are able to maintain multiple releases in parallel, but most only apply patches, including security fixes, to their latest release.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability?</p>
+<p>Package management Does not include a package manager to prevent runtime changes.</p>
+<p>Backports are required to preserve the API and ABIs of older releases, which helps prevent breaking backward compatibility.</p>
+<p>Which option is better for you?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. Freely distributable and using Red Hat Enterprise Linux (RHEL) packages, UBI images prioritize shipping runtimes and complementary packages that offer ease of use across multiple deployment targets. General application development and deployment. What both container foundations have in common Despite serving distinct development workflows, both options share foundational traits that provide deployment flexibility for any container environment.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability? Red Hat H</li>
+            <li>This article provides more detail about the similarities and differences between UBI and Hardened Images, helping developers make informed decisions about which one best matches their needs.</li>
+            <li>While UBI images are built from RHEL packages, images from the Red Hat Hardened Images catalog are built from upstream sources. This approach reduces the time it takes to incorporate an upstream security fix into base co</li>
+            <li>Table 1: Comparison between Red Hat Hardened Images and Red Hat UBI. Feature Red Hat Hardened Images Red Hat UBI Image size Minimal. Contains only essential runtime dependencies. Moderate. Includes standard utilities and</li>
+            <li>The answers to these and other questions are nuanced, and this article shares a practical perspective to help you decide.</li>
+            <li>Key security and deployment differences The primary operational distinctions between these options center on your requirements for long-term stability, release frequency, and upstream package alignment.</li>
+            <li>Does Hardened Images provide ABI and API stability? Does Red Hat backport features to older versions? It depends on the upstream project of the main software in a given image and its dependencies. You have to assess back</li>
+            <li>Some open source projects have large enough communities that they are able to maintain multiple releases in parallel, but most only apply patches, including security fixes, to their latest release.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/29/red-hat-ubi-vs-red-hat-hardened-images-how-to-choose" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

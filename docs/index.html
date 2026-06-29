@@ -28,13 +28,12 @@
       <h1 class="brief-title">29 June 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-06-29T00:58:48.039134-05:00">29 June 2026, 00:58</time>
+        <time data-iso="2026-06-29T06:20:38.983592-05:00">29 June 2026, 06:20</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-critical">1 critical</span>
-      <span class="stat">4 items today</span>
+      <span class="stat">2 items today</span>
     </div>
   </div>
 
@@ -42,9 +41,7 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>1 critical incident signal in the feed window</li>
-        <li>Repeated coverage across GitHub</li>
-        <li>Multiple outage or availability narratives detected</li>
+        <li>Repeated coverage across Kubernetes, Red Hat</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
@@ -55,7 +52,7 @@
         <span class="trend-pill">build<span class="trend-count">3</span></span>
         <span class="trend-pill">security<span class="trend-count">3</span></span>
         <span class="trend-pill">building<span class="trend-count">3</span></span>
-        <span class="trend-pill">open source<span class="trend-count">2</span></span>
+        <span class="trend-pill">implement<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -86,12 +83,12 @@
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
@@ -103,8 +100,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
     <div class="adv-group">
@@ -112,8 +109,8 @@
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
@@ -124,6 +121,85 @@
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      29 June 2026
+      <span class="day-count">2</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--medium"
+       data-tags="capacity,deployment,kubernetes,observability,scaling"
+       data-vendors="Elastic,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="implement gpu-as-a-service with kueue and nvidia mig"
+       data-id="ff9aecb5ee3bf7d1"
+       data-published="2026-06-29T07:01:15+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-29T07:01:15+00:00" title="29 June 2026, 02:01">29 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Implement GPU-as-a-Service with Kueue and NVIDIA MIG</h3>
+      <p class="card-summary">Many organizations buying GPUs today end up with the same problem: the cards are expensive , the demand across teams is uneven ( about 52% utilization on average ), and there&#39;s no clean way for a developer to actually get their hands on one without filing a ticket. The result is usually some mix of GPUs sitting idle and GPUs being hoarded… sometimes both (and somehow on the same cluster).</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Many organizations buying GPUs today end up with the same problem: the cards are expensive , the demand across teams is uneven ( about 52% utilization on average ), and there&#39;s no clean way for a developer to actually get their hands on one without filing a ticket. The result is usually some mix of GPUs sitting idle and GPUs being hoarded… sometimes both (and somehow on the same cluster). GPU-as-a-Service (GPUaaS) is the pattern that fixes that.</p></div>
+      <div class="detail-links">
+        <a href="articles/ff9aecb5ee3bf7d1.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/29/implement-gpu-as-a-service-kueue" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,deployment,kubernetes,outage"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="red hat ubi vs. red hat hardened images: how to choose"
+       data-id="4bc8bccf1ac32806"
+       data-published="2026-06-29T07:01:13+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-29T07:01:13+00:00" title="29 June 2026, 02:01">29 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Red Hat UBI vs. Red Hat Hardened Images: How to choose</h3>
+      <p class="card-summary">There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support. To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability?</p></div>
+      <div class="detail-links">
+        <a href="articles/4bc8bccf1ac32806.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/29/red-hat-ubi-vs-red-hat-hardened-images-how-to-choose" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       26 June 2026
@@ -1060,7 +1136,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       22 June 2026
-      <span class="day-count">4</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -1135,80 +1211,6 @@
       <div class="detail-links">
         <a href="articles/6c1a4488e1775765.html" class="detail-read">Open structured brief →</a>
         <a href="https://github.blog/open-source/from-pledge-to-practice-building-a-more-inclusive-open-source-ecosystem/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--critical"
-       data-tags="database,deployment,kubernetes,observability,outage,scaling"
-       data-vendors="AWS,Kubernetes,Red Hat"
-       data-impact="critical"
-       data-theme="observability"
-       data-title="sql with genai: building an apache iceberg lakehouse on red hat openshift"
-       data-id="3bd3f5279bacfc44"
-       data-published="2026-06-22T15:25:53+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
-<span class="vtag">AWS</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-22T15:25:53+00:00" title="22 June 2026, 10:25">22 June 2026, 10:25</time>
-      </div>
-      <h3 class="card-title">SQL with GenAI: Building an Apache Iceberg lakehouse on Red Hat OpenShift</h3>
-      <p class="card-summary">Cloud data platforms like Databricks and Snowflake are racing to embed AI directly into SQL. Impact band: critical.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <div class="card-related">Also: AWS News Blog, Netflix TechBlog</div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Cloud data platforms like Databricks and Snowflake are racing to embed AI directly into SQL. With Trino&#39;s AI functions, the open source ecosystem has the same capability, and on Red Hat OpenShift AI, you can bring your own models, your own data, and your own infrastructure. This article provides an overview of an architecture connecting a modern Apache Iceberg lakehouse to LLM-hosted models using nothing but SQL.</p></div>
-      <div class="detail-links">
-        <a href="articles/3bd3f5279bacfc44.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/22/sql-and-ai-apache-iceberg-lakehouse-on-red-hat-openshift" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--action card--high"
-       data-tags="deployment,kubernetes,observability,outage"
-       data-vendors="Kubernetes,Red Hat"
-       data-impact="high"
-       data-theme="observability"
-       data-title="right-sizing recommendations with mcoa and perses dashboards"
-       data-id="d99ab7df3fc4ddf4"
-       data-published="2026-06-22T14:26:45+00:00"
-       data-priority="true">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-22T14:26:45+00:00" title="22 June 2026, 09:26">22 June 2026, 09:26</time>
-        <span class="action-badge">Ops</span>
-      </div>
-      <h3 class="card-title">Right-sizing recommendations with MCOA and Perses dashboards</h3>
-      <p class="card-summary">Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">observability</span>
-          <span class="ttag">outage</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Since the general availability of right-sizing recommendations in Red Hat Advanced Cluster Management for Kubernetes 2.16 , right-sizing has been available for platform engineers and FinOps teams to leverage Grafana-based dashboards to identify over-provisioned and under-utilized resources across their multicluster environments. This feature has matured through developer preview , technology preview for namespaces and Red Hat OpenShift Virtualization , and ultimately reached GA. Now, we are excited to announce the developer preview of right-sizing recommendations powered by Perses dashboards delivered through the m ulticluster observability add-on (MCOA) as part of the Red Hat Advanced Cluster Management for Kubernetes 2.17 release.</p></div>
-      <div class="detail-links">
-        <a href="articles/d99ab7df3fc4ddf4.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/22/right-sizing-recommendations-mcoa-and-perses-dashboards" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

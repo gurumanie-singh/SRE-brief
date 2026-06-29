@@ -1,0 +1,99 @@
+[
+  {
+    "id": "ff9aecb5ee3bf7d1",
+    "title": "Implement GPU-as-a-Service with Kueue and NVIDIA MIG",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/29/implement-gpu-as-a-service-kueue",
+    "published": "2026-06-29T07:01:15+00:00",
+    "fetched_at": "2026-06-29T11:20:38.681505+00:00",
+    "summary": "Many organizations buying GPUs today end up with the same problem: the cards are expensive , the demand across teams is uneven ( about 52% utilization on average ), and there's no clean way for a developer to actually get their hands on one without filing a ticket. The result is usually some mix of GPUs sitting idle and GPUs being hoarded… sometimes both (and somehow on the same cluster).",
+    "tags": [
+      "capacity",
+      "deployment",
+      "kubernetes",
+      "observability",
+      "scaling"
+    ],
+    "day": "2026-06-29",
+    "impact": "medium",
+    "vendors": [
+      "Elastic",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "GPU-as-a-Service (GPUaaS) is the pattern that fixes that. A central platform team owns the hardware, and developers reserve slices of it on demand, almost like booking a meeting room. This post walks through how we put t",
+      "NVIDIA MIG lets a single physical GPU be sliced into smaller, isolated instances. For example, an H200 can be carved into smaller pieces like a 1g.18gb slice or a 2g.35gb slice, each of which behaves like an independent ",
+      "With the Red Hat build of Kueue , our platform team can define resource quotas (including individual MIG slice sizes) with flexible fair sharing, preemption, and queue prioritization. With that setup, let's look at what ",
+      "How can we self-serve GPU quota reservations? Kueue's APIs provide extensive scheduling options, but most developers don't want to write YAML to request a GPU for the afternoon. To simplify this process, our platform tea",
+      "This custom plug-in relies on standard Kubernetes and Kueue architectural designs rather than introducing a unique data model. Because it generates native Kueue resources, operations tools like GitOps pipelines and the c",
+      "Why GPU-as-a-Service matters We're seeing a wide variety of practical use cases for AI, from traditional recommendation systems to the latest AI agents and coding assistants. These workloads depend on consistent access t"
+    ],
+    "sections": {
+      "overview": "Many organizations buying GPUs today end up with the same problem: the cards are expensive , the demand across teams is uneven ( about 52% utilization on average ), and there's no clean way for a developer to actually get their hands on one without filing a ticket. The result is usually some mix of GPUs sitting idle and GPUs being hoarded… sometimes both (and somehow on the same cluster). GPU-as-a-Service (GPUaaS) is the pattern that fixes that.",
+      "technical_breakdown": "Figure 2: Kueue organizes work into LocalQueues and ClusterQueues, grouped into a cohort that shares capacity across node pools.\n\nThe coveredResources block in this configuration file (Figure 4) lists each MIG slice size alongside CPU, memory, and full GPUs.\n\nKueue is a queueing and quota system for Kubernetes workloads.\n\nFigure 4: ClusterQueue YAML configuration showing MIG slice quotas in the OpenShift web console.\n\nWith the Red Hat build of Kueue , our platform team can define resource quotas (including individual MIG slice sizes) with flexible fair sharing, preemption, and queue prioritization.",
+      "impact": "It lets a platform admin define resource pools, assign them to specific teams or users, and apply rules like fair sharing when things get busy, as shown in Figure 2. Figure 3: NVIDIA MIG partitions a single physical GPU into isolated instances, each with dedicated memory and compute, so multiple users can share one accelerator. This system allows teams to request unclaimed GPUs on a self-service basis without availability guarantees, making it ideal for lower-priority batch jobs. The dashboard shows availability for each tier across full H200 GPUs and the three MIG slice sizes.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "GPU-as-a-Service (GPUaaS) is the pattern that fixes that.",
+      "lessons_learned": "Why GPU-as-a-Service matters We're seeing a wide variety of practical use cases for AI, from traditional recommendation systems to the latest AI agents and coding assistants.",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. MIG makes GPU-as-a-Service more flexible because instead of allocating a whole accelerator to someone running a small model, they can request the slice they actually need, as shown in Figure 3. Because it generates native Kueue resources, operations tools like GitOps pipelines and the command-line interface (CLI) continue to function without interruption. Because our plug-in uses the namespaceSelector field within the ClusterQueue , developers from other projects cannot accidentally schedule workloads against this dedicated quota.",
+      "incident_timeline": "GPU-as-a-Service (GPUaaS) is the pattern that fixes that. A central platform team owns the hardware, and developers reserve slices of it on demand, almost like booking a meeting room. This post walks through how we put t\nNVIDIA MIG lets a single physical GPU be sliced into smaller, isolated instances. For example, an H200 can be carved into smaller pieces like a 1g.18gb slice or a 2g.35gb slice, each of which behaves like an independent \nWith the Red Hat build of Kueue , our platform team can define resource quotas (including individual MIG slice sizes) with flexible fair sharing, preemption, and queue prioritization. With that setup, let's look at what \nHow can we self-serve GPU quota reservations? Kueue's APIs provide extensive scheduling options, but most developers don't want to write YAML to request a GPU for the afternoon. To simplify this process, our platform tea\nThis custom plug-in relies on standard Kubernetes and Kueue architectural designs rather than introducing a unique data model. Because it generates native Kueue resources, operations tools like GitOps pipelines and the c\nWhy GPU-as-a-Service matters We're seeing a wide variety of practical use cases for AI, from traditional recommendation systems to the latest AI agents and coding assistants. These workloads depend on consistent access t",
+      "trends": "Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Many organizations buying GPUs today end up with the same problem: the cards are expensive , the demand across teams is uneven ( about 52% utilization on average ), and there's no clean way for a developer to actually get their hands on one without filing a ticket. The result is usually some mix of GPUs sitting idle and GPUs being hoarded… sometimes both (and somehow on the same cluster).",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "4bc8bccf1ac32806",
+    "title": "Red Hat UBI vs. Red Hat Hardened Images: How to choose",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/29/red-hat-ubi-vs-red-hat-hardened-images-how-to-choose",
+    "published": "2026-06-29T07:01:13+00:00",
+    "fetched_at": "2026-06-29T11:20:38.683969+00:00",
+    "summary": "There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support.",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "outage"
+    ],
+    "day": "2026-06-29",
+    "impact": "medium",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability? Red Hat H",
+      "This article provides more detail about the similarities and differences between UBI and Hardened Images, helping developers make informed decisions about which one best matches their needs.",
+      "While UBI images are built from RHEL packages, images from the Red Hat Hardened Images catalog are built from upstream sources. This approach reduces the time it takes to incorporate an upstream security fix into base co",
+      "Table 1: Comparison between Red Hat Hardened Images and Red Hat UBI. Feature Red Hat Hardened Images Red Hat UBI Image size Minimal. Contains only essential runtime dependencies. Moderate. Includes standard utilities and",
+      "The answers to these and other questions are nuanced, and this article shares a practical perspective to help you decide.",
+      "Key security and deployment differences The primary operational distinctions between these options center on your requirements for long-term stability, release frequency, and upstream package alignment.",
+      "Does Hardened Images provide ABI and API stability? Does Red Hat backport features to older versions? It depends on the upstream project of the main software in a given image and its dependencies. You have to assess back",
+      "Some open source projects have large enough communities that they are able to maintain multiple releases in parallel, but most only apply patches, including security fixes, to their latest release."
+    ],
+    "sections": {
+      "overview": "There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support. To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability?",
+      "technical_breakdown": "While you can build a bootc image that “just works” as a regular container in Docker, Podman, and Kubernetes, consider whether the larger image size and attack surface are worth the trade-off.\n\nWhat both container foundations have in common Despite serving distinct development workflows, both options share foundational traits that provide deployment flexibility for any container environment.\n\nContainer images from the Red Hat Hardened Images catalog do not share these automatic benefits.\n\nThe Hardened Images repository is growing and already includes container images that you can run as-is, such as MariaDB and Valkey databases or utilities like cosign and jq.\n\nThe bootc technology is open source, and you can find bootc images for Fedora Linux and CentOS , among others.\n\n bootc images are complete operating system images that include a kernel, boot loader, device drivers, and many system services.",
+      "impact": "Your container images won't be constrained, and you won't violate an end-user agreement if you work for a Red Hat customer. This affects how frequently you have to change your application code to work with a new release of a dependency, and how frequently your users might have to change their operational processes and automation. If you need a more detailed introduction to Hardened Images and UBI, refer to my previous articles:\n\n Exploring distroless containers with Project Hummingbird \n Build trusted Python containers with Project Hummingbird and Calunga \n Red Hat Universal Base Images for Docker users \n Similarities and differences between image types The Red Hat product documentation provides the following table comparing UBI with Hardened Images. You do not need to be a Red Hat customer, and you do not have to buy a Red Hat product.\n\nClassified impact band: medium. Affected layer signal: platform — kubernetes.",
+      "resolution": "This approach reduces the time it takes to incorporate an upstream security fix into base container images and your final application images.\n\nThat support doesn't cover your custom code and build tools, but it does include fixing bugs found within the images themselves.\n\nIn any case, container images from the Red Hat Hardened Images collection do not receive backports; they only receive the fixes applied by upstream projects.\n\nSome open source projects have large enough communities that they are able to maintain multiple releases in parallel, but most only apply patches, including security fixes, to their latest release.",
+      "lessons_learned": "To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability?\n\nPackage management Does not include a package manager to prevent runtime changes.\n\nBackports are required to preserve the API and ABIs of older releases, which helps prevent breaking backward compatibility.\n\nWhich option is better for you?",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. Freely distributable and using Red Hat Enterprise Linux (RHEL) packages, UBI images prioritize shipping runtimes and complementary packages that offer ease of use across multiple deployment targets. General application development and deployment. What both container foundations have in common Despite serving distinct development workflows, both options share foundational traits that provide deployment flexibility for any container environment.",
+      "incident_timeline": "To determine whether Red Hat UBI or Hardened Images is better for your needs, the main question is: Do you value closeness to upstream projects—to maintain a near-zero CVE state—more than development stability? Red Hat H\nThis article provides more detail about the similarities and differences between UBI and Hardened Images, helping developers make informed decisions about which one best matches their needs.\nWhile UBI images are built from RHEL packages, images from the Red Hat Hardened Images catalog are built from upstream sources. This approach reduces the time it takes to incorporate an upstream security fix into base co\nTable 1: Comparison between Red Hat Hardened Images and Red Hat UBI. Feature Red Hat Hardened Images Red Hat UBI Image size Minimal. Contains only essential runtime dependencies. Moderate. Includes standard utilities and\nThe answers to these and other questions are nuanced, and this article shares a practical perspective to help you decide.\nKey security and deployment differences The primary operational distinctions between these options center on your requirements for long-term stability, release frequency, and upstream package alignment.\nDoes Hardened Images provide ABI and API stability? Does Red Hat backport features to older versions? It depends on the upstream project of the main software in a given image and its dependencies. You have to assess back\nSome open source projects have large enough communities that they are able to maintain multiple releases in parallel, but most only apply patches, including security fixes, to their latest release.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "There are many similarities between Red Hat Universal Base Image (UBI) and Red Hat Hardened Images . Both commercial and open source developers can use either foundation to produce container images for their applications and redistribute the results either freely or for a fee, without constraints from Red Hat, while retaining the option to obtain Red Hat support.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
