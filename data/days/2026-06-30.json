@@ -1,0 +1,100 @@
+[
+  {
+    "id": "36511860a3b82c40",
+    "title": "How to set up Red Hat OpenShift Virtualization ServiceNow CMDB discovery: Configuring virtual machines with a custom Discovery Pattern",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/30/openshift-virtualization-servicenow-custom-discovery-pattern",
+    "published": "2026-06-30T03:01:04+00:00",
+    "fetched_at": "2026-06-30T04:18:03.903984+00:00",
+    "summary": "If you're running a virtual machines (VM) on Red Hat OpenShift Virtualization , then you know that keeping everything visible in ServiceNow is key for change management, incident routing, and licensing. ServiceNow provides CMDB Kubernetes import capabilities but the standard Kubernetes patterns can be a bit messy. They often clutter your configuration management database (CMDB) with pods...",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-30",
+    "impact": "high",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "deployment failure",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "A quick reminder: OpenShift Virtualization is powered by the KubeVirt upstream project, which is what I'm targeting here.",
+      "Prerequisites Picking up where the previous article left off, we begin by verifying that the initial setup is operational. I have a preflight check script that checks for an HTTP 200 status with a VirtualMachineList, and",
+      "Establish the CI class",
+      "This new table, labeled OpenShift Virtual Machine and named u_cmdb_ci_openshift_virtual_machines , includes several KubeVirt-specific attributes not found in standard VM columns: Cluster name and URL, namespace, node, ru",
+      "I also prevent it from inheriting the VMware-style instance identifier typically associated with cmdb_ci_vm_instance . I then establish the primary identifier using this durable tuple, while designating correlation_id (w",
+      "The logic for the data flow is direct: Execute an HTTP GET request on the virtualmachines endpoint and a subsequent GET on virtualmachineinstances . These results are then combined using a LEFT join on the parent VM UID,",
+      "4. Schedule and run discovery To initiate the discovery process, configure a serverless, on-demand Discovery Schedule. It's crucial to ensure this is bound to the in-cluster MID server established in part 1. Within the p",
+      "5. Verify the resulting VM CIs Once the discovery process wraps up, navigate to the new class list to see a clean, one-to-one mapping (one row for every VM in your cluster). If you filter for Running status, you can cros"
+    ],
+    "sections": {
+      "overview": "If you're running a virtual machines (VM) on Red Hat OpenShift Virtualization , then you know that keeping everything visible in ServiceNow is key for change management, incident routing, and licensing. ServiceNow provides CMDB Kubernetes import capabilities but the standard Kubernetes patterns can be a bit messy. They often clutter your configuration management database (CMDB) with pods, deployments, and nodes, while failing to identify KubeVirt VMs as the proper configuration items (CIs) they actually are.",
+      "technical_breakdown": "They often clutter your configuration management database (CMDB) with pods, deployments, and nodes, while failing to identify KubeVirt VMs as the proper configuration items (CIs) they actually are.\n\nThis new table, labeled OpenShift Virtual Machine and named u_cmdb_ci_openshift_virtual_machines , includes several KubeVirt-specific attributes not found in standard VM columns: Cluster name and URL, namespace, node, run strategy, status, machine type, firmware, guest OS, vCPU topology, and the VM UID.\n\nIf you filter for Running status, you can cross-verify the live data like CPU count, memory, and node location directly against the output of an oc get vm command.\n\nI also prefer keeping the cluster, namespace, node, and pod context as queryable string columns rather than generating a mess of separate Kubernetes CIs.\n\nThe logic for the data flow is direct: Execute an HTTP GET request on the virtualmachines endpoint and a subsequent GET on virtualmachineinstances .",
+      "impact": "Classified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "I also prevent it from inheriting the VMware-style instance identifier typically associated with cmdb_ci_vm_instance .",
+      "root_cause_highlight": "Likely root-cause theme: deployment failure. They often clutter your configuration management database (CMDB) with pods, deployments, and nodes, while failing to identify KubeVirt VMs as the proper configuration items (CIs) they actually are. Because this Kubernetes context is stored as simple string columns within the VM row, no separate Kubernetes CIs are generated.",
+      "incident_timeline": "A quick reminder: OpenShift Virtualization is powered by the KubeVirt upstream project, which is what I'm targeting here.\nPrerequisites Picking up where the previous article left off, we begin by verifying that the initial setup is operational. I have a preflight check script that checks for an HTTP 200 status with a VirtualMachineList, and\nEstablish the CI class\nThis new table, labeled OpenShift Virtual Machine and named u_cmdb_ci_openshift_virtual_machines , includes several KubeVirt-specific attributes not found in standard VM columns: Cluster name and URL, namespace, node, ru\nI also prevent it from inheriting the VMware-style instance identifier typically associated with cmdb_ci_vm_instance . I then establish the primary identifier using this durable tuple, while designating correlation_id (w\nThe logic for the data flow is direct: Execute an HTTP GET request on the virtualmachines endpoint and a subsequent GET on virtualmachineinstances . These results are then combined using a LEFT join on the parent VM UID,\n4. Schedule and run discovery To initiate the discovery process, configure a serverless, on-demand Discovery Schedule. It's crucial to ensure this is bound to the in-cluster MID server established in part 1. Within the p\n5. Verify the resulting VM CIs Once the discovery process wraps up, navigate to the new class list to see a clean, one-to-one mapping (one row for every VM in your cluster). If you filter for Running status, you can cros",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "If you're running a virtual machines (VM) on Red Hat OpenShift Virtualization , then you know that keeping everything visible in ServiceNow is key for change management, incident routing, and licensing. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "afb6f5e620edf328",
+    "title": "How to set up OpenShift Virtualization ServiceNow CMDB discovery: Deploying an in-cluster MID Server",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/06/30/openshift-virtualization-vm-as-servicenow-cmdb-configuration-items-with-custom-discovery-pattern",
+    "published": "2026-06-30T03:01:03+00:00",
+    "fetched_at": "2026-06-30T04:18:03.905030+00:00",
+    "summary": "When a virtual machine (VM) is missing from the configuration management database (CMDB), it can become invisible to the rest of an IT team. Change management never sees it. Incident routing cannot find its owner. License reconciliation skips it. That matters right now, because Red Hat OpenShift Virtualization is increasingly becoming the landing zone for many VMware migrations. Teams going...",
+    "tags": [
+      "database",
+      "deployment",
+      "kubernetes",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-06-30",
+    "impact": "high",
+    "vendors": [
+      "GitHub",
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "When a virtual machine (VM) is missing from the configuration management database (CMDB), it can become invisible to the rest of an IT team. Change management never sees it. Incident routing cannot find its owner. Licens",
+      "Why stock Kubernetes discovery fails for KubeVirt VMs The stock ServiceNow Kubernetes pattern is broad and noisy. It pulls every pod, deployment, replicaset, service, and node into CMDB, far more than I want if I only ca",
+      "Deploy a CA-trusted in-cluster MID server I tested this against the ServiceNow Australia release. For the full plug-in table, including the optional Certificate Management plugin, see sections 0 and 1 of the runbook.",
+      "4. Deploy the MID server and confirm CA trust When you're ready to deploy the MID server, set your Deployment manifest with the serviceAccountName. The serviceaccount grants your MID pod the kubevirt.io:view permissions ",
+      "The MID pod is in CrashLoopBackOff: The instance URL or credentials in the secret are wrong. Fix the secret and restart.",
+      "Tips and best practices Keep RBAC minimal. Only widen it to a pod-list view later if you want the virt-launcher pod name column in part 2. Bake CA trust into the image rather than patching a live pod, so the trust surviv"
+    ],
+    "sections": {
+      "overview": "When a virtual machine (VM) is missing from the configuration management database (CMDB), it can become invisible to the rest of an IT team. Change management never sees it. Incident routing cannot find its owner.",
+      "technical_breakdown": "When you point ServiceNow stock Kubernetes discovery at a Red HatOpenShift Virtualization cluster , it imports pods, deployments, and nodes.\n\nIt pulls every pod, deployment, replicaset, service, and node into CMDB, far more than I want if I only care about VMs.\n\nThis means every fresh MID pod has its TLS handshake with the Kubernetes API, and your discovery probes just sit there going nowhere.\n\nThe log shows SSLPeerUnverifiedException or PKIX path building failed: The Java runtime does not trust the service-network CA.\n\nWhen a virtual machine (VM) is missing from the configuration management database (CMDB), it can become invisible to the rest of an IT team.",
+      "impact": "It will be trusted by the right certificate authority (CA) and scoped to least-privilege access. Create the MID server user in ServiceNow Your new MID server needs a way to talk back to home base. In ServiceNow, head over to the user administration form and create a new user I called mine mid.user . Figure 1: ServiceNow user administration form creating the mid.user MID server account.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "You could manually import the certificate using keytool, but that's a temporary fix the moment your pod is rescheduled or scaled, that manual work evaporates.\n\nEach one has a clear cause and fix:\n\n The MID pod is in CrashLoopBackOff: The instance URL or credentials in the secret are wrong.\n\nFix the secret and restart.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. That matters right now, because Red Hat OpenShift Virtualization is increasingly becoming the landing zone for many VMware migrations. Create a least-privilege service account and role-based access control (RBAC) First, set up the cluster resources.",
+      "incident_timeline": "When a virtual machine (VM) is missing from the configuration management database (CMDB), it can become invisible to the rest of an IT team. Change management never sees it. Incident routing cannot find its owner. Licens\nWhy stock Kubernetes discovery fails for KubeVirt VMs The stock ServiceNow Kubernetes pattern is broad and noisy. It pulls every pod, deployment, replicaset, service, and node into CMDB, far more than I want if I only ca\nDeploy a CA-trusted in-cluster MID server I tested this against the ServiceNow Australia release. For the full plug-in table, including the optional Certificate Management plugin, see sections 0 and 1 of the runbook.\n4. Deploy the MID server and confirm CA trust When you're ready to deploy the MID server, set your Deployment manifest with the serviceAccountName. The serviceaccount grants your MID pod the kubevirt.io:view permissions \nThe MID pod is in CrashLoopBackOff: The instance URL or credentials in the secret are wrong. Fix the secret and restart.\nTips and best practices Keep RBAC minimal. Only widen it to a pod-list view later if you want the virt-launcher pod name column in part 2. Bake CA trust into the image rather than patching a live pod, so the trust surviv",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "When a virtual machine (VM) is missing from the configuration management database (CMDB), it can become invisible to the rest of an IT team. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
