@@ -1,5 +1,49 @@
 [
   {
+    "id": "a3f39d0b1ad47eb7",
+    "title": "Discover, govern, and scale Azure infrastructure in the AI era",
+    "source": "HashiCorp Blog",
+    "link": "https://www.hashicorp.com/blog/discover-govern-and-scale-azure-infrastructure-in-the-ai-era",
+    "published": "2026-06-30T16:00:00+00:00",
+    "fetched_at": "2026-06-30T17:10:13.700821+00:00",
+    "summary": "Organizations are rapidly building AI applications, deploying AI agents, and scaling Azure environments faster than ever before. ",
+    "tags": [
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-06-30",
+    "impact": "high",
+    "vendors": [
+      "Azure",
+      "HashiCorp"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "cloud — azure",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "The hidden drift: How unmanaged infrastructure emerges Infrastructure drift rarely happens because teams ignore best practices. It happens because real-world operations rarely follow clean architectural plans.",
+      "A developer provisions a resource directly in the Azure portal to test an idea. A proof-of-concept AI application is deployed quickly and later promoted into production. A late-night incident leads to a manual fix that n",
+      "Terraform query  enables teams to identify resources across Azure environments, including resources that were never provisioned through Terraform, helping organizations discover unmanaged infrastructure, identify shadow ",
+      "Establish a more complete inventory of cloud assets",
+      "Why this matters now Azure environments are becoming more dynamic, more distributed, and more complex. Terraform helps organizations bring infrastructure back into alignment with code, while Vault helps ensure access rem"
+    ],
+    "sections": {
+      "overview": "Organizations are rapidly building AI applications, deploying AI agents, and scaling Azure environments faster than ever before. As AI initiatives accelerate and the volume of code expands, many organizations discover they have lost visibility into the infrastructure supporting those workloads. Resources created outside standard workflows, unmanaged environments, and infrastructure drift create governance, security, and operational challenges that become increasingly difficult to control at scale.",
+      "technical_breakdown": "For example, teams can search for specific resource types across subscriptions: \n list \"azurerm_nat_gateway\" \"unmanaged\" {  \n\n   provider = azurerm  \n\n }  \n\n list \"azurerm_network_security_group\" \"unmanaged\" {  \n\n   provider = azurerm  \n\n } \n\n Terraform can then enumerate matching resources: \n\n terraform query \n\n This allows platform teams to: \n\n Discover unmanaged infrastructure \n\n Identify shadow IT environments \n\n Locate AI experimentation environments \n\n Establish a more complete inventory of cloud assets \n\n  \n\n Rather than relying on periodic audits, teams gain continuous visibility into infrastructure across Azure environments.",
+      "impact": "Classified impact band: high. Affected layer signal: cloud — azure.",
+      "resolution": "A late-night incident leads to a manual fix that never gets codified.",
+      "lessons_learned": "Ready to improve visibility and governance across your Azure environment?",
+      "root_cause_highlight": "",
+      "incident_timeline": "The hidden drift: How unmanaged infrastructure emerges Infrastructure drift rarely happens because teams ignore best practices. It happens because real-world operations rarely follow clean architectural plans.\nA developer provisions a resource directly in the Azure portal to test an idea. A proof-of-concept AI application is deployed quickly and later promoted into production. A late-night incident leads to a manual fix that n\nTerraform query  enables teams to identify resources across Azure environments, including resources that were never provisioned through Terraform, helping organizations discover unmanaged infrastructure, identify shadow \nEstablish a more complete inventory of cloud assets\nWhy this matters now Azure environments are becoming more dynamic, more distributed, and more complex. Terraform helps organizations bring infrastructure back into alignment with code, while Vault helps ensure access rem",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Organizations are rapidly building AI applications, deploying AI agents, and scaling Azure environments faster than ever before. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "31bf43ec8eaeede6",
     "title": "Why intent prediction needs more than an LLM​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌",
     "source": "Stack Overflow Blog",
