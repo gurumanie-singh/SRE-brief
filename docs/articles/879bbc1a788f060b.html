@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scale document ingestion with Docling and Ray on OpenShift AI — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-06-30.html" class="back-link">← 30 June 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Red Hat Developer Blog</span>
+        <span class="card-date">30 June 2026, 02:01</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Scale document ingestion with Docling and Ray on OpenShift AI</h1>
+
+      <p class="subtitle">Many AI projects stall before they begin before any model is deployed, before the RAG application is running, or before the first chatbot is started. This failure to launch can happen for many reasons, but one of the primary causes is data.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">GitHub</span>
+        <span class="vendor-tag">Kubernetes</span>
+        <span class="vendor-tag">Red Hat</span>
+        <span class="tag">capacity</span>
+        <span class="tag">deployment</span>
+        <span class="tag">kubernetes</span>
+        <span class="tag">latency</span>
+        <span class="tag">networking</span>
+        <span class="tag">observability</span>
+        <span class="tag">outage</span>
+        <span class="tag">scaling</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Root-cause signal</dt><dd>deployment failure</dd></div>
+        <div class="fact-row"><dt>Affected layer</dt><dd>platform — kubernetes</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>observability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Many AI projects stall before they begin before any model is deployed, before the RAG application is running, or before the first chatbot is started. This failure to launch can happen for many reasons, but one of the primary causes is data.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Many AI projects stall before they begin before any model is deployed, before the RAG application is running, or before the first chatbot is started. This failure to launch can happen for many reasons, but one of the primary causes is data. Common culprits include a lack of quality data, inaccessible data, and poorly structured or formatted data.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Example output for 8 workers x 8 CPUs x 16 GB, processing 10,000 PDFs:</p>
+<p>Workers: 8 x (8 CPUs, 16 GB)  Schedulable CPUs: 6 per worker (2 reserved)  Actor pool: 8..24 (2 CPUs, approximately 4.8 GB each)  Estimated time: Approximately 35 min (fast) to 2.3 hr (slow)  Performance characteristics Each run produces a performance report covering throughput (files/second, pages/second), actor distribution, error and timeout rates, and per-file processing times.</p>
+<p>KubeRay This Kubernetes operator and cluster lifecycle management tool uses automated orchestration to govern Ray cluster deployments and autoscaling on OpenShift, handling RayCluster and RayJob custom resources.</p>
+<p>By wrapping Docling in a Ray Data map_batches operation, we transform a CPU-bound, single-threaded parsing library into a distributed, multi-node ingestion engine, as shown in Figure 1.</p>
+<p>Operational need Recommended deployment pattern Nightly batch processing RayJob First-time setup, tuning parameters RayCluster CI/CD integration RayJob Processing different document sets iteratively RayCluster Production automation RayJob The configuration calculator Sizing a Ray cluster for Docling means balancing actors per worker, CPUs per actor, memory allocation between Ray&#39;s object store and actor heap, and dataset partitioning for even distribution.</p>
+<p>Key formulas:</p>
+<p>Schedulable CPUs per worker = worker_cpus - 2 (reserves 2 CPUs for Ray&#39;s raylet and object store)  Actors per worker = schedulable_cpus / cpus_per_actor   Max actors = num_workers x actors_per_worker   Memory per actor = ( worker_memory - object_store ) / actors_per_worker (must be &gt;=4 GB; &gt;=6 GB with OCR)  Total blocks = max_actors x repartition_factor (fine-grained blocks prevent straggler effects)  It also validates constraints and warns about low actor memory, straggler risk from oversized blocks, over-provisioned clusters, or batch sizes that exceed files per block.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>Processing 10,000 documents sequentially can take 14 to 55 hours. The driver aggregates throughput, error rates, actor distribution, and error details into a performance report. Persistent clusters for interactive work This notebook uses Cluster with ClusterConfiguration to create a long-lived cluster, then submits jobs via the Ray Job Submission Client, as mapped out in Figure 4. Sample throughput for standard business PDFs (5 to 20 pages, text-heavy, some tables) and simple Docling configurations includes:</p>
+<p>8 workers x 8 CPUs: About 4 to 8 files/second (10,000 files in 20 to 40 minutes)  4 workers x 8 CPUs: About 2 to 4 files/second (10,000 files in 40 to 80 minutes)  Processing time scales linearly with document complexity.</p>
+<p>Classified impact band: medium. Affected layer signal: platform — kubernetes.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Key formulas:</p>
+<p>Schedulable CPUs per worker = worker_cpus - 2 (reserves 2 CPUs for Ray&#39;s raylet and object store)  Actors per worker = schedulable_cpus / cpus_per_actor   Max actors = num_workers x actors_per_worker   Memory per actor = ( worker_memory - object_store ) / actors_per_worker (must be &gt;=4 GB; &gt;=6 GB with OCR)  Total blocks = max_actors x repartition_factor (fine-grained blocks prevent straggler effects)  It also validates constraints and warns about low actor memory, straggler risk from oversized blocks, over-provisioned clusters, or batch sizes that exceed files per block.</p>
+<p>Join the conversation Questions, improvements, or a document type that breaks in an interesting way?</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg> Root cause highlight</div>
+        <div class="article-section-content">
+          <p>Likely root-cause theme: deployment failure. KubeRay This Kubernetes operator and cluster lifecycle management tool uses automated orchestration to govern Ray cluster deployments and autoscaling on OpenShift, handling RayCluster and RayJob custom resources. Because Ray Data streams execution, all three stages overlap. Two deployment patterns We provide two notebooks using different CodeFlare SDK patterns for different operational needs.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>The stack: High-fidelity parsing at scale A production ingestion process needs to pair parsing quality with distributed compute. Red Hat OpenShift AI provides the foundation.</li>
+            <li>KubeRay This Kubernetes operator and cluster lifecycle management tool uses automated orchestration to govern Ray cluster deployments and autoscaling on OpenShift, handling RayCluster and RayJob custom resources.</li>
+            <li>Architecture Processing requires either persistent volume claims (PVCs) or S3 or object storage. All Ray workers read from and write to the same ReadWriteMany PVC. By wrapping Docling in a Ray Data map_batches operation,</li>
+            <li>Figure 1: Architecture of distributed document ingestion using Docling and Ray on Red Hat OpenShift AI.</li>
+            <li>This configuration is best for periodic batch processing, continuous integration/continuous delivery (CI/CD), or any scenario where you want zero idle cost between runs.</li>
+            <li>This setup is best for development, debugging, parameter tuning, or submitting multiple jobs to the same cluster.</li>
+            <li>Select the deployment pattern that best aligns with your operational requirements and development workflow.</li>
+            <li>Estimated time: Approximately 35 min (fast) to 2.3 hr (slow)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.</p>
+<p>Observability shifts remain tightly coupled with incident response quality and capacity planning accuracy.</p>
+<p>Demand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs.</p>
+        </div>
+      </div>
+
+
+      <a href="https://developers.redhat.com/articles/2026/06/30/scale-document-ingestion-docling-and-ray-openshift-ai" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Red Hat Developer Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">30 June 2026</h1>
-      <span class="brief-sub">2 items</span>
+      <span class="brief-sub">5 items</span>
     </div>
   </div>
 
@@ -36,7 +36,8 @@
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
         <li>2 high-impact reliability events surfaced</li>
-        <li>Repeated coverage across GitHub, Kubernetes</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat, GitHub</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
@@ -50,6 +51,7 @@
     </div>
     <div class="quick-filters" id="quickFilters">
       <button class="qf-btn qf-high" data-filter-group="impact" data-filter-value="high">High Impact</button>
+      <button class="qf-btn qf-medium" data-filter-group="impact" data-filter-value="medium">Medium</button>
       <button class="qf-btn qf-more" id="moreFiltersBtn" aria-expanded="false">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
         More
@@ -63,29 +65,141 @@
     <div class="adv-group">
       <span class="adv-label">Vendor / platform</span>
       <div class="adv-pills">
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
-        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
       </div>
     </div>
     <div class="adv-group">
       <span class="adv-label">Topic tags</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--medium"
+       data-tags="networking,outage"
+       data-vendors=""
+       data-impact="medium"
+       data-theme="incident response"
+       data-title="why intent prediction needs more than an llm​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌"
+       data-id="31bf43ec8eaeede6"
+       data-published="2026-06-30T07:40:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-06-30T07:40:00+00:00" title="30 June 2026, 02:40">30 June 2026, 02:40</time>
+      </div>
+      <h3 class="card-title">Why intent prediction needs more than an LLM​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌﻿‌​‌‌‌﻿‌​‌﻿​‌‌‌​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</h3>
+      <p class="card-summary">Ryan sits down with Frank Portman, CTO at Yobi, to talk about why next-token prediction, though great for language, isn’t the right inductive bias for forecasting human behavior. They discuss how Yobi builds a “foundation model of behavior” using transformers and graph neural networks instead of chat-style LLMs, and what it takes to run millions of personalization decisions per second while keeping consumer data…</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Stack Overflow Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Ryan sits down with Frank Portman, CTO at Yobi, to talk about why next-token prediction, though great for language, isn’t the right inductive bias for forecasting human behavior. They discuss how Yobi builds a “foundation model of behavior” using transformers and graph neural networks instead of chat-style LLMs, and what it takes to run millions of personalization decisions per second while keeping consumer data private.​​​​‌﻿﻿​​‌﻿﻿‌﻿​‌‌‌‌﻿‌‌‌﻿​​​﻿​​‌﻿​﻿‌​‌‌﻿‌‌‌﻿‌​‌﻿‌​﻿‌‌‌﻿﻿​​​﻿​​​‌​‌﻿​‌‌‌‌‌​​​﻿​​‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​﻿​﻿﻿​﻿﻿‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​﻿﻿‌‌‌﻿‌﻿‌​‌‌‌‌﻿‌﻿‌​​﻿﻿‌‌‌‌‌​‌‌‌﻿‌​​﻿﻿‌﻿‌‌﻿﻿‌‌​‌‌‌​﻿﻿‌‌﻿​​‌﻿​‌‌‌‌﻿​﻿‌‌‌‌﻿‌﻿‌​‌​‌‌﻿‌​‌‌‌﻿﻿‌﻿​﻿﻿‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​﻿﻿‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​﻿﻿‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​﻿﻿﻿‌​‌​‌‌﻿​﻿‌‌‌‌‌‌‌‌﻿​‌﻿​​﻿﻿‌‌​‌﻿‌​‌﻿‌​‌﻿​​‌﻿​﻿​‌‌​﻿​﻿‌​​‌​‌‌​﻿​‌​‌​‌‌​﻿​‌​‌‌​﻿‌﻿‌‌﻿​﻿​﻿‌﻿​﻿‌﻿‌​‌​‌‌​﻿‌﻿‌﻿﻿‌﻿‌‌‌‌‌﻿​‌‌‌﻿​‌﻿﻿‌﻿‌﻿​﻿‌​﻿‌﻿﻿​‌‌‌‌‌​​﻿﻿‌​﻿‌‌​﻿​​‌‌​﻿‌​​﻿‌‌​﻿​​​﻿‌‌​﻿​﻿‌​﻿‌​‌‌​﻿‌‌​﻿‌‌​﻿‌​﻿‌​‌‌​﻿​‌​﻿​‌​﻿‌​﻿​‌​‌‌‌​‌​﻿​﻿‌​﻿‌‌​﻿‌‌​﻿‌‌​﻿‌‌‌‌​﻿​​﻿​​﻿​‌‌‌‌‌​‌​﻿‌﻿​﻿‌﻿​‌‌﻿‌​‌﻿‌‌﻿​​‌‌‌​﻿﻿‌‌​‌﻿​‌﻿﻿‌‌﻿‌‌​​‌﻿﻿‌﻿​﻿‌﻿‌​​‌‌﻿​​‌​‌‌﻿‌​‌​​﻿﻿‌‌‌‌‌﻿​‌​﻿‌‌‌‌﻿​‌﻿​​‌﻿‌​​‌‌﻿​​‌‌‌‌﻿​‌﻿​﻿‌﻿​​‌‌‌‌​﻿‌﻿‌​‌‌‌﻿‌‌‌‌​﻿﻿‌‌﻿​​‌﻿‌‌‌​‌﻿​‌‌‌﻿​﻿‌​‌‌‌‌‌​​​‌﻿﻿‌</p></div>
+      <div class="detail-links">
+        <a href="../articles/31bf43ec8eaeede6.html" class="detail-read">Open structured brief →</a>
+        <a href="https://stackoverflow.blog/2026/06/30/why-intent-prediction-needs-more-than-an-llm/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="capacity,deployment,kubernetes,latency,networking,observability,outage,scaling"
+       data-vendors="GitHub,Kubernetes,Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="scale document ingestion with docling and ray on openshift ai"
+       data-id="879bbc1a788f060b"
+       data-published="2026-06-30T07:01:03+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">GitHub</span><span class="vtag">Kubernetes</span>        <time class="meta-time" data-iso="2026-06-30T07:01:03+00:00" title="30 June 2026, 02:01">30 June 2026, 02:01</time>
+      </div>
+      <h3 class="card-title">Scale document ingestion with Docling and Ray on OpenShift AI</h3>
+      <p class="card-summary">Many AI projects stall before they begin before any model is deployed, before the RAG application is running, or before the first chatbot is started. This failure to launch can happen for many reasons, but one of the primary causes is data.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Many AI projects stall before they begin before any model is deployed, before the RAG application is running, or before the first chatbot is started. This failure to launch can happen for many reasons, but one of the primary causes is data. Common culprits include a lack of quality data, inaccessible data, and poorly structured or formatted data.</p></div>
+      <div class="detail-links">
+        <a href="../articles/879bbc1a788f060b.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/30/scale-document-ingestion-docling-and-ray-openshift-ai" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--action card--medium"
+       data-tags="database,deployment,kubernetes,latency,networking,observability,outage,scaling"
+       data-vendors="Red Hat"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="deploy secure agentic ai: protocols and performance tuning"
+       data-id="f427fa603c12fae2"
+       data-published="2026-06-30T07:01:00+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-30T07:01:00+00:00" title="30 June 2026, 02:01">30 June 2026, 02:01</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Deploy secure agentic AI: Protocols and performance tuning</h3>
+      <p class="card-summary">Welcome to the final installment of our series on building a conversational analyst using Red Hat OpenShift AI and EnterpriseDB. So far, we have deployed the quickstart in Part 1 , explored agentic AI concepts in Part 2 , and examined the LLM orchestration architecture in Part 3 .</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Welcome to the final installment of our series on building a conversational analyst using Red Hat OpenShift AI and EnterpriseDB. So far, we have deployed the quickstart in Part 1 , explored agentic AI concepts in Part 2 , and examined the LLM orchestration architecture in Part 3 . Now, we will examine how the Model Context Protocol (MCP) standardizes tool integration, how event streaming improves the user experience, and the vital security and performance tuning practices required to safely deploy stochastic reasoning engines in your enterprise.</p></div>
+      <div class="detail-links">
+        <a href="../articles/f427fa603c12fae2.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/06/30/deploy-secure-agentic-ai-protocols-and-performance-tuning" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--high"
        data-tags="database,deployment,kubernetes,networking,outage"
        data-vendors="GitHub,Kubernetes,Red Hat"
