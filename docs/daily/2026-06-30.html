@@ -27,7 +27,7 @@
   <div class="brief-header">
     <div class="brief-primary">
       <h1 class="brief-title">30 June 2026</h1>
-      <span class="brief-sub">6 items</span>
+      <span class="brief-sub">9 items</span>
     </div>
   </div>
 
@@ -36,7 +36,7 @@
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
         <li>3 high-impact reliability events surfaced</li>
-        <li>1 story flagged for operational follow-up</li>
+        <li>2 stories flagged for operational follow-up</li>
         <li>Repeated coverage across Red Hat, GitHub</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
@@ -68,6 +68,8 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Red Hat">Red Hat</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="GitHub">GitHub</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Kubernetes">Kubernetes</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="AWS">AWS</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Elastic">Elastic</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="HashiCorp">HashiCorp</button>
       </div>
@@ -75,8 +77,9 @@
     <div class="adv-group">
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
@@ -86,16 +89,87 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="networking">networking</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="outage">outage</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="deployment">deployment</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
-        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="latency">latency</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="observability">observability</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="scaling">scaling</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
       </div>
     </div>
   </div>
 
+  <div class="article-card card--action card--medium"
+       data-tags="deployment,networking"
+       data-vendors="AWS"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="accelerate your infrastructure deployments by up to 4x with aws cloudformation express mode"
+       data-id="49cdb5f546520562"
+       data-published="2026-06-30T21:30:33+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span>        <time class="meta-time" data-iso="2026-06-30T21:30:33+00:00" title="30 June 2026, 16:30">30 June 2026, 16:30</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Accelerate your infrastructure deployments by up to 4x with AWS CloudFormation Express mode</h3>
+      <p class="card-summary">Today, we’re announcing AWS CloudFormation Express mode, a new deployment mode that accelerates deployments for developers and AI tools iterating on infrastructure. Express mode accelerates deployments by completing when CloudFormation confirms resource configuration is applied, rather than waiting for extended stabilization checks.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">AWS News Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Today, we’re announcing AWS CloudFormation Express mode, a new deployment mode that accelerates deployments for developers and AI tools iterating on infrastructure. Express mode accelerates deployments by completing when CloudFormation confirms resource configuration is applied, rather than waiting for extended stabilization checks. This reduces deployment time by up to 4 times for iterative development workflows and production scenarios.</p></div>
+      <div class="detail-links">
+        <a href="../articles/49cdb5f546520562.html" class="detail-read">Open structured brief →</a>
+        <a href="https://aws.amazon.com/blogs/aws/accelerate-your-infrastructure-deployments-by-up-to-4x-with-aws-cloudformation-express-mode/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags="database,latency,networking,observability,outage"
+       data-vendors="AWS,Elastic"
+       data-impact="medium"
+       data-theme="observability"
+       data-title="amazon ec2 c9g and c9gd instances powered by aws graviton5 processors are now available"
+       data-id="57b8b568527a782d"
+       data-published="2026-06-30T20:56:44+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">AWS</span><span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-06-30T20:56:44+00:00" title="30 June 2026, 15:56">30 June 2026, 15:56</time>
+      </div>
+      <h3 class="card-title">Amazon EC2 C9g and C9gd instances powered by AWS Graviton5 processors are now available</h3>
+      <p class="card-summary">When you run compute-intensive workloads like real-time analytics, batch processing, video encoding, scientific modeling, or CPU-based machine learning inference, every percentage point of performance matters. You need instances that deliver higher throughput per vCPU, faster memory access, and more network bandwidth, all while keeping your costs in check.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">observability</span>
+        </div>
+      </div>
+      <span class="card-source">AWS News Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>When you run compute-intensive workloads like real-time analytics, batch processing, video encoding, scientific modeling, or CPU-based machine learning inference, every percentage point of performance matters. You need instances that deliver higher throughput per vCPU, faster memory access, and more network bandwidth, all while keeping your costs in check. Today I am happy to announce the general availability of Amazon Elastic Compute Cloud (Amazon EC2) C9g and C9gd instances, powered by AWS Graviton5 processors.</p></div>
+      <div class="detail-links">
+        <a href="../articles/57b8b568527a782d.html" class="detail-read">Open structured brief →</a>
+        <a href="https://aws.amazon.com/blogs/aws/amazon-ec2-c9g-and-c9gd-instances-powered-by-aws-graviton5-processors-are-now-available/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="article-card card--high"
        data-tags="networking,outage,scaling"
        data-vendors="Azure,HashiCorp"
@@ -191,7 +265,7 @@
           <span class="ttag">latency</span>
         </div>
       </div>
-      <div class="card-related">Also: GitHub Blog, HashiCorp Blog</div>
+      <div class="card-related">Also: AWS News Blog, GitHub Blog, HashiCorp Blog</div>
       <span class="card-source">Red Hat Developer Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -308,6 +382,38 @@
       <div class="detail-links">
         <a href="../articles/afb6f5e620edf328.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/30/openshift-virtualization-vm-as-servicenow-cmdb-configuration-items-with-custom-discovery-pattern" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors=""
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="devrel newsletter — june 2026"
+       data-id="c39fb05235cd7828"
+       data-published="2026-06-30T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+        <time class="meta-time" data-iso="2026-06-30T00:00:00+00:00" title="29 June 2026, 19:00">29 June 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">DevRel newsletter — June 2026</h3>
+      <p class="card-summary">In the June 2026 DevRel newsletter, we cover jina-embeddings-v5-omni, the latest blogs and videos, and upcoming events.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>In the June 2026 DevRel newsletter, we cover jina-embeddings-v5-omni, the latest blogs and videos, and upcoming events.</p></div>
+      <div class="detail-links">
+        <a href="../articles/c39fb05235cd7828.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/devrel-newsletter-june-2026" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>
