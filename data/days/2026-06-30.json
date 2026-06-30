@@ -127,7 +127,16 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Many AI projects stall before they begin before any model is deployed, before the RAG application is running, or before the first chatbot is started. This failure to launch can happen for many reasons, but one of the primary causes is data.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/enterprise-software/governance-and-compliance/how-github-maintains-compliance-for-open-source-dependencies/"
+      },
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/hcp-terraform-powered-by-infragraph-limited-availability-launch"
+      }
+    ],
     "highlighted": false
   },
   {
