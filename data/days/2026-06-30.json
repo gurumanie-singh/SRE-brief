@@ -37,7 +37,12 @@
       "trends": "This item contributes to the broader reliability narrative for production engineering teams."
     },
     "email_summary": "Today, we’re announcing AWS CloudFormation Express mode, a new deployment mode that accelerates deployments for developers and AI tools iterating on infrastructure. Express mode accelerates deployments by completing when CloudFormation confirms resource configuration is applied, rather than waiting for extended stabilization checks.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "HashiCorp Blog",
+        "link": "https://www.hashicorp.com/blog/hcp-terraform-powered-by-infragraph-limited-availability-launch"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -221,10 +226,6 @@
       {
         "source": "GitHub Blog",
         "link": "https://github.blog/enterprise-software/governance-and-compliance/how-github-maintains-compliance-for-open-source-dependencies/"
-      },
-      {
-        "source": "HashiCorp Blog",
-        "link": "https://www.hashicorp.com/blog/hcp-terraform-powered-by-infragraph-limited-availability-launch"
       }
     ],
     "highlighted": false
