@@ -342,7 +342,12 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. Impact band: high.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "AWS News Blog",
+        "link": "https://aws.amazon.com/blogs/aws/upgrade-amazon-eks-clusters-with-confidence-using-kubernetes-version-rollbacks/"
+      }
+    ],
     "highlighted": false
   },
   {

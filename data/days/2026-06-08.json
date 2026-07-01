@@ -78,12 +78,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
     },
     "email_summary": "Writing a voice agent can be a daunting task. Impact band: high.",
-    "related_sources": [
-      {
-        "source": "AWS News Blog",
-        "link": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-byom-for-amazon-rds-for-sql-server-aws-iot-device-sdk-for-swift-and-more-june-8-2026/"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {
