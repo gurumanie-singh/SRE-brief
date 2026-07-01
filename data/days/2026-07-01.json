@@ -1,5 +1,141 @@
 [
   {
+    "id": "a12fa6cefce048f8",
+    "title": "Content Independence Day, one year on: building the business model for the agentic Internet",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/agentic-internet-bot-report/",
+    "published": "2026-07-01T13:00:00+00:00",
+    "fetched_at": "2026-07-01T16:32:37.539969+00:00",
+    "summary": "One year ago, we declared Content Independence Day . At the time, we could see what many in the industry were beginning to sense: the fundamental economics of the Internet were shifting. AI adoption was accelerating, publishers were experiencing rapid declines in referral traffic, and AI companies were crawling the web at unprecedented scale, often without clearly declaring intent, and almost...",
+    "tags": [
+      "networking",
+      "outage"
+    ],
+    "day": "2026-07-01",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "monitoring blind spot",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "52% of crawler requests are now for AI training as of June 2026, up from 22% in Spring 2025.",
+      "But today, that exchange is breaking down. Content is still being crawled, indexed, and used — but increasingly without corresponding traffic being returned to the source. As AI systems answer questions, compare products",
+      "The earliest industries to feel the impact were news organizations and media companies. Today, similar dynamics are impacting businesses across retail, software, IT, and finance. Some of the most heavily crawled categori",
+      "To help make transparency the standard, Cloudflare is continuing to invest in enhanced attribution, measurement, and publisher controls that give content owners greater visibility into and control over how their content ",
+      "As the industry shifts toward greater transparency, we believe that verifiable bot self-identification and declarations of crawl intent are fundamental to a sustainable ecosystem. Today, more than one-third of crawler ac",
+      "We believe better answers require better intelligence. We are investing in real-time freshness signals with richer trust, quality, and relevance to help AI companies discover differentiated information while reducing unn",
+      "We believe better discovery must precede better pricing. In order for the market to mature, publishers and AI companies need better information about one another. We are investing in richer market intelligence, content s",
+      "The data in this report is compiled from Cloudflare Radar and the Cloudflare Investor Day 2026 Presentation ."
+    ],
+    "sections": {
+      "overview": "One year ago, we declared Content Independence Day . At the time, we could see what many in the industry were beginning to sense: the fundamental economics of the Internet were shifting. AI adoption was accelerating, publishers were experiencing rapid declines in referral traffic, and AI companies were crawling the web at unprecedented scale, often without clearly declaring intent, and almost always without compensation.",
+      "technical_breakdown": "Cloudflare's unique understanding of the Internet comes from its global network — one of the world's largest, spanning 330+ cities in 100+ countries — and aggregated and anonymized data from Cloudflare's 1.1.1.1 public DNS Resolver, widely used as a fast and private way to browse the Internet.\n\nPart I: The Internet has changed – faster than anyone expected \n \n \n \n \n \n \n The vertical adoption curve \n \n \n \n \n AI is not just another technology cycle.\n\nCloudflare's attribution, business intelligence, and enforcement tools gave publishers visibility into AI consumption at the network level — an enforcement mechanism far more effective than voluntary standards like robots.txt.\n\nThis reduced information asymmetry in licensing discussions and enabled publishers to negotiate from a position of knowledge.\n\nThey also lose the visibility and evidence that comes from being able to allow or block these activities independently at the network level.",
+      "impact": "In just 3.5 years, over 30% of humanity — 2.5 billion active users — has adopted regular use of generative AI. Today, for every hour spent online searching for information, only 15 minutes is spent on the open web. Traditional search behavior is collapsing as users shift to AI-driven discovery and consumption. Instead of visiting multiple sites to source and compare information, users simply type a prompt and receive a nearly instantaneous, consolidated answer.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Supply and demand remain difficult to match efficiently, and while there’s an understanding that not all content carries the same value, content valuation is still unresolved.",
+      "lessons_learned": "Scarcity created leverage \n \n \n \n \n Publishers that exercised control over access successfully created scarcity, giving them negotiating leverage that led to better deals.\n\nAs they have gained greater visibility into how AI systems access and use their content, they’ve become better equipped to understand the implications for their businesses and more confidently articulate the value of the information, brand, and audiences they have built.\n\nThis dynamic has accelerated demand for greater transparency and control, as well as new monetization models to better serve both content owners and AI companies of all sizes.\n\nPart IV: Lessons from an emerging market \n \n \n \n \n As publishers and AI companies adapt to a new agentic economy, Cloudflare has gained a clearer understanding of what the ecosystem now needs.",
+      "root_cause_highlight": "Likely root-cause theme: monitoring blind spot. We did it because we believed a healthier ecosystem required transparency, control, scarcity, and ultimately, a market where high-quality content could be valued and exchanged fairly. Website owners view these activities differently because one generates traffic, while the other increasingly substitutes for it. Today, Google has access to about 2x more information than leading AI companies because Google leverages a mixed-use bot that makes it difficult for customers to participate in Google's search ecosystem without also participating in Google's AI ecosystem.",
+      "incident_timeline": "52% of crawler requests are now for AI training as of June 2026, up from 22% in Spring 2025.\nBut today, that exchange is breaking down. Content is still being crawled, indexed, and used — but increasingly without corresponding traffic being returned to the source. As AI systems answer questions, compare products\nThe earliest industries to feel the impact were news organizations and media companies. Today, similar dynamics are impacting businesses across retail, software, IT, and finance. Some of the most heavily crawled categori\nTo help make transparency the standard, Cloudflare is continuing to invest in enhanced attribution, measurement, and publisher controls that give content owners greater visibility into and control over how their content \nAs the industry shifts toward greater transparency, we believe that verifiable bot self-identification and declarations of crawl intent are fundamental to a sustainable ecosystem. Today, more than one-third of crawler ac\nWe believe better answers require better intelligence. We are investing in real-time freshness signals with richer trust, quality, and relevance to help AI companies discover differentiated information while reducing unn\nWe believe better discovery must precede better pricing. In order for the market to mature, publishers and AI companies need better information about one another. We are investing in richer market intelligence, content s\nThe data in this report is compiled from Cloudflare Radar and the Cloudflare Investor Day 2026 Presentation .",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "One year ago, we declared Content Independence Day . At the time, we could see what many in the industry were beginning to sense: the fundamental economics of the Internet were shifting.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d6e26c7814b58a71",
+    "title": "Making AI search smarter",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/making-ai-search-smarter/",
+    "published": "2026-07-01T13:00:00+00:00",
+    "fetched_at": "2026-07-01T16:32:37.541481+00:00",
+    "summary": "Search drives most experiences on the web. It's how we get things done, and how nearly everything on the web gets found — the creators, the merchants, the answer to whatever you just typed into a box. For nearly 30 years, that discovery journey ran on a simple bargain: let a search engine crawl your content, and it sends you visitors. You turned those visitors into a business — through ads...",
+    "tags": [
+      "networking"
+    ],
+    "day": "2026-07-01",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Pay creators for the value they provide: When your work is used to answer someone's question, you should be rewarded instead of just being scraped for free. And you should be able to see what's being used and what people",
+      "That second benefit, cutting unnecessary crawling, is bigger than it sounds. Cloudflare data suggests that more than 50% of crawl traffic from good bots goes to re-fetching pages that haven't changed — and that number is",
+      "This is just one emerging approach. Another comes from You.com: agents can pay on demand for a specific piece of premium content they need, without any upfront commitment. New payment models from AI providers are being t",
+      "We want to be honest that this is an experiment. There’s a lot to learn, including exactly how this holds up at the scale of the Internet. We'll work that out with our partners and our customers as we go, and share what ",
+      "We think this is a more natural fit for where the economics of search are heading. The old, human web optimized search to save time — providing excerpts, ten blue links, and a click. The agentic Internet is different: an",
+      "The web is changing, and the business models it’s relied on are changing with it. The old Internet was open, neutral, and worth contributing to. We have a rare chance to keep it that way, and to build the business models",
+      "Building on the open, agent-ready web? If you are interested in learning more about the Ceramic and You programs, please fill out this form . If you're building an answer engine and want to crawl smarter, we’d love to he"
+    ],
+    "sections": {
+      "overview": "Search drives most experiences on the web. It's how we get things done, and how nearly everything on the web gets found — the creators, the merchants, the answer to whatever you just typed into a box. For nearly 30 years, that discovery journey ran on a simple bargain: let a search engine crawl your content, and it sends you visitors.",
+      "technical_breakdown": "Make AI search smarter: By using the signals we see across our global network, like what's fresh, what's high quality, and what's actually changed, we can help answer engines surface the most relevant content and reduce unwanted crawling.\n\nMore than 20% of the web sits behind Cloudflare’s network, which gives us a unique perspective.\n\nWe plan to make the capability broadly available later this year and reduce unnecessary crawling across our network.\n\nWe're running experiments with top AI companies, like Ceramic.ai and You.com , and the arrangement is straightforward: organizations can bring their payment models and easily scale them to content owners across the Cloudflare network.\n\nBy bringing our pay-per-query model to their network, we ensure millions of content owners can seamlessly opt in to be compensated every single time their content appears in our search results.\"\n\n In addition to compensation, content owners participating in the Cloudflare/Ceramic program will unlock new reporting to help with answer engine optimization (AEO).",
+      "impact": "That leaves our customers in a bind: opt out of AI and be hard to find, or opt in and deliver significant value to users while seeing increasingly little in return. For our customers, it provides a view of what users are actually asking, and how their content shows up in AI results. Today's answer engines read your page and hand the user a summary, so the visit — and the revenue that depended on it — isn’t needed. We see it firsthand, and independent research backs it up: a 2025 Pew Research Center study found that when Google shows an AI summary, users clicked on a traditional search result link just 8% of the time (about half as often as when there's no summary) and clicked a link inside the summary only 1% of the time.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Today, we’ve announced new bot options to help our customers better control who can access their site and what they can do with it.\n\nBut enforcing good bot behavior doesn't make AI search any better for the people relying on it, and it doesn't send a dollar back to the creator whose work made the answer possible.\n\nPeople searching get better answers, while costs are reduced for both AI companies and site owners if webpages are only recrawled when they’ve changed.\n\nThrough this program, we will explore using signals our customers have chosen to share about the freshness of their content, and we will combine those with our own insight into traffic flows, both human and bot.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Pay creators for the value they provide: When your work is used to answer someone's question, you should be rewarded instead of just being scraped for free. And you should be able to see what's being used and what people\nThat second benefit, cutting unnecessary crawling, is bigger than it sounds. Cloudflare data suggests that more than 50% of crawl traffic from good bots goes to re-fetching pages that haven't changed — and that number is\nThis is just one emerging approach. Another comes from You.com: agents can pay on demand for a specific piece of premium content they need, without any upfront commitment. New payment models from AI providers are being t\nWe want to be honest that this is an experiment. There’s a lot to learn, including exactly how this holds up at the scale of the Internet. We'll work that out with our partners and our customers as we go, and share what \nWe think this is a more natural fit for where the economics of search are heading. The old, human web optimized search to save time — providing excerpts, ten blue links, and a click. The agentic Internet is different: an\nThe web is changing, and the business models it’s relied on are changing with it. The old Internet was open, neutral, and worth contributing to. We have a rare chance to keep it that way, and to build the business models\nBuilding on the open, agent-ready web? If you are interested in learning more about the Ceramic and You programs, please fill out this form . If you're building an answer engine and want to crawl smarter, we’d love to he",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Search drives most experiences on the web. It's how we get things done, and how nearly everything on the web gets found — the creators, the merchants, the answer to whatever you just typed into a box.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "560fbe8dfa6e2de7",
+    "title": "Your site, your rules: new AI traffic options for all customers",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/content-independence-day-ai-options/",
+    "published": "2026-07-01T13:00:00+00:00",
+    "fetched_at": "2026-07-01T16:32:37.543768+00:00",
+    "summary": "One year ago, we declared the first Content Independence Day , and we gave website owners the means to take back control of their content. The deal between crawlers and website owners that had held up for 30 years — we crawl you, and you get referrals — was no longer true. AI was taking everything and sending back nothing, presenting an existential threat to website owners. And so we launched a...",
+    "tags": [
+      "database",
+      "networking",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-07-01",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare",
+      "Stripe"
+    ],
+    "operational_priority": false,
+    "root_cause": "database issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Today, AI can be in anything. Google search has changed from being sorted by AI to being a full answer engine that answers your question directly on the results page. And Google is not unique in this position — this is t",
+      "We could debate the cutoff for what qualifies as “AI” today, just to find that the standard changes tomorrow. So, instead of defining a bot primarily as “AI” or not, our updated approach to classification will ask deeper",
+      "To address these questions, we need a more nuanced view — a pragmatic taxonomy that aligns with the AI use cases our customers care about. So we are opening the discussion beyond AI training alone and focusing on three A",
+      "Search: any behavior that collects or indexes your content, so it can answer questions about it later. The key is that Search is proactively building a database of your site to later respond to queries with. Site owners ",
+      "An ad is a signal that a website owner meant for a person to land there and see it — something monetizable that fuels the business. So, on those pages, we treat human attention as the end goal, and keep away the bots tha",
+      "Another change that will apply on September 15 is that multi-purpose crawlers (specifically those that combine Search with Training) will be allowed/blocked according to all of their behaviors, in line with our call for ",
+      "Security Testing",
+      "Includes vulnerability scanning and penetration testing"
+    ],
+    "sections": {
+      "overview": "One year ago, we declared the first Content Independence Day , and we gave website owners the means to take back control of their content. The deal between crawlers and website owners that had held up for 30 years — we crawl you, and you get referrals — was no longer true. AI was taking everything and sending back nothing, presenting an existential threat to website owners.",
+      "technical_breakdown": "This database provides a comprehensive, searchable view of our entire directory of bots, directly on the Cloudflare dashboard.\n\nWith this new view, Enterprise Bot Management customers can see the full catalogue of all Verified bots/agents and where they are classified in this updated taxonomy — a view we’ve never shown dynamically on the Cloudflare dashboard before.\n\nThe key is that Search is proactively building a database of your site to later respond to queries with.\n\nNew options to manage AI traffic \n \n \n \n \n We want to provide more options for managing different kinds of AI traffic, to all website owners on the Cloudflare network.\n\nBotBase is our new database tracking all known bots, including Verified bots and agents.",
+      "impact": "Bot classification \n\n Behaviors and uses \n\n Search \n\n Crawling to scan your site to help it appear in search engine results \n\n Agent \n\n User-directed agents visiting a page on behalf of a human \n\n Training \n\n Crawling to train or fine-tune models \n\n Transact\n\n Checkout actions on behalf of users\n\n Data Collection\n\n Includes price scraping, competitive intelligence gathering, and third-party analytics\n\n Security Testing\n\n Includes vulnerability scanning and penetration testing\n\n SEO\n\n SEO crawling, site auditing, accessibility checks\n\n Ads Verification\n\n Ad placement verification, ad fraud detection\n\n Social / Link Preview\n\n Link previews for social platforms and messaging apps\n\n Feed Fetching\n\n Includes RSS readers, podcast aggregators, and news feed bots\n\n Monitoring & Operations\n\n Includes uptime monitoring, webhooks, and health checks\n\n Bold italicized rows indicate the new configurable options that are available to all customers. We’re now adding support for this extension: all customers who have already enabled managed robots.txt — which prepends the preference to robots.txt that crawling for search is okay, but that crawling for training is not — will now have the additional preference of use=reference added to their robots.txt.\n\n # Cloudflare Managed content with original Content Signals\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no\nAllow: / \n The contents of Cloudflare managed robots.txt with the original Content Signals values. \n\n # Cloudflare Managed content with the new content-use signal\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: / \n The contents of Cloudflare managed robots.txt with the added parameter. A pragmatic taxonomy \n \n \n \n \n To address these questions, we need a more nuanced view — a pragmatic taxonomy that aligns with the AI use cases our customers care about. So we are opening the discussion beyond AI training alone and focusing on three AI use cases that we want all customers to be able to manage:\n\n Search: any behavior that collects or indexes your content, so it can answer questions about it later.\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "The key is that your data is permanently absorbed into the underlying architecture of the AI to improve its capabilities.\n\nWe believe that bot operators should separate their crawlers because that creates more transparency for website owners: allowing them to better understand why a given crawler is visiting them, as well as to better manage the access they extend to that crawler.\n\nTracking a bot’s purposes is nothing new, but our new taxonomy involves a few updates that better represent the state of bot traffic today.\n\nSo, on those pages, we treat human attention as the end goal, and keep away the bots that may prevent this attention (i.e., Training and Agent bots).",
+      "root_cause_highlight": "Likely root-cause theme: database issue. The key is that Search is proactively building a database of your site to later respond to queries with. We believe that bot operators should separate their crawlers because that creates more transparency for website owners: allowing them to better understand why a given crawler is visiting them, as well as to better manage the access they extend to that crawler. BotBase is our new database tracking all known bots, including Verified bots and agents.",
+      "incident_timeline": "Today, AI can be in anything. Google search has changed from being sorted by AI to being a full answer engine that answers your question directly on the results page. And Google is not unique in this position — this is t\nWe could debate the cutoff for what qualifies as “AI” today, just to find that the standard changes tomorrow. So, instead of defining a bot primarily as “AI” or not, our updated approach to classification will ask deeper\nTo address these questions, we need a more nuanced view — a pragmatic taxonomy that aligns with the AI use cases our customers care about. So we are opening the discussion beyond AI training alone and focusing on three A\nSearch: any behavior that collects or indexes your content, so it can answer questions about it later. The key is that Search is proactively building a database of your site to later respond to queries with. Site owners \nAn ad is a signal that a website owner meant for a person to land there and see it — something monetizable that fuels the business. So, on those pages, we treat human attention as the end goal, and keep away the bots tha\nAnother change that will apply on September 15 is that multi-purpose crawlers (specifically those that combine Search with Training) will be allowed/blocked according to all of their behaviors, in line with our call for \nSecurity Testing\nIncludes vulnerability scanning and penetration testing",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "One year ago, we declared the first Content Independence Day , and we gave website owners the means to take back control of their content. The deal between crawlers and website owners that had held up for 30 years — we crawl you, and you get referrals — was no longer true.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "3d184e9fc2854731",
     "title": "Build a multi-agent supervisor pattern on OpenShift",
     "source": "Red Hat Developer Blog",
@@ -48,7 +184,16 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
     },
     "email_summary": "Picture this scenario. Impact band: critical.",
-    "related_sources": [],
+    "related_sources": [
+      {
+        "source": "GitHub Blog",
+        "link": "https://github.blog/security/6-security-settings-every-github-maintainer-should-enable-this-week/"
+      },
+      {
+        "source": "Cloudflare Blog",
+        "link": "https://blog.cloudflare.com/monetization-gateway/"
+      }
+    ],
     "highlighted": false
   },
   {
@@ -197,6 +342,50 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "d28cfbde528a6b0d",
+    "title": "Unmasking the crawls with Attribution Business Insights",
+    "source": "Cloudflare Blog",
+    "link": "https://blog.cloudflare.com/attribution-business-insights/",
+    "published": "2026-07-01T06:00:00+00:00",
+    "fetched_at": "2026-07-01T16:32:37.545054+00:00",
+    "summary": "Original content is the lifeblood of conversations and curiosities. Imagine a world without it: we could find a thousand ways to regurgitate the same material that’s already been created, but we would witness the decline of fresh ideas and arguments.",
+    "tags": [
+      "database",
+      "observability",
+      "outage"
+    ],
+    "day": "2026-07-01",
+    "impact": "medium",
+    "vendors": [
+      "Cloudflare"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "edge — cdn",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Website owners fuel the ecosystem of ideas, news, and interesting tidbits, but they face the increasingly complex challenge of managing traffic to their websites and being paid for their content. While some bot traffic i",
+      "We set out to answer the most pressing questions for site owners today: How should you think about AI traffic on your websites? What is the value of different audiences — including humans, non-AI bots, and AI bots? And m",
+      "To answer these questions, the dashboard displays a powerful array of data and insights:",
+      "You shouldn’t have to be a security expert to understand how AI crawlers affect your business. If website owners want to spend just a few minutes ingesting the high-level insights, they can walk away with a clear tempera",
+      "How does this new layer of visibility tie into the existing tools you have to protect your website from abuse? In line with other features of Bot Management , the action step still happens in Security rules. To avoid add",
+      "The Attribution Business Insights dashboard is the next critical step in providing website owners with the transparency and control they need to manage evolving AI bot threats, and more broadly, shape the new dynamics of"
+    ],
+    "sections": {
+      "overview": "Original content is the lifeblood of conversations and curiosities. Imagine a world without it: we could find a thousand ways to regurgitate the same material that’s already been created, but we would witness the decline of fresh ideas and arguments. Website owners fuel the ecosystem of ideas, news, and interesting tidbits, but they face the increasingly complex challenge of managing traffic to their websites and being paid for their content.",
+      "technical_breakdown": "To provide much-needed clarity and help website owners take control, we’re excited to announce the new Attribution Business Insights dashboard — designed with business decision-makers and publishers in mind.\n\nToday, the Attribution Business Insights dashboard is available to all Cloudflare Bot Management customers .\n\nThe new dashboard is designed to deliver a targeted view of bot traffic flowing to your website; unlike traditional analytics tools that may require extensive manual filtering, this dashboard provides you with key insights right away.\n\nThe new Attribution Business Insights dashboard view, which includes insights about bot traffic overall, a site-wide crawl-to-referral ratio, and the distribution of AI bot traffic vs. organic traffic.\n\nTo answer these questions, the dashboard displays a powerful array of data and insights:\n\n Bot traffic to content pages: View your overall bot vs. human traffic, as well as the volume of all bots successfully accessing content.",
+      "impact": "We also want to make this analysis easier than ever, which is why we’ve designed Attribution Business Insights to cut the noise, focusing on the details that our customers have told us are most important. Today, the Attribution Business Insights dashboard is available to all Cloudflare Bot Management customers . Crawl-to-referral ratios: See your site-wide crawl-to-referral ratio on the scale of 24 hours, seven days, or 30 days. Updated classification based on crawler behavior: We go beyond a generic label of “AI Crawler” by classifying crawlers with our updated taxonomy, whether it’s Training (i.e., training the next version of an LLM chatbot ), Search (i.e., refreshing databases for Retrieval-Augmented Generation ), or Agent (i.e., used in agentic interaction to return answers to an end user).\n\nClassified impact band: medium. Affected layer signal: edge — cdn.",
+      "resolution": "This dashboard serves as a central source of information, allowing you to investigate before then taking an action in the same rule engine that governs other abuse mitigations.",
+      "lessons_learned": "By having a consolidated view of companies seeking to access content on your website, you can develop a better baseline of crawler activity.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. At Cloudflare, we hold a core belief: website owners have the right to control access to their content . To provide much-needed clarity and help website owners take control, we’re excited to announce the new Attribution Business Insights dashboard — designed with business decision-makers and publishers in mind. To avoid adding noise to the control plane, Attribution Business Insights is intended to be a hub for thoughtful, filtered analytics , rather than another place to take action.",
+      "incident_timeline": "Website owners fuel the ecosystem of ideas, news, and interesting tidbits, but they face the increasingly complex challenge of managing traffic to their websites and being paid for their content. While some bot traffic i\nWe set out to answer the most pressing questions for site owners today: How should you think about AI traffic on your websites? What is the value of different audiences — including humans, non-AI bots, and AI bots? And m\nTo answer these questions, the dashboard displays a powerful array of data and insights:\nYou shouldn’t have to be a security expert to understand how AI crawlers affect your business. If website owners want to spend just a few minutes ingesting the high-level insights, they can walk away with a clear tempera\nHow does this new layer of visibility tie into the existing tools you have to protect your website from abuse? In line with other features of Bot Management , the action step still happens in Security rules. To avoid add\nThe Attribution Business Insights dashboard is the next critical step in providing website owners with the transparency and control they need to manage evolving AI bot threats, and more broadly, shape the new dynamics of",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Original content is the lifeblood of conversations and curiosities. Imagine a world without it: we could find a thousand ways to regurgitate the same material that’s already been created, but we would witness the decline of fresh ideas and arguments.",
     "related_sources": [],
     "highlighted": false
   },

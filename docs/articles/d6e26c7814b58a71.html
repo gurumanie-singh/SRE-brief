@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Making AI search smarter — SRE Brief</title>
+  <meta name="description" content="Daily operational reliability briefing distilled from engineering RSS sources">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">SRE Brief</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-link">Latest</a>
+      <a href="../archive/index.html" class="nav-link">Archive</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main>
+<div class="section-inner">
+  <div class="article-page">
+    <a href="../daily/2026-07-01.html" class="back-link">← 1 July 2026 day sheet</a>
+
+    <header class="article-header">
+      <div class="meta-row">
+        <span class="card-source">Cloudflare Blog</span>
+        <span class="card-date">1 July 2026, 08:00</span>
+        <span class="card-severity medium" title="Medium">Medium</span>
+      </div>
+
+      <h1 class="title">Making AI search smarter</h1>
+
+      <p class="subtitle">Search drives most experiences on the web. It&#39;s how we get things done, and how nearly everything on the web gets found — the creators, the merchants, the answer to whatever you just typed into a box.</p>
+
+
+      <div class="article-tags">
+        <span class="vendor-tag">Cloudflare</span>
+        <span class="tag">networking</span>
+      </div>
+
+      <dl class="article-facts">
+        <div class="fact-row"><dt>Affected layer</dt><dd>edge — cdn</dd></div>
+        <div class="fact-row"><dt>Reliability theme</dt><dd>general reliability</dd></div>
+      </dl>
+    </header>
+
+    <div class="quick-take">
+      <div class="quick-take-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Operator snapshot
+      </div>
+      <p class="quick-take-text">Search drives most experiences on the web. It&#39;s how we get things done, and how nearly everything on the web gets found — the creators, the merchants, the answer to whatever you just typed into a box.</p>
+    </div>
+
+    <div class="article-body">
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Overview</div>
+        <div class="article-section-content">
+          <p>Search drives most experiences on the web. It&#39;s how we get things done, and how nearly everything on the web gets found — the creators, the merchants, the answer to whatever you just typed into a box. For nearly 30 years, that discovery journey ran on a simple bargain: let a search engine crawl your content, and it sends you visitors.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical breakdown</div>
+        <div class="article-section-content">
+          <p>Make AI search smarter: By using the signals we see across our global network, like what&#39;s fresh, what&#39;s high quality, and what&#39;s actually changed, we can help answer engines surface the most relevant content and reduce unwanted crawling.</p>
+<p>More than 20% of the web sits behind Cloudflare’s network, which gives us a unique perspective.</p>
+<p>We plan to make the capability broadly available later this year and reduce unnecessary crawling across our network.</p>
+<p>We&#39;re running experiments with top AI companies, like Ceramic.ai and You.com , and the arrangement is straightforward: organizations can bring their payment models and easily scale them to content owners across the Cloudflare network.</p>
+<p>By bringing our pay-per-query model to their network, we ensure millions of content owners can seamlessly opt in to be compensated every single time their content appears in our search results.&#34;</p>
+<p>In addition to compensation, content owners participating in the Cloudflare/Ceramic program will unlock new reporting to help with answer engine optimization (AEO).</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Impact</div>
+        <div class="article-section-content">
+          <p>That leaves our customers in a bind: opt out of AI and be hard to find, or opt in and deliver significant value to users while seeing increasingly little in return. For our customers, it provides a view of what users are actually asking, and how their content shows up in AI results. Today&#39;s answer engines read your page and hand the user a summary, so the visit — and the revenue that depended on it — isn’t needed. We see it firsthand, and independent research backs it up: a 2025 Pew Research Center study found that when Google shows an AI summary, users clicked on a traditional search result link just 8% of the time (about half as often as when there&#39;s no summary) and clicked a link inside the summary only 1% of the time.</p>
+<p>Classified impact band: medium. Affected layer signal: edge — cdn.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Resolution / fix</div>
+        <div class="article-section-content">
+          <p>Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Lessons learned</div>
+        <div class="article-section-content">
+          <p>Today, we’ve announced new bot options to help our customers better control who can access their site and what they can do with it.</p>
+<p>But enforcing good bot behavior doesn&#39;t make AI search any better for the people relying on it, and it doesn&#39;t send a dollar back to the creator whose work made the answer possible.</p>
+<p>People searching get better answers, while costs are reduced for both AI companies and site owners if webpages are only recrawled when they’ve changed.</p>
+<p>Through this program, we will explore using signals our customers have chosen to share about the freshness of their content, and we will combine those with our own insight into traffic flows, both human and bot.</p>
+        </div>
+      </div>
+
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Incident timeline</div>
+        <div class="article-section-content">
+          <ul class="timeline-list">
+            <li>Pay creators for the value they provide: When your work is used to answer someone&#39;s question, you should be rewarded instead of just being scraped for free. And you should be able to see what&#39;s being used and what people</li>
+            <li>That second benefit, cutting unnecessary crawling, is bigger than it sounds. Cloudflare data suggests that more than 50% of crawl traffic from good bots goes to re-fetching pages that haven&#39;t changed — and that number is</li>
+            <li>This is just one emerging approach. Another comes from You.com: agents can pay on demand for a specific piece of premium content they need, without any upfront commitment. New payment models from AI providers are being t</li>
+            <li>We want to be honest that this is an experiment. There’s a lot to learn, including exactly how this holds up at the scale of the Internet. We&#39;ll work that out with our partners and our customers as we go, and share what </li>
+            <li>We think this is a more natural fit for where the economics of search are heading. The old, human web optimized search to save time — providing excerpts, ten blue links, and a click. The agentic Internet is different: an</li>
+            <li>The web is changing, and the business models it’s relied on are changing with it. The old Internet was open, neutral, and worth contributing to. We have a rare chance to keep it that way, and to build the business models</li>
+            <li>Building on the open, agent-ready web? If you are interested in learning more about the Ceramic and You programs, please fill out this form . If you&#39;re building an answer engine and want to crawl smarter, we’d love to he</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="article-section-label"><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trends / context</div>
+        <div class="article-section-content">
+          <p>This item contributes to the broader reliability narrative for production engineering teams.</p>
+        </div>
+      </div>
+
+
+      <a href="https://blog.cloudflare.com/making-ai-search-smarter/" class="source-card" target="_blank" rel="noopener">
+        <div class="source-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="source-card-text">
+          <div class="source-card-label">External source</div>
+          <div class="source-card-name">Read the original write-up at Cloudflare Blog</div>
+        </div>
+        <span class="source-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../index.html" class="footer-logo">SRE Brief</a>
+    <p class="footer-text">Generated from public RSS sources — operational reference only</p>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>
