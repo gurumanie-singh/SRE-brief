@@ -28,14 +28,15 @@
       <h1 class="brief-title">1 July 2026</h1>
       <div class="brief-update">
         <span class="brief-pulse"></span>
-        <time data-iso="2026-07-01T00:46:53.049092-05:00">1 July 2026, 00:46</time>
+        <time data-iso="2026-07-01T05:05:16.583647-05:00">1 July 2026, 05:05</time>
         <span class="brief-tz">CDT</span>
       </div>
     </div>
     <div class="brief-stats">
-      <span class="stat stat-high">3 high impact</span>
-      <span class="stat stat-action">2 ops priority</span>
-      <span class="stat">9 items today</span>
+      <span class="stat stat-critical">1 critical</span>
+      <span class="stat stat-high">2 high impact</span>
+      <span class="stat stat-action">1 ops priority</span>
+      <span class="stat">4 items today</span>
     </div>
   </div>
 
@@ -43,21 +44,21 @@
     <div class="strip-section">
       <span class="strip-label">Operations picture</span>
       <ul class="strip-bullets">
-        <li>3 high-impact reliability events surfaced</li>
-        <li>2 stories flagged for operational follow-up</li>
-        <li>Repeated coverage across Red Hat, GitHub</li>
+        <li>1 critical incident signal in the feed window</li>
+        <li>1 story flagged for operational follow-up</li>
+        <li>Repeated coverage across Red Hat</li>
         <li>Multiple outage or availability narratives detected</li>
       </ul>
     </div>
     <div class="strip-section strip-trending">
       <span class="strip-label">Recurring signals</span>
       <div class="trending-pills">
-        <span class="trend-pill">build<span class="trend-count">4</span></span>
-        <span class="trend-pill">openshift<span class="trend-count">3</span></span>
+        <span class="trend-pill">build<span class="trend-count">5</span></span>
+        <span class="trend-pill">openshift<span class="trend-count">5</span></span>
+        <span class="trend-pill">elastic<span class="trend-count">3</span></span>
         <span class="trend-pill">discovery<span class="trend-count">3</span></span>
         <span class="trend-pill">security<span class="trend-count">3</span></span>
-        <span class="trend-pill">infrastructure<span class="trend-count">2</span></span>
-        <span class="trend-pill">scale<span class="trend-count">2</span></span>
+        <span class="trend-pill">pattern<span class="trend-count">2</span></span>
       </div>
     </div>
   </div>
@@ -96,6 +97,7 @@
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Google Cloud">Google Cloud</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Slack">Slack</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Cloudflare">Cloudflare</button>
+        <button class="filter-btn" data-filter-group="vendor" data-filter-value="Datadog">Datadog</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Azure">Azure</button>
         <button class="filter-btn" data-filter-group="vendor" data-filter-value="Netflix">Netflix</button>
       </div>
@@ -104,8 +106,8 @@
       <span class="adv-label">Reliability theme</span>
       <div class="adv-pills">
         <button class="filter-btn" data-filter-group="theme" data-filter-value="observability">observability</button>
-        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="incident response">incident response</button>
+        <button class="filter-btn" data-filter-group="theme" data-filter-value="general reliability">general reliability</button>
         <button class="filter-btn" data-filter-group="theme" data-filter-value="capacity and scale">capacity and scale</button>
       </div>
     </div>
@@ -121,11 +123,160 @@
         <button class="filter-btn" data-filter-group="tag" data-filter-value="kubernetes">kubernetes</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="database">database</button>
         <button class="filter-btn" data-filter-group="tag" data-filter-value="capacity">capacity</button>
+        <button class="filter-btn" data-filter-group="tag" data-filter-value="postmortem">postmortem</button>
       </div>
     </div>
   </div>
 
 
+  <div class="day-group">
+    <h2 class="day-heading">
+      1 July 2026
+      <span class="day-count">4</span>
+    </h2>
+  </div>
+
+  <div class="article-card card--action card--critical"
+       data-tags="database,deployment,latency,networking,observability,outage,postmortem"
+       data-vendors="Datadog,GitHub,Red Hat"
+       data-impact="critical"
+       data-theme="observability"
+       data-title="build a multi-agent supervisor pattern on openshift"
+       data-id="3d184e9fc2854731"
+       data-published="2026-07-01T07:16:20+00:00"
+       data-priority="true">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-critical" title="Critical Incident">Critical Incident</span>
+<span class="vtag">Datadog</span><span class="vtag">GitHub</span>        <time class="meta-time" data-iso="2026-07-01T07:16:20+00:00" title="1 July 2026, 02:16">1 July 2026, 02:16</time>
+        <span class="action-badge">Ops</span>
+      </div>
+      <h3 class="card-title">Build a multi-agent supervisor pattern on OpenShift</h3>
+      <p class="card-summary">Picture this scenario. Impact band: critical.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">database</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Build a multi-agent supervisor pattern on OpenShift. Picture this scenario. It is 2 AM. Checkout is down. Customers cannot pay.</p></div>
+      <div class="detail-links">
+        <a href="articles/3d184e9fc2854731.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/07/01/build-multi-agent-supervisor-pattern-openshift" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="capacity,deployment,networking,outage,scaling"
+       data-vendors="Red Hat"
+       data-impact="high"
+       data-theme="capacity and scale"
+       data-title="inside the vllm-omni architecture: serving qwen3-omni"
+       data-id="bd539b2684f155c2"
+       data-published="2026-07-01T07:16:19+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-07-01T07:16:19+00:00" title="1 July 2026, 02:16">1 July 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Inside the vLLM-Omni architecture: Serving Qwen3-Omni</h3>
+      <p class="card-summary">Serving a large language model (LLM) is a well-worn path by now: tokens in, tokens out, and vLLM has spent years making that fast and efficient. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">capacity</span>
+          <span class="ttag">deployment</span>
+          <span class="ttag">networking</span>
+          <span class="ttag">outage</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Serving a large language model (LLM) is a well-worn path by now: tokens in, tokens out, and vLLM has spent years making that fast and efficient. Multimodal inputs already fit that path. For example, a vision-language model encodes an image into embeddings, merges them with the text, and relies on autoregressive text generation underneath.</p></div>
+      <div class="detail-links">
+        <a href="articles/bd539b2684f155c2.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/07/01/inside-vllm-omni-architecture-serving-qwen3-omni" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--high"
+       data-tags="deployment,kubernetes,latency,networking,outage"
+       data-vendors="Kubernetes,Red Hat"
+       data-impact="high"
+       data-theme="incident response"
+       data-title="demystify the terminology of openshift hosted control planes"
+       data-id="c4549f7b00f6b88e"
+       data-published="2026-07-01T07:16:17+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
+<span class="vtag">Kubernetes</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-07-01T07:16:17+00:00" title="1 July 2026, 02:16">1 July 2026, 02:16</time>
+      </div>
+      <h3 class="card-title">Demystify the terminology of OpenShift hosted control planes</h3>
+      <p class="card-summary">If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. Impact band: high.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+          <span class="ttag">deployment</span>
+          <span class="ttag">kubernetes</span>
+          <span class="ttag">latency</span>
+          <span class="ttag">networking</span>
+        </div>
+      </div>
+      <span class="card-source">Red Hat Developer Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. At first glance, they may seem interchangeable, but they are not. Some are synonyms, some are subtly different, and at least one similar pair—managed cluster and management cluster—refers to completely different concepts.</p></div>
+      <div class="detail-links">
+        <a href="articles/c4549f7b00f6b88e.html" class="detail-read">Open structured brief →</a>
+        <a href="https://developers.redhat.com/articles/2026/07/01/demystify-terminology-openshift-hosted-control-planes" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="article-card card--medium"
+       data-tags=""
+       data-vendors="Elastic"
+       data-impact="medium"
+       data-theme="general reliability"
+       data-title="elastic named a leader in the everest group enterprise search products peak matrix® assessment 2026"
+       data-id="1c5ef15ccc12a24c"
+       data-published="2026-07-01T00:00:00+00:00"
+       data-priority="">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="sev-badge sev-medium" title="Medium">Medium</span>
+<span class="vtag">Elastic</span>        <time class="meta-time" data-iso="2026-07-01T00:00:00+00:00" title="30 June 2026, 19:00">30 June 2026, 19:00</time>
+      </div>
+      <h3 class="card-title">Elastic named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026</h3>
+      <p class="card-summary">Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated.</p>
+      <div class="card-bottom">
+        <div class="card-hints">
+<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
+        <div class="card-tags">
+        </div>
+      </div>
+      <span class="card-source">Elastic Blog</span>
+    </div>
+    <div class="card-detail" aria-hidden="true">
+      <div class="detail-text"><p>Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated.</p></div>
+      <div class="detail-links">
+        <a href="articles/1c5ef15ccc12a24c.html" class="detail-read">Open structured brief →</a>
+        <a href="https://www.elastic.co/blog/elastic-leader-everest-group-enterprise-search-peak-matrix-2026" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="day-group">
     <h2 class="day-heading">
       30 June 2026
@@ -957,7 +1108,6 @@
           <span class="ttag">outage</span>
         </div>
       </div>
-      <div class="card-related">Also: Red Hat Developer Blog</div>
       <span class="card-source">HashiCorp Blog</span>
     </div>
     <div class="card-detail" aria-hidden="true">
@@ -1006,7 +1156,7 @@
   <div class="day-group">
     <h2 class="day-heading">
       24 June 2026
-      <span class="day-count">6</span>
+      <span class="day-count">2</span>
     </h2>
   </div>
 
@@ -1080,146 +1230,6 @@
       <div class="detail-links">
         <a href="articles/a2e0653e39475e66.html" class="detail-read">Open structured brief →</a>
         <a href="https://developers.redhat.com/articles/2026/06/24/optimizing-distributed-ai-inference-advanced-deployment-patterns" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--high"
-       data-tags="capacity,database,kubernetes,latency,observability,outage"
-       data-vendors="Red Hat"
-       data-impact="high"
-       data-theme="observability"
-       data-title="beyond regex: harvesting security logic with llms"
-       data-id="5ea4f4c0a79c8f6d"
-       data-published="2026-06-24T07:16:45+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-high" title="High Impact">High Impact</span>
-<span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:45+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
-      </div>
-      <h3 class="card-title">Beyond regex: Harvesting security logic with LLMs</h3>
-      <p class="card-summary">Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. Impact band: high.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">capacity</span>
-          <span class="ttag">database</span>
-          <span class="ttag">kubernetes</span>
-          <span class="ttag">latency</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Efficient static application security testing (SAST) is essential, but all the data from the process often creates a significant operational bottleneck. More than 80% of these results can be false positives, but manual triage is often too slow and inconsistent to keep up with development speed. To address this, the SastAI initiative was launched at Red Hat, in a collaboration with NVIDIA, to automate false positive (FP) identification using generative AI.</p></div>
-      <div class="detail-links">
-        <a href="articles/5ea4f4c0a79c8f6d.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/24/harvesting-security-logic-llm" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags="deployment,networking"
-       data-vendors="Google Cloud,Red Hat"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="build a red hat enterprise linux eus image with image-builder cli"
-       data-id="58fac23c240ad39c"
-       data-published="2026-06-24T07:16:43+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Google Cloud</span><span class="vtag">Red Hat</span>        <time class="meta-time" data-iso="2026-06-24T07:16:43+00:00" title="24 June 2026, 02:16">24 June 2026, 02:16</time>
-      </div>
-      <h3 class="card-title">Build a Red Hat Enterprise Linux EUS image with image-builder CLI</h3>
-      <p class="card-summary">The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">deployment</span>
-          <span class="ttag">networking</span>
-        </div>
-      </div>
-      <span class="card-source">Red Hat Developer Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>The image builder command-line interface ( image-builder ) provides a straightforward way to create customized Red Hat Enterprise Linux (RHEL) images. This guide explains how to build an Extended Update Support (EUS) image for Red Hat Enterprise Linux 9.6. Build a Red Hat Enterprise Linux EUS image Prerequisites:</p>
-<p>A running instance of Red Hat Enterprise Linux 9.8 or 10.2   This system is registered via subscription-manager or rhc to receive updates   Define a repository configuration ( rhel-9.6.json ).</p></div>
-      <div class="detail-links">
-        <a href="articles/58fac23c240ad39c.html" class="detail-read">Open structured brief →</a>
-        <a href="https://developers.redhat.com/articles/2026/06/24/build-red-hat-enterprise-linux-eus-image-image-builder-cli" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--action card--medium"
-       data-tags="database,deployment,latency,observability,scaling"
-       data-vendors="Cloudflare"
-       data-impact="medium"
-       data-theme="observability"
-       data-title="unlocking the cloudflare app ecosystem with oauth for all"
-       data-id="4f6afecf9a12c4f1"
-       data-published="2026-06-24T06:00:00+00:00"
-       data-priority="true">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">Cloudflare</span>        <time class="meta-time" data-iso="2026-06-24T06:00:00+00:00" title="24 June 2026, 01:00">24 June 2026, 01:00</time>
-        <span class="action-badge">Ops</span>
-      </div>
-      <h3 class="card-title">Unlocking the Cloudflare app ecosystem with OAuth for all</h3>
-      <p class="card-summary">Cloudflare provides services that help run 20% of the web, but we don’t do it alone. Developers on our platform use a myriad of tools and services from other companies too.</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-          <span class="ttag">database</span>
-          <span class="ttag">deployment</span>
-          <span class="ttag">latency</span>
-          <span class="ttag">observability</span>
-        </div>
-      </div>
-      <span class="card-source">Cloudflare Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>Cloudflare provides services that help run 20% of the web, but we don’t do it alone. Developers on our platform use a myriad of tools and services from other companies too. Cloudflare provides a rich API for our platform that enables developers to create automations, CI/CD, and integrations that glue together the various parts of their infrastructure.</p></div>
-      <div class="detail-links">
-        <a href="articles/4f6afecf9a12c4f1.html" class="detail-read">Open structured brief →</a>
-        <a href="https://blog.cloudflare.com/oauth-for-all/" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
-      </div>
-    </div>
-  </div>
-  <div class="article-card card--medium"
-       data-tags=""
-       data-vendors="HashiCorp"
-       data-impact="medium"
-       data-theme="general reliability"
-       data-title="advancing ai agent security in vault"
-       data-id="3440ccbb4e53f36d"
-       data-published="2026-06-24T04:12:00+00:00"
-       data-priority="">
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="sev-badge sev-medium" title="Medium">Medium</span>
-<span class="vtag">HashiCorp</span>        <time class="meta-time" data-iso="2026-06-24T04:12:00+00:00" title="23 June 2026, 23:12">23 June 2026, 23:12</time>
-      </div>
-      <h3 class="card-title">Advancing AI agent security in Vault</h3>
-      <p class="card-summary">A few weeks ago, we  announced  native support for AI agents in HashiCorp Vault through an early access program. We’re now making these capabilities available to all Vault Enterprise customers in  public preview .</p>
-      <div class="card-bottom">
-        <div class="card-hints">
-<span class="sec-hint">Technical</span><span class="sec-hint">Impact</span><span class="sec-hint">Resolution</span>        </div>
-        <div class="card-tags">
-        </div>
-      </div>
-      <span class="card-source">HashiCorp Blog</span>
-    </div>
-    <div class="card-detail" aria-hidden="true">
-      <div class="detail-text"><p>A few weeks ago, we  announced  native support for AI agents in HashiCorp Vault through an early access program. We’re now making these capabilities available to all Vault Enterprise customers in  public preview . As organizations deploy AI agents, one of the biggest challenges is controlling what those agents are authorized to do.</p></div>
-      <div class="detail-links">
-        <a href="articles/3440ccbb4e53f36d.html" class="detail-read">Open structured brief →</a>
-        <a href="https://www.hashicorp.com/blog/advancing-ai-agent-security-in-vault" class="detail-source" target="_blank" rel="noopener">Original source ↗</a>
       </div>
     </div>
   </div>

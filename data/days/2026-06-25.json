@@ -237,12 +237,7 @@
       "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
     },
     "email_summary": "HCP Vault Dedicated is a fully managed secrets management solution that organizations rely on for authentication, dynamic secrets, and encryption workflows. Impact band: critical.",
-    "related_sources": [
-      {
-        "source": "Red Hat Developer Blog",
-        "link": "https://developers.redhat.com/articles/2026/06/25/how-integrate-openshift-ai-and-pg-airman-mcp-server"
-      }
-    ],
+    "related_sources": [],
     "highlighted": false
   },
   {

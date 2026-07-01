@@ -1,0 +1,186 @@
+[
+  {
+    "id": "3d184e9fc2854731",
+    "title": "Build a multi-agent supervisor pattern on OpenShift",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/07/01/build-multi-agent-supervisor-pattern-openshift",
+    "published": "2026-07-01T07:16:20+00:00",
+    "fetched_at": "2026-07-01T10:05:16.306862+00:00",
+    "summary": "Picture this scenario. It is 2 AM. Checkout is down. Customers cannot pay.",
+    "tags": [
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-07-01",
+    "impact": "critical",
+    "vendors": [
+      "Datadog",
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "cascading failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Why isolation matters for agents Back to the checkout outage. A single unsandboxed agent investigating it needs access to Prometheus (metrics), Loki (logs), and Confluence (runbooks). It holds credentials for all three a",
+      "No data boundary. The agent reads customer request payloads from the logs (including personally identifiable information, or PII, in headers and bodies), then queries aggregate latency metrics, and then searches past inc",
+      "When a single sandbox is not enough A single sandbox confines code execution. But the agent itself, the part that decides what to read, what to query, and what to write, still runs as one process with one set of permissi",
+      "The checkout agent needs to query Prometheus, search Loki, and read Confluence in the same session. A single sandbox cannot restrict access to only one of those systems because the same process needs all three. That crea",
+      "Mixed sensitivity levels. Logs contain customer request payloads with PII (credit card tokens, session IDs). Metrics are aggregate numbers. Runbooks are internal documentation. All three have different sensitivity, but t",
+      "Why multiple agents without sandboxes do not help Splitting work across specialized agents improves quality. Razorpay reduced incident investigation from 20-40 minutes to 90 seconds by running specialized agents against ",
+      "You could split the checkout investigation into three agents: a metrics agent for Prometheus, a log agent for Loki, and a runbook agent for Confluence. Each agent handles one system. But without per-agent isolation, spec",
+      "Give each agent its own sandbox with its own policy, its own file system namespace, and its own network scope. The metrics agent can reach Prometheus and vLLM, nothing else. The log agent can reach Loki and vLLM, nothing"
+    ],
+    "sections": {
+      "overview": "Build a multi-agent supervisor pattern on OpenShift. Picture this scenario. It is 2 AM. Checkout is down. Customers cannot pay.",
+      "technical_breakdown": "These are not terminal commands; they are structured tool calls that Anthropic's harness sends to your worker through the work queue:\n\n [tool_use] bash: python3 dispatch.py metrics_agent \"Check checkout-service latency, error rates, resource usage\"\n[tool_use] bash: python3 dispatch.py log_agent \"Search checkout-service logs for errors since 14:30 UTC\"\n[tool_use] bash: python3 dispatch.py runbook_agent \"Find past incidents matching connection pool exhaustion\" The worker pod receives these tool calls from the queue.\n\nThe brain decomposes Claude received the incident report and immediately dispatched three parallel investigations:\n\n [agent.tool_use] bash: python3 dispatch.py metrics_agent \"Check checkout-service\n latency, error rates, resource usage, and upstream dependencies since 14:30 UTC\"\n[agent.tool_use] bash: python3 dispatch.py log_agent \"Search checkout-service logs\n 14:30-15:00 UTC for errors, exceptions, and deploy events\"\n[agent.tool_use] bash: python3 dispatch.py runbook_agent \"Find past incidents\n matching connection pool exhaustion, OOMKilled, NullPointerException in payments\" The worker dispatches to sandboxes The worker pod received all three tool calls.\n\nThe agent reads customer request payloads from the logs (including personally identifiable information, or PII, in headers and bodies), then queries aggregate latency metrics, and then searches past incident reports.\n\nFigure 2: Three sandboxed agents on an OpenShift cluster: metrics agent querying Prometheus, log agent searching application logs, runbook agent reading past incidents, each with per-agent network policy, orchestrated by Claude in Anthropic's cloud.\n\nDatabase connection pool: 48/50 active (near exhaustion).\n 3 pod restarts (OOMKilled).",
+      "impact": "Time to resolve: 22 minutes.\" The brain correlates and synthesizes Claude connected the dots across all three agent summaries:\n\n Incident Summary: checkout-service payment failures\n\nTimeline:\n 14:28 Deploy v2.14.3 rolled out\n 14:30 Connection pool warnings begin (12,000 in 30 min)\n 14:31 NullPointerException in PaymentProcessor (3,400 occurrences)\n 14:32 p99 latency spikes to 1450ms, error rate hits 12.4%\n\nRoot cause: v2.14.3 likely introduced a connection leak (same pattern\nas INC-2847 from March). Estimated resolution: 22 minutes (based on INC-2847 precedent) The brain never saw the raw log entries (which contain customer request payloads with PII), the Prometheus time series data, or the internal runbook documents. Customers cannot pay. Why isolation matters for agents Back to the checkout outage.\n\nClassified impact band: critical. Affected layer signal: data store.",
+      "resolution": "Identify root cause, check past incidents, and recommend a fix.\n\nFix: rollback + connection.close() in finally block.\n\nHere is how you fix that, step by step.\n\nThe fix is not more sandboxes around a single agent.",
+      "lessons_learned": "Why multiple agents without sandboxes do not help Splitting work across specialized agents improves quality.\n\nFollow-up: apply connection.close() in finally block per RB-CHECKOUT-004\n 3.",
+      "root_cause_highlight": "Likely root-cause theme: cascading failure. A single sandbox cannot restrict access to only one of those systems because the same process needs all three. Now each sandbox can enforce least privilege because each agent only handles one specific task. The runbook agent, which only needs read-only file access, can reach the Prometheus API because the metrics agent needs it.",
+      "incident_timeline": "Why isolation matters for agents Back to the checkout outage. A single unsandboxed agent investigating it needs access to Prometheus (metrics), Loki (logs), and Confluence (runbooks). It holds credentials for all three a\nNo data boundary. The agent reads customer request payloads from the logs (including personally identifiable information, or PII, in headers and bodies), then queries aggregate latency metrics, and then searches past inc\nWhen a single sandbox is not enough A single sandbox confines code execution. But the agent itself, the part that decides what to read, what to query, and what to write, still runs as one process with one set of permissi\nThe checkout agent needs to query Prometheus, search Loki, and read Confluence in the same session. A single sandbox cannot restrict access to only one of those systems because the same process needs all three. That crea\nMixed sensitivity levels. Logs contain customer request payloads with PII (credit card tokens, session IDs). Metrics are aggregate numbers. Runbooks are internal documentation. All three have different sensitivity, but t\nWhy multiple agents without sandboxes do not help Splitting work across specialized agents improves quality. Razorpay reduced incident investigation from 20-40 minutes to 90 seconds by running specialized agents against \nYou could split the checkout investigation into three agents: a metrics agent for Prometheus, a log agent for Loki, and a runbook agent for Confluence. Each agent handles one system. But without per-agent isolation, spec\nGive each agent its own sandbox with its own policy, its own file system namespace, and its own network scope. The metrics agent can reach Prometheus and vLLM, nothing else. The log agent can reach Loki and vLLM, nothing",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Picture this scenario. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "bd539b2684f155c2",
+    "title": "Inside the vLLM-Omni architecture: Serving Qwen3-Omni",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/07/01/inside-vllm-omni-architecture-serving-qwen3-omni",
+    "published": "2026-07-01T07:16:19+00:00",
+    "fetched_at": "2026-07-01T10:05:16.308025+00:00",
+    "summary": "Serving a large language model (LLM) is a well-worn path by now: tokens in, tokens out, and vLLM has spent years making that fast and efficient. Multimodal inputs already fit that path. For example, a vision-language model encodes an image into embeddings, merges them with the text, and relies on autoregressive text generation underneath.",
+    "tags": [
+      "capacity",
+      "deployment",
+      "networking",
+      "outage",
+      "scaling"
+    ],
+    "day": "2026-07-01",
+    "impact": "high",
+    "vendors": [
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "general production",
+    "reliability_theme": "capacity and scale",
+    "timeline_entries": [
+      "A claims analyst uploads a vehicle damage video and a customer voice statement. Each claim fires two concurrent requests: one for a text-only structured report for the adjuster (visible damage, statement summary, a consi",
+      "vLLM-Omni doesn't change how the model reasons; it changes how efficiently you serve it. The rest of this post is about the serving, and that starts with the stages.",
+      "Figure 2: A Qwen3-Omni request flows through three stages (Thinker, Talker, and Code2Wav), with the OmniConnector moving data between them before the result reaches the API.",
+      "One endpoint vllm serve <model> --omni brings up the whole graph behind a single OpenAI-compatible API. Requests use the same schema vanilla vLLM uses for images, extended to video and audio plus a modalities parameter. ",
+      "Disaggregated resources Each stage gets its own GPU memory fraction and can be placed and scaled independently. In this demo, the adjuster request is text-only. While its Talker and Code2Wav stages never run, they still ",
+      "Shared-memory transport Stages talk through the OmniConnector, which splits a lightweight control plane from a heavy data plane. The default same-node connector moves payloads through /dev/shm and passes only a small han",
+      "The demo's customer-callback request runs the full Thinker to Talker to Code2Wav path, and a live timeline tracks each stage from real timestamps in the streaming response: the Thinker from request-sent to last text toke",
+      "Figure 5: vLLM-Omni supports more than 30 omni and diffusion architectures, the clearest sign it's serving infrastructure rather than a single-model runner."
+    ],
+    "sections": {
+      "overview": "Serving a large language model (LLM) is a well-worn path by now: tokens in, tokens out, and vLLM has spent years making that fast and efficient. Multimodal inputs already fit that path. For example, a vision-language model encodes an image into embeddings, merges them with the text, and relies on autoregressive text generation underneath.",
+      "technical_breakdown": "The default same-node connector moves payloads through /dev/shm and passes only a small handle through the control plane; RDMA and TCP connectors handle cross-node deployments.\n\nShared-memory transport Stages talk through the OmniConnector, which splits a lightweight control plane from a heavy data plane.\n\nThe edges are functions that transform and route data between them, and a per-model YAML declares each stage's device, GPU memory fraction, and input source.\n\nRecent versions split this configuration into a --deploy-config schema that also captures the communication topology between stages for disaggregated deployments, with the original --stage-configs-path kept for compatibility.\n\nWhat mattered was bandwidth: decode is memory-bandwidth-bound, and since only about 3 billion of the 30 billion parameters are active per token, the rate you can move weights and KV cache through memory is what sets generation speed.",
+      "impact": "The demo \n \n \n \n \n \n \n \n \n A claims analyst uploads a vehicle damage video and a customer voice statement. Each claim fires two concurrent requests: one for a text-only structured report for the adjuster (visible damage, statement summary, a consistency check, severity, and a recommended action), and one for a short spoken summary for the customer. Qwen3-Omni's speech is generated from its own text reasoning, so different content for the adjuster and the customer means sending two requests rather than one. The demo's customer-callback request runs the full Thinker to Talker to Code2Wav path, and a live timeline tracks each stage from real timestamps in the streaming response: the Thinker from request-sent to last text token, the Talker from the first text token (async chunking lets it start before the Thinker finishes) to the first audio byte, Code2Wav from first audio byte to completion.\n\nClassified impact band: high. Affected layer signal: general production.",
+      "resolution": "Prefix caching carries over as well: vLLM-Omni reuses vLLM's KV cache prefix caching and adds a separate cache for the hidden-state tensors passed between stages.\n\nSo, a repeated prefix skips recompute on the autoregressive stages, just as it would for a plain LLM.\n\nIt's supported on autoregressive stages with a single KV cache group, and you toggle it per stage with --enable-prefix-caching in the stage config (see the vLLM-Omni prefix caching documentation ).\n\nDisaggregated resources Each stage gets its own GPU memory fraction and can be placed and scaled independently.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Shared-memory transport Stages talk through the OmniConnector, which splits a lightweight control plane from a heavy data plane. The default same-node connector moves payloads through /dev/shm and passes only a small handle through the control plane; RDMA and TCP connectors handle cross-node deployments.",
+      "incident_timeline": "A claims analyst uploads a vehicle damage video and a customer voice statement. Each claim fires two concurrent requests: one for a text-only structured report for the adjuster (visible damage, statement summary, a consi\nvLLM-Omni doesn't change how the model reasons; it changes how efficiently you serve it. The rest of this post is about the serving, and that starts with the stages.\nFigure 2: A Qwen3-Omni request flows through three stages (Thinker, Talker, and Code2Wav), with the OmniConnector moving data between them before the result reaches the API.\nOne endpoint vllm serve <model> --omni brings up the whole graph behind a single OpenAI-compatible API. Requests use the same schema vanilla vLLM uses for images, extended to video and audio plus a modalities parameter. \nDisaggregated resources Each stage gets its own GPU memory fraction and can be placed and scaled independently. In this demo, the adjuster request is text-only. While its Talker and Code2Wav stages never run, they still \nShared-memory transport Stages talk through the OmniConnector, which splits a lightweight control plane from a heavy data plane. The default same-node connector moves payloads through /dev/shm and passes only a small han\nThe demo's customer-callback request runs the full Thinker to Talker to Code2Wav path, and a live timeline tracks each stage from real timestamps in the streaming response: the Thinker from request-sent to last text toke\nFigure 5: vLLM-Omni supports more than 30 omni and diffusion architectures, the clearest sign it's serving infrastructure rather than a single-model runner.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nDemand spikes and capacity cliffs continue to drive autoscaling, queueing, and graceful degradation designs."
+    },
+    "email_summary": "Serving a large language model (LLM) is a well-worn path by now: tokens in, tokens out, and vLLM has spent years making that fast and efficient. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "c4549f7b00f6b88e",
+    "title": "Demystify the terminology of OpenShift hosted control planes",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/07/01/demystify-terminology-openshift-hosted-control-planes",
+    "published": "2026-07-01T07:16:17+00:00",
+    "fetched_at": "2026-07-01T10:05:16.310641+00:00",
+    "summary": "If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. At first glance, they may seem interchangeable, but they are not. Some are synonyms, some are subtly different, and at least one similar pair—managed cluster and management...",
+    "tags": [
+      "deployment",
+      "kubernetes",
+      "latency",
+      "networking",
+      "outage"
+    ],
+    "day": "2026-07-01",
+    "impact": "high",
+    "vendors": [
+      "Kubernetes",
+      "Red Hat"
+    ],
+    "operational_priority": false,
+    "root_cause": "control plane issue",
+    "affected_layer": "platform — kubernetes",
+    "reliability_theme": "incident response",
+    "timeline_entries": [
+      "In this article (part 1 of 2), we will provide a clear model of every component involved in hosted control planes, an explanation of the honest trade-offs of adopting HCP versus standalone clusters, and the infrastructur",
+      "What are hosted control planes? This terminology confusion is not your fault. It has evolved across upstream projects, product naming, API conventions, and documentation over several years. The CLI tool is called HCP, bu",
+      "Demystifying naming conventions Let’s establish the vocabulary. We use the official definitions from the OpenShift Container Platform 4.21 documentation . The Watch out part highlights where confusion typically arises.",
+      "Throughout this article, we use hosted control planes (HCP) as the canonical product name. You will see HyperShift only where it is technically unavoidable: the operator name (HyperShift Operator), the API group (hypersh",
+      "Both resources use the hypershift.openshift.io API group—this is one of those places where the upstream HyperShift name persists in the product.",
+      "When you create a HostedCluster resource, the HyperShift Operator creates a dedicated namespace on the management cluster (typically clusters-<name>) and deploys the hosted control plane components into it: etcd as a Sta",
+      "HyperShift = the upstream project : The Red Hat product is called hosted control planes (HCP). The open-source upstream project is called HyperShift. But the API group is hypershift.openshift.io, the operator is the Hype",
+      "Pros, cons, and when to use HCP HCP is not universally better than standalone OpenShift. It is a different operational model with its own strengths and costs. Here is an honest look at both sides."
+    ],
+    "sections": {
+      "overview": "If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. At first glance, they may seem interchangeable, but they are not. Some are synonyms, some are subtly different, and at least one similar pair—managed cluster and management cluster—refers to completely different concepts.",
+      "technical_breakdown": "The Konnectivity tunnel, external load balancers, DNS configuration, and potential separate networks between the control plane and data plane all require careful planning.\n\nConsequently, while a hub cluster is not by definition a hosting or management cluster from HCP context, the hub and hosting/management cluster is often the same cluster in practice that serves all the three roles. \n hosted cluster ≠ hosted control plane : The hosted cluster is the entire logical cluster: the control plane running as pods on the management cluster plus the worker nodes running on separate infrastructure.\n\nStandard Kubernetes primitives : The control plane consists of pods, deployments, and statefulsets, allowing you to use familiar tools to monitor and manage it.\n\nTraditionally, Red Hat OpenShift Container Platform deploys in a standalone model with the control plane and data plane coupled on the same cluster.\n\nControl planes and worker nodes share the network stack.",
+      "impact": "This is usually organized regionally, but might be for scope of authority for cluster management. Hosted cluster infrastructure : Network, compute, and storage resources in the tenant or end-user cloud account. Speed: Provisioning a new cluster takes minutes instead of the ~45 minutes a standalone installation requires because you are creating pods, not bootstrapping machines. On the bottom, the worker nodes for the hosted cluster is the tenant cluster your teams actually use.\n\nClassified impact band: high. Affected layer signal: platform — kubernetes.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "In this article (part 1 of 2), we will provide a clear model of every component involved in hosted control planes, an explanation of the honest trade-offs of adopting HCP versus standalone clusters, and the infrastructure decisions to plan for deploying on bare metal or Red Hat OpenShift Virtualization .\n\nWhile these terms identify the same entity, we will exclusively use management cluster throughout this post to maintain architectural consistency.\n\nTo assist with the conceptual breakdown, we will designate the management cluster as CLUSTER A , while specific hosted clusters will be labeled as CLUSTER Y and CLUSTER Z .\n\nThe VMs can use either an overlay network (the default pod network or a user defined network) or attach directly to a VLAN via localnet, a critical architectural decision we will explore in the architecture section.",
+      "root_cause_highlight": "Likely root-cause theme: control plane issue. Your operations team must learn new procedures because there is no machine config operator, direct access to control plane nodes is not available, and update workflows follow a different path. If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. In this article (part 1 of 2), we will provide a clear model of every component involved in hosted control planes, an explanation of the honest trade-offs of adopting HCP versus standalone clusters, and the infrastructure decisions to plan for deploying on bare metal or Red Hat OpenShift Virtualization .",
+      "incident_timeline": "In this article (part 1 of 2), we will provide a clear model of every component involved in hosted control planes, an explanation of the honest trade-offs of adopting HCP versus standalone clusters, and the infrastructur\nWhat are hosted control planes? This terminology confusion is not your fault. It has evolved across upstream projects, product naming, API conventions, and documentation over several years. The CLI tool is called HCP, bu\nDemystifying naming conventions Let’s establish the vocabulary. We use the official definitions from the OpenShift Container Platform 4.21 documentation . The Watch out part highlights where confusion typically arises.\nThroughout this article, we use hosted control planes (HCP) as the canonical product name. You will see HyperShift only where it is technically unavoidable: the operator name (HyperShift Operator), the API group (hypersh\nBoth resources use the hypershift.openshift.io API group—this is one of those places where the upstream HyperShift name persists in the product.\nWhen you create a HostedCluster resource, the HyperShift Operator creates a dedicated namespace on the management cluster (typically clusters-<name>) and deploys the hosted control plane components into it: etcd as a Sta\nHyperShift = the upstream project : The Red Hat product is called hosted control planes (HCP). The open-source upstream project is called HyperShift. But the API group is hypershift.openshift.io, the operator is the Hype\nPros, cons, and when to use HCP HCP is not universally better than standalone OpenShift. It is a different operational model with its own strengths and costs. Here is an honest look at both sides.",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments."
+    },
+    "email_summary": "If you have been exploring Red Hat OpenShift hosted control planes, you have probably encountered a few confusing terms, such as HyperShift, HCP, hosted cluster, hosting cluster, management cluster, managed cluster. Impact band: high.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
+    "id": "1c5ef15ccc12a24c",
+    "title": "Elastic named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026",
+    "source": "Elastic Blog",
+    "link": "https://www.elastic.co/blog/elastic-leader-everest-group-enterprise-search-peak-matrix-2026",
+    "published": "2026-07-01T00:00:00+00:00",
+    "fetched_at": "2026-07-01T10:05:16.003967+00:00",
+    "summary": "Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated.",
+    "tags": [],
+    "day": "2026-07-01",
+    "impact": "medium",
+    "vendors": [
+      "Elastic"
+    ],
+    "operational_priority": false,
+    "root_cause": "unspecified",
+    "affected_layer": "general production",
+    "reliability_theme": "general reliability",
+    "timeline_entries": [
+      "Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated."
+    ],
+    "sections": {
+      "overview": "Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated.",
+      "technical_breakdown": "Technical detail is limited in the syndicated excerpt; open the source for depth.",
+      "impact": "Classified impact band: medium. Affected layer signal: general production.",
+      "resolution": "Resolution detail may be partial in the RSS excerpt. Refer to the original write-up for timelines, mitigations, and verification steps.",
+      "lessons_learned": "Lessons are not explicit in the excerpt; use the source discussion for durable engineering takeaways.",
+      "root_cause_highlight": "",
+      "incident_timeline": "Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated.",
+      "trends": "This item contributes to the broader reliability narrative for production engineering teams."
+    },
+    "email_summary": "Elastic has been named a Leader in the Everest Group Enterprise Search Products PEAK Matrix® Assessment 2026 and identified as holding the largest market share among all 16 providers evaluated.",
+    "related_sources": [],
+    "highlighted": false
+  }
+]
