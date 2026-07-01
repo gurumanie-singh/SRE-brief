@@ -52,6 +52,58 @@
     "highlighted": false
   },
   {
+    "id": "5d23346f8660b5fc",
+    "title": "Build a multi-agent supervisor pattern on Red Hat AI",
+    "source": "Red Hat Developer Blog",
+    "link": "https://developers.redhat.com/articles/2026/07/01/build-multi-agent-supervisor-pattern-red-hat-ai",
+    "published": "2026-07-01T07:16:20+00:00",
+    "fetched_at": "2026-07-01T13:37:47.019413+00:00",
+    "summary": "Picture this scenario. It is 2 AM. Checkout is down. Customers cannot pay.",
+    "tags": [
+      "database",
+      "deployment",
+      "latency",
+      "networking",
+      "observability",
+      "outage",
+      "postmortem"
+    ],
+    "day": "2026-07-01",
+    "impact": "critical",
+    "vendors": [
+      "Datadog",
+      "GitHub",
+      "Red Hat"
+    ],
+    "operational_priority": true,
+    "root_cause": "cascading failure",
+    "affected_layer": "data store",
+    "reliability_theme": "observability",
+    "timeline_entries": [
+      "Why isolation matters for agents Back to the checkout outage. A single unsandboxed agent investigating it needs access to Prometheus (metrics), Loki (logs), and Confluence (runbooks). It holds credentials for all three a",
+      "No data boundary. The agent reads customer request payloads from the logs (including personally identifiable information, or PII, in headers and bodies), then queries aggregate latency metrics, and then searches past inc",
+      "When a single sandbox is not enough A single sandbox confines code execution. But the agent itself, the part that decides what to read, what to query, and what to write, still runs as one process with one set of permissi",
+      "The checkout agent needs to query Prometheus, search Loki, and read Confluence in the same session. A single sandbox cannot restrict access to only one of those systems because the same process needs all three. That crea",
+      "Mixed sensitivity levels. Logs contain customer request payloads with PII (credit card tokens, session IDs). Metrics are aggregate numbers. Runbooks are internal documentation. All three have different sensitivity, but t",
+      "Why multiple agents without sandboxes do not help Splitting work across specialized agents improves quality. Razorpay reduced incident investigation from 20-40 minutes to 90 seconds by running specialized agents against ",
+      "You could split the checkout investigation into three agents: a metrics agent for Prometheus, a log agent for Loki, and a runbook agent for Confluence. Each agent handles one system. But without per-agent isolation, spec",
+      "Give each agent its own sandbox with its own policy, its own file system namespace, and its own network scope. The metrics agent can reach Prometheus and vLLM, nothing else. The log agent can reach Loki and vLLM, nothing"
+    ],
+    "sections": {
+      "overview": "Build a multi-agent supervisor pattern on Red Hat AI. Picture this scenario. It is 2 AM. Checkout is down. Customers cannot pay.",
+      "technical_breakdown": "These are not terminal commands; they are structured tool calls that Anthropic's harness sends to your worker through the work queue:\n\n [tool_use] bash: python3 dispatch.py metrics_agent \"Check checkout-service latency, error rates, resource usage\"\n[tool_use] bash: python3 dispatch.py log_agent \"Search checkout-service logs for errors since 14:30 UTC\"\n[tool_use] bash: python3 dispatch.py runbook_agent \"Find past incidents matching connection pool exhaustion\" The worker pod receives these tool calls from the queue.\n\nThe brain decomposes Claude received the incident report and immediately dispatched three parallel investigations:\n\n [agent.tool_use] bash: python3 dispatch.py metrics_agent \"Check checkout-service\n latency, error rates, resource usage, and upstream dependencies since 14:30 UTC\"\n[agent.tool_use] bash: python3 dispatch.py log_agent \"Search checkout-service logs\n 14:30-15:00 UTC for errors, exceptions, and deploy events\"\n[agent.tool_use] bash: python3 dispatch.py runbook_agent \"Find past incidents\n matching connection pool exhaustion, OOMKilled, NullPointerException in payments\" The worker dispatches to sandboxes The worker pod received all three tool calls.\n\nThe agent reads customer request payloads from the logs (including personally identifiable information, or PII, in headers and bodies), then queries aggregate latency metrics, and then searches past incident reports.\n\nFigure 2: Three sandboxed agents on an OpenShift cluster: metrics agent querying Prometheus, log agent searching application logs, runbook agent reading past incidents, each with per-agent network policy, orchestrated by Claude in Anthropic's cloud.\n\nDatabase connection pool: 48/50 active (near exhaustion).\n 3 pod restarts (OOMKilled).",
+      "impact": "Time to resolve: 22 minutes.\" The brain correlates and synthesizes Claude connected the dots across all three agent summaries:\n\n Incident Summary: checkout-service payment failures\n\nTimeline:\n 14:28 Deploy v2.14.3 rolled out\n 14:30 Connection pool warnings begin (12,000 in 30 min)\n 14:31 NullPointerException in PaymentProcessor (3,400 occurrences)\n 14:32 p99 latency spikes to 1450ms, error rate hits 12.4%\n\nRoot cause: v2.14.3 likely introduced a connection leak (same pattern\nas INC-2847 from March). Estimated resolution: 22 minutes (based on INC-2847 precedent) The brain never saw the raw log entries (which contain customer request payloads with PII), the Prometheus time series data, or the internal runbook documents. Customers cannot pay. Why isolation matters for agents Back to the checkout outage.\n\nClassified impact band: critical. Affected layer signal: data store.",
+      "resolution": "Identify root cause, check past incidents, and recommend a fix.\n\nFix: rollback + connection.close() in finally block.\n\nHere is how you fix that, step by step.\n\nThe fix is not more sandboxes around a single agent.",
+      "lessons_learned": "Why multiple agents without sandboxes do not help Splitting work across specialized agents improves quality.\n\nFollow-up: apply connection.close() in finally block per RB-CHECKOUT-004\n 3.",
+      "root_cause_highlight": "Likely root-cause theme: cascading failure. A single sandbox cannot restrict access to only one of those systems because the same process needs all three. Now each sandbox can enforce least privilege because each agent only handles one specific task. The runbook agent, which only needs read-only file access, can reach the Prometheus API because the metrics agent needs it.",
+      "incident_timeline": "Why isolation matters for agents Back to the checkout outage. A single unsandboxed agent investigating it needs access to Prometheus (metrics), Loki (logs), and Confluence (runbooks). It holds credentials for all three a\nNo data boundary. The agent reads customer request payloads from the logs (including personally identifiable information, or PII, in headers and bodies), then queries aggregate latency metrics, and then searches past inc\nWhen a single sandbox is not enough A single sandbox confines code execution. But the agent itself, the part that decides what to read, what to query, and what to write, still runs as one process with one set of permissi\nThe checkout agent needs to query Prometheus, search Loki, and read Confluence in the same session. A single sandbox cannot restrict access to only one of those systems because the same process needs all three. That crea\nMixed sensitivity levels. Logs contain customer request payloads with PII (credit card tokens, session IDs). Metrics are aggregate numbers. Runbooks are internal documentation. All three have different sensitivity, but t\nWhy multiple agents without sandboxes do not help Splitting work across specialized agents improves quality. Razorpay reduced incident investigation from 20-40 minutes to 90 seconds by running specialized agents against \nYou could split the checkout investigation into three agents: a metrics agent for Prometheus, a log agent for Loki, and a runbook agent for Confluence. Each agent handles one system. But without per-agent isolation, spec\nGive each agent its own sandbox with its own policy, its own file system namespace, and its own network scope. The metrics agent can reach Prometheus and vLLM, nothing else. The log agent can reach Loki and vLLM, nothing",
+      "trends": "Large-scale outages remain the forcing function for resilient architecture, communication, and automation investments.\n\nPublic postmortems compress organizational learning into patterns the broader industry can reuse.\n\nObservability shifts remain tightly coupled with incident response quality and capacity planning accuracy."
+    },
+    "email_summary": "Picture this scenario. Impact band: critical.",
+    "related_sources": [],
+    "highlighted": false
+  },
+  {
     "id": "bd539b2684f155c2",
     "title": "Inside the vLLM-Omni architecture: Serving Qwen3-Omni",
     "source": "Red Hat Developer Blog",
